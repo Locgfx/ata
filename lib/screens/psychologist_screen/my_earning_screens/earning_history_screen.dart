@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
 import '../../../constants/fonts.dart';
 
 class EarningHistoryScreen extends StatefulWidget {
@@ -17,7 +18,10 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(appBarText: 'History'),
+      appBar: CusAppBar(
+        appBarText: 'History',
+        imgPath: 'assets/images/Vector 175.png',
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -25,7 +29,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
             height: 40.h,
           ),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 24.w),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Container(
               height: 56.h,
               width: 1.sw,
@@ -35,7 +39,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
               ),
               child: Center(
                 child: Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 16.w),
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -49,45 +53,75 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                           ),
                         ),
                       ),
-                      SvgPicture.asset('assets/icons/search.svg', height: 24.h, width: 24.w,),
+                      SvgPicture.asset(
+                        'assets/icons/search.svg',
+                        height: 24.h,
+                        width: 24.w,
+                      ),
                     ],
                   ),
                 ),
               ),
             ),
           ),
-          SizedBox(height: 44.h,),
+          SizedBox(
+            height: 44.h,
+          ),
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 24.w, ),
+            padding: EdgeInsets.symmetric(
+              horizontal: 24.w,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('History', style: kManRope_500_18_001314,),
-                SvgPicture.asset('assets/icons/menu.svg', height: 24.h, width: 24.w,),
+                Text(
+                  'History',
+                  style: kManRope_500_18_001314,
+                ),
+                SvgPicture.asset(
+                  'assets/icons/menu.svg',
+                  height: 18.h,
+                  width: 20.w,
+                ),
               ],
             ),
           ),
-          SizedBox(height: 33.h,),
+          SizedBox(
+            height: 33.h,
+          ),
           Container(
             height: 40.h,
             width: 1.sw,
             color: kWhiteBGColor,
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 25.w,),
+              padding: EdgeInsets.symmetric(
+                horizontal: 25.w,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Date', style: kManRope_500_14_263238,),
-                  Text('Transaction No', style: kManRope_500_14_263238,),
-                  Text('Amount', style: kManRope_500_14_263238,),
+                  Text(
+                    'Date',
+                    style: kManRope_500_14_263238,
+                  ),
+                  Text(
+                    'Transaction No',
+                    style: kManRope_500_14_263238,
+                  ),
+                  Text(
+                    'Amount',
+                    style: kManRope_500_14_263238,
+                  ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: 17.h,),
+          SizedBox(
+            height: 17.h,
+          ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(left: 20.w, right: 20.h),
+              padding: EdgeInsets.only(left: 25.w, right: 25.w),
               child: ListView.separated(
                   itemBuilder: (ctx, index) {
                     return Column(
@@ -95,16 +129,25 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('09.12.2022', style: kManRope_400_14_626A6A,),
-                            Text('123456789', style: kManRope_400_14_626A6A,),
-                            Text('500', style: kManRope_400_14_626A6A,),
+                            Text(
+                              '09.12.2022',
+                              style: kManRope_400_14_626A6A,
+                            ),
+                            Text(
+                              '123456789',
+                              style: kManRope_400_14_626A6A,
+                            ),
+                            Text(
+                              '500',
+                              style: kManRope_400_14_626A6A,
+                            ),
                           ],
                         ),
                       ],
                     );
                   },
                   separatorBuilder: (ctx, index) {
-                    return SizedBox(height: 27.h);
+                    return SizedBox(height: 29.h);
                   },
                   itemCount: 20),
             ),

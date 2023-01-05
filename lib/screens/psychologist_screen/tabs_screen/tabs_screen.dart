@@ -25,9 +25,9 @@ class _TabsScreenState extends State<TabsScreen> {
       extendBody: true,
       body: [
         PsychologistHomeScreen(),
-        PrescriptionScreen(),
-        PsychologistPostScreen(),
         MyEarningsScreen(),
+        PsychologistPostScreen(),
+        PrescriptionScreen(),
         PsychologistProfileScreen(),
       ].elementAt(_index),
       bottomNavigationBar: Container(

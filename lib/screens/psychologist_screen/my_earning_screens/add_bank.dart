@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
 import '../../../constants/fonts.dart';
 import '../../../widgets/shared/buttons/custom_active_text_button.dart';
 import 'bank_account_verify_screen.dart';
-
 
 final List<String> Banks = [
   'Andhra Bank',
@@ -19,7 +20,6 @@ final List<String> Banks = [
   'Canara Bank',
   'Central Bank of India'
 ];
-
 
 class AddBankScreen extends StatefulWidget {
   const AddBankScreen({Key? key}) : super(key: key);
@@ -53,233 +53,132 @@ class _AddBankScreenState extends State<AddBankScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(appBarText: 'Add Bank'),
-      body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 38.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Fill Your Bank Details',
-              style: kManRope_500_24_001314,
-            ),
-            SizedBox(
-              height: 46.h,
-            ),
-            Text(
-              'Bank Name*',
-              style: kManRope_500_16_001314,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              height: 48.h,
-              width: 1.sw,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: kWhiteBGColor,
+      appBar: CusAppBar(
+        imgPath: 'assets/images/Vector 175.png',
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 38.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Fill Your Bank Details',
+                style: kManRope_500_24_001314,
               ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Select Bank',
-                      style: kManRope_400_14_626A6A,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _selectBanks();
+              SizedBox(
+                height: 30.h,
+              ),
+              Text(
+                'Bank Name*',
+                style: kManRope_500_16_001314,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              TextField(
+                  decoration: TextfieldDecoration(
+                      label: "Select bank",
+                      child: Image.asset(
+                        "assets/images/downarrow.png",
+                        height: 10,
+                        width: 10,
+                      )).textfieldDecoration()),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'IFSC Code *',
+                style: kManRope_500_16_001314,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              TextField(
+                  decoration: TextfieldDecoration(
+                label: "Type IFSC Code",
+              ).textfieldDecoration()),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'Account No*',
+                style: kManRope_500_16_001314,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              TextField(
+                  decoration: TextfieldDecoration(label: "Type Account NO")
+                      .textfieldDecoration()),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'Account Holder Name*',
+                style: kManRope_500_16_001314,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              TextField(
+                  decoration: TextfieldDecoration(
+                          label: "This field will filled automatically")
+                      .textfieldDecoration()),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'Branch name*',
+                style: kManRope_500_16_001314,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              TextField(
+                  decoration: TextfieldDecoration(
+                          label: "This field will filled automatically")
+                      .textfieldDecoration()),
+              SizedBox(
+                height: 20.h,
+              ),
+              Text(
+                'Account type*',
+                style: kManRope_500_16_001314,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              TextField(
+                  decoration: TextfieldDecoration(
+                      label: "Saving",
+                      child: GestureDetector(
+                        onTap: () {
+                          BanksBottomSheet();
+                        },
+                        child: Image.asset(
+                          "assets/images/downarrow.png",
+                          height: 10,
+                          width: 10,
+                        ),
+                      )).textfieldDecoration()),
+              SizedBox(
+                height: 30.h,
+              ),
+              Center(
+                child: SizedBox(
+                  height: 56.h,
+                  width: 168.w,
+                  child: CustomActiveTextButton1(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => BankVerifyScreen()));
                       },
-                      child: SvgPicture.asset(
-                        'assets/icons/downArrow.svg',
-                        height: 24.h,
-                        width: 24.w,
-                      ),
-                    ),
-                  ],
+                      text: 'Save'),
                 ),
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Text(
-              'IFSC Code *',
-              style: kManRope_500_16_001314,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              height: 48.h,
-              width: 1.sw,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: kWhiteBGColor,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 10.h),
-                child: SizedBox(
-                  width: 1.sw,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Type IFSC Code',
-                      hintStyle: kManRope_400_14_626A6A,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Text(
-              'Account No*',
-              style: kManRope_500_16_001314,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              height: 48.h,
-              width: 1.sw,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: kWhiteBGColor,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 10.h),
-                child: SizedBox(
-                  width: 1.sw,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Type Account No',
-                      hintStyle: kManRope_400_14_626A6A,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Text(
-              'Account Holder Name*',
-              style: kManRope_500_16_001314,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              height: 48.h,
-              width: 1.sw,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: kWhiteBGColor,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 10.h),
-                child: SizedBox(
-                  width: 1.sw,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'This field will filled automatically',
-                      hintStyle: kManRope_400_14_626A6A,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Text(
-              'Branch name*',
-              style: kManRope_500_16_001314,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              height: 48.h,
-              width: 1.sw,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: kWhiteBGColor,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w, bottom: 10.h),
-                child: SizedBox(
-                  width: 1.sw,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'This field will filled automatically',
-                      hintStyle: kManRope_400_14_626A6A,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20.h,
-            ),
-            Text(
-              'Account type*',
-              style: kManRope_500_16_001314,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Container(
-              height: 48.h,
-              width: 1.sw,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                color: kWhiteBGColor,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 16.w, right: 16.w),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Saving',
-                      style: kManRope_400_14_626A6A,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _selectAccountType();
-                      },
-                      child: SvgPicture.asset(
-                        'assets/icons/downArrow.svg',
-                        height: 24.h,
-                        width: 24.w,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 40.h,
-            ),
-            Center(
-              child: SizedBox(
-                height: 56.h,
-                width: 168.w,
-                child: CustomActiveTextButton1(onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => BankVerifyScreen()));
-                }, text: 'Save'),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -290,8 +189,7 @@ class BanksBottomSheet extends StatefulWidget {
   const BanksBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<BanksBottomSheet> createState() =>
-      _BanksBottomSheetState();
+  State<BanksBottomSheet> createState() => _BanksBottomSheetState();
 }
 
 class _BanksBottomSheetState extends State<BanksBottomSheet> {
@@ -334,9 +232,11 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
                 ),
               ),
             ),
-            SizedBox(height: 20.h,),
+            SizedBox(
+              height: 20.h,
+            ),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 24.w),
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Container(
                 height: 56.h,
                 width: 1.sw,
@@ -346,7 +246,7 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
                 ),
                 child: Center(
                   child: Padding(
-                    padding:  EdgeInsets.symmetric(horizontal: 16.w),
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -360,14 +260,20 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
                             ),
                           ),
                         ),
-                        SvgPicture.asset('assets/icons/search.svg', height: 24.h, width: 24.w,),
+                        SvgPicture.asset(
+                          'assets/icons/search.svg',
+                          height: 24.h,
+                          width: 24.w,
+                        ),
                       ],
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 14.h,),
+            SizedBox(
+              height: 14.h,
+            ),
             Padding(
               padding: EdgeInsets.only(left: 48.w),
               child: SizedBox(
@@ -402,8 +308,7 @@ class AccountTypeBottomSheet extends StatefulWidget {
   const AccountTypeBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<AccountTypeBottomSheet> createState() =>
-      _AccountTypeBottomSheetState();
+  State<AccountTypeBottomSheet> createState() => _AccountTypeBottomSheetState();
 }
 
 class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
@@ -469,16 +374,16 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
                         width: 101.w,
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                              const BorderRadius.all(Radius.circular(5)),
                           color: _gIndex == 0 ? k006D77 : Colors.white,
                         ),
                         child: Center(
                             child: Text(
-                              'Current',
-                              style: _gIndex == 0
-                                  ? kManRope_500_16_white
-                                  : kManRope_500_16_626A6A,
-                            )),
+                          'Current',
+                          style: _gIndex == 0
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
                       ),
                     ),
                     GestureDetector(
@@ -491,16 +396,16 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
                         width: 101.w,
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                              const BorderRadius.all(Radius.circular(5)),
                           color: _gIndex == 1 ? k006D77 : Colors.white,
                         ),
                         child: Center(
                             child: Text(
-                              'Saving',
-                              style: _gIndex == 1
-                                  ? kManRope_500_16_white
-                                  : kManRope_500_16_626A6A,
-                            )),
+                          'Saving',
+                          style: _gIndex == 1
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
                       ),
                     ),
                   ],

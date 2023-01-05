@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/screens/psychologist_screen/my_earning_screens/withdraw_earnings_screen.dart';
+
 import '../../../constants/fonts.dart';
 import '../my_earning_screens/earning_history_screen.dart';
 
@@ -19,6 +20,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
+        toolbarHeight: 40,
         automaticallyImplyLeading: false,
         backgroundColor: kWhiteBGColor,
         elevation: 0,
@@ -52,8 +54,8 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
           Padding(
             padding: EdgeInsets.only(left: 24.w, right: 24.w),
             child: Container(
-              height: 173.h,
-              width: 380.w,
+              // height: 173.h,
+              width: 1.sw,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 2),
                 borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -77,7 +79,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 28.h,
                     ),
                     Container(
                       height: 1.5,
@@ -85,7 +87,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                       color: Colors.white,
                     ),
                     SizedBox(
-                      height: 20.h,
+                      height: 24.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -93,38 +95,57 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total Earning', style: kManRope_700_20_001314,),
-                            SizedBox(height: 16.h,),
-                            Text('100000+', style: kManRope_500_16_626A6A,),
+                            Text(
+                              'Total Earning',
+                              style: kManRope_700_20_001314,
+                            ),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            Text(
+                              '100000+',
+                              style: kManRope_500_16_626A6A,
+                            ),
                           ],
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total Order', style: kManRope_700_20_001314,),
-                            SizedBox(height: 16.h,),
-                            Text('500+', style: kManRope_500_16_626A6A,),
+                            Text(
+                              'Total Order',
+                              style: kManRope_700_20_001314,
+                            ),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            Text(
+                              '500+',
+                              style: kManRope_500_16_626A6A,
+                            ),
                           ],
                         ),
                       ],
                     ),
+                    SizedBox(height: 24),
                   ],
                 ),
               ),
             ),
           ),
-          SizedBox(height: 40.h,),
+          SizedBox(
+            height: 40.h,
+          ),
           Padding(
             padding: EdgeInsets.only(left: 24.w, right: 24.w),
             child: Container(
-              height: 173.h,
-              width: 380.w,
+              // height: 173.h,
+              width: 1.sw,
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white, width: 2),
                 borderRadius: BorderRadius.all(Radius.circular(16)),
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 28.h),
+                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 24.h),
                 child: Column(
                   children: [
                     Row(
@@ -133,88 +154,146 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Total Earning', style: kManRope_700_20_001314,),
-                            SizedBox(height: 16.h,),
-                            Text('100000+', style: kManRope_500_16_626A6A,),
+                            Text(
+                              'Total Earning',
+                              style: kManRope_700_20_001314,
+                            ),
+                            SizedBox(
+                              height: 12.h,
+                            ),
+                            Text(
+                              '100000+',
+                              style: kManRope_500_16_626A6A,
+                            ),
                           ],
                         ),
                         GestureDetector(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => WithDrawEarningsScreen()));
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    WithDrawEarningsScreen()));
                           },
-                          child: Text('WITHDRAW', style: kManRope_600_18_006D77,),
+                          child: Text(
+                            'WITHDRAW',
+                            style: kManRope_600_18_006D77,
+                          ),
                         )
                       ],
                     ),
                     SizedBox(
-                      height: 15.h,
+                      height: 24.h,
                     ),
                     Container(
                       height: 1.5,
                       width: 1.sw,
                       color: Colors.white,
                     ),
-                    SizedBox(height: 15.h,),
+                    SizedBox(
+                      height: 19.h,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('History', style: kManRope_500_18_001314,),
+                        Text(
+                          'History',
+                          style: kManRope_500_18_001314,
+                        ),
                         GestureDetector(
-                          onTap: (){
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context) => EarningHistoryScreen()));
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => EarningHistoryScreen()));
                           },
-                            child: SvgPicture.asset('assets/icons/arrowforword.svg', height: 16,width: 16, color: k006D77,),
+                          child: SvgPicture.asset(
+                            'assets/icons/arrowforword.svg',
+                            height: 16.h,
+                            width: 16.w,
+                            color: k006D77,
+                          ),
                         )
                       ],
                     ),
+                    SizedBox(height: 27.h),
                   ],
                 ),
               ),
             ),
           ),
-          SizedBox(height: 40.h,),
-          Padding(
-              padding:EdgeInsets.only(left: 24.w),
-            child: Text('Last 5 Transaction', style: kManRope_500_18_001314,),
+          SizedBox(
+            height: 40.h,
           ),
-          SizedBox(height: 16.h,),
+          Padding(
+            padding: EdgeInsets.only(left: 24.w),
+            child: Text(
+              'Last 5 Transaction',
+              style: kManRope_500_18_001314,
+            ),
+          ),
+          SizedBox(
+            height: 16.h,
+          ),
           Container(
             height: 40.h,
             width: 1.sw,
             color: kD6EAF0,
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 25.w,),
+              padding: EdgeInsets.symmetric(
+                horizontal: 25.w,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Date', style: kManRope_500_14_263238,),
-                  Text('Transaction No', style: kManRope_500_14_263238,),
-                  Text('Amount', style: kManRope_500_14_263238,),
+                  Text(
+                    'Date',
+                    style: kManRope_500_14_263238,
+                  ),
+                  Text(
+                    'Transaction No',
+                    style: kManRope_500_14_263238,
+                  ),
+                  Text(
+                    'Amount',
+                    style: kManRope_500_14_263238,
+                  ),
                 ],
               ),
             ),
           ),
-          SizedBox(height: 17.h,),
+          SizedBox(
+            height: 17.h,
+          ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(left: 20.w, right: 20.h),
+              padding: EdgeInsets.only(
+                left: 20.w,
+                right: 20.h,
+              ),
               child: ListView.separated(
+                  padding: EdgeInsets.zero,
                   itemBuilder: (ctx, index) {
                     return Column(
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('09.12.2022', style: kManRope_400_14_626A6A,),
-                            Text('123456789', style: kManRope_400_14_626A6A,),
-                            Text('500', style: kManRope_400_14_626A6A,),
+                            Text(
+                              '09.12.2022',
+                              style: kManRope_400_14_626A6A,
+                            ),
+                            Text(
+                              '123456789',
+                              style: kManRope_400_14_626A6A,
+                            ),
+                            Text(
+                              '500',
+                              style: kManRope_400_14_626A6A,
+                            ),
                           ],
                         ),
                       ],
                     );
                   },
                   separatorBuilder: (ctx, index) {
-                    return SizedBox(height: 27.h);
+                    return SizedBox(height: 29.h);
                   },
                   itemCount: 10),
             ),

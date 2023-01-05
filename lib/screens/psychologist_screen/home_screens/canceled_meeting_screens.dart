@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/constants/decorations.dart';
+import 'package:greymatter/widgets/popupdialogs.dart';
 
-import '../../../constants/colors.dart';
 import '../../../constants/fonts.dart';
 import '../../../widgets/app_bar/app_bar.dart';
 
@@ -26,59 +26,20 @@ class _CanceledMeetingScreenState extends State<CanceledMeetingScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Upcoming   (17)',
+                  'Canceled  (100+)',
                   style: kManRope_700_16_001314,
                 ),
-                PopupMenuButton<int>(
-                  padding: EdgeInsets.zero,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                  ),
-                  icon: SvgPicture.asset(
-                    'assets/icons/calender.svg',
-                    height: 24.h,
-                    width: 24.w,
-                  ),
-                  itemBuilder: (context) => [
-                    // PopupMenuItem 1
-                    PopupMenuItem(
-                      value: 1,
-                      // row with 2 children
-                      child: Text(
-                        "This month",
-                        style: kManRope_400_20_Black,
-                      ),
-                    ),
-                    // PopupMenuItem 2
-                    PopupMenuItem(
-                      value: 2,
-                      // row with two children
-                      child: Text("This year", style: kManRope_400_20_Black),
-                    ),
-                    PopupMenuItem(
-                      value: 3,
-                      // row with two children
-                      child: Text("This week", style: kManRope_400_20_Black),
-                    ),
-                  ],
-                  offset: Offset(0, 100),
-                  color: Colors.white,
-                  elevation: 2,
-                  // on selected we show the dialog box
-                  onSelected: (value) {},
-                ),
+                CalenderPopup()
               ],
             ),
             SizedBox(
-              height: 29.h,
+              height: 24.h,
             ),
             Expanded(
               child: ListView.separated(
                   itemBuilder: (ctx, index) {
                     return Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: kWhiteBGColor),
+                      decoration: CustomDecoration().radius16Decoration(),
                       child: Padding(
                         padding:
                             EdgeInsets.only(left: 16.w, right: 16.w, top: 16.h),
@@ -102,7 +63,7 @@ class _CanceledMeetingScreenState extends State<CanceledMeetingScreen> {
                                       child: Image.asset(
                                           'assets/images/userP.png'),
                                     ),
-                                    SizedBox(width: 8.w),
+                                    SizedBox(width: 16.w),
                                     Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
@@ -134,14 +95,14 @@ class _CanceledMeetingScreenState extends State<CanceledMeetingScreen> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 20.h),
+                            SizedBox(height: 18.h),
                           ],
                         ),
                       ),
                     );
                   },
                   separatorBuilder: (ctx, index) {
-                    return SizedBox(height: 40.h);
+                    return SizedBox(height: 8.h);
                   },
                   itemCount: 10),
             ),

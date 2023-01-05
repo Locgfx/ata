@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/screens/psychologist_screen/home_screens/joining.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../../constants/colors.dart';
@@ -18,7 +19,10 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(appBarText: 'Upcoming'),
+      appBar: CusAppBar(
+        appBarText: 'Upcomming  ',
+        imgPath: 'assets/images/Vector 175.png',
+      ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: ListView(
@@ -33,12 +37,12 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                 SvgPicture.asset(
                   'assets/icons/calender.svg',
                   height: 24.h,
-                  width: 24.w,
+                  width: 18.w,
                 ),
               ],
             ),
             SizedBox(
-              height: 24.h,
+              height: 29.h,
             ),
             Text(
               'Today (2)',
@@ -48,13 +52,14 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
               height: 24.h,
             ),
             SizedBox(
-              height: 170.h,
+              // height: 170.h,
               child: ListView.separated(
+                  shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
                     return Container(
                       height: 80.h,
-                      width: 380.w,
+                      width: 1.sw,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(16)),
                         color: kWhiteBGColor,
@@ -70,15 +75,28 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                               children: [
                                 Row(
                                   children: [
-                                    Container(
-                                      width: 48.w,
-                                      height: 48.h,
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    JoiningScreen()));
+                                      },
+                                      child: Container(
+                                        width: 48.w,
+                                        height: 48.h,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                  "assets/images/Rectangle 26.png",
+                                                ),
+                                                fit: BoxFit.cover),
+                                            color: Colors.grey,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                      ),
                                     ),
-                                    SizedBox(width: 8.w),
+                                    SizedBox(width: 16.w),
                                     Column(
                                       mainAxisSize: MainAxisSize.min,
                                       crossAxisAlignment:
@@ -103,7 +121,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(height: 8.h),
+                                        // SizedBox(height: 8.h),
                                       ],
                                     ),
                                   ],
@@ -131,13 +149,14 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
               height: 24.h,
             ),
             SizedBox(
-              height: 270.h,
+              // height: 270.h,
               child: ListView.separated(
+                  shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
                     return Container(
                       height: 80.h,
-                      width: 380.w,
+                      width: 1.sw,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(16)),
                         color: kWhiteBGColor,
@@ -157,13 +176,19 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                       width: 48.w,
                                       height: 48.h,
                                       decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                "assets/images/Rectangle 26.png",
+                                              ),
+                                              fit: BoxFit.cover),
                                           color: Colors.grey,
                                           borderRadius:
                                               BorderRadius.circular(8)),
                                     ),
-                                    SizedBox(width: 8.w),
+                                    SizedBox(width: 16.w),
                                     Column(
-                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -186,7 +211,6 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(height: 8.h),
                                       ],
                                     ),
                                   ],
@@ -216,11 +240,12 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
             SizedBox(
               height: 350.h,
               child: ListView.separated(
+                  shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (ctx, index) {
                     return Container(
                       height: 80.h,
-                      width: 380.w,
+                      width: 1.sw,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(16)),
                         color: kWhiteBGColor,
@@ -240,13 +265,19 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                       width: 48.w,
                                       height: 48.h,
                                       decoration: BoxDecoration(
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                "assets/images/Rectangle 26.png",
+                                              ),
+                                              fit: BoxFit.cover),
                                           color: Colors.grey,
                                           borderRadius:
                                               BorderRadius.circular(8)),
                                     ),
-                                    SizedBox(width: 8.w),
+                                    SizedBox(width: 16.w),
                                     Column(
-                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -269,7 +300,6 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                             ),
                                           ],
                                         ),
-                                        SizedBox(height: 8.h),
                                       ],
                                     ),
                                   ],
