@@ -93,6 +93,7 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                 height: 8.h,
               ),
               TextField(
+                  readOnly: true,
                   decoration: TextfieldDecoration(
                           child: GestureDetector(
                             onTap: () {

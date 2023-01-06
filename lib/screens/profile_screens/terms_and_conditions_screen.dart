@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
+import '../../widgets/app_bar/app_bar.dart';
 
 class TermsAndConditionsScreen extends StatelessWidget {
   const TermsAndConditionsScreen({Key? key}) : super(key: key);
@@ -11,29 +12,9 @@ class TermsAndConditionsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
-        elevation: 0,
-        leadingWidth: 40.w,
-        backgroundColor: Colors.white,
-        centerTitle: false,
-        title: Text(
-          'Privacy and Policy',
-          style: kManRope_500_16_006D77,
-        ),
-        titleSpacing: 18.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
+      appBar: CuswhiteAppBar(
+        imgPath: 'assets/images/Vector 175.png',
+        appBarText: 'Terms and Conditions',
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),

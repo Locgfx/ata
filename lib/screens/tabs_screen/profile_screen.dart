@@ -36,6 +36,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
+      // appBar: AppBar(
+      //   backgroundColor: Colors.red,
+      //   toolbarHeight: 40,
+      // ),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.only(left: 24.w, top: 100.h, right: 24.w),

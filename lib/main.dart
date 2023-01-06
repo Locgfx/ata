@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) {
           return MaterialApp(
               debugShowCheckedModeBanner: false,
-              title: 'Atar Axis',
+              title: 'Atar ',
               home: //MySessionPage(),
                   //   BookingSuccessfulScreen()
                   //SessionSuccessful()

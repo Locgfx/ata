@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -41,7 +42,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
               ),
               SizedBox(height: 24.h),
               Image.asset(
-                "assets/images/greenbgtick.png",
+                'assets/images/success.gif',
                 height: 183.h,
                 width: 186.w,
               ),
@@ -108,6 +109,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                 children: [
                   Expanded(
                     child: MainButton(
+                      shape: CustomDecoration().border10Decoration(),
                       onPressed: () {},
                       child: Padding(
                         padding: EdgeInsets.only(top: 20, bottom: 20),
@@ -121,30 +123,30 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: MainButton(
-                      onPressed: () {},
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 20, bottom: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "assets/images/eyeicon.png",
-                              height: 15,
-                            ),
-                            SizedBox(
-                              width: 9.w,
-                            ),
-                            Text(
-                              "Prescription",
-                              style: kManRope_500_16_white,
-                            ),
-                          ],
-                        ),
+                      child: MainButton(
+                    onPressed: () {},
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 20, bottom: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/eyeicon.png",
+                            height: 15,
+                          ),
+                          SizedBox(
+                            width: 9.w,
+                          ),
+                          Text(
+                            "Prescription",
+                            style: kManRope_500_16_white,
+                          ),
+                        ],
                       ),
-                      color: k006D77,
                     ),
-                  ),
+                    color: k006D77,
+                    shape: CustomDecoration().border10Decoration(),
+                  )),
                 ],
               )
             ],
