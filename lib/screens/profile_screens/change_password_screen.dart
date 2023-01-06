@@ -46,7 +46,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 style: kManRope_400_14_626A6A,
               ),
               SizedBox(
-                height: 10.h,
+                height: 8.h,
               ),
               SizedBox(
                 width: 380.w,
@@ -66,7 +66,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 style: kManRope_400_14_626A6A,
               ),
               SizedBox(
-                height: 10.h,
+                height: 8.h,
               ),
               SizedBox(
                 width: 380.w,
@@ -86,7 +86,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 style: kManRope_400_14_626A6A,
               ),
               SizedBox(
-                height: 10.h,
+                height: 8.h,
               ),
               SizedBox(
                 width: 380.w,

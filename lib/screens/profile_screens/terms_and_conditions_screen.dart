@@ -17,7 +17,7 @@ class TermsAndConditionsScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: false,
         title: Text(
-          'Privacy and Policy',
+          'Terms and Conditions',
           style: kManRope_500_16_006D77,
         ),
         titleSpacing: 18.w,

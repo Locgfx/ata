@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/screens/profile_screens/reset_email_otp_screen.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
 
-class ChangeEmailScreen extends StatelessWidget {
-  const ChangeEmailScreen({Key? key}) : super(key: key);
+class ChangeMobileNoScreen extends StatefulWidget {
+  const ChangeMobileNoScreen({Key? key}) : super(key: key);
 
+  @override
+  State<ChangeMobileNoScreen> createState() => _ChangeMobileNoScreenState();
+}
+
+class _ChangeMobileNoScreenState extends State<ChangeMobileNoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +22,7 @@ class ChangeEmailScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: false,
         title: Text(
-          'Change Email',
+          'Change mobile number',
           style: kManRope_500_16_006D77,
         ),
         titleSpacing: 18.w,
@@ -43,21 +47,21 @@ class ChangeEmailScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Current Email',
+                'Mobile Number',
                 style: kManRope_400_16_626A6A,
               ),
               SizedBox(
                 height: 8.h,
               ),
               Text(
-                'priyasingh344@gmail.com',
-                style: kManRope_400_16_001314,
+                '9810745330',
+                style: kManRope_400_16_Black,
               ),
               SizedBox(
                 height: 62.h,
               ),
               Text(
-                'Enter new email',
+                'Enter new mobile number',
                 style: kManRope_400_16_626A6A,
               ),
               SizedBox(width: 380.w, child: TextField()),
@@ -65,19 +69,19 @@ class ChangeEmailScreen extends StatelessWidget {
                 height: 56.h,
               ),
               Text(
-                'Confirm new email',
+                'Confirm new mobile number',
                 style: kManRope_400_16_626A6A,
               ),
               SizedBox(width: 380.w, child: TextField()),
               SizedBox(
-                height: 190.h,
+                height: 192.h,
               ),
               Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'You will reacive an otp to your new email',
+                      'You will reacive an otp to your new Mobile Number',
                       style: kManRope_400_16_626A6A,
                     ),
                     Text(
@@ -92,16 +96,16 @@ class ChangeEmailScreen extends StatelessWidget {
               ),
               Center(
                 child: MaterialButton(
-                  color: k006D77,
+                  color: kB5BABA,
                   height: 60,
                   minWidth: 168,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(48),
-                    side: const BorderSide(color: k006D77),
+                    side: const BorderSide(color: kB5BABA),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const ResetEmailOTPScreen()));
+                    /* Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ResetEmailOTPScreen()));*/
                   },
                   child: Text(
                     'Next',

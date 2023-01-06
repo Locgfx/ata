@@ -101,7 +101,7 @@ class OrderHistoryScreen extends StatelessWidget {
               );
             },
             separatorBuilder: (ctx, index) {
-              return SizedBox(height: 40.h);
+              return SizedBox(height: 20.h);
             },
             itemCount: 10),
       ),

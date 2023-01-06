@@ -93,7 +93,7 @@ class InvoiceDetails extends StatelessWidget {
             ),
             Text(
               'Session Details',
-              style: kManRope_500_14_626A6A,
+              style: kManRope_500_14_929292,
             ),
             SizedBox(
               height: 26.h,
@@ -105,9 +105,13 @@ class InvoiceDetails extends StatelessWidget {
                   'Psychologist',
                   style: kManRope_500_14_001314,
                 ),
-                Text(
-                  'Priya Singh',
-                  style: kManRope_500_14_001314,
+                SizedBox(
+                  width: 65,
+                  child: Text(
+                    'Priya Singh',
+                    style: kManRope_500_14_001314,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 )
               ],
             ),
@@ -123,7 +127,7 @@ class InvoiceDetails extends StatelessWidget {
                 ),
                 Text(
                   'Stress',
-                  style: kManRope_500_14_001314,
+                  style: kManRope_400_14_001314,
                 )
               ],
             ),
@@ -140,10 +144,10 @@ class InvoiceDetails extends StatelessWidget {
             ),
             Text(
               'Payment Details',
-              style: kManRope_500_14_626A6A,
+              style: kManRope_500_14_929292,
             ),
             SizedBox(
-              height: 26.h,
+              height: 24.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -154,7 +158,7 @@ class InvoiceDetails extends StatelessWidget {
                 ),
                 Text(
                   'INR 399',
-                  style: kManRope_500_14_001314,
+                  style: kManRope_400_14_001314,
                 )
               ],
             ),
@@ -170,7 +174,7 @@ class InvoiceDetails extends StatelessWidget {
                 ),
                 Text(
                   'INR 100',
-                  style: kManRope_500_14_001314,
+                  style: kManRope_400_14_001314,
                 )
               ],
             ),
@@ -186,7 +190,7 @@ class InvoiceDetails extends StatelessWidget {
                 ),
                 Text(
                   'INR 99',
-                  style: kManRope_500_14_001314,
+                  style: kManRope_400_14_001314,
                 )
               ],
             ),
@@ -221,12 +225,12 @@ class InvoiceDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Total',
+                  'Transaction ID',
                   style: kManRope_500_14_001314,
                 ),
                 Text(
-                  'INR 499',
-                  style: kManRope_500_14_001314,
+                  'txn_1I1F740flI0g7f',
+                  style: kManRope_400_14_001314,
                 )
               ],
             ),
@@ -248,8 +252,8 @@ class InvoiceDetails extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       'assets/icons/download.svg',
-                      width: 18.w,
-                      height: 18.h,
+                      width: 24.w,
+                      height: 24.h,
                       color: Colors.white,
                     ),
                     SizedBox(
@@ -257,7 +261,7 @@ class InvoiceDetails extends StatelessWidget {
                     ),
                     Text(
                       'Download Invoice',
-                      style: kManRope_400_16_white,
+                      style: kManRope_500_16_white,
                     ),
                   ],
                 ),

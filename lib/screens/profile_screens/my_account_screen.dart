@@ -7,6 +7,7 @@ import 'package:greymatter/screens/profile_screens/delete_account_screen.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
+import 'change_mobile_no_screen.dart';
 
 class MyAccount extends StatelessWidget {
   const MyAccount({Key? key}) : super(key: key);
@@ -40,63 +41,111 @@ class MyAccount extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, top: 65.h, right: 24.w),
+        padding: EdgeInsets.only(left: 24.w, top: 52.h, right: 24.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Change email',
-                  style: kManRope_500_16_001314,
-                ),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const ChangeEmailScreen()));
-                    },
-                    child: SvgPicture.asset(
+            Container(
+              height: 48.h,
+              width: 380.w,
+              color: Colors.transparent,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ChangeMobileNoScreen()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Change mobile number',
+                      style: kManRope_500_16_001314,
+                    ),
+                    GestureDetector(
+                        child: SvgPicture.asset(
                       'assets/icons/downArrow.svg',
                       height: 24.h,
                       width: 24.w,
                     )),
-              ],
+                  ],
+                ),
+              ),
             ),
             SizedBox(
-              height: 34.h,
+              height: 5,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Change password',
-                  style: kManRope_500_16_001314,
+            Container(
+              height: 48.h,
+              width: 380.w,
+              color: Colors.transparent,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ChangeEmailScreen()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Change email',
+                      style: kManRope_500_16_001314,
+                    ),
+                    GestureDetector(
+                        child: SvgPicture.asset(
+                      'assets/icons/downArrow.svg',
+                      height: 24.h,
+                      width: 24.w,
+                    )),
+                  ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const ChangePasswordScreen()));
-                  },
-                  child: SvgPicture.asset(
-                    'assets/icons/downArrow.svg',
-                    height: 24.h,
-                    width: 24.w,
-                  ),
-                ),
-              ],
+              ),
             ),
             SizedBox(
-              height: 34.h,
+              height: 5,
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const DeleteAccountScreen()));
-              },
-              child: Text(
-                'Delete Account',
-                style: kManRope_500_16_B64949,
+            Container(
+              height: 48.h,
+              width: 480.w,
+              color: Colors.transparent,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ChangePasswordScreen()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Change password',
+                      style: kManRope_500_16_001314,
+                    ),
+                    GestureDetector(
+                      child: SvgPicture.asset(
+                        'assets/icons/downArrow.svg',
+                        height: 24.h,
+                        width: 24.w,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Container(
+              height: 48.h,
+              width: 380.w,
+              color: Colors.transparent,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const DeleteAccountScreen()));
+                },
+                child: Text(
+                  'Delete Account',
+                  style: kManRope_500_16_BD4D4D,
+                ),
               ),
             ),
           ],

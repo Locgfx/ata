@@ -1,3 +1,4 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/screens/profile_screens/edit_personal_info_screen.dart';
@@ -50,11 +51,21 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  height: 102.h,
-                  width: 102.w,
-                  decoration: const BoxDecoration(
-                      color: Color(0xFF006D77), shape: BoxShape.circle),
+                DottedBorder(
+                  color: k006D77,
+                  strokeWidth: 1,
+                  borderType: BorderType.Circle,
+                  child: CircleAvatar(
+                    radius: 40,
+                    backgroundColor: Colors.grey,
+                    backgroundImage: AssetImage('assets/images/userP.png'),
+                  ),
+                  /*Container(
+                    height: 102.h,
+                    width: 102.w,
+                    decoration: const BoxDecoration(
+                        color: Color(0xFF006D77), shape: BoxShape.circle),
+                  ),*/
                 ),
               ],
             ),
@@ -129,7 +140,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
               style: kManRope_400_16_001314,
             ),
             SizedBox(
-              height: 105.h,
+              height: 104.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

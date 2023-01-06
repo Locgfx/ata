@@ -85,6 +85,11 @@ final kManRope_500_16_626A6A = GoogleFonts.manrope(
   fontSize: 16.sp,
   color: k626A6A,
 );
+final kManRope_500_16_BD4D4D = GoogleFonts.manrope(
+  fontWeight: FontWeight.w500,
+  fontSize: 16.sp,
+  color: kBD4D4D,
+);
 final kManRope_500_16_B64949 = GoogleFonts.manrope(
   fontWeight: FontWeight.w500,
   fontSize: 16.sp,
@@ -205,6 +210,11 @@ final kManRope_600_14_626A6A = GoogleFonts.manrope(
   fontSize: 14.sp,
   color: k626A6A,
 );
+final kManRope_500_12_626A6A = GoogleFonts.manrope(
+  fontWeight: FontWeight.w400,
+  fontSize: 12.sp,
+  color: k626A6A,
+);
 final kManRope_400_12_626A6A = GoogleFonts.manrope(
   fontWeight: FontWeight.w400,
   fontSize: 12.sp,
@@ -249,6 +259,11 @@ final kManRope_500_14_BC2445 = GoogleFonts.manrope(
   fontWeight: FontWeight.w500,
   fontSize: 14.sp,
   color: kBC2445,
+);
+final kManRope_500_14_929292 = GoogleFonts.manrope(
+  fontWeight: FontWeight.w500,
+  fontSize: 14.sp,
+  color: k929292,
 );
 final kManRope_500_14_626A6A = GoogleFonts.manrope(
   fontWeight: FontWeight.w500,

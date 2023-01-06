@@ -68,8 +68,13 @@ class FAQsScreen extends StatelessWidget {
                     fillColor: Colors.white,
                     filled: true,
                     suffixIconConstraints:
-                        BoxConstraints(maxHeight: 24.h, maxWidth: 24.w),
-                    suffixIcon: SvgPicture.asset('assets/icons/search.svg'),
+                        BoxConstraints(maxHeight: 40.h, maxWidth: 40.w),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: SvgPicture.asset(
+                        'assets/icons/search.svg',
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -91,7 +96,7 @@ class FAQsScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 24.h,
+                height: 16.h,
               ),
               Text(
                 'At AtarAxis everything we expert at a day’s start is you, better and happier than yesterday. We have got you covered. Share your concern or check our frequently asked question listed below.',

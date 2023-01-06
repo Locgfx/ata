@@ -146,291 +146,299 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DottedBorder(
-                        color: k006D77,
-                        strokeWidth: 1,
-                        borderType: BorderType.Circle,
-                        child: Container(
-                          height: 106.h,
-                          width: 106.w,
-                          decoration: const BoxDecoration(
-                              color: Color(0xFF006D77), shape: BoxShape.circle),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        DottedBorder(
+                          color: k006D77,
+                          strokeWidth: 1,
+                          borderType: BorderType.Circle,
+                          child: CircleAvatar(
+                            radius: 40,
+                            backgroundColor: Colors.grey,
+                            backgroundImage:
+                                AssetImage('assets/images/userP.png'),
+                          ),
+                          /*Container(
+                            height: 106.h,
+                            width: 106.w,
+                            decoration: const BoxDecoration(
+                                color: Color(0xFF006D77), shape: BoxShape.circle),
+                          ),*/
                         ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Change Photo",
-                    style: kManRope_500_16_404040,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 40.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Name',
-                    style: kManRope_400_16_626A6A,
-                  ),
-                  SvgPicture.asset(
-                    'assets/icons/edit.svg',
-                    height: 24.h,
-                    width: 24.h,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              SizedBox(
-                height: 20,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Priya Singh',
-                    hintStyle: kManRope_400_16_001314,
-                  ),
-                  style: kManRope_400_16_001314,
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      "Change Photo",
+                      style: kManRope_500_16_404040,
+                    )
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Container(
-                height: 1.5.h,
-                width: 380,
-                color: kB5BABA,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Date of birth',
-                    style: kManRope_400_16_626A6A,
+                SizedBox(
+                  height: 40.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Name',
+                      style: kManRope_400_16_626A6A,
+                    ),
+                    SvgPicture.asset(
+                      'assets/icons/edit.svg',
+                      height: 24.h,
+                      width: 24.h,
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                SizedBox(
+                  height: 20,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Priya Singh',
+                      hintStyle: kManRope_400_16_001314,
+                    ),
+                    style: kManRope_400_16_001314,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      _showDialog(
-                        CupertinoTheme(
-                          data: CupertinoThemeData(
-                            textTheme: CupertinoTextThemeData(
-                              dateTimePickerTextStyle: kManRope_500_20_006D77,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  height: 1.5.h,
+                  width: 380,
+                  color: kB5BABA,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Date of birth',
+                      style: kManRope_400_16_626A6A,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _showDialog(
+                          CupertinoTheme(
+                            data: CupertinoThemeData(
+                              textTheme: CupertinoTextThemeData(
+                                dateTimePickerTextStyle: kManRope_500_20_006D77,
+                              ),
+                            ),
+                            child: CupertinoDatePicker(
+                              initialDateTime: date,
+                              mode: CupertinoDatePickerMode.date,
+                              use24hFormat: true,
+                              onDateTimeChanged: (DateTime newDate) {
+                                setState(() => date = newDate);
+                              },
                             ),
                           ),
-                          child: CupertinoDatePicker(
-                            initialDateTime: date,
-                            mode: CupertinoDatePickerMode.date,
-                            use24hFormat: true,
-                            onDateTimeChanged: (DateTime newDate) {
-                              setState(() => date = newDate);
-                            },
-                          ),
+                        );
+                      },
+                      child: SvgPicture.asset(
+                        'assets/icons/downArrow.svg',
+                        height: 24,
+                        width: 24,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                SizedBox(
+                  height: 20,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: '25/ 02/1993',
+                      hintStyle: kManRope_400_16_001314,
+                    ),
+                    style: kManRope_400_16_001314,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  height: 1.5.h,
+                  width: 380,
+                  color: kB5BABA,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Gender',
+                      style: kManRope_400_16_626A6A,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        _selectGender();
+                      },
+                      child: SvgPicture.asset(
+                        'assets/icons/downArrow.svg',
+                        height: 24,
+                        width: 24,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                SizedBox(
+                  height: 20,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Female',
+                      hintStyle: kManRope_400_16_001314,
+                    ),
+                    style: kManRope_400_16_001314,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  height: 1.5.h,
+                  width: 380,
+                  color: kB5BABA,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Relationship status',
+                      style: kManRope_400_16_626A6A,
+                    ),
+                    GestureDetector(
+                      onTap: () => _selectRelationshipStatus(),
+                      child: SvgPicture.asset(
+                        'assets/icons/downArrow.svg',
+                        height: 24,
+                        width: 24,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                SizedBox(
+                  height: 20,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Single',
+                      hintStyle: kManRope_400_16_001314,
+                    ),
+                    style: kManRope_400_16_001314,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  height: 1.5.h,
+                  width: 380,
+                  color: kB5BABA,
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Occupation',
+                      style: kManRope_400_16_626A6A,
+                    ),
+                    GestureDetector(
+                      onTap: () => _selectOccupation(),
+                      child: SvgPicture.asset(
+                        'assets/icons/downArrow.svg',
+                        height: 24,
+                        width: 24,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                SizedBox(
+                  height: 20,
+                  child: TextField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: 'Student',
+                      hintStyle: kManRope_400_16_001314,
+                    ),
+                    style: kManRope_400_16_001314,
+                  ),
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Container(
+                  height: 1.5.h,
+                  width: 380,
+                  color: kB5BABA,
+                ),
+                SizedBox(
+                  height: 30.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 56.h,
+                      width: 168.w,
+                      child: MaterialButton(
+                        color: k006D77,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(48), // <-- Radius
                         ),
-                      );
-                    },
-                    child: SvgPicture.asset(
-                      'assets/icons/downArrow.svg',
-                      height: 24,
-                      width: 24,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 12.h,
-              ),
-              SizedBox(
-                height: 20,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: '25/ 02/1993',
-                    hintStyle: kManRope_400_16_001314,
-                  ),
-                  style: kManRope_400_16_001314,
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Container(
-                height: 1.5.h,
-                width: 380,
-                color: kB5BABA,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Gender',
-                    style: kManRope_400_16_626A6A,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      _selectGender();
-                    },
-                    child: SvgPicture.asset(
-                      'assets/icons/downArrow.svg',
-                      height: 24,
-                      width: 24,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 12.h,
-              ),
-              SizedBox(
-                height: 20,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Female',
-                    hintStyle: kManRope_400_16_001314,
-                  ),
-                  style: kManRope_400_16_001314,
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Container(
-                height: 1.5.h,
-                width: 380,
-                color: kB5BABA,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Relationship status',
-                    style: kManRope_400_16_626A6A,
-                  ),
-                  GestureDetector(
-                    onTap: () => _selectRelationshipStatus(),
-                    child: SvgPicture.asset(
-                      'assets/icons/downArrow.svg',
-                      height: 24,
-                      width: 24,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 12.h,
-              ),
-              SizedBox(
-                height: 20,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Single',
-                    hintStyle: kManRope_400_16_001314,
-                  ),
-                  style: kManRope_400_16_001314,
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Container(
-                height: 1.5.h,
-                width: 380,
-                color: kB5BABA,
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Occupation',
-                    style: kManRope_400_16_626A6A,
-                  ),
-                  GestureDetector(
-                    onTap: () => _selectOccupation(),
-                    child: SvgPicture.asset(
-                      'assets/icons/downArrow.svg',
-                      height: 24,
-                      width: 24,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 12.h,
-              ),
-              SizedBox(
-                height: 20,
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Student',
-                    hintStyle: kManRope_400_16_001314,
-                  ),
-                  style: kManRope_400_16_001314,
-                ),
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Container(
-                height: 1.5.h,
-                width: 380,
-                color: kB5BABA,
-              ),
-              SizedBox(
-                height: 30.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 56.h,
-                    width: 168.w,
-                    child: MaterialButton(
-                      color: k006D77,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10), // <-- Radius
-                      ),
-                      onPressed: () {},
-                      child: Text(
-                        'Save',
-                        style: kManRope_400_16_white,
+                        onPressed: () {},
+                        child: Text(
+                          'Save',
+                          style: kManRope_400_16_white,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -492,7 +500,7 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             // Provide a background color for the popup.
-            color: CupertinoColors.systemBackground.resolveFrom(context),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
             // Use a SafeArea widget to avoid system overlaps.
             child: SafeArea(
               top: false,
@@ -510,7 +518,7 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 0 ? k006D77 : Colors.white,
+                          color: _gIndex == 0 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -531,7 +539,7 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 1 ? k006D77 : Colors.white,
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -552,7 +560,7 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 2 ? k006D77 : Colors.white,
+                          color: _gIndex == 2 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -636,7 +644,7 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             // Provide a background color for the popup.
-            color: CupertinoColors.systemBackground.resolveFrom(context),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
             // Use a SafeArea widget to avoid system overlaps.
             child: SafeArea(
               top: false,
@@ -654,7 +662,7 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 0 ? k006D77 : Colors.white,
+                          color: _gIndex == 0 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -675,7 +683,7 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 1 ? k006D77 : Colors.white,
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -696,7 +704,7 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 2 ? k006D77 : Colors.white,
+                          color: _gIndex == 2 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -779,7 +787,7 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             // Provide a background color for the popup.
-            color: CupertinoColors.systemBackground.resolveFrom(context),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
             // Use a SafeArea widget to avoid system overlaps.
             child: SafeArea(
               top: false,
@@ -797,7 +805,7 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 0 ? k006D77 : Colors.white,
+                          color: _gIndex == 0 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -818,7 +826,7 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 1 ? k006D77 : Colors.white,
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -839,7 +847,7 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 2 ? k006D77 : Colors.white,
+                          color: _gIndex == 2 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(

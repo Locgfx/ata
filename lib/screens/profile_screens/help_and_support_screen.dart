@@ -16,7 +16,7 @@ class HelpAndSupportScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 40.w,
-        backgroundColor: Colors.white,
+        backgroundColor: kWhiteBGColor,
         centerTitle: false,
         title: Text(
           'Help and support',
@@ -42,9 +42,13 @@ class HelpAndSupportScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/helpAndSupport.png',
-              height: 330.h,
+            Container(
+              width: 1.sw,
+              color: Colors.white,
+              child: Image.asset(
+                'assets/images/helpAndSupport.png',
+                height: 330.h,
+              ),
             ),
             SizedBox(
               height: 25.h,
@@ -116,10 +120,13 @@ class HelpAndSupportScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SvgPicture.asset(
-                        'assets/icons/rightArrow.svg',
-                        height: 12.h,
-                        width: 6.w,
+                      Padding(
+                        padding: const EdgeInsets.all(24.0),
+                        child: SvgPicture.asset(
+                          'assets/icons/rightArrow.svg',
+                          height: 12.h,
+                          width: 6.w,
+                        ),
                       ),
                     ],
                   ),
@@ -157,10 +164,13 @@ class HelpAndSupportScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SvgPicture.asset(
-                      'assets/icons/rightArrow.svg',
-                      height: 12.h,
-                      width: 6.w,
+                    Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: SvgPicture.asset(
+                        'assets/icons/rightArrow.svg',
+                        height: 12.h,
+                        width: 6.w,
+                      ),
                     ),
                   ],
                 ),
