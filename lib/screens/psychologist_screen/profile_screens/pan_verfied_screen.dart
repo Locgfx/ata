@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/constants/fonts.dart';
-dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/screens/psychologist_screen/tabs_screen/psychologist_home_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
+// dart';
+// import 'package:greymatter/constants/fonts.dart';
+// import 'package:greymatter/screens/psychologist_screen/tabs_screen/psychologist_home_screen.dart';
+// import 'package:greymatter/widgets/buttons.dart';
 
 class PANVerified extends StatefulWidget {
   const PANVerified({Key? key}) : super(key: key);

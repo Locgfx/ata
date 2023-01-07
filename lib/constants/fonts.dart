@@ -13,6 +13,30 @@ final kManRope_700_20_white = GoogleFonts.manrope(
   fontSize: 20.sp,
   color: Colors.white,
 );
+// kManRope_400_12_353535_07
+final kManRope_400_12_353535_07 = GoogleFonts.manrope(
+  fontWeight: FontWeight.w400,
+  fontSize: 12.sp,
+  color: k353535,
+);
+// kManRope_500_16_BD4D4D,
+final kManRope_500_16_BD4D4D = GoogleFonts.manrope(
+  fontWeight: FontWeight.w700,
+  fontSize: 16.sp,
+  color: kBD4D4D,
+);
+// kManRope_500_12_626A6A
+final kManRope_500_12_626A6A = GoogleFonts.manrope(
+  fontWeight: FontWeight.w700,
+  fontSize: 12.sp,
+  color: k626A6A,
+);
+// kManRope_500_18_FFFFF
+final kManRope_500_18_FFFFF = GoogleFonts.manrope(
+  fontWeight: FontWeight.w700,
+  fontSize: 18.sp,
+  color: kFFFFFF,
+);
 final kManRope_700_32_white = GoogleFonts.manrope(
   fontWeight: FontWeight.w700,
   fontSize: 32.sp,

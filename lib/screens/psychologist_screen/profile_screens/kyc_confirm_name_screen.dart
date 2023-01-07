@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/psychologist_screen/profile_screens/pan_verfied_screen.dart';
-hologist_screen/BankScreens/Kycconfirmname.dart';
+import 'package:greymatter/screens/psychologist_screen/BankScreens/Kycconfirmname.dart';
 import 'package:greymatter/screens/psychologist_screen/profile_screens/pan_verfied_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
