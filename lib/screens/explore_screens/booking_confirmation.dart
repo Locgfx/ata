@@ -91,15 +91,19 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Priya Singh',
-                          style: kManRope_400_16_001314,
+                        SizedBox(
+                          width: 98,
+                          child: Text(
+                            'Priya Singh',
+                            overflow: TextOverflow.ellipsis,
+                            style: kManRope_400_16_001314,
+                          ),
                         ),
                         SizedBox(
                           height: 4.h,
                         ),
                         Text(
-                          'MA in Counselling Psychology',
+                          'psychologist',
                           style: kManRope_400_14_626A6A,
                         ),
                         SizedBox(
@@ -113,7 +117,14 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                               height: 12.h,
                             ),
                             Text(
-                              '12.  12 Yrs. Exp',
+                              '4.0',
+                              style: kManRope_400_12_001314,
+                            ),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Text(
+                              '12 Yrs. Exp',
                               style: kManRope_400_12_001314,
                             )
                           ],
@@ -156,7 +167,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
               SizedBox(
                 height: 40.h,
               ),
-              Text('Time Slot', style: kManRope_700_16_001314),
+              Text('Selected Slot', style: kManRope_700_16_001314),
               SizedBox(
                 height: 24.h,
               ),

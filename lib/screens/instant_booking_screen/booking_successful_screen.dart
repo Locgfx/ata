@@ -135,9 +135,13 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Priya Singh',
-                      style: kManRope_400_16_001314,
+                    SizedBox(
+                      width: 192,
+                      child: Text(
+                        'Priya Singh',
+                        style: kManRope_400_16_001314,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ),
                     SizedBox(
                       height: 4.h,

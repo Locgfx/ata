@@ -129,7 +129,7 @@ class _QuestionsState extends State<Questions> {
                             ),
                           ),
                           SizedBox(
-                            width: 40.w,
+                            width: 80.w,
                           ),
                           InkWell(
                             onTap: () {

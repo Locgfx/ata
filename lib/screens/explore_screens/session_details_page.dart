@@ -60,14 +60,14 @@ class SessionDetailsScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Priya Singh',
-                        style: kManRope_400_16_001314,
+                        style: kManRope_500_16_001314,
                       ),
                       SizedBox(
                         height: 4.h,
                       ),
                       Text(
                         'MA in Counselling Psychology',
-                        style: kManRope_400_14_626A6A,
+                        style: kManRope_400_12_626A6A,
                       ),
                       SizedBox(
                         height: 4.h,

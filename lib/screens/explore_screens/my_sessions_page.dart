@@ -74,9 +74,13 @@ class _MySessionPageState extends State<MySessionPage> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'Priyanka singh',
-                                  style: kManRope_400_14_001314,
+                                SizedBox(
+                                  width: 98,
+                                  child: Text(
+                                    'Priyanka singh',
+                                    style: kManRope_400_14_001314,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 4.h,
@@ -194,8 +198,12 @@ class _MySessionPageState extends State<MySessionPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('Priyanka singh',
-                                            style: kManRope_400_16_Black),
+                                        SizedBox(
+                                          width: 98,
+                                          child: Text('Priyanka singh',
+                                              overflow: TextOverflow.ellipsis,
+                                              style: kManRope_400_16_Black),
+                                        ),
                                         Text('05 June 2022',
                                             style: kManRope_400_14_626A6A),
                                       ],
@@ -207,7 +215,7 @@ class _MySessionPageState extends State<MySessionPage> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text('Psychologist',
-                                            style: kManRope_400_14_626A6A),
+                                            style: kManRope_400_12_626A6A),
                                         Text('8:00AM-9:00AM',
                                             style: kManRope_400_12_626A6A),
                                       ],

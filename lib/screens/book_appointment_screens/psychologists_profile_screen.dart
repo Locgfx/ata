@@ -73,7 +73,7 @@ class PsychologistProfile extends StatelessWidget {
                     ),
                     Text(
                       'Psychiatrist',
-                      style: kManRope_400_16_626A6A,
+                      style: kManRope_400_14_626A6A,
                     ),
                     SizedBox(
                       height: 40.h,
@@ -251,11 +251,11 @@ class PsychologistProfile extends StatelessWidget {
                       children: [
                         Text(
                           'Monday',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                         Text(
                           '10:00 AM  08:00 PM',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
@@ -265,11 +265,11 @@ class PsychologistProfile extends StatelessWidget {
                       children: [
                         Text(
                           'Tues',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                         Text(
                           '10:00 AM  08:00 PM',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
@@ -279,11 +279,11 @@ class PsychologistProfile extends StatelessWidget {
                       children: [
                         Text(
                           'Wednesday',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                         Text(
                           '10:00 AM  08:00 PM',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
@@ -293,11 +293,11 @@ class PsychologistProfile extends StatelessWidget {
                       children: [
                         Text(
                           'Thursday',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                         Text(
                           '10:00 AM  08:00 PM',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
@@ -307,11 +307,11 @@ class PsychologistProfile extends StatelessWidget {
                       children: [
                         Text(
                           'Friday',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                         Text(
                           '10:00 AM  08:00 PM',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
@@ -321,11 +321,11 @@ class PsychologistProfile extends StatelessWidget {
                       children: [
                         Text(
                           'Saturday',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                         Text(
                           '10:00 AM  08:00 PM',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
@@ -335,11 +335,11 @@ class PsychologistProfile extends StatelessWidget {
                       children: [
                         Text(
                           'Sunday',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                         Text(
                           '10:00 AM  08:00 PM',
-                          style: kManRope_400_16_006D77,
+                          style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),

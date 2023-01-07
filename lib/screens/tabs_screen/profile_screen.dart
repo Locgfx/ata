@@ -24,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   void _logOutBottomSheet() {
     showModalBottomSheet(
+        backgroundColor: kWhiteBGColor,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(8), topLeft: Radius.circular(8)),
@@ -166,7 +167,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'My activity ',
+                        'My activity',
                         style: kManRope_500_16_001314,
                       ),
                       GestureDetector(
@@ -224,7 +225,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Text(
                 'Help and support',
-                style: kManRope_400_12_626A6A,
+                style: kManRope_500_12_626A6A,
               ),
               SizedBox(
                 height: 16.h,
@@ -297,7 +298,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               Text(
                 'Settings',
-                style: kManRope_400_12_626A6A,
+                style: kManRope_500_12_626A6A,
               ),
               SizedBox(
                 height: 16.h,
