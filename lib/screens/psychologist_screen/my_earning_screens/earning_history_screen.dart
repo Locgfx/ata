@@ -123,6 +123,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
             child: Padding(
               padding: EdgeInsets.only(left: 25.w, right: 25.w),
               child: ListView.separated(
+                  // shrinkWrap: true,
                   itemBuilder: (ctx, index) {
                     return Column(
                       children: [

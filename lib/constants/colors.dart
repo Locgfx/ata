@@ -33,6 +33,7 @@ const kECF0F8 = Color(0xFFECF0F8);
 const k4CB15C = Color(0xFF4CB15C);
 const kD6EAF0 = Color(0xFFD6EAF0);
 const kFFFFFF = Color(0xFFFFFFFF);
+const k28303F = Color(0xFFFFFFFF);
 const kBD4D4D = Color(0xFFBD4D4D);
 const k929292 = Color(0xFF929292);
 const k353535 = Color(0xFF353535);

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/widgets/popupdialogs.dart';
 
@@ -189,6 +191,50 @@ class DotappBar extends StatelessWidget with PreferredSizeWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
+  HomeAppBar(
+      {
+      // required this.appBarText,
+      // required this.imgPath,
+      Key? key})
+      : super(key: key);
+  // String appBarText;
+  // String imgPath;
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      toolbarHeight: 40,
+      automaticallyImplyLeading: false,
+      backgroundColor: kWhiteBGColor,
+      elevation: 0,
+      centerTitle: false,
+      title: Text(
+        'Good Morning, Pankaj',
+        style: kManRope_700_20_686868,
+      ),
+      actions: [
+        GestureDetector(
+          onTap: () {},
+          child: Container(
+            margin: EdgeInsets.only(right: 24.w),
+            padding: const EdgeInsets.all(10),
+            child: SvgPicture.asset(
+              'assets/icons/notification.svg',
+              width: 24.w,
+              height: 24.h,
+              color: k686868,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/psychologist_screen/BankScreens/paymentdelay2.dart';
 
 class PaymentDelay extends StatefulWidget {
   const PaymentDelay({Key? key}) : super(key: key);
@@ -34,8 +35,8 @@ class _PaymentDelayState extends State<PaymentDelay> {
                           },
                           child: Image.asset(
                             "assets/images/crossicon.png",
-                            height: 9.h,
-                            width: 9.w,
+                            height: 12.h,
+                            width: 12.w,
                           ),
                         )),
                     SizedBox(
@@ -49,9 +50,17 @@ class _PaymentDelayState extends State<PaymentDelay> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "Connect",
-                          style: kManRope_500_20_006D77,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PaymentDelay2()));
+                          },
+                          child: Text(
+                            "Connect",
+                            style: kManRope_500_20_006D77,
+                          ),
                         ),
                         Image.asset(
                           "assets/images/rightarrow.png",

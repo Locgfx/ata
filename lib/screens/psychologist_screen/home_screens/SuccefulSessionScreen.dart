@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/prescription_screen.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/psychologist_home_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class SuccesfulSesionScreen extends StatefulWidget {
@@ -105,49 +107,62 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                 ),
               ),
               SizedBox(height: 53),
-              Row(
-                children: [
-                  Expanded(
-                    child: MainButton(
-                      shape: CustomDecoration().border10Decoration(),
-                      onPressed: () {},
+              Padding(
+                padding: const EdgeInsets.only(bottom: 130.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: MainButton(
+                        shape: CustomDecoration().border10Decoration(),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => PsychologistHomeScreen()));
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 20, bottom: 20),
+                          child: Text(
+                            "Go to Home",
+                            style: kManRope_500_16_006D77,
+                          ),
+                        ),
+                        color: Colors.white,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Expanded(
+                        child: MainButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => PrescriptionScreen(),
+                          ),
+                        );
+                      },
                       child: Padding(
                         padding: EdgeInsets.only(top: 20, bottom: 20),
-                        child: Text(
-                          "Go to Home",
-                          style: kManRope_500_16_006D77,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/eyeicon.png",
+                              height: 15,
+                            ),
+                            SizedBox(
+                              width: 9.w,
+                            ),
+                            Text(
+                              "Prescription",
+                              style: kManRope_500_16_white,
+                            ),
+                          ],
                         ),
                       ),
-                      color: Colors.white,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Expanded(
-                      child: MainButton(
-                    onPressed: () {},
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 20, bottom: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/images/eyeicon.png",
-                            height: 15,
-                          ),
-                          SizedBox(
-                            width: 9.w,
-                          ),
-                          Text(
-                            "Prescription",
-                            style: kManRope_500_16_white,
-                          ),
-                        ],
-                      ),
-                    ),
-                    color: k006D77,
-                    shape: CustomDecoration().border10Decoration(),
-                  )),
-                ],
+                      color: k006D77,
+                      shape: CustomDecoration().border10Decoration(),
+                    )),
+                  ],
+                ),
               )
             ],
           ),

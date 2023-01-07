@@ -2,19 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/psychologist_screen/profile_screens/pan_verfied_screen.dart';
-hologist_screen/BankScreens/Kycconfirmname.dart';
-import 'package:greymatter/screens/psychologist_screen/profile_screens/pan_verfied_screen.dart';
-import 'package:greymatter/widgets/buttons.dart';
 
-class ConfirmName extends StatefulWidget {
-  const ConfirmName({Key? key}) : super(key: key);
+class KycConfirmName extends StatefulWidget {
+  const KycConfirmName({Key? key}) : super(key: key);
 
   @override
-  State<ConfirmName> createState() => _ConfirmNameState();
+  State<KycConfirmName> createState() => _KycConfirmNameState();
 }
 
-class _ConfirmNameState extends State<ConfirmName> {
+class _KycConfirmNameState extends State<KycConfirmName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,15 +30,15 @@ class _ConfirmNameState extends State<ConfirmName> {
                     topLeft: Radius.circular(24)),
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 76.h),
+                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 91.h),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Center(
                         child: Image.asset(
-                      'assets/images/company-employees-checking-daily.png',
-                      height: 276.h,
-                      width: 276.w,
+                      'assets/images/blue arrows.png',
+                      height: 216.h,
+                      width: 216.w,
                     )),
                     SizedBox(
                       height: 40.h,
@@ -65,28 +61,28 @@ class _ConfirmNameState extends State<ConfirmName> {
                       'ABSHDW4678942',
                       style: kManRope_500_14_006D77,
                     ),
-                    SizedBox(
-                      height: 133.h,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: MainButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => PANVerified()));
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                                  child: Text(
-                                    "Next",
-                                    style: kManRope_500_16_white,
-                                  ),
-                                ),
-                                color: k006D77,
-                                shape: CustomDecoration().button16Decoration()))
-                      ],
-                    ),
+                    // SizedBox(
+                    //   height: 133.h,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //         child: MainButton(
+                    //             onPressed: () {
+                    //               Navigator.of(context).push(MaterialPageRoute(
+                    //                   builder: (context) => PANVerified()));
+                    //             },
+                    //             child: Padding(
+                    //               padding: EdgeInsets.symmetric(vertical: 20.h),
+                    //               child: Text(
+                    //                 "Next",
+                    //                 style: kManRope_500_16_white,
+                    //               ),
+                    //             ),
+                    //             color: k006D77,
+                    //             shape: CustomDecoration().button16Decoration()))
+                    //   ],
+                    // ),
                     // Center(
                     //   child: CustomActiveTextButton(
                     //       onPressed: () {
@@ -95,29 +91,26 @@ class _ConfirmNameState extends State<ConfirmName> {
                     //       },
                     //       text: 'Next'),
                     // ),
-                    SizedBox(
-                      height: 16.h,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: MainButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => KycConfirmName()));
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                                  child: Text(
-                                    "Edit PAN",
-                                    style: kManRope_500_16_006D77,
-                                  ),
-                                ),
-                                color: kFFFFFF,
-                                shape: CustomDecoration()
-                                    .outline16ButtonDecoration()))
-                      ],
-                    ),
+                    // SizedBox(
+                    //   height: 16.h,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //         child: MainButton(
+                    //             onPressed: () {},
+                    //             child: Padding(
+                    //               padding: EdgeInsets.symmetric(vertical: 20.h),
+                    //               child: Text(
+                    //                 "Edit PAN",
+                    //                 style: kManRope_500_16_006D77,
+                    //               ),
+                    //             ),
+                    //             color: kFFFFFF,
+                    //             shape: CustomDecoration()
+                    //                 .outline16ButtonDecoration()))
+                    //   ],
+                    // ),
                     // GestureDetector(
                     //   onTap: () {},
                     //   child: Container(

@@ -713,3 +713,118 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
     );
   }
 }
+
+class AccountNumberBottomSheet extends StatefulWidget {
+  const AccountNumberBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<AccountNumberBottomSheet> createState() => _AccountNumberBottomSheet();
+}
+
+class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
+  int _gIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 207.h,
+      child: Column(
+        children: [
+          Container(
+            height: 71.h,
+            decoration: const BoxDecoration(
+              color: k006D77,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+            ),
+            child: Padding(
+              padding: EdgeInsets.only(left: 46.w),
+              child: Center(
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                        size: 20.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 50.w,
+                    ),
+                    Text(
+                      'Select Designation',
+                      style: kManRope_700_16_white,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Container(
+            height: 136.h,
+            padding: const EdgeInsets.only(top: 6.0),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            color: CupertinoColors.systemBackground.resolveFrom(context),
+            child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.w),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 0;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 44.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 0 ? k006D77 : Colors.white,
+                        ),
+                        child: Center(
+                            child: Text(
+                          '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
+                          style: _gIndex == 0
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 1;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 44.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 1 ? k006D77 : Colors.white,
+                        ),
+                        child: Center(
+                            child: Text(
+                          '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
+                          style: _gIndex == 1
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

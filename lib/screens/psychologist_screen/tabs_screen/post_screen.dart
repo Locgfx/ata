@@ -25,60 +25,57 @@ class _PsychologistPostScreenState extends State<PsychologistPostScreen> {
       ].elementAt(_index),
       appBar: AppBar(
         elevation: 0,
+        toolbarHeight: 50,
         backgroundColor: Colors.white,
-        title: Padding(
-          padding: EdgeInsets.only(top: 22.h),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        centerTitle: true,
+        titleSpacing: 10,
+        title: Row(
+          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _index = 0;
+                });
+              },
+              child: Column(
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _index = 0;
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        Text(
-                          'Posts',
-                          style: kManRope_700_16_001314,
-                        ),
-                        Container(
-                          height: 3.h,
-                          width: 60.w,
-                          margin: EdgeInsets.only(top: 14),
-                          color: _index == 0 ? k006D77 : Colors.white,
-                        ),
-                      ],
-                    ),
+                  Text(
+                    'Posts',
+                    style: kManRope_700_16_001314,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _index = 1;
-                      });
-                    },
-                    child: Column(
-                      children: [
-                        Text(
-                          'Saved',
-                          style: kManRope_700_16_001314,
-                        ),
-                        Container(
-                          height: 3.h,
-                          width: 60.w,
-                          margin: EdgeInsets.only(top: 14),
-                          color: _index == 1 ? k006D77 : Colors.white,
-                        ),
-                      ],
-                    ),
+                  Container(
+                    height: 3.h,
+                    width: 60.w,
+                    margin: EdgeInsets.only(top: 14),
+                    color: _index == 0 ? k006D77 : Colors.white,
                   ),
                 ],
               ),
-            ],
-          ),
+            ),
+            SizedBox(width: 140.w),
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  _index = 1;
+                });
+              },
+              child: Column(
+                children: [
+                  Text(
+                    'Saved',
+                    style: kManRope_700_16_001314,
+                  ),
+                  Container(
+                    height: 3.h,
+                    width: 60.w,
+                    margin: EdgeInsets.only(top: 14),
+                    color: _index == 1 ? k006D77 : Colors.white,
+                  ),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

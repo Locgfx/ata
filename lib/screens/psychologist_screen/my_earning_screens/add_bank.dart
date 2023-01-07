@@ -5,9 +5,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 
 import '../../../constants/fonts.dart';
-import '../../../widgets/shared/buttons/custom_active_text_button.dart';
 import 'bank_account_verify_screen.dart';
 
 final List<String> Banks = [
@@ -29,7 +29,7 @@ class AddBankScreen extends StatefulWidget {
 }
 
 class _AddBankScreenState extends State<AddBankScreen> {
-  void _selectBanks() {
+  void _banksBottomSheet() {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -82,7 +82,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
                       label: "Select bank",
                       child: GestureDetector(
                         onTap: () {
-                          // showBottomSheet(child: BanksBottomSheet());
+                          _banksBottomSheet();
                         },
                         child: Image.asset(
                           "assets/images/downarrow.png",
@@ -156,32 +156,36 @@ class _AddBankScreenState extends State<AddBankScreen> {
                 height: 8.h,
               ),
               TextField(
+                  readOnly: true,
                   decoration: TextfieldDecoration(
-                label: "Saving",
-                child: GestureDetector(
-                  onTap: () {
-                    BanksBottomSheet();
-                  },
-                  child: Image.asset(
-                    "assets/images/downarrow.png",
-                    height: 10,
-                    width: 10,
-                  ),
-                ),
-              ).textfieldDecoration()),
+                    label: "Saving",
+                    child: GestureDetector(
+                      onTap: () {
+                        _selectAccountType();
+                      },
+                      child: Image.asset(
+                        "assets/images/downarrow.png",
+                        height: 10,
+                        width: 10,
+                      ),
+                    ),
+                  ).textfieldDecoration()),
               SizedBox(
                 height: 30.h,
               ),
-              Center(
-                child: SizedBox(
-                  height: 56.h,
-                  width: 168.w,
-                  child: CustomActiveTextButton1(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => BankVerifyScreen()));
-                      },
-                      text: 'Save'),
+              Padding(
+                padding: EdgeInsets.only(bottom: 35.h),
+                child: Center(
+                  child: SizedBox(
+                    height: 56.h,
+                    width: 168.w,
+                    child: CustomActiveTextButton1(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => BankVerifyScreen()));
+                        },
+                        text: 'Save'),
+                  ),
                 ),
               )
             ],
@@ -203,6 +207,7 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: SizedBox(
         height: 625.h,
         child: Column(
@@ -284,9 +289,10 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
             Padding(
               padding: EdgeInsets.only(left: 48.w),
               child: SizedBox(
-                height: 400.h,
+                height: 450.h,
                 child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
+                  // shrinkWrap: true,
+                  // physics: NeverScrollableScrollPhysics(),
                   itemCount: Banks.length,
                   itemBuilder: (context, index) {
                     return Padding(
@@ -335,26 +341,28 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
             ),
             child: Padding(
               padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
+              child: Row(
+                children: [
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                      size: 20.sp,
                     ),
-                    SizedBox(
-                      width: 50.w,
-                    ),
-                    Text(
-                      'Select Designation',
+                  ),
+                  // SizedBox(
+                  //   width: 100.w,
+                  // ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 110.w),
+                    child: Text(
+                      'Account type',
                       style: kManRope_700_16_white,
+                      textAlign: TextAlign.center,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

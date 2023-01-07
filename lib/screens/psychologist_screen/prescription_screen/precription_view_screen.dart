@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/psychologist_screen/prescription_screen/edit_precription_view_screen.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/prescription_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
+import 'package:greymatter/widgets/buttons.dart';
 
 class PrescriptionViewScreen extends StatefulWidget {
   const PrescriptionViewScreen({Key? key}) : super(key: key);
@@ -17,6 +18,25 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(left: 130.w, right: 130.w, bottom: 52.h),
+        child: MainButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PrescriptionScreen()),
+              );
+            },
+            child: Padding(
+              padding: EdgeInsets.only(top: 15, bottom: 14),
+              child: Text(
+                "Save",
+                style: kManRope_500_16_white,
+              ),
+            ),
+            color: k006D77,
+            shape: CustomDecoration().smallButtonDecoration()),
+      ),
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: "Prescription View",
@@ -182,19 +202,19 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
               SizedBox(
                 height: 34.h,
               ),
-              Center(
-                child: SizedBox(
-                  height: 56.h,
-                  width: 168.w,
-                  child: CustomActiveTextButton1(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                EditPrescriptionViewScreen()));
-                      },
-                      text: 'Edit'),
-                ),
-              ),
+              // Center(
+              //   child: SizedBox(
+              //     height: 56.h,
+              //     width: 168.w,
+              //     child: CustomActiveTextButton1(
+              //         onPressed: () {
+              //           Navigator.of(context).push(MaterialPageRoute(
+              //               builder: (context) =>
+              //                   EditPrescriptionViewScreen()));
+              //         },
+              //         text: 'Edit'),
+              //   ),
+              // ),
             ],
           ),
         ),

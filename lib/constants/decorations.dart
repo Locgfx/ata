@@ -66,6 +66,12 @@ class CustomDecoration {
     );
   }
 
+  ShapeBorder smallButton10Decoration() {
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+    );
+  }
+
   BoxDecoration topCircularRadius() {
     return BoxDecoration(
       borderRadius: BorderRadius.only(

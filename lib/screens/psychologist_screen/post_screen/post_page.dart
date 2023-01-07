@@ -17,7 +17,7 @@ class PsychologistPostPage extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 24.w, top: 54.h, right: 24.h),
+            padding: EdgeInsets.only(left: 24.w, top: 41.h, right: 24.h),
             child: ListView.separated(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -194,7 +194,8 @@ class PsychologistPostPage extends StatelessWidget {
             bottom: 100.h,
             child: GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PsychologistCreatePostScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => PsychologistCreatePostScreen()));
               },
               child: SvgPicture.asset(
                 'assets/icons/addPost_1.svg',

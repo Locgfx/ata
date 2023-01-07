@@ -170,50 +170,59 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: 48.w,
-                                      height: 48.h,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                "assets/images/Rectangle 26.png",
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                JoiningScreen()));
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 48.w,
+                                        height: 48.h,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                  "assets/images/Rectangle 26.png",
+                                                ),
+                                                fit: BoxFit.cover),
+                                            color: Colors.grey,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                      ),
+                                      SizedBox(width: 16.w),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Priyanka singh',
+                                              style: kManRope_500_16_001314),
+                                          //SizedBox(width: 10,),
+                                          SizedBox(height: 8.h),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text('Anxiety',
+                                                  style:
+                                                      kManRope_400_14_626A6A),
+                                              SizedBox(
+                                                width: 110.w,
                                               ),
-                                              fit: BoxFit.cover),
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                    ),
-                                    SizedBox(width: 16.w),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('Priyanka singh',
-                                            style: kManRope_500_16_001314),
-                                        //SizedBox(width: 10,),
-                                        SizedBox(height: 8.h),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('Anxiety',
-                                                style: kManRope_400_14_626A6A),
-                                            SizedBox(
-                                              width: 110.w,
-                                            ),
-                                            Text(
-                                              '10 June 2022, 8:00AM',
-                                              style: kManRope_400_14_626A6A,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                              Text(
+                                                '10 June 2022, 8:00AM',
+                                                style: kManRope_400_14_626A6A,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -259,50 +268,59 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
-                                  children: [
-                                    Container(
-                                      width: 48.w,
-                                      height: 48.h,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                "assets/images/Rectangle 26.png",
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                JoiningScreen()));
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        width: 48.w,
+                                        height: 48.h,
+                                        decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                  "assets/images/Rectangle 26.png",
+                                                ),
+                                                fit: BoxFit.cover),
+                                            color: Colors.grey,
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                      ),
+                                      SizedBox(width: 16.w),
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Priyanka singh',
+                                              style: kManRope_500_16_001314),
+                                          //SizedBox(width: 10,),
+                                          SizedBox(height: 8.h),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text('Anxiety',
+                                                  style:
+                                                      kManRope_400_14_626A6A),
+                                              SizedBox(
+                                                width: 110.w,
                                               ),
-                                              fit: BoxFit.cover),
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(8)),
-                                    ),
-                                    SizedBox(width: 16.w),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text('Priyanka singh',
-                                            style: kManRope_500_16_001314),
-                                        //SizedBox(width: 10,),
-                                        SizedBox(height: 8.h),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('Anxiety',
-                                                style: kManRope_400_14_626A6A),
-                                            SizedBox(
-                                              width: 110.w,
-                                            ),
-                                            Text(
-                                              '10 June 2022, 8:00AM',
-                                              style: kManRope_400_14_626A6A,
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                              Text(
+                                                '10 June 2022, 8:00AM',
+                                                style: kManRope_400_14_626A6A,
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
@@ -316,6 +334,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                   },
                   itemCount: 12),
             ),
+            SizedBox(height: 10.h),
           ],
         ),
       ),

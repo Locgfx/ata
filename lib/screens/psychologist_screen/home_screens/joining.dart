@@ -35,6 +35,24 @@ class _JoiningScreenState extends State<JoiningScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // bottomNavigationBar: Padding(
+      //   padding: EdgeInsets.only(left: 110.w, right: 110.w, bottom: 20.h),
+      //   child: MaterialButton(
+      //     color: k66898D,
+      //     onPressed: () {
+      //       Navigator.of(context).push(
+      //           MaterialPageRoute(builder: (ctx) => SuccesfulSesionScreen()));
+      //     },
+      //     child: Padding(
+      //       padding: EdgeInsets.only(
+      //           left: 46.w, right: 46.w, top: 19.h, bottom: 19.h),
+      //       child: Text(
+      //         "Join meeting ",
+      //         style: kManRope_400_16_white,
+      //       ),
+      //     ),
+      //   ),
+      // ),
       backgroundColor: kWhiteBGColor,
       appBar: DotappBar(imgPath: "assets/images/Frame 48.png"),
       body: SingleChildScrollView(
@@ -45,12 +63,12 @@ class _JoiningScreenState extends State<JoiningScreen> {
               SizedBox(height: 40.h),
               Center(
                 child: Container(
-                  height: 136.h,
+                  height: 133.h,
                   width: 136.w,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage("assets/images/Rectangle 26.png"),
-                          fit: BoxFit.cover)),
+                          fit: BoxFit.fill)),
                 ),
               ),
               SizedBox(height: 16.h),
@@ -87,18 +105,21 @@ class _JoiningScreenState extends State<JoiningScreen> {
                 ),
               ),
               SizedBox(height: 75.h),
-              MaterialButton(
-                color: k66898D,
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (ctx) => SuccesfulSesionScreen()));
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: 46.w, right: 46.w, top: 19.h, bottom: 19.h),
-                  child: Text(
-                    "Join meeting ",
-                    style: kManRope_400_16_white,
+              Padding(
+                padding: EdgeInsets.only(bottom: 20.h),
+                child: MaterialButton(
+                  color: k66898D,
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => SuccesfulSesionScreen()));
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        left: 46.w, right: 46.w, top: 19.h, bottom: 19.h),
+                    child: Text(
+                      "Join meeting ",
+                      style: kManRope_400_16_white,
+                    ),
                   ),
                 ),
               ),

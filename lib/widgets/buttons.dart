@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 class MainButton extends StatelessWidget {
@@ -86,6 +88,35 @@ class BottomSmallButton extends StatelessWidget {
           style: kManRope_400_16_white,
         ),
       ),
+    );
+  }
+}
+
+class RoundedBottomButton extends StatelessWidget {
+  final Function() onPressed;
+  final String text;
+
+  const RoundedBottomButton({
+    Key? key,
+    required this.onPressed,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 130.w, right: 130.w, bottom: 52.h),
+      child: MainButton(
+          onPressed: onPressed,
+          child: Padding(
+            padding: EdgeInsets.only(top: 15, bottom: 14),
+            child: Text(
+              text,
+              style: kManRope_500_16_white,
+            ),
+          ),
+          color: k006D77,
+          shape: CustomDecoration().smallButtonDecoration()),
     );
   }
 }

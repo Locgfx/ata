@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/screens/psychologist_screen/profile_screens/kyc_confirm_name_screen.dart';
-import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
+import 'package:greymatter/widgets/buttons.dart';
 
 class KycScreen extends StatefulWidget {
   const KycScreen({Key? key}) : super(key: key);
@@ -15,23 +15,36 @@ class KycScreen extends StatefulWidget {
 }
 
 class _KycScreenState extends State<KycScreen> {
+  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: Row(
-      //   children: [
-      //     Expanded(
-      //       child: MainButton(
-      //           onPressed: () {},
-      //           child: Padding(
-      //             padding: const EdgeInsets.only(top: 20.0, left: 172),
-      //             child: Text("Next"),
-      //           ),
-      //           color: k006D77,
-      //           shape: CustomDecoration().button16Decoration()),
-      //     ),
-      //   ],
-      // ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 40.0, left: 24, right: 24),
+        child: Row(
+          children: [
+            Expanded(
+              child: MainButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => ConfirmName()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      top: 20.0,
+                      bottom: 20.0,
+                    ),
+                    child: Text(
+                      "Next",
+                      style: kManRope_500_16_white,
+                    ),
+                  ),
+                  color: k006D77,
+                  shape: CustomDecoration().button16Decoration()),
+            ),
+          ],
+        ),
+      ),
       backgroundColor: kWhiteBGColor,
       body: SingleChildScrollView(
         child: SizedBox(
@@ -100,6 +113,16 @@ class _KycScreenState extends State<KycScreen> {
                         ),
                         Row(
                           children: [
+                            // Checkbox(
+                            //   checkColor: Colors.white,
+                            //   value: isChecked,
+                            //   onChanged: (bool? value) {
+                            //     setState(() {
+                            //       isChecked = value!;
+                            //     });
+                            //   },
+                            // ),
+
                             SvgPicture.asset(
                               'assets/icons/check mark-rectangle.svg',
                               height: 21.5.h,
@@ -148,12 +171,12 @@ class _KycScreenState extends State<KycScreen> {
                         SizedBox(
                           height: 223.h,
                         ),
-                        CustomActiveTextButton(
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ConfirmName()));
-                            },
-                            text: 'Next'),
+                        // CustomActiveTextButton(
+                        //     onPressed: () {
+                        //       Navigator.of(context).push(MaterialPageRoute(
+                        //           builder: (context) => ConfirmName()));
+                        //     },
+                        //     text: 'Next'),
                       ],
                     ),
                   ),
