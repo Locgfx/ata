@@ -57,7 +57,7 @@ class PostPage extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text('Priya singh',
-                                            style: kManRope_400_16_Black),
+                                            style: kManRope_500_16_001314),
                                         SizedBox(height: 1.h),
                                         Text('2 hours ago',
                                             style: kManRope_400_12_626A6A),

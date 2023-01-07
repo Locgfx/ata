@@ -76,7 +76,7 @@ class ChatSupportScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Hi',
-                        style: kManRope_400_14_626A6A,
+                        style: kManRope_400_14_001314,
                       ),
                     ),
                   ),
@@ -119,10 +119,10 @@ class ChatSupportScreen extends StatelessWidget {
                         ),
                         child: Center(
                           child: Padding(
-                            padding: EdgeInsets.only(left: 14.w),
+                            padding: EdgeInsets.only(left: 24, right: 32),
                             child: Text(
                               'Hi Priyanka my name is harish how can I help you?',
-                              style: kManRope_400_14_626A6A,
+                              style: kManRope_400_14_001314,
                             ),
                           ),
                         ),
@@ -167,7 +167,7 @@ class ChatSupportScreen extends StatelessWidget {
                             padding: EdgeInsets.only(left: 24, right: 32),
                             child: Text(
                               'Hi Harish, I have issues with my friend. can you help me?',
-                              style: kManRope_400_14_626A6A,
+                              style: kManRope_400_14_001314,
                             ),
                           ),
                         ),
@@ -221,9 +221,6 @@ class ChatSupportScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        height: 4.h,
-                      ),
                     ],
                   ),
                 ],
@@ -256,11 +253,14 @@ class ChatSupportScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'ok',
-                        style: kManRope_400_14_626A6A,
+                        style: kManRope_400_14_001314,
                       ),
                     ),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 4.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,

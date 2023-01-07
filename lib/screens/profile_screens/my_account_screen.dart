@@ -45,15 +45,15 @@ class MyAccount extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 48.h,
-              width: 380.w,
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ChangeMobileNoScreen()));
-                },
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ChangeMobileNoScreen()));
+              },
+              child: Container(
+                height: 48.h,
+                width: 380.w,
+                color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -74,15 +74,15 @@ class MyAccount extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            Container(
-              height: 48.h,
-              width: 380.w,
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ChangeEmailScreen()));
-                },
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ChangeEmailScreen()));
+              },
+              child: Container(
+                height: 48.h,
+                width: 380.w,
+                color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -103,15 +103,15 @@ class MyAccount extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            Container(
-              height: 48.h,
-              width: 480.w,
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ChangePasswordScreen()));
-                },
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const ChangePasswordScreen()));
+              },
+              child: Container(
+                height: 48.h,
+                width: 480.w,
+                color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -133,15 +133,15 @@ class MyAccount extends StatelessWidget {
             SizedBox(
               height: 5,
             ),
-            Container(
-              height: 48.h,
-              width: 380.w,
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const DeleteAccountScreen()));
-                },
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const DeleteAccountScreen()));
+              },
+              child: Container(
+                height: 48.h,
+                width: 116.w,
+                color: Colors.transparent,
                 child: Text(
                   'Delete Account',
                   style: kManRope_500_16_BD4D4D,

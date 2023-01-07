@@ -54,7 +54,7 @@ class SliderCard extends StatelessWidget {
               DottedBorder(
                 child: Text(
                   'WELCOME30',
-                  style: kManRope_500_16_006D77,
+                  style: kManRope_500_16_white,
                 ),
                 radius: const Radius.circular(16),
                 padding: const EdgeInsets.all(16),

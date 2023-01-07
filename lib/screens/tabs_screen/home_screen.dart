@@ -112,7 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           SizedBox(height: 36.h),
                           Text('In the Spotlight',
-                              style: kManRope_700_20_white),
+                              style: kManRope_700_16_white),
                           SizedBox(height: 8.h),
                           Text('Explore deals, offers and more',
                               style: kManRope_400_16_CBD3FB),

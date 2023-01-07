@@ -87,9 +87,13 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Priya Singh',
-                          style: kManRope_400_16_001314,
+                        SizedBox(
+                          width: 190,
+                          child: Text(
+                            'Priya Singh',
+                            overflow: TextOverflow.ellipsis,
+                            style: kManRope_400_16_001314,
+                          ),
                         ),
                         SizedBox(
                           height: 4.h,
@@ -169,7 +173,7 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: 'Coupon',
-                              hintStyle: kManRope_400_16_626A6A,
+                              hintStyle: kManRope_500_16_626A6A,
                             ),
                           ),
                         ),

@@ -43,15 +43,15 @@ class AgreementScreen extends StatelessWidget {
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(
           children: [
-            Container(
-              width: 380.w,
-              height: 48.h,
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const AgreementDetails()));
-                },
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AgreementDetails()));
+              },
+              child: Container(
+                width: 380.w,
+                height: 48.h,
+                color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -71,15 +71,15 @@ class AgreementScreen extends StatelessWidget {
             SizedBox(
               height: 8.h,
             ),
-            Container(
-              width: 380.w,
-              height: 48.h,
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const PrivacyAndPolicyScreen()));
-                },
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const PrivacyAndPolicyScreen()));
+              },
+              child: Container(
+                width: 380.w,
+                height: 48.h,
+                color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -99,14 +99,15 @@ class AgreementScreen extends StatelessWidget {
             SizedBox(
               height: 8,
             ),
-            Container(
-              width: 380.w,
-              height: 48.h,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const TermsAndConditionsScreen()));
-                },
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const TermsAndConditionsScreen()));
+              },
+              child: Container(
+                width: 380.w,
+                height: 48.h,
+                color: Colors.transparent,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

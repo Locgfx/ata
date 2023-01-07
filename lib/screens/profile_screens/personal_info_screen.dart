@@ -79,9 +79,13 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
             SizedBox(
               height: 8.h,
             ),
-            Text(
-              'Priya Singh',
-              style: kManRope_400_16_001314,
+            SizedBox(
+              width: 80,
+              child: Text(
+                'Priya Singh',
+                style: kManRope_400_16_001314,
+                overflow: TextOverflow.ellipsis,
+              ),
             ),
             SizedBox(
               height: 40.h,
