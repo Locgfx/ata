@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/decorations.dart';
-import 'package:greymatter/screens/profile_screens/order_history_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -57,16 +56,16 @@ class _HolidayConfirmScreenState extends State<HolidayConfirmScreen> {
                   Expanded(
                     child: MainButton(
                         onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => OrderHistoryScreen()),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => OrderHistoryScreen()),
+                          // );
                         },
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 20.0,
-                            bottom: 20.0,
+                          padding: EdgeInsets.only(
+                            top: 20.h,
+                            bottom: 20.h,
                           ),
                           child: Text(
                             'Edit',
@@ -80,33 +79,38 @@ class _HolidayConfirmScreenState extends State<HolidayConfirmScreen> {
               ),
               // CustomActiveTextButton(onPressed: () {}, text: 'Edit'),
               SizedBox(
-                height: 40.h,
+                height: 30.h,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: MainButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => PsychologistHomeScreen()),
-                          );
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                            top: 20.0,
-                            bottom: 20.0,
+              Padding(
+                padding: EdgeInsets.only(bottom: 20.h),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: MainButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      PsychologistHomeScreen()),
+                            );
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: 20.h,
+                              bottom: 20.h,
+                            ),
+                            child: Text(
+                              'Go Home',
+                              style: kManRope_500_16_006D77,
+                            ),
                           ),
-                          child: Text(
-                            'Go Home',
-                            style: kManRope_500_16_006D77,
-                          ),
-                        ),
-                        color: Colors.white,
-                        shape: CustomDecoration().outline16ButtonDecoration()),
-                  ),
-                ],
+                          color: Colors.white,
+                          shape:
+                              CustomDecoration().outline16ButtonDecoration()),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

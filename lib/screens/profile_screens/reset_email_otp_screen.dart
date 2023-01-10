@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/psychologist_screen/profile_screens/change_email_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -19,7 +20,10 @@ class _ResetPasswordOTPScreen extends State<ResetEmailOTPScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomSmallButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => PsychologistChangeEmailScreen()));
+        },
         text: 'Save',
       ),
       appBar: AppBar(

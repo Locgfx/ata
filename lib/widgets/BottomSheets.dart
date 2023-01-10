@@ -43,7 +43,7 @@ class _SelectGenderBottomSheet extends State<SelectGenderBottomSheet> {
                       ),
                     ),
                     SizedBox(
-                      width: 60.w,
+                      width: 90.w,
                     ),
                     Text(
                       'Select Gender',
@@ -285,81 +285,77 @@ class _SelectDesignationBottomSheet
   }
 }
 
-// class DatePickerBottomSheet extends StatefulWidget {
-//   const DatePickerBottomSheet({Key? key}) : super(key: key);
-//
-//   @override
-//   State<DatePickerBottomSheet> createState() => _DatePickerBottomSheet();
-// }
-//
-// class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
-//   int _gIndex = 0;
-//   int dateSelected = 0;
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: 259.h,
-//       child: Column(
-//         children: [
-//           Container(
-//             height: 71.h,
-//             decoration: const BoxDecoration(
-//               color: k006D77,
-//               borderRadius: BorderRadius.only(
-//                   topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-//             ),
-//             child: Padding(
-//               padding: EdgeInsets.only(left: 46.w),
-//               child: Center(
-//                 child: Row(
-//                   children: [
-//                     GestureDetector(
-//                       onTap: () => Navigator.of(context).pop(),
-//                       child: Icon(
-//                         Icons.arrow_back_ios,
-//                         color: Colors.white,
-//                         size: 20.sp,
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       width: 60.w,
-//                     ),
-//                     Text(
-//                       'Select Gender',
-//                       style: kManRope_700_20_white,
-//                       textAlign: TextAlign.center,
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//           ),
-//           Container(
-//             height: 190.h,
-//             color: Color.fromARGB(255, 255, 255, 255),
-//             child: Column(
-//               children: [
-//                 Container(
-//                   // padding: EdgeInsets.all(10),
-//                   height: 190.h,
-//                   child: CupertinoDatePicker(
-//                       mode: CupertinoDatePickerMode.date,
-//                       minimumYear: 1980,
-//                       maximumYear: 2023,
-//                       onDateTimeChanged: (val) {
-//                         setState(() {
-//                           dateSelected = val.toString() as int;
-//                         });
-//                       }),
-//                 ),
-//               ],
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
+class DatePickerBottomSheet extends StatefulWidget {
+  const DatePickerBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<DatePickerBottomSheet> createState() => _DatePickerBottomSheet();
+}
+
+class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
+  int _gIndex = 0;
+  int dateSelected = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 300.h,
+      child: Column(
+        children: [
+          Container(
+            height: 71.h,
+            decoration: const BoxDecoration(
+              color: k006D77,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+            ),
+            child: Padding(
+              padding: EdgeInsets.only(left: 46.w),
+              child: Center(
+                child: Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                        size: 20.sp,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 90.w,
+                    ),
+                    Text(
+                      'Select Gender',
+                      style: kManRope_700_20_white,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              Container(
+                // padding: EdgeInsets.all(10),
+                height: 190.h,
+                child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    minimumYear: 1980,
+                    maximumYear: 2023,
+                    onDateTimeChanged: (val) {
+                      setState(() {
+                        dateSelected = val.toString() as int;
+                      });
+                    }),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class _SpecializationBottomSheet extends State<SpecializationBottomSheet> {
   int _gIndex = 0;
@@ -556,6 +552,7 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
               ),
             ),
           ),
+          SizedBox(height: 10.h),
           Padding(
             padding: EdgeInsets.only(left: 140.w),
             child: SizedBox(
@@ -590,8 +587,7 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
           Center(
             child: MainButton(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 63, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
                 child: Text(
                   "Done",
                   style: kManRope_500_18_FFFFF,
@@ -662,6 +658,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               ),
             ),
           ),
+          SizedBox(height: 10.h),
           Padding(
             padding: EdgeInsets.only(left: 140.w),
             child: SizedBox(
@@ -696,8 +693,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
           Center(
             child: MainButton(
               child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 63, vertical: 15),
+                padding: EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
                 child: Text(
                   "Done",
                   style: kManRope_500_18_FFFFF,

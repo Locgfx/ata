@@ -77,18 +77,16 @@ class _AddBankScreenState extends State<AddBankScreen> {
                 height: 8.h,
               ),
               TextField(
+                  onTap: () {
+                    _banksBottomSheet();
+                  },
                   readOnly: true,
                   decoration: TextfieldDecoration(
                       label: "Select bank",
-                      child: GestureDetector(
-                        onTap: () {
-                          _banksBottomSheet();
-                        },
-                        child: Image.asset(
-                          "assets/images/downarrow.png",
-                          height: 10,
-                          width: 10,
-                        ),
+                      child: Image.asset(
+                        "assets/images/downarrow.png",
+                        height: 10,
+                        width: 10,
                       )).textfieldDecoration()),
               SizedBox(
                 height: 20.h,
@@ -156,18 +154,16 @@ class _AddBankScreenState extends State<AddBankScreen> {
                 height: 8.h,
               ),
               TextField(
+                  onTap: () {
+                    _selectAccountType();
+                  },
                   readOnly: true,
                   decoration: TextfieldDecoration(
                     label: "Saving",
-                    child: GestureDetector(
-                      onTap: () {
-                        _selectAccountType();
-                      },
-                      child: Image.asset(
-                        "assets/images/downarrow.png",
-                        height: 10,
-                        width: 10,
-                      ),
+                    child: Image.asset(
+                      "assets/images/downarrow.png",
+                      height: 10,
+                      width: 10,
                     ),
                   ).textfieldDecoration()),
               SizedBox(

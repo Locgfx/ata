@@ -25,6 +25,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         style: kManRope_500_16_006D77,
       ),
       leading: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () {
           Navigator.pop(context);
         },
@@ -101,11 +102,13 @@ class CusAppBar extends StatelessWidget with PreferredSizeWidget {
         style: kManRope_500_16_006D77,
       ),
       leading: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () {
           Navigator.pop(context);
         },
         child: Container(
           height: 40,
+          width: 40,
           padding: EdgeInsets.all(22),
           child: Image.asset(
             imgPath,
@@ -142,6 +145,7 @@ class CuswhiteAppBar extends StatelessWidget with PreferredSizeWidget {
         style: kManRope_500_16_006D77,
       ),
       leading: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () {
           Navigator.pop(context);
         },
@@ -180,6 +184,7 @@ class DotappBar extends StatelessWidget with PreferredSizeWidget {
       leadingWidth: 50,
       actions: [JoiningPopup()],
       leading: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () {
           Navigator.pop(context);
         },

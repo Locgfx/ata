@@ -218,3 +218,61 @@ class MyPostOptionsDialog1 extends StatelessWidget {
         });
   }
 }
+
+class CalenderDialog extends StatelessWidget {
+  const CalenderDialog({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        itemBuilder: (context) {
+          return [
+            PopupMenuItem(
+              // enabled: false,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 24, top: 16, bottom: 16, right: 24),
+                child: Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "This Month",
+                          style: kManRope_500_16_626A6A,
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "This Week",
+                          style: kManRope_500_16_626A6A,
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "This Year",
+                          style: kManRope_500_16_626A6A,
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ];
+        });
+  }
+}

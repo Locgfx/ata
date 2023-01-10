@@ -19,13 +19,13 @@ class _ConfirmNameState extends State<ConfirmName> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 80.h,
-          ),
-          Expanded(
-            child: Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 80.h,
+            ),
+            Container(
               width: 1.sw,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -118,6 +118,9 @@ class _ConfirmNameState extends State<ConfirmName> {
                                     .outline16ButtonDecoration()))
                       ],
                     ),
+                    SizedBox(
+                      height: 80.h,
+                    ),
                     // GestureDetector(
                     //   onTap: () {},
                     //   child: Container(
@@ -138,9 +141,9 @@ class _ConfirmNameState extends State<ConfirmName> {
                   ],
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

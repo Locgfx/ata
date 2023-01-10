@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/screens/psychologist_screen/prescription_screen/edit_precription_view_screen.dart';
 
@@ -16,55 +17,35 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: 72.h,
-          ),
-          Expanded(
-            child: Container(
-              width: 1.sw,
-              color: Colors.white,
-              child: Column(
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 20,
+        backgroundColor: kWhiteBGColor,
+      ),
+      backgroundColor: kFFFFFF,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
                 children: [
-                  SizedBox(
-                    height: 40.h,
-                  ),
+                  SizedBox(height: 40.h),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24.w),
                     child: Container(
-                      height: 56.h,
-                      width: 1.sw,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(16)),
-                        border: Border.all(color: k5A72ED.withOpacity(0.24)),
-                      ),
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.w),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 297.w,
-                                child: TextField(
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: 'Search by Transaction No',
-                                    hintStyle: kManRope_400_14_626A6A,
-                                  ),
-                                ),
-                              ),
-                              SvgPicture.asset(
-                                'assets/icons/search.svg',
-                                height: 24.h,
-                                width: 24.w,
-                              ),
-                            ],
-                          ),
-                        ),
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(
+                            color: k5A72ED.withOpacity(0.25),
+                            width: 1,
+                          )),
+                      child: TextField(
+                        decoration: TextfieldDecoration(
+                                label: 'Search by Transaction No',
+                                child:
+                                    Image.asset("assets/images/searchicon.png"))
+                            .searchFieldDecoration(),
                       ),
                     ),
                   ),
@@ -101,6 +82,9 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                         ),
                       ),
                     ),
+                  ),
+                  SizedBox(
+                    height: 20.h,
                   ),
                   SizedBox(
                     height: 581.h,
@@ -163,10 +147,10 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                     ),
                   ),
                 ],
-              ),
-            ),
-          )
-        ],
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

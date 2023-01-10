@@ -19,7 +19,7 @@ class PostPage extends StatelessWidget {
         children: [
           Container(
             child: Padding(
-              padding: EdgeInsets.only(left: 24.w, top: 54.h, right: 24.h),
+              padding: EdgeInsets.only(left: 24.w, top: 41.h, right: 24.h),
               child: ListView.separated(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,

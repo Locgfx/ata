@@ -31,8 +31,10 @@ class JoiningPopup extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(
-                          top: 48.0, bottom: 48, left: 16, right: 16),
+                      padding: EdgeInsets.only(
+                        top: 10.h,
+                        bottom: 10.h,
+                      ),
                       child: Text(
                         "Cancle appointment",
                         style: kManRope_400_16_626A6A,

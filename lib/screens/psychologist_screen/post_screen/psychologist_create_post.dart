@@ -93,17 +93,17 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                 width: 380.w,
                 height: 500.h,
                 decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(8)),
-                  border: Border.all(
-                    color: const Color(0xFFDFDFDF),
-                  ),
-                ),
+                    // borderRadius: const BorderRadius.all(Radius.circular(8)),
+                    // border: Border.all(
+                    //   color: const Color(0xFFDFDFDF),
+                    // ),
+                    ),
                 child: Padding(
                   padding: EdgeInsets.only(left: 20.w),
                   child: TextField(
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      hintText: 'Write here...',
+                      hintText: 'What do you want to share?...',
                       hintStyle: kManRope_400_14_626A6A,
                     ),
                   ),

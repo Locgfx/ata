@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/decorations.dart';
-import 'package:greymatter/screens/psychologist_screen/profile_screens/edit_doctor_profile_screen.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -132,6 +131,17 @@ class _DoctorProfileState extends State<DoctorProfile> {
               style: kManRope_400_16_626A6A,
             ),
             SizedBox(height: 8.h),
+            // Container(
+            //   height: 40.h,
+            //   decoration: BoxDecoration(
+            //     color: kE2F2F4,
+            //     borderRadius: BorderRadius.all(Radius.circular(10)),
+            //   ),
+            //   child: TextField(
+            //     decoration: TextfieldDecoration(label: 'Type here price')
+            //         .textfieldDecoration(),
+            //   ),
+            // ),
             Container(
               height: 40.h,
               decoration: BoxDecoration(
@@ -155,28 +165,45 @@ class _DoctorProfileState extends State<DoctorProfile> {
               height: 40.h,
             ),
             Padding(
-              padding: const EdgeInsets.only(bottom: 50.0),
+              padding: EdgeInsets.only(bottom: 20.h),
               child: Center(
                 child: MainButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => PsychologistEditDoctorInfo()),
-                      );
-                    },
+                    onPressed: () {},
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 63, vertical: 15),
+                      padding: EdgeInsets.only(
+                          top: 16.h, bottom: 16.h, left: 63.w, right: 63.w),
                       child: Text(
-                        "Save",
+                        "Done",
                         style: kManRope_500_18_FFFFF,
                       ),
                     ),
                     color: k006D77,
                     shape: CustomDecoration().smallButtonDecoration()),
               ),
-            ),
+            )
+            // Padding(
+            //   padding: const EdgeInsets.only(bottom: 50.0),
+            //   child: Center(
+            //     child: MainButton(
+            //         onPressed: () {
+            //           Navigator.push(
+            //             context,
+            //             MaterialPageRoute(
+            //                 builder: (context) => PsychologistEditDoctorInfo()),
+            //           );
+            //         },
+            //         child: Padding(
+            //           padding: const EdgeInsets.symmetric(
+            //               horizontal: 63, vertical: 15),
+            //           child: Text(
+            //             "Save",
+            //             style: kManRope_500_18_FFFFF,
+            //           ),
+            //         ),
+            //         color: k006D77,
+            //         shape: CustomDecoration().smallButtonDecoration()),
+            //   ),
+            // ),
           ],
         ),
       ),

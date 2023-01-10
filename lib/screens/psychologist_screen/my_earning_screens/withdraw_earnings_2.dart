@@ -102,21 +102,22 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
               SizedBox(
                 height: 8.h,
               ),
-              TextField(
-                  readOnly: true,
-                  decoration: TextfieldDecoration(
-                          child: GestureDetector(
-                            onTap: () {
-                              _selectAccountNumbers();
-                            },
+              SizedBox(
+                height: 48.h,
+                child: TextField(
+                    onTap: () {
+                      _selectAccountNumbers();
+                    },
+                    readOnly: true,
+                    decoration: TextfieldDecoration(
                             child: Image.asset(
                               "assets/images/downarrow.png",
                               height: 10,
                               width: 10,
                             ),
-                          ),
-                          label: "This field will filled automatically")
-                      .textfieldDecoration()),
+                            label: "This field will filled automatically")
+                        .textfieldDecoration()),
+              ),
               SizedBox(
                 height: 53.h,
               ),
@@ -143,15 +144,18 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
               SizedBox(
                 height: 291.h,
               ),
-              SizedBox(
-                height: 56.h,
-                width: 1.sw,
-                child: CustomActiveTextButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => WithdrawSuccessful()));
-                  },
-                  text: 'Withdraw',
+              Padding(
+                padding: EdgeInsets.only(bottom: 20.h),
+                child: SizedBox(
+                  height: 56.h,
+                  width: 1.sw,
+                  child: CustomActiveTextButton(
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => WithdrawSuccessful()));
+                    },
+                    text: 'Withdraw',
+                  ),
                 ),
               )
             ],
