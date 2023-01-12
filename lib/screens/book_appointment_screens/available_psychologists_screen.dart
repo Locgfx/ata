@@ -19,14 +19,14 @@ class AvailablePsychologists extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 40.w,
+        leadingWidth: 60.w,
         centerTitle: false,
         backgroundColor: Colors.white,
         title: Text(
           'Available Psychologists',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 18.w,
+        titleSpacing: 0.w,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -64,9 +64,11 @@ class AvailablePsychologists extends StatelessWidget {
                               Container(
                                 width: 85.w,
                                 height: 85.h,
+                                clipBehavior: Clip.hardEdge,
                                 decoration: BoxDecoration(
                                     color: Colors.grey,
                                     borderRadius: BorderRadius.circular(24)),
+                                child: Image.asset('assets/images/userP.png'),
                               ),
                               SizedBox(width: 8.w),
                               Column(

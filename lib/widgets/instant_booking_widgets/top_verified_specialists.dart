@@ -28,7 +28,7 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                       _index = index;
                     });
                   },
-                  aspectRatio: 1/2,
+                  aspectRatio: 1 / 2,
                   viewportFraction: 0.9,
                   reverse: false,
                   enableInfiniteScroll: false),
@@ -46,27 +46,27 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                   child: Row(
                     children: [
                       Expanded(
-                        flex: 2,
+                          flex: 2,
                           child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Connect within 60s',
-                            style: kManRope_700_16_001314,
-                          ),
-                          SizedBox(height: 8.h),
-                          Text('Top verified Specialities',
-                              style: kManRope_500_14_626A6A),
-                          SizedBox(height: 16.h),
-                          Text(
-                            'Know More',
-                            style: kManRope_500_16_006D77,
-                          )
-                        ],
-                      )),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Connect within 60s',
+                                style: kManRope_700_16_001314,
+                              ),
+                              SizedBox(height: 8.h),
+                              Text('Top verified Specialities',
+                                  style: kManRope_500_14_626A6A),
+                              SizedBox(height: 16.h),
+                              Text(
+                                'Know More',
+                                style: kManRope_500_16_006D77,
+                              )
+                            ],
+                          )),
                       Expanded(
                           child: Stack(
-                            clipBehavior: Clip.none,
+                        clipBehavior: Clip.none,
                         children: [
                           Positioned(
                             left: 0,
@@ -80,7 +80,8 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                                 border: Border.all(color: Colors.white),
                               ),
                             ),
-                          ), Positioned(
+                          ),
+                          Positioned(
                             left: 20,
                             top: 20,
                             child: Container(
@@ -92,7 +93,8 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                                 border: Border.all(color: Colors.white),
                               ),
                             ),
-                          ), Positioned(
+                          ),
+                          Positioned(
                             left: 40,
                             top: 20,
                             child: Container(
@@ -113,7 +115,7 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
               },
               itemCount: 3,
             )),
-        SizedBox(height: 16.h),
+        SizedBox(height: 25.h),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -130,35 +132,26 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                   AnimatedContainer(
                     width: 24.w,
                     decoration: BoxDecoration(
-                      color: _index == 0
-                          ? k5A72ED
-                          : Colors.transparent,
+                      color: _index == 0 ? k5A72ED : Colors.transparent,
                       borderRadius: BorderRadius.circular(2),
                     ),
-                    duration:
-                    const Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 200),
                   ),
                   AnimatedContainer(
                     width: 24.w,
                     decoration: BoxDecoration(
-                      color: _index == 1
-                          ? k5A72ED
-                          : Colors.transparent,
+                      color: _index == 1 ? k5A72ED : Colors.transparent,
                       borderRadius: BorderRadius.circular(2),
                     ),
-                    duration:
-                    const Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 200),
                   ),
                   AnimatedContainer(
                     width: 24.w,
                     decoration: BoxDecoration(
-                      color: _index == 2
-                          ? k5A72ED
-                          : Colors.transparent,
+                      color: _index == 2 ? k5A72ED : Colors.transparent,
                       borderRadius: BorderRadius.circular(2),
                     ),
-                    duration:
-                    const Duration(milliseconds: 200),
+                    duration: const Duration(milliseconds: 200),
                   )
                 ],
               ),

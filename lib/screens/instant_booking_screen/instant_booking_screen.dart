@@ -17,15 +17,16 @@ class InstantBookingScreen extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 10.w,
+        leadingWidth: 60.w,
         centerTitle: false,
         backgroundColor: Colors.white,
         title: Text(
           'Instant Booking',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 50.w,
-        leading: InkWell(
+        titleSpacing: 0.w,
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () {
             Navigator.of(context).pop();
           },
@@ -86,7 +87,7 @@ class InstantBookingScreen extends StatelessWidget {
                     SizedBox(height: 24.h),
                     GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.all(5),
+                        //  padding: const EdgeInsets.all(5),
                         shrinkWrap: true,
                         itemCount: 12,
                         gridDelegate:

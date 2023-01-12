@@ -17,14 +17,14 @@ class BookAppointmentScreen extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 40.w,
+        leadingWidth: 60.w,
         centerTitle: false,
         backgroundColor: Colors.white,
         title: Text(
           'Book Appointment',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 18.w,
+        titleSpacing: 0.w,
         leading: InkWell(
           onTap: () {
             Navigator.of(context).pop();
@@ -84,7 +84,7 @@ class BookAppointmentScreen extends StatelessWidget {
                     SizedBox(height: 24.h),
                     GridView.builder(
                         physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.only(top: 5, right: 5),
                         shrinkWrap: true,
                         itemCount: 12,
                         gridDelegate:

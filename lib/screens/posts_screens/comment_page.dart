@@ -160,7 +160,7 @@ class _CommentPageState extends State<CommentPage> {
                             width: 24.w,
                           ),
                           SizedBox(
-                            width: 12,
+                            width: 15,
                           ),
                           Text('375', style: kManRope_400_14_Black),
                           SizedBox(
@@ -220,7 +220,7 @@ class _CommentPageState extends State<CommentPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    height: 121.h,
+                    //  height: 121.h,
                     width: 327.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
@@ -251,9 +251,20 @@ class _CommentPageState extends State<CommentPage> {
                           MaterialPageRoute(
                               builder: (context) => ReplyScreen()));
                     },
-                    child: Text(
-                      "Reply 1",
-                      style: kManRope_400_12_626A6A,
+                    child: Row(
+                      children: [
+                        Text(
+                          "Reply",
+                          style: kManRope_400_12_626A6A,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          "1",
+                          style: kManRope_400_12_626A6A,
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -265,7 +276,7 @@ class _CommentPageState extends State<CommentPage> {
                     width: 24.w,
                   ),
                   SizedBox(
-                    width: 5,
+                    width: 6,
                   ),
                   Text('375', style: kManRope_400_14_Black),
                 ],
@@ -288,7 +299,7 @@ class _CommentPageState extends State<CommentPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Container(
-                      height: 100.h,
+                      // height: 100.h,
                       width: 250.w,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
@@ -319,7 +330,7 @@ class _CommentPageState extends State<CommentPage> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Container(
-                    height: 121.h,
+                    //height: 121.h,
                     width: 327.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
@@ -350,9 +361,20 @@ class _CommentPageState extends State<CommentPage> {
                           MaterialPageRoute(
                               builder: (context) => ReplyScreen()));
                     },
-                    child: Text(
-                      "Reply 1",
-                      style: kManRope_400_12_626A6A,
+                    child: Row(
+                      children: [
+                        Text(
+                          "Reply",
+                          style: kManRope_400_12_626A6A,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          "1",
+                          style: kManRope_400_12_626A6A,
+                        ),
+                      ],
                     ),
                   ),
                   SizedBox(
@@ -366,7 +388,7 @@ class _CommentPageState extends State<CommentPage> {
                   SizedBox(
                     width: 6,
                   ),
-                  Text('375', style: kManRope_400_14_Black),
+                  Text('375', style: kManRope_400_14_626A6A),
                 ],
               ),
               SizedBox(

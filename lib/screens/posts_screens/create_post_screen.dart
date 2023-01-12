@@ -21,7 +21,7 @@ class CreatePostScreen extends StatelessWidget {
           'Create post',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 18.w,
+        // titleSpacing: 18.w,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -57,9 +57,13 @@ class CreatePostScreen extends StatelessWidget {
                   SizedBox(
                     width: 8.w,
                   ),
-                  Text(
-                    'Priya Singh',
-                    style: kManRope_500_16_001314,
+                  SizedBox(
+                    width: 90,
+                    child: Text(
+                      'Priya Singh',
+                      overflow: TextOverflow.ellipsis,
+                      style: kManRope_500_16_001314,
+                    ),
                   ),
                   Spacer(),
                   SvgPicture.asset(
@@ -68,7 +72,7 @@ class CreatePostScreen extends StatelessWidget {
                     width: 24.w,
                   ),
                   SizedBox(
-                    width: 16,
+                    width: 18,
                   ),
                   SvgPicture.asset(
                     'assets/icons/files.svg',
@@ -162,7 +166,8 @@ class CreatePostScreen extends StatelessWidget {
               SizedBox(
                 width: 300,
                 child: TextField(
-                  maxLines: 50,
+                  maxLines: 25,
+                  style: kManRope_400_14_626A6A,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Write here...',
@@ -171,7 +176,7 @@ class CreatePostScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 280.h,
+                height: 50.h,
               ),
               Center(
                 child: SizedBox(

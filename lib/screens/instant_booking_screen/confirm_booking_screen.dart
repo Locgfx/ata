@@ -69,7 +69,7 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                 ),
                 Text('Selected Psychologists', style: kManRope_700_16_001314),
                 SizedBox(
-                  height: 24.h,
+                  height: 29.h,
                 ),
                 Row(
                   children: [
@@ -96,14 +96,14 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                           ),
                         ),
                         SizedBox(
-                          height: 4.h,
+                          height: 8.h,
                         ),
                         Text(
                           'MA in Counselling Psychology',
                           style: kManRope_400_14_626A6A,
                         ),
                         SizedBox(
-                          height: 4.h,
+                          height: 8.h,
                         ),
                         Row(
                           children: [
@@ -197,7 +197,7 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                   ),
                 ),
                 SizedBox(
-                  height: 270.h,
+                  height: 257.h,
                 ),
                 Center(
                   child: Container(

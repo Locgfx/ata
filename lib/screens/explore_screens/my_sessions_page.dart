@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/screens/explore_screens/session_details_page.dart';
@@ -28,7 +29,7 @@ class _MySessionPageState extends State<MySessionPage> {
               style: kManRope_700_16_001314,
             ),
             SizedBox(
-              height: 35.h,
+              height: 24.h,
             ),
             GestureDetector(
               onTap: () {
@@ -89,12 +90,10 @@ class _MySessionPageState extends State<MySessionPage> {
                                   'Psychologist',
                                   style: kManRope_400_12_626A6A,
                                 ),
-                                SizedBox(
-                                  height: 4.h,
-                                ),
                               ],
                             ),
                             Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(
                                   height: 10.h,
@@ -102,6 +101,9 @@ class _MySessionPageState extends State<MySessionPage> {
                                 Text(
                                   '05 June 2022',
                                   style: kManRope_400_12_626A6A,
+                                ),
+                                SizedBox(
+                                  height: 4.h,
                                 ),
                                 Text(
                                   '8:00AM',
@@ -155,6 +157,9 @@ class _MySessionPageState extends State<MySessionPage> {
               'All sessions',
               style: kManRope_700_16_001314,
             ),
+            SizedBox(
+              height: 24.h,
+            ),
             Expanded(
               child: ListView.separated(
                 scrollDirection: Axis.vertical,
@@ -202,7 +207,7 @@ class _MySessionPageState extends State<MySessionPage> {
                                           width: 98,
                                           child: Text('Priyanka singh',
                                               overflow: TextOverflow.ellipsis,
-                                              style: kManRope_400_16_Black),
+                                              style: kManRope_400_14_001314),
                                         ),
                                         Text('05 June 2022',
                                             style: kManRope_400_14_626A6A),
@@ -257,7 +262,7 @@ class _MySessionPageState extends State<MySessionPage> {
                   );
                 },
                 separatorBuilder: (ctx, index) {
-                  return SizedBox(height: 40.h);
+                  return SizedBox(height: 20.h);
                 },
                 itemCount: 10,
               ),

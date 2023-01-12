@@ -16,7 +16,7 @@ class NewActivityAddedScreen extends StatelessWidget {
         leadingWidth: 40.w,
         centerTitle: false,
         backgroundColor: Colors.white,
-        title: Text(
+        /*title: Text(
           'Add new activity',
           style: kManRope_500_16_006D77,
         ),
@@ -33,7 +33,7 @@ class NewActivityAddedScreen extends StatelessWidget {
               size: 20,
             ),
           ),
-        ),
+        ),*/
       ),
       body: Center(
         child: Column(

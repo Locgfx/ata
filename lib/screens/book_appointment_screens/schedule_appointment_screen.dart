@@ -76,14 +76,14 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 40.w,
+        leadingWidth: 60.w,
         backgroundColor: Colors.white,
         centerTitle: false,
         title: Text(
           'Appointment',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 18.w,
+        titleSpacing: 0.w,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -112,8 +112,8 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
             ),
             TableCalendar(
               focusedDay: selectedDay,
-              firstDay: DateTime(2022),
-              lastDay: DateTime(2023),
+              firstDay: DateTime(2023),
+              lastDay: DateTime(2024),
               calendarFormat: CalendarFormat.week,
               headerVisible: false,
               calendarStyle: CalendarStyle(

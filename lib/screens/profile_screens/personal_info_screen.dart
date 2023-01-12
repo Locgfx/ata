@@ -28,7 +28,8 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
           style: kManRope_500_16_006D77,
         ),
         titleSpacing: 18.w,
-        leading: InkWell(
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () {
             Navigator.pop(context);
           },
@@ -55,10 +56,12 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
                   color: k006D77,
                   strokeWidth: 1,
                   borderType: BorderType.Circle,
-                  child: CircleAvatar(
-                    radius: 40,
-                    backgroundColor: Colors.grey,
-                    backgroundImage: AssetImage('assets/images/userP.png'),
+                  child: Container(
+                    height: 102,
+                    width: 102,
+                    clipBehavior: Clip.hardEdge,
+                    decoration: BoxDecoration(shape: BoxShape.circle),
+                    child: Image.asset('assets/images/userP.png'),
                   ),
                   /*Container(
                     height: 102.h,
@@ -80,7 +83,7 @@ class _PersonalInfoScreenState extends State<PersonalInfoScreen> {
               height: 8.h,
             ),
             SizedBox(
-              width: 80,
+              width: 480,
               child: Text(
                 'Priya Singh',
                 style: kManRope_400_16_001314,

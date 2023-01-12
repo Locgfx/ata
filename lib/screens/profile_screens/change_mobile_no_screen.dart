@@ -47,7 +47,7 @@ class _ChangeMobileNoScreenState extends State<ChangeMobileNoScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Mobile Number',
+                'Current Mobile Number',
                 style: kManRope_400_16_626A6A,
               ),
               SizedBox(

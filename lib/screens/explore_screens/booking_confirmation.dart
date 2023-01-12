@@ -85,7 +85,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                     ),
                   ),
                   SizedBox(
-                    width: 18.w,
+                    width: 16.w,
                   ),
                   Expanded(
                     child: Column(
@@ -100,14 +100,14 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 4.h,
+                          height: 8.h,
                         ),
                         Text(
                           'psychologist',
                           style: kManRope_400_14_626A6A,
                         ),
                         SizedBox(
-                          height: 4.h,
+                          height: 8.h,
                         ),
                         Row(
                           children: [
@@ -116,17 +116,12 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                               width: 12.w,
                               height: 12.h,
                             ),
-                            Text(
-                              '4.0',
-                              style: kManRope_400_12_001314,
-                            ),
-                            SizedBox(
-                              width: 12,
-                            ),
-                            Text(
-                              '12 Yrs. Exp',
-                              style: kManRope_400_12_001314,
-                            )
+                            SizedBox(width: 4.w),
+                            Text('4.0', style: kManRope_400_12_001314),
+                            SizedBox(width: 4.w),
+                            Text('.', style: kManRope_700_16_001314),
+                            SizedBox(width: 4.w),
+                            Text('12 Yrs. Exp', style: kManRope_400_12_001314),
                           ],
                         )
                       ],
@@ -143,7 +138,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                 ],
               ),
               SizedBox(
-                height: 42.h,
+                height: 44.h,
               ),
               Text('Selected issue', style: kManRope_700_16_001314),
               SizedBox(
@@ -247,7 +242,7 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
                     ),
                     Text(
                       'Select One',
-                      style: kManRope_700_16_white,
+                      style: kManRope_700_20_white,
                     ),
                   ],
                 ),

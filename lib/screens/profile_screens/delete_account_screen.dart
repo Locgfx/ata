@@ -21,7 +21,8 @@ class DeleteAccountScreen extends StatelessWidget {
           style: kManRope_500_16_006D77,
         ),
         titleSpacing: 18.w,
-        leading: InkWell(
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () {
             Navigator.pop(context);
           },
@@ -35,86 +36,99 @@ class DeleteAccountScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 44.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Email',
-              style: kManRope_400_16_626A6A,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Text(
-              'priyasingh344@gmail.com',
-              style: kManRope_400_16_001314,
-            ),
-            SizedBox(
-              height: 40.h,
-            ),
-            Text(
-              'Password ',
-              style: kManRope_400_16_626A6A,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            Text(
-              'priyasingh344@1234',
-              style: kManRope_400_16_001314,
-            ),
-            SizedBox(
-              height: 140.h,
-            ),
-            Text(
-              '"When you delete your account, all the user generated content is normally erased (although there are small exceptions), while all the log data is preserved – forever." The preserved log data won\'t have your name attached to it',
-              style: kManRope_400_14_626A6A,
-            ),
-            SizedBox(
-              height: 136.h,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                SizedBox(
-                  height: 48.h,
-                  width: 182.w,
-                  child: MaterialButton(
-                    elevation: 0,
-                    color: kWhiteBGColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: const BorderSide(color: kWhiteBGColor),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      'Cancel',
-                      style: kManRope_400_16_001314,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 44.h),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Email',
+                style: kManRope_400_16_626A6A,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              Text(
+                'priyasingh344@gmail.com',
+                style: kManRope_400_16_001314,
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              Text(
+                'Password ',
+                style: kManRope_400_16_626A6A,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              SizedBox(
+                height: 24,
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'priyasingh344@1234',
+                    hintStyle: kManRope_400_16_001314,
+                  ),
+                  style: kManRope_400_16_001314,
+                ),
+              ),
+              /*Text(
+                'priyasingh344@1234',
+                style: kManRope_400_16_001314,
+              ),*/
+              SizedBox(
+                height: 140.h,
+              ),
+              Text(
+                '"When you delete your account, all the user generated content is normally erased (although there are small exceptions), while all the log data is preserved – forever." The preserved log data won\'t have your name attached to it',
+                style: kManRope_400_14_626A6A,
+              ),
+              SizedBox(
+                height: 136.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  SizedBox(
+                    height: 48.h,
+                    width: 182.w,
+                    child: MaterialButton(
+                      elevation: 0,
+                      color: kWhiteBGColor,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: const BorderSide(color: kWhiteBGColor),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'Cancel',
+                        style: kManRope_400_16_001314,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 48.h,
-                  width: 182.w,
-                  child: MaterialButton(
-                    elevation: 0,
-                    color: kB64C4C,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      side: const BorderSide(color: kB64C4C),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      'Delete account',
-                      style: kManRope_400_16_white,
+                  SizedBox(
+                    height: 48.h,
+                    width: 182.w,
+                    child: MaterialButton(
+                      elevation: 0,
+                      color: kB64C4C,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: const BorderSide(color: kB64C4C),
+                      ),
+                      onPressed: () {},
+                      child: Text(
+                        'Delete account',
+                        style: kManRope_400_16_white,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

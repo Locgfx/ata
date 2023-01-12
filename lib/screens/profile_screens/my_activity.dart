@@ -1,18 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/screens/posts_screens/create_post_screen.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
-import 'comment_page.dart';
+import '../posts_screens/comment_page.dart';
 
-class PostPage extends StatelessWidget {
-  const PostPage({Key? key}) : super(key: key);
+class MyActivity extends StatefulWidget {
+  const MyActivity({Key? key}) : super(key: key);
 
+  @override
+  State<MyActivity> createState() => _MyActivityState();
+}
+
+class _MyActivityState extends State<MyActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        leadingWidth: 40.w,
+        backgroundColor: Colors.white,
+        centerTitle: false,
+        title: Text(
+          'My Activity',
+          style: kManRope_500_16_006D77,
+        ),
+        titleSpacing: 18.w,
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+              size: 20,
+            ),
+          ),
+        ),
+      ),
       backgroundColor: kEDF6F9D,
       body: Stack(
         alignment: Alignment.center,
@@ -453,7 +482,7 @@ class PostPage extends StatelessWidget {
                   itemCount: 10),
             ),
           ),
-          Positioned(
+          /*Positioned(
             bottom: 100.h,
             child: GestureDetector(
               onTap: () {
@@ -466,7 +495,7 @@ class PostPage extends StatelessWidget {
                 width: 72.w,
               ),
             ),
-          )
+          )*/
         ],
       ),
     );
