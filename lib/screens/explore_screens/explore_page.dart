@@ -5,19 +5,19 @@ import 'package:greymatter/screens/explore_screens/filters_page.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
-import '../../widgets/shared/buttons/card_buttons/primary_card_button.dart';
 import '../../widgets/shared/buttons/card_buttons/secondary_card_button.dart';
+import '../book_appointment_screens/confirm_booking_screen.dart';
 import '../book_appointment_screens/psychologists_profile_screen.dart';
-import '../book_appointment_screens/schedule_appointment_screen.dart';
 
 class ExplorePage extends StatefulWidget {
-  const ExplorePage({Key? key}) : super(key: key);
-
+  const ExplorePage({Key? key, required this.issue}) : super(key: key);
+  final String issue;
   @override
   State<ExplorePage> createState() => _ExplorePageState();
 }
 
 class _ExplorePageState extends State<ExplorePage> {
+  String date = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,7 +63,8 @@ class _ExplorePageState extends State<ExplorePage> {
                           horizontal: 20.w, vertical: 24.h),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
-                        color: Colors.white,
+                        border: Border.all(width: 1, color: Colors.white),
+                        color: kEDF6F9D,
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -125,10 +126,39 @@ class _ExplorePageState extends State<ExplorePage> {
                               ],
                             ),
                           ),
-                          SizedBox(height: 20.h),
+                          SizedBox(
+                            height: 24.h,
+                          ),
                           Row(
                             children: [
-                              Expanded(
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Text(
+                                "Expertise in :",
+                                style: kManRope_400_12_001314,
+                              ),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                        text:
+                                            'Anxiety, Stress, Depression,Rel..',
+                                        style: kManRope_400_12_626A6A),
+                                    TextSpan(
+                                        text: 'Show more',
+                                        style: kManRope_400_12_006D77),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                          SizedBox(height: 24.h),
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: 48,
+                                width: 160,
                                 child: GestureDetector(
                                   onTap: () {
                                     Navigator.of(context).push(
@@ -140,18 +170,31 @@ class _ExplorePageState extends State<ExplorePage> {
                                 ),
                               ),
                               SizedBox(width: 8.w),
-                              Expanded(
-                                  child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    ScheduleAppointmentScreen(
-                                                      issue: 'issue',
-                                                    )));
-                                      },
-                                      child: PrimaryCardButton())),
+                              SizedBox(
+                                height: 48,
+                                width: 158,
+                                child: MaterialButton(
+                                  color: k006D77,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius:
+                                        BorderRadius.circular(10), // <-- Radius
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ConfirmAppointmentBooking(
+                                                  issue: widget.issue,
+                                                  date: date,
+                                                )));
+                                  },
+                                  child: Text(
+                                    'Book session',
+                                    style: kManRope_400_16_white,
+                                  ),
+                                ),
+                              ),
                             ],
                           ),
                         ],

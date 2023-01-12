@@ -5,6 +5,7 @@ import 'package:greymatter/constants/Lists.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
+import 'new_activity_added_screen.dart';
 
 class AddNewActivity extends StatefulWidget {
   AddNewActivity({Key? key, required this.text}) : super(key: key);
@@ -173,7 +174,7 @@ class _AddNewActivityState extends State<AddNewActivity> {
                           ),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 6,
                         ),
                         GestureDetector(
                           onTap: () {
@@ -201,7 +202,7 @@ class _AddNewActivityState extends State<AddNewActivity> {
                           ),
                         ),
                         SizedBox(
-                          width: 8,
+                          width: 6,
                         ),
                         GestureDetector(
                           onTap: () {
@@ -253,6 +254,7 @@ class _AddNewActivityState extends State<AddNewActivity> {
                   child: ListView.builder(
                     shrinkWrap: true,
                     itemCount: 7,
+                    physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
                       return Padding(
@@ -309,7 +311,7 @@ class _AddNewActivityState extends State<AddNewActivity> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 44,
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -338,12 +340,17 @@ class _AddNewActivityState extends State<AddNewActivity> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NewActivityAddedScreen()));
+                    },
                     color: k006D77,
                     child: Center(
                       child: Text(
                         'ADD',
-                        style: kManRope_600_16_white,
+                        style: kManRope_500_16_white,
                       ),
                     ),
                   ),

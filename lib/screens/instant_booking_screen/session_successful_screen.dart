@@ -6,7 +6,7 @@ import 'package:greymatter/widgets/instant_booking_widgets/rating_widget.dart';
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
 import '../../widgets/shared/buttons/custom_active_text_button.dart';
-import '../psychologist_screen/tabs_screen/tabs_screen.dart';
+import '../tabs_screen/home_screen.dart';
 
 class SessionSuccessful extends StatefulWidget {
   const SessionSuccessful({Key? key}) : super(key: key);
@@ -83,17 +83,17 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                             children: [
                               Text(
                                 'Priya Singh',
-                                style: kManRope_400_16_001314,
+                                style: kManRope_500_16_001314,
                               ),
                               SizedBox(
                                 height: 4.h,
                               ),
                               Text(
                                 'MA in Counselling Psychology',
-                                style: kManRope_400_14_626A6A,
+                                style: kManRope_400_12_626A6A,
                               ),
                               SizedBox(
-                                height: 4.h,
+                                height: 8.h,
                               ),
                               Row(
                                 children: [
@@ -136,7 +136,7 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                           onPressed: () {},
                           child: Text(
                             'Order details',
-                            style: kManRope_400_16_006D77,
+                            style: kManRope_500_16_006D77,
                           ),
                         ),
                       ),
@@ -166,7 +166,7 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                               ),
                               Text(
                                 'Prescription',
-                                style: kManRope_400_16_white,
+                                style: kManRope_500_16_white,
                               ),
                             ],
                           ),
@@ -298,7 +298,7 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                     child: CustomActiveTextButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => TabsScreen()));
+                              builder: (ctx) => HomeScreen()));
                           /*Navigator.of(context).push(MaterialPageRoute(
                                         builder: (ctx) => WelcomeScreen()));*/
                         },

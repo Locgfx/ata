@@ -22,14 +22,14 @@ class _AllVideosState extends State<AllVideos> {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 10.w,
+        leadingWidth: 40.w,
         centerTitle: false,
         backgroundColor: Colors.white,
         title: Text(
           'All videos',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 50.w,
+        titleSpacing: 18.w,
         leading: InkWell(
           onTap: () {
             Navigator.of(context).pop();
@@ -94,41 +94,45 @@ class _AllVideosState extends State<AllVideos> {
             SizedBox(
               height: 24.h,
             ),
-            SizedBox(
-              height: 230.h,
-              child: ListView.builder(
-                padding: EdgeInsets.zero,
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 4,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: EdgeInsets.only(left: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 182.w,
-                          width: 182.w,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SizedBox(
+                height: 250.h,
+                child: ListView.builder(
+                  padding: EdgeInsets.zero,
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: EdgeInsets.only(left: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 182.w,
+                            width: 182.w,
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Image.asset(
+                              'assets/images/post.png',
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          child: Image.asset(
-                            'assets/images/post.png',
-                            fit: BoxFit.fill,
+                          SizedBox(height: 16),
+                          Text(
+                            'Name xyz',
+                            style: kManRope_500_16_001314,
                           ),
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Name xyz',
-                          style: kManRope_500_16_001314,
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             SizedBox(
@@ -168,40 +172,44 @@ class _AllVideosState extends State<AllVideos> {
             SizedBox(
               height: 24.h,
             ),
-            SizedBox(
-              height: 230.h,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 4,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: EdgeInsets.only(left: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 182.w,
-                          width: 182.w,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SizedBox(
+                height: 250.h,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: EdgeInsets.only(left: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 182.w,
+                            width: 182.w,
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Image.asset(
+                              'assets/images/post.png',
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          child: Image.asset(
-                            'assets/images/post.png',
-                            fit: BoxFit.fill,
+                          SizedBox(height: 16),
+                          Text(
+                            'Name xyz',
+                            style: kManRope_500_16_001314,
                           ),
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Name xyz',
-                          style: kManRope_500_16_001314,
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             SizedBox(
@@ -241,40 +249,44 @@ class _AllVideosState extends State<AllVideos> {
             SizedBox(
               height: 24.h,
             ),
-            SizedBox(
-              height: 230.h,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                itemCount: 4,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    margin: EdgeInsets.only(left: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 182.w,
-                          width: 182.w,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
+            Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: SizedBox(
+                height: 250.h,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: 4,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: EdgeInsets.only(left: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 182.w,
+                            width: 182.w,
+                            clipBehavior: Clip.hardEdge,
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                            ),
+                            child: Image.asset(
+                              'assets/images/post.png',
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                          child: Image.asset(
-                            'assets/images/post.png',
-                            fit: BoxFit.fill,
+                          SizedBox(height: 16),
+                          Text(
+                            'Name xyz',
+                            style: kManRope_500_16_001314,
                           ),
-                        ),
-                        SizedBox(height: 16),
-                        Text(
-                          'Name xyz',
-                          style: kManRope_500_16_001314,
-                        ),
-                      ],
-                    ),
-                  );
-                },
+                        ],
+                      ),
+                    );
+                  },
+                ),
               ),
             ),
             /*SizedBox(

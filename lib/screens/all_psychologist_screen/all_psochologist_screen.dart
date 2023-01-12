@@ -17,16 +17,16 @@ class AllPsychologistScreen extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 10.w,
+        leadingWidth: 60.w,
         backgroundColor: Colors.white,
         centerTitle: false,
         title: Text(
           'Available Psychologists',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 50.w,
+        titleSpacing: 0.w,
         leading: Padding(
-          padding: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(10.0),
           child: InkWell(
             child: Icon(
               Icons.arrow_back_ios,

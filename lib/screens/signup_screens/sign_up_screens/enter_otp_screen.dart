@@ -70,7 +70,7 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
                   Navigator.of(context).pop();
                 },
                 child: Container(
-                  padding: const EdgeInsets.all(15),
+                  padding: const EdgeInsets.only(top: 24, right: 24),
                   child: SvgPicture.asset('assets/icons/iosbackarrow.svg'),
                 ),
               ),

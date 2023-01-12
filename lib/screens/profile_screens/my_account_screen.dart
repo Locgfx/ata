@@ -26,7 +26,8 @@ class MyAccount extends StatelessWidget {
           style: kManRope_500_16_006D77,
         ),
         titleSpacing: 18.w,
-        leading: InkWell(
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () {
             Navigator.pop(context);
           },
@@ -41,7 +42,7 @@ class MyAccount extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, top: 52.h, right: 24.w),
+        padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -72,7 +73,7 @@ class MyAccount extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 5.h,
             ),
             GestureDetector(
               onTap: () {
@@ -101,7 +102,7 @@ class MyAccount extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 5.h,
             ),
             GestureDetector(
               onTap: () {
@@ -131,7 +132,7 @@ class MyAccount extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 5,
+              height: 5.h,
             ),
             GestureDetector(
               onTap: () {
@@ -140,11 +141,15 @@ class MyAccount extends StatelessWidget {
               },
               child: Container(
                 height: 48.h,
-                width: 116.w,
+                width: 480.w,
                 color: Colors.transparent,
-                child: Text(
-                  'Delete Account',
-                  style: kManRope_500_16_BD4D4D,
+                child: Row(
+                  children: [
+                    Text(
+                      'Delete Account',
+                      style: kManRope_500_16_BD4D4D,
+                    ),
+                  ],
                 ),
               ),
             ),

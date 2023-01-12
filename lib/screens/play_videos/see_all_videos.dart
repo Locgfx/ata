@@ -14,14 +14,14 @@ class SeeAllVideos extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 10.w,
+        leadingWidth: 40.w,
         centerTitle: false,
         backgroundColor: Colors.white,
         title: Text(
           'All videos',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 50.w,
+        titleSpacing: 18.w,
         leading: InkWell(
           onTap: () {
             Navigator.of(context).pop();

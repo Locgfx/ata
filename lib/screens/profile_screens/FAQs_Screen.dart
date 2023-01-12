@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:greymatter/screens/profile_screens/chat_support_screen.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -23,7 +22,8 @@ class FAQsScreen extends StatelessWidget {
           style: kManRope_500_16_006D77,
         ),
         titleSpacing: 18.w,
-        leading: InkWell(
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () {
             Navigator.pop(context);
           },
@@ -35,6 +35,44 @@ class FAQsScreen extends StatelessWidget {
               size: 20,
             ),
           ),
+        ),
+      ),
+      bottomSheet: Container(
+        clipBehavior: Clip.hardEdge,
+        height: 130,
+        width: 1.sw,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(20),
+          ),
+        ),
+        child: Column(
+          children: [
+            Text(
+              'Still stuck? Help is a mail away',
+              style: kManRope_500_16_001314,
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
+            SizedBox(
+              height: 56.h,
+              width: 380.w,
+              child: MaterialButton(
+                elevation: 0,
+                color: k006D77,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  side: const BorderSide(color: k006D77),
+                ),
+                onPressed: () {},
+                child: Text(
+                  'Send a message',
+                  style: kManRope_400_16_white,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
       body: Padding(
@@ -68,8 +106,11 @@ class FAQsScreen extends StatelessWidget {
                     fillColor: Colors.white,
                     filled: true,
                     suffixIconConstraints:
-                        BoxConstraints(maxHeight: 24.h, maxWidth: 24.w),
-                    suffixIcon: SvgPicture.asset('assets/icons/search.svg'),
+                        BoxConstraints(maxHeight: 40.h, maxWidth: 40.w),
+                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset('assets/icons/search.svg'),
+                    ),
                   ),
                 ),
               ),
@@ -107,33 +148,6 @@ class FAQsScreen extends StatelessWidget {
               ),*/
               SizedBox(
                 height: 84.h,
-              ),
-              Text(
-                'Still stuck? Help is a mail away',
-                style: kManRope_500_16_001314,
-              ),
-              SizedBox(
-                height: 16.h,
-              ),
-              SizedBox(
-                height: 56.h,
-                width: 380.w,
-                child: MaterialButton(
-                  elevation: 0,
-                  color: k006D77,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                    side: const BorderSide(color: k006D77),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const ChatSupportScreen()));
-                  },
-                  child: Text(
-                    'Send a message',
-                    style: kManRope_400_16_white,
-                  ),
-                ),
               ),
             ],
           ),

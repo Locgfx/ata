@@ -111,7 +111,7 @@ class BookingSuccessfulScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 24.h,
+                height: 77.h,
               ),
               SizedBox(
                 height: 56.h,

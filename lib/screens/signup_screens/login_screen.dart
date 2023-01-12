@@ -9,6 +9,8 @@ import 'package:greymatter/screens/signup_screens/sign_up_screens/enter_mobile_s
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 
+import '../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
+
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -26,6 +28,20 @@ class _LoginScreenState extends State<LoginScreen> {
   bool emailEmpty = true;
 
   bool passEmpty = true;
+  final passwordNode = FocusNode();
+  final emailNode = FocusNode();
+  bool hasPassFocus = false;
+  bool hasEmailFocus = false;
+  @override
+  void initState() {
+    super.initState();
+    emailNode.addListener(() {
+      setState(() {
+        hasEmailFocus = !hasEmailFocus;
+        hasPassFocus = !hasPassFocus;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Navigator.of(context).pop();
                   },
                   child: Container(
-                    padding: const EdgeInsets.all(15),
+                    padding: const EdgeInsets.only(top: 24, right: 24),
                     child: SvgPicture.asset('assets/icons/iosbackarrow.svg'),
                   ),
                 ),
@@ -59,12 +75,25 @@ class _LoginScreenState extends State<LoginScreen> {
                   key: _formKey,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      if (_emailController.text.trim().isNotEmpty)
+                        Text('Email / Mobile Number',
+                            style: kManRope_400_14_626A6A),
+                      if (hasEmailFocus) SizedBox(height: 14),
                       TextFormField(
+                        focusNode: emailNode,
                         onChanged: (val) {
                           if (val.isNotEmpty) {
                             setState(() {
                               emailEmpty = false;
+                              hasEmailFocus = true;
+                            });
+                          }
+                          if (val.isEmpty) {
+                            setState(() {
+                              emailEmpty = true;
+                              hasEmailFocus = false;
                             });
                           }
                         },
@@ -78,16 +107,29 @@ class _LoginScreenState extends State<LoginScreen> {
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
                         decoration: InputDecoration(
-                          labelText: 'Email / Mobile Number',
-                          labelStyle: kManRope_400_16_626A6A,
+                          // isCollapsed: true,
+                          // contentPadding: EdgeInsets.all(50),
+                          hintText: 'Email / Mobile Number',
+                          hintStyle: kManRope_400_16_626A6A,
                         ),
                       ),
                       SizedBox(height: 38.h),
+                      if (_passwordController.text.trim().isNotEmpty)
+                        Text('Password', style: kManRope_400_14_626A6A),
+                      if (hasPassFocus) SizedBox(height: 14),
                       TextFormField(
+                        focusNode: passwordNode,
                         onChanged: (val) {
                           if (val.isNotEmpty) {
                             setState(() {
                               passEmpty = false;
+                              hasPassFocus = true;
+                            });
+                          }
+                          if (val.isEmpty) {
+                            setState(() {
+                              passEmpty = true;
+                              hasPassFocus = false;
                             });
                           }
                         },
@@ -101,8 +143,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                          labelText: 'Password',
-                          labelStyle: kManRope_400_16_626A6A,
+                          hintText: 'Password',
+                          hintStyle: kManRope_400_16_626A6A,
                           suffixIconConstraints:
                               BoxConstraints(minHeight: 24.w, minWidth: 24.h),
                           suffixIcon:
@@ -149,14 +191,14 @@ class _LoginScreenState extends State<LoginScreen> {
                             },
                             text: 'Login'),
                 SizedBox(height: 24.h),
-                /*Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text('Or', style: kManRope_400_16_Black),
                   ],
                 ),
                 SizedBox(height: 24.h),
-                const CustomGoogleSignInButton(),*/
+                const CustomGoogleSignInButton(),
                 SizedBox(height: 22.h),
                 InkWell(
                   onTap: () {

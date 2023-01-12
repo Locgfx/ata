@@ -18,7 +18,7 @@ class AgreementScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: false,
         elevation: 0,
-        leadingWidth: 40.w,
+        leadingWidth: 50.w,
         backgroundColor: Colors.white,
         title: Text(
           'Agreement',
@@ -43,72 +43,86 @@ class AgreementScreen extends StatelessWidget {
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Agreement',
-                  style: kManRope_500_16_001314,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const AgreementDetails()));
+              },
+              child: Container(
+                width: 380.w,
+                height: 48.h,
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Agreement',
+                      style: kManRope_500_16_001314,
+                    ),
+                    SvgPicture.asset(
+                      'assets/icons/rightArrow.svg',
+                      height: 12,
+                      width: 6,
+                    ),
+                  ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const AgreementDetails()));
-                  },
-                  child: SvgPicture.asset(
-                    'assets/icons/rightArrow.svg',
-                    height: 12,
-                    width: 6,
-                  ),
-                ),
-              ],
+              ),
             ),
             SizedBox(
-              height: 37.h,
+              height: 8.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Privacy and Policy',
-                  style: kManRope_500_16_001314,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const PrivacyAndPolicyScreen()));
+              },
+              child: Container(
+                width: 380.w,
+                height: 48.h,
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Privacy and Policy',
+                      style: kManRope_500_16_001314,
+                    ),
+                    SvgPicture.asset(
+                      'assets/icons/rightArrow.svg',
+                      height: 12,
+                      width: 6,
+                    ),
+                  ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PrivacyAndPolicyScreen()));
-                  },
-                  child: SvgPicture.asset(
-                    'assets/icons/rightArrow.svg',
-                    height: 12,
-                    width: 6,
-                  ),
-                ),
-              ],
+              ),
             ),
             SizedBox(
-              height: 37.h,
+              height: 8,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Terms and Conditions',
-                  style: kManRope_500_16_001314,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const TermsAndConditionsScreen()));
+              },
+              child: Container(
+                width: 380.w,
+                height: 48.h,
+                color: Colors.transparent,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Terms and Conditions',
+                      style: kManRope_500_16_001314,
+                    ),
+                    SvgPicture.asset(
+                      'assets/icons/rightArrow.svg',
+                      height: 12,
+                      width: 6,
+                    ),
+                  ],
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            const TermsAndConditionsScreen()));
-                  },
-                  child: SvgPicture.asset(
-                    'assets/icons/rightArrow.svg',
-                    height: 12,
-                    width: 6,
-                  ),
-                ),
-              ],
+              ),
             ),
           ],
         ),

@@ -18,6 +18,7 @@ import 'package:greymatter/widgets/home_screen_widgets/upcoming_appointment_card
 import 'package:greymatter/widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
 
 import '../book_appointment_screens/book_appointment_screen.dart';
+import '../book_appointment_screens/schedule_appointment_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -51,10 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   builder: (context) => const NotificationsScreen()));
             },
             child: Container(
+              height: 48,
+              width: 48,
+              color: Colors.transparent,
               margin: EdgeInsets.only(right: 24.w),
-              padding: const EdgeInsets.all(10),
-              child: SvgPicture.asset(
-                'assets/icons/notification.svg',
+              //padding: const EdgeInsets.only(top: 10, right: 24, left: 24),
+              child: Image.asset(
+                'assets/images/noti.png',
                 width: 24.w,
                 height: 24.h,
               ),
@@ -202,7 +206,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                           SizedBox(height: 40.h),
-                          UpcomingAppointmentCard(),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            ScheduleAppointmentScreen(
+                                              issue: 'issue',
+                                            )));
+                              },
+                              child: UpcomingAppointmentCard()),
                           SizedBox(height: 40.h),
                           Text(
                             'Choose from Top Specialities',
@@ -216,14 +230,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           SizedBox(height: 24.h),
                           GridView.builder(
                               physics: const NeverScrollableScrollPhysics(),
-                              padding: const EdgeInsets.all(5),
+                              padding: const EdgeInsets.only(top: 5),
                               shrinkWrap: true,
                               itemCount: 8,
                               gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 4,
                                       childAspectRatio: 1 / 1.5,
-                                      mainAxisSpacing: 5.0,
+                                      mainAxisSpacing: 1.0,
                                       crossAxisSpacing: 5.0),
                               itemBuilder: (ctx, index) {
                                 if (index >= 7) {
@@ -240,15 +254,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Container(
-                                            width: 90.w,
-                                            height: 85.h,
-                                            padding: EdgeInsets.all(10),
+                                            width: 84.w,
+                                            height: 84.h,
+                                            padding: EdgeInsets.all(24),
                                             decoration: BoxDecoration(
                                                 borderRadius:
                                                     BorderRadius.circular(24),
                                                 color: k006D77),
                                             child: SvgPicture.asset(
-                                                'assets/icons/iosforwordarrow.svg'),
+                                              'assets/icons/iosforwordarrow.svg',
+                                            ),
                                           ),
                                           SizedBox(height: 8.h),
                                           Text(
@@ -281,7 +296,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     SizedBox(height: 24.h),
                     Container(
                         color: Colors.white,
-                        height: 400.h,
+                        height: 340.h,
                         padding: EdgeInsets.only(top: 20.h),
                         width: 1.sw,
                         child: Padding(
@@ -368,7 +383,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Container(
                                 width: 1.sw,
                                 height: 56.h,
-                                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                padding: EdgeInsets.only(right: 16),
                                 child: CustomSecondaryButton(
                                     onPressed: () {
                                       Navigator.of(context).push(

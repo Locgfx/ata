@@ -142,6 +142,7 @@ class CuswhiteAppBar extends StatelessWidget with PreferredSizeWidget {
         style: kManRope_500_16_006D77,
       ),
       leading: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: () {
           Navigator.pop(context);
         },

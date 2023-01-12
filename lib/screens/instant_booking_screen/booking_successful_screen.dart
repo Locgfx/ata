@@ -51,14 +51,14 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 10.w,
+        leadingWidth: 40.w,
         centerTitle: false,
         backgroundColor: Colors.white,
         title: Text(
           'Confirm your booking',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 50.w,
+        titleSpacing: 18.w,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -125,18 +125,18 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
                   borderRadius: BorderRadius.circular(10),
                   child: Image.asset(
                     'assets/images/userP.png',
-                    height: 64.h,
-                    width: 64.w,
+                    height: 82.h,
+                    width: 81.w,
                   ),
                 ),
                 SizedBox(
-                  width: 18.w,
+                  width: 9.w,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      width: 192,
+                      width: 150,
                       child: Text(
                         'Priya Singh',
                         style: kManRope_400_16_001314,
@@ -144,14 +144,14 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
                       ),
                     ),
                     SizedBox(
-                      height: 4.h,
+                      height: 8.h,
                     ),
                     Text(
                       'MA in Counselling Psychology',
                       style: kManRope_400_14_626A6A,
                     ),
                     SizedBox(
-                      height: 4.h,
+                      height: 8.h,
                     ),
                     Row(
                       children: [
@@ -159,6 +159,23 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
                           'assets/icons/star.svg',
                           width: 12.w,
                           height: 12.h,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          '4.0',
+                          style: kManRope_400_12_001314,
+                        ),
+                        SizedBox(
+                          width: 4,
+                        ),
+                        Text(
+                          '.',
+                          style: kManRope_400_12_001314,
+                        ),
+                        SizedBox(
+                          width: 4,
                         ),
                         Text(
                           '12 Yrs. Exp',

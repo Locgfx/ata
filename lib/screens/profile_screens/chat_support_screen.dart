@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -13,9 +11,29 @@ class ChatSupportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(
-        imgPath: 'assets/images/Vector 175.png',
-        appBarText: 'Chat support',
+      appBar: AppBar(
+        elevation: 0,
+        leadingWidth: 40.w,
+        centerTitle: false,
+        backgroundColor: Colors.white,
+        title: Text(
+          'Chat support',
+          style: kManRope_500_16_006D77,
+        ),
+        titleSpacing: 18.w,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+              size: 20,
+            ),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -84,9 +102,20 @@ class ChatSupportScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Priyanka  11:45 Pm',
-                        style: kManRope_400_12_001314,
+                      Row(
+                        children: [
+                          Text(
+                            'Priyanka',
+                            style: kManRope_400_12_001314,
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            '11:45 Pm',
+                            style: kManRope_400_12_001314,
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 8.h,
@@ -178,9 +207,20 @@ class ChatSupportScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Priyanka  11:45 Pm',
-                        style: kManRope_400_12_001314,
+                      Row(
+                        children: [
+                          Text(
+                            'Priyanka',
+                            style: kManRope_400_12_001314,
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          Text(
+                            '11:45 Pm',
+                            style: kManRope_400_12_001314,
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 8.h,
@@ -248,7 +288,7 @@ class ChatSupportScreen extends StatelessWidget {
                 children: [
                   Text(
                     'Seen',
-                    style: kManRope_400_12_006D77,
+                    style: kManRope_400_12_626A6A,
                   ),
                 ],
               ),
@@ -260,51 +300,70 @@ class ChatSupportScreen extends StatelessWidget {
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
         child: Container(
-          height: 85.h,
-          color: kWhiteBGColor,
-          child: Center(
-            child: Container(
-              height: 56.h,
-              width: 380.w,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-                color: Colors.white,
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Row(
-                  children: [
-                    const SizedBox(
-                      width: 320,
-                      child: TextField(
-                        decoration: InputDecoration(
-                            border: InputBorder.none, hintText: 'Abc....'),
+          color: Colors.white,
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  /*onSubmitted: (text) {
+                      final message = Messages(
+                          text: text, date: DateTime.now(), isSentByme: true);
+                      setState(() => messages.add(message));
+                    }*/
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(width: 2, color: Color(0xffDBE8FA)),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(width: 2, color: Color(0xffDBE8FA)),
+                    ),
+                    //fillColor: Colors.white,
+                    hintText: "Add a comment",
+                    // hintStyle: kManRope_400_14_626A6A,
+                    suffixIcon: GestureDetector(
+                      onTap: () {},
+                      child: Container(
+                        width: 200,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            /*Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: ImageIcon(
+                                AssetImage("assets/images/photoimage.png"),
+                                size: 24,
+                                // color: ThemeColor.primarycolor,
+                              ),
+                            ),*/
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: ImageIcon(
+                                AssetImage("assets/images/imageph.png"),
+                                size: 24,
+                                // color: ThemeColor.primarycolor,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: ImageIcon(
+                                AssetImage("assets/images/sendimage.png"),
+                                size: 24,
+                                color: k006D77,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 20,
+                            )
+                          ],
+                        ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        /* SvgPicture.asset(
-                          'assets/icons/camera.svg',
-                          height: 36.h,
-                          width: 26.w,
-                        ),
-                        SvgPicture.asset(
-                          'assets/icons/paperClip.svg',
-                          height: 36.h,
-                          width: 26.w,
-                        ),*/
-                        SvgPicture.asset(
-                          'assets/icons/send.svg',
-                          height: 36.h,
-                          width: 26.w,
-                        ),
-                      ],
-                    )
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
       ),

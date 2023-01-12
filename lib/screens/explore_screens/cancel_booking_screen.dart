@@ -41,7 +41,7 @@ class CancelBookingScreen extends StatelessWidget {
                       height: 282.h,
                     ),
                   ),
-                  Text('Booking Cancelled', style: kManRope_700_24_FF482C),
+                  // Text('Booking Cancelled', style: kManRope_700_24_FF482C),
                 ],
               ),
             ),

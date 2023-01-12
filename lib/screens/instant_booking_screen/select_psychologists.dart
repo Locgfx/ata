@@ -18,14 +18,14 @@ class SelectAvailablePsychologists extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 10.w,
+        leadingWidth: 40.w,
         centerTitle: false,
         backgroundColor: Colors.white,
         title: Text(
           'Available Psychologists',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 50.w,
+        titleSpacing: 18.w,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -61,15 +61,15 @@ class SelectAvailablePsychologists extends StatelessWidget {
                           Row(
                             children: [
                               Container(
-                                width: 85.w,
-                                height: 85.h,
+                                width: 64.w,
+                                height: 64.h,
                                 clipBehavior: Clip.hardEdge,
                                 decoration: BoxDecoration(
                                     color: Colors.grey,
                                     borderRadius: BorderRadius.circular(10)),
                                 child: Image.asset('assets/images/userP.png'),
                               ),
-                              SizedBox(width: 8.w),
+                              SizedBox(width: 12.w),
                               Column(
                                 mainAxisSize: MainAxisSize.min,
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,10 +83,10 @@ class SelectAvailablePsychologists extends StatelessWidget {
                                     ),
                                   ),
                                   //SizedBox(width: 10,),
-                                  SizedBox(height: 8.h),
+                                  SizedBox(height: 4),
                                   Text('MA in Counselling Psychology',
                                       style: kManRope_400_12_353535_07),
-                                  SizedBox(height: 8.h),
+                                  SizedBox(height: 6),
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [

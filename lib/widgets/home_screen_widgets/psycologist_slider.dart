@@ -86,7 +86,7 @@ class PsychologistSlider extends StatelessWidget {
                       style: kManRope_400_16_Black),
                   SizedBox(height: 8.h),
                   Text('psychologist', style: kManRope_400_14_626A6A),
-                  SizedBox(height: 8.h),
+                  SizedBox(height: 11.h),
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [

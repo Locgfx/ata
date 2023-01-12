@@ -5,6 +5,7 @@ import 'package:greymatter/screens/profile_screens/FAQs_Screen.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
+import 'chat_support_screen.dart';
 
 class HelpAndSupportScreen extends StatelessWidget {
   const HelpAndSupportScreen({Key? key}) : super(key: key);
@@ -16,14 +17,15 @@ class HelpAndSupportScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 40.w,
-        backgroundColor: Colors.white,
+        backgroundColor: kWhiteBGColor,
         centerTitle: false,
         title: Text(
           'Help and support',
           style: kManRope_500_16_006D77,
         ),
         titleSpacing: 18.w,
-        leading: InkWell(
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () {
             Navigator.pop(context);
           },
@@ -42,9 +44,13 @@ class HelpAndSupportScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/helpAndSupport.png',
-              height: 330.h,
+            Container(
+              width: 1.sw,
+              color: Colors.white,
+              child: Image.asset(
+                'assets/images/helpAndSupport.png',
+                height: 330.h,
+              ),
             ),
             SizedBox(
               height: 25.h,
@@ -68,14 +74,20 @@ class HelpAndSupportScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Container(
-                    height: 68.h,
-                    width: 68.w,
-                    decoration: const BoxDecoration(
-                        color: k006D77, shape: BoxShape.circle),
-                    child: Center(
-                        child: SvgPicture.asset('assets/icons/chat.svg',
-                            width: 24.h, height: 24.h)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ChatSupportScreen()));
+                    },
+                    child: Container(
+                      height: 68.h,
+                      width: 68.w,
+                      decoration: const BoxDecoration(
+                          color: k006D77, shape: BoxShape.circle),
+                      child: Center(
+                          child: SvgPicture.asset('assets/icons/chat.svg',
+                              width: 24.h, height: 24.h)),
+                    ),
                   ),
                 ],
               ),
@@ -116,10 +128,17 @@ class HelpAndSupportScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SvgPicture.asset(
-                        'assets/icons/rightArrow.svg',
-                        height: 12.h,
-                        width: 6.w,
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: SvgPicture.asset(
+                              'assets/icons/rightArrow.svg',
+                              height: 12.h,
+                              width: 6.w,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -157,10 +176,17 @@ class HelpAndSupportScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SvgPicture.asset(
-                      'assets/icons/rightArrow.svg',
-                      height: 12.h,
-                      width: 6.w,
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: SvgPicture.asset(
+                            'assets/icons/rightArrow.svg',
+                            height: 12.h,
+                            width: 6.w,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

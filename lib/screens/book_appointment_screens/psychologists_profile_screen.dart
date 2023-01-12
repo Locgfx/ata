@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/screens/book_appointment_screens/schedule_appointment_screen.dart';
 
 import '../../constants/fonts.dart';
 
@@ -13,9 +14,10 @@ class PsychologistProfile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 40.w,
+        leadingWidth: 50.w,
         backgroundColor: Colors.white,
-        leading: InkWell(
+        leading: GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () {
             Navigator.pop(context);
           },
@@ -57,7 +59,7 @@ class PsychologistProfile extends StatelessWidget {
                   topRight: Radius.circular(28.0),
                 ),
               ),
-              height: 1102.h,
+              height: 1190.h,
               width: 428.w,
               child: Padding(
                 padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
@@ -240,6 +242,20 @@ class PsychologistProfile extends StatelessWidget {
                       height: 40.h,
                     ),
                     Text(
+                      'Language',
+                      style: kManRope_700_16_001314,
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Text(
+                      "English, Hindi, Tamil",
+                      style: kManRope_400_14_626A6A,
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    Text(
                       'Availability',
                       style: kManRope_700_16_001314,
                     ),
@@ -247,56 +263,88 @@ class PsychologistProfile extends StatelessWidget {
                       height: 24.h,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Monday',
                           style: kManRope_400_14_626A6A,
                         ),
+                        Spacer(),
                         Text(
-                          '10:00 AM  08:00 PM',
+                          '10:00 AM',
+                          style: kManRope_400_14_626A6A,
+                        ),
+                        SizedBox(
+                          width: 36,
+                        ),
+                        Text(
+                          '08:00 PM',
                           style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
                     SizedBox(height: 16),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Tues',
+                          'Tuesday',
                           style: kManRope_400_14_626A6A,
                         ),
+                        Spacer(),
                         Text(
-                          '10:00 AM  08:00 PM',
+                          '10:00 AM',
+                          style: kManRope_400_14_626A6A,
+                        ),
+                        SizedBox(
+                          width: 36,
+                        ),
+                        Text(
+                          '08:00 PM',
                           style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
                     SizedBox(height: 16),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Wednesday',
                           style: kManRope_400_14_626A6A,
                         ),
+                        Spacer(),
                         Text(
-                          '10:00 AM  08:00 PM',
+                          '10:00 AM',
+                          style: kManRope_400_14_626A6A,
+                        ),
+                        SizedBox(
+                          width: 36,
+                        ),
+                        Text(
+                          '08:00 PM',
                           style: kManRope_400_14_626A6A,
                         ),
                       ],
                     ),
                     SizedBox(height: 16),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
                           'Thursday',
                           style: kManRope_400_14_626A6A,
                         ),
+                        Spacer(),
                         Text(
-                          '10:00 AM  08:00 PM',
+                          '10:00 AM',
+                          style: kManRope_400_14_626A6A,
+                        ),
+                        SizedBox(
+                          width: 36,
+                        ),
+                        Text(
+                          '08:00 PM',
                           style: kManRope_400_14_626A6A,
                         ),
                       ],
@@ -309,8 +357,16 @@ class PsychologistProfile extends StatelessWidget {
                           'Friday',
                           style: kManRope_400_14_626A6A,
                         ),
+                        Spacer(),
                         Text(
-                          '10:00 AM  08:00 PM',
+                          '10:00 AM',
+                          style: kManRope_400_14_626A6A,
+                        ),
+                        SizedBox(
+                          width: 36,
+                        ),
+                        Text(
+                          '08:00 PM',
                           style: kManRope_400_14_626A6A,
                         ),
                       ],
@@ -323,8 +379,16 @@ class PsychologistProfile extends StatelessWidget {
                           'Saturday',
                           style: kManRope_400_14_626A6A,
                         ),
+                        Spacer(),
                         Text(
-                          '10:00 AM  08:00 PM',
+                          '10:00 AM',
+                          style: kManRope_400_14_626A6A,
+                        ),
+                        SizedBox(
+                          width: 36,
+                        ),
+                        Text(
+                          '08:00 PM',
                           style: kManRope_400_14_626A6A,
                         ),
                       ],
@@ -337,12 +401,14 @@ class PsychologistProfile extends StatelessWidget {
                           'Sunday',
                           style: kManRope_400_14_626A6A,
                         ),
+                        Spacer(),
                         Text(
-                          '10:00 AM  08:00 PM',
-                          style: kManRope_400_14_626A6A,
-                        ),
+                          'EMERGENCY CALL ONLY',
+                          style: kManRope_500_14_626A6A,
+                        )
                       ],
                     ),
+                    SizedBox(height: 83),
                   ],
                 ),
               ),
@@ -352,6 +418,7 @@ class PsychologistProfile extends StatelessWidget {
       ),
       bottomNavigationBar: Container(
         height: 83.h,
+        color: Colors.transparent,
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.w),
           child: Row(
@@ -370,6 +437,12 @@ class PsychologistProfile extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10), // <-- Radius
                   ),
                   onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ScheduleAppointmentScreen(
+                                  issue: 'issue',
+                                )));
                     // Navigator.push(context, MaterialPageRoute(builder: (context) => const BookingSuccessful()));
                   },
                   child: Text(

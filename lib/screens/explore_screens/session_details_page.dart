@@ -79,10 +79,12 @@ class SessionDetailsScreen extends StatelessWidget {
                             width: 12.w,
                             height: 12.h,
                           ),
-                          Text(
-                            '12 Yrs. Exp',
-                            style: kManRope_400_12_001314,
-                          )
+                          SizedBox(width: 4.w),
+                          Text('4.0', style: kManRope_400_12_001314),
+                          SizedBox(width: 4.w),
+                          Text('.', style: kManRope_700_16_001314),
+                          SizedBox(width: 4.w),
+                          Text('12 Yrs. Exp', style: kManRope_400_12_001314),
                         ],
                       )
                     ],

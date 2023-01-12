@@ -14,7 +14,7 @@ class SavedScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kEDF6F9D,
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, top: 54.h, right: 24.h),
+        padding: EdgeInsets.only(left: 24.w, top: 42.h, right: 24.h),
         child: ListView.separated(
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
@@ -50,7 +50,7 @@ class SavedScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text('Priya singh',
-                                      style: kManRope_400_16_Black),
+                                      style: kManRope_500_16_001314),
                                   SizedBox(height: 1.h),
                                   Text('2 hours ago',
                                       style: kManRope_400_12_626A6A),
@@ -99,7 +99,7 @@ class SavedScreen extends StatelessWidget {
                             SizedBox(
                               width: 12,
                             ),
-                            Text('375', style: kManRope_400_14_Black),
+                            Text('375', style: kManRope_400_14_626A6A),
                             SizedBox(
                               width: 30,
                             ),
@@ -115,7 +115,7 @@ class SavedScreen extends StatelessWidget {
                             SizedBox(
                               width: 12,
                             ),
-                            Text('20', style: kManRope_400_14_Black),
+                            Text('20', style: kManRope_400_14_626A6A),
                           ],
                         ),
                         Row(

@@ -21,7 +21,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
     return Scaffold(
       extendBody: true,
       body: [
-        const ExplorePage(),
+        const ExplorePage(
+          issue: '',
+        ),
         const MySessionPage(),
       ].elementAt(_index),
       appBar: AppBar(
@@ -35,28 +37,35 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       setState(() {
                         _index = 0;
                       });
                     },
-                    child: Text(
-                      'Explore',
-                      style: kManRope_700_16_001314,
+                    child: Row(
+                      children: [
+                        Text(
+                          'Explore',
+                          style: kManRope_700_16_001314,
+                        ),
+                      ],
                     ),
                   ),
+                  SizedBox(),
                   GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       setState(() {
                         _index = 1;
                       });
                     },
                     child: Text(
-                      'My Sessions',
+                      'My sessions',
                       style: kManRope_700_16_001314,
                     ),
                   ),
-                  SizedBox(width: 1.w,),
+                  SizedBox(
+                    width: 1.w,
+                  ),
                 ],
               ),
               SizedBox(
@@ -68,14 +77,17 @@ class _ExploreScreenState extends State<ExploreScreen> {
                   Container(
                     height: 2.h,
                     width: 77.w,
-                    color: _index==0? k006D77: Colors.white,
+                    color: _index == 0 ? k006D77 : Colors.white,
                   ),
+                  SizedBox(),
                   Container(
                     height: 2.h,
                     width: 106.w,
-                    color: _index==1? k006D77: Colors.white,
+                    color: _index == 1 ? k006D77 : Colors.white,
                   ),
-                  SizedBox(width: 18.w,),
+                  SizedBox(
+                    width: 18.w,
+                  ),
                 ],
               ),
             ],

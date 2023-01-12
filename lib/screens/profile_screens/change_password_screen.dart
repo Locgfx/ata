@@ -43,7 +43,7 @@ class ChangePasswordScreen extends StatelessWidget {
             children: [
               Text(
                 'Enter Old password',
-                style: kManRope_400_14_626A6A,
+                style: kManRope_400_16_626A6A,
               ),
               SizedBox(
                 height: 8.h,

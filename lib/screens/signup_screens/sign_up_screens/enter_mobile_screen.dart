@@ -8,6 +8,8 @@ import 'package:greymatter/screens/signup_screens/sign_up_screens/enter_otp_scre
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 
+import '../../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
+
 class EnterMobileScreen extends StatefulWidget {
   EnterMobileScreen({Key? key}) : super(key: key);
 
@@ -46,7 +48,7 @@ class _EnterMobileScreenState extends State<EnterMobileScreen> {
                           Navigator.of(context).pop();
                         },
                         child: Container(
-                          padding: const EdgeInsets.all(15),
+                          padding: const EdgeInsets.only(top: 24, right: 24),
                           child:
                               SvgPicture.asset('assets/icons/iosbackarrow.svg'),
                         ),
@@ -113,14 +115,14 @@ class _EnterMobileScreenState extends State<EnterMobileScreen> {
                               },
                               text: 'Generate OTP'),
                       SizedBox(height: 24.h),
-                      /*Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Or', style: kManRope_400_16_Black),
                         ],
                       ),
                       SizedBox(height: 24.h),
-                      const CustomGoogleSignInButton(),*/
+                      const CustomGoogleSignInButton(),
                       SizedBox(height: 22.h),
                       InkWell(
                         onTap: () {

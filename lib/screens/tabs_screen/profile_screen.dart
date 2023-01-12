@@ -11,6 +11,7 @@ import 'package:greymatter/screens/profile_screens/personal_info_screen.dart';
 
 import '../../constants/colors.dart';
 import '../profile_screens/my_account_screen.dart';
+import '../profile_screens/my_activity.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -43,7 +44,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       // ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.only(left: 24.w, top: 100.h, right: 24.w),
+          padding: EdgeInsets.only(left: 24.w, top: 80, right: 24.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -60,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Image.asset('assets/images/userP.png'),
                   ),
                   SizedBox(
-                    width: 16.w,
+                    width: 18.w,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,8 +158,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  /*Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const OrderHistoryScreen()));*/
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const MyActivity()));
                 },
                 child: Container(
                   height: 48,
@@ -170,17 +171,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         'My activity',
                         style: kManRope_500_16_001314,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const OrderHistoryScreen()));
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/rightArrow.svg',
-                          height: 12,
-                          width: 6,
-                        ),
+                      SvgPicture.asset(
+                        'assets/icons/rightArrow.svg',
+                        height: 12,
+                        width: 6,
                       ),
                     ],
                   ),
@@ -301,7 +295,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 style: kManRope_500_12_626A6A,
               ),
               SizedBox(
-                height: 16.h,
+                height: 30.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

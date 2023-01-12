@@ -31,14 +31,14 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 10.w,
+        leadingWidth: 40.w,
         backgroundColor: Colors.white,
         centerTitle: false,
         title: Text(
           'Confirm your booking',
           style: kManRope_500_16_006D77,
         ),
-        titleSpacing: 50.w,
+        titleSpacing: 18.w,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -66,8 +66,12 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                 ),
                 Row(
                   children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
+                    Container(
+                      height: 135.h,
+                      width: 133.w,
+                      clipBehavior: Clip.hardEdge,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(24)),
                       child: Image.asset(
                         'assets/images/userP.png',
                         height: 135.h,
@@ -86,14 +90,14 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                             style: kManRope_400_16_001314,
                           ),
                           SizedBox(
-                            height: 4.h,
+                            height: 8.h,
                           ),
                           Text(
-                            'MA in Counselling Psychology',
+                            'psychologist',
                             style: kManRope_400_14_626A6A,
                           ),
                           SizedBox(
-                            height: 4.h,
+                            height: 8.h,
                           ),
                           Row(
                             children: [
@@ -102,8 +106,25 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                                 width: 12.w,
                                 height: 12.h,
                               ),
+                              SizedBox(
+                                width: 4,
+                              ),
                               Text(
-                                '12.  12 Yrs. Exp',
+                                '4.0',
+                                style: kManRope_400_12_001314,
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text(
+                                '.',
+                                style: kManRope_400_12_001314,
+                              ),
+                              SizedBox(
+                                width: 4,
+                              ),
+                              Text(
+                                '12 Yrs. Exp',
                                 style: kManRope_400_12_001314,
                               )
                             ],

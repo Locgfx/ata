@@ -35,28 +35,26 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8), topRight: Radius.circular(8)),
               ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 46.w),
-                child: Center(
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).pop(),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: Colors.white,
-                          size: 20.sp,
-                        ),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    /*GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                        size: 20.sp,
                       ),
-                      SizedBox(
-                        width: 107.w,
-                      ),
-                      Text(
-                        'Select Date',
-                        style: kManRope_700_16_white,
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      width: 107.w,
+                    ),*/
+                    Text(
+                      'Select Date',
+                      style: kManRope_700_20_white,
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -75,13 +73,13 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                 child: child,
               ),
             ),
-            CupertinoButton(
+            /*CupertinoButton(
               child: Text(
                 'OK',
                 style: kManRope_500_16_006D77,
               ),
               onPressed: () => Navigator.of(context).pop(),
-            ),
+            ),*/
           ],
         ),
       ),
@@ -124,7 +122,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 40.w,
+        leadingWidth: 50.w,
         centerTitle: false,
         backgroundColor: Colors.white,
         title: Text(
@@ -163,11 +161,12 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                           color: k006D77,
                           strokeWidth: 1,
                           borderType: BorderType.Circle,
-                          child: CircleAvatar(
-                            radius: 40,
-                            backgroundColor: Colors.grey,
-                            backgroundImage:
-                                AssetImage('assets/images/userP.png'),
+                          child: Container(
+                            height: 102,
+                            width: 102,
+                            clipBehavior: Clip.hardEdge,
+                            decoration: BoxDecoration(shape: BoxShape.circle),
+                            child: Image.asset('assets/images/userP.png'),
                           ),
                           /*Container(
                             height: 106.h,
@@ -190,22 +189,25 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                 SizedBox(
                   height: 40.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Name',
-                      style: kManRope_400_16_626A6A,
-                    ),
-                    SvgPicture.asset(
-                      'assets/icons/edit.svg',
-                      height: 24.h,
-                      width: 24.h,
-                    )
-                  ],
+                Container(
+                  height: 43,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Name',
+                        style: kManRope_400_16_626A6A,
+                      ),
+                      SvgPicture.asset(
+                        'assets/icons/edit.svg',
+                        height: 24.h,
+                        width: 24.h,
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
-                  height: 8.h,
+                  height: 8,
                 ),
                 SizedBox(
                   height: 20,
@@ -246,6 +248,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                               ),
                             ),
                             child: CupertinoDatePicker(
+                              //dateOrder:DatePickerDateOrder. ,
                               initialDateTime: date,
                               mode: CupertinoDatePickerMode.date,
                               use24hFormat: true,
@@ -256,28 +259,40 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                           ),
                         );
                       },
-                      child: SvgPicture.asset(
-                        'assets/icons/downArrow.svg',
-                        height: 24,
-                        width: 24,
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.only(
+                            left: 19, right: 19, top: 11, bottom: 11),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            'assets/icons/downArrow.svg',
+                            height: 24,
+                            width: 24,
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 12.h,
+                  height: 8.h,
                 ),
-                SizedBox(
+                Text(
+                  "25/ 02/1993",
+                  style: kManRope_400_16_001314,
+                ),
+                /*SizedBox(
                   height: 20,
                   child: TextField(
                     decoration: InputDecoration(
+
                       border: InputBorder.none,
                       hintText: '25/ 02/1993',
                       hintStyle: kManRope_400_16_001314,
                     ),
                     style: kManRope_400_16_001314,
                   ),
-                ),
+                ),*/
                 SizedBox(
                   height: 20.h,
                 ),
@@ -300,18 +315,27 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                       onTap: () {
                         _selectGender();
                       },
-                      child: SvgPicture.asset(
-                        'assets/icons/downArrow.svg',
-                        height: 24,
-                        width: 24,
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.only(
+                            left: 19, right: 19, top: 11, bottom: 11),
+                        child: SvgPicture.asset(
+                          'assets/icons/downArrow.svg',
+                          height: 24,
+                          width: 24,
+                        ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 12.h,
+                  height: 8.h,
                 ),
-                SizedBox(
+                Text(
+                  "Female",
+                  style: kManRope_400_16_001314,
+                ),
+                /*SizedBox(
                   height: 20,
                   child: TextField(
                     decoration: InputDecoration(
@@ -321,7 +345,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                     ),
                     style: kManRope_400_16_001314,
                   ),
-                ),
+                ),*/
                 SizedBox(
                   height: 20.h,
                 ),
@@ -342,18 +366,27 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                     ),
                     GestureDetector(
                       onTap: () => _selectRelationshipStatus(),
-                      child: SvgPicture.asset(
-                        'assets/icons/downArrow.svg',
-                        height: 24,
-                        width: 24,
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.only(
+                            left: 19, right: 19, top: 11, bottom: 11),
+                        child: SvgPicture.asset(
+                          'assets/icons/downArrow.svg',
+                          height: 24,
+                          width: 24,
+                        ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 12.h,
+                  height: 8.h,
                 ),
-                SizedBox(
+                Text(
+                  "Single",
+                  style: kManRope_400_16_001314,
+                ),
+                /* SizedBox(
                   height: 20,
                   child: TextField(
                     decoration: InputDecoration(
@@ -363,7 +396,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                     ),
                     style: kManRope_400_16_001314,
                   ),
-                ),
+                ),*/
                 SizedBox(
                   height: 20.h,
                 ),
@@ -384,18 +417,27 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                     ),
                     GestureDetector(
                       onTap: () => _selectOccupation(),
-                      child: SvgPicture.asset(
-                        'assets/icons/downArrow.svg',
-                        height: 24,
-                        width: 24,
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.only(
+                            left: 19, right: 19, top: 11, bottom: 11),
+                        child: SvgPicture.asset(
+                          'assets/icons/downArrow.svg',
+                          height: 24,
+                          width: 24,
+                        ),
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 12.h,
+                  height: 8.h,
                 ),
-                SizedBox(
+                Text(
+                  "Student",
+                  style: kManRope_400_16_001314,
+                ),
+                /*SizedBox(
                   height: 20,
                   child: TextField(
                     decoration: InputDecoration(
@@ -405,7 +447,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                     ),
                     style: kManRope_400_16_001314,
                   ),
-                ),
+                ),*/
                 SizedBox(
                   height: 20.h,
                 ),
@@ -415,7 +457,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                   color: kB5BABA,
                 ),
                 SizedBox(
-                  height: 30.h,
+                  height: 52.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -436,6 +478,9 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                       ),
                     ),
                   ],
+                ),
+                SizedBox(
+                  height: 40,
                 ),
               ],
             ),
@@ -458,7 +503,7 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 325.h,
+      height: 300.h,
       child: Column(
         children: [
           Container(
@@ -468,33 +513,31 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8), topRight: Radius.circular(8)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /*GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                      size: 20.sp,
                     ),
-                    SizedBox(
-                      width: 107.w,
-                    ),
-                    Text(
-                      'Select Gender',
-                      style: kManRope_700_16_white,
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    width: 107.w,
+                  ),*/
+                  Text(
+                    'Select Gender',
+                    style: kManRope_700_20_white,
+                  ),
+                ],
               ),
             ),
           ),
           Container(
-            height: 190.h,
+            height: 220.h,
             padding: const EdgeInsets.only(top: 6.0),
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -529,6 +572,9 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
                         )),
                       ),
                     ),
+                    SizedBox(
+                      height: 8,
+                    ),
                     GestureDetector(
                       onTap: () => setState(() {
                         _gIndex = 1;
@@ -549,6 +595,9 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
                               : kManRope_500_16_626A6A,
                         )),
                       ),
+                    ),
+                    SizedBox(
+                      height: 8,
                     ),
                     GestureDetector(
                       onTap: () => setState(() {
@@ -576,13 +625,13 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
               ),
             ),
           ),
-          CupertinoButton(
+          /* CupertinoButton(
             child: Text(
               'OK',
               style: kManRope_500_16_006D77,
             ),
             onPressed: () => Navigator.of(context).pop(),
-          ),
+          ),*/
         ],
       ),
     );
@@ -602,7 +651,7 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 325.h,
+      height: 290.h,
       child: Column(
         children: [
           Container(
@@ -612,33 +661,31 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8), topRight: Radius.circular(8)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /*GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                      size: 20.sp,
                     ),
-                    SizedBox(
-                      width: 50.w,
-                    ),
-                    Text(
-                      'Select Relationship status',
-                      style: kManRope_700_16_white,
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    width: 50.w,
+                  ),*/
+                  Text(
+                    'Select Relationship status',
+                    style: kManRope_700_20_white,
+                  ),
+                ],
               ),
             ),
           ),
           Container(
-            height: 190.h,
+            height: 210.h,
             padding: const EdgeInsets.only(top: 6.0),
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -673,6 +720,9 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
                         )),
                       ),
                     ),
+                    SizedBox(
+                      height: 8,
+                    ),
                     GestureDetector(
                       onTap: () => setState(() {
                         _gIndex = 1;
@@ -693,6 +743,9 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
                               : kManRope_500_16_626A6A,
                         )),
                       ),
+                    ),
+                    SizedBox(
+                      height: 8,
                     ),
                     GestureDetector(
                       onTap: () => setState(() {
@@ -720,13 +773,13 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
               ),
             ),
           ),
-          CupertinoButton(
+          /* CupertinoButton(
             child: Text(
               'OK',
               style: kManRope_500_16_006D77,
             ),
             onPressed: () => Navigator.of(context).pop(),
-          ),
+          ),*/
         ],
       ),
     );
@@ -745,7 +798,7 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 325.h,
+      height: 300.h,
       child: Column(
         children: [
           Container(
@@ -755,33 +808,31 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8), topRight: Radius.circular(8)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
+            child: Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  /*GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                      size: 20.sp,
                     ),
-                    SizedBox(
-                      width: 80.w,
-                    ),
-                    Text(
-                      'Select Occupation',
-                      style: kManRope_700_16_white,
-                    ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    width: 80.w,
+                  ),*/
+                  Text(
+                    'Select Occupation',
+                    style: kManRope_700_20_white,
+                  ),
+                ],
               ),
             ),
           ),
           Container(
-            height: 190.h,
+            height: 220.h,
             padding: const EdgeInsets.only(top: 6.0),
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
@@ -816,6 +867,9 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
                         )),
                       ),
                     ),
+                    SizedBox(
+                      height: 8,
+                    ),
                     GestureDetector(
                       onTap: () => setState(() {
                         _gIndex = 1;
@@ -836,6 +890,9 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
                               : kManRope_500_16_626A6A,
                         )),
                       ),
+                    ),
+                    SizedBox(
+                      height: 8,
                     ),
                     GestureDetector(
                       onTap: () => setState(() {
@@ -863,13 +920,13 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
               ),
             ),
           ),
-          CupertinoButton(
+          /*CupertinoButton(
             child: Text(
               'OK',
               style: kManRope_500_16_006D77,
             ),
             onPressed: () => Navigator.of(context).pop(),
-          ),
+          ),*/
         ],
       ),
     );
