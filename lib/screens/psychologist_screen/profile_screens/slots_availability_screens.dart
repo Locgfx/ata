@@ -41,7 +41,7 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
     '08:00 PM',
     '08:00 PM',
     '06:00 PM',
-    '12:00 AM',
+    '',
     '',
     ''
   ];
@@ -51,7 +51,7 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
       backgroundColor: Colors.white,
       appBar: CusAppBar(
         appBarText: 'Slots Availability',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -59,34 +59,39 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Availability',
-                    style: kManRope_500_16_001314,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditSlotsAvailabilityScreen()));
-                    },
-                    child: Text(
-                      'Edit',
-                      style: kManRope_500_16_006D77,
-                    ),
-                  ),
-                ],
-              ),
               SizedBox(
-                height: 24.h,
+                height: 48.h,
+                width: 380.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Availability',
+                      style: kManRope_500_16_001314,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EditSlotsAvailabilityScreen()));
+                      },
+                      child: Text(
+                        'Edit',
+                        style: kManRope_500_16_006D77,
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              // SizedBox(
+              //   height: 24.h,
+              // ),
+              SizedBox(height: 8.h,),
               SizedBox(
                 // height: 360.h,
                 child: ListView.separated(
                     padding: EdgeInsets.zero,
                     separatorBuilder: (context, index) =>
-                        SizedBox(height: 30.h),
+                        SizedBox(height: 8.h),
                     shrinkWrap: true,
                     itemCount: day.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -95,17 +100,33 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                day[index],
-                                style: kManRope_400_14_626A6A,
+                              SizedBox(
+                                height: 48.h,
+                                width: 76.w,
+                                child: Text(
+                                  day[index],
+                                  style: kManRope_400_14_626A6A,
+                                ),
                               ),
-                              Text(
-                                timeam[index],
-                                style: kManRope_400_14_626A6A,
+                              SizedBox(width: 114.w),
+                              SizedBox(
+                                height: 48.h,
+                                width: 79.w,
+                                child: Text(
+                                  timeam[index],
+                                  style: kManRope_400_14_626A6A,
+                                  textAlign: TextAlign.center,
+                                ),
                               ),
-                              Text(
-                                timepm[index],
-                                style: kManRope_400_14_626A6A,
+                              SizedBox(width: 30.w),
+                              SizedBox(
+                                height: 48.h,
+                                width: 81.w,
+                                child: Text(
+                                  timepm[index],
+                                  style: kManRope_400_14_626A6A,
+                                  textAlign: TextAlign.end,
+                                ),
                               ),
                             ],
                           ),
@@ -251,26 +272,39 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
               //   ],
               // ),
               SizedBox(
-                height: 67.h,
+                height: 40.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Holiday',
-                    style: kManRope_500_16_001314,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => EditHolidayScreen()));
-                    },
-                    child: Text(
-                      'Edit',
-                      style: kManRope_500_16_006D77,
+              SizedBox(
+                height: 48.h,
+                width: 379.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      height: 48.h,
+                      width: 60.w,
+                      child: Text(
+                        'Holiday',
+                        style: kManRope_500_16_001314,
+                      ),
                     ),
-                  ),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => EditHolidayScreen()));
+                      },
+                      child: SizedBox(
+                        height: 48.h,
+                        width: 50.w,
+                        child: Text(
+                          'Edit',
+                          style: kManRope_500_16_006D77,
+                          textAlign: TextAlign.end,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 22.h,
@@ -286,26 +320,27 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 182.w,
+                    width: 175.w,
                     height: 56.h,
                     child: TextFormField(
                       decoration: TextfieldDecoration(
                           label: 'Mon, 12, 2022',
                           child: Image.asset(
-                            "assets/images/calender.png",
-                            height: 20.h,
+                            "assets/images/iconcalender24.png",
+                            height: 24.h,
+                            width: 24.w,
                           )).smalltextfieldDecoration(),
                     ),
                   ),
                   Container(
-                    width: 182.w,
+                    width: 175.w,
                     height: 56.h,
                     child: TextFormField(
                       decoration: TextfieldDecoration(
                           label: 'Mon, 12, 2022',
                           child: Image.asset(
-                            "assets/images/clockicon.png",
-                            height: 20.h,
+                            "assets/images/iconclock.png",
+                            height: 24.h,
                           )).smalltextfieldDecoration(),
                     ),
                   ),
@@ -381,31 +416,32 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 182.w,
+                    width: 175.w,
                     height: 56.h,
                     child: TextFormField(
                       decoration: TextfieldDecoration(
                           label: 'Mon, 12, 2022',
                           child: Image.asset(
-                            "assets/images/calender.png",
-                            height: 20.h,
+                            "assets/images/iconcalender24.png",
+                            height: 24.h,
                           )).smalltextfieldDecoration(),
                     ),
                   ),
                   Container(
-                    width: 182.w,
+                    width: 175.w,
                     height: 56.h,
                     child: TextFormField(
                       decoration: TextfieldDecoration(
                           label: 'Mon, 12, 2022',
                           child: Image.asset(
-                            "assets/images/clockicon.png",
-                            height: 20.h,
+                            "assets/images/iconclock.png",
+                            height: 24.h,
                           )).smalltextfieldDecoration(),
                     ),
                   ),
                 ],
               ),
+              SizedBox(height:81.h ,)
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
               //   children: [

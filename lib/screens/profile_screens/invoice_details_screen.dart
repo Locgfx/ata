@@ -42,13 +42,13 @@ class InvoiceDetails extends StatelessWidget {
       // ),
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
-        imgPath: "assets/images/Vector 175.png",
+        imgPath: "assets/images/iconbackappbarlarge.png",
         appBarText: "Order History",
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding:
-              EdgeInsets.only(left: 24.w, right: 24.w, top: 23.h, bottom: 40.h),
+              EdgeInsets.only(left: 24.w, right: 24.w, top: 25.h, bottom: 25.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -68,7 +68,7 @@ class InvoiceDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 20.h,
+                height: 22.h,
               ),
               Text(
                 '₹400',
@@ -77,18 +77,22 @@ class InvoiceDetails extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Successful',
-                    style: kManRope_400_14_001314,
-                  ),
-                  Text(
-                    '10, June, 2022',
-                    style: kManRope_400_14_001314,
-                  )
-                ],
+              SizedBox(
+                height: 22.h,
+                width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Successful',
+                      style: kManRope_400_14_001314,
+                    ),
+                    Text(
+                      '10, June, 2022',
+                      style: kManRope_400_14_001314,
+                    )
+                  ],
+                ),
               ),
               SizedBox(
                 height: 20.h,
@@ -106,39 +110,44 @@ class InvoiceDetails extends StatelessWidget {
                 style: kManRope_500_14_626A6A,
               ),
               SizedBox(
-                height: 26.h,
+                height: 24.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Psychologist',
-                    style: kManRope_500_14_001314,
-                  ),
-                  Text(
-                    'Priya Singh',
-                    style: kManRope_500_14_001314,
-                  )
-                ],
-              ),
-              SizedBox(
-                height: 13.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Issue',
-                    style: kManRope_500_14_001314,
-                  ),
-                  Text(
-                    'Stress',
-                    style: kManRope_500_14_001314,
-                  )
-                ],
+              SizedBox(height:22.h,width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Psychologist',
+                      style: kManRope_500_14_001314,
+                    ),
+                    Text(
+                      'Priya Singh',
+                      style: kManRope_500_14_001314,
+                    )
+                  ],
+                ),
               ),
               SizedBox(
-                height: 20.h,
+                height: 8.h,
+              ),
+              SizedBox(
+                height:22.h,width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Issue',
+                      style: kManRope_500_14_001314,
+                    ),
+                    Text(
+                      'Stress',
+                      style: kManRope_500_14_001314,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 22.h,
               ),
               Container(
                 height: 1.h,
@@ -153,52 +162,61 @@ class InvoiceDetails extends StatelessWidget {
                 style: kManRope_500_14_626A6A,
               ),
               SizedBox(
-                height: 26.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Base Price',
-                    style: kManRope_500_14_001314,
-                  ),
-                  Text(
-                    'INR 399',
-                    style: kManRope_500_14_001314,
-                  )
-                ],
+                height: 24.h,
               ),
               SizedBox(
-                height: 13.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Tax',
-                    style: kManRope_500_14_001314,
-                  ),
-                  Text(
-                    'INR 100',
-                    style: kManRope_500_14_001314,
-                  )
-                ],
+                height:22.h,width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Base Price',
+                      style: kManRope_500_14_001314,
+                    ),
+                    Text(
+                      'INR 399',
+                      style: kManRope_500_14_001314,
+                    )
+                  ],
+                ),
               ),
               SizedBox(
-                height: 13.h,
+                height: 8.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Discount',
-                    style: kManRope_500_14_001314,
-                  ),
-                  Text(
-                    'INR 99',
-                    style: kManRope_500_14_001314,
-                  )
-                ],
+              SizedBox(
+                height:22.h,width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Tax',
+                      style: kManRope_500_14_001314,
+                    ),
+                    Text(
+                      'INR 100',
+                      style: kManRope_500_14_001314,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              SizedBox(
+                height:22.h,width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Discount',
+                      style: kManRope_500_14_001314,
+                    ),
+                    Text(
+                      'INR 99',
+                      style: kManRope_500_14_001314,
+                    )
+                  ],
+                ),
               ),
               SizedBox(
                 height: 20.h,
@@ -211,37 +229,43 @@ class InvoiceDetails extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Total',
-                    style: kManRope_500_14_001314,
-                  ),
-                  Text(
-                    'INR 499',
-                    style: kManRope_500_14_001314,
-                  )
-                ],
+              SizedBox(
+                height:22.h,width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total',
+                      style: kManRope_500_14_001314,
+                    ),
+                    Text(
+                      'INR 499',
+                      style: kManRope_500_14_001314,
+                    )
+                  ],
+                ),
               ),
               SizedBox(
-                height: 130.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Total',
-                    style: kManRope_500_14_001314,
-                  ),
-                  Text(
-                    'INR 499',
-                    style: kManRope_500_14_001314,
-                  )
-                ],
+                height: 145.h,
               ),
               SizedBox(
-                height: 40.h,
+                height:22.h,width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Transaction ID',
+                      style: kManRope_500_14_001314,
+                    ),
+                    Text(
+                      'txn_1I1F740flI0g7f',
+                      style: kManRope_500_14_001314,
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 82.h,
               ),
               SizedBox(
                 height: 56.h,

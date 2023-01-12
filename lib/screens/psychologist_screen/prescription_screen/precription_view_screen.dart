@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/psychologist_screen/prescription_screen/edit_precription_view_screen.dart';
 import 'package:greymatter/screens/psychologist_screen/tabs_screen/prescription_screen.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -40,7 +42,7 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: "Prescription View",
-        imgPath: "assets/images/Vector 175.png",
+        imgPath: "assets/images/iconbackappbarlarge.png",
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w),

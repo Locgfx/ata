@@ -60,6 +60,13 @@ class CustomDecoration {
     );
   }
 
+  ShapeBorder border16Decoration() {
+    return RoundedRectangleBorder(
+      side: BorderSide(color: k006D77),
+      borderRadius: BorderRadius.all(Radius.circular(16)),
+    );
+  }
+
   ShapeBorder smallButtonDecoration() {
     return RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(48)),
@@ -116,12 +123,13 @@ class TextfieldDecoration {
             child: child ?? SizedBox.shrink()));
   }
 
+
   // 'assets/icons/search.svg'
   InputDecoration textfieldDecoration() {
     return InputDecoration(
-        contentPadding: EdgeInsets.only(
-          left: 16,
-        ),
+        // contentPadding: EdgeInsets.only(
+        //   left: 16,
+        // ),
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -142,12 +150,24 @@ class TextfieldDecoration {
         hintText: label,
         hintStyle: kManRope_400_14_626A6A,
         suffixIconConstraints: BoxConstraints(minHeight: 10, minWidth: 10),
+        suffixIcon: child ?? SizedBox.shrink());
+  }
+
+  InputDecoration underlinefieldDecoration() {
+    return InputDecoration(
+        contentPadding: EdgeInsets.only(
+          left: 0,
+        ),
+        border: InputBorder.none,
+        hintText: label,
+        hintStyle: hintstyle ?? TextStyle(),
+        suffixIconConstraints: BoxConstraints(minHeight: 0, minWidth: 0),
         suffixIcon: Padding(
             padding: EdgeInsets.only(right: 16.0),
             child: child ?? SizedBox.shrink()));
   }
 
-  InputDecoration underlinefieldDecoration() {
+  InputDecoration blankfieldDecoration() {
     return InputDecoration(
         contentPadding: EdgeInsets.only(
           left: 0,
@@ -167,12 +187,12 @@ class TextfieldDecoration {
           OutlineInputBorder(borderSide: BorderSide(color: k006D77, width: 1)),
       hintText: label,
       hintStyle: kManRope_400_16_626A6A,
-      suffixIconConstraints: BoxConstraints(minHeight: 10, minWidth: 10),
+      suffixIconConstraints: BoxConstraints(minHeight: 20, minWidth: 20),
       suffixIcon: Padding(
-          padding: EdgeInsets.only(right: 16.0),
+          padding: EdgeInsets.only(right: 16.w),
           child: child ?? SizedBox.shrink()),
       contentPadding: EdgeInsets.only(
-        left: 16,
+        left: 16.w,
       ),
       // filled: true,
       enabledBorder: OutlineInputBorder(

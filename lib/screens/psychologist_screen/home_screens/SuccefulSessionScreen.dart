@@ -35,7 +35,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             children: [
-              SizedBox(height: 24.h),
+              SizedBox(height: 28.h),
               Center(
                 child: Text(
                   "Session successful",
@@ -53,26 +53,29 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                 height: 217.h,
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Date",
-                          style: kManRope_400_16_626A6A,
-                        ),
-                        Column(
-                          children: [
-                            Text(
-                              "10, June, 2022",
-                              style: kManRope_400_16_001314,
-                            ),
-                            Text(
-                              "8:00AM-9:00AM",
-                              style: kManRope_400_12_626A6A,
-                            ),
-                          ],
-                        ),
-                      ],
+                    SizedBox(
+                      height:43.h,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Date",
+                            style: kManRope_400_16_626A6A,
+                          ),
+                          Column(
+                            children: [
+                              Text(
+                                "10, June, 2022",
+                                style: kManRope_400_16_001314,
+                              ),
+                              Text(
+                                "8:00AM-9:00AM",
+                                style: kManRope_400_12_626A6A,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(height: 33.h),
                     ListView.separated(
@@ -86,18 +89,22 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                       itemBuilder: (BuildContext ctx, int index) {
                         return Column(
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  title[index],
-                                  style: kManRope_400_16_626A6A,
-                                ),
-                                Text(
-                                  description[index],
-                                  style: kManRope_400_16_001314,
-                                ),
-                              ],
+                            SizedBox(
+                              height:26.h,
+                              width: 1.sw,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    title[index],
+                                    style: kManRope_400_16_626A6A,
+                                  ),
+                                  Text(
+                                    description[index],
+                                    style: kManRope_400_16_001314,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         );
@@ -106,9 +113,9 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 53),
+              SizedBox(height: 77.h),
               Padding(
-                padding: const EdgeInsets.only(bottom: 130.0),
+                padding:EdgeInsets.only(bottom: 148.h),
                 child: Row(
                   children: [
                     Expanded(

@@ -19,101 +19,102 @@ class _KycScreenState extends State<KycScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(bottom: 40.0, left: 24, right: 24),
-        child: Row(
-          children: [
-            Expanded(
-              child: MainButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => ConfirmName()));
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: 20.h,
-                      bottom: 20.h,
-                    ),
-                    child: Text(
-                      "Next",
-                      style: kManRope_500_16_white,
-                    ),
-                  ),
-                  color: k006D77,
-                  shape: CustomDecoration().button16Decoration()),
-            ),
-          ],
-        ),
-      ),
+      // bottomNavigationBar: Padding(
+      //   padding: const EdgeInsets.only(bottom: 80.0, left: 24, right: 24),
+      //   child: Row(
+      //     children: [
+      //       Expanded(
+      //         child: MainButton(
+      //             onPressed: () {
+      //               Navigator.of(context).push(
+      //                   MaterialPageRoute(builder: (context) => ConfirmName()));
+      //             },
+      //             child: Padding(
+      //               padding: EdgeInsets.only(
+      //                 top: 20.h,
+      //                 bottom: 20.h,
+      //               ),
+      //               child: Text(
+      //                 "Next",
+      //                 style: kManRope_500_16_white,
+      //               ),
+      //             ),
+      //             color: k006D77,
+      //             shape: CustomDecoration().button16Decoration()),
+      //       ),
+      //     ],
+      //   ),
+      // ),
       backgroundColor: kWhiteBGColor,
-      body: SizedBox(
-        height: 1.sh,
+      body: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(
               height: 80.h,
             ),
-            Expanded(
-              child: Container(
-                width: 1.sw,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(24),
-                      topLeft: Radius.circular(24)),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 102.h),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Enter your PAN number to Complete KYC',
-                        style: kManRope_500_20_001314,
+            Container(
+              width: 1.sw,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(24),
+                    topLeft: Radius.circular(24)),
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 102.h),
+                child: Column(
+                  children: [
+                    Text(
+                      'Enter your PAN number to Complete KYC',
+                      style: kManRope_500_20_001314,
+                    ),
+                    SizedBox(
+                      height: 13.h,
+                    ),
+                    Text(
+                      'As per Privacy Policy is mandatory for investments in stocks & mutual funds',
+                      style: kManRope_400_14_626A6A,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(
+                      height: 64.h,
+                    ),
+                    SizedBox(
+                      height: 62.h,
+                      width: 1.sw,
+                      child: TextField(
+                        decoration:
+                            TextfieldDecoration(label: 'Enter your PAN')
+                                .textfieldDecoration(),
                       ),
-                      SizedBox(
-                        height: 13.h,
-                      ),
-                      Text(
-                        'As per Privacy Policy is mandatory for investments in stocks & mutual funds',
-                        style: kManRope_400_14_626A6A,
-                        textAlign: TextAlign.center,
-                      ),
-                      SizedBox(
-                        height: 64.h,
-                      ),
-                      SizedBox(
-                        height: 62.h,
-                        width: 1.sw,
-                        child: TextField(
-                          decoration:
-                              TextfieldDecoration(label: 'Enter your PAN')
-                                  .textfieldDecoration(),
-                        ),
-                      ),
-                      // Container(
-                      //   height: 62.h,
-                      //   width: 1.sw,
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.all(Radius.circular(8)),
-                      //     color: kECF0F8,
-                      //   ),
-                      //   child: Padding(
-                      //     padding: EdgeInsets.only(left: 16.w),
-                      //     child: Center(
-                      //       child: TextField(
-                      //         decoration: InputDecoration(
-                      //           border: InputBorder.none,
-                      //           hintText: 'Enter your PAN',
-                      //           hintStyle: kManRope_400_16_626A6A,
-                      //         ),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      Row(
+                    ),
+                    // Container(
+                    //   height: 62.h,
+                    //   width: 1.sw,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.all(Radius.circular(8)),
+                    //     color: kECF0F8,
+                    //   ),
+                    //   child: Padding(
+                    //     padding: EdgeInsets.only(left: 16.w),
+                    //     child: Center(
+                    //       child: TextField(
+                    //         decoration: InputDecoration(
+                    //           border: InputBorder.none,
+                    //           hintText: 'Enter your PAN',
+                    //           hintStyle: kManRope_400_16_626A6A,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 14.h,
+                    ),
+                    SizedBox(
+                      height: 24,
+                      width: 1.sw,
+                      child: Row(
                         children: [
                           // Checkbox(
                           //   checkColor: Colors.white,
@@ -124,7 +125,6 @@ class _KycScreenState extends State<KycScreen> {
                           //     });
                           //   },
                           // ),
-
                           SvgPicture.asset(
                             'assets/icons/check mark-rectangle.svg',
                             height: 21.5.h,
@@ -139,46 +139,72 @@ class _KycScreenState extends State<KycScreen> {
                           )
                         ],
                       ),
-                      SizedBox(
-                        height: 41.h,
-                      ),
-                      Container(
-                        height: 104.h,
-                        width: 1.sw,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                            color: kECF0F8),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.w),
-                          child: Center(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Your data is protected by \nAtaraxis',
-                                  style: kManRope_500_16_001314,
-                                ),
-                                Image.asset(
-                                  'assets/images/security-unlock 1.png',
-                                  height: 64.h,
-                                  width: 46.w,
-                                ),
-                              ],
-                            ),
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+                    Container(
+                      height: 104.h,
+                      width: 1.sw,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(12)),
+                          color: kECF0F8),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Your data is protected by \nAtaraxis',
+                                style: kManRope_500_16_001314,
+                              ),
+                              Image.asset(
+                                'assets/images/security-unlock 1.png',
+                                height: 64.h,
+                                width: 46.w,
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                      // SizedBox(
-                      //   height: 223.h,
-                      // ),
-                      // CustomActiveTextButton(
-                      //     onPressed: () {
-                      //       Navigator.of(context).push(MaterialPageRoute(
-                      //           builder: (context) => ConfirmName()));
-                      //     },
-                      //     text: 'Next'),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 223.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 80.h),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: MainButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) => ConfirmName()));
+                                },
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    top: 20.h,
+                                    bottom: 20.h,
+                                  ),
+                                  child: Text(
+                                    "Next",
+                                    style: kManRope_500_16_white,
+                                  ),
+                                ),
+                                color: k006D77,
+                                shape: CustomDecoration().button16Decoration()),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // CustomActiveTextButton(
+                    //     onPressed: () {
+                    //       Navigator.of(context).push(MaterialPageRoute(
+                    //           builder: (context) => ConfirmName()));
+                    //     },
+                    //     text: 'Next'),
+                  ],
                 ),
               ),
             ),

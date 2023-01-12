@@ -22,9 +22,9 @@ class WithDrawEarningsScreen2 extends StatefulWidget {
 class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
   void _selectAccountNumbers() {
     showModalBottomSheet(
-        shape: const RoundedRectangleBorder(
+        shape:  RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
         builder: (context) => const AccountNumberBottomSheet());
@@ -36,7 +36,7 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
       backgroundColor: Colors.white,
       appBar: CusAppBar(
         appBarText: 'Withdraw',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -44,29 +44,33 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Current Balance',
-                    style: kManRope_500_16_001314,
-                  ),
-                  Text(
-                    '\$4391',
-                    style: kManRope_400_36_001314,
-                  )
-                ],
+              SizedBox(
+                height: 40.h,
+                width: 380.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Current Balance',
+                      style: kManRope_500_16_001314,
+                    ),
+                    Text(
+                      '\$4391',
+                      style: kManRope_400_36_001314,
+                    )
+                  ],
+                ),
               ),
               SizedBox(
                 height: 40.h,
               ),
               Center(
-                child: Container(
+                child: SizedBox(
                   height: 56.h,
                   width: 182.w,
                   child: TextField(
                       decoration: TextfieldDecoration(
-                              label: "           Type amount here")
+                              label: "Type amount here")
                           .textfieldDecoration()),
                 ),
               ),
@@ -107,39 +111,61 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                 child: TextField(
                     onTap: () {
                       _selectAccountNumbers();
+
                     },
                     readOnly: true,
                     decoration: TextfieldDecoration(
-                            child: Image.asset(
-                              "assets/images/downarrow.png",
-                              height: 10,
-                              width: 10,
-                            ),
-                            label: "This field will filled automatically")
-                        .textfieldDecoration()),
+                      label: "This field will filled automatically",
+                      child: Image.asset(
+                        "assets/images/icondownlarge.png",
+                        height: 48.h,
+                        width: 48.h,
+                      ),
+                    ).textfieldDecoration()),
+              ),
+              // SizedBox(
+              //   height: 48.h,
+              //   child: TextField(
+              //       onTap: () {
+              //         _selectAccountNumbers();
+              //       },
+              //       readOnly: true,
+              //       decoration: TextfieldDecoration(
+              //           child: Image.asset(
+              //             "assets/images/downarrow.png",
+              //             height: 10,
+              //             width: 10,
+              //           ),
+              //           label: "This field will filled automatically")
+              //           .textfieldDecoration()),
+              // ),
+
+              SizedBox(
+                height: 40.h,
               ),
               SizedBox(
-                height: 53.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Add more Account',
-                    style: kManRope_500_16_006D77,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => AddBankScreen()));
-                    },
-                    child: SvgPicture.asset(
-                      'assets/icons/plus-square.svg',
-                      height: 24.h,
-                      width: 24.w,
+                height: 48.h,
+                width: 379.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Add more Account',
+                      style: kManRope_500_16_006D77,
                     ),
-                  ),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => AddBankScreen()));
+                      },
+                      child: Image.asset(
+                        'assets/images/iconaddaccount48.png',
+                        height: 48.h,
+                        width: 48.w,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 291.h,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/Editbasicdetails.dart';
+import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/Editdoctordetails.dart';
 import 'package:greymatter/screens/psychologist_screen/profile_screens/basic_details_widget.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
@@ -24,7 +26,7 @@ class _PsychologistPersonalInfoScreenState
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: 'Account',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -113,8 +115,10 @@ class _PsychologistPersonalInfoScreenState
                   ),
                 ],
               ),
-              flag ? BasicDetails() : DoctorProfile(),
+              flag ? EditbasicDetails() : EditDoctorProfile(),
+              // flag ? PsychologistPersonalInfoScreen() : DoctorProfile(),
             ],
+              // EditbasicDetails()
           ),
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -18,7 +19,7 @@ class _DeleteAccountState extends State<DeleteAccount> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CuswhiteAppBar(
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Delete Account',
       ),
       body: Padding(
@@ -46,10 +47,11 @@ class _DeleteAccountState extends State<DeleteAccount> {
             SizedBox(
               height: 8.h,
             ),
-            Text(
-              "Priyasingh344@1234",
-              style: kManRope_400_16_Black,
-            ),
+            TextField(decoration: TextfieldDecoration(label: 'Priyasingh344@1234',hintstyle: kManRope_400_16_Black,).blankfieldDecoration(),),
+            // Text(
+            //   "Priyasingh344@1234",
+            //   style: kManRope_400_16_Black,
+            // ),
             SizedBox(
               height: 140.h,
             ),
@@ -73,18 +75,21 @@ class _DeleteAccountState extends State<DeleteAccount> {
                       ),
                     ),
                   ),
-                  MainButton(
-                      onPressed: () {},
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: 16.0, left: 30.w, bottom: 16, right: 30.w),
+                  SizedBox(
+                    height: 48.h,
+                    width: 182.w,
+                    child: MainButton(
+                        onPressed: () {
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => TabsScreen()));
+                        },
                         child: Text(
                           "Delete Account",
                           style: kManRope_500_16_white,
                         ),
-                      ),
-                      color: kB64C4C,
-                      shape: CustomDecoration().button16Decoration()),
+                        color: kB64C4C,
+                        shape: CustomDecoration().button16Decoration()),
+                  ),
                 ],
               ),
             ),

@@ -10,14 +10,14 @@ import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
 
 class AgreementScreen extends StatelessWidget {
-  const AgreementScreen({Key? key}) : super(key: key);
+ const AgreementScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Agreement',
       ),
       // appBar: AppBar(
@@ -51,25 +51,29 @@ class AgreementScreen extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const AgreementDetails()));
+                    builder: (context) =>  AgreementDetails()));
               },
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Agreement',
-                    style: kManRope_500_16_001314,
-                  ),
-                  SvgPicture.asset(
-                    'assets/icons/rightArrow.svg',
-                    height: 12,
-                    width: 6,
-                  ),
-                ],
+              child: SizedBox(
+                height: 48.h,
+                width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Agreement',
+                      style: kManRope_500_16_001314,
+                    ),
+                    Image.asset(
+                      'assets/images/iconrightarrow6262.png',
+                      height: 48.h,
+                      width: 48.w,
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(
-              height: 37.h,
+              height: 8.h,
             ),
             GestureDetector(
               onTap: () {
@@ -83,17 +87,21 @@ class AgreementScreen extends StatelessWidget {
                     'Privacy and Policy',
                     style: kManRope_500_16_001314,
                   ),
-                  SvgPicture.asset(
-                    'assets/icons/rightArrow.svg',
-                    height: 12,
-                    width: 6,
+                  Image.asset(
+                    'assets/images/iconrightarrow6262.png',
+                    height: 48.h,
+                    width: 48.w,
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: 37.h,
+              height: 8.h,
             ),
+
+            // SizedBox(
+            //   height: 37.h,
+            // ),
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
@@ -106,10 +114,10 @@ class AgreementScreen extends StatelessWidget {
                     'Terms and Conditions',
                     style: kManRope_500_16_001314,
                   ),
-                  SvgPicture.asset(
-                    'assets/icons/rightArrow.svg',
-                    height: 12,
-                    width: 6,
+                  Image.asset(
+                    'assets/images/iconrightarrow6262.png',
+                    height: 48.h,
+                    width: 48.w,
                   ),
                 ],
               ),

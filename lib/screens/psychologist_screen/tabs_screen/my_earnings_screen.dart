@@ -185,10 +185,10 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                                     builder: (context) =>
                                         EarningHistoryScreen()));
                               },
-                              child: SvgPicture.asset(
-                                'assets/icons/arrowforword.svg',
-                                height: 16.h,
-                                width: 16.w,
+                              child: Image.asset(
+                                'assets/images/iconrightarrow.png',
+                                height: 24.h,
+                                width: 24.w,
                                 color: k006D77,
                               ),
                             )
@@ -222,19 +222,35 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                     horizontal: 25.w,
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Date',
-                        style: kManRope_500_14_263238,
+                      SizedBox(
+                        width:69.w,
+                        height: 16.h,
+                        child: Text(
+                          'Date',
+                          style: kManRope_500_14_263238,
+                        ),
                       ),
-                      Text(
-                        'Transaction No',
-                        style: kManRope_500_14_263238,
+                      SizedBox(width: 78.w,),
+
+                      SizedBox(
+                        width:100.w,
+                        height: 16.h,
+                        child: Text(
+                          'Transaction No',
+                          style: kManRope_500_14_263238,
+                        ),
                       ),
-                      Text(
-                        'Amount',
-                        style: kManRope_500_14_263238,
+                      SizedBox(width: 78.w,),
+
+                      SizedBox(
+                        width:53.w,
+                        height: 16.h,
+                        child: Text(
+                          'Amount',
+                          style: kManRope_500_14_263238,
+                        ),
                       ),
                     ],
                   ),
@@ -247,28 +263,43 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                 height: 229.h,
                 child: Padding(
                   padding: EdgeInsets.only(
-                    left: 20.w,
-                    right: 20.h,
+                    left: 25.w,
+                    right: 25.h,
                   ),
                   child: ListView.separated(
+                    physics: NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
                       itemBuilder: (ctx, index) {
                         return Column(
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  '09.12.2022',
-                                  style: kManRope_400_14_626A6A,
+                                SizedBox(
+                                  width:69.w,
+                                  height: 16.h,
+                                  child: Text(
+                                    '09.12.2022',
+                                    style: kManRope_400_14_626A6A,
+                                  ),
                                 ),
-                                Text(
-                                  '123456789',
-                                  style: kManRope_400_14_626A6A,
+                                SizedBox(width: 78.w,),
+                                SizedBox(
+                                  width:100.w,
+                                  height: 16.h,
+                                  child: Text(
+                                    '123456789',
+                                    style: kManRope_400_16_626A6A,
+                                  ),
                                 ),
-                                Text(
-                                  '500',
-                                  style: kManRope_400_14_626A6A,
+                                SizedBox(width: 78.w,),
+                                SizedBox(
+                                  width:40.w,
+                                  height: 16.h,
+                                  child: Text(
+                                    '500',
+                                    style: kManRope_400_16_626A6A,
+                                  ),
                                 ),
                               ],
                             ),

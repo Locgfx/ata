@@ -117,7 +117,7 @@ class _JoiningScreenState extends State<JoiningScreen> {
                   },
                   child: Padding(
                     padding: EdgeInsets.only(
-                        left: 46.w, right: 46.w, top: 19.h, bottom: 19.h),
+                        left: 42.w, right: 46.w, top: 19.h, bottom: 19.h),
                     child: Text(
                       "Join meeting ",
                       style: kManRope_400_16_white,

@@ -28,61 +28,58 @@ class _UpcomingListState extends State<UpcomingList> {
                   return Container(
                     height: 80.h,
                     width: 1.sw,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
                         color: kWhiteBGColor,
                         border: Border.all(color: Colors.white)),
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                    child: Padding(
+                      padding:EdgeInsets.only(left: 20.w,right: 20.w),
+                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
+                              Container(
+                                width: 48.w,
+                                height: 48.h,
+                                clipBehavior: Clip.hardEdge,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(16)),
+                                child:
+                                    Image.asset('assets/images/userP.png'),
+                              ),
+                              SizedBox(width: 16.w),
+                              Column(mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
                                 children: [
-                                  Container(
-                                    width: 48.w,
-                                    height: 48.h,
-                                    clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child:
-                                        Image.asset('assets/images/userP.png'),
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Priyanka singh',
-                                          style: kManRope_500_16_001314),
-                                      //SizedBox(width: 10,),
-                                      SizedBox(height: 8.h),
-                                      SizedBox(
-                                        width: 280.w,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('Anxiety',
-                                                style: kManRope_400_14_626A6A),
-                                            Text(
-                                              '10 June 2022, 8:00AM',
-                                              style: kManRope_400_14_626A6A,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      // SizedBox(height: 8.h),
-                                    ],
-                                  ),
+                                  Text('Priyanka singh',
+                                      style: kManRope_500_16_001314),
+                                  Text('Anxiety',
+                                      style: kManRope_400_14_626A6A),
+                                  // SizedBox(height: 8.h),
+                                  // SizedBox(
+                                  //   width: 280.w,
+                                  //   child: Row(
+                                  //     mainAxisAlignment:
+                                  //         MainAxisAlignment.spaceBetween,
+                                  //     children: [
+                                  //
+                                  //
+                                  //     ],
+                                  //   ),
+                                  // ),
+                                  // SizedBox(height: 8.h),
                                 ],
+                              ),
+                            ],
+                          ),
+
+                          Column(mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text(
+                                '10 June 2022, 8:00AM',
+                                style: kManRope_400_14_626A6A,
                               ),
                             ],
                           ),
@@ -94,7 +91,7 @@ class _UpcomingListState extends State<UpcomingList> {
                 separatorBuilder: (ctx, index) {
                   return SizedBox(height: 12.h);
                 },
-                itemCount: 4),
+                itemCount: 5),
           ),
           // SizedBox(height: 24.h),
           // Row(

@@ -97,13 +97,13 @@ class _RequestSentSuccessfulScreenState
                         width: 88.w,
                         clipBehavior: Clip.hardEdge,
                         decoration: CustomDecoration().containerDecoration(),
-                        child: Image.asset('assets/images/userP.png'),
+                        child: Image.asset('assets/images/userP.png',fit: BoxFit.cover),
                       ),
                       SizedBox(
                         width: 16.w,
                       ),
                       Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             'Priyanka singh',

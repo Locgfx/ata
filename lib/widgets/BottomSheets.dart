@@ -18,7 +18,12 @@ class _SelectGenderBottomSheet extends State<SelectGenderBottomSheet> {
   int _gIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: const BoxDecoration(
+        // color: k006D77,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
       height: 259.h,
       child: Column(
         children: [
@@ -27,115 +32,101 @@ class _SelectGenderBottomSheet extends State<SelectGenderBottomSheet> {
             decoration: const BoxDecoration(
               color: k006D77,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 90.w,
-                    ),
-                    Text(
-                      'Select Gender',
-                      style: kManRope_700_20_white,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+            child: Center(
+              child:  Text(
+                'Select Gender',
+                style: kManRope_700_20_white,
+                textAlign: TextAlign.center,
               ),
             ),
           ),
           Container(
+            // decoration: const BoxDecoration(
+            //   color: k006D77,
+            //   borderRadius: BorderRadius.only(
+            //       topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            // ),
             height: 188.h,
-            padding: const EdgeInsets.only(top: 6.0),
-            margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
-            color: CupertinoColors.systemBackground.resolveFrom(context),
+            padding: EdgeInsets.only(top: 20.h),
+            // margin: EdgeInsets.only(
+            //   bottom: MediaQuery.of(context).viewInsets.bottom,
+            // ),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
             child: SafeArea(
               top: false,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.w),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () => setState(() {
-                        _gIndex = 0;
-                        Navigator.of(context).pop();
-                      }),
-                      child: Container(
-                        height: 44.h,
-                        width: 215.w,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 0 ? k006D77 : Colors.white,
-                        ),
-                        child: Center(
-                            child: Text(
-                          'Male',
-                          style: _gIndex == 0
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _gIndex = 0;
+                      Navigator.of(context).pop();
+                    }),
+                    child: Container(
+                      height: 44.h,
+                      width: 78.w,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: _gIndex == 0 ? k006D77 : Colors.transparent,
                       ),
+                      child: Center(
+                          child: Text(
+                        'Male',
+                        style: _gIndex == 0
+                            ? kManRope_500_16_white
+                            : kManRope_500_16_626A6A,
+                      )),
                     ),
-                    GestureDetector(
-                      onTap: () => setState(() {
-                        _gIndex = 1;
-                        Navigator.of(context).pop();
-                      }),
-                      child: Container(
-                        height: 44.h,
-                        width: 215.w,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 1 ? k006D77 : Colors.white,
-                        ),
-                        child: Center(
-                            child: Text(
-                          'Female',
-                          style: _gIndex == 1
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                  ),
+                  SizedBox(height: 8.h,),
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _gIndex = 1;
+                      Navigator.of(context).pop();
+                    }),
+                    child: Container(
+                      height: 44.h,
+                      width: 215.w,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: _gIndex == 1 ? k006D77 : Colors.transparent,
                       ),
+                      child: Center(
+                          child: Text(
+                        'Female',
+                        style: _gIndex == 1
+                            ? kManRope_500_16_white
+                            : kManRope_500_16_626A6A,
+                      )),
                     ),
-                    GestureDetector(
-                      onTap: () => setState(() {
-                        _gIndex = 2;
-                        Navigator.of(context).pop();
-                      }),
-                      child: Container(
-                        height: 44.h,
-                        width: 215.w,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 2 ? k006D77 : Colors.white,
-                        ),
-                        child: Center(
-                            child: Text(
-                          'Others',
-                          style: _gIndex == 2
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                  ),
+                  SizedBox(height: 8.h,),
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _gIndex = 2;
+                      Navigator.of(context).pop();
+                    }),
+                    child: Container(
+                      height: 44.h,
+                      width: 215.w,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: _gIndex == 2 ? k006D77 : Colors.transparent,
                       ),
+                      child: Center(
+                          child: Text(
+                        'Others',
+                        style: _gIndex == 2
+                            ? kManRope_500_16_white
+                            : kManRope_500_16_626A6A,
+                      )),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -158,7 +149,12 @@ class _SelectDesignationBottomSheet
   int _gIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: const BoxDecoration(
+        // color: k006D77,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
       height: 259.h,
       child: Column(
         children: [
@@ -167,31 +163,13 @@ class _SelectDesignationBottomSheet
             decoration: const BoxDecoration(
               color: k006D77,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 60.w,
-                    ),
-                    Text(
-                      'Select Designation',
-                      style: kManRope_700_20_white,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+            child: Center(
+              child: Text(
+                'Select Designation',
+                style: kManRope_700_20_white,
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -201,7 +179,7 @@ class _SelectDesignationBottomSheet
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            color: CupertinoColors.systemBackground.resolveFrom(context),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
             child: SafeArea(
               top: false,
               child: Padding(
@@ -215,11 +193,11 @@ class _SelectDesignationBottomSheet
                       }),
                       child: Container(
                         height: 44.h,
-                        width: 215.w,
+                        width: 123.w,
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 0 ? k006D77 : Colors.white,
+                          color: _gIndex == 0 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -237,11 +215,11 @@ class _SelectDesignationBottomSheet
                       }),
                       child: Container(
                         height: 44.h,
-                        width: 215.w,
+                        width: 123.w,
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 1 ? k006D77 : Colors.white,
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -259,11 +237,11 @@ class _SelectDesignationBottomSheet
                       }),
                       child: Container(
                         height: 44.h,
-                        width: 215.w,
+                        width: 123.w,
                         decoration: BoxDecoration(
                           borderRadius:
                               const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 2 ? k006D77 : Colors.white,
+                          color: _gIndex == 2 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
@@ -297,8 +275,13 @@ class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
   int dateSelected = 0;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 300.h,
+      decoration: const BoxDecoration(
+        // color: k006D77,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
       child: Column(
         children: [
           Container(
@@ -306,31 +289,13 @@ class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
             decoration: const BoxDecoration(
               color: k006D77,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 90.w,
-                    ),
-                    Text(
-                      'Select Gender',
-                      style: kManRope_700_20_white,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+            child: Center(
+              child: Text(
+                'Pick Date',
+                style: kManRope_700_20_white,
+                textAlign: TextAlign.center,
               ),
             ),
           ),
@@ -341,8 +306,8 @@ class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
                 height: 190.h,
                 child: CupertinoDatePicker(
                     mode: CupertinoDatePickerMode.date,
-                    minimumYear: 1980,
-                    maximumYear: 2023,
+                    minimumYear: 1950,
+                    maximumYear: 2050,
                     onDateTimeChanged: (val) {
                       setState(() {
                         dateSelected = val.toString() as int;
@@ -516,8 +481,13 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 428.h,
+    return Container(
+      // decoration: const BoxDecoration(
+      //   // color: k006D77,
+      //   borderRadius: BorderRadius.only(
+      //       topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      // ),
+      height: 675.h,
       child: Column(
         children: [
           Container(
@@ -525,34 +495,16 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
             decoration: const BoxDecoration(
               color: k006D77,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 71.w,
-                    ),
-                    Text(
-                      'Select Specialization',
-                      style: kManRope_700_16_white,
-                    ),
-                  ],
-                ),
+            child: Center(
+              child: Text(
+                'Select Specialization',
+                style: kManRope_700_16_white,
               ),
             ),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 20.h),
           Padding(
             padding: EdgeInsets.only(left: 140.w),
             child: SizedBox(
@@ -633,42 +585,23 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8), topRight: Radius.circular(8)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 80.w,
-                    ),
-                    Text(
-                      'Select Language',
-                      style: kManRope_700_16_white,
-                    ),
-                  ],
-                ),
+            child: Center(
+              child: Text(
+                'Select Language',
+                style: kManRope_700_16_white,
               ),
             ),
           ),
-          SizedBox(height: 10.h),
+          SizedBox(height: 20.h),
           Padding(
             padding: EdgeInsets.only(left: 140.w),
             child: SizedBox(
-              height: 280.h,
+              height: 236.h,
               child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
                 itemCount: languages.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: 8.h, top: 8.h),
+                    padding: EdgeInsets.only(bottom: 16.h,),
                     child: Row(
                       children: [
                         SvgPicture.asset(
@@ -690,18 +623,22 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               ),
             ),
           ),
-          Center(
-            child: MainButton(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
-                child: Text(
-                  "Done",
-                  style: kManRope_500_18_FFFFF,
+          SizedBox(
+            // height: 56.h,
+            // width: 168.w,
+            child: Center(
+              child: MainButton(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
+                  child: Text(
+                    "Done",
+                    style: kManRope_500_18_FFFFF,
+                  ),
                 ),
+                color: k006D77,
+                shape: CustomDecoration().smallButtonDecoration(),
+                onPressed: () {},
               ),
-              color: k006D77,
-              shape: CustomDecoration().smallButtonDecoration(),
-              onPressed: () {},
             ),
           ),
         ],
@@ -721,8 +658,125 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
   int _gIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration:BoxDecoration(
+        // color: k006D77,
+        // borderRadius: BorderRadius.only(
+        //     topLeft: Radius.circular(40), topRight: Radius.circular(40)),   // borderRadius: BorderRadius.only(
+        //     topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+      ),
       height: 207.h,
+      child: Column(
+        children: [
+          Container(
+            height: 71.h,
+            decoration: const BoxDecoration(
+              color: k006D77,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            ),
+            child: Center(
+              child: Text(
+                'Select Account',
+                style: kManRope_700_16_white,
+              ),
+              // child: Row(
+              //   children: [
+              //     // GestureDetector(
+              //     //   onTap: () => Navigator.of(context).pop(),
+              //     //   child: Icon(
+              //     //     Icons.arrow_back_ios,
+              //     //     color: Colors.white,
+              //     //     size: 20.sp,
+              //     //   ),
+              //     // ),
+              //     // SizedBox(
+              //     //   width: 50.w,
+              //     // ),
+              //
+              //   ],
+              // ),
+            ),
+          ),
+          Container(
+            height: 136.h,
+            padding: const EdgeInsets.only(top: 20.0),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
+            child: SafeArea(
+              top: false,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _gIndex = 0;
+                      Navigator.of(context).pop();
+                    }),
+                    child: Container(
+                      height: 44.h,
+                      width: 215.w,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: _gIndex == 0 ? k006D77 : Colors.transparent,
+                      ),
+                      child: Center(
+                          child: Text(
+                        '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
+                        style: _gIndex == 0
+                            ? kManRope_500_16_white
+                            : kManRope_500_16_626A6A,
+                      )),
+                    ),
+                  ),
+                  SizedBox(height: 8.h),
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _gIndex = 1;
+                      Navigator.of(context).pop();
+                    }),
+                    child: Container(
+                      height: 44.h,
+                      width: 215.w,
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                      ),
+                      child: Center(
+                          child: Text(
+                        '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
+                        style: _gIndex == 1
+                            ? kManRope_500_16_white
+                            : kManRope_500_16_626A6A,
+                      )),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CalenderBottomSheet extends StatefulWidget {
+  const CalenderBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<CalenderBottomSheet> createState() => _CalenderBottomSheet();
+}
+
+class _CalenderBottomSheet extends State<CalenderBottomSheet> {
+  int _gIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 280.h,
       child: Column(
         children: [
           Container(
@@ -732,38 +786,20 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(8), topRight: Radius.circular(8)),
             ),
-            child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 50.w,
-                    ),
-                    Text(
-                      'Select Designation',
-                      style: kManRope_700_16_white,
-                    ),
-                  ],
-                ),
+            child: Center(
+              child: Text(
+                'Select Below',
+                style: kManRope_700_16_white,
               ),
             ),
           ),
           Container(
-            height: 136.h,
+            height: 200.h,
             padding: const EdgeInsets.only(top: 6.0),
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            color: CupertinoColors.systemBackground.resolveFrom(context),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
             child: SafeArea(
               top: false,
               child: Padding(
@@ -780,18 +816,42 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
                         width: 215.w,
                         decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 0 ? k006D77 : Colors.white,
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 0 ? k006D77 :Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
-                          '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
-                          style: _gIndex == 0
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                              'This Month',
+                              style: _gIndex == 0
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
                       ),
                     ),
+                    SizedBox(height: 8.h),
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 1;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 50.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                        ),
+                        child: Center(
+                            child: Text(
+                              'This Week',
+                              style: _gIndex == 1
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
                     GestureDetector(
                       onTap: () => setState(() {
                         _gIndex = 1;
@@ -802,16 +862,284 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
                         width: 215.w,
                         decoration: BoxDecoration(
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 1 ? k006D77 : Colors.white,
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
-                          '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
-                          style: _gIndex == 1
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                              'This Year',
+                              style: _gIndex == 1
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class HistoryFilterBottomSheet extends StatefulWidget {
+  const HistoryFilterBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<HistoryFilterBottomSheet> createState() => _HistoryFilterBottomSheet();
+}
+
+class _HistoryFilterBottomSheet extends State<HistoryFilterBottomSheet> {
+  int _gIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 280.h,
+      child: Column(
+        children: [
+          Container(
+            height: 71.h,
+            decoration: const BoxDecoration(
+              color: k006D77,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            ),
+            child: Center(
+              child: Text(
+                'Select Below',
+                style: kManRope_700_16_white,
+              ),
+            ),
+          ),
+          Container(
+            height: 200.h,
+            padding:EdgeInsets.only(top: 20.h),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
+            child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.w),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 0;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 44.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 0 ? k006D77 : Colors.transparent,
+                        ),
+                        child: Center(
+                            child: Text(
+                              'This Month',
+                              style: _gIndex == 0
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 1;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 50.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                        ),
+                        child: Center(
+                            child: Text(
+                              'This Week',
+                              style: _gIndex == 1
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 1;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 44.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                        ),
+                        child: Center(
+                            child: Text(
+                              'This Year',
+                              style: _gIndex == 1
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class PostBottomSheet extends StatefulWidget {
+  const PostBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<PostBottomSheet> createState() => _PostBottomSheet();
+}
+
+class _PostBottomSheet extends State<PostBottomSheet> {
+  int _gIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 340.h,
+      child: Column(
+        children: [
+          Container(
+            height: 71.h,
+            decoration: const BoxDecoration(
+              color: k006D77,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+            ),
+            child: Center(
+              child: Text(
+                'Select Below',
+                style: kManRope_700_16_white,
+              ),
+            ),
+          ),
+          Container(
+            height: 240.h,
+            padding: const EdgeInsets.only(top: 6.0),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
+            child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.w),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 0;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 44.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 0 ? k006D77 : Colors.white,
+                        ),
+                        child: Center(
+                            child: Text(
+                              'Share',
+                              style: _gIndex == 0
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 1;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 50.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                        ),
+                        child: Center(
+                            child: Text(
+                              'Save',
+                              style: _gIndex == 1
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 1;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 44.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                        ),
+                        child: Center(
+                            child: Text(
+                              'Hide',
+                              style: _gIndex == 1
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    GestureDetector(
+                      onTap: () => setState(() {
+                        _gIndex = 1;
+                        Navigator.of(context).pop();
+                      }),
+                      child: Container(
+                        height: 44.h,
+                        width: 215.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                        ),
+                        child: Center(
+                            child: Text(
+                              'Report',
+                              style: _gIndex == 1
+                                  ? kManRope_500_16_white
+                                  : kManRope_500_16_626A6A,
+                            )),
                       ),
                     ),
                   ],

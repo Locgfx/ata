@@ -24,11 +24,11 @@ class _PsychologistChangeEmailScreenState
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: 'Change email',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
+          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 43.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -44,11 +44,11 @@ class _PsychologistChangeEmailScreenState
                 style: kManRope_400_16_001314,
               ),
               SizedBox(
-                height: 60.h,
+                height: 62.h,
               ),
 
               Text(
-                'Change email ',
+                'Enter New email ',
                 style: kManRope_400_16_626A6A,
               ),
               // SizedBox(
@@ -71,7 +71,7 @@ class _PsychologistChangeEmailScreenState
                 height: 50.h,
               ),
               Text(
-                'Change password ',
+                'Confirm new email ',
                 style: kManRope_400_16_626A6A,
               ),
               // SizedBox(

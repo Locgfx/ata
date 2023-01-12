@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/screens/psychologist_screen/profile_screens/change_email_screen.dart';
+import 'package:greymatter/screens/psychologist_screen/profile_screens/my_account_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -22,7 +23,7 @@ class _ResetPasswordOTPScreen extends State<ResetEmailOTPScreen> {
       bottomNavigationBar: BottomSmallButton(
         onPressed: () {
           Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => PsychologistChangeEmailScreen()));
+              builder: (context) => PsychologistAccountScreen()));
         },
         text: 'Save',
       ),

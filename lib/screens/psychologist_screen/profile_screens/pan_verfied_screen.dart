@@ -39,7 +39,7 @@ class _PANVerifiedState extends State<PANVerified> {
                   children: [
                     Center(
                       child: Image.asset(
-                        'assets/images/successfully-done (5) 1.gif',
+                        'assets/images/righticongif.gif',
                         height: 216.h,
                         width: 216.w,
                       ),

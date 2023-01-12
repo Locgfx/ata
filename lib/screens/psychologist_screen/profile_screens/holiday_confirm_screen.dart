@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/decorations.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -22,7 +23,7 @@ class _HolidayConfirmScreenState extends State<HolidayConfirmScreen> {
       backgroundColor: Colors.white,
       appBar: CusAppBar(
         appBarText: 'Slots Availability',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -36,8 +37,8 @@ class _HolidayConfirmScreenState extends State<HolidayConfirmScreen> {
               Center(
                   child: Image.asset(
                 'assets/images/success.gif',
-                height: 160.h,
-                width: 215.w,
+                height: 159.h,
+                width: 219.w,
               )),
               SizedBox(
                 height: 40.h,
@@ -79,10 +80,10 @@ class _HolidayConfirmScreenState extends State<HolidayConfirmScreen> {
               ),
               // CustomActiveTextButton(onPressed: () {}, text: 'Edit'),
               SizedBox(
-                height: 30.h,
+                height: 40.h,
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 20.h),
+                padding: EdgeInsets.only(bottom: 62.h),
                 child: Row(
                   children: [
                     Expanded(
@@ -92,7 +93,7 @@ class _HolidayConfirmScreenState extends State<HolidayConfirmScreen> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      PsychologistHomeScreen()),
+                                      TabsScreen()),
                             );
                           },
                           child: Padding(
@@ -112,6 +113,7 @@ class _HolidayConfirmScreenState extends State<HolidayConfirmScreen> {
                   ],
                 ),
               ),
+
             ],
           ),
         ),

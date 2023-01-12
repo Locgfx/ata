@@ -26,11 +26,11 @@ class _PsychologistChangePasswordScreenState
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: 'Change password',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
+          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 44.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -42,6 +42,7 @@ class _PsychologistChangePasswordScreenState
                 height: 8.h,
               ),
               SizedBox(
+                height: 48.h,
                 width: 1.sw,
                 child: TextField(),
               ),
@@ -53,6 +54,10 @@ class _PsychologistChangePasswordScreenState
                 style: kManRope_400_16_626A6A,
               ),
               SizedBox(
+                height: 8.h,
+              ),
+              SizedBox(
+                height: 48.h,
                 width: 1.sw,
                 child: TextField(),
               ),
@@ -64,11 +69,15 @@ class _PsychologistChangePasswordScreenState
                 style: kManRope_400_16_626A6A,
               ),
               SizedBox(
+                height: 8.h,
+              ),
+              SizedBox(
+                height: 48.h,
                 width: 1.sw,
                 child: TextField(),
               ),
               SizedBox(
-                height: 360.h,
+                height: 310.h,
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 20.h),

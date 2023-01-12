@@ -36,7 +36,7 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
       backgroundColor: Colors.white,
       appBar: CusAppBar(
         appBarText: 'Withdrawal  Success',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -44,18 +44,22 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'Current Balance',
-                    style: kManRope_500_16_001314,
-                  ),
-                  Text(
-                    '\$391',
-                    style: kManRope_400_36_001314,
-                  )
-                ],
+              SizedBox(
+                height: 36.h,
+                width: 380.w,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Current Balance',
+                      style: kManRope_500_16_001314,
+                    ),
+                    Text(
+                      '\$391',
+                      style: kManRope_400_36_001314,
+                    )
+                  ],
+                ),
               ),
               SizedBox(
                 height: 100.h,
@@ -68,46 +72,58 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
               SizedBox(
                 height: 12.h,
               ),
-              Text(
-                'Congratulations!',
-                style: kManRope_500_40_4CB15C,
-              ),
               SizedBox(
-                height: 24.h,
+                height: 146.h,
+                width: 380.w,
+                child: Column(
+                  children: [
+                    Text(
+                      'Congratulations!',
+                      style: kManRope_500_40_4CB15C,
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Text(
+                      'Your withdrawal of \$4000 is successful. It may take 2-3 business day to reflect in your bank account.',
+                      style: kManRope_400_16_626A6A,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
-              Text(
-                'Your withdrawal of \$4000 is successful. It may take 2-3 business day to reflect in your bank account.',
-                style: kManRope_400_16_626A6A,
-                textAlign: TextAlign.center,
-              ),
+
               SizedBox(
                 height: 107.h,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: MainButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => TabsScreen()),
-                        );
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          top: 15,
-                          bottom: 15,
+              Padding(
+                padding: EdgeInsets.only(bottom: 173.h),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: MainButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => TabsScreen()),
+                          );
+                        },
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            top: 20.h,
+                            bottom: 20.h,
+                          ),
+                          child: Text(
+                            "Go to Home",
+                            style: kManRope_500_16_006D77,
+                          ),
                         ),
-                        child: Text(
-                          "Go to Home",
-                          style: kManRope_500_16_006D77,
-                        ),
+                        color: Colors.white,
+                        shape: CustomDecoration().border16Decoration(),
                       ),
-                      color: Colors.white,
-                      shape: CustomDecoration().border10Decoration(),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ],
           ),

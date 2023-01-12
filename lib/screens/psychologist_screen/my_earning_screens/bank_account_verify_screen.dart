@@ -33,25 +33,29 @@ class _BankVerifyScreenState extends State<BankVerifyScreen> {
       backgroundColor: Colors.white,
       appBar: CusAppBar(
         appBarText: 'Withdraw',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Current Balance',
-                  style: kManRope_500_16_001314,
-                ),
-                Text(
-                  '\$4391',
-                  style: kManRope_400_36_001314,
-                )
-              ],
+            SizedBox(
+              height: 40.h,
+              width: 380.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Current Balance',
+                    style: kManRope_500_16_001314,
+                  ),
+                  Text(
+                    '\$4391',
+                    style: kManRope_400_36_001314,
+                  )
+                ],
+              ),
             ),
             SizedBox(
               height: 106.h,

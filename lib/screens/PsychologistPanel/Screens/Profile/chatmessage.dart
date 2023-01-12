@@ -50,7 +50,7 @@ class _ChatMessagesState extends State<ChatMessages> {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Chat support',
       ),
       resizeToAvoidBottomInset: true,
@@ -73,7 +73,7 @@ class _ChatMessagesState extends State<ChatMessages> {
                     decoration: TextfieldDecoration(
                       label: 'Abc....',
                       child: Image.asset(
-                        "assets/images/sendicon.png",
+                        "assets/images/send.png",
                       ),
                     ).searchFieldDecoration()),
               ),

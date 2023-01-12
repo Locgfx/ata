@@ -41,7 +41,7 @@ class _KycConfirmNameState extends State<KycConfirmName> {
                       width: 216.w,
                     )),
                     SizedBox(
-                      height: 40.h,
+                      height: 85.h,
                     ),
                     Text(
                       'Confirm your Name',

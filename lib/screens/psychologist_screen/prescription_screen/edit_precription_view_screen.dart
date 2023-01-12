@@ -43,7 +43,7 @@ class _EditPrescriptionViewScreenState
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: "Prescription View",
-        imgPath: "assets/images/Vector 175.png",
+        imgPath: "assets/images/iconbackappbarlarge.png",
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w),

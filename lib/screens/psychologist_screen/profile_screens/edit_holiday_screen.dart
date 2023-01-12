@@ -21,7 +21,7 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 20.h),
+        padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 58.h),
         child: Row(
           children: [
             Expanded(
@@ -48,7 +48,7 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
       ),
       appBar: CusAppBar(
         appBarText: 'Slots Availability',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
@@ -62,32 +62,32 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
                 style: kManRope_500_16_001314,
               ),
               SizedBox(
-                height: 16.h,
+                height: 24.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 182.w,
+                    width: 175.w,
                     height: 56.h,
                     child: TextFormField(
                       decoration: TextfieldDecoration(
                           label: 'Mon, 12, 2022',
                           child: Image.asset(
-                            "assets/images/calender.png",
-                            height: 20.h,
+                            "assets/images/iconcalender24.png",
+                            height: 24.h,
                           )).smalltextfieldDecoration(),
                     ),
                   ),
                   Container(
-                    width: 182.w,
+                    width: 175.w,
                     height: 56.h,
                     child: TextFormField(
                       decoration: TextfieldDecoration(
                           label: 'Mon, 12, 2022',
                           child: Image.asset(
-                            "assets/images/clockicon.png",
-                            height: 20.h,
+                            "assets/images/iconclock.png",
+                            height: 24.h,
                           )).smalltextfieldDecoration(),
                     ),
                   ),
@@ -157,32 +157,32 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
                 style: kManRope_500_16_001314,
               ),
               SizedBox(
-                height: 16.h,
+                height: 24.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    width: 182.w,
+                    width: 175.w,
                     height: 56.h,
                     child: TextFormField(
                       decoration: TextfieldDecoration(
                           label: 'Mon, 12, 2022',
                           child: Image.asset(
-                            "assets/images/calender.png",
-                            height: 20.h,
+                            "assets/images/iconcalender24.png",
+                            height: 24.h,
                           )).smalltextfieldDecoration(),
                     ),
                   ),
-                  Container(
-                    width: 182.w,
+                  SizedBox(
+                    width: 175.w,
                     height: 56.h,
                     child: TextFormField(
                       decoration: TextfieldDecoration(
                           label: 'Mon, 12, 2022',
                           child: Image.asset(
-                            "assets/images/clockicon.png",
-                            height: 20.h,
+                            "assets/images/iconclock.png",
+                            height: 24.h,
                           )).smalltextfieldDecoration(),
                     ),
                   ),

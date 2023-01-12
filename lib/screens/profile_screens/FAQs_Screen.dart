@@ -17,7 +17,7 @@ class FAQsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'FAQs',
       ),
       // appBar: AppBar(
@@ -50,7 +50,7 @@ class FAQsScreen extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'We are here to help you with anything and everything on AtarAxis',
+                'We are here to help you with anything and everything on carebral',
                 style: kManRope_700_20_001314,
               ),
               SizedBox(
@@ -63,11 +63,15 @@ class FAQsScreen extends StatelessWidget {
               SizedBox(
                 height: 40.h,
               ),
-              TextField(
-                decoration: TextfieldDecoration(
-                        label: "Search for help",
-                        child: Image.asset("assets/images/searchicon.png"))
-                    .searchFieldDecoration(),
+              SizedBox(
+                height: 56.h,
+                width: 380.w,
+                child: TextField(
+                  decoration: TextfieldDecoration(
+                          label: "Search for help",
+                          child: Image.asset("assets/images/searchicon.png"))
+                      .searchFieldDecoration(),
+                ),
               ),
               // SizedBox(
               //   height: 56.h,
@@ -87,24 +91,28 @@ class FAQsScreen extends StatelessWidget {
               //   ),
               // ),
               SizedBox(
-                height: 52.h,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    'What is AtarAxis ?',
-                    style: kManRope_500_16_001314,
-                  ),
-                  SvgPicture.asset(
-                    'assets/icons/downArrow.svg',
-                    height: 24.h,
-                    width: 24.w,
-                  ),
-                ],
+                height: 40.h,
               ),
               SizedBox(
-                height: 24.h,
+                height: 48.h,
+                width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'What is AtarAxis ?',
+                      style: kManRope_500_16_001314,
+                    ),
+                    Image.asset(
+                      'assets/images/icondropdown.png',
+                      height: 48.h,
+                      width: 48.w,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 16.h,
               ),
               Text(
                 'At AtarAxis everything we expert at a day’s start is you, better and happier than yesterday. We have got you covered. Share your concern or check our frequently asked question listed below.',
@@ -113,11 +121,38 @@ class FAQsScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              /*Container(
+              Container(
                 height: 1.h,
                 width: 380.w,
                 color: kD9D9D9,
-              ),*/
+              ),
+              SizedBox(height: 20.h,),
+              SizedBox(
+                height: 48.h,
+                width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'What is AtarAxis ?',
+                      style: kManRope_500_16_001314,
+                    ),
+                    Image.asset(
+                      'assets/images/icondropdown.png',
+                      height: 48.h,
+                      width: 48.w,
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Container(
+                height: 1.h,
+                width: 380.w,
+                color: kD9D9D9,
+              ),
               SizedBox(
                 height: 84.h,
               ),

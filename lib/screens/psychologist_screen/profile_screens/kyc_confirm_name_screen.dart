@@ -98,29 +98,30 @@ class _ConfirmNameState extends State<ConfirmName> {
                     SizedBox(
                       height: 16.h,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: MainButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => KycConfirmName()));
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                                  child: Text(
-                                    "Edit PAN",
-                                    style: kManRope_500_16_006D77,
+                    Padding(
+                      padding:EdgeInsets.only(bottom: 76.w),
+                      child: Row(
+                        children: [
+                          Expanded(
+                              child: MainButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => KycConfirmName()));
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 20.h),
+                                    child: Text(
+                                      "Edit PAN",
+                                      style: kManRope_500_16_006D77,
+                                    ),
                                   ),
-                                ),
-                                color: kFFFFFF,
-                                shape: CustomDecoration()
-                                    .outline16ButtonDecoration()))
-                      ],
+                                  color: kFFFFFF,
+                                  shape: CustomDecoration()
+                                      .outline16ButtonDecoration()))
+                        ],
+                      ),
                     ),
-                    SizedBox(
-                      height: 80.h,
-                    ),
+
                     // GestureDetector(
                     //   onTap: () {},
                     //   child: Container(

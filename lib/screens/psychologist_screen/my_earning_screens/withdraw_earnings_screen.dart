@@ -20,28 +20,32 @@ class _WithDrawEarningsScreenState extends State<WithDrawEarningsScreen> {
       backgroundColor: Colors.white,
       appBar: CusAppBar(
         appBarText: 'Withdraw',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Current Balance',
-                  style: kManRope_500_16_001314,
-                ),
-                Text(
-                  '\$4391',
-                  style: kManRope_400_36_001314,
-                )
-              ],
+            SizedBox(
+              height: 40.h,
+              width:380.w ,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Current Balance',
+                    style: kManRope_500_16_001314,
+                  ),
+                  Text(
+                    '\$4391',
+                    style: kManRope_400_36_001314,
+                  )
+                ],
+              ),
             ),
             SizedBox(
-              height: 110.h,
+              height: 100.h,
             ),
             Center(
               child: Image.asset(
@@ -53,34 +57,38 @@ class _WithDrawEarningsScreenState extends State<WithDrawEarningsScreen> {
             SizedBox(
               height: 13.h,
             ),
-            Center(
-              child: Text(
-                'You don’t have add any bank account to withdraw money.',
-                style: kManRope_400_14_626A6A,
-              ),
+            Text(
+              'You don’t have add any bank account to withdraw money.',
+              style: kManRope_400_16_626A6A,
+              textAlign: TextAlign.start,
             ),
             SizedBox(
-              height: 24.h,
+              height: 16.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Add an Account',
-                  style: kManRope_500_16_006D77,
-                ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => AddBankScreen()));
-                  },
-                  child: SvgPicture.asset(
-                    'assets/icons/plus-square.svg',
-                    height: 24.h,
-                    width: 24.w,
+            SizedBox(
+              height: 48.h,
+              width: 379.w,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Add an Account',
+                    style: kManRope_500_16_006D77,
                   ),
-                ),
-              ],
+                  GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => AddBankScreen()));
+                    },
+                    child: Image.asset(
+                      'assets/images/iconaddlarge.png',
+                      height: 48.h,
+                      width: 70.w,
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),

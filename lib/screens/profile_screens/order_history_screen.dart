@@ -14,7 +14,7 @@ class OrderHistoryScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
-        imgPath: "assets/images/Vector 175.png",
+        imgPath: "assets/images/iconbackappbarlarge.png",
         appBarText: "Order History",
       ),
       body: Padding(

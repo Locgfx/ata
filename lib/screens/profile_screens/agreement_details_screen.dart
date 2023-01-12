@@ -13,7 +13,7 @@ class AgreementDetails extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Agreement',
       ),
       body: Padding(

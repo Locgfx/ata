@@ -21,7 +21,7 @@ class PsychologistCreatePostScreen extends StatelessWidget {
           child: MainButton(
               onPressed: () {},
               child: Padding(
-                padding: EdgeInsets.only(top: 16, bottom: 16),
+                padding: EdgeInsets.only(top: 16.h, bottom: 16.h),
                 child: Text(
                   "Post",
                   style: kManRope_400_16_white,
@@ -34,7 +34,7 @@ class PsychologistCreatePostScreen extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: 'Create post',
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
@@ -87,7 +87,7 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 30.h,
+                height: 17.h,
               ),
               Container(
                 width: 380.w,
@@ -109,9 +109,7 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 100.h,
-              ),
+
               // Center(
               //   child: SizedBox(
               //     height: 56.h,

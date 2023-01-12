@@ -19,35 +19,43 @@ class _PaymentDelayState extends State<PaymentDelay> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-            child: AlertDialog(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(20))),
-              content: Center(
-                child: Column(
-                  children: [
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: Image.asset(
-                            "assets/images/crossicon.png",
-                            height: 12.h,
-                            width: 12.w,
-                          ),
-                        )),
-                    SizedBox(
-                      height: 10.h,
-                    ),
-                    Text(
-                      "We apologize for the delay in payment processing please wait or contact our team.",
-                      style: kManRope_400_16_626A6A,
-                    ),
-                    SizedBox(height: 20.h),
-                    Row(
+          AlertDialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(20))),
+            content: Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+              height: 156.h,
+              width: 379.w,
+              child: Column(
+                children: [
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          "assets/images/iconcross.png",
+                          height: 24.h,
+                          width: 24.w,
+                          // height: 12.h,
+                          // width: 12.w,
+                        ),
+                      )),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  Text(
+                    "We apologize for the delay in payment processing please wait or contact our team.",
+                    style: kManRope_400_16_626A6A,
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20.h),
+                  SizedBox(
+                    height: 32.h,
+                    width: 389.w,
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         GestureDetector(
@@ -63,14 +71,14 @@ class _PaymentDelayState extends State<PaymentDelay> {
                           ),
                         ),
                         Image.asset(
-                          "assets/images/rightarrow.png",
-                          height: 10.h,
-                          width: 10.w,
+                          "assets/images/iconrightarrow.png",
+                          height: 24.h,
+                          width: 24.w,
                         )
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

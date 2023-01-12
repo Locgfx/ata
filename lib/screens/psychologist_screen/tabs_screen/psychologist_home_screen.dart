@@ -179,6 +179,7 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
+                          behavior: HitTestBehavior.translucent,
                           onTap: () {
                             setState(() {
                               selectedIndex = pageIndex = 0;
@@ -211,6 +212,7 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
                           ),
                         ),
                         GestureDetector(
+                          behavior: HitTestBehavior.translucent,
                           onTap: () {
                             setState(() {
                               selectedIndex = pageIndex = 1;
@@ -243,6 +245,7 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
                           ),
                         ),
                         GestureDetector(
+                          behavior: HitTestBehavior.translucent,
                           onTap: () {
                             setState(() {
                               selectedIndex = pageIndex = 2;

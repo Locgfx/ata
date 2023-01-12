@@ -41,49 +41,53 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        toolbarHeight: 40,
+        toolbarHeight: 40.h,
         elevation: 0,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            padding: EdgeInsets.only(left: 24.w, top: 39.h, right: 24.w),
+            padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      height: 55.h,
-                      width: 55.w,
-                      decoration: const BoxDecoration(
-                          color: Colors.grey, shape: BoxShape.circle),
-                      clipBehavior: Clip.hardEdge,
-                      child: Image.asset('assets/images/userP.png'),
-                    ),
-                    SizedBox(
-                      width: 16.w,
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Text(
-                        //   'Priya singh',
-                        //   style: kManRope_500_16_001314,
-                        // ),
-                        SizedBox(
-                          height: 4.h,
-                        ),
-                        Text(
-                          'priyasingh344@gmail.com',
-                          style: kManRope_400_14_626A6A,
-                        )
-                      ],
-                    )
-                  ],
+                SizedBox(
+                  height: 52.h,
+                  width: 380.w,
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 55.h,
+                        width: 55.w,
+                        decoration: const BoxDecoration(
+                            color: Colors.grey, shape: BoxShape.circle),
+                        clipBehavior: Clip.hardEdge,
+                        child: Image.asset('assets/images/userP.png'),
+                      ),
+                      SizedBox(
+                        width: 16.w,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Priya singh',
+                            style: kManRope_500_16_001314,
+                          ),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          Text(
+                            'priyasingh344@gmail.com',
+                            style: kManRope_400_14_626A6A,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
                 ),
                 SizedBox(
-                  height: 36.h,
+                  height: 31.h,
                 ),
                 Text(
                   'Account',
@@ -100,7 +104,8 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                             const PsychologistPersonalInfoScreen()));
                   },
                   child: Container(
-                    color: Colors.transparent,
+                    height: 48.h,
+                    width: 380.w,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -108,17 +113,17 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                           'Personal Info',
                           style: kManRope_500_16_001314,
                         ),
-                        SvgPicture.asset(
-                          'assets/icons/rightArrow.svg',
-                          height: 12,
-                          width: 6,
+                        Image.asset(
+                          'assets/images/iconrightblack.png',
+                          height: 24.w,
+                          width: 24.w,
                         ),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 28.h,
+                  height: 8.h,
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
@@ -127,6 +132,8 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                         builder: (context) => PsychologistAccountScreen()));
                   },
                   child: Container(
+                    height: 48.h,
+                    width: 380.w,
                     color: Colors.transparent,
                     child: GestureDetector(
                       onTap: () {
@@ -140,10 +147,10 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                             'My account',
                             style: kManRope_500_16_001314,
                           ),
-                          SvgPicture.asset(
-                            'assets/icons/rightArrow.svg',
-                            height: 12,
-                            width: 6,
+                          Image.asset(
+                            'assets/images/iconrightblack.png',
+                            height: 24.w,
+                            width: 24.w,
                           ),
                         ],
                       ),
@@ -151,7 +158,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 28.h,
+                  height: 8.h,
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
@@ -159,23 +166,27 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => KycScreen()));
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'E-KYC',
-                        style: kManRope_500_16_001314,
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/rightArrow.svg',
-                        height: 12,
-                        width: 6,
-                      ),
-                    ],
+                  child: SizedBox(
+                    height: 48.h,
+                    width: 380.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'E-KYC',
+                          style: kManRope_500_16_001314,
+                        ),
+                        Image.asset(
+                          'assets/images/iconrightblack.png',
+                          height: 24.w,
+                          width: 24.w,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: 28.h,
+                  height: 8.h,
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
@@ -183,23 +194,27 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => SlotsAvailabilityScreen()));
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Slots availability',
-                        style: kManRope_500_16_001314,
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/rightArrow.svg',
-                        height: 12,
-                        width: 6,
-                      ),
-                    ],
+                  child: SizedBox(
+                    height: 48.h,
+                    width: 380.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Slots availability',
+                          style: kManRope_500_16_001314,
+                        ),
+                        Image.asset(
+                          'assets/images/iconrightblack.png',
+                          height: 24.w,
+                          width: 24.w,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: 28.h,
+                  height: 8.h,
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
@@ -207,23 +222,27 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const OrderHistoryScreen()));
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Order history',
-                        style: kManRope_500_16_001314,
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/rightArrow.svg',
-                        height: 12,
-                        width: 6,
-                      ),
-                    ],
+                  child: SizedBox(
+                    height: 48.h,
+                    width: 380.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Order history',
+                          style: kManRope_500_16_001314,
+                        ),
+                        Image.asset(
+                          'assets/images/iconrightblack.png',
+                          height: 24.w,
+                          width: 24.w,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 40.h,
                 ),
                 Text(
                   'Help and support',
@@ -236,29 +255,33 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const AgreementScreen()));
+                        builder: (context) => AgreementScreen()));
                   },
                   child: GestureDetector(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const AgreementScreen())),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Agreements',
-                          style: kManRope_500_16_001314,
-                        ),
-                        SvgPicture.asset(
-                          'assets/icons/rightArrow.svg',
-                          height: 12,
-                          width: 6,
-                        ),
-                      ],
+                        builder: (context) =>  AgreementScreen())),
+                    child: SizedBox(
+                      height: 48.h,
+                      width: 380.w,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Agreements',
+                            style: kManRope_500_16_001314,
+                          ),
+                          Image.asset(
+                            'assets/images/iconrightblack.png',
+                            height: 24.w,
+                            width: 24.w,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 28.h,
+                  height: 8.h,
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
@@ -266,11 +289,9 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const HelpAndSupportScreen()));
                   },
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const HelpAndSupportScreen()));
-                    },
+                  child: SizedBox(
+                    height: 48.h,
+                    width: 380.w,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -278,17 +299,17 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                           'Help and support',
                           style: kManRope_500_16_001314,
                         ),
-                        SvgPicture.asset(
-                          'assets/icons/rightArrow.svg',
-                          height: 12,
-                          width: 6,
+                        Image.asset(
+                          'assets/images/iconrightblack.png',
+                          height: 24.w,
+                          width: 24.w,
                         ),
                       ],
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 50.h,
+                  height: 40.h,
                 ),
                 Text(
                   'Settings',
@@ -319,7 +340,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   ],
                 ),
                 SizedBox(
-                  height: 40.h,
+                  height: 52.h,
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 40.h),

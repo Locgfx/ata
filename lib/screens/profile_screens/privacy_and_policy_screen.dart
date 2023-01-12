@@ -13,7 +13,7 @@ class PrivacyAndPolicyScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
-        imgPath: 'assets/images/Vector 175.png',
+        imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Privacy and Policy',
       ),
       body: Padding(
