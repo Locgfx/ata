@@ -28,7 +28,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        toolbarHeight: 60,
+        toolbarHeight: 40,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -44,7 +44,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
               ),
               SizedBox(height: 24.h),
               Image.asset(
-                'assets/images/success.gif',
+                'assets/images/animation_500_lcohiagq.gif',
                 height: 183.h,
                 width: 186.w,
               ),
@@ -119,7 +119,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                               builder: (ctx) => PsychologistHomeScreen()));
                         },
                         child: Padding(
-                          padding: EdgeInsets.only(top: 20, bottom: 20),
+                          padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
                           child: Text(
                             "Go to Home",
                             style: kManRope_500_16_006D77,
@@ -140,7 +140,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                         );
                       },
                       child: Padding(
-                        padding: EdgeInsets.only(top: 20, bottom: 20),
+                        padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

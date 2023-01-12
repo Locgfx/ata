@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-import 'package:greymatter/widgets/buttons.dart';
 
 import '../../profile_screens/reset_email_otp_screen.dart';
 
@@ -20,10 +19,10 @@ class _PsychologistChangePasswordScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomSmallButton(
-        onPressed: () {},
-        text: 'Save',
-      ),
+      // bottomNavigationBar: BottomSmallButton(
+      //   onPressed: () {},
+      //   text: 'Save',
+      // ),
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: 'Change password',
@@ -71,23 +70,26 @@ class _PsychologistChangePasswordScreenState
               SizedBox(
                 height: 360.h,
               ),
-              Center(
-                child: SizedBox(
-                  height: 60.h,
-                  width: 168.w,
-                  child: MaterialButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => ResetEmailOTPScreen()));
-                    },
-                    color: k006D77,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(48)),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Save',
-                        style: kManRope_500_16_white,
+              Padding(
+                padding: EdgeInsets.only(bottom: 20.h),
+                child: Center(
+                  child: SizedBox(
+                    height: 60.h,
+                    width: 168.w,
+                    child: MaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ResetEmailOTPScreen()));
+                      },
+                      color: k006D77,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(48)),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Save',
+                          style: kManRope_500_16_white,
+                        ),
                       ),
                     ),
                   ),

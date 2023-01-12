@@ -7,7 +7,6 @@ import 'package:greymatter/widgets/buttons.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/fonts.dart';
-import 'edit_personal_info_screen.dart';
 
 class BasicDetails extends StatefulWidget {
   const BasicDetails({Key? key}) : super(key: key);
@@ -37,15 +36,15 @@ class _BasicDetailsState extends State<BasicDetails> {
         builder: (context) => const SelectDesignationBottomSheet());
   }
 
-  // void _datePickerBottomSheet() {
-  //   showModalBottomSheet(
-  //       shape: const RoundedRectangleBorder(
-  //         borderRadius: BorderRadius.only(
-  //             topRight: Radius.circular(8), topLeft: Radius.circular(8)),
-  //       ),
-  //       context: context,
-  //       builder: (context) => const DatePickerBottomSheet());
-  // }
+  void _datePickerBottomSheet() {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+        ),
+        context: context,
+        builder: (context) => DatePickerBottomSheet());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +83,7 @@ class _BasicDetailsState extends State<BasicDetails> {
         TextField(
           readOnly: true,
           onTap: () {
-            // _datePickerBottomSheet();
+            _datePickerBottomSheet();
           },
           decoration: TextfieldDecoration(
               label: 'Enter your DOB',
@@ -160,40 +159,57 @@ class _BasicDetailsState extends State<BasicDetails> {
         // SizedBox(
         //   height: 34.h,
         // ),
-        Center(
-          child: MainButton(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 63, vertical: 15),
-              child: Text(
-                "Done",
-                style: kManRope_500_18_FFFFF,
-              ),
-            ),
-            color: k006D77,
-            shape: CustomDecoration().smallButtonDecoration(),
-            onPressed: () {},
+        Padding(
+          padding: EdgeInsets.only(bottom: 20.h),
+          child: Center(
+            child: MainButton(
+                onPressed: () {},
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      top: 16.h, bottom: 16.h, left: 63.w, right: 63.w),
+                  child: Text(
+                    "Save",
+                    style: kManRope_500_18_FFFFF,
+                  ),
+                ),
+                color: k006D77,
+                shape: CustomDecoration().smallButtonDecoration()),
           ),
-        ),
-        Center(
-          child: SizedBox(
-            height: 56.h,
-            width: 168.w,
-            child: MaterialButton(
-              color: k006D77,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(48), // <-- Radius
-              ),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => PsychologistEditPersonalInfo()));
-              },
-              child: Text(
-                'Edit',
-                style: kManRope_400_16_white,
-              ),
-            ),
-          ),
-        ),
+        )
+        // Center(
+        //   child: MainButton(
+        //     child: Padding(
+        //       padding: const EdgeInsets.symmetric(horizontal: 63, vertical: 15),
+        //       child: Text(
+        //         "Done",
+        //         style: kManRope_500_18_FFFFF,
+        //       ),
+        //     ),
+        //     color: k006D77,
+        //     shape: CustomDecoration().smallButtonDecoration(),
+        //     onPressed: () {},
+        //   ),
+        // ),
+        // Center(
+        //   child: SizedBox(
+        //     height: 56.h,
+        //     width: 168.w,
+        //     child: MaterialButton(
+        //       color: k006D77,
+        //       shape: RoundedRectangleBorder(
+        //         borderRadius: BorderRadius.circular(48), // <-- Radius
+        //       ),
+        //       onPressed: () {
+        //         Navigator.of(context).push(MaterialPageRoute(
+        //             builder: (context) => PsychologistEditPersonalInfo()));
+        //       },
+        //       child: Text(
+        //         'Edit',
+        //         style: kManRope_400_16_white,
+        //       ),
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

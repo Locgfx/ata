@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/screens/psychologist_screen/home_screens/SuccefulSessionScreen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
@@ -108,6 +109,7 @@ class _JoiningScreenState extends State<JoiningScreen> {
               Padding(
                 padding: EdgeInsets.only(bottom: 20.h),
                 child: MaterialButton(
+                  shape: CustomDecoration().smallButton10Decoration(),
                   color: k66898D,
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(

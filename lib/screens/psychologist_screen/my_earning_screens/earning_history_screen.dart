@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../../constants/fonts.dart';
@@ -40,25 +41,11 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
               child: Center(
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SizedBox(
-                        width: 297.w,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Search  Order ID',
-                            hintStyle: kManRope_400_14_626A6A,
-                          ),
-                        ),
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/search.svg',
-                        height: 24.h,
-                        width: 24.w,
-                      ),
-                    ],
+                  child: TextField(
+                    decoration: TextfieldDecoration(
+                            label: 'Search order id',
+                            child: Image.asset("assets/images/searchicon.png"))
+                        .searchFieldDecoration(),
                   ),
                 ),
               ),
@@ -153,6 +140,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                   itemCount: 20),
             ),
           ),
+          SizedBox(height: 20.h),
         ],
       ),
     );

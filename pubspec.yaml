@@ -43,6 +43,7 @@ dependencies:
   table_calendar: ^3.0.7
   smooth_page_indicator: ^1.0.0+2
   flutter_switch: ^0.3.2
+  grouped_list: ^5.1.2
 
 dev_dependencies:
   flutter_test:

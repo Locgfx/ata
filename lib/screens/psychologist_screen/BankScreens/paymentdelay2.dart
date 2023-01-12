@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class PaymentDelay2 extends StatefulWidget {
@@ -55,10 +56,10 @@ class _PaymentDelay2State extends State<PaymentDelay2> {
                 Expanded(
                   child: MainButton(
                     onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => PaymentDelay()),
-                      // );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => TabsScreen()),
+                      );
                     },
                     child: Padding(
                       padding: EdgeInsets.only(

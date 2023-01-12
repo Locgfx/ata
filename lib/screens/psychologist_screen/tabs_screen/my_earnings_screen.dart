@@ -179,6 +179,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                               style: kManRope_500_18_001314,
                             ),
                             GestureDetector(
+                              behavior: HitTestBehavior.translucent,
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) =>
@@ -251,7 +252,6 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                   ),
                   child: ListView.separated(
                       padding: EdgeInsets.zero,
-                      physics: ScrollPhysics(),
                       itemBuilder: (ctx, index) {
                         return Column(
                           children: [
@@ -281,6 +281,9 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                       itemCount: 10),
                 ),
               ),
+              SizedBox(
+                height: 20.h,
+              )
             ],
           ),
         ),

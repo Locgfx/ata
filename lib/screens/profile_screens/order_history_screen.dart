@@ -18,7 +18,8 @@ class OrderHistoryScreen extends StatelessWidget {
         appBarText: "Order History",
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
+        padding:
+            EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h, bottom: 20.h),
         child: ListView.separated(
             itemBuilder: (ctx, index) {
               return GestureDetector(

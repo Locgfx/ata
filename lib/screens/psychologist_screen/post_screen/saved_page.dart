@@ -16,7 +16,8 @@ class PsychologistSavedScreen extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(left: 24.w, top: 41.h, right: 24.h),
+            padding: EdgeInsets.only(
+                left: 24.w, top: 41.h, right: 24.h, bottom: 20.h),
             child: ListView.separated(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
@@ -81,7 +82,7 @@ class PsychologistSavedScreen extends StatelessWidget {
                                     // row with 2 children
                                     child: Text(
                                       "Share",
-                                      style: kManRope_400_20_Black,
+                                      style: kManRope_400_16_Black,
                                     ),
                                   ),
                                   // PopupMenuItem 2
@@ -89,13 +90,19 @@ class PsychologistSavedScreen extends StatelessWidget {
                                     value: 2,
                                     // row with two children
                                     child: Text("Save",
-                                        style: kManRope_400_20_Black),
+                                        style: kManRope_400_16_Black),
                                   ),
                                   PopupMenuItem(
                                     value: 3,
                                     // row with two children
                                     child: Text("Hide",
-                                        style: kManRope_400_20_Black),
+                                        style: kManRope_400_16_Black),
+                                  ),
+                                  PopupMenuItem(
+                                    value: 4,
+                                    // row with two children
+                                    child: Text("Report",
+                                        style: kManRope_400_16_Black),
                                   ),
                                 ],
                                 offset: Offset(0, 100),
@@ -116,7 +123,10 @@ class PsychologistSavedScreen extends StatelessWidget {
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                             color: Colors.grey,
                           ),
-                          child: Image.asset('assets/images/post.png'),
+                          child: Image.asset(
+                            'assets/images/post.png',
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         SizedBox(
                           height: 25.h,

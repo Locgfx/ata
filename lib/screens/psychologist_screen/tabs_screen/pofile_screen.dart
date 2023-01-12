@@ -41,14 +41,13 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        toolbarHeight: 50,
+        toolbarHeight: 40,
         elevation: 0,
       ),
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        children: [
-          Container(
-            padding: EdgeInsets.only(left: 24.w, top: 45.h, right: 24.w),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            padding: EdgeInsets.only(left: 24.w, top: 39.h, right: 24.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -94,6 +93,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   height: 16.h,
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
@@ -108,17 +108,10 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                           'Personal Info',
                           style: kManRope_500_16_001314,
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const PsychologistPersonalInfoScreen()));
-                          },
-                          child: SvgPicture.asset(
-                            'assets/icons/rightArrow.svg',
-                            height: 12,
-                            width: 6,
-                          ),
+                        SvgPicture.asset(
+                          'assets/icons/rightArrow.svg',
+                          height: 12,
+                          width: 6,
                         ),
                       ],
                     ),
@@ -128,32 +121,32 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   height: 28.h,
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => PsychologistAccountScreen()));
                   },
                   child: Container(
                     color: Colors.transparent,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'My account',
-                          style: kManRope_500_16_001314,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    PsychologistAccountScreen()));
-                          },
-                          child: SvgPicture.asset(
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => PsychologistAccountScreen()));
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'My account',
+                            style: kManRope_500_16_001314,
+                          ),
+                          SvgPicture.asset(
                             'assets/icons/rightArrow.svg',
                             height: 12,
                             width: 6,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -161,6 +154,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   height: 28.h,
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => KycScreen()));
@@ -184,6 +178,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   height: 28.h,
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => SlotsAvailabilityScreen()));
@@ -195,16 +190,10 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                         'Slots availability',
                         style: kManRope_500_16_001314,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => SlotsAvailabilityScreen()));
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/rightArrow.svg',
-                          height: 12,
-                          width: 6,
-                        ),
+                      SvgPicture.asset(
+                        'assets/icons/rightArrow.svg',
+                        height: 12,
+                        width: 6,
                       ),
                     ],
                   ),
@@ -213,6 +202,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   height: 28.h,
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const OrderHistoryScreen()));
@@ -224,17 +214,10 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                         'Order history',
                         style: kManRope_500_16_001314,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const OrderHistoryScreen()));
-                        },
-                        child: SvgPicture.asset(
-                          'assets/icons/rightArrow.svg',
-                          height: 12,
-                          width: 6,
-                        ),
+                      SvgPicture.asset(
+                        'assets/icons/rightArrow.svg',
+                        height: 12,
+                        width: 6,
                       ),
                     ],
                   ),
@@ -250,58 +233,58 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   height: 30.h,
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const AgreementScreen()));
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Agreements',
-                        style: kManRope_500_16_001314,
-                      ),
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => const AgreementScreen())),
-                        child: SvgPicture.asset(
+                  child: GestureDetector(
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const AgreementScreen())),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Agreements',
+                          style: kManRope_500_16_001314,
+                        ),
+                        SvgPicture.asset(
                           'assets/icons/rightArrow.svg',
                           height: 12,
                           width: 6,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
                   height: 28.h,
                 ),
                 GestureDetector(
+                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const HelpAndSupportScreen()));
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Help and support',
-                        style: kManRope_500_16_001314,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const HelpAndSupportScreen()));
-                        },
-                        child: SvgPicture.asset(
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const HelpAndSupportScreen()));
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Help and support',
+                          style: kManRope_500_16_001314,
+                        ),
+                        SvgPicture.asset(
                           'assets/icons/rightArrow.svg',
                           height: 12,
                           width: 6,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -338,19 +321,23 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                 SizedBox(
                   height: 40.h,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    _logOutBottomSheet();
-                  },
-                  child: Text(
-                    'Log Out',
-                    style: kManRope_500_16_B64949,
+                Padding(
+                  padding: EdgeInsets.only(bottom: 40.h),
+                  child: GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      _logOutBottomSheet();
+                    },
+                    child: Text(
+                      'Log Out',
+                      style: kManRope_500_16_B64949,
+                    ),
                   ),
                 )
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
@@ -391,14 +378,14 @@ class _LogOutBottomSheetState extends State<LogOutBottomSheet> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              CupertinoButton(
+              MaterialButton(
                 child: Text(
                   'Cancel',
                   style: kManRope_500_20_006D77,
                 ),
                 onPressed: () => Navigator.of(context).pop(),
               ),
-              CupertinoButton(
+              MaterialButton(
                 child: Text(
                   'Log out',
                   style: kManRope_500_20_B64949,

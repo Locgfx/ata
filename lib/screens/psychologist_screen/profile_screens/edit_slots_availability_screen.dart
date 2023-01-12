@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/buttons.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/fonts.dart';
-import '../../../widgets/shared/buttons/custom_active_text_button.dart';
 
 class EditSlotsAvailabilityScreen extends StatefulWidget {
   const EditSlotsAvailabilityScreen({Key? key}) : super(key: key);
@@ -28,6 +29,31 @@ class _EditSlotsAvailabilityScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 20.h),
+        child: Row(
+          children: [
+            Expanded(
+              child: MainButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: 20.h,
+                      bottom: 20.h,
+                    ),
+                    child: Text(
+                      "Save",
+                      style: kManRope_500_16_white,
+                    ),
+                  ),
+                  color: k006D77,
+                  shape: CustomDecoration().button16Decoration()),
+            ),
+          ],
+        ),
+      ),
       backgroundColor: Colors.white,
       appBar: CusAppBar(
         appBarText: 'Slots Availability',
@@ -35,7 +61,7 @@ class _EditSlotsAvailabilityScreenState
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
+          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 27.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -284,10 +310,6 @@ class _EditSlotsAvailabilityScreenState
               ),
               SizedBox(
                 height: 290.h,
-              ),
-              CustomActiveTextButton(
-                onPressed: () {},
-                text: 'Save',
               ),
             ],
           ),

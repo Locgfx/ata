@@ -49,7 +49,7 @@ class CustomDecoration {
 
   ShapeBorder outline16ButtonDecoration() {
     return RoundedRectangleBorder(
-        side: BorderSide(color: k006D77),
+        side: BorderSide(color: k006D77, width: 1),
         borderRadius: BorderRadius.circular(16));
   }
 
@@ -154,7 +154,7 @@ class TextfieldDecoration {
         ),
         border: InputBorder.none,
         hintText: label,
-        hintStyle: hintstyle!,
+        hintStyle: hintstyle ?? TextStyle(),
         suffixIconConstraints: BoxConstraints(minHeight: 0, minWidth: 0),
         suffixIcon: Padding(
             padding: EdgeInsets.only(right: 16.0),

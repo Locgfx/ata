@@ -46,37 +46,59 @@ class _PsychologistChangeEmailScreenState
               SizedBox(
                 height: 60.h,
               ),
+
+              Text(
+                'Change email ',
+                style: kManRope_400_16_626A6A,
+              ),
+              // SizedBox(
+              //   height: 8.h,
+              // ),
               TextField(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PsychologistChangeEmailScreen()));
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => PsychologistChangeEmailScreen()));
                 },
-                readOnly: true,
+                // readOnly: true,
                 decoration: TextfieldDecoration(
                   hintstyle: kManRope_400_16_626A6A,
-                  label: 'Change email',
+                  label: '',
                 ).underlinefieldDecoration(),
-              ),
-              SizedBox(
-                height: 50.h,
               ),
 
               BlackUnderline(),
-              TextField(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => PsychologistChangeEmailScreen()));
-                },
-                readOnly: true,
-                decoration: TextfieldDecoration(
-                  hintstyle: kManRope_400_16_626A6A,
-                  label: 'Change password',
-                ).underlinefieldDecoration(),
-              ),
               SizedBox(
                 height: 50.h,
               ),
+              Text(
+                'Change password ',
+                style: kManRope_400_16_626A6A,
+              ),
+              // SizedBox(
+              //   height: 8.h,
+              // ),
+              TextField(
+                onTap: () {
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //     builder: (context) => PsychologistChangeEmailScreen()));
+                },
+                // readOnly: true,
+                decoration: TextfieldDecoration(
+                  hintstyle: kManRope_400_16_626A6A,
+                  label: '',
+                ).underlinefieldDecoration(),
+              ),
+
               BlackUnderline(),
+
+              // SizedBox(
+              //   height: 50.h,
+              // ),
+
+              // SizedBox(
+              //   height: 50.h,
+              // ),
+              // BlackUnderline(),
               // Text(
               //   'Enter new email ',
               //   style: kManRope_400_16_626A6A,
@@ -97,7 +119,7 @@ class _PsychologistChangeEmailScreenState
               //   child: TextField(),
               // ),
               SizedBox(
-                height: 191.h,
+                height: 140.h,
               ),
               Center(
                 child: Text(

@@ -3,12 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/psychologist_screen/tabs_screen/psychologist_home_screen.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
-// dart';
-// import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/psychologist_screen/tabs_screen/psychologist_home_screen.dart';
-// import 'package:greymatter/widgets/buttons.dart';
 
 class PANVerified extends StatefulWidget {
   const PANVerified({Key? key}) : super(key: key);
@@ -22,13 +18,13 @@ class _PANVerifiedState extends State<PANVerified> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 80.h,
-          ),
-          Expanded(
-            child: Container(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 80.h,
+            ),
+            Container(
               width: 1.sw,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -43,7 +39,7 @@ class _PANVerifiedState extends State<PANVerified> {
                   children: [
                     Center(
                       child: Image.asset(
-                        'assets/images/successful.png',
+                        'assets/images/successfully-done (5) 1.gif',
                         height: 216.h,
                         width: 216.w,
                       ),
@@ -86,8 +82,7 @@ class _PANVerifiedState extends State<PANVerified> {
                             child: MainButton(
                                 onPressed: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          PsychologistHomeScreen()));
+                                      builder: (context) => TabsScreen()));
                                 },
                                 child: Padding(
                                   padding: EdgeInsets.symmetric(vertical: 20.h),
@@ -108,8 +103,8 @@ class _PANVerifiedState extends State<PANVerified> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

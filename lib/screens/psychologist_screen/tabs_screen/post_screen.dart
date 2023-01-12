@@ -25,7 +25,7 @@ class _PsychologistPostScreenState extends State<PsychologistPostScreen> {
       ].elementAt(_index),
       appBar: AppBar(
         elevation: 0,
-        toolbarHeight: 50,
+        toolbarHeight: 36,
         backgroundColor: Colors.white,
         centerTitle: true,
         titleSpacing: 10,
@@ -67,7 +67,7 @@ class _PsychologistPostScreenState extends State<PsychologistPostScreen> {
                     style: kManRope_700_16_001314,
                   ),
                   Container(
-                    height: 3.h,
+                    height: 2.h,
                     width: 60.w,
                     margin: EdgeInsets.only(top: 14),
                     color: _index == 1 ? k006D77 : Colors.white,

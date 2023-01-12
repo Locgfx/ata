@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/deleteaccount.dart';
 import 'package:greymatter/screens/psychologist_screen/profile_screens/change_email_screen.dart';
 import 'package:greymatter/screens/psychologist_screen/profile_screens/change_password_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/buttons.dart';
 
 import '../../../constants/decorations.dart';
 
@@ -116,11 +118,13 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
               //   ),
               // ),
               SizedBox(
-                height: 15.h,
+                height: 18.h,
               ),
               GestureDetector(
+                behavior: HitTestBehavior.translucent,
                 onTap: () {
-                  _deleteAccountBottomSheet();
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => DeleteAccount()));
                 },
                 child: Text(
                   'Delete Account',
@@ -167,30 +171,54 @@ class _DeleteAccountBottomSheetState extends State<DeleteAccountBottomSheet> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SizedBox(
-                height: 56.h,
-                width: 182.w,
-                child: CupertinoButton(
-                  child: Text(
-                    'Cancel',
-                    style: kManRope_500_16_001314,
+              MainButton(
+                  onPressed: () {},
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: 16.0, left: 33.5, bottom: 16, right: 33.5),
+                    child: Text(
+                      "Cancel",
+                      style: kManRope_500_16_white,
+                    ),
                   ),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
-              SizedBox(
-                height: 50.h,
-                width: 182.w,
-                child: CupertinoButton(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
-                  color: kB64949,
-                  child: Text(
-                    'Delete Account',
-                    style: kManRope_500_16_white,
+                  color: kB64C4C,
+                  shape: CustomDecoration().button16Decoration()),
+              MainButton(
+                  onPressed: () {},
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        top: 16.0, left: 33.5, bottom: 16, right: 33.5),
+                    child: Text(
+                      "Delete",
+                      style: kManRope_500_16_white,
+                    ),
                   ),
-                  onPressed: () => Navigator.of(context).pop(),
-                ),
-              ),
+                  color: kB64C4C,
+                  shape: CustomDecoration().button16Decoration()),
+              // SizedBox(
+              //   height: 60.h,
+              //   width: 182.w,
+              //   child: CupertinoButton(
+              //     child: Text(
+              //       'Cancel',
+              //       style: kManRope_500_16_001314,
+              //     ),
+              //     onPressed: () => Navigator.of(context).pop(),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: 60.h,
+              //   width: 182.w,
+              //   child: CupertinoButton(
+              //     borderRadius: BorderRadius.all(Radius.circular(16)),
+              //     color: kB64949,
+              //     child: Text(
+              //       'Delete Account',
+              //       style: kManRope_500_16_white,
+              //     ),
+              //     onPressed: () => Navigator.of(context).pop(),
+              //   ),
+              // ),
             ],
           ),
         ],
