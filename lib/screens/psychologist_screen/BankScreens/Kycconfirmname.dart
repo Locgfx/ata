@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/psychologist_screen/profile_screens/pan_verfied_screen.dart';
 
 class KycConfirmName extends StatefulWidget {
   const KycConfirmName({Key? key}) : super(key: key);
@@ -11,6 +12,19 @@ class KycConfirmName extends StatefulWidget {
 }
 
 class _KycConfirmNameState extends State<KycConfirmName> {
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(seconds: 5), () {
+      setPage();
+    });
+    //setPage();
+  }
+
+  setPage() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => PANVerified()));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

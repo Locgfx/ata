@@ -41,7 +41,7 @@ class _BankVerifyScreenState extends State<BankVerifyScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 40.h,
+              // height: 40.h,
               width: 380.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

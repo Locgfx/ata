@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/screens/posts_screens/reply_screen.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -19,29 +20,30 @@ class _CommentPageState extends State<CommentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          leadingWidth: 40.w,
-          backgroundColor: Colors.white,
-          title: Text(
-            "All Comments",
-            style: kManRope_500_16_006D77,
-          ),
-          titleSpacing: 18.w,
-          leading: InkWell(
-            onTap: () {
-              Navigator.pop(context);
-            },
-            child: const Padding(
-              padding: EdgeInsets.all(20.0),
-              child: Icon(
-                Icons.arrow_back_ios,
-                color: Colors.black,
-                size: 20,
-              ),
-            ),
-          ),
-        ),
+      appBar: CuswhiteAppBar(imgPath: 'assets/images/iconbackappbar2.png', appBarText: 'All Comments',),
+        // appBar: AppBar(
+        //   elevation: 0,
+        //   leadingWidth: 40.w,
+        //   backgroundColor: Colors.white,
+        //   title: Text(
+        //     "All Comments",
+        //     style: kManRope_500_16_006D77,
+        //   ),
+        //   titleSpacing: 18.w,
+        //   leading: InkWell(
+        //     onTap: () {
+        //       Navigator.pop(context);
+        //     },
+        //     child: const Padding(
+        //       padding: EdgeInsets.all(20.0),
+        //       child: Icon(
+        //         Icons.arrow_back_ios,
+        //         color: Colors.black,
+        //         size: 20,
+        //       ),
+        //     ),
+        //   ),
+        // ),
         backgroundColor: kWhiteBGColor,
         bottomNavigationBar: Padding(
           padding:
@@ -76,30 +78,21 @@ class _CommentPageState extends State<CommentPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: ImageIcon(
-                                  AssetImage("assets/images/photoimage.png"),
-                                  size: 24,
-                                  // color: ThemeColor.primarycolor,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: ImageIcon(
-                                  AssetImage("assets/images/imageph.png"),
-                                  size: 24,
-                                  // color: ThemeColor.primarycolor,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: ImageIcon(
-                                  AssetImage("assets/images/sendimage.png"),
-                                  size: 24,
-                                  color: k006D77,
-                                ),
-                              ),
+                              Container(
+                                height: 48,
+                                  width: 48,
+                                  // color: Colors.red,
+                                  child: Image.asset("assets/images/iconcameralage.png",height: 48,width: 48,)),
+                              Container(
+                                  height: 48,
+                                  width: 48,
+                                  // color: Colors.red,
+                                  child: Image.asset("assets/images/icongallerylarge.png",height: 48,width: 48,)),
+                              Container(
+                                  height: 48,
+                                  width: 48,
+                                  // color: Colors.red,
+                                  child: Image.asset("assets/images/iconsendlarge (2).png",height: 48,width: 48,)),
                               SizedBox(
                                 width: 20,
                               )

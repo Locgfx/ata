@@ -74,9 +74,16 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => EditSlotsAvailabilityScreen()));
                       },
-                      child: Text(
-                        'Edit',
-                        style: kManRope_500_16_006D77,
+                      child: Container(
+                        // color: Colors.red,
+                        height: 48.h,
+                        width: 50.w,
+                        child: Center(
+                          child: Text(
+                            'Edit',
+                            style: kManRope_500_16_006D77,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -89,6 +96,7 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
               SizedBox(
                 // height: 360.h,
                 child: ListView.separated(
+                  physics: NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.zero,
                     separatorBuilder: (context, index) =>
                         SizedBox(height: 8.h),
@@ -276,39 +284,35 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
               ),
               SizedBox(
                 height: 48.h,
-                width: 379.w,
+                width: 380.w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 48.h,
-                      width: 60.w,
-                      child: Text(
-                        'Holiday',
-                        style: kManRope_500_16_001314,
-                      ),
+                    Text(
+                      'Holiday',
+                      style: kManRope_500_16_001314,
                     ),
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => EditHolidayScreen()));
                       },
-                      child: SizedBox(
+                      child: Container(
+                        // color: Colors.red,
                         height: 48.h,
                         width: 50.w,
-                        child: Text(
-                          'Edit',
-                          style: kManRope_500_16_006D77,
-                          textAlign: TextAlign.end,
+                        child: Center(
+                          child: Text(
+                            'Edit',
+                            style: kManRope_500_16_006D77,
+                          ),
                         ),
                       ),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: 22.h,
-              ),
+              SizedBox(height: 8.h,),
               Text(
                 'Selected date & time',
                 style: kManRope_500_16_001314,
@@ -317,31 +321,36 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
                 height: 16.h,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: 175.w,
-                    height: 56.h,
-                    child: TextFormField(
-                      decoration: TextfieldDecoration(
-                          label: 'Mon, 12, 2022',
-                          child: Image.asset(
-                            "assets/images/iconcalender24.png",
-                            height: 24.h,
-                            width: 24.w,
-                          )).smalltextfieldDecoration(),
+                  Expanded(
+                    child: Container(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        decoration: TextfieldDecoration(
+                            label: 'Mon, 12, 2022',
+                            child: Image.asset(
+                              "assets/images/iconcalender24.png",
+                              height: 24.h,
+                              width: 24.w,
+                            )).smalltextfieldDecoration(),
+                      ),
                     ),
                   ),
-                  Container(
-                    width: 175.w,
-                    height: 56.h,
-                    child: TextFormField(
-                      decoration: TextfieldDecoration(
-                          label: 'Mon, 12, 2022',
-                          child: Image.asset(
-                            "assets/images/iconclock.png",
-                            height: 24.h,
-                          )).smalltextfieldDecoration(),
+                  SizedBox(width: 16.w),
+                  Expanded(
+                    child: Container(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        decoration: TextfieldDecoration(
+                            label: 'Mon, 12, 2022',
+                            child: Image.asset(
+                              "assets/images/iconclock.png",
+                              height: 24.h,
+                            )).smalltextfieldDecoration(),
+                      ),
                     ),
                   ),
                 ],
@@ -413,34 +422,69 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
                 height: 16.h,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: 175.w,
-                    height: 56.h,
-                    child: TextFormField(
-                      decoration: TextfieldDecoration(
-                          label: 'Mon, 12, 2022',
-                          child: Image.asset(
-                            "assets/images/iconcalender24.png",
-                            height: 24.h,
-                          )).smalltextfieldDecoration(),
+                  Expanded(
+                    child: Container(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        decoration: TextfieldDecoration(
+                            label: 'Mon, 12, 2022',
+                            child: Image.asset(
+                              "assets/images/iconcalender24.png",
+                              height: 24.h,
+                              width: 24.w,
+                            )).smalltextfieldDecoration(),
+                      ),
                     ),
                   ),
-                  Container(
-                    width: 175.w,
-                    height: 56.h,
-                    child: TextFormField(
-                      decoration: TextfieldDecoration(
-                          label: 'Mon, 12, 2022',
-                          child: Image.asset(
-                            "assets/images/iconclock.png",
-                            height: 24.h,
-                          )).smalltextfieldDecoration(),
+                  SizedBox(width: 16.w),
+                  Expanded(
+                    child: Container(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        decoration: TextfieldDecoration(
+                            label: 'Mon, 12, 2022',
+                            child: Image.asset(
+                              "assets/images/iconclock.png",
+                              height: 24.h,
+                            )).smalltextfieldDecoration(),
+                      ),
                     ),
                   ),
                 ],
               ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       width: 175.w,
+              //       height: 56.h,
+              //       child: TextFormField(
+              //         decoration: TextfieldDecoration(
+              //             label: 'Mon, 12, 2022',
+              //             child: Image.asset(
+              //               "assets/images/iconcalender24.png",
+              //               height: 24.h,
+              //             )).smalltextfieldDecoration(),
+              //       ),
+              //     ),
+              //     Container(
+              //       width: 175.w,
+              //       height: 56.h,
+              //       child: TextFormField(
+              //         decoration: TextfieldDecoration(
+              //             label: 'Mon, 12, 2022',
+              //             child: Image.asset(
+              //               "assets/images/iconclock.png",
+              //               height: 24.h,
+              //             )).smalltextfieldDecoration(),
+              //       ),
+              //     ),
+              //   ],
+              // ),
               SizedBox(height:81.h ,)
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,

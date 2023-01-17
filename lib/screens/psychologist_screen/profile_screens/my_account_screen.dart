@@ -66,8 +66,13 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
                                   PsychologistChangeEmailScreen()));
 
                         },
-                          child: Image.asset("assets/images/icondropdown.png",
-                            height: 48.h,width: 48.h,))
+                          child: Container(
+                            height: 48,
+                            width: 48,
+                            // color: Colors.red,
+                            child: Image.asset("assets/images/icondropdown.png",
+                              height: 48.h,width: 48.h,),
+                          ))
                     ],
                   ),
                 ),
@@ -87,8 +92,13 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text("Change password",style: kManRope_500_16_001314,),
-                      Image.asset("assets/images/icondropdown.png",
-                        height: 48.h,width: 48.h,)
+                      Container(
+                        height: 48,
+                        width: 48,
+                        // color: Colors.red,
+                        child: Image.asset("assets/images/icondropdown.png",
+                          height: 48.h,width: 48.h,),
+                      )
                     ],
                   ),
                 ),
@@ -107,7 +117,7 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
                   width: 1.sw,
                   child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Delete",style: kManRope_500_16_BD4D4D,),
+                      Text("Delete Account",style: kManRope_500_16_BD4D4D,),
                       // Image.asset("assets/images/icondropdown.png",height: 48.h,width: 48.h,)
                     ],
                   ),

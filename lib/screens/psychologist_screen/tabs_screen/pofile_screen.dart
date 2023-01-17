@@ -25,14 +25,24 @@ class PsychologistProfileScreen extends StatefulWidget {
 class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
   bool _switchValue = true;
 
-  void _logOutBottomSheet() {
+  // void _logOutBottomSheet() {
+  //   showModalBottomSheet(
+  //       shape: const RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.only(
+  //             topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+  //       ),
+  //       context: context,
+  //       builder: (BuildContext context) => const LogOutBottomSheet());
+  // }
+
+  void _profileLogoutBottomSheet() {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (BuildContext context) => const LogOutBottomSheet());
+        builder: (BuildContext context) => const ProfileLogoutBottomSheet());
   }
 
   @override
@@ -113,10 +123,13 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                           'Personal Info',
                           style: kManRope_500_16_001314,
                         ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
+                        Container(
+                          // color: Colors.red,
+                          child: Image.asset(
+                            'assets/images/iconrightblack.png',
+                            height: 24.w,
+                            width: 24.w,
+                          ),
                         ),
                       ],
                     ),
@@ -249,7 +262,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   style: kManRope_500_12_626A6A,
                 ),
                 SizedBox(
-                  height: 30.h,
+                  height: 16.h,
                 ),
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
@@ -347,11 +360,16 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      _logOutBottomSheet();
+                      _profileLogoutBottomSheet();
+                      // _logOutBottomSheet();
                     },
-                    child: Text(
-                      'Log Out',
-                      style: kManRope_500_16_B64949,
+                    child: SizedBox(
+                      height: 43.h,
+                      width: 79.w,
+                      child: Text(
+                        'Log Out',
+                        style: kManRope_500_16_B64949,
+                      ),
                     ),
                   ),
                 )
@@ -363,7 +381,138 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
     );
   }
 }
+class ProfileLogoutBottomSheet extends StatefulWidget {
+  const ProfileLogoutBottomSheet({Key? key}) : super(key: key);
 
+  @override
+  State<ProfileLogoutBottomSheet> createState() => _ProfileLogoutBottomSheet();
+}
+
+class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
+  int _gIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        // color: k006D77,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+
+      height: 251.h,
+      child: Column(
+        children: [
+          Container(
+            height: 71.h,
+            decoration: const BoxDecoration(
+              color: k006D77,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            ),
+            child: Center(
+              child: Text(
+                'Logout',
+                style: kManRope_700_16_white,
+              ),
+            ),
+          ),
+          Container(
+            height: 180.h,
+            color: kWhiteBGColor,
+            padding:EdgeInsets.only(top: 20.h),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
+            child: SafeArea(
+              top: false,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () => setState(() {
+                      _gIndex = 0;
+                      Navigator.of(context).pop();
+                    }),
+                    child: Text("Log out",style: kManRope_700_20_001314,)
+                  ),
+                  SizedBox(height: 16.h),
+                  Text("You will be returned to the login screen.",style: kManRope_500_16_626A6A,),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: Container(
+                      height: 1,
+                      width: 1.sw,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: Container(height: 52.h,
+                              padding: EdgeInsets.only(top: 16),
+                              child: Center(child: Text("Cancel",style:kManRope_500_20_006D77 ,)))),
+                      Container(height:52.h,color: Colors.white,width: 1,),
+                      Expanded(child: Container(
+                          padding: EdgeInsets.only(top: 16),
+
+                        height: 52.h,
+                          child: Center(child: Text("Logout",style: kManRope_500_20_B64949,)))),
+                    ],
+                  ),
+                  // GestureDetector(
+                  //   onTap: () => setState(() {
+                  //     _gIndex = 1;
+                  //     Navigator.of(context).pop();
+                  //   }),
+                  //   child: Container(
+                  //     height: 50.h,
+                  //     width: 215.w,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius:
+                  //       const BorderRadius.all(Radius.circular(5)),
+                  //       color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                  //     ),
+                  //     child: Center(
+                  //         child: Text(
+                  //           'This Week',
+                  //           style: _gIndex == 1
+                  //               ? kManRope_500_16_white
+                  //               : kManRope_500_16_626A6A,
+                  //         )),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 8.h),
+                  // GestureDetector(
+                  //   onTap: () => setState(() {
+                  //     _gIndex = 1;
+                  //     Navigator.of(context).pop();
+                  //   }),
+                  //   child: Container(
+                  //     height: 44.h,
+                  //     width: 215.w,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius:
+                  //       const BorderRadius.all(Radius.circular(5)),
+                  //       color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                  //     ),
+                  //     child: Center(
+                  //         child: Text(
+                  //           'This Year',
+                  //           style: _gIndex == 1
+                  //               ? kManRope_500_16_white
+                  //               : kManRope_500_16_626A6A,
+                  //         )),
+                  //   ),
+                  // ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 class LogOutBottomSheet extends StatefulWidget {
   const LogOutBottomSheet({Key? key}) : super(key: key);
 
@@ -374,48 +523,60 @@ class LogOutBottomSheet extends StatefulWidget {
 class _LogOutBottomSheetState extends State<LogOutBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 220.h,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 20.h,
-          ),
-          Text(
-            'Log out',
-            style: kManRope_700_20_001314,
-          ),
-          SizedBox(
-            height: 16.h,
-          ),
-          Text(
-            'You will be returned to the login screen.',
-            style: kManRope_500_16_626A6A,
-          ),
-          SizedBox(
-            height: 40.h,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              MaterialButton(
-                child: Text(
-                  'Cancel',
-                  style: kManRope_500_20_006D77,
+    return Container(
+      decoration: const BoxDecoration(
+        color: k006D77,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: k006D77,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        ),
+        height: 220.h,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 20.h,
+            ),
+            Text(
+              '',
+              style: kManRope_700_20_001314,
+            ),
+            SizedBox(
+              height: 16.h,
+            ),
+            Text(
+              'You will be returned to the login screen.',
+              style: kManRope_500_16_626A6A,
+            ),
+            SizedBox(
+              height: 40.h,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                MaterialButton(
+                  child: Text(
+                    'Cancel',
+                    style: kManRope_500_20_006D77,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
                 ),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-              MaterialButton(
-                child: Text(
-                  'Log out',
-                  style: kManRope_500_20_B64949,
+                MaterialButton(
+                  child: Text(
+                    'Log out',
+                    style: kManRope_500_20_B64949,
+                  ),
+                  onPressed: () => Navigator.of(context).pop(),
                 ),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

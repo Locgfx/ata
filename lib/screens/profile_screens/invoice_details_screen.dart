@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -12,34 +13,11 @@ class InvoiceDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
-        elevation: 0,
-        leadingWidth: 40.w,
-        centerTitle: false,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Invoice details',
-          style: kManRope_500_16_006D77,
-        ),
-        titleSpacing: 18.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-      ),
+     appBar: CuswhiteAppBar(imgPath: 'assets/images/iconbackappbar2.png', appBarText: 'Invoice details',),
       body: SingleChildScrollView(
         child: Padding(
           padding:
-              EdgeInsets.only(left: 24.w, right: 24.w, top: 26.h, bottom: 40.h),
+              EdgeInsets.only(left: 24.w, right: 24.w, top: 26.h, bottom: 26.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -114,7 +92,7 @@ class InvoiceDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 12.h,
+                height: 8.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,7 +112,7 @@ class InvoiceDetails extends StatelessWidget {
               ),
               Container(
                 height: 1.h,
-                width: 380.w,
+                width: 1.sw,
                 color: kD9D9D9,
               ),
               SizedBox(
@@ -161,7 +139,7 @@ class InvoiceDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 13.h,
+                height: 8.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -177,7 +155,7 @@ class InvoiceDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 13.h,
+                height: 8.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -197,7 +175,7 @@ class InvoiceDetails extends StatelessWidget {
               ),
               Container(
                 height: 1.h,
-                width: 380.w,
+                width: 1.sw,
                 color: kD9D9D9,
               ),
               SizedBox(
@@ -217,7 +195,7 @@ class InvoiceDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 130.h,
+                height: 150.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -233,7 +211,7 @@ class InvoiceDetails extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 66.h,
+                height: 80.h,
               ),
               SizedBox(
                 height: 56.h,

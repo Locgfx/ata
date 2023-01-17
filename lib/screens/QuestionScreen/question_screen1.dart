@@ -166,7 +166,7 @@ class _QuestionsState extends State<Questions> {
                                                       ? 470.h
                                                       : 405.h,
                       child: PageView(
-                        physics: NeverScrollableScrollPhysics(),
+                        //physics: NeverScrollableScrollPhysics(),
                         controller: _pageController,
                         onPageChanged: (v) {
                           setState(() {

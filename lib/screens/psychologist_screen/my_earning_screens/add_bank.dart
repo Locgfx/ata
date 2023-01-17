@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -6,6 +8,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 
 import '../../../constants/fonts.dart';
@@ -32,9 +35,10 @@ class AddBankScreen extends StatefulWidget {
 class _AddBankScreenState extends State<AddBankScreen> {
   void _banksBottomSheet() {
     showModalBottomSheet(
-        shape: const RoundedRectangleBorder(
+      isScrollControlled: true,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
         builder: (BuildContext context) => const BanksBottomSheet());
@@ -44,7 +48,7 @@ class _AddBankScreenState extends State<AddBankScreen> {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(8), topLeft: Radius.circular(8)),
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
         builder: (context) => const AccountTypeBottomSheet());
@@ -211,23 +215,45 @@ class _AddBankScreenState extends State<AddBankScreen> {
                     ).textfieldDecoration()),
               ),
               SizedBox(
-                height: 30.h,
+                height: 40.h,
               ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 35.h),
-                child: Center(
-                  child: SizedBox(
-                    height: 56.h,
-                    width: 168.w,
-                    child: CustomActiveTextButton1(
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => BankVerifyScreen()));
-                        },
-                        text: 'Save'),
-                  ),
-                ),
-              )
+              Center(
+                child: MainButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BankVerifyScreen()),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 15, bottom: 15,left:63.w,right: 71.w),
+                      child: Text(
+                        "Save",
+                        style: kManRope_500_16_white,
+                      ),
+                    ),
+                    color: k006D77,
+                    shape: CustomDecoration().smallButtonDecoration()),
+              ),
+              SizedBox(
+                height: 35.h,
+              ),
+              // Padding(
+              //   padding: EdgeInsets.only(bottom: 35.h),
+              //   child: Center(
+              //     child: SizedBox(
+              //       height: 56.h,
+              //       width: 168.w,
+              //       child: CustomActiveTextButton1(
+              //           onPressed: () {
+              //             Navigator.of(context).push(MaterialPageRoute(
+              //                 builder: (context) => BankVerifyScreen()));
+              //           },
+              //           text: 'Save'),
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),
@@ -236,6 +262,80 @@ class _AddBankScreenState extends State<AddBankScreen> {
   }
 }
 
+
+// void _banksBottomSheet() {
+//   showModalBottomSheet(
+//       shape: RoundedRectangleBorder(
+//         borderRadius: BorderRadius.only(
+//             topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+//       ),
+//       context: context,
+//       builder: (BuildContext context) => SizedBox(
+//         height: 800.h,
+//         child: Column(
+//           children: [
+//             Container(
+//               height: 71.h,
+//               decoration: BoxDecoration(
+//                 color: k006D77,
+//                 borderRadius: BorderRadius.only(
+//                     topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+//               ),
+//               child: Center(
+//                 child: Text(
+//                   'Select Bank',
+//                   style: kManRope_700_20_white,
+//                 ),
+//               ),
+//             ),
+//             SizedBox(height: 20,),
+//             Padding(
+//               padding:EdgeInsets.symmetric(horizontal: 24.w),
+//               child: Container(
+//                 height: 56.h,
+//                 width: 1.sw,
+//                 decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.all(Radius.circular(16)),
+//                   border: Border.all(color: k5A72ED.withOpacity(0.24)),
+//                 ),
+//                 child: TextField(
+//                   decoration: TextfieldDecoration(label: 'Search Transaction No',child: Image.asset("assets/images/searchicon.png",height:16,width: 16 ,)).searchFieldUutlineDecoration(),
+//                 ),
+//               ),
+//             ),
+//             SizedBox(height: 20.h),
+//             SizedBox(
+//               height: 236.h,
+//               child: ListView.builder(
+//                 itemCount:Banks.length,
+//                 itemBuilder: (context, index) {
+//                   return Padding(
+//                     padding: EdgeInsets.only(bottom: 8.h,left: 24.w),
+//                     child: Row(
+//                       children: [
+//                         Container(height: 48,
+//                           // color:Colors.red,
+//                           child: Center(
+//                             child: Padding(
+//                               padding:  EdgeInsets.only(left: 24.w),
+//                               child: Text(
+//                                 Banks[index],
+//                                 style: kManRope_400_16_001314,
+//                               ),
+//                             ),
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   );
+//                 },
+//               ),
+//             ),
+//
+//           ],
+//         ),
+//       ),
+// }
 class BanksBottomSheet extends StatefulWidget {
   const BanksBottomSheet({Key? key}) : super(key: key);
 
@@ -246,10 +346,9 @@ class BanksBottomSheet extends StatefulWidget {
 class _BanksBottomSheetState extends State<BanksBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      physics: NeverScrollableScrollPhysics(),
-      child: SizedBox(
-        height: 625.h,
+    return SafeArea(
+      // height: 800.h,
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -257,20 +356,18 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
               decoration: const BoxDecoration(
                 color: k006D77,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                    topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               ),
               child: Center(
                 child: Text(
-                  'Select Bank Name',
+                  'Select Bank',
                   style: kManRope_700_20_white,
                 ),
               ),
             ),
-            SizedBox(
-              height: 20.h,
-            ),
+            SizedBox(height: 20,),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              padding:EdgeInsets.symmetric(horizontal: 24.w),
               child: Container(
                 height: 56.h,
                 width: 1.sw,
@@ -278,79 +375,46 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                   border: Border.all(color: k5A72ED.withOpacity(0.24)),
                 ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  child: SizedBox(
-                    width: 297.w,
-                  child: TextField(
-                    decoration: TextfieldDecoration(
-                        label: 'Search Bank',
-                        child: Image.asset("assets/images/searchicon.png",
-                          height: 15,)).searchFieldDecoration(),
-                  ),
-                  //   child: TextField(
-                  //     decoration: InputDecoration(
-                  //       border: InputBorder.none,
-                  //       hintText: 'Search  Order ID',
-                  //       hintStyle: kManRope_400_14_626A6A,
-                  //     ),
-                  //   ),
-                  // ),
-                  // SvgPicture.asset(
-                  //   'assets/icons/search.svg',
-                  //   height: 24.h,
-                  //   width: 24.w,
-                  // ),
-                  ),
+                child: TextField(
+                  decoration: TextfieldDecoration(label: 'Search Transaction No',child: Image.asset("assets/images/searchicon.png",height:16,width: 16 ,)).searchFieldUutlineDecoration(),
                 ),
               ),
             ),
+            SizedBox(height: 20.h),
             SizedBox(
-              height: 14.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: SizedBox(
-                height: 450.h,
-                child: ListView.builder(
-                  // shrinkWrap: true,
-                  // physics: NeverScrollableScrollPhysics(),
-                  itemCount: Banks.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: EdgeInsets.only( bottom: 8.h),
-                      child: Row(
-                        children: [
-                          Center(
-                            child: Container(
-                              // color: Colors.red,
-                              width: 370.w,
-                              height:48.h,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 24.w),
-                                child: Column(mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      Banks[index],
-                                      style: kManRope_400_16_001314,
-                                    ),
-                                  ],
-                                ),
+              height: 500.h,
+              child: ListView.builder(
+                itemCount:Banks.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: 8.h,left: 24.w),
+                    child: Row(
+                      children: [
+                        Container(height: 48,
+                          color:Colors.transparent,
+                          child: Center(
+                            child: Padding(
+                              padding:  EdgeInsets.only(left: 24.w),
+                              child: Text(
+                                Banks[index],
+                                style: kManRope_400_16_001314,
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
+            SizedBox(height: 20.h,)
+
           ],
         ),
       ),
     );
+
   }
 }
 
@@ -365,8 +429,7 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
   int _gIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 207.h,
+    return SingleChildScrollView(
       child: Column(
         children: [
           Container(
@@ -374,7 +437,7 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
             decoration: const BoxDecoration(
               color: k006D77,
               borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(8), topRight: Radius.circular(8)),
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
             child: Center(
               child: Text(
@@ -385,66 +448,61 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
             ),
           ),
           Container(
-            height: 136.h,
-            padding: const EdgeInsets.only(top: 6.0),
-            margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
+            // height: 136.h,
+            padding: EdgeInsets.only(top: 20.h),
+            // margin: EdgeInsets.only(
+            //   // bottom: MediaQuery.of(context).viewInsets.bottom,
+            // ),
             // color: CupertinoColors.systemBackground.resolveFrom(context),
-            child: SafeArea(
-              top: false,
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 10.w),
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () => setState(() {
-                        _gIndex = 0;
-                        Navigator.of(context).pop();
-                      }),
-                      child: Container(
-                        height: 44.h,
-                        width: 101.w,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 0 ? k006D77 : Colors.white,
-                        ),
-                        child: Center(
-                            child: Text(
-                          'Current',
-                          style: _gIndex == 0
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
-                      ),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () => setState(() {
+                    _gIndex = 0;
+                    Navigator.of(context).pop();
+                  }),
+                  child: Container(
+                    height: 44.h,
+                    width: 101.w,
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                      color: _gIndex == 0 ? k006D77 : Colors.white,
                     ),
-                    SizedBox(height: 4.h,),
-                    GestureDetector(
-                      onTap: () => setState(() {
-                        _gIndex = 1;
-                        Navigator.of(context).pop();
-                      }),
-                      child: Container(
-                        height: 44.h,
-                        width: 101.w,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                               BorderRadius.all(Radius.circular(5)),
-
-                        ),
-                        child: Center(
-                            child: Text(
-                          'Saving',
-                          style: _gIndex == 1
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
-                      ),
-                    ),
-                  ],
+                    child: Center(
+                        child: Text(
+                      'Current',
+                      style: _gIndex == 0
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
+                  ),
                 ),
-              ),
+                SizedBox(height: 8.h,),
+                GestureDetector(
+                  onTap: () => setState(() {
+                    _gIndex = 1;
+                    Navigator.of(context).pop();
+                  }),
+                  child: Container(
+                    height: 44.h,
+                    width: 101.w,
+                    decoration: BoxDecoration(
+                      borderRadius:
+                           BorderRadius.all(Radius.circular(5)),
+
+                    ),
+                    child: Center(
+                        child: Text(
+                      'Saving',
+                      style: _gIndex == 1
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
+                  ),
+                ),
+                SizedBox(height: 20.h,)
+              ],
             ),
           ),
         ],

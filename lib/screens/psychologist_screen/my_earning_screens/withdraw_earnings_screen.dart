@@ -17,6 +17,7 @@ class _WithDrawEarningsScreenState extends State<WithDrawEarningsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       appBar: CusAppBar(
         appBarText: 'Withdraw',
@@ -28,7 +29,7 @@ class _WithDrawEarningsScreenState extends State<WithDrawEarningsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: 40.h,
+              // height: 40.h,
               width:380.w ,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

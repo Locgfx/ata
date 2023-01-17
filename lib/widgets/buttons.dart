@@ -77,7 +77,7 @@ class BottomSmallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 120.w, right: 120.w, bottom: 40),
+      padding: EdgeInsets.only(left: 130.w, right: 130.w, bottom: 40),
       child: MaterialButton(
         elevation: 0,
         color: k006D77,

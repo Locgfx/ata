@@ -28,7 +28,7 @@ class OrderHistoryScreen extends StatelessWidget {
                       builder: (context) => const InvoiceDetails()));
                 },
                 child: Container(
-                  height: 144.h,
+                  // height: 144.h,
                   width: 1.sw,
                   padding:
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),

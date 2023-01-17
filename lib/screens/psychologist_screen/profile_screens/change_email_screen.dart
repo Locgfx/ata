@@ -28,7 +28,7 @@ class _PsychologistChangeEmailScreenState
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 43.h),
+          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 39.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -54,16 +54,20 @@ class _PsychologistChangeEmailScreenState
               // SizedBox(
               //   height: 8.h,
               // ),
-              TextField(
-                onTap: () {
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) => PsychologistChangeEmailScreen()));
-                },
-                // readOnly: true,
-                decoration: TextfieldDecoration(
-                  hintstyle: kManRope_400_16_626A6A,
-                  label: '',
-                ).underlinefieldDecoration(),
+              Container(
+                height: 48.h,
+                // color: Colors.red,
+                child: TextField(
+                  onTap: () {
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => PsychologistChangeEmailScreen()));
+                  },
+                  // readOnly: true,
+                  decoration: TextfieldDecoration(
+                    hintstyle: kManRope_400_16_626A6A,
+                    label: '',
+                  ).underlinefieldDecoration(),
+                ),
               ),
 
               BlackUnderline(),
@@ -77,16 +81,20 @@ class _PsychologistChangeEmailScreenState
               // SizedBox(
               //   height: 8.h,
               // ),
-              TextField(
-                onTap: () {
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) => PsychologistChangeEmailScreen()));
-                },
-                // readOnly: true,
-                decoration: TextfieldDecoration(
-                  hintstyle: kManRope_400_16_626A6A,
-                  label: '',
-                ).underlinefieldDecoration(),
+              Container(
+                height: 48.h,
+                // color: Colors.red,
+                child: TextField(
+                  onTap: () {
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => PsychologistChangeEmailScreen()));
+                  },
+                  // readOnly: true,
+                  decoration: TextfieldDecoration(
+                    hintstyle: kManRope_400_16_626A6A,
+                    label: '',
+                  ).underlinefieldDecoration(),
+                ),
               ),
 
               BlackUnderline(),
@@ -119,7 +127,7 @@ class _PsychologistChangeEmailScreenState
               //   child: TextField(),
               // ),
               SizedBox(
-                height: 140.h,
+                height: 191.h,
               ),
               Center(
                 child: Text(

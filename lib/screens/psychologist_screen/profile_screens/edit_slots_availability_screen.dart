@@ -104,19 +104,19 @@ class _EditSlotsAvailabilityScreenState
                       'Availability',
                       style: kManRope_500_16_001314,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => EditSlotsAvailabilityScreen()));
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 12.w),
-                        child: Text(
-                          'Edit',
-                          style: kManRope_500_16_006D77,
-                        ),
-                      ),
-                    ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     Navigator.of(context).push(MaterialPageRoute(
+                    //         builder: (context) => EditSlotsAvailabilityScreen()));
+                    //   },
+                    //   // child: Padding(
+                    //   //   padding: EdgeInsets.only(right: 12.w),
+                    //   //   child: Text(
+                    //   //     'Edit',
+                    //   //     style: kManRope_500_16_006D77,
+                    //   //   ),
+                    //   // ),
+                    // ),
                   ],
                 ),
               ),
@@ -170,14 +170,14 @@ class _EditSlotsAvailabilityScreenState
                                 height:48.h,
                                 width:48.w,
                                 child: FlutterSwitch(
-                                  width: 40.w,
-                                  height: 20.h,
-                                  toggleSize: 15,
+                                  width: 60.w,
+                                  height: 28.h,
+                                  toggleSize: 20,
                                   activeColor: k006D77,
-                                  value: _switchValue1,
+                                  value: _switchValue,
                                   onToggle: (val) {
                                     setState(() {
-                                      _switchValue1 = val;
+                                      _switchValue = val;
                                     });
                                   },
                                 ),
@@ -185,6 +185,7 @@ class _EditSlotsAvailabilityScreenState
 
                             ],
                           ),
+
                         ],
                       );
                     }),
@@ -411,8 +412,33 @@ class _EditSlotsAvailabilityScreenState
               //   ],
               // ),
               SizedBox(
-                height: 290.h,
+                height: 277.h,
               ),
+              // Padding(
+              //   padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 58.h),
+              //   child: Row(
+              //     children: [
+              //       Expanded(
+              //         child: MainButton(
+              //             onPressed: () {
+              //               Navigator.pop(context);
+              //             },
+              //             child: Padding(
+              //               padding: EdgeInsets.only(
+              //                 top: 20.h,
+              //                 bottom: 20.h,
+              //               ),
+              //               child: Text(
+              //                 "Save",
+              //                 style: kManRope_500_16_white,
+              //               ),
+              //             ),
+              //             color: k006D77,
+              //             shape: CustomDecoration().button16Decoration()),
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),

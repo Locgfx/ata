@@ -45,7 +45,7 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 36.h,
+                // height: 36.h,
                 width: 380.w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

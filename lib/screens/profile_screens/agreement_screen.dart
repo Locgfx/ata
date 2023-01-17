@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/screens/profile_screens/agreement_details_screen.dart';
 import 'package:greymatter/screens/profile_screens/privacy_and_policy_screen.dart';
 import 'package:greymatter/screens/profile_screens/terms_and_conditions_screen.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -15,30 +16,7 @@ class AgreementScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
-        centerTitle: false,
-        elevation: 0,
-        leadingWidth: 50.w,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Agreement',
-          style: kManRope_500_16_006D77,
-        ),
-        titleSpacing: 18.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-      ),
+      appBar: CuswhiteAppBar(appBarText: 'Agreement', imgPath: 'assets/images/iconbackappbar2.png',),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(
@@ -59,10 +37,15 @@ class AgreementScreen extends StatelessWidget {
                       'Agreement',
                       style: kManRope_500_16_001314,
                     ),
-                    SvgPicture.asset(
-                      'assets/icons/rightArrow.svg',
-                      height: 12,
-                      width: 6,
+                    Container(
+                      height: 48,
+                      width: 48,
+                      // color: Colors.red,
+                      child: Image.asset(
+                        'assets/images/iconrightarrowlarge.png',
+                        height: 48,
+                        width: 48,
+                      ),
                     ),
                   ],
                 ),
@@ -87,10 +70,15 @@ class AgreementScreen extends StatelessWidget {
                       'Privacy and Policy',
                       style: kManRope_500_16_001314,
                     ),
-                    SvgPicture.asset(
-                      'assets/icons/rightArrow.svg',
-                      height: 12,
-                      width: 6,
+                    Container(
+                      height: 48,
+                      width: 48,
+                      // color: Colors.red,
+                      child: Image.asset(
+                        'assets/images/iconrightarrowlarge.png',
+                        height: 48,
+                        width: 48,
+                      ),
                     ),
                   ],
                 ),
@@ -115,10 +103,15 @@ class AgreementScreen extends StatelessWidget {
                       'Terms and Conditions',
                       style: kManRope_500_16_001314,
                     ),
-                    SvgPicture.asset(
-                      'assets/icons/rightArrow.svg',
-                      height: 12,
-                      width: 6,
+                    Container(
+                      height: 48,
+                      width: 48,
+                      // color: Colors.red,
+                      child: Image.asset(
+                        'assets/images/iconrightarrowlarge.png',
+                        height: 48,
+                        width: 48,
+                      ),
                     ),
                   ],
                 ),

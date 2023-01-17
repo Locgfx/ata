@@ -225,6 +225,11 @@ final kManRope_400_16_626A6A = GoogleFonts.manrope(
   fontSize: 16.sp,
   color: k626A6A,
 );
+final kManRope_400_20_626A6A = GoogleFonts.manrope(
+  fontWeight: FontWeight.w400,
+  fontSize: 20.sp,
+  color: k626A6A,
+);
 final kManRope_600_14_626A6A = GoogleFonts.manrope(
   fontWeight: FontWeight.w600,
   fontSize: 14.sp,

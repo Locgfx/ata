@@ -115,6 +115,8 @@ class _PsychologistPersonalInfoScreenState
                   ),
                 ],
               ),
+              // flag ? BasicDetails() : EditDoctorProfile(),
+
               flag ? EditbasicDetails() : EditDoctorProfile(),
               // flag ? PsychologistPersonalInfoScreen() : DoctorProfile(),
             ],

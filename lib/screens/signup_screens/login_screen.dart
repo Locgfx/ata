@@ -77,10 +77,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      if (_emailController.text.trim().isNotEmpty)
+                      /*if (_emailController.text.trim().isNotEmpty)
                         Text('Email / Mobile Number',
                             style: kManRope_400_14_626A6A),
-                      if (hasEmailFocus) SizedBox(height: 14),
+                      if (hasEmailFocus) SizedBox(height: 14),*/
                       TextFormField(
                         focusNode: emailNode,
                         onChanged: (val) {
@@ -108,15 +108,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _emailController,
                         decoration: InputDecoration(
                           // isCollapsed: true,
-                          // contentPadding: EdgeInsets.all(50),
-                          hintText: 'Email / Mobile Number',
-                          hintStyle: kManRope_400_16_626A6A,
+                          contentPadding: EdgeInsets.only(top: 8),
+                          labelText: 'Email / Mobile Number',
+                          labelStyle: kManRope_400_16_626A6A,
+                          floatingLabelStyle: kManRope_400_20_626A6A,
                         ),
                       ),
                       SizedBox(height: 38.h),
-                      if (_passwordController.text.trim().isNotEmpty)
+                      /*if (_passwordController.text.trim().isNotEmpty)
                         Text('Password', style: kManRope_400_14_626A6A),
-                      if (hasPassFocus) SizedBox(height: 14),
+                      if (hasPassFocus) SizedBox(height: 14),*/
                       TextFormField(
                         focusNode: passwordNode,
                         onChanged: (val) {
@@ -143,8 +144,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _passwordController,
                         obscureText: true,
                         decoration: InputDecoration(
-                          hintText: 'Password',
-                          hintStyle: kManRope_400_16_626A6A,
+                          contentPadding: EdgeInsets.only(top: 8),
+                          labelText: 'Password',
+                          labelStyle: kManRope_400_16_626A6A,
+                          floatingLabelStyle: kManRope_400_20_626A6A,
                           suffixIconConstraints:
                               BoxConstraints(minHeight: 24.w, minWidth: 24.h),
                           suffixIcon:

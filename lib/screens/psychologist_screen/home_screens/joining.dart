@@ -55,7 +55,7 @@ class _JoiningScreenState extends State<JoiningScreen> {
       //   ),
       // ),
       backgroundColor: kWhiteBGColor,
-      appBar: DotappBar(imgPath: "assets/images/Frame 48.png"),
+      appBar: DotappBar(imgPath: "assets/images/3doticonlarge.png"),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w),
@@ -79,7 +79,7 @@ class _JoiningScreenState extends State<JoiningScreen> {
               ),
               SizedBox(height: 40.h),
               SizedBox(
-                height: 408.h,
+                // height: 408.h,
                 child: ListView.separated(
                   physics: NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.zero,

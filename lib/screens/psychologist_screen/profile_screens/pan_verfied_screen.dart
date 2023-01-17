@@ -29,8 +29,8 @@ class _PANVerifiedState extends State<PANVerified> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(24),
-                    topLeft: Radius.circular(24)),
+                    topRight: Radius.circular(36),
+                    topLeft: Radius.circular(36)),
               ),
               child: Padding(
                 padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 122.h),
@@ -63,7 +63,7 @@ class _PANVerifiedState extends State<PANVerified> {
                       height: 11.h,
                     ),
                     Text(
-                      'Hi John Doe, tap on continue to confirm my name\nand PAN',
+                      'Hi John Doe, Please wait while PAN is verified\nand PAN',
                       style: kManRope_400_14_626A6A,
                     ),
                     SizedBox(
@@ -79,20 +79,20 @@ class _PANVerifiedState extends State<PANVerified> {
                     Row(
                       children: [
                         Expanded(
-                            child: MainButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => TabsScreen()));
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 20.h),
+                            child: SizedBox(
+                              height: 56.h,
+                              child: MainButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(MaterialPageRoute(
+                                        builder: (context) => TabsScreen()));
+                                  },
                                   child: Text(
                                     "Go Home",
                                     style: kManRope_500_16_white,
                                   ),
-                                ),
-                                color: k006D77,
-                                shape: CustomDecoration().button16Decoration()))
+                                  color: k006D77,
+                                  shape: CustomDecoration().button16Decoration()),
+                            ))
                       ],
                     ),
                     // Center(

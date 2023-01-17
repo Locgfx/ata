@@ -16,14 +16,14 @@ class EarningHistoryScreen extends StatefulWidget {
 }
 
 class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
-  void _Historyfilterbottomsheet() {
+  void _filterbottomsheet() {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) => const HistoryFilterBottomSheet());
+        builder: (context) =>FilterBottomSheet());
   }
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
               ),
             child:
             TextField(
-              decoration: TextfieldDecoration(label: 'Search Transaction No',child: Image.asset("assets/images/searchicon.png")).searchFieldDecoration(),
+              decoration: TextfieldDecoration(label: 'Search Transaction No',child: Image.asset("assets/images/searchicon.png",height:16,width: 16 ,)).searchFieldDecoration(),
             ),),
       ),
           // Padding(
@@ -95,7 +95,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                   GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      _Historyfilterbottomsheet();
+                      _filterbottomsheet();
                     },
                     child: Image.asset(
                       'assets/images/iconfilter.png',
@@ -123,7 +123,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                 children: [
                   SizedBox(
                     width:69.w,
-                    height: 14.h,
+                    // height: 14.h,
                     child: Text(
                       'Date',
                       style: kManRope_500_14_263238,
@@ -131,17 +131,17 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                   ),
                   SizedBox(width: 78.w,),
                   SizedBox(
-                    width:100.w,
-                    height: 16.h,
+                    width:104.w,
+                    // height: 16.h,
                     child: Text(
                       'Transaction No',
                       style: kManRope_500_14_263238,
                     ),
                   ),
-                  SizedBox(width: 78.w,),
+                  SizedBox(width: 74.w,),
                   SizedBox(
                     width:53.w,
-                    height: 16.h,
+                    // height: 16.h,
                     child: Text(
                       'Amount',
                       style: kManRope_500_14_263238,
@@ -167,7 +167,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                           children: [
                             SizedBox(
                               width:69.w,
-                              height: 14.h,
+                              // height: 14.h,
                               child: Text(
                                 '09.12.2022',
                                 style: kManRope_400_14_626A6A,
@@ -176,7 +176,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                             SizedBox(width: 78.w,),
                             SizedBox(
                               width:100.w,
-                              height: 16.h,
+                              // height: 16.h,
                               child: Text(
                                 '123456789',
                                 style: kManRope_400_16_626A6A,
@@ -185,7 +185,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                             SizedBox(width: 78.w,),
                             SizedBox(
                               width:53.w,
-                              height: 16.h,
+                              // height: 16.h,
                               child: Text(
                                 '500',
                                 style: kManRope_400_16_626A6A,

@@ -122,14 +122,35 @@ class TextfieldDecoration {
             padding: EdgeInsets.only(right: 16.0),
             child: child ?? SizedBox.shrink()));
   }
-
-
+  InputDecoration searchFieldUutlineDecoration() {
+    return InputDecoration(
+        contentPadding: EdgeInsets.only(
+          left: 16,
+        ),
+        // hintText: 'Search for help',
+        hintStyle: kManRope_400_14_626A6A,
+        border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(16.0)),
+        fillColor: Colors.transparent,
+        filled: true,
+        suffixIconConstraints: BoxConstraints(maxHeight: 35.h, maxWidth: 35.w),
+        // suffixIcon: SvgPicture.asset('assets/icons/search.svg'),
+        // border: InputBorder.none,
+        hintText: label,
+        // hintStyle: hintstyle!,
+        // suffixIconConstraints: BoxConstraints(minHeight: 0, minWidth: 0),
+        suffixIcon: Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: child ?? SizedBox.shrink()));
+  }
   // 'assets/icons/search.svg'
   InputDecoration textfieldDecoration() {
+
     return InputDecoration(
-        // contentPadding: EdgeInsets.only(
-        //   left: 16,
-        // ),
+        contentPadding: EdgeInsets.only(
+          left: 16,
+        ),
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -153,12 +174,52 @@ class TextfieldDecoration {
         suffixIcon: child ?? SizedBox.shrink());
   }
 
+  InputDecoration textfielde2f2f4Decoration() {
+
+    return InputDecoration(
+        contentPadding: EdgeInsets.only(
+          left: 16,
+        ),
+        filled: true,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide.none),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide.none),
+        focusColor: kWhiteBGColor,
+        fillColor: kE2F2F4,
+        hintText: label,
+        hintStyle: kManRope_400_14_001314,
+        suffixIconConstraints: BoxConstraints(minHeight: 10, minWidth: 10),
+        suffixIcon: child ?? SizedBox.shrink());
+  }
+
+  InputDecoration textfieldProfileDecoration() {
+
+    return InputDecoration(
+        isDense: true,
+        contentPadding: EdgeInsets.only(bottom: 10,),
+        border: InputBorder.none,
+        hintStyle: kManRope_400_16_001314,
+        hintText: label
+    );}
+
   InputDecoration underlinefieldDecoration() {
     return InputDecoration(
         contentPadding: EdgeInsets.only(
-          left: 0,
+          bottom: 20,
         ),
         border: InputBorder.none,
+        // contentPadding: EdgeInsets.zero,
         hintText: label,
         hintStyle: hintstyle ?? TextStyle(),
         suffixIconConstraints: BoxConstraints(minHeight: 0, minWidth: 0),
@@ -167,10 +228,22 @@ class TextfieldDecoration {
             child: child ?? SizedBox.shrink()));
   }
 
+  InputDecoration otpDecoration() {
+    return InputDecoration(
+      contentPadding: EdgeInsets.only(left:
+        20,
+      ),
+        border: InputBorder.none,
+        hintText: label,
+        hintStyle: kManRope_700_20_001314,
+
+      );
+  }
+
   InputDecoration blankfieldDecoration() {
     return InputDecoration(
         contentPadding: EdgeInsets.only(
-          left: 0,
+          left: 016,
         ),
         border: InputBorder.none,
         hintText: label,

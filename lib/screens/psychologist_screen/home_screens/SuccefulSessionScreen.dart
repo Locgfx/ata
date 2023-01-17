@@ -5,6 +5,7 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/screens/psychologist_screen/tabs_screen/prescription_screen.dart';
 import 'package:greymatter/screens/psychologist_screen/tabs_screen/psychologist_home_screen.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class SuccesfulSesionScreen extends StatefulWidget {
@@ -119,55 +120,55 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                 child: Row(
                   children: [
                     Expanded(
-                      child: MainButton(
-                        shape: CustomDecoration().border10Decoration(),
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => PsychologistHomeScreen()));
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+                      child: SizedBox(
+                        height: 56.h,
+                        child: MainButton(
+                          shape: CustomDecoration().border10Decoration(),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (ctx) => TabsScreen()));
+                          },
                           child: Text(
                             "Go to Home",
                             style: kManRope_500_16_006D77,
                           ),
+                          color: Colors.white,
                         ),
-                        color: Colors.white,
                       ),
                     ),
                     SizedBox(width: 10),
                     Expanded(
-                        child: MainButton(
+                        child: SizedBox(
+                          height: 56.h,
+                          child: MainButton(
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => PrescriptionScreen(),
-                          ),
-                        );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => TabsScreen(),
+                            ),
+                          );
                       },
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                              "assets/images/eyeicon.png",
-                              height: 15,
-                            ),
-                            SizedBox(
-                              width: 9.w,
-                            ),
-                            Text(
-                              "Prescription",
-                              style: kManRope_500_16_white,
-                            ),
-                          ],
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/eyeicon.png",
+                            height: 15,
+                          ),
+                          SizedBox(
+                            width: 9.w,
+                          ),
+                          Text(
+                            "Prescription",
+                            style: kManRope_500_16_white,
+                          ),
+                        ],
                       ),
                       color: k006D77,
                       shape: CustomDecoration().border10Decoration(),
-                    )),
+                    ),
+                        )),
                   ],
                 ),
               )

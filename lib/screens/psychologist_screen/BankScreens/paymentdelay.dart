@@ -24,7 +24,7 @@ class _PaymentDelayState extends State<PaymentDelay> {
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             content: Container(
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-              height: 156.h,
+              // height: 156.h,
               width: 379.w,
               child: Column(
                 children: [
@@ -35,12 +35,15 @@ class _PaymentDelayState extends State<PaymentDelay> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Image.asset(
-                          "assets/images/iconcross.png",
-                          height: 24.h,
-                          width: 24.w,
-                          // height: 12.h,
-                          // width: 12.w,
+                        child: Container(
+                          // color: Colors.red,
+                          child: Image.asset(
+                            "assets/images/iconcross.png",
+                            height: 24.h,
+                            width: 24.w,
+                            // height: 12.h,
+                            // width: 12.w,
+                          ),
                         ),
                       )),
                   SizedBox(

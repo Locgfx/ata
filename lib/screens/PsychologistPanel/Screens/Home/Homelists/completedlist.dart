@@ -14,6 +14,7 @@ class _CompletedListState extends State<CompletedList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kWhiteBGColor,
       body: Column(
         children: [
           SizedBox(
@@ -27,64 +28,54 @@ class _CompletedListState extends State<CompletedList> {
                   return Container(
                     height: 80.h,
                     width: 1.sw,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(16),
                         color: kWhiteBGColor,
                         border: Border.all(color: Colors.white)),
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
+                    child: Padding(
+                      padding:EdgeInsets.only(left: 16.w,right: 16.w),
+                      child: Row(
+                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 48.w,
-                                    height: 48.h,
-                                    clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(
-                                        color: Colors.grey,
-                                        borderRadius: BorderRadius.circular(8)),
-                                    child:
-                                        Image.asset('assets/images/userP.png'),
-                                  ),
-                                  SizedBox(width: 8.w),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Priyanka singh',
-                                          style: kManRope_500_16_001314),
-                                      //SizedBox(width: 10,),
-                                      SizedBox(height: 8.h),
-                                      SizedBox(
-                                        width: 280.w,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text('Anxiety',
-                                                style: kManRope_400_14_626A6A),
-                                            Text(
-                                              '10 June 2022, 8:00AM',
-                                              style: kManRope_400_14_626A6A,
-                                            ),
-                                          ],
+                              Container(
+                                height: 48.h,
+                                width: 48.w,
+                                decoration:  BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: Colors.grey, ),
+                                clipBehavior: Clip.hardEdge,
+                                child: Image.asset('assets/images/userP.png',fit: BoxFit.cover,),
+                              ),
+                              SizedBox(width: 16.w),
+                              SizedBox(
+                                width: 280.w,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Priyanka singh',
+                                        style: kManRope_500_16_001314),
+                                    Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('Anxiety',
+                                            style: kManRope_400_14_626A6A),
+                                        // SizedBox(width: 24.w),
+                                        Text(
+                                          '10 June 2022, 8:00AM',
+                                          style: kManRope_400_14_626A6A,
+                                          textAlign: TextAlign.end,
                                         ),
-                                      ),
-                                      // SizedBox(height: 8.h),
-                                    ],
-                                  ),
-                                ],
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           ),
+
                         ],
                       ),
                     ),

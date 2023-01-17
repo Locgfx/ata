@@ -82,6 +82,7 @@ class _ChatMessagesState extends State<ChatMessages> {
         ),
       ),
       body: SingleChildScrollView(
+        // physics: NeverScrollableScrollPhysics(),
         child: Padding(
           padding: EdgeInsets.only(
             left: 24.w,
@@ -219,8 +220,12 @@ class _ChatMessagesState extends State<ChatMessages> {
                   ),
                 ],
               ),
+              SizedBox(height: 24.h,),
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: Text("11:48 Pm",style:kManRope_400_14_001314 ,)),
               SizedBox(
-                height: 400.h,
+                height: 100.h,
                 child: GroupedListView<Messages, DateTime>(
                   physics: NeverScrollableScrollPhysics(),
                   // padding: EdgeInsets.zero,
@@ -251,7 +256,7 @@ class _ChatMessagesState extends State<ChatMessages> {
                             //     child: Text("hiii")),
 
                             Container(
-                              width: 281.w,
+                              // width: 281.w,
                               decoration: BoxDecoration(
                                   color:
                                       messages.isSentByme ? kFFFFFF : kFFFFFF,

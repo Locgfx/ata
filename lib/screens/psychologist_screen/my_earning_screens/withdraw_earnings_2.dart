@@ -45,7 +45,7 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: 40.h,
+                // height: 40.h,
                 width: 380.w,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -171,7 +171,7 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                 height: 291.h,
               ),
               Padding(
-                padding: EdgeInsets.only(bottom: 20.h),
+                padding: EdgeInsets.only(bottom: 120.h),
                 child: SizedBox(
                   height: 56.h,
                   width: 1.sw,
@@ -184,6 +184,7 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                   ),
                 ),
               )
+
             ],
           ),
         ),

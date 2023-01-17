@@ -15,6 +15,20 @@ class ConfirmName extends StatefulWidget {
 }
 
 class _ConfirmNameState extends State<ConfirmName> {
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   Future.delayed(Duration(seconds: 5), () {
+  //     setPage();
+  //   });
+  //   //setPage();
+  // }
+  //
+  // setPage() {
+  //   Navigator.of(context)
+  //       .push(MaterialPageRoute(builder: (context) => PANVerified()));
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +44,8 @@ class _ConfirmNameState extends State<ConfirmName> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(24),
-                    topLeft: Radius.circular(24)),
+                    topRight: Radius.circular(36),
+                    topLeft: Radius.circular(36)),
               ),
               child: Padding(
                 padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 76.h),
@@ -55,7 +69,7 @@ class _ConfirmNameState extends State<ConfirmName> {
                       height: 11.h,
                     ),
                     Text(
-                      'Hi John Doe, tap on continue to confirm my name\nand PAN',
+                      'Hi John Doe, tap on continue to confirm my name and PAN',
                       style: kManRope_500_14_626A6A,
                     ),
                     SizedBox(
@@ -66,27 +80,46 @@ class _ConfirmNameState extends State<ConfirmName> {
                       style: kManRope_500_14_006D77,
                     ),
                     SizedBox(
-                      height: 133.h,
+                      height: 122.h,
                     ),
                     Row(
                       children: [
                         Expanded(
+                          child: SizedBox(
+                            height:56.h,
                             child: MainButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => PANVerified()));
+                                  Navigator.of(context).push(
+                                      MaterialPageRoute(builder: (context) => KycConfirmName()));
                                 },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 20.h),
-                                  child: Text(
-                                    "Next",
-                                    style: kManRope_500_16_white,
-                                  ),
+                                child: Text(
+                                  "Next",
+                                  style: kManRope_500_16_white,
                                 ),
                                 color: k006D77,
-                                shape: CustomDecoration().button16Decoration()))
+                                shape: CustomDecoration().button16Decoration()),
+                          ),
+                        ),
                       ],
                     ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //         child: SizedBox(height:56,
+                    //           child: MainButton(
+                    //               onPressed: () {
+                    //                 Navigator.of(context).push(MaterialPageRoute(
+                    //                     builder: (context) => KycConfirmName()));
+                    //               },
+                    //               child: Text(
+                    //                 "Next",
+                    //                 style: kManRope_500_16_white,
+                    //               ),
+                    //               color: k006D77,
+                    //               shape: CustomDecoration().button16Decoration()),
+                    //         ))
+                    //   ],
+                    // ),
                     // Center(
                     //   child: CustomActiveTextButton(
                     //       onPressed: () {
@@ -103,21 +136,20 @@ class _ConfirmNameState extends State<ConfirmName> {
                       child: Row(
                         children: [
                           Expanded(
+                            child: SizedBox(
+                              height:56.h,
                               child: MainButton(
                                   onPressed: () {
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => KycConfirmName()));
+                                    Navigator.pop(context);
                                   },
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(vertical: 20.h),
-                                    child: Text(
-                                      "Edit PAN",
-                                      style: kManRope_500_16_006D77,
-                                    ),
+                                  child: Text(
+                                    "Edit PAN",
+                                    style: kManRope_500_16_006D77,
                                   ),
                                   color: kFFFFFF,
-                                  shape: CustomDecoration()
-                                      .outline16ButtonDecoration()))
+                                  shape: CustomDecoration().outline16ButtonDecoration()),
+                            ),
+                          ),
                         ],
                       ),
                     ),

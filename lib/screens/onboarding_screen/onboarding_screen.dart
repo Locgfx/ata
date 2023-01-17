@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/screens/signup_screens/login_screen.dart';
+import 'package:greymatter/screens/welcome_screen/welcome_screen.dart';
 import 'package:greymatter/widgets/onboarding_screen_widgets/onb_slide.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_text_w_icon_button.dart';
 
@@ -61,116 +62,116 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         backgroundColor: Colors.transparent,
         systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
-      body: SingleChildScrollView(
-        // physics: NeverScrollableScrollPhysics(),
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 80.h,
-              ),
-              SizedBox(
-                height: 531.h,
-                width: 1.sw,
-                child: PageView(
-                  controller: _controller,
-                  onPageChanged: (val) {
-                    //print(_index);
-                    setState(() {
-                      _index = val;
-                    });
-                    //print(_index);
-                  },
-                  children: const [
-                    OnbSlide(
-                        text:
-                            'Book an instant appointment with the right  Psychologists',
-                        image: 'assets/images/onb1.png'),
-                    OnbSlide(
-                        text:
-                            'Book an instant appointment with the right  Psychologists',
-                        image: 'assets/images/onb2.png'),
-                    OnbSlide(
-                        text:
-                            'Book an instant appointment with the right  Psychologists',
-                        image: 'assets/images/onb3.png'),
-                    OnbSlide(
-                        text:
-                            'Book an instant appointment with the right  Psychologists',
-                        image: 'assets/images/onb4.png'),
-                  ],
-                ),
-              ),
-              SizedBox(height: 24.h),
-              Container(
-                height: 4.h,
-                decoration: BoxDecoration(
-                  color: k5A72ED.withOpacity(0.15),
-                  borderRadius: BorderRadius.circular(2),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedContainer(
-                      width: 24.w,
-                      decoration: BoxDecoration(
-                        color: _index % 4 == 0 ? k5A72ED : Colors.transparent,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                      duration: const Duration(milliseconds: 200),
-                    ),
-                    AnimatedContainer(
-                      width: 24.w,
-                      decoration: BoxDecoration(
-                        color: _index % 4 == 1 ? k5A72ED : Colors.transparent,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                      duration: const Duration(milliseconds: 200),
-                    ),
-                    AnimatedContainer(
-                      width: 24.w,
-                      decoration: BoxDecoration(
-                        color: _index % 4 == 2 ? k5A72ED : Colors.transparent,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                      duration: const Duration(milliseconds: 200),
-                    ),
-                    AnimatedContainer(
-                      width: 24.w,
-                      decoration: BoxDecoration(
-                        color: _index % 4 == 3 ? k5A72ED : Colors.transparent,
-                        borderRadius: BorderRadius.circular(2),
-                      ),
-                      duration: const Duration(milliseconds: 200),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 48.h),
-              CustomTextWIconButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (ctx) => LoginScreen()));
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 80.h
+            ),
+            Expanded(
+              //height: 531.h,
+              //width: 1.sw,
+              child: PageView(
+                controller: _controller,
+                onPageChanged: (val) {
+                  //print(_index);
+                  setState(() {
+                    _index = val;
+                  });
+                  //print(_index);
                 },
-                text: 'I am seeking help',
+                children: const [
+                  OnbSlide(
+                      text:
+                          'Book an instant appointment with the right  Psychologists',
+                      image: 'assets/images/onb1.png'),
+                  OnbSlide(
+                      text:
+                          'Book an instant appointment with the right  Psychologists',
+                      image: 'assets/images/onb2.png'),
+                  OnbSlide(
+                      text:
+                          'Book an instant appointment with the right  Psychologists',
+                      image: 'assets/images/onb3.png'),
+                  OnbSlide(
+                      text:
+                          'Book an instant appointment with the right  Psychologists',
+                      image: 'assets/images/onb4.png'),
+                ],
               ),
-              SizedBox(height: 26.h),
-              SizedBox(
-                width: 1.sw,
-                height: 56.h,
-                child: CustomSecondaryButton(
-                  onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) => FormScreen()));
-                  },
-                  text: 'I am a psychologist',
-                ),
+            ),
+            SizedBox(height: 24.h),
+            Container(
+              height: 4.h,
+              decoration: BoxDecoration(
+                color: k5A72ED.withOpacity(0.15),
+                borderRadius: BorderRadius.circular(2),
               ),
-              SizedBox(height: 38.h),
-            ],
-          ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AnimatedContainer(
+                    width: 24.w,
+                    decoration: BoxDecoration(
+                      color: _index % 4 == 0 ? k5A72ED : Colors.transparent,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                    duration: const Duration(milliseconds: 200),
+                  ),
+                  AnimatedContainer(
+                    width: 24.w,
+                    decoration: BoxDecoration(
+                      color: _index % 4 == 1 ? k5A72ED : Colors.transparent,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                    duration: const Duration(milliseconds: 200),
+                  ),
+                  AnimatedContainer(
+                    width: 24.w,
+                    decoration: BoxDecoration(
+                      color: _index % 4 == 2 ? k5A72ED : Colors.transparent,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                    duration: const Duration(milliseconds: 200),
+                  ),
+                  AnimatedContainer(
+                    width: 24.w,
+                    decoration: BoxDecoration(
+                      color: _index % 4 == 3 ? k5A72ED : Colors.transparent,
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                    duration: const Duration(milliseconds: 200),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 48.h),
+            CustomTextWIconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (ctx) =>
+                WelcomeScreen(),
+                    // LoginScreen()
+                ));
+              },
+              text: 'I am seeking help',
+            ),
+            SizedBox(height: 26.h),
+            SizedBox(
+              width: 1.sw,
+              height: 56.h,
+              child: CustomSecondaryButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (ctx) => FormScreen()));
+                },
+                text: 'I am a psychologist',
+              ),
+            ),
+            SizedBox(height: 38.h),
+          ],
         ),
       ),
     );

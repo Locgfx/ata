@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../profile_screens/reset_email_otp_screen.dart';
@@ -42,7 +43,7 @@ class _PsychologistChangePasswordScreenState
                 height: 8.h,
               ),
               SizedBox(
-                height: 48.h,
+                height: 47.h,
                 width: 1.sw,
                 child: TextField(),
               ),
@@ -57,7 +58,7 @@ class _PsychologistChangePasswordScreenState
                 height: 8.h,
               ),
               SizedBox(
-                height: 48.h,
+                height: 47.h,
                 width: 1.sw,
                 child: TextField(),
               ),
@@ -72,12 +73,12 @@ class _PsychologistChangePasswordScreenState
                 height: 8.h,
               ),
               SizedBox(
-                height: 48.h,
+                height: 47.h,
                 width: 1.sw,
                 child: TextField(),
               ),
               SizedBox(
-                height: 310.h,
+                height: 386.h,
               ),
               Padding(
                 padding: EdgeInsets.only(bottom: 20.h),
@@ -88,7 +89,7 @@ class _PsychologistChangePasswordScreenState
                     child: MaterialButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => ResetEmailOTPScreen()));
+                            builder: (context) => TabsScreen()));
                       },
                       color: k006D77,
                       shape: RoundedRectangleBorder(

@@ -57,8 +57,8 @@ class _KycScreenState extends State<KycScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(24),
-                    topLeft: Radius.circular(24)),
+                    topRight: Radius.circular(36),
+                    topLeft: Radius.circular(36)),
               ),
               child: Padding(
                 padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 102.h),
@@ -159,10 +159,15 @@ class _KycScreenState extends State<KycScreen> {
                                 'Your data is protected by \nAtaraxis',
                                 style: kManRope_500_16_001314,
                               ),
-                              Image.asset(
-                                'assets/images/security-unlock 1.png',
-                                height: 64.h,
-                                width: 46.w,
+                              Container(
+                                height: 64,
+                                width: 46,
+                                // color: Colors.red,
+                                child: Image.asset(
+                                  'assets/images/security-unlock 1.png',
+                                  height: 64,
+                                  width: 46,
+                                ),
                               ),
                             ],
                           ),
@@ -177,23 +182,20 @@ class _KycScreenState extends State<KycScreen> {
                       child: Row(
                         children: [
                           Expanded(
-                            child: MainButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) => ConfirmName()));
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    top: 20.h,
-                                    bottom: 20.h,
-                                  ),
+                            child: SizedBox(
+                              height:56.h,
+                              child: MainButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (context) => ConfirmName()));
+                                  },
                                   child: Text(
                                     "Next",
                                     style: kManRope_500_16_white,
                                   ),
-                                ),
-                                color: k006D77,
-                                shape: CustomDecoration().button16Decoration()),
+                                  color: k006D77,
+                                  shape: CustomDecoration().button16Decoration()),
+                            ),
                           ),
                         ],
                       ),

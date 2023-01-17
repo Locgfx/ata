@@ -30,7 +30,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
               //   height: 10.h,
               // ),
               Padding(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w),
+                padding: EdgeInsets.only(left: 24.w, right: 24.w,top: 30.h),
                 child: Container(
                   // height: 173.h,
                   width: 1.sw,
@@ -226,7 +226,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                     children: [
                       SizedBox(
                         width:69.w,
-                        height: 16.h,
+                        // height: 16.h,
                         child: Text(
                           'Date',
                           style: kManRope_500_14_263238,
@@ -236,7 +236,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
 
                       SizedBox(
                         width:100.w,
-                        height: 16.h,
+                        // height: 16.h,
                         child: Text(
                           'Transaction No',
                           style: kManRope_500_14_263238,
@@ -246,7 +246,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
 
                       SizedBox(
                         width:53.w,
-                        height: 16.h,
+                        // height: 16.h,
                         child: Text(
                           'Amount',
                           style: kManRope_500_14_263238,
@@ -260,13 +260,14 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                 height: 17.h,
               ),
               Container(
-                height: 229.h,
+                // height: 229.h,
                 child: Padding(
                   padding: EdgeInsets.only(
                     left: 25.w,
                     right: 25.h,
                   ),
                   child: ListView.separated(
+                    shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
                       itemBuilder: (ctx, index) {
@@ -277,7 +278,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                               children: [
                                 SizedBox(
                                   width:69.w,
-                                  height: 16.h,
+                                  // height: 16.h,
                                   child: Text(
                                     '09.12.2022',
                                     style: kManRope_400_14_626A6A,
@@ -286,7 +287,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                                 SizedBox(width: 78.w,),
                                 SizedBox(
                                   width:100.w,
-                                  height: 16.h,
+                                  // height: 16.h,
                                   child: Text(
                                     '123456789',
                                     style: kManRope_400_16_626A6A,
@@ -295,7 +296,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                                 SizedBox(width: 78.w,),
                                 SizedBox(
                                   width:40.w,
-                                  height: 16.h,
+                                  // height: 16.h,
                                   child: Text(
                                     '500',
                                     style: kManRope_400_16_626A6A,

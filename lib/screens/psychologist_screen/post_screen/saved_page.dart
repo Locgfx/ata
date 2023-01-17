@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/screens/posts_screens/comment_page.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 
 import '../../../constants/colors.dart';
@@ -46,45 +47,39 @@ class _PsychologistSavedScreenState extends State<PsychologistSavedScreen> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         SizedBox(
-                          height: 50.h,
                           width: 1.sw,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Container(
-                                        width: 45.w,
-                                        height: 45.h,
-                                        clipBehavior: Clip.hardEdge,
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey,
-                                            borderRadius:
-                                            BorderRadius.circular(24)),
-                                        child:
-                                        Image.asset('assets/images/userP.png'),
-                                      ),
-                                      SizedBox(width: 8.w),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          Text('Priya singh',
-                                              style: kManRope_400_16_Black),
-                                          SizedBox(height: 1.h),
-                                          Text('2 hours ago',
-                                              style: kManRope_400_12_626A6A),
-                                          SizedBox(height: 8.h),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-
-                                ],
+                              Container(
+                                height: 45.h,
+                                width: 135.w,
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 45.h,
+                                      width: 45.w,
+                                      decoration: const BoxDecoration(
+                                          color: Colors.grey, shape: BoxShape.circle),
+                                      clipBehavior: Clip.hardEdge,
+                                      child: Image.asset('assets/images/userP.png'),
+                                    ),
+                                    SizedBox(width: 8.w),
+                                    Column(mainAxisAlignment: MainAxisAlignment.center,
+                                      // mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Priya singh',
+                                            style: kManRope_500_16_Black),
+                                        // SizedBox(height: 1.h),
+                                        Text('2 hours ago',
+                                            style: kManRope_400_12_626A6A),
+                                        // SizedBox(height: 8.h),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                               GestureDetector(
                                   behavior: HitTestBehavior.translucent,
@@ -173,22 +168,32 @@ class _PsychologistSavedScreenState extends State<PsychologistSavedScreen> {
                                         height: 48.h,
                                         width: 48.w,
                                       ),
-                                      Text('375', style: kManRope_400_14_Black),
+                                      Text('375', style: kManRope_400_14_626A6A),
                                     ],
                                   ),
                                   SizedBox(width: 16.w,),
 
                                   Row(
                                     children: [
-                                      Image.asset(
-                                        'assets/images/iconcommentlarge48.png',
-                                        height: 48.h,
-                                        width: 48.w,
+                                      GestureDetector(
+                  onTap
+                  : () {
+
+                                      Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => const CommentPage(),
+                                    ),
+                                  );},
+                                        child: Image.asset(
+                                          'assets/images/iconcommentlarge48.png',
+                                          height: 48.h,
+                                          width: 48.w,
+                                        ),
                                       ),
                                       // SizedBox(
                                       //   width: 15.w,
                                       // ),
-                                      Text('375', style: kManRope_400_14_Black),
+                                      Text('20', style: kManRope_400_14_626A6A),
                                     ],
                                   ),
                                 ],
@@ -196,18 +201,28 @@ class _PsychologistSavedScreenState extends State<PsychologistSavedScreen> {
 
                               Row(
                                 children: [
-                                  Image.asset(
-                                    'assets/images/iconbookmark48large.png',
-                                    height: 48.h,
-                                    width: 48.w,
+                                  Container(
+                                    height: 48,
+                                    width:48,
+                                    // color: Colors.red,
+                                    child: Image.asset(
+                                      'assets/images/iconbookmark48large.png',
+                                      height: 48,
+                                      width: 48,
+                                    ),
                                   ),
-                                  SizedBox(
-                                    width: 8.w,
-                                  ),
-                                  Image.asset(
-                                    'assets/images/iconsharelarge48.png',
-                                    height: 48.h,
-                                    width: 48.w,
+                                  // SizedBox(
+                                  //   width: 8.w,
+                                  // ),
+                                  Container(
+                                    height: 48,
+                                    width:48,
+                                    // color: Colors.red,
+                                    child: Image.asset(
+                                      'assets/images/iconsharelarge48.png',
+                                      height: 48,
+                                      width: 48,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -223,7 +238,7 @@ class _PsychologistSavedScreenState extends State<PsychologistSavedScreen> {
                               TextSpan(
                                 style: kManRope_400_14_626A6A,
                                 text:
-                                    '“There is only one way to happiness and that is to cease worrying about things which are beyond the power of our will.” ...',
+                                '“There is only one way to happiness and that is to cease worrying about things which are beyond the power of our will.” ...',
                               ),
                               WidgetSpan(
                                 child: Container(
@@ -243,16 +258,16 @@ class _PsychologistSavedScreenState extends State<PsychologistSavedScreen> {
                   );
                 },
                 separatorBuilder: (ctx, index) {
-                  return SizedBox(height: 41.h);
+                  return SizedBox(height: 40.h);
                 },
                 itemCount: 10),
           ),
           // Positioned(
-          //   bottom: 100.h,
+          //   bottom: 120.h,
           //   child: GestureDetector(
           //     onTap: () {
-          //       // Navigator.of(context).push(MaterialPageRoute(
-          //       //     builder: (context) => PsychologistCreatePostScreen()));
+          //       Navigator.of(context).push(MaterialPageRoute(
+          //           builder: (context) => PsychologistCreatePostScreen()));
           //     },
           //     child: SvgPicture.asset(
           //       'assets/icons/addPost_1.svg',
@@ -260,7 +275,8 @@ class _PsychologistSavedScreenState extends State<PsychologistSavedScreen> {
           //       width: 72.w,
           //     ),
           //   ),
-          // )
+          // ),
+          SizedBox(height: 20.h),
         ],
       ),
     );

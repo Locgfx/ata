@@ -53,6 +53,7 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
                 padding: EdgeInsets.only(
                   left: 24.w,
                   right: 24.w,
+                  top: 30.h
                 ),
                 child: Column(
                   children: [
@@ -285,6 +286,7 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
                     Container(
                       height: 380.h,
                       child: PageView(
+
                         controller: _pageController,
                         onPageChanged: (page) {
                           setState(

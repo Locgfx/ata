@@ -65,7 +65,7 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              height: 14.h,
+                              // height: 1.sh,
                               width: 76.w,
                               child: Text(
                                 'Date',
@@ -76,7 +76,7 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                             // SizedBox(width: 70.w,),
                             SizedBox(
                               width: 97.w,
-                              height: 14.h,
+                              // height: 14.h,
                               child: Text(
                                 'Full Name',
                                 style: kManRope_400_14_white,
@@ -85,8 +85,8 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                             SizedBox(width: 26.w,),
                             // SizedBox(width: 59.w,),
                             SizedBox(
-                              width: 63.w,
-                              height: 14.h,
+                              width: 120.w,
+                              // height: 14.h,
                               child: Text(
                                 'Transaction NO',
                                 style: kManRope_400_14_white,
@@ -108,23 +108,26 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                     height: 12.h,
                   ),
                   SizedBox(
-                    height: 581.h,
+                    // height: 581.h,
                     child: ListView.separated(
-                        // shrinkWrap: true,
+                      padding: EdgeInsets.zero,
+                      physics: NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
                         itemBuilder: (ctx, index) {
                           return Column(
                             children: [
                               Padding(
-                                padding:EdgeInsets.only(left: 24.w,right:46.w ),
+                                padding:EdgeInsets.only(left: 24.w,right:40.w ),
                                 child: SizedBox(
-                                  height:44.h,width:358.w,
+                                  height:44.h,
+                                  width:358.w,
                                   child: Row(
                                     // mainAxisAlignment:
                                     //     MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
                                         width: 76.w,
-                                        height:14.h,
+                                        // height:14.h,
                                         child: Text(
                                           '20, Mon, 22',
                                           style: kManRope_500_14_626A6A,
@@ -133,7 +136,7 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                                       SizedBox(width: 26.w,),
                                       SizedBox(
                                         width: 97.w,
-                                        height: 14.h,
+                                        // height: 14.h,
                                         child: Text(
                                           'Pankaj Sharma',
                                           style: kManRope_500_14_626A6A,
@@ -141,8 +144,8 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                                       ),
                                       SizedBox(width: 26.w,),
                                       SizedBox(
-                                        width: 63.w,
-                                        height: 14.h,
+                                        width: 65.w,
+                                        // height: 14.h,
                                         child: Text(
                                           'AB654151',
                                           style: kManRope_500_14_626A6A,
@@ -157,13 +160,14 @@ class _PrescriptionScreenState extends State<PrescriptionScreen> {
                                                   builder: (context) =>
                                                       EditPrescriptionViewScreen()));
                                         },
-                                        child: SizedBox(
-                                          height:44.h,
-                                          width:44.w,
+                                        child: Container(
+                                          // color: Colors.red,
+                                          height:40.h,
+                                          width:40.w,
                                           child: Image.asset(
                                             'assets/images/iconeyelarge.png',
-                                            height: 44.h,
-                                            width: 44.w,
+                                            height: 40.h,
+                                            width: 40.w,
                                           ),
                                         ),
                                       ),

@@ -14,84 +14,95 @@ class PsychologistCreatePostScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        margin: EdgeInsets.symmetric(horizontal: 100),
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 60.0),
-          child: MainButton(
-              onPressed: () {},
-              child: Padding(
-                padding: EdgeInsets.only(top: 16.h, bottom: 16.h),
-                child: Text(
-                  "Post",
-                  style: kManRope_400_16_white,
-                ),
-              ),
-              color: k006D77,
-              shape: CustomDecoration().smallButton10Decoration()),
-        ),
-      ),
+      // bottomNavigationBar: Container(
+      //   margin: EdgeInsets.symmetric(horizontal: 100),
+      //   child: Padding(
+      //     padding: const EdgeInsets.only(bottom: 60.0),
+      //     child: MainButton(
+      //         onPressed: () {},
+      //         child: Padding(
+      //           padding: EdgeInsets.only(top: 16.h, bottom: 16.h),
+      //           child: Text(
+      //             "Post",
+      //             style: kManRope_400_16_white,
+      //           ),
+      //         ),
+      //         color: k006D77,
+      //         shape: CustomDecoration().smallButton10Decoration()),
+      //   ),
+      // ),
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: 'Create post',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
+        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 42.h),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      Container(
-                        height: 45.h,
-                        width: 45.w,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage("assets/images/userP.png"),
-                              fit: BoxFit.cover),
-                          color: Colors.grey,
-                          shape: BoxShape.circle,
+              SizedBox(
+                height: 45,
+                width: 1.sw,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 45.h,
+                          width: 45.w,
+                          decoration: const BoxDecoration(
+                              color: Colors.grey, shape: BoxShape.circle),
+                          clipBehavior: Clip.hardEdge,
+                          child: Image.asset('assets/images/userP.png'),
                         ),
-                      ),
-                      SizedBox(
-                        width: 8.w,
-                      ),
-                      Text(
-                        'Priya Singh',
-                        style: kManRope_500_16_001314,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/icons/camera2.svg',
-                        height: 24.h,
-                        width: 24.w,
-                      ),
-                      SizedBox(
-                        width: 8.w,
-                      ),
-                      SvgPicture.asset(
-                        'assets/icons/files.svg',
-                        height: 24.h,
-                        width: 24.w,
-                      ),
-                    ],
-                  ),
-                ],
+                        SizedBox(
+                          width: 8.w,
+                        ),
+                        Text(
+                          'Priya Singh',
+                          style: kManRope_500_16_001314,
+                        ),
+                      ],
+                    ),
+                    Row(crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 18,
+                          width: 20,
+                          // color: Colors.red,
+                          child: Image.asset(
+                            'assets/images/iconcamera.png',
+                            height: 18,
+                            width: 20,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 14.w,
+                        ),
+                        Container(
+                          height: 18,
+                          width: 20,
+                          // color: Colors.red,
+                          child: Image.asset(
+                            'assets/images/iconpost.png',
+                            height: 24.h,
+                            width: 24.w,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 17.h,
               ),
               Container(
-                width: 380.w,
-                height: 500.h,
+                width: 1.sw,
+                height: 546.h,
                 decoration: BoxDecoration(
                     // borderRadius: const BorderRadius.all(Radius.circular(8)),
                     // border: Border.all(
@@ -109,6 +120,28 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 24.h,),
+              Padding(
+                padding: EdgeInsets.only(bottom: 96.h),
+                child: Center(
+                  child: SizedBox(
+                    height: 56.h,
+                    child: MainButton(
+                        onPressed: () {},
+                        child: Padding(
+                          padding: EdgeInsets.only(left:74.w,right: 74.w ),
+                          child: Text(
+                            "Post",
+                            style: kManRope_400_16_white,
+                          ),
+                        ),
+                        color: k006D77,
+                        shape: CustomDecoration().smallButton10Decoration()),
+                  ),
+                ),
+              ),
+              // SizedBox(height:96.h ,)
+
 
               // Center(
               //   child: SizedBox(

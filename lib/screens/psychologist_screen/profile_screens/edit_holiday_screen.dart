@@ -65,34 +65,69 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
                 height: 24.h,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: 175.w,
-                    height: 56.h,
-                    child: TextFormField(
-                      decoration: TextfieldDecoration(
-                          label: 'Mon, 12, 2022',
-                          child: Image.asset(
-                            "assets/images/iconcalender24.png",
-                            height: 24.h,
-                          )).smalltextfieldDecoration(),
+                  Expanded(
+                    child: Container(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        decoration: TextfieldDecoration(
+                            label: 'Start time',
+                            child: Image.asset(
+                              "assets/images/iconclocknew.png",
+                              height: 24.h,
+                              width: 24.w,
+                            )).smalltextfieldDecoration(),
+                      ),
                     ),
                   ),
-                  Container(
-                    width: 175.w,
-                    height: 56.h,
-                    child: TextFormField(
-                      decoration: TextfieldDecoration(
-                          label: 'Mon, 12, 2022',
-                          child: Image.asset(
-                            "assets/images/iconclock.png",
-                            height: 24.h,
-                          )).smalltextfieldDecoration(),
+                  SizedBox(width: 16.w),
+                  Expanded(
+                    child: Container(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        decoration: TextfieldDecoration(
+                            label: 'Start date',
+                            child: Image.asset(
+                              "assets/images/iconcalender24.png",
+                              height: 24.h,
+                            )).smalltextfieldDecoration(),
+                      ),
                     ),
                   ),
                 ],
               ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     Container(
+              //       width: 175.w,
+              //       height: 56.h,
+              //       child: TextFormField(
+              //         decoration: TextfieldDecoration(
+              //             label: 'Mon, 12, 2022',
+              //             child: Image.asset(
+              //               "assets/images/iconcalender24.png",
+              //               height: 24.h,
+              //             )).smalltextfieldDecoration(),
+              //       ),
+              //     ),
+              //     Container(
+              //       width: 175.w,
+              //       height: 56.h,
+              //       child: TextFormField(
+              //         decoration: TextfieldDecoration(
+              //             label: 'Mon, 12, 2022',
+              //             child: Image.asset(
+              //               "assets/images/iconclock.png",
+              //               height: 24.h,
+              //             )).smalltextfieldDecoration(),
+              //       ),
+              //     ),
+              //   ],
+              // ),
 
               // Row(
               //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -160,30 +195,36 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
                 height: 24.h,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Container(
-                    width: 175.w,
-                    height: 56.h,
-                    child: TextFormField(
-                      decoration: TextfieldDecoration(
-                          label: 'Mon, 12, 2022',
-                          child: Image.asset(
-                            "assets/images/iconcalender24.png",
-                            height: 24.h,
-                          )).smalltextfieldDecoration(),
+                  Expanded(
+                    child: Container(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        decoration: TextfieldDecoration(
+                            label: 'End Date',
+                            child: Image.asset(
+                              "assets/images/iconcalender24.png",
+                              height: 24.h,
+                              width: 24.w,
+                            )).smalltextfieldDecoration(),
+                      ),
                     ),
                   ),
-                  SizedBox(
-                    width: 175.w,
-                    height: 56.h,
-                    child: TextFormField(
-                      decoration: TextfieldDecoration(
-                          label: 'Mon, 12, 2022',
-                          child: Image.asset(
-                            "assets/images/iconclock.png",
-                            height: 24.h,
-                          )).smalltextfieldDecoration(),
+                  SizedBox(width: 16.w),
+                  Expanded(
+                    child: Container(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        decoration: TextfieldDecoration(
+                            label: 'End Time',
+                            child: Image.asset(
+                              "assets/images/iconclock.png",
+                              height: 24.h,
+                            )).smalltextfieldDecoration(),
+                      ),
                     ),
                   ),
                 ],

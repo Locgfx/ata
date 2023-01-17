@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/psychologist_screen/prescription_screen/edit_precription_view_screen.dart';
 import 'package:greymatter/screens/psychologist_screen/tabs_screen/prescription_screen.dart';
 import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
+// import 'package:greymatter/screens/psychologist_screen/prescription_screen/edit_precription_view_screen.dart';
+// import 'package:greymatter/screens/psychologist_screen/tabs_screen/prescription_screen.dart';
+// import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -20,25 +22,25 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(left: 130.w, right: 130.w, bottom: 52.h),
-        child: MainButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PrescriptionScreen()),
-              );
-            },
-            child: Padding(
-              padding: EdgeInsets.only(top: 15, bottom: 14),
-              child: Text(
-                "Save",
-                style: kManRope_500_16_white,
-              ),
-            ),
-            color: k006D77,
-            shape: CustomDecoration().smallButtonDecoration()),
-      ),
+      // bottomNavigationBar: Padding(
+      //   padding: EdgeInsets.only(left: 130.w, right: 130.w, bottom: 52.h),
+      //   child: MainButton(
+      //       onPressed: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => PrescriptionScreen()),
+      //         );
+      //       },
+      //       child: Padding(
+      //         padding: EdgeInsets.only(top: 15, bottom: 14),
+      //         child: Text(
+      //           "Save",
+      //           style: kManRope_500_16_white,
+      //         ),
+      //       ),
+      //       color: k006D77,
+      //       shape: CustomDecoration().smallButtonDecoration()),
+      // ),
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(
         appBarText: "Prescription View",
@@ -67,18 +69,8 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: kE2F2F4,
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 16.w, bottom: 6.h),
-                      child: SizedBox(
-                        width: 200.w,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Type here',
-                            hintStyle: kManRope_400_14_001314,
-                          ),
-                        ),
-                      ),
+                    child: TextField(readOnly: true,
+                      decoration: TextfieldDecoration(label: 'Type Here').textfielde2f2f4Decoration(),
                     ),
                   ),
                 ],
@@ -100,18 +92,8 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: kE2F2F4,
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 16.w, bottom: 6.h),
-                      child: SizedBox(
-                        width: 200.w,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Type here',
-                            hintStyle: kManRope_400_14_001314,
-                          ),
-                        ),
-                      ),
+                    child: TextField(readOnly: true,
+                      decoration: TextfieldDecoration(label: 'Type Here').textfielde2f2f4Decoration(),
                     ),
                   ),
                 ],
@@ -133,18 +115,8 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: kE2F2F4,
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 16.w, bottom: 6.h),
-                      child: SizedBox(
-                        width: 200.w,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Type here',
-                            hintStyle: kManRope_400_14_001314,
-                          ),
-                        ),
-                      ),
+                    child: TextField(readOnly: true,
+                      decoration: TextfieldDecoration(label: 'Type Here').textfielde2f2f4Decoration(),
                     ),
                   ),
                 ],
@@ -166,18 +138,8 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                       color: kE2F2F4,
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 16.w, bottom: 6.h),
-                      child: SizedBox(
-                        width: 200.w,
-                        child: TextField(
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Type here',
-                            hintStyle: kManRope_400_14_001314,
-                          ),
-                        ),
-                      ),
+                    child: TextField(readOnly: true,
+                      decoration: TextfieldDecoration(label: 'Type Here').textfielde2f2f4Decoration(),
                     ),
                   ),
                 ],
@@ -189,20 +151,62 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                 'RP',
                 style: kManRope_500_20_001314,
               ),
+              Padding(
+                padding:EdgeInsets.only(left: 36.w),
+                child: Container(
+                  height: 220.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: kE2F2F4,
+                  ),
+                  child: TextField(
+                    decoration: TextfieldDecoration(label: 'write notes',hintstyle: kManRope_400_14_001314).blankfieldDecoration(),
+                  ),
+                ),
+              ),
+
               SizedBox(
-                height: 229.h,
+                height: 16.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text(
-                    'Signature',
-                    style: kManRope_500_16_001314,
+                  Column(
+                    children: [
+                      Image.asset(
+                        'assets/images/signature.png',
+                        height: 48.h,
+                        width: 68.w,
+                      ),
+                      Text(
+                        'Signature',
+                        style: kManRope_500_16_001314,
+                      ),
+                    ],
                   ),
                 ],
               ),
               SizedBox(
-                height: 34.h,
+                height: 39.h,
+              ),
+              Center(
+                child: MainButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => TabsScreen()),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 15, bottom: 15,left:63.w,right: 71.w),
+                      child: Text(
+                        "Save",
+                        style: kManRope_500_16_white,
+                      ),
+                    ),
+                    color: k006D77,
+                    shape: CustomDecoration().smallButtonDecoration()),
               ),
               // Center(
               //   child: SizedBox(
