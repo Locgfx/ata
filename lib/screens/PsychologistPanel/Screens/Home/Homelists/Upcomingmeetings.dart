@@ -35,7 +35,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
-          child: Column(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -51,6 +51,12 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                       child: Image.asset("assets/images/iconcalender.png",height: 24.h,width: 24.w,))
                 ],
               ),
+              SizedBox(height: 29.h,),
+              Text(
+                'Today (2)',
+                style: kManRope_500_16_001314,
+              ),
+
               SizedBox(
                 // height: 1.sh,
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start,

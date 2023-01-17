@@ -97,10 +97,15 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                     onTap: () {
                       _filterbottomsheet();
                     },
-                    child: Image.asset(
-                      'assets/images/iconfilter.png',
-                      height: 32.h,
-                      width: 32.w,
+                    child: Container(
+                      height: 32,
+                      width: 32,
+                      // color: Colors.red,
+                      child: Image.asset(
+                        'assets/images/iconfilter.png',
+                        height: 32.h,
+                        width: 32.w,
+                      ),
                     ),
                   ),
                 ],

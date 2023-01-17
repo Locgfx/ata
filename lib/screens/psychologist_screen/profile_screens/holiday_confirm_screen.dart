@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/decorations.dart';
-import 'package:greymatter/screens/psychologist_screen/tabs_screen/tabs_screen.dart';
+import 'package:greymatter/screens/PsychologistPanel/Screens/Home/tabs_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 import '../../../constants/colors.dart';
 import '../../../constants/fonts.dart';
-import '../tabs_screen/psychologist_home_screen.dart';
+import '../../PsychologistPanel/Screens/Home/psychologist_home_screen.dart';
 
 class HolidayConfirmScreen extends StatefulWidget {
   const HolidayConfirmScreen({Key? key}) : super(key: key);

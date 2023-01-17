@@ -45,6 +45,9 @@ dependencies:
   flutter_switch: ^0.3.2
   grouped_list: ^5.1.2
   otp_text_field: ^1.1.3
+  intl: ^0.18.0
+
+
 
 dev_dependencies:
   flutter_test:

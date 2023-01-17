@@ -56,28 +56,32 @@ class _ChatMessagesState extends State<ChatMessages> {
       resizeToAvoidBottomInset: true,
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 25.h),
-        child: Container(
-          color: kWhiteBGColor,
-          child: Row(
-            children: [
-              Expanded(
-                child: TextField(
-                    onSubmitted: (text) {
-                      final message = Messages(
-                          text: text,
-                          date: DateTime.now(),
-                          isSentByme: true,
-                          style: kManRope_400_14_Black);
-                      setState(() => messages.add(message));
-                    },
-                    decoration: TextfieldDecoration(
-                      label: 'Abc....',
-                      child: Image.asset(
-                        "assets/images/send.png",
-                      ),
-                    ).searchFieldDecoration()),
-              ),
-            ],
+        child: Padding(
+          padding:
+          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            color: kWhiteBGColor,
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                      onSubmitted: (text) {
+                        final message = Messages(
+                            text: text,
+                            date: DateTime.now(),
+                            isSentByme: true,
+                            style: kManRope_400_14_Black);
+                        setState(() => messages.add(message));
+                      },
+                      decoration: TextfieldDecoration(
+                        label: 'Abc....',
+                        child: Image.asset(
+                          "assets/images/send.png",
+                        ),
+                      ).searchFieldDecoration()),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -111,3 +111,72 @@ class CalenderPopup extends StatelessWidget {
     );
   }
 }
+
+class CalenderWidget extends StatelessWidget {
+  final Widget? child;
+
+  // final EdgeInsets? padding;
+
+  const CalenderWidget({
+    Key? key,
+
+    required this.child,
+
+    // this.padding,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData.dark().copyWith(
+        colorScheme: ColorScheme.dark(
+          primary: k006D77,
+          onPrimary: Colors.white,
+          surface: k006D77,
+          onSurface: k001314,
+        ),
+        dialogBackgroundColor:kWhiteBGColor,
+      ), child: child!,
+    );
+  }
+}
+
+class TimeWidget extends StatelessWidget {
+  final Widget? child;
+  // final EdgeInsets? padding;
+   TimeWidget({
+    Key? key,
+    required this.child,
+    // this.padding,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData.light().copyWith(
+        colorScheme: ColorScheme.light(
+          // change the border color
+          primary: k006D77,
+          background: kWhiteBGColor,
+          // change the text color
+          onSurface: k006D77,
+        ),
+        // button colors
+
+        buttonTheme: ButtonThemeData(
+          colorScheme: ColorScheme.light(
+            primary: kWhiteBGColor,
+          ),
+        ),
+      ), child: child!,
+    );
+  }
+
+}
+
+
+
+
+
+
+

@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/profile_screens/agreement_screen.dart';
-import 'package:greymatter/screens/profile_screens/help_and_support_screen.dart';
-import 'package:greymatter/screens/profile_screens/order_history_screen.dart';
+import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/agreement_screen.dart';
+import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/help_and_support_screen.dart';
+import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/order_history_screen.dart';
 import 'package:greymatter/screens/profile_screens/personal_info_screen.dart';
 
 import '../../constants/colors.dart';

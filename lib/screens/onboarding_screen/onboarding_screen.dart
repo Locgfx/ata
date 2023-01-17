@@ -10,7 +10,7 @@ import 'package:greymatter/widgets/onboarding_screen_widgets/onb_slide.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_text_w_icon_button.dart';
 
 import '../../widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
-import '../psychologist_screen/form_screen.dart';
+import '../PsychologistPanel/Screens/PLogin/form_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   OnBoardingScreen({Key? key}) : super(key: key);

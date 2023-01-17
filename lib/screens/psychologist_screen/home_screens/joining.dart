@@ -6,6 +6,7 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/screens/psychologist_screen/home_screens/SuccefulSessionScreen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/buttons.dart';
 
 class JoiningScreen extends StatefulWidget {
   const JoiningScreen({Key? key}) : super(key: key);
@@ -65,11 +66,12 @@ class _JoiningScreenState extends State<JoiningScreen> {
               Center(
                 child: Container(
                   height: 133.h,
-                  width: 136.w,
+                  width: 135.w,
                   decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
                       image: DecorationImage(
                           image: AssetImage("assets/images/Rectangle 26.png"),
-                          fit: BoxFit.fill)),
+                          fit: BoxFit.cover)),
                 ),
               ),
               SizedBox(height: 16.h),
@@ -108,7 +110,7 @@ class _JoiningScreenState extends State<JoiningScreen> {
               SizedBox(height: 75.h),
               Padding(
                 padding: EdgeInsets.only(bottom: 20.h),
-                child: MaterialButton(
+                child: MainButton(
                   shape: CustomDecoration().smallButton10Decoration(),
                   color: k66898D,
                   onPressed: () {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/screens/splash/splash.dart';
 
 void main() {
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         builder: (context, child) {
           return MaterialApp(
+
               debugShowCheckedModeBanner: false,
               title: 'Atar ',
               home: //MySessionPage(),

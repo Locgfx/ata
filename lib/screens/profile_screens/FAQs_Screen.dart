@@ -121,7 +121,7 @@ class FAQsScreen extends StatelessWidget {
                     fillColor: Colors.white,
                     filled: true,
                     suffixIconConstraints:
-                        BoxConstraints(maxHeight: 40.h, maxWidth: 40.w),
+                        BoxConstraints(maxHeight: 50.h, maxWidth: 50.w),
                     suffixIcon: Padding(
                       padding: EdgeInsets.only(right: 8),
                       child: Container(

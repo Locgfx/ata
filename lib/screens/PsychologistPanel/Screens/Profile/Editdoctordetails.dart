@@ -375,7 +375,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
                   ),
                   child: Center(
                     child: TextField(
-                      cursorColor: Colors.white,
+                      // cursorColor: Colors.white,
                       decoration: InputDecoration(
                           isDense: true,
                           contentPadding: EdgeInsets.only(left: 10,),

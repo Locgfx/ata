@@ -661,14 +661,14 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
   int _gIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration:BoxDecoration(
+    return SingleChildScrollView(
+      // decoration:BoxDecoration(
         // color: k006D77,
         // borderRadius: BorderRadius.only(
         //     topLeft: Radius.circular(40), topRight: Radius.circular(40)),   // borderRadius: BorderRadius.only(
         //     topLeft: Radius.circular(40), topRight: Radius.circular(40)),
-      ),
-      height: 207.h,
+      // ),
+      // height: 207.h,
       child: Column(
         children: [
           Container(
@@ -702,63 +702,61 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
             ),
           ),
           Container(
-            height: 136.h,
+            // height: 136.h,
             padding: const EdgeInsets.only(top: 20.0),
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
             // color: CupertinoColors.systemBackground.resolveFrom(context),
-            child: SafeArea(
-              top: false,
-              child: Column(
-                children: [
-                  GestureDetector(
-                    onTap: () => setState(() {
-                      _gIndex = 0;
-                      Navigator.of(context).pop();
-                    }),
-                    child: Container(
-                      height: 44.h,
-                      width: 215.w,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5)),
-                        color: _gIndex == 0 ? k006D77 : Colors.transparent,
-                      ),
-                      child: Center(
-                          child: Text(
-                        '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
-                        style: _gIndex == 0
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+            child: Column(
+              children: [
+                GestureDetector(
+                  onTap: () => setState(() {
+                    _gIndex = 0;
+                    Navigator.of(context).pop();
+                  }),
+                  child: Container(
+                    height: 44.h,
+                    width: 215.w,
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                      color: _gIndex == 0 ? k006D77 : Colors.transparent,
                     ),
+                    child: Center(
+                        child: Text(
+                      '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
+                      style: _gIndex == 0
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
-                  SizedBox(height: 8.h),
-                  GestureDetector(
-                    onTap: () => setState(() {
-                      _gIndex = 1;
-                      Navigator.of(context).pop();
-                    }),
-                    child: Container(
-                      height: 44.h,
-                      width: 215.w,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5)),
-                        color: _gIndex == 1 ? k006D77 : Colors.transparent,
-                      ),
-                      child: Center(
-                          child: Text(
-                        '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
-                        style: _gIndex == 1
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                ),
+                SizedBox(height: 8.h),
+                GestureDetector(
+                  onTap: () => setState(() {
+                    _gIndex = 1;
+                    Navigator.of(context).pop();
+                  }),
+                  child: Container(
+                    height: 44.h,
+                    width: 215.w,
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(5)),
+                      color: _gIndex == 1 ? k006D77 : Colors.transparent,
                     ),
+                    child: Center(
+                        child: Text(
+                      '1 2 3 4 5 6 7 8 9 1 2 3 1 4',
+                      style: _gIndex == 1
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
-                ],
-              ),
+                ),
+                SizedBox(height: 20.h,)
+              ],
             ),
           ),
         ],
