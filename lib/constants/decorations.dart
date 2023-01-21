@@ -6,10 +6,55 @@ import 'package:greymatter/constants/fonts.dart';
 import 'colors.dart';
 
 class CustomDecoration {
+
   BoxDecoration containerDecoration() {
     return BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(8)),
       color: kWhiteBGColor,
+    );
+  }
+
+  BoxDecoration outline5A72EDDecoration() {
+    return BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: k5A72ED.withOpacity(0.24))
+    );
+  }
+
+  BoxDecoration outlineC7C7C7DDecoration() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(28),
+      border: Border.all(color: kC7C7C7),
+    );
+  }
+
+  BoxDecoration card20Edf6Decoration() {
+    return BoxDecoration(
+      color: kWhiteBGColor,
+      borderRadius: BorderRadius.circular(20),
+      border: Border.all(color: kFFFFFF),
+    );
+  }
+  BoxDecoration card24Edf6Decoration() {
+    return BoxDecoration(
+      color: kWhiteBGColor,
+      borderRadius: BorderRadius.circular(24),
+      border: Border.all(color: kFFFFFF),
+    );
+  }
+  BoxDecoration card20Decoration() {
+    return BoxDecoration(
+      color: kFFFFFF,
+      borderRadius: BorderRadius.circular(20),
+      border: Border.all(color: kFFFFFF),
+    );
+  }
+
+  BoxDecoration cardWhite24Decoration() {
+    return BoxDecoration(
+      color: kFFFFFF,
+      borderRadius: BorderRadius.circular(20),
+      border: Border.all(color: kFFFFFF),
     );
   }
 
@@ -34,9 +79,22 @@ class CustomDecoration {
     );
   }
 
+  // ShapeBorder outlineButton10Decoration() {
+  //   return RoundedRectangleBorder(
+  //     side: BorderSide(color: k006D77,),
+  //     borderRadius: BorderRadius.all(Radius.circular(10)),
+  //   );
+  // }
+
   ShapeBorder button16Decoration() {
     return RoundedRectangleBorder(
       borderRadius: BorderRadius.all(Radius.circular(16)),
+    );
+  }
+
+  ShapeBorder button08Decoration() {
+    return RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(08)),
     );
   }
 
@@ -44,6 +102,20 @@ class CustomDecoration {
     return RoundedRectangleBorder(
       side: BorderSide(color: k006D77),
       borderRadius: BorderRadius.all(Radius.circular(16)),
+    );
+  }
+
+  ShapeBorder button10outlineDecoration() {
+    return RoundedRectangleBorder(
+      side: BorderSide(color: k006D77),
+      borderRadius: BorderRadius.all(Radius.circular(10)),
+    );
+  }
+
+  ShapeBorder button10BC5656outlineDecoration() {
+    return RoundedRectangleBorder(
+      side: BorderSide(color: kBC5656),
+      borderRadius: BorderRadius.all(Radius.circular(10)),
     );
   }
 
@@ -93,8 +165,9 @@ class TextfieldDecoration {
   final String label;
   final Widget? child;
 
+
   // final String? ImageButton;
-  TextfieldDecoration({
+  TextfieldDecoration( {
     this.hintstyle,
     this.child,
     // this.ImageButton,
@@ -122,7 +195,7 @@ class TextfieldDecoration {
             padding: EdgeInsets.only(right: 16.0),
             child: child ?? SizedBox.shrink()));
   }
-  InputDecoration searchFieldUutlineDecoration() {
+  InputDecoration searchFieldOutlineDecoration() {
     return InputDecoration(
         contentPadding: EdgeInsets.only(
           left: 16,
@@ -144,7 +217,29 @@ class TextfieldDecoration {
             padding: EdgeInsets.only(right: 16.0),
             child: child ?? SizedBox.shrink()));
   }
-  // 'assets/icons/search.svg'
+
+  InputDecoration whiteColorSearchField() {
+    return InputDecoration(
+      hintText:
+      label,
+      hintStyle: kManRope_400_14_626A6A,
+      border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(16.0)),
+      fillColor: Colors.white,
+      filled: true,
+      suffixIconConstraints: BoxConstraints(
+          maxHeight: 48.h, maxWidth: 48.w),
+      suffixIcon: Padding(
+        padding: EdgeInsets.only(right: 8.w),
+        child:
+        Container(
+          // color: Colors.red,
+            child: Image.asset('assets/images/iconsearchblue.png',height: 48,width: 48)),
+      ),
+    );
+  }
+
   InputDecoration textfieldDecoration() {
 
     return InputDecoration(
@@ -228,17 +323,17 @@ class TextfieldDecoration {
             child: child ?? SizedBox.shrink()));
   }
 
-  InputDecoration otpDecoration() {
-    return InputDecoration(
-      contentPadding: EdgeInsets.only(left:
-        20,
-      ),
-        border: InputBorder.none,
-        hintText: label,
-        hintStyle: kManRope_700_20_001314,
-
-      );
-  }
+  // InputDecoration otpDecoration() {
+  //   return InputDecoration(
+  //     contentPadding: EdgeInsets.only(left:
+  //       20,
+  //     ),
+  //       border: InputBorder.none,
+  //       hintText: label,
+  //       hintStyle: kManRope_700_20_001314,
+  //
+  //     );
+  // }
 
   InputDecoration blankfieldDecoration() {
     return InputDecoration(
@@ -253,6 +348,7 @@ class TextfieldDecoration {
             padding: EdgeInsets.only(right: 16.0),
             child: child ?? SizedBox.shrink()));
   }
+
 
   InputDecoration smalltextfieldDecoration() {
     return InputDecoration(

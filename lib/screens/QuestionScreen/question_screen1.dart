@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UWelcome/welcome_screen.dart';
 import 'package:greymatter/constants/fonts.dart';
+// import 'package:greymatter/screens/UserPanel/UScreens/UWelcome/welcome_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../constants/colors.dart';
 import '../../form/form.dart';
 import '../../model/question_model.dart';
-import '../welcome_screen/welcome_screen.dart';
+// import '../UserPanel/UWelcome/welcome_screen.dart';
 
 class Questions extends StatefulWidget {
   const Questions({

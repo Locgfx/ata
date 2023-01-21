@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/comment_page.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
-import '../posts_screens/comment_page.dart';
+// import '../posts_screens/comment_page.dart';
 
 class MyActivity extends StatefulWidget {
   const MyActivity({Key? key}) : super(key: key);

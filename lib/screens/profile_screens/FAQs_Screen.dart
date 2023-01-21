@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/chatmessage.dart';
 import 'package:greymatter/constants/decorations.dart';
-import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/chatmessage.dart';
+// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/chatmessage.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../constants/colors.dart';
@@ -16,31 +17,6 @@ class FAQsScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(appBarText: 'FAQs', imgPath: 'assets/images/iconbackappbar2.png',),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   centerTitle: false,
-      //   leadingWidth: 40.w,
-      //   backgroundColor: Colors.white,
-      //   title: Text(
-      //     'FAQs',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   titleSpacing: 18.w,
-      //   leading: GestureDetector(
-      //     behavior: HitTestBehavior.translucent,
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      // ),
       bottomSheet: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Container(
@@ -121,7 +97,7 @@ class FAQsScreen extends StatelessWidget {
                     fillColor: Colors.white,
                     filled: true,
                     suffixIconConstraints:
-                        BoxConstraints(maxHeight: 50.h, maxWidth: 50.w),
+                        BoxConstraints(maxHeight: 55.h, maxWidth: 55.w),
                     suffixIcon: Padding(
                       padding: EdgeInsets.only(right: 8),
                       child: Container(

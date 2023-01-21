@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/primary_card_button.dart';
@@ -113,7 +114,7 @@ class AllPsychologistScreen extends StatelessWidget {
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
-                                          const PsychologistProfile()));
+                                          const UDoctorProfileScreen()));
                                 },
                                 child: SecondaryCardButton())),
                         SizedBox(width: 8.w),

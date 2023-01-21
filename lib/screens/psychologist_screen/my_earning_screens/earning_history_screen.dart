@@ -49,7 +49,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                 border: Border.all(color: k5A72ED.withOpacity(0.24)),
               ),
             child:
-            TextField(
+            TextField(style:kManRope_500_16_626A6A ,
               decoration: TextfieldDecoration(label: 'Search Transaction No',child: Image.asset("assets/images/searchicon.png",height:16,width: 16 ,)).searchFieldDecoration(),
             ),),
       ),

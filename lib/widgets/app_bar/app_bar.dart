@@ -81,12 +81,18 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   HomeAppBar(
       {
-        // required this.appBarText,
-        // required this.imgPath,
+        required this.text,
+        required this.child,
+        required this.color,
+        // required this.imagecolor,
+
         Key? key})
       : super(key: key);
   // String appBarText;
-  // String imgPath;
+  final Color color;
+  // final Color imagecolor;
+  final Widget child;
+  final Text text;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -94,12 +100,12 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding:  EdgeInsets.only(left: 24.w,right: 24.w,top: 12.h),
-        child: Container(
-          color: kWhiteBGColor,
-          height: 48,
-          // padding: EdgeInsets.only(top: 52.h),
+      child: Container(
+        color: color,
+        height: 48,
+        // padding: EdgeInsets.only(top: 52.h),
+        child: Padding(
+          padding: EdgeInsets.only(left: 24.w,right: 24.w,top: 12.h),
           child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
@@ -107,20 +113,12 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Text(
-                        'Good Morning, Pankaj',
-                        style: kManRope_700_20_686868,
-                      ),
+                child: text,
               ),
 
                Container(
                  // color: Colors.red,
-                 child: Image.asset(
-                          'assets/images/iconnotificationlarge.png',
-                          width: 48.w,
-                          height: 48.h,
-                          color: k686868,
-                        ),
+                 child: child,
                ),
             ],
           ),
@@ -264,11 +262,13 @@ class CusAppBar extends StatelessWidget with PreferredSizeWidget {
 class CuswhiteAppBar extends StatelessWidget with PreferredSizeWidget {
   CuswhiteAppBar({
     required this.appBarText,
-    required this.imgPath,
+     required this.imgPath,
+   this.text,
     Key? key,
   }) : super(key: key);
   String appBarText;
-  String imgPath;
+  String  imgPath;
+  Widget? text;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -280,28 +280,46 @@ class CuswhiteAppBar extends StatelessWidget with PreferredSizeWidget {
         color: Colors.white,
         height: 48,
         padding: EdgeInsets.only(top: 16),
-        child: Row(
+        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GestureDetector(
-              // behavior: HitTestBehavior.translucent,
-              onTap: () {
-                Navigator.pop(context);
-              },
+            Row(
+              children: [
+        GestureDetector(
+        // behavior: HitTestBehavior.translucent,
+        onTap: () {
+      Navigator.pop(context);
+      },
+        child: Container(
+          color: Colors.transparent,
+          padding: EdgeInsets.only(left: 16),
+          child: Image.asset(
+            imgPath,
+            width: 32.w,
+            height: 48.h,
+          ),
+        ),
+      ),
+    Text(
+    appBarText,
+    style: kManRope_500_16_006D77,
+    // textAlign: TextAlign.left,
+    ),
+              ] ),
+            Padding(
+              padding:  EdgeInsets.only(right: 16.0),
               child: Container(
-                color: Colors.transparent,
-                padding: EdgeInsets.only(left: 16),
-                child: Image.asset(
-                  imgPath,
-                  width: 32.w,
-                  height: 48.h,
+                height: 48.h,
+                width: 83.w,
+                // color: Colors.red,
+                // padding: EdgeInsets.only(left: 16),
+                child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    text ?? SizedBox.shrink(),
+
+                  ],
                 ),
               ),
-            ),
-            Text(
-              appBarText,
-              style: kManRope_500_16_006D77,
-              // textAlign: TextAlign.left,
-            ),
+            )
           ],
         ),
       ),
@@ -347,13 +365,14 @@ class CuswhiteAppBar extends StatelessWidget with PreferredSizeWidget {
 class DotappBar extends StatelessWidget with PreferredSizeWidget {
 
   DotappBar({
-    // required this.imgpath,
+    required this.onTap,
     required this.imgPath,
-    Key? key})
+    Key? key, })
       : super(key: key);
 
   // String appBarText;
   String imgPath;
+  final Function() onTap;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -384,18 +403,19 @@ class DotappBar extends StatelessWidget with PreferredSizeWidget {
               ),
             ),
             GestureDetector(
-              onTap: () {
-
-                  showModalBottomSheet(
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-                      ),
-                      context: context,
-                      builder: (context) => HistoryFilterBottomSheet());
-
-
-              },
+              onTap: onTap,
+              // onTap: () {
+              //
+              //     showModalBottomSheet(
+              //         shape: const RoundedRectangleBorder(
+              //           borderRadius: BorderRadius.only(
+              //               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+              //         ),
+              //         context: context,
+              //         builder: (context) => HistoryFilterBottomSheet());
+              //
+              //
+              // },
               child: Container(
                 padding: EdgeInsets.only(right: 16),
                 // color: Colors.red,

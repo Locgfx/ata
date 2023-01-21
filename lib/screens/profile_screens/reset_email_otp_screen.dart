@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/my_account_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/Editbasicdetails.dart';
-import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/change_email_screen.dart';
-import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/my_account_screen.dart';
+// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/Editbasicdetails.dart';
+// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/change_email_screen.dart';
+// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/my_account_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';

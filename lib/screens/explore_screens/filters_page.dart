@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/constants/decorations.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/buttons.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -35,30 +38,8 @@ class _FilterScreenState extends State<FilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
-        elevation: 0,
-        leadingWidth: 60.w,
-        backgroundColor: Colors.white,
-        centerTitle: false,
-        title: Text(
-          'Filters',
-          style: kManRope_500_16_006D77,
-        ),
-        titleSpacing: 0.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-      ),
+      appBar: CuswhiteAppBar(appBarText: 'Filters', imgPath: 'assets/images/iconbackappbar2.png',),
+
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
@@ -88,7 +69,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Colors.white,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding:  EdgeInsets.only(left: 16.w),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -97,16 +78,15 @@ class _FilterScreenState extends State<FilterScreen> {
                           style: kManRope_500_14_626A6A,
                         ),
                         (showOptions1)
-                            ? SvgPicture.asset(
-                                'assets/icons/circleCancel.svg',
-                                height: 24.h,
-                                width: 24.h,
-                              )
-                            : Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.black,
-                                size: 30,
-                              ),
+                            ? Padding(
+                              padding:  EdgeInsets.only(right: 12.w),
+                              child: SvgPicture.asset(
+                                  'assets/icons/circleCancel.svg',
+                                  height: 24.h,
+                                  width: 24.h,
+                                ),
+                            )
+                            : Image.asset("assets/images/icondropdownlargee.png",height: 48.h,width: 48.w,)
                       ],
                     ),
                   ),
@@ -123,31 +103,32 @@ class _FilterScreenState extends State<FilterScreen> {
                       bottomLeft: Radius.circular(10)),
                   color: Colors.white,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 24.w),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        for (int i = 0; i < problemList.length; i++)
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                showOptions1 = false;
-                                problem = problemList[i];
-                              });
-                            },
-                            child: Container(
-                              color: Colors.transparent,
-                              padding: EdgeInsets.symmetric(vertical: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(height: 1,width: 1.sw,color: kB5BABA,),
+                      for (int i = 0; i < problemList.length; i++)
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              showOptions1 = false;
+                              problem = problemList[i];
+                            });
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 24.w),
                               child: Text(
                                 problemList[i],
                                 style: kManRope_400_12_626A6A,
                               ),
                             ),
                           ),
-                      ],
-                    ),
+                        ),
+                    ],
                   ),
                 ),
               ),
@@ -169,7 +150,7 @@ class _FilterScreenState extends State<FilterScreen> {
                   color: Colors.white,
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                  padding: EdgeInsets.only(left: 16.w,),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -178,16 +159,15 @@ class _FilterScreenState extends State<FilterScreen> {
                         style: kManRope_500_14_626A6A,
                       ),
                       (showOptions3)
-                          ? SvgPicture.asset(
-                              'assets/icons/circleCancel.svg',
-                              height: 24.h,
-                              width: 24.h,
-                            )
-                          : Icon(
-                              Icons.keyboard_arrow_down,
-                              color: Colors.black,
-                              size: 30,
-                            ),
+                          ? Padding(
+                        padding:  EdgeInsets.only(right: 12.w),
+                            child: SvgPicture.asset(
+                                'assets/icons/circleCancel.svg',
+                                height: 24.h,
+                                width: 24.h,
+                              ),
+                          )
+                          : Image.asset("assets/images/icondropdownlargee.png",height: 48.h,width: 48.w,)
                     ],
                   ),
                 ),
@@ -218,7 +198,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Colors.white,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding: EdgeInsets.only(left: 16.w,),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -227,16 +207,15 @@ class _FilterScreenState extends State<FilterScreen> {
                           style: kManRope_500_14_626A6A,
                         ),
                         (showOptions2)
-                            ? SvgPicture.asset(
-                                'assets/icons/circleCancel.svg',
-                                height: 24.h,
-                                width: 24.h,
-                              )
-                            : Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.black,
-                                size: 30,
-                              ),
+                            ? Padding(
+                          padding:  EdgeInsets.only(right: 12.w),
+                              child: SvgPicture.asset(
+                                  'assets/icons/circleCancel.svg',
+                                  height: 24.h,
+                                  width: 24.h,
+                                ),
+                            )
+                            : Image.asset("assets/images/icondropdownlargee.png",height: 48.h,width: 48.w,)
                       ],
                     ),
                   ),
@@ -255,31 +234,32 @@ class _FilterScreenState extends State<FilterScreen> {
                           bottomLeft: Radius.circular(10)),
                   color: Colors.white,
                 ),
-                child: Padding(
-                  padding: EdgeInsets.only(left: 24.w),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        for (int i = 0; i < ['English', 'Hindi'].length; i++)
-                          GestureDetector(
-                            onTap: () {
-                              setState(() {
-                                showOptions2 = false;
-                                language = ['English', 'Hindi'][i];
-                              });
-                            },
-                            child: Container(
-                              color: Colors.transparent,
-                              padding: EdgeInsets.symmetric(vertical: 10),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(height: 1,width: 1.sw,color: kB5BABA,),
+                      for (int i = 0; i < ['English', 'Hindi'].length; i++)
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              showOptions2 = false;
+                              language = ['English', 'Hindi'][i];
+                            });
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            padding: EdgeInsets.symmetric(vertical: 10),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 24.w),
                               child: Text(
                                 ['English', 'Hindi'][i],
                                 style: kManRope_400_12_626A6A,
                               ),
                             ),
                           ),
-                      ],
-                    ),
+                        ),
+                    ],
                   ),
                 ),
               ),
@@ -303,7 +283,7 @@ class _FilterScreenState extends State<FilterScreen> {
                     color: Colors.white,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding: EdgeInsets.only(left: 16,),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -312,16 +292,15 @@ class _FilterScreenState extends State<FilterScreen> {
                           style: kManRope_500_14_626A6A,
                         ),
                         (showOptions3)
-                            ? SvgPicture.asset(
-                                'assets/icons/circleCancel.svg',
-                                height: 24.h,
-                                width: 24.h,
-                              )
-                            : Icon(
-                                Icons.keyboard_arrow_down,
-                                color: Colors.black,
-                                size: 30,
-                              ),
+                            ? Padding(
+                          padding:  EdgeInsets.only(right: 12.w),
+                              child: SvgPicture.asset(
+                                  'assets/icons/circleCancel.svg',
+                                  height: 24.h,
+                                  width: 24.h,
+                                ),
+                            )
+                            : Image.asset("assets/images/icondropdownlargee.png",height: 48.h,width: 48.w,)
                       ],
                     ),
                   ),
@@ -333,24 +312,47 @@ class _FilterScreenState extends State<FilterScreen> {
                   Expanded(
                     child: SizedBox(
                       height: 56.h,
-                      child: AppButtonTransparent(
-                        onTap: () {},
-                        title: 'Clear All',
-                      ),
+                      child: MainButton(onPressed: () {}, 
+                          child: Text("Clear All",style:kManRope_500_16_001314,),
+                          color: kWhiteBGColor,
+                          shape: CustomDecoration().border10Decoration()),
                     ),
                   ),
                   SizedBox(width: 16),
                   Expanded(
                     child: SizedBox(
                       height: 56.h,
-                      child: AppButton(
-                        onTap: () {},
-                        title: 'Finish',
-                      ),
+                      child: MainButton(onPressed: () {},
+                          child: Text("Finish",style:kManRope_500_16_white,),
+                          color: k006D77,
+                          shape: CustomDecoration().border10Decoration()),
                     ),
                   ),
                 ],
               ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: SizedBox(
+              //         height: 56.h,
+              //         child: AppButtonTransparent(
+              //           onTap: () {},
+              //           title: 'Clear All',
+              //         ),
+              //       ),
+              //     ),
+              //     SizedBox(width: 16),
+              //     Expanded(
+              //       child: SizedBox(
+              //         height: 56.h,
+              //         child: AppButton(
+              //           onTap: () {},
+              //           title: 'Finish',
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),

@@ -15,12 +15,14 @@ class RecommendedVideos extends StatefulWidget {
 class _RecommendedVideosState extends State<RecommendedVideos> {
   int _index2 = 0;
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
       // color: Colors.white,
       //height: 376.h,
-      padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+      // padding: EdgeInsets.only(bottom: 20.h),
       width: 1.sw,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,7 +43,7 @@ class _RecommendedVideosState extends State<RecommendedVideos> {
                 ),
                 SizedBox(
                   height: 24,
-                )
+                ),
               ],
             ),
           ),

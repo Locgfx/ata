@@ -3,14 +3,17 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/form_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UWelcome/welcome_screen.dart';
 import 'package:greymatter/constants/colors.dart';
+// import 'package:greymatter/screens/UserPanel/UScreens/UWelcome/welcome_screen.dart';
 import 'package:greymatter/screens/signup_screens/login_screen.dart';
-import 'package:greymatter/screens/welcome_screen/welcome_screen.dart';
+// import 'package:greymatter/screens/UserPanel/UWelcome/welcome_screen.dart';
 import 'package:greymatter/widgets/onboarding_screen_widgets/onb_slide.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_text_w_icon_button.dart';
 
 import '../../widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
-import '../PsychologistPanel/Screens/PLogin/form_screen.dart';
+// import '../PsychologistPanel/Screens/PLogin/form_screen.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   OnBoardingScreen({Key? key}) : super(key: key);

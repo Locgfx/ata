@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/tabs_screen.dart';
+import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/tabs_screen/tabs_screen.dart';
+// import 'package:greymatter/screens/PsychologistPanel/Screens/Home/tabs_screen.dart';
+// import 'package:greymatter/screens/UserPanel/UScreens/UHome/tabs_screen.dart';
+
+import 'package:greymatter/widgets/buttons.dart';
 
 import '../../constants/colors.dart';
 
@@ -15,17 +20,17 @@ class CancelBookingScreen extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 40.w,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 40,
         backgroundColor: Colors.white,
       ),
       body: Padding(
         padding:
-            EdgeInsets.only(left: 24.w, right: 24.w, top: 64.h, bottom: 24.h),
+            EdgeInsets.only(left: 24.w, right: 24.w, top: 64.h,),
         child: Column(
           children: [
             Container(
               width: 380.w,
-              padding: EdgeInsets.only(bottom: 48),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 color: Colors.white,
@@ -34,14 +39,15 @@ class CancelBookingScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding:
-                        EdgeInsets.symmetric(vertical: 48.h, horizontal: 64.h),
-                    child: SvgPicture.asset(
-                      'assets/icons/CancelBooking.svg',
-                      width: 210.w,
-                      height: 282.h,
+                        EdgeInsets.only(left: 48.h,right: 48.h,top: 54.h,bottom: 48.h),
+                    child: Image.asset(
+                      'assets/images/calenderimage.png',
+                      width: 199.w,
+                      height: 210.h,
                     ),
                   ),
-                  // Text('Booking Cancelled', style: kManRope_700_24_FF482C),
+                  Text('Booking Cancelled', style: kManRope_700_24_FF482C),
+                  SizedBox(height: 48.h,)
                 ],
               ),
             ),
@@ -51,35 +57,53 @@ class CancelBookingScreen extends StatelessWidget {
             Text(
               'Your appointment with priya sing has been canceled. if you want book a new appointment got to home and book your appointment.',
               style: kManRope_500_14_626A6A,
+              maxLines: 3,
             ),
             Spacer(),
-            SizedBox(
-              height: 56.h,
-              width: 380.w,
-              child: MaterialButton(
-                color: kWhiteBGColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10), // <-- Radius
-                  side: BorderSide(
-                    color: k006D77,
-                  ),
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => TabsScreen(),
-                    ),
-                  );
-                },
-                child: Text(
-                  'Home',
-                  style: kManRope_400_16_001314,
-                ),
-              ),
-            ),
+            // SizedBox(
+            //   height: 56.h,
+            //   width: 380.w,
+            //   child: MaterialButton(
+            //     color: kWhiteBGColor,
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(10), // <-- Radius
+            //       side: BorderSide(
+            //         color: k006D77,
+            //       ),
+            //     ),
+            //     onPressed: () {
+            //       Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //           builder: (_) => TabsScreen(),
+            //         ),
+            //       );
+            //     },
+            //     child: Text(
+            //       'Home',
+            //       style: kManRope_400_16_001314,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
+      ),
+      bottomNavigationBar: Padding(
+        padding:  EdgeInsets.only(left: 24.w,right: 24.w,bottom: 24.h),
+        child: MainButton(onPressed: () {
+          Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => UTabsScreen(),
+                      ),
+                    );
+        },
+          color: kWhiteBGColor,
+        shape: CustomDecoration().outline16ButtonDecoration(),
+        child: Padding(
+          padding:  EdgeInsets.symmetric(vertical: 20.h),
+          child: Text("Home",style:kManRope_500_16_001314 ,),
+        ),),
       ),
     );
   }

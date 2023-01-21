@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/PsychologistPanel/Screens/PPerceptions/prescription_screen.dart';
-import 'package:greymatter/screens/PsychologistPanel/Screens/Home/psychologist_home_screen.dart';
-import 'package:greymatter/screens/PsychologistPanel/Screens/Home/tabs_screen.dart';
+// import 'package:greymatter/screens/PsychologistPanel/Screens/PPerceptions/prescription_screen.dart';
+// import 'package:greymatter/screens/PsychologistPanel/Screens/Home/psychologist_home_screen.dart';
+// import 'package:greymatter/screens/PsychologistPanel/Screens/Home/tabs_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class SuccesfulSesionScreen extends StatefulWidget {
@@ -126,7 +127,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                           shape: CustomDecoration().border10Decoration(),
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (ctx) => TabsScreen()));
+                                builder: (ctx) => PTabsScreen()));
                           },
                           child: Text(
                             "Go to Home",
@@ -145,7 +146,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => TabsScreen(),
+                              builder: (context) => PTabsScreen(),
                             ),
                           );
                       },

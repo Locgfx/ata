@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreen/UAddactivity.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
 
@@ -46,7 +47,7 @@ class _RecommendedVideosState extends State<RecommendedActivities> {
           Container(
             padding: EdgeInsets.only(left: 24),
             width: 1.sw,
-            height: 90.h,
+            height: 87,
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
@@ -174,7 +175,7 @@ class _RecommendedVideosState extends State<RecommendedActivities> {
               child: CustomSecondaryButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const AddActivityScreen()));
+                      builder: (context) => UAddActivityScreen()));
                 },
                 text: 'View All Activities',
               ),

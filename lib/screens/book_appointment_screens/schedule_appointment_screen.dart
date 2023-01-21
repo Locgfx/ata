@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/Lists.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/buttons.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../constants/colors.dart';
@@ -74,30 +76,8 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
-        elevation: 0,
-        leadingWidth: 60.w,
-        backgroundColor: Colors.white,
-        centerTitle: false,
-        title: Text(
-          'Appointment',
-          style: kManRope_500_16_006D77,
-        ),
-        titleSpacing: 0.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-      ),
+      appBar: CuswhiteAppBar(appBarText: 'Appointment', imgPath: 'assets/images/iconbackappbar2.png',),
+
       body: Padding(
         padding: EdgeInsets.only(top: 40.h, left: 24.w, right: 24.w),
         child: Column(
@@ -168,8 +148,9 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
               height: 24.h,
             ),
             SizedBox(
-              height: 200.h,
+              // height: 300.h,
               child: GridView.builder(
+                shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                       maxCrossAxisExtent: 79,
@@ -186,7 +167,7 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
                       },
                       child: Container(
                         height: 34.h,
-                        width: 79.w,
+                        width: 60.w,
                         decoration: BoxDecoration(
                           color:
                               selectedIndex == index ? k006D77 : Colors.white,
@@ -207,48 +188,93 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
                       ),
                     );
                   }),
-            )
+            ),
           ],
         ),
       ),
-      bottomNavigationBar: SizedBox(
-        height: 83.h,
-        child: Padding(
-          padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.w),
+      bottomNavigationBar:  Padding(
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
+        child: SizedBox(
+          height: 83.h,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                '₹230',
-                style: kManRope_500_20_006D77,
-              ),
-              SizedBox(
-                height: 56.h,
-                width: 180.w,
-                child: MaterialButton(
-                  color: k006D77,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // <-- Radius
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ConfirmAppointmentBooking(
-                                  issue: widget.issue,
-                                  date: date,
-                                )));
-                  },
+              Expanded(
+                child: SizedBox(
+                  // height:56.h,
                   child: Text(
-                    'Book session',
-                    style: kManRope_400_16_white,
+                    '₹599',
+                    style: kManRope_500_20_006D77,
                   ),
                 ),
-              )
+              ),
+              Expanded(
+                child: SizedBox(
+                  height: 56.h,
+                  // width: 200,
+                  child: MainButton(
+                    color: k006D77,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10), // <-- Radius
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => ConfirmAppointmentBooking(
+                                                      issue: widget.issue,
+                                                      date: date,
+                                                    )));
+                    },
+                    child: Text(
+                      'Book session',
+                      style: kManRope_400_16_white,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
+      // bottomNavigationBar: SizedBox(
+      //   height: 83.h,
+      //   child: Padding(
+      //     padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.w),
+      //     child: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //       children: [
+      //         Text(
+      //           '₹230',
+      //           style: kManRope_500_20_006D77,
+      //         ),
+      //         SizedBox(
+      //           height: 56.h,
+      //           width: 180.w,
+      //           child: MaterialButton(
+      //             color: k006D77,
+      //             shape: RoundedRectangleBorder(
+      //               borderRadius: BorderRadius.circular(10), // <-- Radius
+      //             ),
+      //             onPressed: () {
+      //               Navigator.push(
+      //                   context,
+      //                   MaterialPageRoute(
+      //                       builder: (context) => ConfirmAppointmentBooking(
+      //                             issue: widget.issue,
+      //                             date: date,
+      //                           )));
+      //             },
+      //             child: Text(
+      //               'Book session',
+      //               style: kManRope_400_16_white,
+      //             ),
+      //           ),
+      //         )
+      //       ],
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

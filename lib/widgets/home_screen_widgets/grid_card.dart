@@ -21,12 +21,12 @@ class GridCard extends StatelessWidget {
   final List<String> _titleList = [
     'Anxiety',
     'Stress',
-    'Loneliness',
     'Addiction',
     'Anger',
+    'Loneliness',
     'Stress',
-    'Anxiety',
-    'Stress',
+    'Grief',
+    'OCD',
     'Loneliness',
     'Addiction',
     'Anger',
@@ -38,20 +38,28 @@ class GridCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 90.w,
-      height: 150.h,
-      color: Colors.transparent,
+      width: 83.w,
+      height: 118.h,
+      // color: Colors.red,
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        // mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: EdgeInsets.all(10),
+            height: 84.h,
+            width: 84.w,
+            // padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: kWhiteBGColor,
+              // image: DecorationImage(
+              //   image: AssetImage(_imgList[index],),fit: BoxFit.cover,
+              // ),
+              color: kFFFFFF.withOpacity(0.40),
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: Colors.white)
+              border: Border.all(color: Colors.white,width: 1)
             ),
-            child: Image.asset(_imgList[index], width: 58.w,height: 62.h),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(_imgList[index],height: 62.h,width: 58.w,fit: BoxFit.cover,),
+            ),
           ),
           SizedBox(height: 8.h),
           Text(_titleList[index], style: kManRope_400_16_626A6A,),

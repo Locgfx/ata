@@ -5,6 +5,7 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/screens/psychologist_screen/home_screens/SuccefulSessionScreen.dart';
+import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -56,7 +57,15 @@ class _JoiningScreenState extends State<JoiningScreen> {
       //   ),
       // ),
       backgroundColor: kWhiteBGColor,
-      appBar: DotappBar(imgPath: "assets/images/3doticonlarge.png"),
+      appBar: DotappBar(imgPath: "assets/images/3doticonlarge.png", onTap: () {
+        showModalBottomSheet(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                    ),
+                    context: context,
+                    builder: (context) => HistoryFilterBottomSheet());
+      },),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w),

@@ -2,7 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UBottomsheet.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
+import 'package:greymatter/constants/decorations.dart';
+// import 'package:greymatter/screens/UserPanel/UWidgets/UBottomsheet.dart';
+// import 'package:greymatter/screens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/screens/explore_screens/cancel_booking_screen.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/buttons.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -18,7 +25,7 @@ class BookingConfirmationScreen extends StatefulWidget {
 class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
   void _selectGender() {
     showModalBottomSheet(
-        backgroundColor: Colors.transparent,
+        backgroundColor: kFFFFFF,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
@@ -30,40 +37,41 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
-        elevation: 0,
-        leadingWidth: 40.w,
-        backgroundColor: Colors.white,
-        centerTitle: false,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-        actions: [
-          GestureDetector(
-            onTap: () {
-              _selectGender();
-            },
-            child: SvgPicture.asset(
-              'assets/icons/kebabMenu.svg',
-              height: 30.h,
-              width: 14.w,
-            ),
-          ),
-          SizedBox(
-            width: 18.w,
-          ),
-        ],
-      ),
+      appBar: DotappBar(imgPath: 'assets/images/3doticonlarge.png', onTap: () {  _selectGender(); },),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   leadingWidth: 40.w,
+      //   backgroundColor: Colors.white,
+      //   centerTitle: false,
+      //   leading: InkWell(
+      //     onTap: () {
+      //       Navigator.pop(context);
+      //     },
+      //     child: const Padding(
+      //       padding: EdgeInsets.all(20.0),
+      //       child: Icon(
+      //         Icons.arrow_back_ios,
+      //         color: Colors.black,
+      //         size: 20,
+      //       ),
+      //     ),
+      //   ),
+      //   actions: [
+      //     GestureDetector(
+      //       onTap: () {
+      //         _selectGender();
+      //       },
+      //       child: SvgPicture.asset(
+      //         'assets/icons/kebabMenu.svg',
+      //         height: 30.h,
+      //         width: 14.w,
+      //       ),
+      //     ),
+      //     SizedBox(
+      //       width: 18.w,
+      //     ),
+      //   ],
+      // ),
       body: Padding(
         padding:
             EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w, bottom: 35.h),
@@ -80,8 +88,9 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                     borderRadius: BorderRadius.circular(24),
                     child: Image.asset(
                       'assets/images/userP.png',
-                      height: 135.h,
-                      width: 133.w,
+                      fit: BoxFit.cover,
+                      height: 133.h,
+                      width: 135.w,
                     ),
                   ),
                   SizedBox(
@@ -96,7 +105,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                           child: Text(
                             'Priya Singh',
                             overflow: TextOverflow.ellipsis,
-                            style: kManRope_400_16_001314,
+                            style: kManRope_500_16_001314,
                           ),
                         ),
                         SizedBox(
@@ -109,27 +118,12 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                         SizedBox(
                           height: 8.h,
                         ),
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/icons/star.svg',
-                              width: 12.w,
-                              height: 12.h,
-                            ),
-                            SizedBox(width: 4.w),
-                            Text('4.0', style: kManRope_400_12_001314),
-                            SizedBox(width: 4.w),
-                            Text('.', style: kManRope_700_16_001314),
-                            SizedBox(width: 4.w),
-                            Text('12 Yrs. Exp', style: kManRope_400_12_001314),
-                          ],
-                        )
+                        StarWidget()
+
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: 15,
-                  ),
+
                   SvgPicture.asset(
                     'assets/icons/sarrow.svg',
                     width: 24.w,
@@ -173,225 +167,49 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
               SizedBox(
                 height: 77.h,
               ),
-              SizedBox(
-                height: 56.h,
-                width: 183.w,
-                child: MaterialButton(
-                  color: k006D77,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10), // <-- Radius
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    'Join meeting',
-                    style: kManRope_400_16_white,
-                  ),
-                ),
-              ),
+              // Row(mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     MainButton(
+              //         onPressed: () {},
+              //         child: Padding(
+              //           padding:  EdgeInsets.only(top:19.h,bottom: 19.h,left: 42.w,right: 42.w),
+              //           child: Text("Join meeting",style: kManRope_400_16_white,),
+              //         ),
+              //         color: k66898D,
+              //         shape: CustomDecoration().button08Decoration()),
+              //   ],
+              // )
+              // SizedBox(
+              //   height: 56.h,
+              //   width: 183.w,
+              //   child: MaterialButton(
+              //     color: k006D77,
+              //     shape: RoundedRectangleBorder(
+              //       borderRadius: BorderRadius.circular(10), // <-- Radius
+              //     ),
+              //     onPressed: () {},
+              //     child: Text(
+              //       'Join meeting',
+              //       style: kManRope_400_16_white,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class GenderBottomSheet extends StatefulWidget {
-  const GenderBottomSheet({Key? key}) : super(key: key);
-
-  @override
-  State<GenderBottomSheet> createState() => _GenderBottomSheetState();
-}
-
-class _GenderBottomSheetState extends State<GenderBottomSheet> {
-  void _cancelBooking() {
-    showModalBottomSheet(
-        context: context,
-        backgroundColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-        builder: (BuildContext context) => const CancelBooking());
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            height: 71.h,
-            decoration: const BoxDecoration(
-              color: k006D77,
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-            ),
+      bottomNavigationBar: Padding(
+        padding:  EdgeInsets.only(left: 123.w,right: 123.w,bottom: 35.h),
+        child: MainButton(
+            onPressed: () {},
             child: Padding(
-              padding: EdgeInsets.only(left: 46.w),
-              child: Center(
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 107.w,
-                    ),
-                    Text(
-                      'Select One',
-                      style: kManRope_700_20_white,
-                    ),
-                  ],
-                ),
-              ),
+              padding:  EdgeInsets.only(top:19.h,bottom: 19.h,),
+              child: Text("Join meeting",style: kManRope_400_16_white,),
             ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-              _cancelBooking();
-            },
-            child: Container(
-              width: 1.sw,
-              padding: EdgeInsets.only(top: 24, bottom: 24),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Center(
-                child: Text(
-                  'Cancel booking',
-                  style: kManRope_500_16_626A6A,
-                ),
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context).pop();
-              setState(() {});
-            },
-            child: Container(
-              width: 1.sw,
-              padding: EdgeInsets.only(bottom: 24, top: 24),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Center(
-                  child: Text(
-                'Reschedule',
-                style: kManRope_500_16_626A6A,
-              )),
-            ),
-          ),
-        ],
+            color: k66898D,
+            shape: CustomDecoration().button08Decoration()),
       ),
     );
   }
 }
 
-class CancelBooking extends StatefulWidget {
-  const CancelBooking({Key? key}) : super(key: key);
-
-  @override
-  State<CancelBooking> createState() => _CancelBookingState();
-}
-
-class _CancelBookingState extends State<CancelBooking> {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-        ),
-        child: Column(
-          children: [
-            Container(
-              height: 71.h,
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(8), topRight: Radius.circular(8)),
-              ),
-              child: Padding(
-                padding: EdgeInsets.only(left: 46.w),
-                child: Center(
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                        onTap: () => Navigator.of(context).pop(),
-                        child: Icon(
-                          Icons.arrow_back_ios,
-                          color: k66898D,
-                          size: 20.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              height: 190.h,
-              padding: const EdgeInsets.only(top: 6.0),
-              margin: EdgeInsets.only(
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              // Provide a background color for the popup.
-              color: CupertinoColors.systemBackground.resolveFrom(context),
-              // Use a SafeArea widget to avoid system overlaps.
-              child: SafeArea(
-                top: false,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 0.h),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 56.h,
-                        width: 380.w,
-                        child: MaterialButton(
-                          color: k006D77,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(10), // <-- Radius
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const CancelBookingScreen()));
-                          },
-                          child: Text(
-                            'Cancel booking',
-                            style: kManRope_400_16_white,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 28.h,
-                      ),
-                      Container(
-                        height: 44.h,
-                        width: 380.w,
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                          color: Colors.white,
-                        ),
-                        child: Center(
-                            child: Text(
-                          'By clicking the Cancel button your appointment will cancel',
-                          style: kManRope_500_16_626A6A,
-                        )),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}

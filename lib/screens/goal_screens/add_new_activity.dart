@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/Lists.dart';
+import 'package:greymatter/constants/decorations.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/buttons.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -23,44 +26,19 @@ class _AddNewActivityState extends State<AddNewActivity> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
-        elevation: 0,
-        leadingWidth: 40.w,
-        backgroundColor: Colors.white,
-        centerTitle: false,
-        title: Text(
-          widget.text,
-          style: kManRope_500_16_006D77,
-        ),
-        titleSpacing: 18.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-      ),
+      appBar: CuswhiteAppBar(appBarText: 'Running', imgPath: 'assets/images/iconbackappbar2.png',),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 35.w),
+          padding: EdgeInsets.only(top: 40.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                //height: 214,
-                // width: 380,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   //color: Colors.grey,
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
-                child: Image.asset('assets/images/manimg.png'),
+                child: Image.asset('assets/images/manimg.png',fit: BoxFit.cover,),
               ),
               SizedBox(
                 height: 40,
@@ -250,28 +228,27 @@ class _AddNewActivityState extends State<AddNewActivity> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Container(
-                  height: 39.w,
-                  child: ListView.builder(
+                  height: 42.w,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => SizedBox(width: 4.w,),
+                    padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     itemCount: 7,
-                    physics: NeverScrollableScrollPhysics(),
+                    // physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: EdgeInsets.only(right: 6.w),
-                        child: Container(
-                          height: 39.h,
-                          width: 49.w,
-                          decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(5)),
-                            border: Border.all(color: k006D77),
-                          ),
-                          child: Center(
-                            child: Text(
-                              weekDays[index],
-                              style: kManRope_400_14_001314,
-                            ),
+                      return Container(
+                        height: 39.h,
+                        width: 49.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          border: Border.all(color: k006D77),
+                        ),
+                        child: Center(
+                          child: Text(
+                            weekDays[index],
+                            style: kManRope_400_14_001314,
                           ),
                         ),
                       );
@@ -280,7 +257,7 @@ class _AddNewActivityState extends State<AddNewActivity> {
                 ),
               ),
               SizedBox(
-                height: 40,
+                height: 43.h,
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 24, right: 10),
@@ -311,10 +288,10 @@ class _AddNewActivityState extends State<AddNewActivity> {
                 ),
               ),
               SizedBox(
-                height: 44,
+                height: 40.h,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
+                padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -322,9 +299,18 @@ class _AddNewActivityState extends State<AddNewActivity> {
                       'Reminder time',
                       style: kManRope_500_16_001314,
                     ),
-                    Text(
-                      '06:00 am',
-                      style: kManRope_400_14_001314,
+                    Container(
+                      decoration: BoxDecoration(
+                        color: kE2F2F4,
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: Padding(
+                        padding:  EdgeInsets.only(top: 10.h,bottom: 10.h,left: 10.2,right: 37.w),
+                        child: Text(
+                          '06:00 am',
+                          style: kManRope_400_14_001314,
+                        ),
+                      ),
                     )
                   ],
                 ),
@@ -333,29 +319,45 @@ class _AddNewActivityState extends State<AddNewActivity> {
                 height: 46.h,
               ),
               Center(
-                child: SizedBox(
-                  height: 56,
-                  width: 132.w,
-                  child: MaterialButton(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
+                child: MainButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => NewActivityAddedScreen()));
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => NewActivityAddedScreen()));
                     },
-                    color: k006D77,
-                    child: Center(
-                      child: Text(
-                        'ADD',
-                        style: kManRope_500_16_white,
-                      ),
+                    child: Padding(
+                      padding:  EdgeInsets.only(top: 20.h,bottom: 20.h,left: 50.w,right: 50.w),
+                      child: Text("ADD",style: kManRope_500_16_white,),
                     ),
-                  ),
-                ),
+                    color: k006D77,
+                    shape: CustomDecoration().smallButton10Decoration()),
               ),
+              SizedBox(height: 40.h,)
+              // Center(
+              //   child: SizedBox(
+              //     height: 56,
+              //     width: 132.w,
+              //     child: MaterialButton(
+              //       shape: RoundedRectangleBorder(
+              //         borderRadius: BorderRadius.circular(10),
+              //       ),
+              //       onPressed: () {
+              //         Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //                 builder: (context) => NewActivityAddedScreen()));
+              //       },
+              //       color: k006D77,
+              //       child: Center(
+              //         child: Text(
+              //           'ADD',
+              //           style: kManRope_500_16_white,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

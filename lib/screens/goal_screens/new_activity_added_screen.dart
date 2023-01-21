@@ -13,7 +13,8 @@ class NewActivityAddedScreen extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: AppBar(
         elevation: 0,
-        leadingWidth: 40.w,
+        toolbarHeight: 40.h,
+        automaticallyImplyLeading: false,
         centerTitle: false,
         backgroundColor: Colors.white,
         /*title: Text(
