@@ -1,12 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/add_bank.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/withdraw_successful_screen.dart';
 import 'package:greymatter/constants/decorations.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/PEarning/add_bank.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/PEarning/withdraw_successful_screen.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';

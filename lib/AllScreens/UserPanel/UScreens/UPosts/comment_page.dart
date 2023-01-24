@@ -9,9 +9,6 @@ import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/comment_widgets/user_comment_widget.dart';
 
-// import '../../constants/colors.dart';
-// import '../../constants/fonts.dart';
-// import '../../widgets/comment_widgets/user_comment_widget.dart';
 
 class CommentPage extends StatefulWidget {
   const CommentPage({Key? key}) : super(key: key);

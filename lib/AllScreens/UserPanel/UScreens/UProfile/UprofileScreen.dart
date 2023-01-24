@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/help_and_support_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/pofile_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAgreementscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UHelpandsupport.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UMyActivity.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UOrderhistory.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPersonalInfoScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/profile_screens/personal_info_screen.dart';
+
 
 class UProfileScreen extends StatefulWidget {
   const UProfileScreen({Key? key}) : super(key: key);
@@ -126,7 +126,6 @@ class _UProfileScreenState extends State<UProfileScreen> {
                   height: 8.h,
                 ),
                 GestureDetector(
-                  behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => UAccountScreen()));
@@ -137,8 +136,8 @@ class _UProfileScreenState extends State<UProfileScreen> {
                     color: Colors.transparent,
                     child: GestureDetector(
                       onTap: () {
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (context) => PsychologistAccountScreen()));
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => UAccountScreen()));
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -163,8 +162,8 @@ class _UProfileScreenState extends State<UProfileScreen> {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
-                    // Navigator.of(context).push(
-                    //     MaterialPageRoute(builder: (context) => KycScreen()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => UMyActivityScreen()));
                   },
                   child: SizedBox(
                     height: 48.h,

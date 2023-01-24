@@ -195,6 +195,26 @@ class TextfieldDecoration {
             padding: EdgeInsets.only(right: 16.0),
             child: child ?? SizedBox.shrink()));
   }
+  InputDecoration searchFieldBigIconDecoration() {
+    return InputDecoration(
+        contentPadding: EdgeInsets.only(
+          left: 16,
+        ),
+        // hintText: 'Search for help',
+        hintStyle: kManRope_400_14_626A6A,
+        border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(16.0)),
+        fillColor: Colors.white,
+        filled: true,
+        suffixIconConstraints: BoxConstraints(maxHeight: 50.h, maxWidth: 50.w),
+        // suffixIcon: SvgPicture.asset('assets/icons/search.svg'),
+        // border: InputBorder.none,
+        hintText: label,
+        // hintStyle: hintstyle!,
+        // suffixIconConstraints: BoxConstraints(minHeight: 0, minWidth: 0),
+        suffixIcon: child ?? SizedBox.shrink());
+  }
   InputDecoration searchFieldOutlineDecoration() {
     return InputDecoration(
         contentPadding: EdgeInsets.only(
@@ -229,7 +249,7 @@ class TextfieldDecoration {
       fillColor: Colors.white,
       filled: true,
       suffixIconConstraints: BoxConstraints(
-          maxHeight: 48.h, maxWidth: 48.w),
+          maxHeight: 55.h, maxWidth: 55 .w),
       suffixIcon: Padding(
         padding: EdgeInsets.only(right: 8.w),
         child:

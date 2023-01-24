@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/PPosts/post_page.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';

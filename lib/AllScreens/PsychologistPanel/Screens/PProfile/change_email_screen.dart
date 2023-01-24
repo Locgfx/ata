@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/reset_email_otp_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/profile_screens/reset_email_otp_screen.dart';
-import 'package:greymatter/screens/psychologist_screen/profile_screens/basic_details_widget.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/basic_details_widget.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
-// import '../../../profile_screens/reset_email_otp_screen.dart';
 
 class PsychologistChangeEmailScreen extends StatefulWidget {
   const PsychologistChangeEmailScreen({Key? key}) : super(key: key);

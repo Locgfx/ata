@@ -4,7 +4,7 @@ import 'package:greymatter/AllScreens/UserPanel/UWidgets/UListsViews.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/book_appointment_screens/schedule_appointment_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/schedule_appointment_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 

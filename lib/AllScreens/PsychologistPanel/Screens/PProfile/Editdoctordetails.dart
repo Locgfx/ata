@@ -4,12 +4,8 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/Editbas
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/Editbasicdetails.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
-// import '../../../constants/colors.dart';
-// import '../../../constants/fonts.dart';
 
 class EditDoctorProfile extends StatefulWidget {
   const EditDoctorProfile({Key? key}) : super(key: key);

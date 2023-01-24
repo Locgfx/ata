@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/psychologist_screen/home_screens/joining.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-import 'package:greymatter/widgets/popupdialogs.dart';
+
 
 class CompletedMeetings extends StatefulWidget {
   const CompletedMeetings({Key? key}) : super(key: key);

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/add_bank.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/PEarning/add_bank.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../../../constants/fonts.dart';

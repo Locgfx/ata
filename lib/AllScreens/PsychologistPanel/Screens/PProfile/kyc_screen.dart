@@ -5,7 +5,6 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/kyc_con
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/kyc_confirm_name_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class KycScreen extends StatefulWidget {

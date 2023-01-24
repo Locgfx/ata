@@ -2,12 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/book_appointment_screen.dart';
-//import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/home_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/notification_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/all_psychologist_screen/all_psochologist_screen.dart';
-import 'package:greymatter/screens/book_appointment_screens/schedule_appointment_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/all_psochologist_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/schedule_appointment_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/home_screen_widgets/bookings.dart';
 import 'package:greymatter/widgets/home_screen_widgets/grid_card.dart';
@@ -26,6 +26,25 @@ class UHomeScreen extends StatefulWidget {
 }
 
 class _UHomeScreenState extends State<UHomeScreen> {
+  final PageController _controller = PageController();
+
+
+
+  // final _pageController = PageController(viewportFraction: 0.877);
+  //
+  // double currentPage = 0;
+  //
+  //
+  // @override
+  // void initState() {
+  //   _pageController.addListener(() {
+  //     setState(() {
+  //       currentPage = _pageController.page!.toDouble();
+  //     });
+  //   });
+  //   super.initState();
+  // }
+
   int _index = 0;
   int _index2 = 0;
   List _bgImageList = [
@@ -34,48 +53,22 @@ class _UHomeScreenState extends State<UHomeScreen> {
     'assets/images/offercard3.png',
 
   ];
-  List<String> _charImageList = [
-    'assets/images/sliderchar1.png',
-    'assets/images/sliderchar2.png',
-    'assets/images/sliderchar3.png',
-  ];
+  // List<String> _charImageList = [
+  //   'assets/images/sliderchar1.png',
+  //   'assets/images/sliderchar2.png',
+  //   'assets/images/sliderchar3.png',
+  // ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9D,
       appBar: HomeAppBar(text: Text("Good Morning, Pankaj",style: kManRope_700_20_white,),
         color: k5A72ED,
-        child: Image.asset("assets/images/iconwhitenotification.png",height: 48.h,width: 48.w,),),
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   backgroundColor: k5A72ED,
-      //   elevation: 0,
-      //   centerTitle: false,
-      //   title: Text(
-      //     'Good Morning, Pankaj',
-      //     style: kManRope_700_20,
-      //   ),
-      //   actions: [
-      //     GestureDetector(
-      //       onTap: () {
-      //         Navigator.of(context).push(MaterialPageRoute(
-      //             builder: (context) => const NotificationsScreen()));
-      //       },
-      //       child: Container(
-      //         height: 48,
-      //         width: 48,
-      //         color: Colors.transparent,
-      //         margin: EdgeInsets.only(right: 24.w),
-      //         //padding: const EdgeInsets.only(top: 10, right: 24, left: 24),
-      //         child: Image.asset(
-      //           'assets/images/noti.png',
-      //           width: 24.w,
-      //           height: 24.h,
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
+        child: GestureDetector(onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const NotificationsScreen()));
+        },
+            child: Image.asset("assets/images/iconwhitenotification.png",height: 48.h,width: 48.w,)),),
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -124,10 +117,12 @@ class _UHomeScreenState extends State<UHomeScreen> {
                       ),
                       SizedBox(height: 24.h),
                       Container(
+                       // margin: EdgeInsets.only(left: 16.w),
                         height: 223.h,
                         width: 1.sw,
                         child: CarouselSlider.builder(
                           options: CarouselOptions(
+                            padEnds: false,
                             height: 200,
                             onPageChanged: (index, reason) {
                               setState(() {
@@ -135,8 +130,9 @@ class _UHomeScreenState extends State<UHomeScreen> {
                               });
                               print(_index);
                             },
-                            //aspectRatio: 2,
-                            viewportFraction: 0.7,
+                            aspectRatio: 1,
+                            viewportFraction: 0.82,
+                            scrollDirection: Axis.horizontal,
                             autoPlay: true,
                             reverse: false,
                             enableInfiniteScroll: false,
@@ -145,76 +141,106 @@ class _UHomeScreenState extends State<UHomeScreen> {
                               (BuildContext context, int index, int realIndex) {
                             return Container(
                               height: 223.h,
-                              width: 280.w,
+                              width: 330.w,
                               padding: EdgeInsets.only(right: 10),
                               decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(24),
                                   image: DecorationImage(
-                                      image: AssetImage(_bgImageList[index])
-                                  )
+                                      image: AssetImage(_bgImageList[index],),fit: BoxFit.cover
+                                  ),
                               ),
                             );
                           },
                           itemCount: _bgImageList.length,
                         ),
                       ),
+                      SizedBox(height: 24.h),
                       SizedBox(height: 16),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 24.h),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
+                      Column(
+                        children: [
+                          Row(mainAxisAlignment: MainAxisAlignment.center,
+                            children: List.generate(3, (index) {
+                                return Container(
                                   height: 4.h,
                                   decoration: BoxDecoration(
                                     color: k5A72ED.withOpacity(0.15),
                                     borderRadius: BorderRadius.circular(2),
                                   ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      AnimatedContainer(
-                                        width: 24.w,
-                                        decoration: BoxDecoration(
-                                          color: _index % 3 == 0
-                                              ? k5A72ED
-                                              : Colors.transparent,
-                                          borderRadius: BorderRadius.circular(2),
-                                        ),
-                                        duration:
-                                        const Duration(milliseconds: 200),
-                                      ),
-                                      AnimatedContainer(
-                                        width: 24.w,
-                                        decoration: BoxDecoration(
-                                          color: _index % 3 == 1
-                                              ? k5A72ED
-                                              : Colors.transparent,
-                                          borderRadius: BorderRadius.circular(2),
-                                        ),
-                                        duration:
-                                        const Duration(milliseconds: 200),
-                                      ),
-                                      AnimatedContainer(
-                                        width: 24.w,
-                                        decoration: BoxDecoration(
-                                          color: _index % 3 == 2
-                                              ? k5A72ED
-                                              : Colors.transparent,
-                                          borderRadius: BorderRadius.circular(2),
-                                        ),
-                                        duration:
-                                        const Duration(milliseconds: 200),
-                                      )
-                                    ],
+                                  child: AnimatedContainer(
+                                    alignment: Alignment.centerLeft,
+                                    // height: 4,
+                                    width:  24 ,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(2),
+                                      color:  _index == index
+                                          ? k5A72ED
+                                          : Colors.transparent,
+                                    ), duration: Duration(milliseconds: 100),
                                   ),
-                                ),
-                              ],
+                                );
+                              },
                             ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Row(
+                            //   mainAxisAlignment: MainAxisAlignment.center,
+                            //   children: [
+                            //     Container(
+                            //       height: 4.h,
+                            //       decoration: BoxDecoration(
+                            //         color: k5A72ED.withOpacity(0.15),
+                            //         borderRadius: BorderRadius.circular(2),
+                            //       ),
+                            //       child: Row(
+                            //         mainAxisSize: MainAxisSize.min,
+                            //         mainAxisAlignment: MainAxisAlignment.center,
+                            //         children: [
+                            //           AnimatedContainer(
+                            //             width: 24.w,
+                            //             decoration: BoxDecoration(
+                            //               color: _index % 3 == 0
+                            //                   ? k5A72ED
+                            //                   : Colors.transparent,
+                            //               borderRadius: BorderRadius.circular(2),
+                            //             ),
+                            //             duration:
+                            //             const Duration(milliseconds: 200),
+                            //           ),
+                            //           AnimatedContainer(
+                            //             width: 24.w,
+                            //             decoration: BoxDecoration(
+                            //               color: _index % 3 == 1
+                            //                   ? k5A72ED
+                            //                   : Colors.transparent,
+                            //               borderRadius: BorderRadius.circular(2),
+                            //             ),
+                            //             duration:
+                            //             const Duration(milliseconds: 200),
+                            //           ),
+                            //           AnimatedContainer(
+                            //             width: 24.w,
+                            //             decoration: BoxDecoration(
+                            //               color: _index % 3 == 2
+                            //                   ? k5A72ED
+                            //                   : Colors.transparent,
+                            //               borderRadius: BorderRadius.circular(2),
+                            //             ),
+                            //             duration:
+                            //             const Duration(milliseconds: 200),
+                            //           )
+                            //         ],
+                            //       ),
+                            //     ),
+                            //   ],
+                            // ),
                             SizedBox(height: 40.h),
                             GestureDetector(
                                 onTap: () {

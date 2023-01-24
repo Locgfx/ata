@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/Editbasicdetails.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/Editdoctordetails.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/Editbasicdetails.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/Editdoctordetails.dart';
-import 'package:greymatter/screens/psychologist_screen/profile_screens/basic_details_widget.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-// import '../../../psychologist_screen/profile_screens/doctor_profile_widget.dart';
+
 
 class PsychologistPersonalInfoScreen extends StatefulWidget {
   const PsychologistPersonalInfoScreen({Key? key}) : super(key: key);

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/Lists.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/book_appointment_screens/available_psychologists_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/available_psychologists_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/home_screen_widgets/grid_card.dart';
-
-// import '../../../constants/Lists.dart';
 
 class BookAppointmentScreen extends StatelessWidget {
   const BookAppointmentScreen({Key? key}) : super(key: key);
@@ -20,39 +17,6 @@ class BookAppointmentScreen extends StatelessWidget {
       backgroundColor: kWhiteBGColor,
       appBar: CuswhiteAppBar(appBarText: 'Book Appointment', imgPath: 'assets/images/iconbackappbar2.png',
           text: Text("Help",style: kManRope_500_16_006D77,)),
-
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 60.w,
-      //   centerTitle: false,
-      //   backgroundColor: Colors.white,
-      //   title: Text(
-      //     'Book Appointment',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   titleSpacing: 0.w,
-      //   leading: InkWell(
-      //     onTap: () {
-      //       Navigator.of(context).pop();
-      //     },
-      //     child: Container(
-      //       padding: const EdgeInsets.all(20.0),
-      //       child: const Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      //   actions: [
-      //     TextButton(
-      //         onPressed: () {},
-      //         child: Text(
-      //           'Help',
-      //           style: kManRope_500_16_006D77,
-      //         ))
-      //   ],
-      // ),
       body: SingleChildScrollView(
         child: Container(
           //padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -72,23 +36,6 @@ class BookAppointmentScreen extends StatelessWidget {
                         decoration: TextfieldDecoration(label: 'Search for health problem, Psychologist',hintstyle:kManRope_400_14_626A6A ).whiteColorSearchField(),
                       ),
                     ),
-                    // TextField(
-                    //   decoration: InputDecoration(
-                    //     hintText: 'Search for health problem, Psychologist',
-                    //     hintStyle: kManRope_400_14_626A6A,
-                    //     border: OutlineInputBorder(
-                    //         borderSide: BorderSide.none,
-                    //         borderRadius: BorderRadius.circular(16.0)),
-                    //     fillColor: Colors.white,
-                    //     filled: true,
-                    //     suffixIconConstraints:
-                    //         BoxConstraints(maxHeight: 24.h, maxWidth: 34.w),
-                    //     suffixIcon: Padding(
-                    //       padding: EdgeInsets.only(right: 10.w),
-                    //       child: SvgPicture.asset('assets/icons/search.svg'),
-                    //     ),
-                    //   ),
-                    // ),
                     SizedBox(height: 40.h),
                     Text('Choose from Top Psychologists',
                         style: kManRope_700_16_001314),

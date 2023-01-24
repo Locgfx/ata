@@ -4,8 +4,6 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/Kycconf
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/Kycconfirmname.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/pan_verfied_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class ConfirmName extends StatefulWidget {

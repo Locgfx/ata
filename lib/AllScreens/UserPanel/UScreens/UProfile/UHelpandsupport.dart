@@ -4,7 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UFaq.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/profile_screens/FAQs_Screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/FAQs_Screen.dart';
 
 class UHelpandSupport extends StatefulWidget {
   const UHelpandSupport({Key? key}) : super(key: key);

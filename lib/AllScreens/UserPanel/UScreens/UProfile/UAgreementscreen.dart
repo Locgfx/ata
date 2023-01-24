@@ -5,7 +5,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPrivacyandpol
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UTermsandconditions.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/screens/profile_screens/privacy_and_policy_screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/privacy_and_policy_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class UAgreementScreen extends StatefulWidget {

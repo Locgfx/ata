@@ -6,9 +6,6 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/change_
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/deleteaccount.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/deleteaccount.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/change_email_screen.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/change_password_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 

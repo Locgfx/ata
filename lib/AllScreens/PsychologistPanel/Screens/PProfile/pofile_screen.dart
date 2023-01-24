@@ -9,11 +9,7 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/kyc_scr
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/order_history_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/slots_availability_screens.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/agreement_screen.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/help_and_support_screen.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/order_history_screen.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/kyc_screen.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/slots_availability_screens.dart';
+
 
 import '../../../../constants/colors.dart';
 import 'my_account_screen.dart';

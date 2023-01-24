@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/paymentdelay2.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/PEarning/paymentdelay2.dart';
 
 class PaymentDelay extends StatefulWidget {
   const PaymentDelay({Key? key}) : super(key: key);

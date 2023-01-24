@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Home/tabs_screen.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class PaymentDelay2 extends StatefulWidget {

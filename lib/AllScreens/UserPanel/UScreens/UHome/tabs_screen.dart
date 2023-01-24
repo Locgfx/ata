@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreen/UGoalScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UGoalScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UHomeScreen.dart';
-//import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/home_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/post_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UprofileScreen.dart';
 import 'package:greymatter/constants/colors.dart';
-// import 'package:greymatter/screens/UserPanel/UScreens/UHome/home_screen.dart';
-import 'package:greymatter/screens/goal_screens/goalScreen.dart';
-// import 'package:greymatter/screens/UserPanel/UScreens/UPosts/post_screen.dart';
-// import 'package:greymatter/screens/UserPanel/UHome/home_screen.dart';
-import 'package:greymatter/screens/tabs_screen/explore_screen.dart';
-import 'package:greymatter/screens/tabs_screen/profile_screen.dart';
-
-// import '../../tabs_screen/explore_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/explore_screen.dart';
 
 class UTabsScreen extends StatefulWidget {
   const UTabsScreen({Key? key}) : super(key: key);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../constants/fonts.dart';
 
@@ -15,7 +16,7 @@ class CustomDeactiveTextButton extends StatelessWidget {
       children: [
         Expanded(
           child: MaterialButton(
-            height: 56,
+            height: 56.h,
             onPressed: onPressed,
             child: Row(
               mainAxisSize: MainAxisSize.min,

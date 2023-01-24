@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/agreement_details_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/agreement_details_screen.dart';
-import 'package:greymatter/screens/profile_screens/privacy_and_policy_screen.dart';
-import 'package:greymatter/screens/profile_screens/terms_and_conditions_screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/privacy_and_policy_screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/terms_and_conditions_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 

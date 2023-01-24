@@ -3,14 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UCreatepost.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/comment_page.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/create_post_screen.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
-// import 'package:greymatter/screens/posts_screens/create_post_screen.dart';
+
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-// import '../../../../screens/posts_screens/comment_page.dart';
+
 
 class PostPage extends StatefulWidget {
   const PostPage({Key? key}) : super(key: key);
@@ -304,21 +302,21 @@ class _PostPageState extends State<PostPage> {
           ),
 
           SizedBox(height: 20.h),
-          Positioned(
-            bottom: 200.h,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => UCreatePost()));
-              },
-              child: SvgPicture.asset(
-                'assets/icons/addPost_1.svg',
-                height: 72.h,
-                width: 72.w,
-              ),
-            ),
-          ),
-          SizedBox(height: 20.h),
+          // Positioned(
+          //   bottom: 200.h,
+          //   child: GestureDetector(
+          //     onTap: () {
+          //       Navigator.of(context).push(MaterialPageRoute(
+          //           builder: (context) => UCreatePost()));
+          //     },
+          //     child: SvgPicture.asset(
+          //       'assets/icons/addPost_1.svg',
+          //       height: 72.h,
+          //       width: 72.w,
+          //     ),
+          //   ),
+          // ),
+          // SizedBox(height: 20.h),
         ],
       ),
     );

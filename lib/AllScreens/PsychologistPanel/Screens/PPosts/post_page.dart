@@ -5,8 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PPosts/psychologist_create_post.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/comment_page.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/PPosts/psychologist_create_post.dart';
-// import 'package:greymatter/screens/posts_screens/comment_page.dart';
+
 import 'package:greymatter/widgets/BottomSheets.dart';
 
 import '../../../../constants/colors.dart';

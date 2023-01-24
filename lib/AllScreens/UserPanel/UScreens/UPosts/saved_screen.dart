@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/comment_page.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-// import '../../../../screens/posts_screens/comment_page.dart';
 
 class SavedScreen extends StatefulWidget {
   const SavedScreen({Key? key}) : super(key: key);

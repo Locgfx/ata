@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/pan_verfied_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/pan_verfied_screen.dart';
 
 class KycConfirmName extends StatefulWidget {
   const KycConfirmName({Key? key}) : super(key: key);

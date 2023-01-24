@@ -1,12 +1,14 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UprofileScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UBottomsheet.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class UserPersonalInfoScreen extends StatefulWidget {
@@ -61,12 +63,13 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        toolbarHeight: 30.h,
-        backgroundColor: Colors.white,
-      ),
+      appBar: CuswhiteAppBar(appBarText: "Account", imgPath: "assets/images/iconbackappbar2.png"),
+      // appBar: AppBar(
+      //   elevation: 0,
+      //   automaticallyImplyLeading: false,
+      //   toolbarHeight: 30.h,
+      //   backgroundColor: Colors.white,
+      // ),
       body: SingleChildScrollView(
         child:Padding(
           padding:  EdgeInsets.symmetric(horizontal: 24.w),
@@ -471,6 +474,11 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                 child: Center(
                   child: MainButton(
                       onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UProfileScreen()));
+
                         setState(() {
                           // isreadable = false;
                         });

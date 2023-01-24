@@ -4,8 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/chatmessage.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-// import 'package:greymatter/screens/PsychologistPanel/Screens/Profile/chatmessage.dart';
-import 'package:greymatter/screens/profile_screens/FAQs_Screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/FAQs_Screen.dart';
 
 
 class HelpAndSupportScreen extends StatelessWidget {

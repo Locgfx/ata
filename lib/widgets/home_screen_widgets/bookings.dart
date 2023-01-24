@@ -4,7 +4,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/book_appointment_
 import 'package:greymatter/constants/fonts.dart';
 // import 'package:greymatter/screens/UserPanel/UHome/book_appointment_screen.dart';
 // import 'package:greymatter/screens/UserPanel/UScreens/UHome/book_appointment_screen.dart';
-import 'package:greymatter/screens/instant_booking_screen/instant_booking_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/instant_booking_screen.dart';
 
 class Bookings extends StatelessWidget {
   const Bookings({Key? key}) : super(key: key);
