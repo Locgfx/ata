@@ -117,10 +117,10 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
                           ),
                           child: Text(
                             "Go to Home",
-                            style: kManRope_500_16_006D77,
+                            style: kManRope_500_16_white,
                           ),
                         ),
-                        color: Colors.white,
+                        color: k006D77,
                         shape: CustomDecoration().border16Decoration(),
                       ),
                     ),

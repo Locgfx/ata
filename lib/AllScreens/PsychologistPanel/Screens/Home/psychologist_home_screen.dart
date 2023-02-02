@@ -276,7 +276,7 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen>
                         ],
                       ),
                     ),
-                    SizedBox(height: 30.h),
+                    //SizedBox(height: 30.h),
                     /*Padding(
                       padding: EdgeInsets.symmetric(
                         vertical: 20,

@@ -67,7 +67,10 @@ class _UTabsScreenState extends State<UTabsScreen> {
                       ),
                       child: _index == 0
                           ? Image.asset('assets/images/logoT.png')
-                          : Image.asset('assets/images/logoF.png'),
+                          : Image.asset(
+                              'assets/images/logoF.png',
+                              color: k626A6A,
+                            ),
                     ),
                   ),
                 ),
@@ -84,14 +87,14 @@ class _UTabsScreenState extends State<UTabsScreen> {
                       height: 62.w,
                       decoration: BoxDecoration(
                           color: _index == 1
-                              ? k5A72ED.withOpacity(0.08)
+                              ? k006D77.withOpacity(0.08)
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(16)),
                       child: SvgPicture.asset(
                         _index == 1
                             ? 'assets/icons/Union.svg'
                             : 'assets/icons/calenderunselected.svg',
-                        color: _index == 1 ? k5A72ED : Colors.black,
+                        color: _index == 1 ? k006D77 : k626A6A,
                       ),
                     ),
                   ),
@@ -109,14 +112,14 @@ class _UTabsScreenState extends State<UTabsScreen> {
                       height: 62.w,
                       decoration: BoxDecoration(
                           color: _index == 2
-                              ? k5A72ED.withOpacity(0.08)
+                              ? k006D77.withOpacity(0.08)
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(16)),
                       child: SvgPicture.asset(
                         _index == 2
                             ? 'assets/icons/dotsSelected.svg'
                             : 'assets/icons/dotsunselected.svg',
-                        color: _index == 2 ? k5A72ED : Colors.black,
+                        color: _index == 2 ? k006D77 : k626A6A,
                       ),
                     ),
                   ),
@@ -134,12 +137,12 @@ class _UTabsScreenState extends State<UTabsScreen> {
                       height: 62.w,
                       decoration: BoxDecoration(
                           color: _index == 3
-                              ? k5A72ED.withOpacity(0.08)
+                              ? k006D77.withOpacity(0.08)
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(16)),
                       child: SvgPicture.asset(
                         'assets/icons/targetunselected.svg',
-                        color: _index == 3 ? k5A72ED : Colors.black,
+                        color: _index == 3 ? k006D77 : k626A6A,
                       ),
                     ),
                   ),
@@ -158,14 +161,15 @@ class _UTabsScreenState extends State<UTabsScreen> {
                       height: 62.w,
                       decoration: BoxDecoration(
                           color: _index == 4
-                              ? k5A72ED.withOpacity(0.08)
+                              ? k006D77.withOpacity(0.08)
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(16)),
                       child: SvgPicture.asset(
-                          _index == 4
-                              ? 'assets/icons/profileSelected.svg'
-                              : 'assets/icons/profileunselected.svg',
-                          color: _index == 4 ? k5A72ED : Colors.black),
+                        _index == 4
+                            ? 'assets/icons/profileSelected.svg'
+                            : 'assets/icons/profileunselected.svg',
+                        color: _index == 4 ? k006D77 : k626A6A,
+                      ),
                     ),
                   ),
                 ),

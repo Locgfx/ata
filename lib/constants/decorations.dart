@@ -298,7 +298,7 @@ class TextfieldDecoration {
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide.none),
         focusColor: kEDF6F9,
-        fillColor: kEDF6F9,
+        fillColor: Colors.white,
         hintText: label,
         hintStyle: kManRope_400_14_626A6A,
         suffixIconConstraints: BoxConstraints(minHeight: 10, minWidth: 10),
