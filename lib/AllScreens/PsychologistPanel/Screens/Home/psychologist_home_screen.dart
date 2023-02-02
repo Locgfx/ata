@@ -1,18 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/Cancelledmeetings.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/Completedmeetings.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/Upcomingmeetings.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/cancelledlist.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/completedlist.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/upcominglist.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/notification_screen.dart';
 import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/constants/decorations.dart';
-import 'package:greymatter/widgets/app_bar/app_bar.dart';
-import 'package:greymatter/widgets/buttons.dart';
 
 import '../../../../constants/fonts.dart';
+import '../../../UserPanel/UScreens/UHome/UHomeScreen.dart';
 
 class PsychologistHomeScreen extends StatefulWidget {
   const PsychologistHomeScreen({Key? key}) : super(key: key);
@@ -21,11 +20,16 @@ class PsychologistHomeScreen extends StatefulWidget {
   State<PsychologistHomeScreen> createState() => _PsychologistHomeScreenState();
 }
 
-class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
-  final PageController _pageController = PageController(
-    initialPage: 0,
-  );
+class _PsychologistHomeScreenState extends State<PsychologistHomeScreen>
+    with TickerProviderStateMixin {
+  late TabController _pageController;
   int pageIndex = 0;
+
+  @override
+  void initState() {
+    _pageController = TabController(length: 3, vsync: this);
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -34,38 +38,73 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
   }
 
   int selectedIndex = 0;
-
-  ////////////////
   int index = 0;
   bool flag = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: HomeAppBar(color: kWhiteBGColor,
-          text: Text("Good Morning, Pankaj",
-            style:kManRope_700_20_686868,), child: Image.asset(
-        'assets/images/iconnotificationlarge.png',
-        width: 48.w,
-        height: 48.h,
-        // color: imagecolor,
-      ),),
-      backgroundColor: kWhiteBGColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          // physics: ScrollPhysics(),
-          child: Column(
-            children: [
-              // SizedBox(height: 52.h),
-              Padding(
-                padding: EdgeInsets.only(
-                  left: 24.w,
-                  right: 24.w,
-                  top: 30.h
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: k5A72ED,
+          automaticallyImplyLeading: false,
+          systemOverlayStyle: Platform.isAndroid
+              ? SystemUiOverlayStyle(
+                  statusBarColor: k5A72ED,
+                  statusBarIconBrightness: Brightness.dark,
+                )
+              : SystemUiOverlayStyle.dark,
+          centerTitle: false,
+          title: Padding(
+            padding: EdgeInsets.only(left: 6.w),
+            child: Text(
+              "Good Morning, Pankaj",
+              style: kManRope_700_20_white,
+            ),
+          ),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const NotificationsScreen()));
+              },
+              child: Container(
+                color: Colors.transparent,
+                margin: EdgeInsets.only(right: 12),
+                child: Image.asset(
+                  "assets/images/iconwhitenotification.png",
+                  height: 48.w,
+                  width: 48.w,
                 ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: kEDF6F9,
+        body: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            ClipPath(
+              clipper: ClipPathClass(),
+              child: Container(
+                height: 140.h,
+                width: 1.sw,
+                decoration: const BoxDecoration(
+                  color: k5A72ED,
+                  //borderRadius: BorderRadius.only(bottomLeft: Radius.circular(100),bottomRight: Radius.circular(100))
+                ),
+              ),
+            ),
+            Container(
+              constraints: BoxConstraints(maxHeight: 660.h),
+              child: Padding(
+                padding: EdgeInsets.only(top: 40.h),
                 child: Column(
                   children: [
                     Container(
                       // height: 180.h,
+                      margin: EdgeInsets.symmetric(horizontal: 24),
                       width: 1.sw,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -180,142 +219,69 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 40.h,
-                    ),
+                    SizedBox(height: 40.h),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = pageIndex = 0;
-                              _pageController.jumpToPage(
-                                pageIndex,
-                              );
-                              pageIndex = 0;
-                            });
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Upcoming',
-                                style: pageIndex == 0
-                                    ? kManRope_500_16_006D77
-                                    : kManRope_500_16_001314,
+                        Expanded(
+                          child: TabBar(
+                            indicatorWeight: 2,
+                            controller: _pageController,
+                            indicatorSize: TabBarIndicatorSize.label,
+                            labelStyle: kManRope_700_16_001314,
+                            unselectedLabelStyle: kManRope_500_16_626A6A,
+                            indicatorColor: k006D77,
+                            labelColor: Colors.black,
+                            unselectedLabelColor: k626A6A,
+                            onTap: (v) {
+                              setState(() {
+                                _pageController.animateTo(
+                                  v,
+                                  duration: Duration(milliseconds: 1500),
+                                );
+                              });
+                            },
+                            tabs: [
+                              Tab(
+                                text: 'Upcoming',
+                                height: 54,
                               ),
-                              SizedBox(
-                                height: 8.h,
+                              Tab(
+                                text: 'Cancelled',
+                                height: 54,
                               ),
-                              Container(
-                                height: 1.5,
-                                width: 75.w,
-                                color: pageIndex == 0
-                                    ? k006D77
-                                    : Colors.transparent,
-                              )
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = pageIndex = 1;
-                              _pageController.jumpToPage(
-                                pageIndex,
-                              );
-                              pageIndex = 1;
-                            });
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Cancelled',
-                                style: pageIndex == 1
-                                    ? kManRope_500_16_006D77
-                                    : kManRope_500_16_001314,
+                              Tab(
+                                text: 'Completed',
+                                height: 54,
                               ),
-                              SizedBox(
-                                height: 8.h,
-                              ),
-                              Container(
-                                height: 1.5,
-                                width: 75.w,
-                                color: pageIndex == 1
-                                    ? k006D77
-                                    : Colors.transparent,
-                              )
-                            ],
-                          ),
-                        ),
-                        GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = pageIndex = 2;
-                              _pageController.jumpToPage(
-                                pageIndex,
-                              );
-                              pageIndex = 2;
-                            });
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Completed',
-                                style: pageIndex == 2
-                                    ? kManRope_500_16_006D77
-                                    : kManRope_500_16_001314,
-                              ),
-                              SizedBox(
-                                height: 8.h,
-                              ),
-                              Container(
-                                height: 1.5,
-                                width: 75.w,
-                                color: pageIndex == 2
-                                    ? k006D77
-                                    : Colors.transparent,
-                              )
                             ],
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 23.h,
-                    ),
-                    Container(
-                      height: 380.h,
-                      child: PageView(
-
+                    SizedBox(height: 23.h),
+                    Expanded(
+                      child: TabBarView(
                         controller: _pageController,
-                        onPageChanged: (page) {
+                        /*onPageChanged: (page) {
                           setState(
                             () {
                               pageIndex = page;
                             },
                           );
-                        },
+                        },*/
                         children: <Widget>[
                           UpcomingList(),
                           CancelledList(),
                           CompletedList(),
-
-                          // HomeProfile(),
-                          // Posts(),
-                          // NotificationScreen(),
-                          // MessageScreen()
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 20.h),
+                    SizedBox(height: 30.h),
+                    /*Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 20,
+                        horizontal: 24,
+                      ),
                       child: Row(
                         children: [
                           Expanded(
@@ -353,147 +319,12 @@ class _PsychologistHomeScreenState extends State<PsychologistHomeScreen> {
                           ),
                         ],
                       ),
-                    ),
-                    // flag ? UpcomingList() : CancelledList(),
-                    // ? Column(
-                    //     children: [
-                    //       SizedBox(
-                    //         height: 356.h,
-                    //         width: 1.sw,
-                    //         child: ListView.separated(
-                    //             scrollDirection: Axis.vertical,
-                    //             physics: NeverScrollableScrollPhysics(),
-                    //             padding: EdgeInsets.zero,
-                    //             itemBuilder: (ctx, index) {
-                    //               return Container(
-                    //                 height: 80.h,
-                    //                 width: 1.sw,
-                    //                 padding: EdgeInsets.symmetric(
-                    //                     horizontal: 16.w, vertical: 10.h),
-                    //                 decoration: BoxDecoration(
-                    //                     borderRadius:
-                    //                         BorderRadius.circular(8),
-                    //                     color: kWhiteBGColor,
-                    //                     border: Border.all(
-                    //                         color: Colors.white)),
-                    //                 child: Center(
-                    //                   child: Column(
-                    //                     mainAxisSize: MainAxisSize.min,
-                    //                     children: [
-                    //                       Row(
-                    //                         mainAxisAlignment:
-                    //                             MainAxisAlignment
-                    //                                 .spaceBetween,
-                    //                         crossAxisAlignment:
-                    //                             CrossAxisAlignment.start,
-                    //                         children: [
-                    //                           Row(
-                    //                             children: [
-                    //                               Container(
-                    //                                 width: 48.w,
-                    //                                 height: 48.h,
-                    //                                 clipBehavior:
-                    //                                     Clip.hardEdge,
-                    //                                 decoration: BoxDecoration(
-                    //                                     color: Colors.grey,
-                    //                                     borderRadius:
-                    //                                         BorderRadius
-                    //                                             .circular(
-                    //                                                 8)),
-                    //                                 child: Image.asset(
-                    //                                     'assets/images/userP.png'),
-                    //                               ),
-                    //                               SizedBox(width: 8.w),
-                    //                               Column(
-                    //                                 mainAxisSize:
-                    //                                     MainAxisSize.min,
-                    //                                 crossAxisAlignment:
-                    //                                     CrossAxisAlignment
-                    //                                         .start,
-                    //                                 children: [
-                    //                                   Text('Priyanka singh',
-                    //                                       style:
-                    //                                           kManRope_500_16_001314),
-                    //                                   //SizedBox(width: 10,),
-                    //                                   SizedBox(height: 8.h),
-                    //                                   SizedBox(
-                    //                                     width: 280.w,
-                    //                                     child: Row(
-                    //                                       mainAxisAlignment:
-                    //                                           MainAxisAlignment
-                    //                                               .spaceBetween,
-                    //                                       children: [
-                    //                                         Text('Anxiety',
-                    //                                             style:
-                    //                                                 kManRope_400_14_626A6A),
-                    //                                         Text(
-                    //                                           '10 June 2022, 8:00AM',
-                    //                                           style:
-                    //                                               kManRope_400_14_626A6A,
-                    //                                         ),
-                    //                                       ],
-                    //                                     ),
-                    //                                   ),
-                    //                                   // SizedBox(height: 8.h),
-                    //                                 ],
-                    //                               ),
-                    //                             ],
-                    //                           ),
-                    //                         ],
-                    //                       ),
-                    //                     ],
-                    //                   ),
-                    //                 ),
-                    //               );
-                    //             },
-                    //             separatorBuilder: (ctx, index) {
-                    //               return SizedBox(height: 12.h);
-                    //             },
-                    //             itemCount: 4),
-                    //       ),
-                    //       SizedBox(height: 24.h),
-                    //       SizedBox(
-                    //         height: 56.h,
-                    //         width: 1.sw,
-                    //         child: CustomActiveTextButton(
-                    //           text: 'See All',
-                    //           onPressed: () {
-                    //             Navigator.of(context).push(
-                    //                 MaterialPageRoute(
-                    //                     builder: (context) =>
-                    //                         UpcomingMeetings()));
-                    //           },
-                    //         ),
-                    //       ),
-                    //       SizedBox(height: 16.h),
-                    //     ],
-                    //   )
-                    // : Column(
-                    //     children: [
-                    //       SizedBox(
-                    //         height: 70.h,
-                    //       ),
-                    //       Center(
-                    //         child: Image.asset(
-                    //           'assets/images/the-boy-and-girl-are-standing-near-calendar 1.png',
-                    //           height: 216.h,
-                    //           width: 216.w,
-                    //         ),
-                    //       ),
-                    //       SizedBox(
-                    //         height: 8.h,
-                    //       ),
-                    //       Text(
-                    //         'No upcoming appointment ',
-                    //         style: kManRope_500_24_001314,
-                    //       ),
-                    //     ],
-                    //   ),
+                    ),*/
                   ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

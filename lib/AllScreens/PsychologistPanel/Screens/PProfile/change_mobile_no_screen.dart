@@ -14,7 +14,7 @@ class _ChangeMobileNoScreenState extends State<ChangeMobileNoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 40.w,

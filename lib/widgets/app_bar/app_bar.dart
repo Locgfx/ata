@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/widgets/BottomSheets.dart';
-import 'package:greymatter/widgets/popupdialogs.dart';
+import 'dart:io';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/constants/colors.dart';
+
+import '../../AllScreens/UserPanel/UScreens/UHome/notification_screen.dart';
 import '../../constants/fonts.dart';
 
 class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
@@ -19,7 +20,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       toolbarHeight: 60,
       elevation: 0,
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       leadingWidth: 70,
       title: Text(
         appBarText,
@@ -80,13 +81,12 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   HomeAppBar(
-      {
-        required this.text,
-        required this.child,
-        required this.color,
-        // required this.imagecolor,
+      {required this.text,
+      required this.child,
+      required this.color,
+      // required this.imagecolor,
 
-        Key? key})
+      Key? key})
       : super(key: key);
   // String appBarText;
   final Color color;
@@ -99,59 +99,52 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
+    return AppBar(
+      automaticallyImplyLeading: false,
+      elevation: 0,
+      backgroundColor: color,
+      systemOverlayStyle: Platform.isAndroid
+          ? SystemUiOverlayStyle(
+              statusBarColor: color,
+              statusBarIconBrightness: Brightness.dark,
+            )
+          : SystemUiOverlayStyle.dark,
+      actions: [
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const NotificationsScreen()));
+          },
+          child: Container(
+            color: Colors.transparent,
+            margin: EdgeInsets.only(right: 12),
+            child: child,
+          ),
+        ),
+      ],
+      title: Container(
         color: color,
         height: 48,
-        // padding: EdgeInsets.only(top: 52.h),
-        child: Padding(
-          padding: EdgeInsets.only(left: 24.w,right: 24.w,top: 12.h),
-          child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                // behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  Navigator.pop(context);
-                },
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GestureDetector(
+              // behavior: HitTestBehavior.translucent,
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsets.only(left: 6.w),
                 child: text,
               ),
-
-               Container(
-                 // color: Colors.red,
-                 child: child,
-               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
-    // return Padding(
-    //   padding: EdgeInsets.symmetric(horizontal: 15.w),
-    //   child: AppBar(
-    //     toolbarHeight: 48.h,
-    //     automaticallyImplyLeading: false,
-    //     backgroundColor: kWhiteBGColor,
-    //     elevation: 0,
-    //     centerTitle: false,
-    //     title: Text(
-    //       'Good Morning, Pankaj',
-    //       style: kManRope_700_20_686868,
-    //     ),
-    //     actions: [
-    //       GestureDetector(
-    //         behavior: HitTestBehavior.translucent,
-    //         child: Image.asset(
-    //           'assets/images/icon notification48.png',
-    //           width: 48.w,
-    //           height: 48.h,
-    //           color: k686868,
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 }
+
 class CusAppBar extends StatelessWidget with PreferredSizeWidget {
   CusAppBar({
     this.appBarText,
@@ -168,7 +161,7 @@ class CusAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
-        color: kWhiteBGColor,
+        color: kEDF6F9,
         height: 48,
         padding: EdgeInsets.only(top: 16),
         child: Row(
@@ -200,7 +193,7 @@ class CusAppBar extends StatelessWidget with PreferredSizeWidget {
     // return AppBar(
     //     toolbarHeight: 60,
     //     elevation: 0,
-    //     backgroundColor: kWhiteBGColor,
+    //     backgroundColor: kEDF6F9,
     //     leadingWidth: 50,
     //     titleSpacing: 1,
     //   title: Text(
@@ -259,71 +252,99 @@ class CusAppBar extends StatelessWidget with PreferredSizeWidget {
     // );
   }
 }
+
 class CuswhiteAppBar extends StatelessWidget with PreferredSizeWidget {
   CuswhiteAppBar({
     required this.appBarText,
-     required this.imgPath,
-   this.text,
+    required this.imgPath,
+    this.text,
+    this.onThreeDotTap,
+    required this.hasThreeDots,
     Key? key,
   }) : super(key: key);
   String appBarText;
-  String  imgPath;
+  String imgPath;
   Widget? text;
+  Function? onThreeDotTap;
+  bool hasThreeDots;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
+    return AppBar(
+      backgroundColor: Colors.white,
+      systemOverlayStyle: Platform.isAndroid
+          ? SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarIconBrightness: Brightness.dark,
+            )
+          : SystemUiOverlayStyle.dark,
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      title: Container(
         color: Colors.white,
         height: 48,
         padding: EdgeInsets.only(top: 16),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
               children: [
-        GestureDetector(
-        // behavior: HitTestBehavior.translucent,
-        onTap: () {
-      Navigator.pop(context);
-      },
-        child: Container(
-          color: Colors.transparent,
-          padding: EdgeInsets.only(left: 16),
-          child: Image.asset(
-            imgPath,
-            width: 32.w,
-            height: 48.h,
-          ),
-        ),
-      ),
-    Text(
-    appBarText,
-    style: kManRope_500_16_006D77,
-    // textAlign: TextAlign.left,
-    ),
-              ] ),
+                GestureDetector(
+                  // behavior: HitTestBehavior.translucent,
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  child: Container(
+                    width: 48,
+                    height: 48,
+                    color: Colors.transparent,
+                    child: Image.asset(
+                      imgPath,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Text(
+                  appBarText,
+                  style: kManRope_500_16_006D77,
+                  // textAlign: TextAlign.left,
+                ),
+              ],
+            ),
             Padding(
-              padding:  EdgeInsets.only(right: 16.0),
-              child: Container(
+              padding: EdgeInsets.only(right: 16.0),
+              child: SizedBox(
                 height: 48.h,
                 width: 100.w,
                 // color: Colors.red,
                 // padding: EdgeInsets.only(left: 16),
-                child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     text ?? SizedBox.shrink(),
-
                   ],
                 ),
               ),
-            )
+            ),
+            if (hasThreeDots)
+              GestureDetector(
+                  onTap: () {
+                    onThreeDotTap!();
+                  },
+                  child: Container(
+                      width: 40.w,
+                      color: Colors.transparent,
+                      child: Image.asset(
+                        'assets/images/3doticonlarge.png',
+                        fit: BoxFit.fitWidth,
+                      ))),
           ],
         ),
       ),
-    )/*AppBar(
+    ) /*AppBar(
       toolbarHeight: 60,
       elevation: 0,
       backgroundColor: kFFFFFF,
@@ -359,16 +380,17 @@ class CuswhiteAppBar extends StatelessWidget with PreferredSizeWidget {
           ],
         ),
       ),
-    )*/;
+    )*/
+        ;
   }
 }
-class DotappBar extends StatelessWidget with PreferredSizeWidget {
 
+class DotappBar extends StatelessWidget with PreferredSizeWidget {
   DotappBar({
     required this.onTap,
     required this.imgPath,
-    Key? key, })
-      : super(key: key);
+    Key? key,
+  }) : super(key: key);
 
   // String appBarText;
   String imgPath;
@@ -384,7 +406,8 @@ class DotappBar extends StatelessWidget with PreferredSizeWidget {
         color: Colors.white,
         height: 48,
         padding: EdgeInsets.only(top: 16),
-        child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
               // behavior: HitTestBehavior.translucent,
@@ -393,12 +416,10 @@ class DotappBar extends StatelessWidget with PreferredSizeWidget {
               },
               child: Container(
                 color: Colors.transparent,
-                padding: EdgeInsets.only(left: 16),
                 child: Image.asset(
                   "assets/images/iconbacklargeicon.png",
                   // imgPath,
-                  width: 32.w,
-                  height: 48.h,
+                  width: 48,
                 ),
               ),
             ),
@@ -419,17 +440,17 @@ class DotappBar extends StatelessWidget with PreferredSizeWidget {
               child: Container(
                 padding: EdgeInsets.only(right: 16),
                 // color: Colors.red,
-                child: Image.asset(imgPath,
+                child: Image.asset(
+                  imgPath,
                   height: 48.h,
-                  width: 32.w,),
+                  width: 32.w,
+                ),
               ),
             ),
-
           ],
         ),
       ),
     );
-
 
     //   AppBar(
     //   toolbarHeight: 60,
@@ -473,7 +494,7 @@ class DotappBar extends StatelessWidget with PreferredSizeWidget {
 //       child: AppBar(
 //         toolbarHeight: 48.h,
 //         automaticallyImplyLeading: false,
-//         backgroundColor: kWhiteBGColor,
+//         backgroundColor: kEDF6F9,
 //         elevation: 0,
 //         centerTitle: false,
 //         title: Text(
@@ -497,8 +518,8 @@ class DotappBar extends StatelessWidget with PreferredSizeWidget {
   }
 }
 
-class WhiteCustomAppBar extends StatelessWidget  with PreferredSizeWidget{
-  WhiteCustomAppBar({required this.appBarText,Key? key}) : super(key: key);
+class WhiteCustomAppBar extends StatelessWidget with PreferredSizeWidget {
+  WhiteCustomAppBar({required this.appBarText, Key? key}) : super(key: key);
   String appBarText;
 
   @override

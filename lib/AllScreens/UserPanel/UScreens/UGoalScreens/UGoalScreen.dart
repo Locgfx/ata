@@ -1,12 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivity.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UBottomsheet.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:table_calendar/table_calendar.dart';
-import '../../../../constants/fonts.dart';
 
+import '../../../../constants/fonts.dart';
 
 class UGoalScreen extends StatefulWidget {
   UGoalScreen({Key? key}) : super(key: key);
@@ -28,6 +31,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
   _onSelected(int index) {
     setState(() => _selectedIndex = index);
   }
+
   final sc = DraggableScrollableController();
   final sc2 = ScrollController();
   List dx = [
@@ -49,17 +53,23 @@ class _UGoalScreenState extends State<UGoalScreen> {
         backgroundColor: kFFFFFF,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-        builder: (BuildContext context) =>  UDeleteBottomSheet());
+        builder: (BuildContext context) => UDeleteBottomSheet());
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
       appBar: AppBar(
-        backgroundColor: Colors.white.withOpacity(0.08),
-        automaticallyImplyLeading: false,
-        toolbarHeight: 20,
+        toolbarHeight: 0,
         elevation: 0,
+        backgroundColor: kEDF6F9,
+        systemOverlayStyle: Platform.isAndroid
+            ? SystemUiOverlayStyle(
+                statusBarColor: kEDF6F9,
+                statusBarIconBrightness: Brightness.dark,
+              )
+            : SystemUiOverlayStyle.dark,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -162,7 +172,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                 context: context,
                 removeTop: true,
                 child: ListView.separated(
-                  physics: NeverScrollableScrollPhysics(),
+                    physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) {
@@ -171,7 +181,6 @@ class _UGoalScreenState extends State<UGoalScreen> {
                           GestureDetector(
                             onTap: () {
                               _uDeleteBottomsheet();
-
                             },
                             child: Container(
                               margin: EdgeInsets.only(top: 16.h),
@@ -194,7 +203,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                               onHorizontalDragUpdate: (v) {
                                 setState(() {
                                   InkWell(
-                                    onTap:() => _onSelected(index),
+                                    onTap: () => _onSelected(index),
                                   );
                                   dx[index] =
                                       (dx[index] + v.delta.dx).clamp(0.0, 81.h);
@@ -207,7 +216,9 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                 clipBehavior: Clip.hardEdge,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
-                                  color: _selectedIndex == index ? k05AF01 : k5A72ED,
+                                  color: _selectedIndex == index
+                                      ? k05AF01
+                                      : k5A72ED,
                                 ),
                                 child: Stack(
                                   alignment: Alignment.centerLeft,
@@ -228,7 +239,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                           horizontal: 18.w),
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
                                             children: [
@@ -245,16 +256,17 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                               ),
                                             ],
                                           ),
-
-                                          _selectedIndex == index ? SvgPicture.asset(
-                                            'assets/icons/greencircletick.svg',
-                                            height: 36.w,
-                                            width: 36.w,
-                                          ) : SvgPicture.asset(
-                                            'assets/icons/greyTick.svg',
-                                            height: 36.w,
-                                            width: 36.w,
-                                          ),
+                                          _selectedIndex == index
+                                              ? SvgPicture.asset(
+                                                  'assets/icons/greencircletick.svg',
+                                                  height: 36.w,
+                                                  width: 36.w,
+                                                )
+                                              : SvgPicture.asset(
+                                                  'assets/icons/greyTick.svg',
+                                                  height: 36.w,
+                                                  width: 36.w,
+                                                ),
                                         ],
                                       ),
                                     ),

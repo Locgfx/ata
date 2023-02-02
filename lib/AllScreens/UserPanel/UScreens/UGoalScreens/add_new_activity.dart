@@ -1,15 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/new_activity_added_screen.dart';
 import 'package:greymatter/constants/Lists.dart';
 import 'package:greymatter/constants/decorations.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-
 
 class AddNewActivity extends StatefulWidget {
   AddNewActivity({Key? key, required this.text}) : super(key: key);
@@ -23,27 +26,32 @@ class _AddNewActivityState extends State<AddNewActivity> {
   bool _switchValue = true;
   bool goalFlag = true;
   int flag = 0;
+  int selectedDay = 0;
+  List selectedDays = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Running', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Running',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(top: 40.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  //color: Colors.grey,
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Image.asset(
+                  'assets/images/manimg.png',
+                  width: 1.sw,
+                  fit: BoxFit.fitWidth,
                 ),
-                child: Image.asset('assets/images/manimg.png',fit: BoxFit.cover,),
               ),
-              SizedBox(
-                height: 40,
-              ),
+              SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
@@ -228,28 +236,51 @@ class _AddNewActivityState extends State<AddNewActivity> {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: Container(
+                child: SizedBox(
                   height: 42.w,
                   child: ListView.separated(
-                    separatorBuilder: (context, index) => SizedBox(width: 4.w,),
+                    separatorBuilder: (context, index) => SizedBox(
+                      width: 4.w,
+                    ),
                     padding: EdgeInsets.zero,
                     shrinkWrap: true,
                     itemCount: 7,
                     // physics: NeverScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        height: 39.h,
-                        width: 49.w,
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(5)),
-                          border: Border.all(color: k006D77),
-                        ),
-                        child: Center(
-                          child: Text(
-                            weekDays[index],
-                            style: kManRope_400_14_001314,
+                      return GestureDetector(
+                        onTap: () {
+                          //print(selectedDays);
+                          if (selectedDays.contains(index)) {
+                            setState(() {
+                              selectedDays.remove(index);
+                            });
+                            //print('a');
+                          } else {
+                            setState(() {
+                              selectedDays.add(index);
+                            });
+                            //print('b');
+                          }
+                        },
+                        child: Container(
+                          height: 39.h,
+                          width: 49.w,
+                          decoration: BoxDecoration(
+                            color: selectedDays.contains(index)
+                                ? k006D77
+                                : Colors.transparent,
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(5)),
+                            border: Border.all(color: k006D77),
+                          ),
+                          child: Center(
+                            child: Text(
+                              weekDays[index],
+                              style: selectedDays.contains(index)
+                                  ? kManRope_400_14_white
+                                  : kManRope_400_14_001314,
+                            ),
                           ),
                         ),
                       );
@@ -261,7 +292,7 @@ class _AddNewActivityState extends State<AddNewActivity> {
                 height: 43.h,
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 24, right: 10),
+                padding: const EdgeInsets.only(left: 24, right: 24),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -269,21 +300,18 @@ class _AddNewActivityState extends State<AddNewActivity> {
                       'Reminder',
                       style: kManRope_500_16_001314,
                     ),
-                    SizedBox(
-                      height: 28.h,
-                      width: 54.w,
-                      child: Transform.scale(
-                        scale: 0.6,
-                        child: CupertinoSwitch(
-                          activeColor: k006D77,
-                          value: _switchValue,
-                          onChanged: (value) {
-                            setState(() {
-                              _switchValue = value;
-                            });
-                          },
-                        ),
-                      ),
+                    FlutterSwitch(
+                      width: 40,
+                      height: 18,
+                      padding: 3,
+                      toggleSize: 14,
+                      activeColor: k006D77,
+                      value: _switchValue,
+                      onToggle: (val) {
+                        setState(() {
+                          _switchValue = val;
+                        });
+                      },
                     ),
                   ],
                 ),
@@ -300,16 +328,28 @@ class _AddNewActivityState extends State<AddNewActivity> {
                       'Reminder time',
                       style: kManRope_500_16_001314,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: kE2F2F4,
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-                      child: Padding(
-                        padding:  EdgeInsets.only(top: 10.h,bottom: 10.h,left: 10.2,right: 37.w),
-                        child: Text(
-                          '06:00 am',
-                          style: kManRope_400_14_001314,
+                    GestureDetector(
+                      onTap: () {
+                        if (Platform.isAndroid) {
+                          Globals().showTimepicker(context);
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (_) => TimePickerApp(),
+                          );
+                        }
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: kE2F2F4,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: 10.h, bottom: 10.h, left: 10.2, right: 37.w),
+                          child: Text(
+                            '06:00 am',
+                            style: kManRope_400_14_001314,
+                          ),
                         ),
                       ),
                     )
@@ -322,19 +362,25 @@ class _AddNewActivityState extends State<AddNewActivity> {
               Center(
                 child: MainButton(
                     onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => NewActivityAddedScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NewActivityAddedScreen()));
                     },
                     child: Padding(
-                      padding:  EdgeInsets.only(top: 20.h,bottom: 20.h,left: 50.w,right: 50.w),
-                      child: Text("ADD",style: kManRope_500_16_white,),
+                      padding: EdgeInsets.only(
+                          top: 20.h, bottom: 20.h, left: 50.w, right: 50.w),
+                      child: Text(
+                        "ADD",
+                        style: kManRope_500_16_white,
+                      ),
                     ),
                     color: k006D77,
                     shape: CustomDecoration().smallButton10Decoration()),
               ),
-              SizedBox(height: 40.h,)
+              SizedBox(
+                height: 40.h,
+              )
               // Center(
               //   child: SizedBox(
               //     height: 56,
@@ -359,6 +405,52 @@ class _AddNewActivityState extends State<AddNewActivity> {
               //     ),
               //   ),
               // ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TimePickerApp extends StatefulWidget {
+  const TimePickerApp({Key? key}) : super(key: key);
+
+  @override
+  State<TimePickerApp> createState() => _TimePickerAppState();
+}
+
+class _TimePickerAppState extends State<TimePickerApp> {
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      contentPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.all(16),
+      backgroundColor: Colors.transparent,
+      content: Container(
+        width: 1.sw,
+        padding: EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(24),
+        ),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 200,
+                child: CupertinoDatePicker(
+                  mode: CupertinoDatePickerMode.time,
+                  onDateTimeChanged: (v) {},
+                ),
+              ),
+              SizedBox(height: 16),
+              BottomSmallButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                text: 'OK',
+              ),
             ],
           ),
         ),

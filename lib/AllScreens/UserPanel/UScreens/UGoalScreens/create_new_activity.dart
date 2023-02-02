@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/new_activity_added_screen.dart';
 import 'package:greymatter/constants/Lists.dart';
 
@@ -21,7 +22,7 @@ class _CreateNewActivityState extends State<CreateNewActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 40.w,
@@ -284,21 +285,18 @@ class _CreateNewActivityState extends State<CreateNewActivity> {
                     'Reminder',
                     style: kManRope_500_16_001314,
                   ),
-                  SizedBox(
-                    height: 28.h,
-                    width: 54.w,
-                    child: Transform.scale(
-                      scale: 0.6,
-                      child: CupertinoSwitch(
-                        activeColor: k006D77,
-                        value: _switchValue,
-                        onChanged: (value) {
-                          setState(() {
-                            _switchValue = value;
-                          });
-                        },
-                      ),
-                    ),
+                  FlutterSwitch(
+                    width: 40,
+                    height: 18,
+                    padding: 3,
+                    toggleSize: 14,
+                    activeColor: k006D77,
+                    value: _switchValue,
+                    onToggle: (val) {
+                      setState(() {
+                        _switchValue = val;
+                      });
+                    },
                   ),
                 ],
               ),

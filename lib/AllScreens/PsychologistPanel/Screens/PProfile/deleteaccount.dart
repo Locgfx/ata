@@ -18,9 +18,10 @@ class _DeleteAccountState extends State<DeleteAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       resizeToAvoidBottomInset: true,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Delete Account',
       ),
@@ -52,10 +53,9 @@ class _DeleteAccountState extends State<DeleteAccount> {
               ),
               TextField(
                 decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Enter your password",
-                  hintStyle: kManRope_400_16_001314
-                ),
+                    border: InputBorder.none,
+                    hintText: "Enter your password",
+                    hintStyle: kManRope_400_16_001314),
               ),
               // TextField(decoration: TextfieldDecoration(label: 'Priyasingh344@1234',hintstyle: kManRope_400_16_Black,).blankfieldDecoration(),),
               // Text(
@@ -78,14 +78,14 @@ class _DeleteAccountState extends State<DeleteAccount> {
                       height: 48,
                       child: MainButton(
                           onPressed: () {
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => PTabsScreen()));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PTabsScreen()));
                           },
                           child: Text(
                             "Cancel",
                             style: kManRope_500_16_Black,
                           ),
-                          color: kWhiteBGColor,
+                          color: kEDF6F9,
                           shape: CustomDecoration().button16Decoration()),
                     ),
                   ),
@@ -95,8 +95,8 @@ class _DeleteAccountState extends State<DeleteAccount> {
                       height: 48,
                       child: MainButton(
                           onPressed: () {
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => PTabsScreen()));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PTabsScreen()));
                           },
                           child: Text(
                             "Delete Account",

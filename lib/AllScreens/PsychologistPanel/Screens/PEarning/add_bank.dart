@@ -1,15 +1,10 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 
 import '../../../../constants/fonts.dart';
 import 'bank_account_verify_screen.dart';
@@ -35,7 +30,7 @@ class AddBankScreen extends StatefulWidget {
 class _AddBankScreenState extends State<AddBankScreen> {
   void _banksBottomSheet() {
     showModalBottomSheet(
-      isScrollControlled: true,
+        isScrollControlled: true,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
@@ -57,28 +52,11 @@ class _AddBankScreenState extends State<AddBankScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   toolbarHeight: 40,
-      //   elevation: 0,
-      //   backgroundColor: kWhiteBGColor,
-      //   automaticallyImplyLeading: false,
-      //   flexibleSpace: Padding(
-      //     padding: EdgeInsets.only(top: 40.0,
-      //     left: 24.w),
-      //     child: Container(
-      //     child: Row(
-      //       children: [
-      //         Image.asset("assets/images/iconback.png",height: 24,
-      //         width: 24,),
-      //         SizedBox(width: 8.h),
-      //         Text("Bank",style:kManRope_500_16_006D77 ,)
-      //       ],
-      //     ),
-      // ),
-      //   ),),
-      appBar: CusAppBar(
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        appBarText: '',
         imgPath: 'assets/images/iconbackappbarlarge.png',
+        hasThreeDots: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -103,14 +81,15 @@ class _AddBankScreenState extends State<AddBankScreen> {
               SizedBox(
                 height: 48.h,
                 width: 1.sw,
-                child: TextField(style:kManRope_500_16_263238,
+                child: TextField(
+                    style: kManRope_500_16_263238,
                     onTap: () {
                       _banksBottomSheet();
                     },
                     readOnly: true,
                     decoration: TextfieldDecoration(
                         label: "Select bank",
-                        hintstyle:kManRope_500_16_263238 ,
+                        hintstyle: kManRope_500_16_263238,
                         child: Image.asset(
                           "assets/images/icondownlarge.png",
                           height: 48.h,
@@ -130,10 +109,11 @@ class _AddBankScreenState extends State<AddBankScreen> {
               SizedBox(
                 height: 48.h,
                 width: 1.sw,
-                child: TextField(style:kManRope_500_16_263238 ,
+                child: TextField(
+                    style: kManRope_500_16_263238,
                     decoration: TextfieldDecoration(
-                  label: "Type IFSC Code",
-                ).textfieldDecoration()),
+                      label: "Type IFSC Code",
+                    ).textfieldDecoration()),
               ),
               SizedBox(
                 height: 20.h,
@@ -148,7 +128,8 @@ class _AddBankScreenState extends State<AddBankScreen> {
               SizedBox(
                 height: 48.h,
                 width: 1.sw,
-                child: TextField(style:kManRope_500_16_263238,
+                child: TextField(
+                    style: kManRope_500_16_263238,
                     decoration: TextfieldDecoration(label: "Type Account NO")
                         .textfieldDecoration()),
               ),
@@ -165,7 +146,8 @@ class _AddBankScreenState extends State<AddBankScreen> {
               SizedBox(
                 height: 48.h,
                 width: 1.sw,
-                child: TextField(style:kManRope_500_16_263238 ,
+                child: TextField(
+                    style: kManRope_500_16_263238,
                     decoration: TextfieldDecoration(
                             label: "This field will filled automatically")
                         .textfieldDecoration()),
@@ -183,7 +165,8 @@ class _AddBankScreenState extends State<AddBankScreen> {
               SizedBox(
                 height: 48.h,
                 width: 1.sw,
-                child: TextField(style:kManRope_500_16_263238,
+                child: TextField(
+                    style: kManRope_500_16_263238,
                     decoration: TextfieldDecoration(
                             label: "This field will filled automatically")
                         .textfieldDecoration()),
@@ -201,7 +184,8 @@ class _AddBankScreenState extends State<AddBankScreen> {
               SizedBox(
                 height: 48.h,
                 width: 1.sw,
-                child: TextField(style:kManRope_500_16_263238 ,
+                child: TextField(
+                    style: kManRope_500_16_263238,
                     onTap: () {
                       _selectAccountType();
                     },
@@ -228,7 +212,8 @@ class _AddBankScreenState extends State<AddBankScreen> {
                       );
                     },
                     child: Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 15,left:63.w,right: 63.w),
+                      padding: EdgeInsets.only(
+                          top: 15, bottom: 15, left: 63.w, right: 63.w),
                       child: Text(
                         "Save",
                         style: kManRope_500_16_white,
@@ -262,7 +247,6 @@ class _AddBankScreenState extends State<AddBankScreen> {
     );
   }
 }
-
 
 // void _banksBottomSheet() {
 //   showModalBottomSheet(
@@ -357,7 +341,8 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
               decoration: const BoxDecoration(
                 color: k006D77,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)),
               ),
               child: Center(
                 child: Text(
@@ -366,9 +351,11 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
                 ),
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             Padding(
-              padding:EdgeInsets.symmetric(horizontal: 24.w),
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Container(
                 height: 56.h,
                 width: 1.sw,
@@ -376,8 +363,15 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                   border: Border.all(color: k5A72ED.withOpacity(0.24)),
                 ),
-                child: TextField(style:kManRope_500_16_626A6A ,
-                  decoration: TextfieldDecoration(label: 'Search Transaction No',child: Image.asset("assets/images/searchicon.png",height:16,width: 16 ,)).searchFieldOutlineDecoration(),
+                child: TextField(
+                  style: kManRope_500_16_626A6A,
+                  decoration: TextfieldDecoration(
+                      label: 'Select Bank',
+                      child: Image.asset(
+                        "assets/images/searchicon.png",
+                        height: 16,
+                        width: 16,
+                      )).searchFieldOutlineDecoration(),
                 ),
               ),
             ),
@@ -385,17 +379,18 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
             SizedBox(
               height: 500.h,
               child: ListView.builder(
-                itemCount:Banks.length,
+                itemCount: Banks.length,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: EdgeInsets.only(bottom: 8.h,left: 24.w),
+                    padding: EdgeInsets.only(bottom: 8.h, left: 24.w),
                     child: Row(
                       children: [
-                        Container(height: 48,
-                          color:Colors.transparent,
+                        Container(
+                          height: 48,
+                          color: Colors.transparent,
                           child: Center(
                             child: Padding(
-                              padding:  EdgeInsets.only(left: 24.w),
+                              padding: EdgeInsets.only(left: 24.w),
                               child: Text(
                                 Banks[index],
                                 style: kManRope_400_16_001314,
@@ -409,13 +404,13 @@ class _BanksBottomSheetState extends State<BanksBottomSheet> {
                 },
               ),
             ),
-            SizedBox(height: 20.h,)
-
+            SizedBox(
+              height: 20.h,
+            )
           ],
         ),
       ),
     );
-
   }
 }
 
@@ -466,8 +461,7 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
                     height: 44.h,
                     width: 101.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 0 ? k006D77 : Colors.white,
                     ),
                     child: Center(
@@ -479,7 +473,9 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
                     )),
                   ),
                 ),
-                SizedBox(height: 8.h,),
+                SizedBox(
+                  height: 8.h,
+                ),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 1;
@@ -489,9 +485,7 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
                     height: 44.h,
                     width: 101.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                           BorderRadius.all(Radius.circular(5)),
-
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
                     child: Center(
                         child: Text(
@@ -502,7 +496,9 @@ class _AccountTypeBottomSheetState extends State<AccountTypeBottomSheet> {
                     )),
                   ),
                 ),
-                SizedBox(height: 20.h,)
+                SizedBox(
+                  height: 20.h,
+                )
               ],
             ),
           ),

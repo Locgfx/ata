@@ -22,15 +22,17 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) =>FilterBottomSheet());
+        builder: (context) => FilterBottomSheet());
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CusAppBar(
+      appBar: CuswhiteAppBar(
         appBarText: 'History',
         imgPath: 'assets/images/iconbackappbarlarge.png',
+        hasThreeDots: false,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,42 +40,28 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
           SizedBox(
             height: 40.h,
           ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24.w),
-        child: Container(
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: Container(
               height: 56.h,
               width: 1.sw,
+              clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(16)),
                 border: Border.all(color: k5A72ED.withOpacity(0.24)),
               ),
-            child:
-            TextField(style:kManRope_500_16_626A6A ,
-              decoration: TextfieldDecoration(label: 'Search Transaction No',child: Image.asset("assets/images/searchicon.png",height:16,width: 16 ,)).searchFieldDecoration(),
-            ),),
-      ),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 24.w),
-          //   child: Container(
-          //     height: 56.h,
-          //     width: 1.sw,
-          //     decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.all(Radius.circular(16)),
-          //       border: Border.all(color: k5A72ED.withOpacity(0.24)),
-          //     ),
-          //     child: Center(
-          //       child: Padding(
-          //         padding: EdgeInsets.symmetric(horizontal: 16.w),
-          //         child: TextField(
-          //           decoration: TextfieldDecoration(
-          //                   label: 'Search order id',
-          //                   child: Image.asset("assets/images/searchicon.png"))
-          //               .searchFieldDecoration(),
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+              child: TextField(
+                style: kManRope_500_16_626A6A,
+                decoration: TextfieldDecoration(
+                    label: 'Search Transaction No',
+                    child: Image.asset(
+                      "assets/images/searchicon.png",
+                      height: 16,
+                      width: 16,
+                    )).searchFieldDecoration(),
+              ),
+            ),
+          ),
           SizedBox(
             height: 37.h,
           ),
@@ -117,7 +105,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
           Container(
             height: 40.h,
             width: 1.sw,
-            color: kWhiteBGColor,
+            color: kEDF6F9,
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: 25.w,
@@ -126,25 +114,29 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width:69.w,
+                    width: 69.w,
                     // height: 14.h,
                     child: Text(
                       'Date',
                       style: kManRope_500_14_263238,
                     ),
                   ),
-                  SizedBox(width: 78.w,),
                   SizedBox(
-                    width:104.w,
+                    width: 78.w,
+                  ),
+                  SizedBox(
+                    width: 104.w,
                     // height: 16.h,
                     child: Text(
                       'Transaction No',
                       style: kManRope_500_14_263238,
                     ),
                   ),
-                  SizedBox(width: 74.w,),
                   SizedBox(
-                    width:53.w,
+                    width: 74.w,
+                  ),
+                  SizedBox(
+                    width: 53.w,
                     // height: 16.h,
                     child: Text(
                       'Amount',
@@ -170,25 +162,29 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                           // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             SizedBox(
-                              width:69.w,
+                              width: 69.w,
                               // height: 14.h,
                               child: Text(
                                 '09.12.2022',
                                 style: kManRope_400_14_626A6A,
                               ),
                             ),
-                            SizedBox(width: 78.w,),
                             SizedBox(
-                              width:100.w,
+                              width: 78.w,
+                            ),
+                            SizedBox(
+                              width: 100.w,
                               // height: 16.h,
                               child: Text(
                                 '123456789',
                                 style: kManRope_400_16_626A6A,
                               ),
                             ),
-                            SizedBox(width: 78.w,),
                             SizedBox(
-                              width:53.w,
+                              width: 78.w,
+                            ),
+                            SizedBox(
+                              width: 53.w,
                               // height: 16.h,
                               child: Text(
                                 '500',

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/comment_page.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-
 
 class MyActivity extends StatefulWidget {
   const MyActivity({Key? key}) : super(key: key);
@@ -42,7 +42,7 @@ class _MyActivityState extends State<MyActivity> {
           ),
         ),
       ),
-      backgroundColor: kEDF6F9D,
+      backgroundColor: kEDF6F9,
       body: Stack(
         alignment: Alignment.center,
         children: [

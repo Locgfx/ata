@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/schedule_appointment_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
 import 'package:greymatter/constants/decorations.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/schedule_appointment_screen.dart';
 import 'package:greymatter/widgets/AppWidgets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/primary_card_button.dart';
@@ -19,8 +19,12 @@ class AvailablePsychologists extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Available Psychologists', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Available Psychologists',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       // appBar: AppBar(
       //   elevation: 0,
       //   leadingWidth: 60.w,
@@ -50,10 +54,10 @@ class AvailablePsychologists extends StatelessWidget {
         child: ListView.separated(
             itemBuilder: (ctx, index) {
               return CardWidget(
-               
                 decoration: CustomDecoration().cardWhite24Decoration(),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 20.w,right: 20,top: 24.h,bottom: 24.h),
+                  padding: EdgeInsets.only(
+                      left: 20.w, right: 20, top: 24.h, bottom: 24.h),
                   child: Column(
                     children: [
                       Row(
@@ -113,9 +117,10 @@ class AvailablePsychologists extends StatelessWidget {
                           Expanded(
                               child: GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) =>
-                                        const UDoctorProfileScreen()));
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const UDoctorProfileScreen()));
                                   },
                                   child: const SecondaryCardButton())),
                           SizedBox(width: 8.w),

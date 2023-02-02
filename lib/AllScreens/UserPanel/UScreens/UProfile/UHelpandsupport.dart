@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UFaq.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/FAQs_Screen.dart';
+import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
+import '../../../PsychologistPanel/Screens/PProfile/chatmessage.dart';
 
 class UHelpandSupport extends StatefulWidget {
   const UHelpandSupport({Key? key}) : super(key: key);
@@ -17,17 +19,22 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: AppBar(
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Help And Support',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
+      /*appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         toolbarHeight:30,
         elevation: 0,
-      ),
+      ),*/
       // appBar: AppBar(
       //   elevation: 0,
       //   leadingWidth: 40.w,
-      //   backgroundColor: kWhiteBGColor,
+      //   backgroundColor: kEDF6F9,
       //   centerTitle: false,
       //   title: Text(
       //     'Help and support',
@@ -52,31 +59,6 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding:  EdgeInsets.only(left: 24.w,top: 12.h),
-              child: Container(
-                height: 48,
-                // color: Colors.red,
-                child: Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-
-                      },
-                      child: Container(
-                        // height: 48,
-                        //   color: Colors.red,
-                          child: Image.asset("assets/images/iconbackappbar2.png",height: 48,width: 32,)),
-                    ),
-                    Text("Help and support",style: kManRope_500_16_006D77,)
-
-                  ],
-                ),
-              ),
-            ),
-
-
             Padding(
               padding: EdgeInsets.only(top: 40.h),
               child: Column(
@@ -113,8 +95,8 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) => ChatMessages()));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ChatMessages()));
                           },
                           child: Align(
                             alignment: Alignment.centerRight,
@@ -124,8 +106,10 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                               decoration: const BoxDecoration(
                                   color: k006D77, shape: BoxShape.circle),
                               child: Center(
-                                  child: SvgPicture.asset('assets/icons/chat.svg',
-                                      width: 24.h, height: 24.h)),
+                                  child: SvgPicture.asset(
+                                      'assets/icons/chat.svg',
+                                      width: 24.h,
+                                      height: 24.h)),
                             ),
                           ),
                         ),
@@ -135,22 +119,26 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>  UFaqScreen()));
+                                builder: (context) => UFaqScreen()));
                           },
                           child: Container(
                             height: 84.h,
                             width: 1.sw,
                             decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(8)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
                               color: Colors.white,
                             ),
                             child: Padding(
-                              padding:EdgeInsets.symmetric(horizontal: 16.w),
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'FAQs',
@@ -167,7 +155,7 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                                   ),
                                   Center(
                                     child: Container(
-                                      height:48,
+                                      height: 48,
                                       width: 48,
                                       // color: Colors.red,
                                       child: Image.asset(
@@ -193,11 +181,12 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                             color: Colors.white,
                           ),
                           child: Padding(
-                            padding:EdgeInsets.symmetric(horizontal: 16.w),
+                            padding: EdgeInsets.symmetric(horizontal: 16.w),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(mainAxisAlignment: MainAxisAlignment.center,
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
@@ -215,7 +204,7 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                                 ),
                                 Center(
                                   child: Container(
-                                    height:48,
+                                    height: 48,
                                     width: 48,
                                     // color: Colors.red,
                                     child: Image.asset(
@@ -232,11 +221,12 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
-            SizedBox(height: 48.h,)
+            SizedBox(
+              height: 48.h,
+            )
           ],
         ),
       ),

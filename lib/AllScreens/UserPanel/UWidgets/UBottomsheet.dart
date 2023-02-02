@@ -44,7 +44,7 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
               ),
             ),
           ),
-           SizedBox(height: 20.h),
+          SizedBox(height: 20.h),
           GestureDetector(
             onTap: () => setState(() {
               _gIndex = 0;
@@ -53,22 +53,24 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
             }),
             child: Container(
               height: 44.h,
-              width: 123.w,
+              //width: 123.w,
+              margin: EdgeInsets.symmetric(horizontal: 135.w),
               decoration: BoxDecoration(
-                borderRadius:
-                const BorderRadius.all(Radius.circular(5)),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
                 color: _gIndex == 0 ? k006D77 : Colors.transparent,
               ),
               child: Center(
                   child: Text(
-                    'Cancel booking',
-                    style: _gIndex == 0
-                        ? kManRope_500_16_white
-                        : kManRope_500_16_626A6A,
-                  )),
+                'Cancel booking',
+                style: _gIndex == 0
+                    ? kManRope_500_16_white
+                    : kManRope_500_16_626A6A,
+              )),
             ),
           ),
-          SizedBox(height: 8.h,),
+          SizedBox(
+            height: 8.h,
+          ),
           GestureDetector(
             onTap: () => setState(() {
               _gIndex = 1;
@@ -77,24 +79,24 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
             }),
             child: Container(
               height: 44.h,
-              width: 123.w,
+              margin: EdgeInsets.symmetric(horizontal: 135.w),
               decoration: BoxDecoration(
-                borderRadius:
-                const BorderRadius.all(Radius.circular(5)),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
                 color: _gIndex == 1 ? k006D77 : Colors.transparent,
               ),
               child: Center(
                   child: Text(
-                    'Reschedule',
-                    style: _gIndex == 1
-                        ? kManRope_500_16_white
-                        : kManRope_500_16_626A6A,
-                  )),
+                'Reschedule',
+                style: _gIndex == 1
+                    ? kManRope_500_16_white
+                    : kManRope_500_16_626A6A,
+              )),
             ),
           ),
-          SizedBox(height: 20.h,)
+          SizedBox(
+            height: 20.h,
+          )
         ],
-
       ),
     );
   }
@@ -113,50 +115,57 @@ class _CancelBookingState extends State<CancelBooking> {
     return SingleChildScrollView(
       child: Column(
         children: [
-         Container(
-           height: 212.h,
-           decoration: const BoxDecoration(
-             borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-           ),
-           child: Column(
-             children: [
-               SizedBox(height: 60.h),
-               Padding(
-                 padding:  EdgeInsets.only(left: 24.w,right: 24,),
-                 child: Row(
-                   children: [
-                     Expanded(
-                       child: MainButton(onPressed: () {
-                         Navigator.of(context).push(MaterialPageRoute(
-                             builder: (context) =>
-                                 CancelBookingScreen()));
-
-                       },
-                           child: Padding(
-                             padding: EdgeInsets.symmetric(vertical: 20.h),
-                             child: Text("Cancel booking",style:kManRope_500_16_white ,),
-                           ),
-                           color: k006D77,
-                           shape: CustomDecoration().border16Decoration()),
-                     ),
-                   ],
-                 ),
-               ),
-               SizedBox(height: 12.h,),
-               Text("By clicking the Cancel button your appointment will cancel",style: kManRope_500_16_626A6A,
-               maxLines: 2,)
-             ],
-           ),
-
-
-         )
-
+          Container(
+            height: 212.h,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 60.h),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: 24.w,
+                    right: 24,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: MainButton(
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => CancelBookingScreen()));
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(vertical: 20.h),
+                              child: Text(
+                                "Cancel booking",
+                                style: kManRope_500_16_white,
+                              ),
+                            ),
+                            color: k006D77,
+                            shape: CustomDecoration().border16Decoration()),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 12.h,
+                ),
+                Text(
+                  "By clicking the Cancel button your appointment will cancel",
+                  style: kManRope_500_16_626A6A,
+                  maxLines: 2,
+                )
+              ],
+            ),
+          )
         ],
-
       ),
     );
   }
 }
+
 class UDeleteBottomSheet extends StatefulWidget {
   const UDeleteBottomSheet({Key? key}) : super(key: key);
 
@@ -174,42 +183,53 @@ class _UDeleteBottomSheet extends State<UDeleteBottomSheet> {
         children: [
           Container(
             // height: 120.h,
-            padding:EdgeInsets.only(top: 40.h),
+            padding: EdgeInsets.only(top: 40.h),
             child: Column(
               children: [
-                Text("Are you sure you want to delete this activity",style: kManRope_500_14_686868,),
+                Text(
+                  "Are you sure you want to delete this activity",
+                  style: kManRope_500_14_686868,
+                ),
                 SizedBox(height: 24.h),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24.w),
                   child: Row(
                     children: [
                       Expanded(
-                        child: MainButton(onPressed: () {
-                          Navigator.pop(context);
-                        },
+                        child: MainButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             child: Padding(
-                              padding:  EdgeInsets.symmetric(vertical: 20.h),
-                              child: Text("Back",style: kManRope_500_16_626A6A,),
+                              padding: EdgeInsets.symmetric(vertical: 20.h),
+                              child: Text(
+                                "Back",
+                                style: kManRope_500_16_626A6A,
+                              ),
                             ),
                             color: kFFFFFF,
-                            shape: CustomDecoration().button10outlineDecoration()),
+                            shape:
+                                CustomDecoration().button10outlineDecoration()),
                       ),
                       SizedBox(width: 16.w),
                       Expanded(
-                        child: MainButton(onPressed: () {},
+                        child: MainButton(
+                            onPressed: () {},
                             child: Padding(
-                              padding:  EdgeInsets.symmetric(vertical: 20.h),
-                              child: Text("Delete",style: kManRope_500_16_white,),
+                              padding: EdgeInsets.symmetric(vertical: 20.h),
+                              child: Text(
+                                "Delete",
+                                style: kManRope_500_16_white,
+                              ),
                             ),
                             color: kBC5656,
-                            shape: CustomDecoration().button10BC5656outlineDecoration()),
+                            shape: CustomDecoration()
+                                .button10BC5656outlineDecoration()),
                       ),
-
                     ],
                   ),
                 ),
                 SizedBox(height: 40.h),
-               
               ],
             ),
           ),
@@ -223,7 +243,8 @@ class RelationStatusBottomSheet extends StatefulWidget {
   const RelationStatusBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<RelationStatusBottomSheet> createState() => _RelationStatusBottomSheet();
+  State<RelationStatusBottomSheet> createState() =>
+      _RelationStatusBottomSheet();
 }
 
 class _RelationStatusBottomSheet extends State<RelationStatusBottomSheet> {
@@ -248,7 +269,9 @@ class _RelationStatusBottomSheet extends State<RelationStatusBottomSheet> {
               ),
             ),
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           Column(
             children: [
               GestureDetector(
@@ -260,20 +283,21 @@ class _RelationStatusBottomSheet extends State<RelationStatusBottomSheet> {
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                    const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 0 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
                       child: Text(
-                        'Single',
-                        style: _gIndex == 0
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Single',
+                    style: _gIndex == 0
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
-              SizedBox(height: 8.h,),
+              SizedBox(
+                height: 8.h,
+              ),
               GestureDetector(
                 onTap: () => setState(() {
                   _gIndex = 1;
@@ -283,20 +307,21 @@ class _RelationStatusBottomSheet extends State<RelationStatusBottomSheet> {
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                    const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 1 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
                       child: Text(
-                        'Married',
-                        style: _gIndex == 1
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Married',
+                    style: _gIndex == 1
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
-              SizedBox(height: 8.h,),
+              SizedBox(
+                height: 8.h,
+              ),
               GestureDetector(
                 onTap: () => setState(() {
                   _gIndex = 2;
@@ -306,20 +331,21 @@ class _RelationStatusBottomSheet extends State<RelationStatusBottomSheet> {
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                    const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 2 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
                       child: Text(
-                        'Other',
-                        style: _gIndex == 2
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Other',
+                    style: _gIndex == 2
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
-              SizedBox(height: 20.h,)
+              SizedBox(
+                height: 20.h,
+              )
             ],
           ),
         ],
@@ -357,7 +383,9 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
               ),
             ),
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           Column(
             children: [
               GestureDetector(
@@ -369,20 +397,21 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                    const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 0 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
                       child: Text(
-                        'Student',
-                        style: _gIndex == 0
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Student',
+                    style: _gIndex == 0
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
-              SizedBox(height: 8.h,),
+              SizedBox(
+                height: 8.h,
+              ),
               GestureDetector(
                 onTap: () => setState(() {
                   _gIndex = 1;
@@ -392,20 +421,21 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                    const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 1 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
                       child: Text(
-                        'Working',
-                        style: _gIndex == 1
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Working',
+                    style: _gIndex == 1
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
-              SizedBox(height: 8.h,),
+              SizedBox(
+                height: 8.h,
+              ),
               GestureDetector(
                 onTap: () => setState(() {
                   _gIndex = 2;
@@ -415,20 +445,21 @@ class _OccupationBottomSheetState extends State<OccupationBottomSheet> {
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                    const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 2 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
                       child: Text(
-                        'Other',
-                        style: _gIndex == 2
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Other',
+                    style: _gIndex == 2
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
-              SizedBox(height: 20.h,)
+              SizedBox(
+                height: 20.h,
+              )
             ],
           ),
         ],

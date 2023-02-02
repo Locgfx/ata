@@ -6,7 +6,6 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/primary_card_button.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/secondary_card_button.dart';
 
-
 import '../UBookingScreens/schedule_appointment_screen.dart';
 
 class AllPsychologistScreen extends StatelessWidget {
@@ -15,7 +14,7 @@ class AllPsychologistScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 60.w,
@@ -84,10 +83,8 @@ class AllPsychologistScreen extends StatelessWidget {
                                   Row(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: kDFBE13,
-                                      ),
+                                      Image.asset('assets/images/Star 1.png',
+                                          width: 15.w, height: 15.w),
                                       SizedBox(width: 4.w),
                                       Text('4.0',
                                           style: kManRope_400_12_001314),

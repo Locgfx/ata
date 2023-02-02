@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/add_bank.dart';
+import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../../../constants/fonts.dart';
@@ -18,10 +18,11 @@ class _WithDrawEarningsScreenState extends State<WithDrawEarningsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      backgroundColor: Colors.white,
-      appBar: CusAppBar(
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
         appBarText: 'Withdraw',
         imgPath: 'assets/images/iconbackappbarlarge.png',
+        hasThreeDots: false,
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
@@ -30,7 +31,7 @@ class _WithDrawEarningsScreenState extends State<WithDrawEarningsScreen> {
           children: [
             SizedBox(
               // height: 40.h,
-              width:380.w ,
+              width: 380.w,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

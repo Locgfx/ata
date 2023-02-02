@@ -33,10 +33,11 @@ class _SelectGenderBottomSheet extends State<SelectGenderBottomSheet> {
               decoration: const BoxDecoration(
                 color: k006D77,
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)),
               ),
               child: Center(
-                child:  Text(
+                child: Text(
                   'Select Gender',
                   style: kManRope_700_20_white,
                   textAlign: TextAlign.center,
@@ -79,7 +80,9 @@ class _SelectGenderBottomSheet extends State<SelectGenderBottomSheet> {
                       )),
                     ),
                   ),
-                  SizedBox(height: 8.h,),
+                  SizedBox(
+                    height: 8.h,
+                  ),
                   GestureDetector(
                     onTap: () => setState(() {
                       _gIndex = 1;
@@ -102,7 +105,9 @@ class _SelectGenderBottomSheet extends State<SelectGenderBottomSheet> {
                       )),
                     ),
                   ),
-                  SizedBox(height: 8.h,),
+                  SizedBox(
+                    height: 8.h,
+                  ),
                   GestureDetector(
                     onTap: () => setState(() {
                       _gIndex = 2;
@@ -125,7 +130,9 @@ class _SelectGenderBottomSheet extends State<SelectGenderBottomSheet> {
                       )),
                     ),
                   ),
-                  SizedBox(height: 20.h,)
+                  SizedBox(
+                    height: 20.h,
+                  )
                 ],
               ),
             ),
@@ -144,7 +151,8 @@ class SelectDesignationBottomSheet extends StatefulWidget {
       _SelectDesignationBottomSheet();
 }
 
-class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> {
+class _SelectDesignationBottomSheet
+    extends State<SelectDesignationBottomSheet> {
   int _gIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -166,7 +174,9 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
               ),
             ),
           ),
-          SizedBox(height: 20.h,),
+          SizedBox(
+            height: 20.h,
+          ),
           Column(
             children: [
               GestureDetector(
@@ -178,8 +188,7 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 0 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
@@ -191,7 +200,9 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   )),
                 ),
               ),
-              SizedBox(height: 8.h,),
+              SizedBox(
+                height: 8.h,
+              ),
               GestureDetector(
                 onTap: () => setState(() {
                   _gIndex = 1;
@@ -201,8 +212,7 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 1 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
@@ -214,7 +224,9 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   )),
                 ),
               ),
-              SizedBox(height: 8.h,),
+              SizedBox(
+                height: 8.h,
+              ),
               GestureDetector(
                 onTap: () => setState(() {
                   _gIndex = 2;
@@ -224,8 +236,7 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   height: 44.h,
                   width: 123.w,
                   decoration: BoxDecoration(
-                    borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     color: _gIndex == 2 ? k006D77 : Colors.transparent,
                   ),
                   child: Center(
@@ -237,7 +248,9 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   )),
                 ),
               ),
-              SizedBox(height: 20.h,)
+              SizedBox(
+                height: 20.h,
+              )
             ],
           ),
         ],
@@ -284,7 +297,7 @@ class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
           ),
           Column(
             children: [
-              Container(
+              SizedBox(
                 // padding: EdgeInsets.all(10),
                 height: 190.h,
                 child: CupertinoDatePicker(
@@ -451,8 +464,11 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
     'Suicidal Ideation',
     'Grief & Loss',
     'Anxiety',
-    'Depression','Stress',
-    'OCD','Grief','Anger',
+    'Depression',
+    'Stress',
+    'OCD',
+    'Grief',
+    'Anger',
   ];
 
   final List<String> languages = [
@@ -515,11 +531,12 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 10.h,bottom: 20),
+            padding: EdgeInsets.only(top: 10.h, bottom: 20),
             child: Center(
               child: MainButton(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
                   child: Text(
                     "Done",
                     style: kManRope_500_18_FFFFF,
@@ -580,7 +597,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               itemCount: languages.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.only(bottom: 16.h,left: 140.w),
+                  padding: EdgeInsets.only(bottom: 16.h, left: 140.w),
                   child: Row(
                     children: [
                       SvgPicture.asset(
@@ -609,7 +626,8 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
               child: Center(
                 child: MainButton(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
                     child: Text(
                       "Done",
                       style: kManRope_500_18_FFFFF,
@@ -641,10 +659,10 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       // decoration:BoxDecoration(
-        // color: k006D77,
-        // borderRadius: BorderRadius.only(
-        //     topLeft: Radius.circular(40), topRight: Radius.circular(40)),   // borderRadius: BorderRadius.only(
-        //     topLeft: Radius.circular(40), topRight: Radius.circular(40)),
+      // color: k006D77,
+      // borderRadius: BorderRadius.only(
+      //     topLeft: Radius.circular(40), topRight: Radius.circular(40)),   // borderRadius: BorderRadius.only(
+      //     topLeft: Radius.circular(40), topRight: Radius.circular(40)),
       // ),
       // height: 207.h,
       child: Column(
@@ -697,8 +715,7 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
                     height: 44.h,
                     width: 215.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 0 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
@@ -720,8 +737,7 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
                     height: 44.h,
                     width: 215.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 1 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
@@ -733,7 +749,9 @@ class _AccountNumberBottomSheet extends State<AccountNumberBottomSheet> {
                     )),
                   ),
                 ),
-                SizedBox(height: 20.h,)
+                SizedBox(
+                  height: 20.h,
+                )
               ],
             ),
           ),
@@ -792,19 +810,19 @@ class _CalenderBottomSheet extends State<CalenderBottomSheet> {
                       }),
                       child: Container(
                         height: 44.h,
-                        width: 215.w,
+                        margin: EdgeInsets.symmetric(horizontal: 130),
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 0 ? k006D77 :Colors.transparent,
+                              const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 0 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
-                              'This Month',
-                              style: _gIndex == 0
-                                  ? kManRope_500_16_white
-                                  : kManRope_500_16_626A6A,
-                            )),
+                          'This Month',
+                          style: _gIndex == 0
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
                       ),
                     ),
                     SizedBox(height: 8.h),
@@ -815,42 +833,43 @@ class _CalenderBottomSheet extends State<CalenderBottomSheet> {
                       }),
                       child: Container(
                         height: 50.h,
-                        width: 215.w,
+                        margin: EdgeInsets.symmetric(horizontal: 130),
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                              const BorderRadius.all(Radius.circular(5)),
                           color: _gIndex == 1 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
-                              'This Week',
-                              style: _gIndex == 1
-                                  ? kManRope_500_16_white
-                                  : kManRope_500_16_626A6A,
-                            )),
+                          'This Week',
+                          style: _gIndex == 1
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
                       ),
                     ),
                     SizedBox(height: 8.h),
                     GestureDetector(
                       onTap: () => setState(() {
-                        _gIndex = 1;
+                        _gIndex = 2;
                         Navigator.of(context).pop();
                       }),
                       child: Container(
                         height: 44.h,
-                        width: 215.w,
+                        margin: EdgeInsets.symmetric(horizontal: 130),
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
-                          color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                              const BorderRadius.all(Radius.circular(5)),
+                          color: _gIndex == 2 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
-                            child: Text(
-                              'This Year',
-                              style: _gIndex == 1
-                                  ? kManRope_500_16_white
-                                  : kManRope_500_16_626A6A,
-                            )),
+                          child: Text(
+                            'This Year',
+                            style: _gIndex == 2
+                                ? kManRope_500_16_white
+                                : kManRope_500_16_626A6A,
+                          ),
+                        ),
                       ),
                     ),
                   ],
@@ -863,7 +882,6 @@ class _CalenderBottomSheet extends State<CalenderBottomSheet> {
     );
   }
 }
-
 
 class HistoryFilterBottomSheet extends StatefulWidget {
   const HistoryFilterBottomSheet({Key? key}) : super(key: key);
@@ -896,7 +914,7 @@ class _HistoryFilterBottomSheet extends State<HistoryFilterBottomSheet> {
           ),
           Container(
             // height: 120.h,
-            padding:EdgeInsets.only(top: 20.h),
+            padding: EdgeInsets.only(top: 20.h),
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
@@ -912,17 +930,16 @@ class _HistoryFilterBottomSheet extends State<HistoryFilterBottomSheet> {
                     height: 44.h,
                     width: 215.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 0 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Cancel Meeting',
-                          style: _gIndex == 0
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Cancel Meeting',
+                      style: _gIndex == 0
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
 
@@ -981,12 +998,6 @@ class _HistoryFilterBottomSheet extends State<HistoryFilterBottomSheet> {
   }
 }
 
-
-
-
-
-
-
 class ReportBottomSheet extends StatefulWidget {
   const ReportBottomSheet({Key? key}) : super(key: key);
 
@@ -1025,7 +1036,9 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
             // color: CupertinoColors.systemBackground.resolveFrom(context),
             child: Column(
               children: [
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 0;
@@ -1035,17 +1048,16 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     height: 44.h,
                     width: 251.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 0 ? k006D77 : Colors.white,
                     ),
                     child: Center(
                         child: Text(
-                          'Spam',
-                          style: _gIndex == 0
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Spam',
+                      style: _gIndex == 0
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1058,17 +1070,16 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     height: 50.h,
                     width: 251.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 1 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'False information',
-                          style: _gIndex == 1
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'False information',
+                      style: _gIndex == 1
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1081,17 +1092,16 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     height: 44.h,
                     width: 251.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 2 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Harassment or hateful speech',
-                          style: _gIndex == 2
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Harassment or hateful speech',
+                      style: _gIndex == 2
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1105,17 +1115,16 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     height: 44.h,
                     width: 251.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 3 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Adult content',
-                          style: _gIndex == 3
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Adult content',
+                      style: _gIndex == 3
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1129,17 +1138,16 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     height: 44.h,
                     width: 251.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 4 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Volence or physical harm',
-                          style: _gIndex == 4
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Volence or physical harm',
+                      style: _gIndex == 4
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1153,17 +1161,16 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     height: 44.h,
                     width: 251.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 5 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Block user',
-                          style: _gIndex == 5
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Block user',
+                      style: _gIndex == 5
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1177,29 +1184,29 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     height: 44.h,
                     width: 251.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 6 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Block user',
-                          style: _gIndex == 6
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Block user',
+                      style: _gIndex == 6
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 20.h,)
+          SizedBox(
+            height: 20.h,
+          )
         ],
       ),
     );
   }
 }
-
 
 class PostBottomSheet extends StatefulWidget {
   const PostBottomSheet({Key? key}) : super(key: key);
@@ -1249,7 +1256,9 @@ class _PostBottomSheet extends State<PostBottomSheet> {
             // color: CupertinoColors.systemBackground.resolveFrom(context),
             child: Column(
               children: [
-                SizedBox(height: 20.h,),
+                SizedBox(
+                  height: 20.h,
+                ),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 0;
@@ -1259,17 +1268,16 @@ class _PostBottomSheet extends State<PostBottomSheet> {
                     height: 44.h,
                     width: 80.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 0 ? k006D77 : Colors.white,
                     ),
                     child: Center(
                         child: Text(
-                          'Share',
-                          style: _gIndex == 0
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Share',
+                      style: _gIndex == 0
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1282,17 +1290,16 @@ class _PostBottomSheet extends State<PostBottomSheet> {
                     height: 50.h,
                     width: 80.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 1 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Save',
-                          style: _gIndex == 1
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Save',
+                      style: _gIndex == 1
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1305,17 +1312,16 @@ class _PostBottomSheet extends State<PostBottomSheet> {
                     height: 44.h,
                     width: 80.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 2 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Hide',
-                          style: _gIndex == 2
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Hide',
+                      style: _gIndex == 2
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
@@ -1329,29 +1335,29 @@ class _PostBottomSheet extends State<PostBottomSheet> {
                     height: 44.h,
                     width: 80.w,
                     decoration: BoxDecoration(
-                      borderRadius:
-                      const BorderRadius.all(Radius.circular(5)),
+                      borderRadius: const BorderRadius.all(Radius.circular(5)),
                       color: _gIndex == 3 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Report',
-                          style: _gIndex == 3
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Report',
+                      style: _gIndex == 3
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
               ],
             ),
           ),
-          SizedBox(height: 20.h,)
+          SizedBox(
+            height: 20.h,
+          )
         ],
       ),
     );
   }
 }
-
 
 class FilterBottomSheet extends StatefulWidget {
   const FilterBottomSheet({Key? key}) : super(key: key);
@@ -1400,19 +1406,19 @@ class _FilterBottomSheet extends State<FilterBottomSheet> {
                     }),
                     child: Container(
                       height: 44.h,
-                      width: 215.w,
+                      margin: EdgeInsets.symmetric(horizontal: 130),
                       decoration: BoxDecoration(
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                            const BorderRadius.all(Radius.circular(5)),
                         color: _gIndex == 0 ? k006D77 : Colors.white,
                       ),
                       child: Center(
                           child: Text(
-                            'one week',
-                            style: _gIndex == 0
-                                ? kManRope_500_16_white
-                                : kManRope_500_16_626A6A,
-                          )),
+                        'One Week',
+                        style: _gIndex == 0
+                            ? kManRope_500_16_white
+                            : kManRope_500_16_626A6A,
+                      )),
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -1423,19 +1429,19 @@ class _FilterBottomSheet extends State<FilterBottomSheet> {
                     }),
                     child: Container(
                       height: 50.h,
-                      width: 215.w,
+                      margin: EdgeInsets.symmetric(horizontal: 130),
                       decoration: BoxDecoration(
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                            const BorderRadius.all(Radius.circular(5)),
                         color: _gIndex == 1 ? k006D77 : Colors.transparent,
                       ),
                       child: Center(
                           child: Text(
-                            'one month',
-                            style: _gIndex == 1
-                                ? kManRope_500_16_white
-                                : kManRope_500_16_626A6A,
-                          )),
+                        'One Month',
+                        style: _gIndex == 1
+                            ? kManRope_500_16_white
+                            : kManRope_500_16_626A6A,
+                      )),
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -1446,19 +1452,19 @@ class _FilterBottomSheet extends State<FilterBottomSheet> {
                     }),
                     child: Container(
                       height: 44.h,
-                      width: 215.w,
+                      margin: EdgeInsets.symmetric(horizontal: 130),
                       decoration: BoxDecoration(
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
+                            const BorderRadius.all(Radius.circular(5)),
                         color: _gIndex == 2 ? k006D77 : Colors.transparent,
                       ),
                       child: Center(
                           child: Text(
-                            'one year',
-                            style: _gIndex == 2
-                                ? kManRope_500_16_white
-                                : kManRope_500_16_626A6A,
-                          )),
+                        'One Year',
+                        style: _gIndex == 2
+                            ? kManRope_500_16_white
+                            : kManRope_500_16_626A6A,
+                      )),
                     ),
                   ),
                   SizedBox(height: 8.h),
@@ -1494,13 +1500,11 @@ class _FilterBottomSheet extends State<FilterBottomSheet> {
   }
 }
 
-
 class CancelBottomSheet extends StatefulWidget {
   const CancelBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<CancelBottomSheet> createState() =>
-      _CancelBottomSheet();
+  State<CancelBottomSheet> createState() => _CancelBottomSheet();
 }
 
 class _CancelBottomSheet extends State<CancelBottomSheet> {
@@ -1554,16 +1558,16 @@ class _CancelBottomSheet extends State<CancelBottomSheet> {
                         width: 123.w,
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                              const BorderRadius.all(Radius.circular(5)),
                           color: _gIndex == 0 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
-                              'Counselor',
-                              style: _gIndex == 0
-                                  ? kManRope_500_16_white
-                                  : kManRope_500_16_626A6A,
-                            )),
+                          'Counselor',
+                          style: _gIndex == 0
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
                       ),
                     ),
                     GestureDetector(
@@ -1576,16 +1580,16 @@ class _CancelBottomSheet extends State<CancelBottomSheet> {
                         width: 123.w,
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                              const BorderRadius.all(Radius.circular(5)),
                           color: _gIndex == 1 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
-                              'Physiatrist',
-                              style: _gIndex == 1
-                                  ? kManRope_500_16_white
-                                  : kManRope_500_16_626A6A,
-                            )),
+                          'Physiatrist',
+                          style: _gIndex == 1
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
                       ),
                     ),
                     GestureDetector(
@@ -1598,16 +1602,16 @@ class _CancelBottomSheet extends State<CancelBottomSheet> {
                         width: 123.w,
                         decoration: BoxDecoration(
                           borderRadius:
-                          const BorderRadius.all(Radius.circular(5)),
+                              const BorderRadius.all(Radius.circular(5)),
                           color: _gIndex == 2 ? k006D77 : Colors.transparent,
                         ),
                         child: Center(
                             child: Text(
-                              'Psychologist',
-                              style: _gIndex == 2
-                                  ? kManRope_500_16_white
-                                  : kManRope_500_16_626A6A,
-                            )),
+                          'Psychologist',
+                          style: _gIndex == 2
+                              ? kManRope_500_16_white
+                              : kManRope_500_16_626A6A,
+                        )),
                       ),
                     ),
                   ],
@@ -1620,4 +1624,3 @@ class _CancelBottomSheet extends State<CancelBottomSheet> {
     );
   }
 }
-

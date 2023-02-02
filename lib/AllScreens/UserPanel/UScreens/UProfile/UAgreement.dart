@@ -14,19 +14,24 @@ class UAgreement extends StatefulWidget {
 class _UAgreementState extends State<UAgreement> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(imgPath: 'assets/images/iconbackappbar2.png', appBarText: 'Agreement',),
+    return Scaffold(
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        imgPath: 'assets/images/iconbackappbar2.png',
+        appBarText: 'Agreement',
+      ),
       body: Padding(
-        padding:  EdgeInsets.only(left: 24.w,right: 24.w,top: 40.h),
+        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(
           children: [
-            Text("The right to use the disk shall expire either when the user destroys the Disk or software, or when any of the terms of this Agreement are violated and the Licensors exercise the option to revoke the license to use the Disk or software. The terms and conditions hereof apply to all subsequent users and owners as well as to the original purchaser. The use of oil company logos in the display are for your information and convenience, and in no way implies any sponsorship, approval or endorsement of these companies, or their products. The logos are trademarks of their respective owners. The user shall indemnify and save harmless the Licensors, and their officers, employees and agents, from and against any claim, demand or action, irrespective of the nature of the cause of the claim, demand or action, alleging loss, costs, expense, damages or injuries (including injuries resulting in death) arising out of the use or possession of the Disk, data, or the Navigation Technologies Corporation database. Use, duplication, or disclosure of this Disk by or on behalf of the United States government is subject to as set forth at FAR 52.227-14, -19 or DFARS 252.227-7013, as applicable. Manufacturers are the Licensors, includingHONDAMOTORCO., LTD., 2-1-1 Minami Aoyama Minato- Ku Tokyo 107-8556 JAPAN., Alpine Electronics, Inc., 20-l Yoshima Kogyodanchi, Iwaki, Fukushima 970- 1192 JAPAN., Navigation Technologies, 10400 W. Higgins Rd. Rosemont. IL 60018 and INFO USA CORPORATION, 5711 South 86th",
-            style: kManRope_400_14_626A6A,)
-
+            Text(
+              "The right to use the disk shall expire either when the user destroys the Disk or software, or when any of the terms of this Agreement are violated and the Licensors exercise the option to revoke the license to use the Disk or software. The terms and conditions hereof apply to all subsequent users and owners as well as to the original purchaser. The use of oil company logos in the display are for your information and convenience, and in no way implies any sponsorship, approval or endorsement of these companies, or their products. The logos are trademarks of their respective owners. The user shall indemnify and save harmless the Licensors, and their officers, employees and agents, from and against any claim, demand or action, irrespective of the nature of the cause of the claim, demand or action, alleging loss, costs, expense, damages or injuries (including injuries resulting in death) arising out of the use or possession of the Disk, data, or the Navigation Technologies Corporation database. Use, duplication, or disclosure of this Disk by or on behalf of the United States government is subject to as set forth at FAR 52.227-14, -19 or DFARS 252.227-7013, as applicable. Manufacturers are the Licensors, includingHONDAMOTORCO., LTD., 2-1-1 Minami Aoyama Minato- Ku Tokyo 107-8556 JAPAN., Alpine Electronics, Inc., 20-l Yoshima Kogyodanchi, Iwaki, Fukushima 970- 1192 JAPAN., Navigation Technologies, 10400 W. Higgins Rd. Rosemont. IL 60018 and INFO USA CORPORATION, 5711 South 86th",
+              style: kManRope_400_14_626A6A,
+            )
           ],
         ),
       ),
-
     );
   }
 }

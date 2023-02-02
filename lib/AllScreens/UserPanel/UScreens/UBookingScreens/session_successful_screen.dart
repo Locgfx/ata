@@ -6,9 +6,9 @@ import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/AppWidgets.dart';
 import 'package:greymatter/widgets/buttons.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-
 
 class SessionSuccessful extends StatefulWidget {
   const SessionSuccessful({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -142,43 +142,45 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                     Expanded(
                       child: SizedBox(
                         height: 56.h,
-                        child: MainButton(onPressed: () {},
-                            child: Text("Order details",style: kManRope_500_16_006D77,),
+                        child: MainButton(
+                            onPressed: () {},
+                            child: Text(
+                              "Order details",
+                              style: kManRope_500_16_006D77,
+                            ),
                             color: kFFFFFF,
-                            shape:CustomDecoration().button10outlineDecoration() ),
+                            shape:
+                                CustomDecoration().button10outlineDecoration()),
                       ),
                     ),
                     SizedBox(
                       width: 8.w,
                     ),
-
                     Expanded(
                         child: SizedBox(
-                          height: 56.h,
-                          child: MainButton(
-                            onPressed: () {
-
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  "assets/images/icondownload18.png",
-                                  height: 18,
-                                ),
-                                SizedBox(
-                                  width: 9.w,
-                                ),
-                                Text(
-                                  "Prescription",
-                                  style: kManRope_500_16_white,
-                                ),
-                              ],
+                      height: 56.h,
+                      child: MainButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/icondownload18.png",
+                              height: 18,
                             ),
-                            color: k006D77,
-                            shape: CustomDecoration().border10Decoration(),
-                          ),
-                        )),
+                            SizedBox(
+                              width: 9.w,
+                            ),
+                            Text(
+                              "Prescription",
+                              style: kManRope_500_16_white,
+                            ),
+                          ],
+                        ),
+                        color: k006D77,
+                        shape: CustomDecoration().border10Decoration(),
+                      ),
+                    )),
                   ],
                 ),
                 Column(
@@ -195,89 +197,86 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                       height: 17.h,
                     ),
                     CardWidget(
-                    decoration: CustomDecoration().card20Edf6Decoration(),
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: 20.w, right: 20.w, top: 24, bottom: 24),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Date',
-                                style: kManRope_400_16_626A6A,
-                              ),
-                              Text(
-                                '10, June, 2022',
-                                style: kManRope_400_16_626A6A,
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                '8:00AM-9:00AM',
-                                style: kManRope_400_12_626A6A,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'session Type',
-                                style: kManRope_400_16_626A6A,
-                              ),
-                              Text(
-                                'Video',
-                                style: kManRope_400_16_626A6A,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Issue',
-                                style: kManRope_400_16_626A6A,
-                              ),
-                              Text(
-                                'Stress',
-                                style: kManRope_400_16_626A6A,
-                              ),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 16.h,
-                          ),
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Price',
-                                style: kManRope_400_16_626A6A,
-                              ),
-                              Text(
-                                'INR 350',
-                                style: kManRope_400_16_626A6A,
-                              ),
-                            ],
-                          ),
-                        ],
+                      decoration: CustomDecoration().card20Edf6Decoration(),
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            left: 20.w, right: 20.w, top: 24, bottom: 24),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Date',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                                Text(
+                                  '10, June, 2022',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Text(
+                                  '8:00AM-9:00AM',
+                                  style: kManRope_400_12_626A6A,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'session Type',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                                Text(
+                                  'Video',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Issue',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                                Text(
+                                  'Stress',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 16.h,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Price',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                                Text(
+                                  'INR 350',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),),
+                    ),
                     SizedBox(
                       height: 40.h,
                     ),
@@ -288,7 +287,7 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                     SizedBox(
                       height: 24.h,
                     ),
-                  StarRatingWidget()
+                    StarRatingWidget()
                   ],
                 ),
                 SizedBox(
@@ -297,16 +296,20 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                 SizedBox(
                   height: 56.h,
                   width: 1.sw,
-                  child: MainButton(onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => UHomeScreen()));
-                          Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (ctx) => UTabsScreen()));
-
-                  },
-                  color: k006D77,
-                  shape: CustomDecoration().border16Decoration(),
-                  child: Text("Home",style: kManRope_500_16_white,),),
+                  child: MainButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (ctx) => UHomeScreen()));
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (ctx) => UTabsScreen()));
+                    },
+                    color: k006D77,
+                    shape: CustomDecoration().border16Decoration(),
+                    child: Text(
+                      "Home",
+                      style: kManRope_500_16_white,
+                    ),
+                  ),
                   // child: CustomActiveTextButton(
                   //     onPressed: () {
                   //       Navigator.of(context).push(MaterialPageRoute(

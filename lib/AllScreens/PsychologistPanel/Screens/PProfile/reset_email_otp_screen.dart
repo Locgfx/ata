@@ -7,7 +7,6 @@ import 'package:greymatter/widgets/buttons.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 
-
 class ResetEmailOTPScreen extends StatefulWidget {
   const ResetEmailOTPScreen({Key? key}) : super(key: key);
 
@@ -21,21 +20,27 @@ class _ResetPasswordOTPScreen extends State<ResetEmailOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      bottomNavigationBar: BottomSmallButton(
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => PsychologistAccountScreen()));
-        },
-        text: 'Save',
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(left: 130.w, right: 130.w, bottom: 40),
+        child: Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: BottomSmallButton(
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PsychologistAccountScreen()));
+            },
+            text: 'Save',
+          ),
+        ),
       ),
       appBar: AppBar(
         elevation: 0,
-        toolbarHeight: 40,
+        toolbarHeight: 56,
         backgroundColor: Colors.white,
       ),
       resizeToAvoidBottomInset: false,
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
@@ -64,9 +69,7 @@ class _ResetPasswordOTPScreen extends State<ResetEmailOTPScreen> {
                   length: 4,
                   width: 281.w,
                   fieldWidth: 41,
-                  style: TextStyle(
-                      fontSize: 17
-                  ),
+                  style: TextStyle(fontSize: 17),
                   textFieldAlignment: MainAxisAlignment.spaceEvenly,
                   fieldStyle: FieldStyle.underline,
                   onCompleted: (pin) {

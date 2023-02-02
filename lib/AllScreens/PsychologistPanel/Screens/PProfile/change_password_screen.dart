@@ -20,12 +20,36 @@ class _PsychologistChangePasswordScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: BottomSmallButton(
-      //   onPressed: () {},
-      //   text: 'Save',
-      // ),
-      backgroundColor: kWhiteBGColor,
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.only(bottom: 20.h),
+        child: SingleChildScrollView(
+          child: Center(
+            child: SizedBox(
+              height: 60.h,
+              width: 168.w,
+              child: MaterialButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => PTabsScreen()));
+                },
+                color: k006D77,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(48)),
+                ),
+                child: Center(
+                  child: Text(
+                    'Save',
+                    style: kManRope_500_16_white,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Change password',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
@@ -76,34 +100,6 @@ class _PsychologistChangePasswordScreenState
                 height: 47.h,
                 width: 1.sw,
                 child: TextField(),
-              ),
-              SizedBox(
-                height: 386.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 20.h),
-                child: Center(
-                  child: SizedBox(
-                    height: 60.h,
-                    width: 168.w,
-                    child: MaterialButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PTabsScreen()));
-                      },
-                      color: k006D77,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(48)),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Save',
-                          style: kManRope_500_16_white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ),
             ],
           ),

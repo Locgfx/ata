@@ -23,7 +23,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
@@ -53,7 +53,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height:43.h,
+                      height: 43.h,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -89,10 +89,11 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                         return Column(
                           children: [
                             SizedBox(
-                              height:26.h,
+                              height: 26.h,
                               width: 1.sw,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     title[index],
@@ -114,7 +115,7 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
               ),
               SizedBox(height: 77.h),
               Padding(
-                padding:EdgeInsets.only(bottom: 148.h),
+                padding: EdgeInsets.only(bottom: 148.h),
                 child: Row(
                   children: [
                     Expanded(
@@ -137,36 +138,36 @@ class _SuccesfulSesionScreenState extends State<SuccesfulSesionScreen> {
                     SizedBox(width: 10),
                     Expanded(
                         child: SizedBox(
-                          height: 56.h,
-                          child: MainButton(
-                      onPressed: () {
+                      height: 56.h,
+                      child: MainButton(
+                        onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => PTabsScreen(),
                             ),
                           );
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/images/eyeicon.png",
-                            height: 15,
-                          ),
-                          SizedBox(
-                            width: 9.w,
-                          ),
-                          Text(
-                            "Prescription",
-                            style: kManRope_500_16_white,
-                          ),
-                        ],
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/eyeicon.png",
+                              height: 15,
+                            ),
+                            SizedBox(
+                              width: 9.w,
+                            ),
+                            Text(
+                              "Prescription",
+                              style: kManRope_500_16_white,
+                            ),
+                          ],
+                        ),
+                        color: k006D77,
+                        shape: CustomDecoration().border10Decoration(),
                       ),
-                      color: k006D77,
-                      shape: CustomDecoration().border10Decoration(),
-                    ),
-                        )),
+                    )),
                   ],
                 ),
               )

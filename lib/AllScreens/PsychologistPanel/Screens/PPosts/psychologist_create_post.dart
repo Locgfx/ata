@@ -31,8 +31,9 @@ class PsychologistCreatePostScreen extends StatelessWidget {
       //         shape: CustomDecoration().smallButton10Decoration()),
       //   ),
       // ),
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Create post',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
@@ -67,7 +68,8 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Row(crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           height: 18,
@@ -103,9 +105,7 @@ class PsychologistCreatePostScreen extends StatelessWidget {
               Container(
                 width: 1.sw,
                 height: 546.h,
-                decoration: BoxDecoration(
-
-                    ),
+                decoration: BoxDecoration(),
                 child: Padding(
                   padding: EdgeInsets.only(left: 0.w),
                   child: TextField(
@@ -117,7 +117,9 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 24.h,),
+              SizedBox(
+                height: 24.h,
+              ),
               Padding(
                 padding: EdgeInsets.only(bottom: 96.h),
                 child: Center(
@@ -126,7 +128,7 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                     child: MainButton(
                         onPressed: () {},
                         child: Padding(
-                          padding: EdgeInsets.only(left:74.w,right: 74.w ),
+                          padding: EdgeInsets.only(left: 74.w, right: 74.w),
                           child: Text(
                             "Post",
                             style: kManRope_400_16_white,
@@ -138,7 +140,6 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                 ),
               ),
               // SizedBox(height:96.h ,)
-
 
               // Center(
               //   child: SizedBox(

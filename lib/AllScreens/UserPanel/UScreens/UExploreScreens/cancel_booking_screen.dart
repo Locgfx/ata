@@ -6,14 +6,13 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
-
 class CancelBookingScreen extends StatelessWidget {
   const CancelBookingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
@@ -21,8 +20,11 @@ class CancelBookingScreen extends StatelessWidget {
         backgroundColor: Colors.white,
       ),
       body: Padding(
-        padding:
-            EdgeInsets.only(left: 24.w, right: 24.w, top: 64.h,),
+        padding: EdgeInsets.only(
+          left: 24.w,
+          right: 24.w,
+          top: 64.h,
+        ),
         child: Column(
           children: [
             Container(
@@ -34,8 +36,8 @@ class CancelBookingScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: 48.h,right: 48.h,top: 54.h,bottom: 48.h),
+                    padding: EdgeInsets.only(
+                        left: 48.h, right: 48.h, top: 54.h, bottom: 48.h),
                     child: Image.asset(
                       'assets/images/calenderimage.png',
                       width: 199.w,
@@ -43,7 +45,9 @@ class CancelBookingScreen extends StatelessWidget {
                     ),
                   ),
                   Text('Booking Cancelled', style: kManRope_700_24_FF482C),
-                  SizedBox(height: 48.h,)
+                  SizedBox(
+                    height: 48.h,
+                  )
                 ],
               ),
             ),
@@ -60,7 +64,7 @@ class CancelBookingScreen extends StatelessWidget {
             //   height: 56.h,
             //   width: 380.w,
             //   child: MaterialButton(
-            //     color: kWhiteBGColor,
+            //     color: kEDF6F9,
             //     shape: RoundedRectangleBorder(
             //       borderRadius: BorderRadius.circular(10), // <-- Radius
             //       side: BorderSide(
@@ -85,21 +89,26 @@ class CancelBookingScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding:  EdgeInsets.only(left: 24.w,right: 24.w,bottom: 24.h),
-        child: MainButton(onPressed: () {
-          Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => UTabsScreen(),
-                      ),
-                    );
-        },
-          color: kWhiteBGColor,
-        shape: CustomDecoration().outline16ButtonDecoration(),
-        child: Padding(
-          padding:  EdgeInsets.symmetric(vertical: 20.h),
-          child: Text("Home",style:kManRope_500_16_001314 ,),
-        ),),
+        padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.h),
+        child: MainButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => UTabsScreen(),
+              ),
+            );
+          },
+          color: kEDF6F9,
+          shape: CustomDecoration().outline16ButtonDecoration(),
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.h),
+            child: Text(
+              "Home",
+              style: kManRope_500_16_001314,
+            ),
+          ),
+        ),
       ),
     );
   }

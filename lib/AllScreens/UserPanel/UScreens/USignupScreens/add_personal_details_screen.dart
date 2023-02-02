@@ -17,7 +17,7 @@ class AddPersonalDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 24.w),

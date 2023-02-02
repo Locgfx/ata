@@ -37,8 +37,9 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
       //       color: k006D77,
       //       shape: CustomDecoration().smallButtonDecoration()),
       // ),
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: "Prescription View",
         imgPath: "assets/images/iconbackappbarlarge.png",
       ),
@@ -66,7 +67,8 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       color: kE2F2F4,
                     ),
                     child: TextField(
-                      decoration: TextfieldDecoration(label: 'Type Here').textfielde2f2f4Decoration(),
+                      decoration: TextfieldDecoration(label: 'Type Here')
+                          .textfielde2f2f4Decoration(),
                     ),
                   ),
                 ],
@@ -89,7 +91,8 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       color: kE2F2F4,
                     ),
                     child: TextField(
-                      decoration: TextfieldDecoration(label: 'Type Here').textfielde2f2f4Decoration(),
+                      decoration: TextfieldDecoration(label: 'Type Here')
+                          .textfielde2f2f4Decoration(),
                     ),
                   ),
                 ],
@@ -112,7 +115,8 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       color: kE2F2F4,
                     ),
                     child: TextField(
-                      decoration: TextfieldDecoration(label: 'Type Here').textfielde2f2f4Decoration(),
+                      decoration: TextfieldDecoration(label: 'Type Here')
+                          .textfielde2f2f4Decoration(),
                     ),
                   ),
                 ],
@@ -135,7 +139,8 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                       color: kE2F2F4,
                     ),
                     child: TextField(
-                      decoration: TextfieldDecoration(label: 'Type Here').textfielde2f2f4Decoration(),
+                      decoration: TextfieldDecoration(label: 'Type Here')
+                          .textfielde2f2f4Decoration(),
                     ),
                   ),
                 ],
@@ -148,7 +153,7 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                 style: kManRope_500_20_001314,
               ),
               Padding(
-                padding:EdgeInsets.only(left: 36.w),
+                padding: EdgeInsets.only(left: 36.w),
                 child: Container(
                   height: 220.h,
                   decoration: BoxDecoration(
@@ -156,11 +161,13 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                     color: kE2F2F4,
                   ),
                   child: Padding(
-                    padding: const EdgeInsets.only(top:10.0),
+                    padding: const EdgeInsets.only(top: 10.0),
                     child: TextField(
                       maxLines: 8,
                       decoration: TextfieldDecoration(
-                          label: 'write notes',hintstyle: kManRope_400_14_001314).blankfieldDecoration(),
+                              label: 'write notes',
+                              hintstyle: kManRope_400_14_001314)
+                          .blankfieldDecoration(),
                     ),
                   ),
                 ),
@@ -195,12 +202,12 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => PTabsScreen()),
+                        MaterialPageRoute(builder: (context) => PTabsScreen()),
                       );
                     },
                     child: Padding(
-                      padding: EdgeInsets.only(top: 15, bottom: 15,left:63.w,right: 71.w),
+                      padding: EdgeInsets.only(
+                          top: 15, bottom: 15, left: 63.w, right: 71.w),
                       child: Text(
                         "Save",
                         style: kManRope_500_16_white,

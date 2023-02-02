@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/question_screen1.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/enter_mobile_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/reset_password_otp_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/question_screen1.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/reset_password_otp_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/enter_mobile_screen.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
+
 import '../../../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -19,6 +20,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey1 = GlobalKey<FormState>();
 
   final TextEditingController _emailController = TextEditingController();
 
@@ -45,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
@@ -70,17 +72,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     'Please enter your registered email id or mobile number to continue.',
                     style: kManRope_400_14_626A6A),
                 SizedBox(height: 40.h),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      /*if (_emailController.text.trim().isNotEmpty)
-                        Text('Email / Mobile Number',
-                            style: kManRope_400_14_626A6A),
-                      if (hasEmailFocus) SizedBox(height: 14),*/
-                      TextFormField(
+                Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    /*if (_emailController.text.trim().isNotEmpty)
+                      Text('Email / Mobile Number',
+                          style: kManRope_400_14_626A6A),
+                    if (hasEmailFocus) SizedBox(height: 14),*/
+                    Form(
+                      key: _formKey,
+                      child: TextFormField(
                         focusNode: emailNode,
                         onChanged: (val) {
                           if (val.isNotEmpty) {
@@ -98,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         validator: (val) {
                           if (_emailController.text.trim().isEmpty) {
-                            return 'Please enter a valid email/mobile';
+                            return 'Please enter an email/mobile';
                           } else {
                             return null;
                           }
@@ -107,17 +109,38 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: _emailController,
                         decoration: InputDecoration(
                           // isCollapsed: true,
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: k5A72ED,
+                              width: 1,
+                            ),
+                          ),
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: kB5BABA,
+                              width: 1,
+                            ),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: kB5BABA,
+                              width: 1,
+                            ),
+                          ),
                           contentPadding: EdgeInsets.only(top: 8),
                           labelText: 'Email / Mobile Number',
                           labelStyle: kManRope_400_16_626A6A,
-                          floatingLabelStyle: kManRope_400_20_626A6A,
+                          //floatingLabelStyle: kManRope_400_20_626A6A,
                         ),
                       ),
-                      SizedBox(height: 38.h),
-                      /*if (_passwordController.text.trim().isNotEmpty)
-                        Text('Password', style: kManRope_400_14_626A6A),
-                      if (hasPassFocus) SizedBox(height: 14),*/
-                      TextFormField(
+                    ),
+                    SizedBox(height: 38.h),
+                    /*if (_passwordController.text.trim().isNotEmpty)
+                      Text('Password', style: kManRope_400_14_626A6A),
+                    if (hasPassFocus) SizedBox(height: 14),*/
+                    Form(
+                      key: _formKey1,
+                      child: TextFormField(
                         focusNode: passwordNode,
                         onChanged: (val) {
                           if (val.isNotEmpty) {
@@ -146,23 +169,39 @@ class _LoginScreenState extends State<LoginScreen> {
                           contentPadding: EdgeInsets.only(top: 8),
                           labelText: 'Password',
                           labelStyle: kManRope_400_16_626A6A,
-                          floatingLabelStyle: kManRope_400_20_626A6A,
+                          //floatingLabelStyle: kManRope_400_20_626A6A,
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: k5A72ED,
+                              width: 1,
+                            ),
+                          ),
+                          errorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: kB5BABA,
+                              width: 1,
+                            ),
+                          ),
+                          focusedErrorBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: kB5BABA,
+                              width: 1,
+                            ),
+                          ),
                           suffixIconConstraints:
                               BoxConstraints(minHeight: 24.w, minWidth: 24.h),
                           suffixIcon:
                               SvgPicture.asset('assets/icons/eyeopen.svg'),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 30.h),
                 InkWell(
                     onTap: () {
                       if (_emailController.text.trim().isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                            content: Text(
-                                'Please enter a valid email / mobile to receive OTP')));
+                        _formKey.currentState!.validate();
                       } else {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (ctx) => ResetPasswordOTPScreen(),
@@ -210,7 +249,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('New to cerebral?',
+                      Text(
+                        'New to cerebral?',
                         style: kManRope_400_14_Black,
                       ),
                       SizedBox(width: 5.w),

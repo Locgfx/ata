@@ -12,8 +12,12 @@ class FAQsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'FAQs', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'FAQs',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       bottomSheet: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Container(
@@ -24,7 +28,6 @@ class FAQsScreen extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20.0),
                 bottomRight: Radius.circular(20.0)),
-
           ),
           child: Column(
             children: [
@@ -83,7 +86,6 @@ class FAQsScreen extends StatelessWidget {
               SizedBox(
                 height: 56.h,
                 width: 380.w,
-
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: 'Search for help',
@@ -98,10 +100,14 @@ class FAQsScreen extends StatelessWidget {
                     suffixIcon: Padding(
                       padding: EdgeInsets.only(right: 8),
                       child: Container(
-                          height:48,
+                          height: 48,
                           width: 48,
                           // color: Colors.red,
-                          child: Image.asset('assets/images/searchiconlarge.png',height:48.h,width: 48.w ,)),
+                          child: Image.asset(
+                            'assets/images/searchiconlarge.png',
+                            height: 48.h,
+                            width: 48.w,
+                          )),
                     ),
                   ),
                 ),
@@ -112,14 +118,15 @@ class FAQsScreen extends StatelessWidget {
               Container(
                 height: 48.h,
                 width: 380.w,
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'What is carebal ?',
                       style: kManRope_500_16_001314,
                     ),
                     Container(
-                      height:48,
+                      height: 48,
                       width: 48,
                       // color: Colors.red,
                       child: Image.asset(
@@ -131,7 +138,6 @@ class FAQsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
               SizedBox(
                 height: 24.h,
               ),
@@ -153,14 +159,15 @@ class FAQsScreen extends StatelessWidget {
               Container(
                 height: 48.h,
                 width: 380.w,
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       'What is carebal ?',
                       style: kManRope_500_16_001314,
                     ),
                     Container(
-                      height:48,
+                      height: 48,
                       width: 48,
                       // color: Colors.red,
                       child: Image.asset(
@@ -175,7 +182,6 @@ class FAQsScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-
               Container(
                 height: 1.h,
                 width: 380.w,

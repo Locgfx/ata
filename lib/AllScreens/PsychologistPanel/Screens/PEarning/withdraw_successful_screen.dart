@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/paymentdelay.dart';
+import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
@@ -19,9 +20,9 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    /*Future.delayed(Duration(seconds: 2), () {
       setPage();
-    });
+    });*/
     //setPage();
   }
 
@@ -33,10 +34,11 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: CusAppBar(
-        appBarText: 'Withdrawal  Success',
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        appBarText: 'Withdrawal Success',
         imgPath: 'assets/images/iconbackappbarlarge.png',
+        hasThreeDots: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -65,9 +67,9 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
                 height: 100.h,
               ),
               Image.asset(
-                'assets/images/success.gif',
-                height: 216.h,
+                'assets/images/sd3.gif',
                 width: 216.w,
+                height: 216.w,
               ),
               SizedBox(
                 height: 12.h,
@@ -92,7 +94,6 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
                   ],
                 ),
               ),
-
               SizedBox(
                 height: 107.h,
               ),
@@ -105,7 +106,8 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => PTabsScreen()),
+                            MaterialPageRoute(
+                                builder: (context) => PTabsScreen()),
                           );
                         },
                         child: Padding(

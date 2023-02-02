@@ -4,7 +4,6 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-
 import 'package:greymatter/widgets/buttons.dart';
 
 class PANVerified extends StatefulWidget {
@@ -18,7 +17,7 @@ class _PANVerifiedState extends State<PANVerified> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -40,8 +39,8 @@ class _PANVerifiedState extends State<PANVerified> {
                   children: [
                     Center(
                       child: Image.asset(
-                        'assets/images/righticongif.gif',
-                        height: 216.h,
+                        'assets/images/sd3.gif',
+                        height: 216.w,
                         width: 216.w,
                       ),
                     ),
@@ -64,7 +63,7 @@ class _PANVerifiedState extends State<PANVerified> {
                       height: 11.h,
                     ),
                     Text(
-                      'Hi John Doe, Please wait while PAN is verified\nand PAN',
+                      'Hi John Doe, Please wait while PAN is being verified for PAN',
                       style: kManRope_400_14_626A6A,
                     ),
                     SizedBox(
@@ -81,19 +80,19 @@ class _PANVerifiedState extends State<PANVerified> {
                       children: [
                         Expanded(
                             child: SizedBox(
-                              height: 56.h,
-                              child: MainButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => PTabsScreen()));
-                                  },
-                                  child: Text(
-                                    "Go Home",
-                                    style: kManRope_500_16_white,
-                                  ),
-                                  color: k006D77,
-                                  shape: CustomDecoration().button16Decoration()),
-                            ))
+                          height: 56.h,
+                          child: MainButton(
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => PTabsScreen()));
+                              },
+                              child: Text(
+                                "Go Home",
+                                style: kManRope_500_16_white,
+                              ),
+                              color: k006D77,
+                              shape: CustomDecoration().button16Decoration()),
+                        ))
                       ],
                     ),
                     // Center(

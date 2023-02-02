@@ -32,7 +32,7 @@ class _RequestSentSuccessfulScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -97,7 +97,8 @@ class _RequestSentSuccessfulScreenState
                         width: 88.w,
                         clipBehavior: Clip.hardEdge,
                         decoration: CustomDecoration().containerDecoration(),
-                        child: Image.asset('assets/images/userP.png',fit: BoxFit.cover),
+                        child: Image.asset('assets/images/userP.png',
+                            fit: BoxFit.cover),
                       ),
                       SizedBox(
                         width: 16.w,

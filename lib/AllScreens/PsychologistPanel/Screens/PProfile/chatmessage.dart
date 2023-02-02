@@ -48,8 +48,9 @@ class _ChatMessagesState extends State<ChatMessages> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Chat support',
       ),
@@ -58,20 +59,23 @@ class _ChatMessagesState extends State<ChatMessages> {
         padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 25.h),
         child: Padding(
           padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
-            color: kWhiteBGColor,
+            color: kEDF6F9,
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(  style: kManRope_400_14_001314,
+                  child: TextField(
+                      minLines: 1,
+                      maxLines: 5,
+                      style: kManRope_400_14_001314,
                       onSubmitted: (text) {
-                        final message = Messages(
+                        /*final message = Messages(
                             text: text,
                             date: DateTime.now(),
                             isSentByme: true,
                             style: kManRope_400_14_Black);
-                        setState(() => messages.add(message));
+                        setState(() => messages.add(message));*/
                       },
                       decoration: TextfieldDecoration(
                         label: 'Abc....',
@@ -224,10 +228,15 @@ class _ChatMessagesState extends State<ChatMessages> {
                   ),
                 ],
               ),
-              SizedBox(height: 24.h,),
+              SizedBox(
+                height: 24.h,
+              ),
               Align(
                   alignment: Alignment.centerRight,
-                  child: Text("11:48 Pm",style:kManRope_400_14_001314 ,)),
+                  child: Text(
+                    "11:48 Pm",
+                    style: kManRope_400_14_001314,
+                  )),
               SizedBox(
                 height: 100.h,
                 child: GroupedListView<Messages, DateTime>(

@@ -13,7 +13,11 @@ import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
 class BookingConfirmationScreen extends StatefulWidget {
-  const BookingConfirmationScreen({Key? key}) : super(key: key);
+  final bool isCancellationAvailable;
+  const BookingConfirmationScreen({
+    Key? key,
+    required this.isCancellationAvailable,
+  }) : super(key: key);
 
   @override
   State<BookingConfirmationScreen> createState() =>
@@ -34,42 +38,15 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: DotappBar(imgPath: 'assets/images/3doticonlarge.png', onTap: () {  _selectGender(); },),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 40.w,
-      //   backgroundColor: Colors.white,
-      //   centerTitle: false,
-      //   leading: InkWell(
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      //   actions: [
-      //     GestureDetector(
-      //       onTap: () {
-      //         _selectGender();
-      //       },
-      //       child: SvgPicture.asset(
-      //         'assets/icons/kebabMenu.svg',
-      //         height: 30.h,
-      //         width: 14.w,
-      //       ),
-      //     ),
-      //     SizedBox(
-      //       width: 18.w,
-      //     ),
-      //   ],
-      // ),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: widget.isCancellationAvailable ? true : false,
+        onThreeDotTap: () {
+          _selectGender();
+        },
+        appBarText: '',
+        imgPath: "assets/images/iconbackappbarlarge.png",
+      ),
       body: Padding(
         padding:
             EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w, bottom: 35.h),
@@ -87,7 +64,7 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                     child: Image.asset(
                       'assets/images/userP.png',
                       fit: BoxFit.cover,
-                      height: 133.h,
+                      height: 135.w,
                       width: 135.w,
                     ),
                   ),
@@ -117,11 +94,9 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
                           height: 8.h,
                         ),
                         StarWidget()
-
                       ],
                     ),
                   ),
-
                   GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
@@ -203,12 +178,18 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
         ),
       ),
       bottomNavigationBar: Padding(
-        padding:  EdgeInsets.only(left: 123.w,right: 123.w,bottom: 35.h),
+        padding: EdgeInsets.only(left: 123.w, right: 123.w, bottom: 35.h),
         child: MainButton(
             onPressed: () {},
             child: Padding(
-              padding:  EdgeInsets.only(top:19.h,bottom: 19.h,),
-              child: Text("Join meeting",style: kManRope_400_16_white,),
+              padding: EdgeInsets.only(
+                top: 19.h,
+                bottom: 19.h,
+              ),
+              child: Text(
+                "Join meeting",
+                style: kManRope_400_16_white,
+              ),
             ),
             color: k66898D,
             shape: CustomDecoration().button08Decoration()),
@@ -216,4 +197,3 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
     );
   }
 }
-

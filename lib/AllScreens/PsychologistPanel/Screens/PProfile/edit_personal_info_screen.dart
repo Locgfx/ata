@@ -119,7 +119,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 50.w,
@@ -200,8 +200,8 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                       ),
                       SvgPicture.asset(
                         'assets/icons/edit.svg',
-                        height: 24.h,
-                        width: 24.h,
+                        height: 24.w,
+                        width: 24.w,
                       )
                     ],
                   ),

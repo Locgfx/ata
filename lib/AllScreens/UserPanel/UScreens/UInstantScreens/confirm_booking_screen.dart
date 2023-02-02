@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UInstantScreens/booking_successful_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
-
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -27,8 +26,12 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Confirm your booking', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Confirm your booking',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       // appBar: AppBar(
       //   elevation: 0,
       //   leadingWidth: 10.w,
@@ -58,7 +61,8 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Selected issue', style: kManRope_700_16_001314),
                 SizedBox(
@@ -75,7 +79,8 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                 SizedBox(
                   height: 24.h,
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
@@ -84,16 +89,22 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                           width: 64.w,
                           clipBehavior: Clip.hardEdge,
                           decoration: BoxDecoration(
-                            border: Border.all(color: kFFFFFF,width:1),
+                            border: Border.all(color: kFFFFFF, width: 1),
                             borderRadius: BorderRadius.circular(16),
                             // image: DecorationImage(
                             //   image: AssetImage('assets/images/userP.png'),fit: BoxFit.cover
                             // )
                           ),
-                          child: Image.asset("assets/images/userP.png",fit: BoxFit.cover,),
+                          child: Image.asset(
+                            "assets/images/userP.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                        SizedBox(width: 16.w,),
-                        Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        SizedBox(
+                          width: 16.w,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Priya Singh',
@@ -108,7 +119,7 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                               style: kManRope_400_14_626A6A,
                             ),
                             SizedBox(
-                              height:11.h,
+                              height: 11.h,
                             ),
                             StarWidget()
                             // Row(
@@ -135,15 +146,15 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                             //     ),
                             //   ],
                             // )
-
                           ],
                         ),
                       ],
                     ),
-
-                    Image.asset("assets/images/rightarrowcircle.png",height:48.h,width: 48.w,)
-
-
+                    Image.asset(
+                      "assets/images/rightarrowcircle.png",
+                      height: 48.h,
+                      width: 48.w,
+                    )
                   ],
                 ),
                 // Row(
@@ -258,7 +269,6 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                         height: 58.h,
                         color: const Color(0xFFB5BABA),
                       ),
-
                       Container(
                         width: 55.w,
                         child: Center(
@@ -275,7 +285,10 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                   height: 8.h,
                 ),
 
-                Text("“Coupon code applied successfully”",style: kManRope_400_10_006D77,),
+                Text(
+                  "“Coupon code applied successfully”",
+                  style: kManRope_400_10_006D77,
+                ),
 
                 SizedBox(
                   height: 239.h,
@@ -317,13 +330,15 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                           child: MainButton(
                             color: k006D77,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10), // <-- Radius
+                              borderRadius:
+                                  BorderRadius.circular(10), // <-- Radius
                             ),
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => const BookingSuccessful()));
+                                      builder: (context) =>
+                                          const BookingSuccessful()));
                             },
                             child: Text(
                               'Proceed to payment',
@@ -335,7 +350,9 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                     ],
                   ),
                 ),
-                SizedBox(height: 40.h,)
+                SizedBox(
+                  height: 40.h,
+                )
               ],
             ),
           ),

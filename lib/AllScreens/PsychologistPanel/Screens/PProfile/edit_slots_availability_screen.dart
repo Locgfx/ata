@@ -18,13 +18,15 @@ class EditSlotsAvailabilityScreen extends StatefulWidget {
 
 class _EditSlotsAvailabilityScreenState
     extends State<EditSlotsAvailabilityScreen> {
-  bool _switchValue = true;
-  bool _switchValue1 = true;
-  bool _switchValue2 = true;
-  bool _switchValue3 = true;
-  bool _switchValue4 = true;
-  bool _switchValue5 = false;
-  bool _switchValue6 = false;
+  List switchValues = [
+    true,
+    true,
+    true,
+    true,
+    true,
+    false,
+    false,
+  ];
 
   final List<String> day = [
     'Monday',
@@ -83,8 +85,9 @@ class _EditSlotsAvailabilityScreenState
           ],
         ),
       ),
-      backgroundColor: Colors.white,
-      appBar: CusAppBar(
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Slots Availability',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
@@ -128,8 +131,7 @@ class _EditSlotsAvailabilityScreenState
                 width: 1.sw,
                 child: ListView.separated(
                     padding: EdgeInsets.zero,
-                    separatorBuilder: (context, index) =>
-                        SizedBox(height: 8.h),
+                    separatorBuilder: (context, index) => SizedBox(height: 8.h),
                     shrinkWrap: true,
                     itemCount: day.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -167,25 +169,24 @@ class _EditSlotsAvailabilityScreenState
                               ),
                               SizedBox(width: 25.w),
                               SizedBox(
-                                height:48.h,
-                                width:48.w,
+                                height: 48.h,
+                                width: 48.w,
                                 child: FlutterSwitch(
-                                  width: 60.w,
-                                  height: 28.h,
-                                  toggleSize: 20,
+                                  width: 40,
+                                  height: 18,
+                                  toggleSize: 14,
+                                  padding: 3,
                                   activeColor: k006D77,
-                                  value: _switchValue,
+                                  value: switchValues[index],
                                   onToggle: (val) {
                                     setState(() {
-                                      _switchValue = val;
+                                      switchValues[index] = val;
                                     });
                                   },
                                 ),
                               ),
-
                             ],
                           ),
-
                         ],
                       );
                     }),

@@ -11,7 +11,7 @@ class FormScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -50,7 +50,8 @@ class FormScreen extends StatelessWidget {
                     ),
                     Container(
                       height: 48.h,
-                      child: TextField(style:kManRope_500_16_626A6A ,
+                      child: TextField(
+                        style: kManRope_500_16_626A6A,
                         decoration: TextfieldDecoration(label: 'Type name here')
                             .textfieldDecoration(),
                       ),
@@ -68,7 +69,8 @@ class FormScreen extends StatelessWidget {
                     ),
                     Container(
                       height: 48.h,
-                      child: TextField(style:kManRope_500_16_626A6A ,
+                      child: TextField(
+                        style: kManRope_500_16_626A6A,
                         decoration:
                             TextfieldDecoration(label: 'Type email here')
                                 .textfieldDecoration(),
@@ -87,7 +89,8 @@ class FormScreen extends StatelessWidget {
                     ),
                     Container(
                       height: 48.h,
-                      child: TextField(style:kManRope_500_16_626A6A ,
+                      child: TextField(
+                        style: kManRope_500_16_626A6A,
                         decoration:
                             TextfieldDecoration(label: 'Type Phone No here')
                                 .textfieldDecoration(),
@@ -105,7 +108,8 @@ class FormScreen extends StatelessWidget {
                     ),
                     Container(
                       height: 48.h,
-                      child: TextField(style:kManRope_500_16_626A6A ,
+                      child: TextField(
+                        style: kManRope_500_16_626A6A,
                         decoration:
                             TextfieldDecoration(label: 'Type Phone No here')
                                 .textfieldDecoration(),
@@ -124,7 +128,8 @@ class FormScreen extends StatelessWidget {
                     ),
                     Container(
                       height: 48.h,
-                      child: TextField(style:kManRope_500_16_626A6A ,
+                      child: TextField(
+                        style: kManRope_500_16_626A6A,
                         decoration:
                             TextfieldDecoration(label: 'Type Timing here')
                                 .textfieldDecoration(),
@@ -142,7 +147,8 @@ class FormScreen extends StatelessWidget {
                     ),
                     Container(
                       height: 48.h,
-                      child: TextField(style:kManRope_500_16_626A6A ,
+                      child: TextField(
+                        style: kManRope_500_16_626A6A,
                         decoration: TextfieldDecoration(label: 'Type Date here')
                             .textfieldDecoration(),
                       ),

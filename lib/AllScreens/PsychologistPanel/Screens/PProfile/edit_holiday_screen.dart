@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/holiday_confirm_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/holiday_confirm_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/popupdialogs.dart';
 
 import '../../../../constants/fonts.dart';
+import '../../../UserPanel/UScreens/UExploreScreens/filters_page.dart';
+import '../../../UserPanel/UScreens/UGoalScreens/add_new_activity.dart';
 
 class EditHolidayScreen extends StatefulWidget {
   const EditHolidayScreen({Key? key}) : super(key: key);
@@ -24,7 +28,8 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
       firstDate: DateTime(1970),
       builder: (BuildContext context, child) {
         return CalenderWidget(child: child);
-      }, lastDate: DateTime(2024),
+      },
+      lastDate: DateTime(2024),
     );
   }
 
@@ -32,16 +37,16 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
     showTimePicker(
       initialTime: TimeOfDay.now(),
       context: context,
-
       builder: (BuildContext context, child) {
         return TimeWidget(child: child);
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: kEDF6F9,
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 58.h),
         child: Row(
@@ -68,7 +73,8 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
           ],
         ),
       ),
-      appBar: CusAppBar(
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Slots Availability',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
@@ -90,14 +96,46 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       // width: 175.w,
                       height: 56.h,
                       child: TextFormField(
                         readOnly: true,
                         onTap: () {
-
-                          _showTimepicker();
+                          if (Platform.isIOS) {
+                            showDialog(
+                              context: context,
+                              builder: (_) => AppDatePickerWhole(),
+                            );
+                          } else {
+                            _showCalender();
+                          }
+                        },
+                        decoration: TextfieldDecoration(
+                            label: 'Start date',
+                            child: Image.asset(
+                              "assets/images/iconcalender24.png",
+                              height: 24.h,
+                            )).smalltextfieldDecoration(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 16.w),
+                  Expanded(
+                    child: SizedBox(
+                      // width: 175.w,
+                      height: 56.h,
+                      child: TextFormField(
+                        readOnly: true,
+                        onTap: () {
+                          if (Platform.isIOS) {
+                            showDialog(
+                              context: context,
+                              builder: (_) => TimePickerApp(),
+                            );
+                          } else {
+                            _showTimepicker();
+                          }
                         },
                         decoration: TextfieldDecoration(
                             label: 'Start time',
@@ -109,133 +147,32 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(width: 16.w),
-                  Expanded(
-                    child: Container(
-                      // width: 175.w,
-                      height: 56.h,
-                      child: TextFormField(
-                        readOnly: true,
-                        onTap: () {
-                          _showCalender();
-                        },
-                        decoration: TextfieldDecoration(
-                            label: 'Start date',
-                            child: Image.asset(
-                              "assets/images/iconcalender24.png",
-                              height: 24.h,
-                            )).smalltextfieldDecoration(),
-                      ),
-                    ),
-                  ),
                 ],
               ),
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Container(
-              //       width: 175.w,
-              //       height: 56.h,
-              //       child: TextFormField(
-              //         decoration: TextfieldDecoration(
-              //             label: 'Mon, 12, 2022',
-              //             child: Image.asset(
-              //               "assets/images/iconcalender24.png",
-              //               height: 24.h,
-              //             )).smalltextfieldDecoration(),
-              //       ),
-              //     ),
-              //     Container(
-              //       width: 175.w,
-              //       height: 56.h,
-              //       child: TextFormField(
-              //         decoration: TextfieldDecoration(
-              //             label: 'Mon, 12, 2022',
-              //             child: Image.asset(
-              //               "assets/images/iconclock.png",
-              //               height: 24.h,
-              //             )).smalltextfieldDecoration(),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //   children: [
-              //     Container(
-              //       height: 56.h,
-              //       width: 182.w,
-              //       decoration: BoxDecoration(
-              //         borderRadius: BorderRadius.all(Radius.circular(8)),
-              //         border: Border.all(color: k006D77),
-              //       ),
-              //       child: Padding(
-              //         padding: EdgeInsets.only(left: 16.w, right: 16.w),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Text(
-              //               'Mon, 12, 2022',
-              //               style: kManRope_400_16_626A6A,
-              //             ),
-              //             SvgPicture.asset(
-              //               'assets/icons/calenderunselected.svg',
-              //               height: 24.h,
-              //               width: 24.w,
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //     Container(
-              //       height: 56.h,
-              //       width: 182.w,
-              //       decoration: BoxDecoration(
-              //         borderRadius: BorderRadius.all(Radius.circular(8)),
-              //         border: Border.all(color: k006D77),
-              //       ),
-              //       child: Padding(
-              //         padding: EdgeInsets.only(left: 16.w, right: 16.w),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           children: [
-              //             Text(
-              //               '12:00 pm',
-              //               style: kManRope_400_16_626A6A,
-              //             ),
-              //             SvgPicture.asset(
-              //               'assets/icons/clock.svg',
-              //               height: 24.h,
-              //               width: 24.w,
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              SizedBox(
-                height: 40.h,
-              ),
+              SizedBox(height: 40.h),
               Text(
                 'Selected date & time',
                 style: kManRope_500_16_001314,
               ),
-              SizedBox(
-                height: 24.h,
-              ),
+              SizedBox(height: 24.h),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       // width: 175.w,
                       height: 56.h,
                       child: TextFormField(
                         readOnly: true,
                         onTap: () {
-                          _showCalender();
+                          if (Platform.isIOS) {
+                            showDialog(
+                              context: context,
+                              builder: (_) => AppDatePickerWhole(),
+                            );
+                          } else {
+                            _showCalender();
+                          }
                         },
                         decoration: TextfieldDecoration(
                             label: 'End Date',
@@ -249,13 +186,20 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
                   ),
                   SizedBox(width: 16.w),
                   Expanded(
-                    child: Container(
+                    child: SizedBox(
                       // width: 175.w,
                       height: 56.h,
                       child: TextFormField(
                         readOnly: true,
                         onTap: () {
-                          _showTimepicker();
+                          if (Platform.isIOS) {
+                            showDialog(
+                              context: context,
+                              builder: (_) => TimePickerApp(),
+                            );
+                          } else {
+                            _showTimepicker();
+                          }
                         },
                         decoration: TextfieldDecoration(
                             label: 'End Time',
@@ -268,16 +212,6 @@ class _EditHolidayScreenState extends State<EditHolidayScreen> {
                   ),
                 ],
               ),
-
-              SizedBox(
-                height: 440.h,
-              ),
-              // CustomActiveTextButton(
-              //     onPressed: () {
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //           builder: (context) => HolidayConfirmScreen()));
-              //     },
-              //     text: 'Confirm Holiday'),
             ],
           ),
         ),

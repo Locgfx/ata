@@ -5,7 +5,7 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 class MainButton extends StatelessWidget {
-  final Function() onPressed;
+  final Function onPressed;
   final Widget child;
   final Color color;
   final ShapeBorder shape;
@@ -25,7 +25,9 @@ class MainButton extends StatelessWidget {
     return MaterialButton(
       elevation: 0,
       // padding: padding!,
-      onPressed: onPressed,
+      onPressed: () {
+        onPressed();
+      },
       child: child,
       color: color,
       shape: shape,
@@ -76,24 +78,21 @@ class BottomSmallButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 130.w, right: 130.w, bottom: 40),
-      child: MaterialButton(
-        elevation: 0,
-        color: k006D77,
-        // height: 60,
-        // minWidth: 168,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(48),
-          side: const BorderSide(color: k006D77),
-        ),
-        onPressed: onPressed,
-        child: Padding(
-          padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
-          child: Text(
-            text,
-            style: kManRope_400_16_white,
-          ),
+    return MaterialButton(
+      elevation: 0,
+      color: k006D77,
+      // height: 60,
+      // minWidth: 168,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(48),
+        side: const BorderSide(color: k006D77),
+      ),
+      onPressed: onPressed,
+      child: Padding(
+        padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
+        child: Text(
+          text,
+          style: kManRope_400_16_white,
         ),
       ),
     );

@@ -15,11 +15,14 @@ class UChangeEmailScreen extends StatefulWidget {
 }
 
 class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
+  final e = TextEditingController();
+  final eC = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Change email',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
@@ -55,6 +58,7 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
                 height: 48.h,
                 // color: Colors.red,
                 child: TextField(
+                  controller: e,
                   onTap: () {
                     // Navigator.of(context).push(MaterialPageRoute(
                     //     builder: (context) => PsychologistChangeEmailScreen()));
@@ -82,6 +86,7 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
                 height: 48.h,
                 // color: Colors.red,
                 child: TextField(
+                  controller: eC,
                   onTap: () {
                     // Navigator.of(context).push(MaterialPageRoute(
                     //     builder: (context) => PsychologistChangeEmailScreen()));
@@ -123,41 +128,48 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
               //   width: 1.sw,
               //   child: TextField(),
               // ),
-              SizedBox(
-                height: 191.h,
+            ],
+          ),
+        ),
+      ),
+      bottomNavigationBar: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: Text(
+                'You will receive an otp to your new email after clicking next',
+                style: kManRope_400_16_626A6A,
+                textAlign: TextAlign.center,
               ),
-              Center(
-                child: Text(
-                  'You will receive an otp to your new email after clicking next',
-                  style: kManRope_400_16_626A6A,
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              SizedBox(
-                height:110.h,
-              ),
-              Center(
-                child: SizedBox(
-                  height: 60.h,
-                  width: 168.w,
-                  child: MaterialButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => UOtpScreen()));
-                    },
-                    color: k006D77,
-                    shape: CustomDecoration().smallButtonDecoration(),
-                    child: Center(
-                      child: Text(
-                        'Next',
-                        style: kManRope_500_16_white,
-                      ),
+            ),
+            SizedBox(height: 16),
+            Center(
+              child: SizedBox(
+                height: 60.h,
+                width: 168.w,
+                child: MaterialButton(
+                  onPressed: () {
+                    /*if (mNo.text == mCNo.text && mCNo.text.length == 10) {
+
+                    }*/
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UOtpScreen(email: true)));
+                  },
+                  color: (e.text == eC.text && eC.text.contains('@'))
+                      ? k006D77
+                      : kB5BABA,
+                  shape: CustomDecoration().smallButtonDecoration(),
+                  child: Center(
+                    child: Text(
+                      'Next',
+                      style: kManRope_500_16_white,
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+            SizedBox(height: 24),
+          ],
         ),
       ),
     );

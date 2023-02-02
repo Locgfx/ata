@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -56,7 +57,7 @@ class _ResetPasswordOTPScreen extends State<ResetPasswordOTPScreen> {
     final number = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: SafeArea(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),

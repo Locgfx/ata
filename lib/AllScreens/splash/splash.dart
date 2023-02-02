@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
+import 'package:greymatter/constants/fonts.dart';
 
 import '../../constants/colors.dart';
 
@@ -39,8 +39,11 @@ class _SplashScreenState extends State<SplashScreen> {
       appBar: AppBar(
         toolbarHeight: 0,
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        systemOverlayStyle: SystemUiOverlayStyle.light,
+        backgroundColor: k006D77,
+        systemOverlayStyle: SystemUiOverlayStyle(
+          statusBarColor: k006D77,
+          statusBarIconBrightness: Brightness.dark,
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

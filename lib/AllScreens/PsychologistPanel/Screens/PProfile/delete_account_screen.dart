@@ -3,14 +3,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
-
 class DeleteAccountScreen extends StatelessWidget {
   const DeleteAccountScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         leadingWidth: 40.w,
@@ -96,10 +95,10 @@ class DeleteAccountScreen extends StatelessWidget {
                     width: 182.w,
                     child: MaterialButton(
                       elevation: 0,
-                      color: kWhiteBGColor,
+                      color: kEDF6F9,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(16),
-                        side: const BorderSide(color: kWhiteBGColor),
+                        side: const BorderSide(color: kEDF6F9),
                       ),
                       onPressed: () {},
                       child: Text(

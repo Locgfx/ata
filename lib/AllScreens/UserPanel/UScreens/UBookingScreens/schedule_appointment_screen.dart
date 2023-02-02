@@ -9,7 +9,6 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
-
 class ScheduleAppointmentScreen extends StatefulWidget {
   const ScheduleAppointmentScreen({Key? key, required this.issue})
       : super(key: key);
@@ -76,8 +75,12 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Appointment', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Appointment',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
 
       body: Padding(
         padding: EdgeInsets.only(top: 40.h, left: 24.w, right: 24.w),
@@ -151,13 +154,14 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
             SizedBox(
               // height: 300.h,
               child: GridView.builder(
-                shrinkWrap: true,
+                  shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 79,
-                      childAspectRatio: 3 / 2,
-                      crossAxisSpacing: 8,
-                      mainAxisSpacing: 16),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 16,
+                    childAspectRatio: 2,
+                    crossAxisSpacing: 8,
+                  ),
                   itemCount: timeList.length,
                   itemBuilder: (BuildContext ctx, index) {
                     return GestureDetector(
@@ -170,8 +174,9 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
                         height: 34.h,
                         width: 60.w,
                         decoration: BoxDecoration(
-                          color:
-                              selectedIndex == index ? k006D77 : Colors.white,
+                          color: selectedIndex == index
+                              ? k006D77
+                              : Colors.transparent,
                           border: Border.all(
                             color: k006D77,
                           ),
@@ -182,7 +187,7 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
                           child: Text(
                             timeList[index],
                             style: selectedIndex == index
-                                ? kManRope_400_12_white
+                                ? kManRope_400_14_white
                                 : kManRope_400_14_001314,
                           ),
                         ),
@@ -190,10 +195,11 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
                     );
                   }),
             ),
+            SizedBox(height: 16),
           ],
         ),
       ),
-      bottomNavigationBar:  Padding(
+      bottomNavigationBar: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: SizedBox(
           height: 83.h,
@@ -220,12 +226,12 @@ class _ScheduleAppointmentScreenState extends State<ScheduleAppointmentScreen> {
                     ),
                     onPressed: () {
                       Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => ConfirmAppointmentBooking(
-                                                      issue: widget.issue,
-                                                      date: date,
-                                                    )));
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ConfirmAppointmentBooking(
+                                    issue: widget.issue,
+                                    date: date,
+                                  )));
                     },
                     child: Text(
                       'Book session',

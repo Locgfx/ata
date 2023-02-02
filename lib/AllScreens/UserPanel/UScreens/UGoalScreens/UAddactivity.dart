@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/activity_model.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/add_new_activity.dart';
 import 'package:greymatter/constants/Lists.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/add_new_activity.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class UAddActivityScreen extends StatefulWidget {
-   UAddActivityScreen({Key? key}) : super(key: key);
+  UAddActivityScreen({Key? key}) : super(key: key);
 
   @override
   State<UAddActivityScreen> createState() => _UAddActivityScreenState();
@@ -32,53 +32,35 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'All activities',
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+          hasThreeDots: false,
+          appBarText: 'All activities',
           imgPath: 'assets/images/iconbackappbar2.png'),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 60.w,
-      //   backgroundColor: Colors.white,
-      //   title: Text(
-      //     'All activities',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   centerTitle: false,
-      //   titleSpacing: 0.w,
-      //   leading: InkWell(
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h,),
+          padding: EdgeInsets.only(
+            left: 24.w,
+            right: 24.w,
+            top: 40.h,
+          ),
           child: Column(
             children: [
               MediaQuery.removePadding(
                 context: context,
-                removeTop: true,
+                removeTop: false,
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     physics: NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (ctx, index) {
                       for (int i = 0; i < activityList.length; i++) {
-                        a.add(ActivityValue(slide: false, name: activityList[i]));
+                        a.add(
+                            ActivityValue(slide: false, name: activityList[i]));
                       }
 
                       return Padding(
-                        padding:
-                        EdgeInsets.only(bottom: 16.h, top: index == 0 ? 24 : 0),
+                        padding: EdgeInsets.only(bottom: 16.h),
                         child: Stack(
                           children: [
                             Container(
@@ -90,22 +72,6 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                     left: Radius.circular(24)),
                               ),
                             ),
-                            /*  GestureDetector(
-                              onPanUpdate: (v) {
-                                print(v.delta.dx);
-                                //print(v.delta.dy);
-                                if (!a[index].slide) {
-                                  if (v.delta.dx > -1 &&
-                                      v.delta.dx < 1 &&
-                                      v.delta.dy > -1 &&
-                                      v.delta.dy < 1) {
-                                    setState(() {
-                                      a[index].slide = true;
-                                    });
-                                  }
-                                }
-                              },
-                    child: */
                             GestureDetector(
                               onTap: () {},
                               child: Container(
@@ -128,8 +94,8 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                               child: GestureDetector(
                                 onHorizontalDragUpdate: (v) {
                                   setState(() {
-                                    dx[index] =
-                                        (dx[index] + v.delta.dx).clamp(0.0, 81.h);
+                                    dx[index] = (dx[index] + v.delta.dx)
+                                        .clamp(0.0, 81.h);
                                     //print(_dx);
                                   });
                                 },
@@ -152,10 +118,11 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                         // width: 1.sw,
                                       ),
                                       Padding(
-                                        padding: EdgeInsets.symmetric(horizontal: 24.w),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 24.w),
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             SizedBox(
                                               width: 200.w,
@@ -168,24 +135,30 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                                 style: kManRope_600_18_white,
                                                 cursorColor: Colors.white,
                                                 decoration: InputDecoration(
-                                                  enabled: activityList[index] ==
-                                                      'Add Activity Name'
+                                                  enabled: activityList[
+                                                              index] ==
+                                                          'Add Activity Name'
                                                       ? true
                                                       : false,
                                                   hintText: activityList[index],
-                                                  hintStyle: kManRope_600_18_white,
-                                                  contentPadding: EdgeInsets.zero,
-                                                  disabledBorder: OutlineInputBorder(
+                                                  hintStyle:
+                                                      kManRope_600_18_white,
+                                                  contentPadding:
+                                                      EdgeInsets.zero,
+                                                  disabledBorder:
+                                                      OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                     ),
                                                   ),
-                                                  enabledBorder: OutlineInputBorder(
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                     ),
                                                   ),
-                                                  focusedBorder: OutlineInputBorder(
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
                                                     borderSide: BorderSide(
                                                       color: Colors.transparent,
                                                     ),
@@ -194,7 +167,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                               ),
                                             ),
                                             if (a[index].name !=
-                                                'Add Activity Name' &&
+                                                    'Add Activity Name' &&
                                                 a[index].name.isNotEmpty)
                                               GestureDetector(
                                                 onTap: () {
@@ -202,20 +175,24 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                                     MaterialPageRoute(
                                                       builder: (context) =>
                                                           AddNewActivity(
-                                                            text: activityList[index] ==
+                                                        text: activityList[
+                                                                    index] ==
                                                                 'Add Activity Name'
-                                                                ? ''
-                                                                : a[index].name,
-                                                          ),
+                                                            ? ''
+                                                            : a[index].name,
+                                                      ),
                                                     ),
                                                   );
                                                 },
                                                 child: Container(
                                                   height: 48.h,
                                                   width: 70.w,
-                                                  decoration: const BoxDecoration(
-                                                    borderRadius: BorderRadius.all(
-                                                        Radius.circular(10)),
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                10)),
                                                     color: Colors.white,
                                                   ),
                                                   child: Center(
@@ -241,7 +218,9 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                     },
                     itemCount: activityList.length),
               ),
-              SizedBox(height: 163.h,)
+              SizedBox(
+                height: 163.h,
+              )
             ],
           ),
         ),
@@ -262,6 +241,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
               });
         ),
       ),*/
-    ); ;
+    );
+    ;
   }
 }

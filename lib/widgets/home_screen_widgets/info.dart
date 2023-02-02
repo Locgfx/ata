@@ -11,7 +11,8 @@ class Info extends StatelessWidget {
     return Container(
       color: k006D77,
       padding: EdgeInsets.all(24),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -33,8 +34,11 @@ class Info extends StatelessWidget {
             style: kManRope_400_20_White07,
           ),
           SizedBox(height: 16.h),
-          Text("Made by Locgfx @ Delhi.",style: kManRope_400_14_white.copyWith(color: Colors.white.withOpacity(0.48)),),
-          SizedBox(height: 24.h),
+          Text(
+            "Made by Locgfx @ Delhi.",
+            style: kManRope_400_14_white.copyWith(
+                color: Colors.white.withOpacity(0.48)),
+          ),
         ],
       ),
     );

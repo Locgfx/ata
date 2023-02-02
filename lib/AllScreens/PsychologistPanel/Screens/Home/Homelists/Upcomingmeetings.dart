@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/joining.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/joining.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 
 class UpcomingMeetings extends StatefulWidget {
   const UpcomingMeetings({Key? key}) : super(key: key);
@@ -24,42 +23,55 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
         context: context,
         builder: (context) => const CalenderBottomSheet());
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: CusAppBar(
-        appBarText: 'Upcomming  ',
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        appBarText: 'Upcoming',
         imgPath: 'assets/images/iconbackappbarlarge.png',
+        hasThreeDots: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Upcoming   (17)',
                     style: kManRope_700_16_001314,
                   ),
                   GestureDetector(
-                      behavior: HitTestBehavior.translucent,
-                    onTap:() {
-                      _calenderbottomsheet();
-                    } ,
-                      child: Image.asset("assets/images/iconcalender.png",height: 24.h,width: 24.w,))
+                      onTap: () {
+                        _calenderbottomsheet();
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.all(10),
+                        child: Image.asset(
+                          "assets/images/iconcalender.png",
+                          height: 24.h,
+                          width: 24.w,
+                        ),
+                      ))
                 ],
               ),
-              SizedBox(height: 29.h,),
+              SizedBox(
+                height: 29.h,
+              ),
               Text(
                 'Today (2)',
                 style: kManRope_500_16_001314,
               ),
-
               SizedBox(
                 // height: 1.sh,
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Row(
                     //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -88,22 +100,23 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                           physics: NeverScrollableScrollPhysics(),
                           itemBuilder: (ctx, index) {
                             return GestureDetector(
-                              onTap:() {
+                              onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) =>JoiningScreen()),
+                                  MaterialPageRoute(
+                                      builder: (context) => JoiningScreen()),
                                 );
-
                               },
                               child: Container(
                                 height: 80.h,
                                 width: 1.sw,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
-                                    color: kWhiteBGColor,
+                                    color: kEDF6F9,
                                     border: Border.all(color: Colors.white)),
                                 child: Padding(
-                                  padding:EdgeInsets.only(left: 16.w,right: 16.w),
+                                  padding:
+                                      EdgeInsets.only(left: 16.w, right: 16.w),
                                   child: Row(
                                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -112,30 +125,42 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                           Container(
                                             height: 48.h,
                                             width: 48.w,
-                                            decoration:  BoxDecoration(
-                                              borderRadius: BorderRadius.circular(8),
-                                              color: Colors.grey, ),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              color: Colors.grey,
+                                            ),
                                             clipBehavior: Clip.hardEdge,
-                                            child: Image.asset('assets/images/userP.png',fit: BoxFit.cover,),
+                                            child: Image.asset(
+                                              'assets/images/userP.png',
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                           SizedBox(width: 16.w),
                                           SizedBox(
                                             width: 280.w,
                                             child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text('Priyanka singh',
-                                                    style: kManRope_500_16_001314),
-                                                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    style:
+                                                        kManRope_500_16_001314),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text('Anxiety',
-                                                        style: kManRope_400_14_626A6A),
+                                                        style:
+                                                            kManRope_400_14_626A6A),
                                                     // SizedBox(width: 24.w),
                                                     Text(
                                                       '10 June 2022, 8:00AM',
-                                                      style: kManRope_400_14_626A6A,
+                                                      style:
+                                                          kManRope_400_14_626A6A,
                                                       textAlign: TextAlign.end,
                                                     ),
                                                   ],
@@ -145,7 +170,6 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                           ),
                                         ],
                                       ),
-
                                     ],
                                   ),
                                 ),
@@ -172,22 +196,23 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                         physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (ctx, index) {
                           return GestureDetector(
-                            onTap:() {
+                            onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) =>JoiningScreen()),
+                                MaterialPageRoute(
+                                    builder: (context) => JoiningScreen()),
                               );
-
                             },
                             child: Container(
                               height: 80.h,
                               width: 1.sw,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
-                                  color: kWhiteBGColor,
+                                  color: kEDF6F9,
                                   border: Border.all(color: Colors.white)),
                               child: Padding(
-                                padding:EdgeInsets.only(left: 16.w,right: 16.w),
+                                padding:
+                                    EdgeInsets.only(left: 16.w, right: 16.w),
                                 child: Row(
                                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -196,30 +221,42 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                         Container(
                                           height: 48.h,
                                           width: 48.w,
-                                          decoration:  BoxDecoration(
-                                            borderRadius: BorderRadius.circular(8),
-                                            color: Colors.grey, ),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            color: Colors.grey,
+                                          ),
                                           clipBehavior: Clip.hardEdge,
-                                          child: Image.asset('assets/images/userP.png',fit: BoxFit.cover,),
+                                          child: Image.asset(
+                                            'assets/images/userP.png',
+                                            fit: BoxFit.cover,
+                                          ),
                                         ),
                                         SizedBox(width: 16.w),
                                         SizedBox(
                                           width: 280.w,
                                           child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
                                               Text('Priyanka singh',
-                                                  style: kManRope_500_16_001314),
-                                              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  style:
+                                                      kManRope_500_16_001314),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
                                                   Text('Anxiety',
-                                                      style: kManRope_400_14_626A6A),
+                                                      style:
+                                                          kManRope_400_14_626A6A),
                                                   // SizedBox(width: 24.w),
                                                   Text(
                                                     '10 June 2022, 8:00AM',
-                                                    style: kManRope_400_14_626A6A,
+                                                    style:
+                                                        kManRope_400_14_626A6A,
                                                     textAlign: TextAlign.end,
                                                   ),
                                                 ],
@@ -229,7 +266,6 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                         ),
                                       ],
                                     ),
-
                                   ],
                                 ),
                               ),
@@ -263,51 +299,65 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                 width: 1.sw,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
-                                    color: kWhiteBGColor,
+                                    color: kEDF6F9,
                                     border: Border.all(color: Colors.white)),
                                 child: Padding(
-                                  padding:EdgeInsets.only(left: 16.w,right: 16.w),
+                                  padding:
+                                      EdgeInsets.only(left: 16.w, right: 16.w),
                                   child: Row(
                                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Row(
                                         children: [
                                           GestureDetector(
-                                            onTap:() {
+                                            onTap: () {
                                               Navigator.push(
                                                 context,
-                                                MaterialPageRoute(builder: (context) =>JoiningScreen()),
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        JoiningScreen()),
                                               );
-
                                             },
-                                            child:  Container(
+                                            child: Container(
                                               height: 48.h,
                                               width: 48.w,
-                                              decoration:  BoxDecoration(
-                                                borderRadius: BorderRadius.circular(8),
-                                                color: Colors.grey, ),
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(8),
+                                                color: Colors.grey,
+                                              ),
                                               clipBehavior: Clip.hardEdge,
-                                              child: Image.asset('assets/images/userP.png',fit: BoxFit.cover,),
+                                              child: Image.asset(
+                                                'assets/images/userP.png',
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
                                           ),
                                           SizedBox(width: 16.w),
                                           SizedBox(
                                             width: 280.w,
                                             child: Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text('Priyanka singh',
-                                                    style: kManRope_500_16_001314),
-                                                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    style:
+                                                        kManRope_500_16_001314),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
                                                     Text('Anxiety',
-                                                        style: kManRope_400_14_626A6A),
+                                                        style:
+                                                            kManRope_400_14_626A6A),
                                                     // SizedBox(width: 24.w),
                                                     Text(
                                                       '10 June 2022, 8:00AM',
-                                                      style: kManRope_400_14_626A6A,
+                                                      style:
+                                                          kManRope_400_14_626A6A,
                                                       textAlign: TextAlign.end,
                                                     ),
                                                   ],
@@ -317,7 +367,6 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                           ),
                                         ],
                                       ),
-
                                     ],
                                   ),
                                 ),

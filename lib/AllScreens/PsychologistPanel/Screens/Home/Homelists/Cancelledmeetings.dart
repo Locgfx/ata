@@ -5,7 +5,6 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
-
 class CancelledMeetings extends StatefulWidget {
   const CancelledMeetings({Key? key}) : super(key: key);
 
@@ -14,7 +13,6 @@ class CancelledMeetings extends StatefulWidget {
 }
 
 class _CancelledMeetingsState extends State<CancelledMeetings> {
-
   void _calenderbottomsheet() {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
@@ -24,6 +22,7 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
         context: context,
         builder: (context) => const CalenderBottomSheet());
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +36,8 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
           padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
           child: Column(
             children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Cancelled   (100+)',
@@ -45,14 +45,18 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                   ),
                   GestureDetector(
                       behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      _calenderbottomsheet();
-
-                    },
-                      child: Image.asset("assets/images/iconcalender.png",height: 24.h,width: 24.w,))
+                      onTap: () {
+                        _calenderbottomsheet();
+                      },
+                      child: Image.asset(
+                        "assets/images/iconcalender.png",
+                        height: 24.h,
+                        width: 24.w,
+                      ))
                 ],
               ),
-              Column(crossAxisAlignment: CrossAxisAlignment.start,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Row(
                   //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -85,10 +89,10 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                             width: 1.sw,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: kWhiteBGColor,
+                                color: kEDF6F9,
                                 border: Border.all(color: Colors.white)),
                             child: Padding(
-                              padding:EdgeInsets.only(left: 16.w,right: 16.w),
+                              padding: EdgeInsets.only(left: 16.w, right: 16.w),
                               child: Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -97,28 +101,36 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                       Container(
                                         height: 48.h,
                                         width: 48.w,
-                                        decoration:  BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8),
-                                          color: Colors.grey, ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Colors.grey,
+                                        ),
                                         clipBehavior: Clip.hardEdge,
-                                        child: Image.asset('assets/images/userP.png',
-                                        fit: BoxFit.cover,),
-
+                                        child: Image.asset(
+                                          'assets/images/userP.png',
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                       SizedBox(width: 16.w),
                                       SizedBox(
                                         width: 280.w,
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text('Priyanka singh',
                                                 style: kManRope_500_16_001314),
-                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text('Anxiety',
-                                                    style: kManRope_400_14_626A6A),
+                                                    style:
+                                                        kManRope_400_14_626A6A),
                                                 // SizedBox(width: 24.w),
                                                 Text(
                                                   '10 June 2022, 8:00AM',
@@ -132,7 +144,6 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                       ),
                                     ],
                                   ),
-
                                 ],
                               ),
                             ),
@@ -164,10 +175,10 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                             width: 1.sw,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: kWhiteBGColor,
+                                color: kEDF6F9,
                                 border: Border.all(color: Colors.white)),
                             child: Padding(
-                              padding:EdgeInsets.only(left: 16.w,right: 16.w),
+                              padding: EdgeInsets.only(left: 16.w, right: 16.w),
                               child: Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -176,26 +187,36 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                       Container(
                                         height: 48.h,
                                         width: 48.w,
-                                        decoration:  BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8),
-                                          color: Colors.grey, ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Colors.grey,
+                                        ),
                                         clipBehavior: Clip.hardEdge,
-                                        child: Image.asset('assets/images/userP.png',fit: BoxFit.cover,),
+                                        child: Image.asset(
+                                          'assets/images/userP.png',
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                       SizedBox(width: 16.w),
                                       SizedBox(
                                         width: 280.w,
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text('Priyanka singh',
                                                 style: kManRope_500_16_001314),
-                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text('Anxiety',
-                                                    style: kManRope_400_14_626A6A),
+                                                    style:
+                                                        kManRope_400_14_626A6A),
                                                 // SizedBox(width: 24.w),
                                                 Text(
                                                   '10 June 2022, 8:00AM',
@@ -209,7 +230,6 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                       ),
                                     ],
                                   ),
-
                                 ],
                               ),
                             ),
@@ -241,10 +261,10 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                             width: 1.sw,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: kWhiteBGColor,
+                                color: kEDF6F9,
                                 border: Border.all(color: Colors.white)),
                             child: Padding(
-                              padding:EdgeInsets.only(left: 16.w,right: 16.w),
+                              padding: EdgeInsets.only(left: 16.w, right: 16.w),
                               child: Row(
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
@@ -253,26 +273,36 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                       Container(
                                         height: 48.h,
                                         width: 48.w,
-                                        decoration:  BoxDecoration(
-                                          borderRadius: BorderRadius.circular(8),
-                                          color: Colors.grey, ),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Colors.grey,
+                                        ),
                                         clipBehavior: Clip.hardEdge,
-                                        child: Image.asset('assets/images/userP.png',fit: BoxFit.cover,),
+                                        child: Image.asset(
+                                          'assets/images/userP.png',
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                       SizedBox(width: 16.w),
                                       SizedBox(
                                         width: 280.w,
                                         child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text('Priyanka singh',
                                                 style: kManRope_500_16_001314),
-                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text('Anxiety',
-                                                    style: kManRope_400_14_626A6A),
+                                                    style:
+                                                        kManRope_400_14_626A6A),
                                                 // SizedBox(width: 24.w),
                                                 Text(
                                                   '10 June 2022, 8:00AM',
@@ -286,7 +316,6 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                       ),
                                     ],
                                   ),
-
                                 ],
                               ),
                             ),

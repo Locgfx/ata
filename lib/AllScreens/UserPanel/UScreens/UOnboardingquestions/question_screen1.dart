@@ -7,8 +7,8 @@ import 'package:greymatter/model/question_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../constants/colors.dart';
-import 'form.dart';
 import '../../../../model/question_model.dart';
+import 'form.dart';
 // import '../UserPanel/UWelcome/welcome_screen.dart';
 
 class Questions extends StatefulWidget {
@@ -24,7 +24,6 @@ class _QuestionsState extends State<Questions> {
   final _pageController = PageController();
   int currentIndex = 0;
 
-
   List<Question> questionList = [
     Question(
       question: ['How do you identify Yourself?'],
@@ -36,8 +35,12 @@ class _QuestionsState extends State<Questions> {
         'Being Honest How Would You Rate Your Physical Health?',
       ],
       questionController: [TextEditingController(), TextEditingController()],
-      label: ['Excellent', 'Average', 'Poor', 'Not Sure',],
-
+      label: [
+        'Excellent',
+        'Average',
+        'Poor',
+        'Not Sure',
+      ],
     ),
     Question(
       question: [
@@ -92,7 +95,7 @@ class _QuestionsState extends State<Questions> {
         return false;
       },
       child: Scaffold(
-        backgroundColor: kWhiteBGColor,
+        backgroundColor: kEDF6F9,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 24),
@@ -130,65 +133,59 @@ class _QuestionsState extends State<Questions> {
                     ],
                   ),
                 ),
-                Center(
-                  child: SizedBox(
-                    height: 300.h,
-                    child: PageView(
-                      //physics: NeverScrollableScrollPhysics(),
-                      controller: _pageController,
-                      onPageChanged: (v) {
-                        setState(() {
-                          currentIndex = v;
-                        });
-                      },
-                      children: List.generate(questionList.length, (i) {
-                        return Form1(
-                          index: i,
-                          questions: questionList[i].question,
-                          questionControllers:
-                              questionList[i].questionController,
-                          labels: questionList[i].label,
-                          onNextTap: () {
-                            if (i != 8) {
-                              _pageController.nextPage(
-                                duration: Duration(milliseconds: 300),
-                                curve: Curves.fastOutSlowIn,
-                              );
-                            } else {
-                              // SharedPrefs.setQuestionsLog(true);
+                Expanded(
+                  //height: 300.h,
+                  child: PageView(
+                    //physics: NeverScrollableScrollPhysics(),
+                    controller: _pageController,
+                    onPageChanged: (v) {
+                      setState(() {
+                        currentIndex = v;
+                      });
+                    },
+                    children: List.generate(questionList.length, (i) {
+                      return Form1(
+                        index: i,
+                        questions: questionList[i].question,
+                        questionControllers: questionList[i].questionController,
+                        labels: questionList[i].label,
+                        onNextTap: () {
+                          if (i != 8) {
+                            _pageController.nextPage(
+                              duration: Duration(milliseconds: 300),
+                              curve: Curves.fastOutSlowIn,
+                            );
+                          } else {
+                            // SharedPrefs.setQuestionsLog(true);
 
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => WelcomeScreen()));
-                              /* Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => DashBoard(),),);*/
-                            }
-                          },
-                        );
-                      }),
-                    ),
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (ctx) => WelcomeScreen()));
+                            /* Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => DashBoard(),),);*/
+                          }
+                        },
+                      );
+                    }),
                   ),
                 ),
                 GestureDetector(
                   onTap: () {
-                    // SharedPrefs.setQuestionsLog(false);
-                    /* Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => DashBoard(),
-                      ),
-                    );*/
-                    _pageController.nextPage(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.fastOutSlowIn,
-                    );
+                    if (currentIndex == 8) {
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (ctx) => WelcomeScreen()));
+                    } else {
+                      _pageController.nextPage(
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.fastOutSlowIn,
+                      );
+                    }
                   },
                   child: Container(
                     color: Colors.transparent,
                     padding: EdgeInsets.all(10),
-                    child:
-                        Text('Skip For Now', style: kManRope_500_16_006D77),
+                    child: Text('Skip For Now', style: kManRope_500_16_006D77),
                   ),
                 ),
               ],

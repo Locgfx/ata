@@ -14,7 +14,6 @@ class ConfirmName extends StatefulWidget {
 }
 
 class _ConfirmNameState extends State<ConfirmName> {
-
   // @override
   // void initState() {
   //   super.initState();
@@ -31,7 +30,7 @@ class _ConfirmNameState extends State<ConfirmName> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -85,11 +84,11 @@ class _ConfirmNameState extends State<ConfirmName> {
                       children: [
                         Expanded(
                           child: SizedBox(
-                            height:56.h,
+                            height: 56.h,
                             child: MainButton(
                                 onPressed: () {
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (context) => KycConfirmName()));
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => KycConfirmName()));
                                 },
                                 child: Text(
                                   "Next",
@@ -131,12 +130,12 @@ class _ConfirmNameState extends State<ConfirmName> {
                       height: 16.h,
                     ),
                     Padding(
-                      padding:EdgeInsets.only(bottom: 76.w),
+                      padding: EdgeInsets.only(bottom: 76.w),
                       child: Row(
                         children: [
                           Expanded(
                             child: SizedBox(
-                              height:56.h,
+                              height: 56.h,
                               child: MainButton(
                                   onPressed: () {
                                     Navigator.pop(context);
@@ -146,7 +145,8 @@ class _ConfirmNameState extends State<ConfirmName> {
                                     style: kManRope_500_16_006D77,
                                   ),
                                   color: kFFFFFF,
-                                  shape: CustomDecoration().outline16ButtonDecoration()),
+                                  shape: CustomDecoration()
+                                      .outline16ButtonDecoration()),
                             ),
                           ),
                         ],

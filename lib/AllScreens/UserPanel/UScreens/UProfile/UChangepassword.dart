@@ -16,7 +16,7 @@ class _UChangePasswordScreenState extends State<UChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 20.h,left: 135.w,right: 135.w),
+        padding: EdgeInsets.only(bottom: 20.h, left: 135.w, right: 135.w),
         child: SizedBox(
           height: 60.h,
           width: 168.w,
@@ -38,8 +38,9 @@ class _UChangePasswordScreenState extends State<UChangePasswordScreen> {
           ),
         ),
       ),
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Change password',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),

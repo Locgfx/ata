@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/pofile_screen.dart';
@@ -10,7 +13,6 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UOrderhistory.
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPersonalInfoScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-
 
 class UProfileScreen extends StatefulWidget {
   const UProfileScreen({Key? key}) : super(key: key);
@@ -30,14 +32,30 @@ class _UProfileScreenState extends State<UProfileScreen> {
         context: context,
         builder: (BuildContext context) => ProfileLogoutBottomSheet());
   }
+
+  Widget arrow() {
+    return Image.asset(
+      'assets/images/iconrightblack.png',
+      height: 24.w,
+      width: 24.w,
+      color: k626A6A,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
-        backgroundColor: Colors.white,
-        toolbarHeight: 30.h,
+        toolbarHeight: 0,
         elevation: 0,
+        backgroundColor: kEDF6F9,
+        systemOverlayStyle: Platform.isAndroid
+            ? SystemUiOverlayStyle(
+                statusBarColor: kEDF6F9,
+                statusBarIconBrightness: Brightness.dark,
+              )
+            : SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -98,7 +116,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                         builder: (context) => const UserPersonalInfoScreen()));
                     // Navigator.of(context).push(MaterialPageRoute(
                     //     builder: (context) =>
-                        // const PsychologistPersonalInfoScreen()));
+                    // const PsychologistPersonalInfoScreen()));
                   },
                   child: Container(
                     height: 48.h,
@@ -110,14 +128,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                           'Personal Info',
                           style: kManRope_500_16_001314,
                         ),
-                        Container(
-                          // color: Colors.red,
-                          child: Image.asset(
-                            'assets/images/iconrightblack.png',
-                            height: 24.w,
-                            width: 24.w,
-                          ),
-                        ),
+                        arrow(),
                       ],
                     ),
                   ),
@@ -146,11 +157,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                             'My account',
                             style: kManRope_500_16_001314,
                           ),
-                          Image.asset(
-                            'assets/images/iconrightblack.png',
-                            height: 24.w,
-                            width: 24.w,
-                          ),
+                          arrow(),
                         ],
                       ),
                     ),
@@ -162,8 +169,8 @@ class _UProfileScreenState extends State<UProfileScreen> {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => UMyActivityScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UMyActivityScreen()));
                   },
                   child: SizedBox(
                     height: 48.h,
@@ -175,11 +182,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                           'My activity',
                           style: kManRope_500_16_001314,
                         ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
+                        arrow(),
                       ],
                     ),
                   ),
@@ -187,12 +190,11 @@ class _UProfileScreenState extends State<UProfileScreen> {
                 SizedBox(
                   height: 8.h,
                 ),
-
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>  UOrderHistory()));
+                        builder: (context) => UOrderHistory()));
                   },
                   child: SizedBox(
                     height: 48.h,
@@ -204,11 +206,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                           'Order history',
                           style: kManRope_500_16_001314,
                         ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
+                        arrow(),
                       ],
                     ),
                   ),
@@ -239,11 +237,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                           'Agreements',
                           style: kManRope_500_16_001314,
                         ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
+                        arrow(),
                       ],
                     ),
                   ),
@@ -267,11 +261,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                           'Help and support',
                           style: kManRope_500_16_001314,
                         ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
+                        arrow(),
                       ],
                     ),
                   ),
@@ -294,9 +284,10 @@ class _UProfileScreenState extends State<UProfileScreen> {
                       style: kManRope_500_16_001314,
                     ),
                     FlutterSwitch(
-                      width: 60.w,
-                      height: 28.h,
-                      toggleSize: 20,
+                      width: 40,
+                      height: 18,
+                      padding: 3,
+                      toggleSize: 14,
                       activeColor: k006D77,
                       value: _switchValue,
                       onToggle: (val) {
@@ -316,7 +307,6 @@ class _UProfileScreenState extends State<UProfileScreen> {
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
                       _profileLogoutBottomSheet();
-
                     },
                     child: SizedBox(
                       height: 43.h,

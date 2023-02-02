@@ -11,7 +11,7 @@ class CreatePostScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         centerTitle: false,
         elevation: 0,

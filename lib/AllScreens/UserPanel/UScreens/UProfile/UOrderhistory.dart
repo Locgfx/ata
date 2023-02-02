@@ -16,35 +16,44 @@ class _UOrderHistoryState extends State<UOrderHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         imgPath: "assets/images/iconbackappbarlarge.png",
         appBarText: "Order History",
       ),
       body: Padding(
-        padding:
-        EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h, bottom: 20.h),
+        padding: EdgeInsets.only(bottom: 20.h),
         child: ListView.separated(
             itemBuilder: (ctx, index) {
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>  UInvoiceDetails()));
+                      builder: (context) => UInvoiceDetails()));
                 },
-                child: Material(
-                  borderRadius: BorderRadius.circular(10),
-                  elevation: 2,
+                child: Padding(
+                  padding: EdgeInsets.only(top: index == 0 ? 40 : 0),
                   child: Container(
                     // height: 144.h,
+                    margin: EdgeInsets.symmetric(horizontal: 24),
                     width: 1.sw,
                     padding:
-                    EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: kWhiteBGColor,
-                        border: Border.all(
-                          color: Colors.white,
-                        )),
+                      borderRadius: BorderRadius.circular(10),
+                      color: kEDF6F9,
+                      border: Border.all(
+                        color: Colors.white,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: Offset(4, 4),
+                          blurRadius: 16,
+                          spreadRadius: 0,
+                          color: Colors.black.withOpacity(0.08),
+                        ),
+                      ],
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

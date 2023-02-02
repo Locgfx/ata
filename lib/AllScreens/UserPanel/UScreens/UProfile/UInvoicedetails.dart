@@ -16,12 +16,16 @@ class _UInvoiceDetailsState extends State<UInvoiceDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(imgPath: 'assets/images/iconbackappbar2.png', appBarText: 'Invoice details',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        imgPath: 'assets/images/iconbackappbar2.png',
+        appBarText: 'Invoice details',
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding:
-          EdgeInsets.only(left: 24.w, right: 24.w, top: 26.h, bottom: 26.h),
+              EdgeInsets.only(left: 24.w, right: 24.w, top: 26.h, bottom: 26.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

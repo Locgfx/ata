@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -10,8 +11,12 @@ class TermsAndConditionsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Terms and Conditions', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Terms and Conditions',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Text(

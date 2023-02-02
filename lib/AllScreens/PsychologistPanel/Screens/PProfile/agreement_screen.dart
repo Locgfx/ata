@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/agreement_details_screen.dart';
-import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/privacy_and_policy_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/terms_and_conditions_screen.dart';
+import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 
 class AgreementScreen extends StatelessWidget {
   const AgreementScreen({Key? key}) : super(key: key);
@@ -14,8 +13,12 @@ class AgreementScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Agreement', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Agreement',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(

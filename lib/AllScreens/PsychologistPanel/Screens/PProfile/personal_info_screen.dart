@@ -8,7 +8,6 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
-
 class PsychologistPersonalInfoScreen extends StatefulWidget {
   const PsychologistPersonalInfoScreen({Key? key}) : super(key: key);
 
@@ -23,8 +22,9 @@ class _PsychologistPersonalInfoScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Account',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
@@ -39,7 +39,6 @@ class _PsychologistPersonalInfoScreenState
                 child: DottedBorder(
                   borderType: BorderType.Circle,
                   color: k006D77,
-
                   strokeWidth: 0.5,
                   dashPattern: [
                     2,
@@ -90,7 +89,7 @@ class _PsychologistPersonalInfoScreenState
                         Container(
                           height: 1.5.h,
                           width: 100.w,
-                          color: flag ? k006D77 : kWhiteBGColor,
+                          color: flag ? k006D77 : kEDF6F9,
                         ),
                       ],
                     ),
@@ -118,7 +117,7 @@ class _PsychologistPersonalInfoScreenState
                         Container(
                           height: 1.5.h,
                           width: 154.w,
-                          color: flag ? kWhiteBGColor : k006D77,
+                          color: flag ? kEDF6F9 : k006D77,
                         ),
                       ],
                     ),
@@ -130,7 +129,7 @@ class _PsychologistPersonalInfoScreenState
               flag ? EditbasicDetails() : EditDoctorProfile(),
               // flag ? PsychologistPersonalInfoScreen() : DoctorProfile(),
             ],
-              // EditbasicDetails()
+            // EditbasicDetails()
           ),
         ),
       ),

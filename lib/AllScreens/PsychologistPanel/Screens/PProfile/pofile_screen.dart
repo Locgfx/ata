@@ -1,7 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/agreement_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/help_and_support_screen.dart';
@@ -10,8 +12,8 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/order_h
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/slots_availability_screens.dart';
 import 'package:greymatter/constants/fonts.dart';
 
-
 import '../../../../constants/colors.dart';
+import '../../../UserPanel/UScreens/UProfile/UMyActivity.dart';
 import 'my_account_screen.dart';
 import 'personal_info_screen.dart';
 
@@ -39,11 +41,18 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        toolbarHeight: 40.h,
+        toolbarHeight: 0,
         elevation: 0,
+        automaticallyImplyLeading: false,
+        systemOverlayStyle: Platform.isAndroid
+            ? SystemUiOverlayStyle(
+                statusBarColor: Colors.white,
+                statusBarIconBrightness: Brightness.dark,
+              )
+            : SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -167,6 +176,34 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                 GestureDetector(
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UMyActivityScreen()));
+                  },
+                  child: SizedBox(
+                    height: 48.h,
+                    width: 380.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'My Activity',
+                          style: kManRope_500_16_001314,
+                        ),
+                        Image.asset(
+                          'assets/images/iconrightblack.png',
+                          height: 24.w,
+                          width: 24.w,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () {
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => KycScreen()));
                   },
@@ -263,7 +300,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   },
                   child: GestureDetector(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>  AgreementScreen())),
+                        builder: (context) => AgreementScreen())),
                     child: SizedBox(
                       height: 48.h,
                       width: 380.w,
@@ -330,9 +367,10 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                       style: kManRope_500_16_001314,
                     ),
                     FlutterSwitch(
-                      width: 60.w,
-                      height: 28.h,
-                      toggleSize: 20,
+                      width: 40,
+                      height: 18,
+                      padding: 3,
+                      toggleSize: 14,
                       activeColor: k006D77,
                       value: _switchValue,
                       onToggle: (val) {
@@ -372,6 +410,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
     );
   }
 }
+
 class ProfileLogoutBottomSheet extends StatefulWidget {
   const ProfileLogoutBottomSheet({Key? key}) : super(key: key);
 
@@ -409,12 +448,12 @@ class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
           // ),
           Container(
             height: 180.h,
-        decoration: const BoxDecoration(
-          color: kWhiteBGColor,
+            decoration: const BoxDecoration(
+              color: kEDF6F9,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
-            padding:EdgeInsets.only(top: 20.h),
+            padding: EdgeInsets.only(top: 20.h),
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
@@ -424,14 +463,19 @@ class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: () => setState(() {
-                      _gIndex = 0;
-                      Navigator.of(context).pop();
-                    }),
-                    child: Text("Log out",style: kManRope_700_20_001314,)
-                  ),
+                      onTap: () => setState(() {
+                            _gIndex = 0;
+                            Navigator.of(context).pop();
+                          }),
+                      child: Text(
+                        "Log out",
+                        style: kManRope_700_20_001314,
+                      )),
                   SizedBox(height: 16.h),
-                  Text("You will be returned to the login screen.",style: kManRope_500_16_626A6A,),
+                  Text(
+                    "You will be returned to the login screen.",
+                    style: kManRope_500_16_626A6A,
+                  ),
                   Padding(
                     padding: EdgeInsets.only(top: 20.0),
                     child: Container(
@@ -444,19 +488,32 @@ class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
                     children: [
                       Expanded(
                           child: GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(height: 52.h,
-                                padding: EdgeInsets.only(top: 16),
-                                child: Center(child: Text("Cancel",style:kManRope_500_20_006D77 ,))),
-                          )),
-                      Container(height:52.h,color: Colors.white,width: 1,),
-                      Expanded(child: Container(
-                          padding: EdgeInsets.only(top: 16),
-
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            height: 52.h,
+                            padding: EdgeInsets.only(top: 16),
+                            child: Center(
+                                child: Text(
+                              "Cancel",
+                              style: kManRope_500_20_006D77,
+                            ))),
+                      )),
+                      Container(
                         height: 52.h,
-                          child: Center(child: Text("Logout",style: kManRope_500_20_B64949,)))),
+                        color: Colors.white,
+                        width: 1,
+                      ),
+                      Expanded(
+                          child: Container(
+                              padding: EdgeInsets.only(top: 16),
+                              height: 52.h,
+                              child: Center(
+                                  child: Text(
+                                "Logout",
+                                style: kManRope_500_20_B64949,
+                              )))),
                     ],
                   ),
                   // GestureDetector(
@@ -513,6 +570,7 @@ class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
     );
   }
 }
+
 class LogOutBottomSheet extends StatefulWidget {
   const LogOutBottomSheet({Key? key}) : super(key: key);
 

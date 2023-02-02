@@ -19,8 +19,9 @@ class _UAccountScreenState extends State<UAccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Account',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
@@ -34,31 +35,29 @@ class _UAccountScreenState extends State<UAccountScreen> {
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          UChangeMobileNoScreen()));
+                      builder: (context) => UChangeMobileNoScreen()));
                 },
                 child: Container(
-                  // color: Colors.red,
+                  color: Colors.transparent,
                   height: 48.h,
                   width: 1.sw,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Change mobile number",style: kManRope_500_16_001314,),
-                      GestureDetector(
-
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    UChangeMobileNoScreen()));
-
-                          },
-                          child: Container(
-                            height: 48,
-                            width: 48,
-                            // color: Colors.red,
-                            child: Image.asset("assets/images/icondropdown.png",
-                              height: 48.h,width: 48.h,),
-                          ))
+                      Text(
+                        "Change mobile number",
+                        style: kManRope_500_16_001314,
+                      ),
+                      SizedBox(
+                        height: 24.w,
+                        width: 24.w,
+                        // color: Colors.red,
+                        child: Image.asset(
+                          "assets/images/iconrightblack.png",
+                          fit: BoxFit.cover,
+                          color: k626A6A,
+                        ),
+                      )
                     ],
                   ),
                 ),
@@ -69,59 +68,31 @@ class _UAccountScreenState extends State<UAccountScreen> {
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          UChangeEmailScreen()));
+                      builder: (context) => UChangeEmailScreen()));
                   // Navigator.of(context).push(MaterialPageRoute(
                   //     builder: (context) =>
                   //         PsychologistChangeEmailScreen()));
                 },
                 child: Container(
-                  // color: Colors.red,
+                  color: Colors.transparent,
                   height: 48.h,
                   width: 1.sw,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Change email",style: kManRope_500_16_001314,),
-                      GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTap: () {
-                            // Navigator.of(context).push(MaterialPageRoute(
-                            //     builder: (context) =>
-                            //         PsychologistChangeEmailScreen()));
-
-                          },
-                          child: Container(
-                            height: 48,
-                            width: 48,
-                            // color: Colors.red,
-                            child: Image.asset("assets/images/icondropdown.png",
-                              height: 48.h,width: 48.h,),
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 5.h),
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          UChangePasswordScreen()));
-                },
-                child: Container(
-                  // color: Colors.yellow,
-                  height: 48.h,
-                  width: 1.sw,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Change password",style: kManRope_500_16_001314,),
-                      Container(
-                        height: 48,
-                        width: 48,
+                      Text(
+                        "Change email",
+                        style: kManRope_500_16_001314,
+                      ),
+                      SizedBox(
+                        height: 24.w,
+                        width: 24.w,
                         // color: Colors.red,
-                        child: Image.asset("assets/images/icondropdown.png",
-                          height: 48.h,width: 48.h,),
+                        child: Image.asset(
+                          "assets/images/iconrightblack.png",
+                          fit: BoxFit.cover,
+                          color: k626A6A,
+                        ),
                       )
                     ],
                   ),
@@ -132,16 +103,50 @@ class _UAccountScreenState extends State<UAccountScreen> {
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          UDeleteAccountScreen()));
-
+                      builder: (context) => UChangePasswordScreen()));
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  height: 48.h,
+                  width: 1.sw,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Change password",
+                        style: kManRope_500_16_001314,
+                      ),
+                      SizedBox(
+                        height: 24.w,
+                        width: 24.w,
+                        // color: Colors.red,
+                        child: Image.asset(
+                          "assets/images/iconrightblack.png",
+                          fit: BoxFit.cover,
+                          color: k626A6A,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 5.h),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => UDeleteAccountScreen()));
                 },
                 child: SizedBox(
                   height: 48.h,
                   width: 1.sw,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Delete Account",style: kManRope_500_16_BD4D4D,),
+                      Text(
+                        "Delete Account",
+                        style: kManRope_500_16_BD4D4D,
+                      ),
                       // Image.asset("assets/images/icondropdown.png",height: 48.h,width: 48.h,)
                     ],
                   ),

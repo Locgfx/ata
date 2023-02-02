@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/pan_verfied_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -25,10 +26,11 @@ class _KycConfirmNameState extends State<KycConfirmName> {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => PANVerified()));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       body: Column(
         children: [
           SizedBox(
@@ -44,33 +46,21 @@ class _KycConfirmNameState extends State<KycConfirmName> {
                     topLeft: Radius.circular(24)),
               ),
               child: Padding(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 91.h),
+                padding: EdgeInsets.only(left: 24.w, right: 24.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(
-                        child: Image.asset(
-                      'assets/images/blue arrows.png',
-                      height: 216.h,
-                      width: 216.w,
-                    )),
-                    SizedBox(
-                      height: 85.h,
+                    SpinKitThreeBounce(
+                      color: Colors.blue,
+                      size: 50,
                     ),
+                    SizedBox(height: 85.h),
                     Text(
-                      'Confirm your Name',
+                      'Verifying your PAN Number, don\'t press back button or close the application.',
                       style: kManRope_500_20_001314,
                     ),
-                    SizedBox(
-                      height: 11.h,
-                    ),
-                    Text(
-                      'Hi John Doe, tap on continue to confirm my name\nand PAN',
-                      style: kManRope_500_14_626A6A,
-                    ),
-                    SizedBox(
-                      height: 22.h,
-                    ),
+                    SizedBox(height: 22.h),
                     Text(
                       'ABSHDW4678942',
                       style: kManRope_500_14_006D77,

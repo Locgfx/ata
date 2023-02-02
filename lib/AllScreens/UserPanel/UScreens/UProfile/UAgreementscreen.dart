@@ -5,7 +5,6 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPrivacyandpol
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UTermsandconditions.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/privacy_and_policy_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class UAgreementScreen extends StatefulWidget {
@@ -19,16 +18,20 @@ class _UAgreementScreenState extends State<UAgreementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Agreement', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Agreement',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>  UAgreement()));
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => UAgreement()));
               },
               child: Container(
                 width: 380.w,
@@ -61,7 +64,7 @@ class _UAgreementScreenState extends State<UAgreementScreen> {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>  UPrivacyandPolicy()));
+                    builder: (context) => UPrivacyandPolicy()));
               },
               child: Container(
                 width: 380.w,
@@ -94,7 +97,7 @@ class _UAgreementScreenState extends State<UAgreementScreen> {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>  UTermsandConditions()));
+                    builder: (context) => UTermsandConditions()));
               },
               child: Container(
                 width: 380.w,

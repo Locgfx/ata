@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/kyc_confirm_name_screen.dart';
@@ -19,33 +22,18 @@ class _KycScreenState extends State<KycScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: Padding(
-      //   padding: const EdgeInsets.only(bottom: 80.0, left: 24, right: 24),
-      //   child: Row(
-      //     children: [
-      //       Expanded(
-      //         child: MainButton(
-      //             onPressed: () {
-      //               Navigator.of(context).push(
-      //                   MaterialPageRoute(builder: (context) => ConfirmName()));
-      //             },
-      //             child: Padding(
-      //               padding: EdgeInsets.only(
-      //                 top: 20.h,
-      //                 bottom: 20.h,
-      //               ),
-      //               child: Text(
-      //                 "Next",
-      //                 style: kManRope_500_16_white,
-      //               ),
-      //             ),
-      //             color: k006D77,
-      //             shape: CustomDecoration().button16Decoration()),
-      //       ),
-      //     ],
-      //   ),
-      // ),
-      backgroundColor: kWhiteBGColor,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: kEDF6F9,
+        toolbarHeight: 0,
+        systemOverlayStyle: Platform.isAndroid
+            ? SystemUiOverlayStyle(
+                statusBarColor: kEDF6F9,
+                statusBarIconBrightness: Brightness.dark,
+              )
+            : SystemUiOverlayStyle.dark,
+      ),
+      backgroundColor: kEDF6F9,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -83,9 +71,8 @@ class _KycScreenState extends State<KycScreen> {
                       height: 62.h,
                       width: 1.sw,
                       child: TextField(
-                        decoration:
-                            TextfieldDecoration(label: 'Enter your PAN')
-                                .textfieldDecoration(),
+                        decoration: TextfieldDecoration(label: 'Enter your PAN')
+                            .textfieldDecoration(),
                       ),
                     ),
                     // Container(
@@ -183,18 +170,21 @@ class _KycScreenState extends State<KycScreen> {
                         children: [
                           Expanded(
                             child: SizedBox(
-                              height:56.h,
+                              height: 56.h,
                               child: MainButton(
                                   onPressed: () {
                                     Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (context) => ConfirmName()));
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ConfirmName()));
                                   },
                                   child: Text(
                                     "Next",
                                     style: kManRope_500_16_white,
                                   ),
                                   color: k006D77,
-                                  shape: CustomDecoration().button16Decoration()),
+                                  shape:
+                                      CustomDecoration().button16Decoration()),
                             ),
                           ),
                         ],

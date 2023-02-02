@@ -3,41 +3,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 class StarWidget extends StatelessWidget {
-   StarWidget({Key? key}) : super(key: key);
+  StarWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Row(
+    return Row(
       children: [
-        Image.asset(
-          'assets/images/Star 1.png',
-          width: 12.w,
-          height: 12.h,
+        Image.asset('assets/images/Star 1.png', width: 13.w, height: 13.w),
+        SizedBox(width: 4),
+        Padding(
+          padding: const EdgeInsets.only(top: 2),
+          child: Text('4.0', style: kManRope_400_12_626A6A),
         ),
-        SizedBox(
-          width: 4,
+        SizedBox(width: 4),
+        Padding(
+          padding: const EdgeInsets.only(top: 2),
+          child: Text(
+            '.',
+            style: kManRope_400_12_001314,
+          ),
         ),
-        Text(
-          '4.0',
-          style: kManRope_400_12_001314,
-        ),
-        SizedBox(
-          width: 4,
-        ),
-        Text(
-          '.',
-          style: kManRope_400_12_001314,
-        ),
-        SizedBox(
-          width:4.w,
-        ),
-        Text(
-          '12 Yrs. Exp',
-          style: kManRope_400_12_001314,
+        SizedBox(width: 4.w),
+        Padding(
+          padding: const EdgeInsets.only(top: 2),
+          child: Text('12 Yrs. Exp', style: kManRope_400_12_626A6A),
         )
       ],
     );
@@ -121,9 +113,11 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
             child: Container(
               color: Colors.transparent,
               padding: EdgeInsets.all(3),
-              child: Image.asset("assets/images/Star 1.png",
-                color: flag1 ? Color(0xFFDFBE13) : Color(0xFF626A6A),
-                height: 20.h,width: 20.w,
+              child: Image.asset(
+                "assets/images/Star 1.png",
+                color: flag0 ? Color(0xFFDFBE13) : Color(0xFF626A6A),
+                height: 30.w,
+                width: 30.w,
               ),
             )),
         GestureDetector(
@@ -133,9 +127,11 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
             child: Container(
               color: Colors.transparent,
               padding: EdgeInsets.all(3),
-              child: Image.asset("assets/images/Star 1.png",
+              child: Image.asset(
+                "assets/images/Star 1.png",
                 color: flag1 ? Color(0xFFDFBE13) : Color(0xFF626A6A),
-                height: 20.h,width: 20.w,
+                height: 30.w,
+                width: 30.w,
               ),
             )),
         GestureDetector(
@@ -145,9 +141,11 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
             child: Container(
               color: Colors.transparent,
               padding: EdgeInsets.all(3),
-              child: Image.asset("assets/images/Star 1.png",
+              child: Image.asset(
+                "assets/images/Star 1.png",
                 color: flag2 ? Color(0xFFDFBE13) : Color(0xFF626A6A),
-                height: 20.h,width: 20.w,
+                height: 30.w,
+                width: 30.w,
               ),
             )),
         GestureDetector(
@@ -157,9 +155,11 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
           child: Container(
             color: Colors.transparent,
             padding: EdgeInsets.all(3),
-            child: Image.asset("assets/images/Star 1.png",
+            child: Image.asset(
+              "assets/images/Star 1.png",
               color: flag3 ? Color(0xFFDFBE13) : Color(0xFF626A6A),
-              height: 20.h,width: 20.w,
+              height: 30.w,
+              width: 30.w,
             ),
           ),
         ),
@@ -170,9 +170,11 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
           child: Container(
             color: Colors.transparent,
             padding: EdgeInsets.all(3),
-            child: Image.asset("assets/images/Star 1.png",
+            child: Image.asset(
+              "assets/images/Star 1.png",
               color: flag4 ? Color(0xFFDFBE13) : Color(0xFF626A6A),
-              height: 20.h,width: 20.w,
+              height: 30.w,
+              width: 30.w,
             ),
           ),
         ),
@@ -190,12 +192,12 @@ class DoctorDetailsCard extends StatelessWidget {
     required this.imgPath,
     required this.text,
     required this.title,
-    Key? key,}) :
-        super(key: key);
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    return Container(
       // height: 68.h,
       // width: 120.w,
       decoration: const BoxDecoration(
@@ -203,7 +205,7 @@ class DoctorDetailsCard extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Padding(
-        padding: const EdgeInsets.only(top: 8,bottom: 8),
+        padding: const EdgeInsets.only(top: 8, bottom: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -252,5 +254,3 @@ class BlackUnderline extends StatelessWidget {
     );
   }
 }
-
-

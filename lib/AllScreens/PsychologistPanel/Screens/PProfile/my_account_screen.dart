@@ -33,8 +33,9 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Account',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
@@ -48,56 +49,28 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          PsychologistChangeEmailScreen()));
+                      builder: (context) => PsychologistChangeEmailScreen()));
                 },
                 child: Container(
-                  // color: Colors.red,
+                  color: Colors.transparent,
                   height: 48.h,
                   width: 1.sw,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Change email",style: kManRope_500_16_001314,),
-                      GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  PsychologistChangeEmailScreen()));
-
-                        },
-                          child: Container(
-                            height: 48,
-                            width: 48,
-                            // color: Colors.red,
-                            child: Image.asset("assets/images/icondropdown.png",
-                              height: 48.h,width: 48.h,),
-                          ))
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 5.h),
-              GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    PsychologistChangePasswordScreen()));
-                },
-                child: Container(
-                  // color: Colors.yellow,
-                  height: 48.h,
-                  width: 1.sw,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text("Change password",style: kManRope_500_16_001314,),
-                      Container(
-                        height: 48,
-                        width: 48,
+                      Text(
+                        "Change email",
+                        style: kManRope_500_16_001314,
+                      ),
+                      SizedBox(
+                        height: 24.w,
+                        width: 24.w,
                         // color: Colors.red,
-                        child: Image.asset("assets/images/icondropdown.png",
-                          height: 48.h,width: 48.h,),
+                        child: Image.asset(
+                          "assets/images/iconrightblack.png",
+                          fit: BoxFit.cover,
+                          color: k626A6A,
+                        ),
                       )
                     ],
                   ),
@@ -107,17 +80,52 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            DeleteAccount()));
-
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          PsychologistChangePasswordScreen()));
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  height: 48.h,
+                  width: 1.sw,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Change password",
+                        style: kManRope_500_16_001314,
+                      ),
+                      SizedBox(
+                        height: 24.w,
+                        width: 24.w,
+                        // color: Colors.red,
+                        child: Image.asset(
+                          "assets/images/iconrightblack.png",
+                          fit: BoxFit.cover,
+                          color: k626A6A,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 5.h),
+              GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => DeleteAccount()));
                 },
                 child: SizedBox(
                   height: 48.h,
                   width: 1.sw,
-                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("Delete Account",style: kManRope_500_16_BD4D4D,),
+                      Text(
+                        "Delete Account",
+                        style: kManRope_500_16_BD4D4D,
+                      ),
                       // Image.asset("assets/images/icondropdown.png",height: 48.h,width: 48.h,)
                     ],
                   ),
@@ -257,9 +265,7 @@ class _DeleteAccountBottomSheetState extends State<DeleteAccountBottomSheet> {
                   color: kB64C4C,
                   shape: CustomDecoration().button16Decoration()),
               MainButton(
-                  onPressed: () {
-
-                  },
+                  onPressed: () {},
                   child: Padding(
                     padding: EdgeInsets.only(
                         top: 16.0, left: 33.5, bottom: 16, right: 33.5),

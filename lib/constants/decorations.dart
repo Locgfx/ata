@@ -6,19 +6,17 @@ import 'package:greymatter/constants/fonts.dart';
 import 'colors.dart';
 
 class CustomDecoration {
-
   BoxDecoration containerDecoration() {
     return BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(8)),
-      color: kWhiteBGColor,
+      color: kEDF6F9,
     );
   }
 
   BoxDecoration outline5A72EDDecoration() {
     return BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: k5A72ED.withOpacity(0.24))
-    );
+        border: Border.all(color: k5A72ED.withOpacity(0.24)));
   }
 
   BoxDecoration outlineC7C7C7DDecoration() {
@@ -30,18 +28,27 @@ class CustomDecoration {
 
   BoxDecoration card20Edf6Decoration() {
     return BoxDecoration(
-      color: kWhiteBGColor,
+      color: kEDF6F9,
       borderRadius: BorderRadius.circular(20),
       border: Border.all(color: kFFFFFF),
     );
   }
+
   BoxDecoration card24Edf6Decoration() {
     return BoxDecoration(
-      color: kWhiteBGColor,
+      color: kEDF6F9,
       borderRadius: BorderRadius.circular(24),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black.withOpacity(0.08),
+          blurRadius: 16,
+          spreadRadius: -10,
+        ),
+      ],
       border: Border.all(color: kFFFFFF),
     );
   }
+
   BoxDecoration card20Decoration() {
     return BoxDecoration(
       color: kFFFFFF,
@@ -61,21 +68,21 @@ class CustomDecoration {
   BoxDecoration containerkE2F2F4() {
     return BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(10)),
-      color: kWhiteBGColor,
+      color: kEDF6F9,
     );
   }
 
   BoxDecoration radius16Decoration() {
     return BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(16)),
-      color: kWhiteBGColor,
+      color: kEDF6F9,
     );
   }
 
   BoxDecoration outlineButtonDecoration() {
     return BoxDecoration(
       borderRadius: BorderRadius.all(Radius.circular(16)),
-      color: kWhiteBGColor,
+      color: kEDF6F9,
     );
   }
 
@@ -165,9 +172,8 @@ class TextfieldDecoration {
   final String label;
   final Widget? child;
 
-
   // final String? ImageButton;
-  TextfieldDecoration( {
+  TextfieldDecoration({
     this.hintstyle,
     this.child,
     // this.ImageButton,
@@ -177,12 +183,20 @@ class TextfieldDecoration {
     return InputDecoration(
         contentPadding: EdgeInsets.only(
           left: 16,
+          right: 16,
         ),
         // hintText: 'Search for help',
         hintStyle: kManRope_400_14_626A6A,
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(16),
+        ),
         border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(16.0)),
+            borderRadius: BorderRadius.circular(16)),
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(16)),
         fillColor: Colors.white,
         filled: true,
         suffixIconConstraints: BoxConstraints(maxHeight: 35.h, maxWidth: 35.w),
@@ -195,6 +209,7 @@ class TextfieldDecoration {
             padding: EdgeInsets.only(right: 16.0),
             child: child ?? SizedBox.shrink()));
   }
+
   InputDecoration searchFieldBigIconDecoration() {
     return InputDecoration(
         contentPadding: EdgeInsets.only(
@@ -215,11 +230,10 @@ class TextfieldDecoration {
         // suffixIconConstraints: BoxConstraints(minHeight: 0, minWidth: 0),
         suffixIcon: child ?? SizedBox.shrink());
   }
+
   InputDecoration searchFieldOutlineDecoration() {
     return InputDecoration(
-        contentPadding: EdgeInsets.only(
-          left: 16,
-        ),
+        contentPadding: EdgeInsets.only(left: 16, right: 16),
         // hintText: 'Search for help',
         hintStyle: kManRope_400_14_626A6A,
         border: OutlineInputBorder(
@@ -240,32 +254,34 @@ class TextfieldDecoration {
 
   InputDecoration whiteColorSearchField() {
     return InputDecoration(
-      hintText:
-      label,
+      hintText: label,
       hintStyle: kManRope_400_14_626A6A,
+      contentPadding: EdgeInsets.only(left: 16),
       border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(16.0)),
       fillColor: Colors.white,
       filled: true,
-      suffixIconConstraints: BoxConstraints(
-          maxHeight: 55.h, maxWidth: 55 .w),
-      suffixIcon: Padding(
+      suffixIconConstraints: BoxConstraints(maxHeight: 55.h, maxWidth: 55.w),
+      suffixIcon: Container(
+        color: Colors.transparent,
         padding: EdgeInsets.only(right: 8.w),
-        child:
-        Container(
-          // color: Colors.red,
-            child: Image.asset('assets/images/iconsearchblue.png',height: 48,width: 48)),
+        child: Container(
+          color: Colors.transparent,
+          child: Image.asset(
+            'assets/images/iconsearchblue.png',
+            height: 48,
+            width: 48,
+            fit: BoxFit.fitWidth,
+          ),
+        ),
       ),
     );
   }
 
   InputDecoration textfieldDecoration() {
-
     return InputDecoration(
-        contentPadding: EdgeInsets.only(
-          left: 16,
-        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16),
         filled: true,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
@@ -281,8 +297,8 @@ class TextfieldDecoration {
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide.none),
-        focusColor: kWhiteBGColor,
-        fillColor: kWhiteBGColor,
+        focusColor: kEDF6F9,
+        fillColor: kEDF6F9,
         hintText: label,
         hintStyle: kManRope_400_14_626A6A,
         suffixIconConstraints: BoxConstraints(minHeight: 10, minWidth: 10),
@@ -290,7 +306,6 @@ class TextfieldDecoration {
   }
 
   InputDecoration textfielde2f2f4Decoration() {
-
     return InputDecoration(
         contentPadding: EdgeInsets.only(
           left: 16,
@@ -310,7 +325,7 @@ class TextfieldDecoration {
         focusedErrorBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide.none),
-        focusColor: kWhiteBGColor,
+        focusColor: kEDF6F9,
         fillColor: kE2F2F4,
         hintText: label,
         hintStyle: kManRope_400_14_001314,
@@ -319,14 +334,15 @@ class TextfieldDecoration {
   }
 
   InputDecoration textfieldProfileDecoration() {
-
     return InputDecoration(
         isDense: true,
-        contentPadding: EdgeInsets.only(bottom: 10,),
+        contentPadding: EdgeInsets.only(
+          bottom: 10,
+        ),
         border: InputBorder.none,
         hintStyle: kManRope_400_16_001314,
-        hintText: label
-    );}
+        hintText: label);
+  }
 
   InputDecoration underlinefieldDecoration() {
     return InputDecoration(
@@ -369,11 +385,14 @@ class TextfieldDecoration {
             child: child ?? SizedBox.shrink()));
   }
 
-
   InputDecoration smalltextfieldDecoration() {
     return InputDecoration(
-      focusedBorder:
-          OutlineInputBorder(borderSide: BorderSide(color: k006D77, width: 1)),
+      disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: k006D77, width: 1)),
+      focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: k006D77, width: 1)),
       hintText: label,
       hintStyle: kManRope_400_16_626A6A,
       suffixIconConstraints: BoxConstraints(minHeight: 20, minWidth: 20),
@@ -390,8 +409,8 @@ class TextfieldDecoration {
           width: 1,
           color: k006D77,
         ),
-        // focusColor: kWhiteBGColor,
-        // fillColor: kWhiteBGColor,
+        // focusColor: kEDF6F9,
+        // fillColor: kEDF6F9,
       ),
     );
   }

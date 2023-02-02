@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/add_bank.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/withdraw_successful_screen.dart';
+import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
@@ -21,7 +22,7 @@ class WithDrawEarningsScreen2 extends StatefulWidget {
 class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
   void _selectAccountNumbers() {
     showModalBottomSheet(
-        shape:  RoundedRectangleBorder(
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
@@ -32,10 +33,11 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: CusAppBar(
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
         appBarText: 'Withdraw',
         imgPath: 'assets/images/iconbackappbarlarge.png',
+        hasThreeDots: false,
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -67,9 +69,11 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                 child: SizedBox(
                   height: 56.h,
                   width: 182.w,
-                  child: TextField(style:kManRope_500_16_626A6A ,
+                  child: TextField(
+                      style: kManRope_500_16_626A6A,
                       decoration: TextfieldDecoration(
-                              label: "Type amount here",hintstyle: kManRope_500_16_626A6A)
+                              label: "Type amount here",
+                              hintstyle: kManRope_500_16_626A6A)
                           .textfieldDecoration()),
                 ),
               ),
@@ -79,7 +83,7 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
               //     width: 182.w,
               //     decoration: BoxDecoration(
               //       borderRadius: BorderRadius.all(Radius.circular(8)),
-              //       color: kWhiteBGColor,
+              //       color: kEDF6F9,
               //     ),
               //     child: Center(
               //       child: SizedBox(
@@ -110,7 +114,6 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                 child: TextField(
                     onTap: () {
                       _selectAccountNumbers();
-
                     },
                     readOnly: true,
                     decoration: TextfieldDecoration(
@@ -183,7 +186,6 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                   ),
                 ),
               )
-
             ],
           ),
         ),

@@ -1,10 +1,11 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/session_successful_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/session_successful_screen.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
@@ -50,30 +51,34 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: Padding(
-        padding:  EdgeInsets.only(left: 123.w,right: 123.w,bottom: 40.h),
+        padding: EdgeInsets.only(left: 123.w, right: 123.w, bottom: 40.h),
         child: SizedBox(
           height: 56.h,
           // width: 183.w,
-          child: MainButton(onPressed: () {
-            // if (!_flag) {
+          child: MainButton(
+            onPressed: () {
+              // if (!_flag) {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const SessionSuccessful()));
-            // }
-
-
-          },
-              child: Text(
-                'Join Meeting',
-                style: kManRope_400_16_white,
-              ),
-              color: k006D77,
-              shape: CustomDecoration().button08Decoration(),),
+              // }
+            },
+            child: Text(
+              'Join Meeting',
+              style: kManRope_400_16_white,
+            ),
+            color: k006D77,
+            shape: CustomDecoration().button08Decoration(),
+          ),
         ),
       ),
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Confirm your booking', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Confirm your booking',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       // appBar: AppBar(
       //   elevation: 0,
       //   leadingWidth: 40.w,
@@ -147,7 +152,8 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
               SizedBox(
                 height: 88.h,
               ),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
@@ -156,7 +162,8 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
                         child: Image.asset(
                           'assets/images/userP.png',
                           height: 83.h,
-                          width: 83.w,fit: BoxFit.cover,
+                          width: 83.w,
+                          fit: BoxFit.cover,
                         ),
                       ),
                       SizedBox(

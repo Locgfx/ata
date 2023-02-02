@@ -15,9 +15,15 @@ class InstantBookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Instant Booking', imgPath: 'assets/images/iconbackappbar2.png',
-          text: Text("Help",style: kManRope_500_16_006D77,)),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+          hasThreeDots: false,
+          appBarText: 'Instant Booking',
+          imgPath: 'assets/images/iconbackappbar2.png',
+          text: Text(
+            "Help",
+            style: kManRope_500_16_006D77,
+          )),
       // appBar: AppBar(
       //   elevation: 0,
       //   leadingWidth: 60.w,
@@ -66,9 +72,13 @@ class InstantBookingScreen extends StatelessWidget {
                   children: [
                     Container(
                       height: 56.h,
-                      decoration:CustomDecoration().outline5A72EDDecoration(),
+                      decoration: CustomDecoration().outline5A72EDDecoration(),
                       child: TextField(
-                        decoration: TextfieldDecoration(label: 'Search for health problem, Psychologist',hintstyle:kManRope_400_14_626A6A ).whiteColorSearchField(),
+                        decoration: TextfieldDecoration(
+                                label:
+                                    'Search for health problem, Psychologist',
+                                hintstyle: kManRope_400_14_626A6A)
+                            .whiteColorSearchField(),
                         // decoration: InputDecoration(
                         //   hintText: 'Search for health problem, Psychologist',
                         //   hintStyle: kManRope_400_14_626A6A,

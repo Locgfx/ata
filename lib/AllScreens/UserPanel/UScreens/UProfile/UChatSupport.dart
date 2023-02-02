@@ -46,9 +46,10 @@ class _UChatSupportState extends State<UChatSupport> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: kWhiteBGColor,
+    return Scaffold(
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Chat support',
       ),
@@ -57,13 +58,14 @@ class _UChatSupportState extends State<UChatSupport> {
         padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 25.h),
         child: Padding(
           padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
-            color: kWhiteBGColor,
+            color: kEDF6F9,
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(  style: kManRope_400_14_001314,
+                  child: TextField(
+                      style: kManRope_400_14_001314,
                       onSubmitted: (text) {
                         final message = Messages(
                             text: text,
@@ -223,10 +225,15 @@ class _UChatSupportState extends State<UChatSupport> {
                   ),
                 ],
               ),
-              SizedBox(height: 24.h,),
+              SizedBox(
+                height: 24.h,
+              ),
               Align(
                   alignment: Alignment.centerRight,
-                  child: Text("11:48 Pm",style:kManRope_400_14_001314 ,)),
+                  child: Text(
+                    "11:48 Pm",
+                    style: kManRope_400_14_001314,
+                  )),
               SizedBox(
                 height: 100.h,
                 child: GroupedListView<Messages, DateTime>(
@@ -262,7 +269,7 @@ class _UChatSupportState extends State<UChatSupport> {
                               // width: 281.w,
                               decoration: BoxDecoration(
                                   color:
-                                  messages.isSentByme ? kFFFFFF : kFFFFFF,
+                                      messages.isSentByme ? kFFFFFF : kFFFFFF,
                                   borderRadius: BorderRadius.circular(10)),
                               child: Padding(
                                 padding: EdgeInsets.all(12),
@@ -291,9 +298,9 @@ class _UChatSupportState extends State<UChatSupport> {
         ),
       ),
     );
-
   }
 }
+
 class Messages {
   final String text;
   final TextStyle style;

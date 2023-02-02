@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/chatmessage.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UFaq.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/FAQs_Screen.dart';
-
 
 class HelpAndSupportScreen extends StatelessWidget {
   const HelpAndSupportScreen({Key? key}) : super(key: key);
@@ -13,17 +12,17 @@ class HelpAndSupportScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        toolbarHeight:30,
+        toolbarHeight: 30,
         elevation: 0,
       ),
       // appBar: AppBar(
       //   elevation: 0,
       //   leadingWidth: 40.w,
-      //   backgroundColor: kWhiteBGColor,
+      //   backgroundColor: kEDF6F9,
       //   centerTitle: false,
       //   title: Text(
       //     'Help and support',
@@ -49,7 +48,7 @@ class HelpAndSupportScreen extends StatelessWidget {
         child: Column(
           children: [
             Padding(
-              padding:  EdgeInsets.only(left: 24.w,top: 12.h),
+              padding: EdgeInsets.only(left: 24.w, top: 12.h),
               child: Container(
                 height: 48,
                 // color: Colors.red,
@@ -58,21 +57,24 @@ class HelpAndSupportScreen extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
-
-              },
+                      },
                       child: Container(
-                        // height: 48,
-                        //   color: Colors.red,
-                          child: Image.asset("assets/images/iconbackappbar2.png",height: 48,width: 32,)),
+                          // height: 48,
+                          //   color: Colors.red,
+                          child: Image.asset(
+                        "assets/images/iconbackappbar2.png",
+                        height: 48,
+                        width: 32,
+                      )),
                     ),
-                    Text("Help and support",style: kManRope_500_16_006D77,)
-
+                    Text(
+                      "Help and support",
+                      style: kManRope_500_16_006D77,
+                    )
                   ],
                 ),
               ),
             ),
-            
-
             Padding(
               padding: EdgeInsets.only(top: 40.h),
               child: Column(
@@ -120,8 +122,10 @@ class HelpAndSupportScreen extends StatelessWidget {
                               decoration: const BoxDecoration(
                                   color: k006D77, shape: BoxShape.circle),
                               child: Center(
-                                  child: SvgPicture.asset('assets/icons/chat.svg',
-                                      width: 24.h, height: 24.h)),
+                                  child: SvgPicture.asset(
+                                      'assets/icons/chat.svg',
+                                      width: 24.h,
+                                      height: 24.h)),
                             ),
                           ),
                         ),
@@ -131,22 +135,26 @@ class HelpAndSupportScreen extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => const FAQsScreen()));
+                                builder: (context) => const UFaqScreen()));
                           },
                           child: Container(
                             height: 84.h,
                             width: 1.sw,
                             decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.all(Radius.circular(8)),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
                               color: Colors.white,
                             ),
                             child: Padding(
-                              padding:EdgeInsets.symmetric(horizontal: 16.w),
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'FAQs',
@@ -163,7 +171,7 @@ class HelpAndSupportScreen extends StatelessWidget {
                                   ),
                                   Center(
                                     child: Container(
-                                      height:48,
+                                      height: 48,
                                       width: 48,
                                       // color: Colors.red,
                                       child: Image.asset(
@@ -189,11 +197,12 @@ class HelpAndSupportScreen extends StatelessWidget {
                             color: Colors.white,
                           ),
                           child: Padding(
-                            padding:EdgeInsets.symmetric(horizontal: 16.w),
+                            padding: EdgeInsets.symmetric(horizontal: 16.w),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(mainAxisAlignment: MainAxisAlignment.center,
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
@@ -211,7 +220,7 @@ class HelpAndSupportScreen extends StatelessWidget {
                                 ),
                                 Center(
                                   child: Container(
-                                    height:48,
+                                    height: 48,
                                     width: 48,
                                     // color: Colors.red,
                                     child: Image.asset(
@@ -228,11 +237,12 @@ class HelpAndSupportScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
-            SizedBox(height: 48.h,)
+            SizedBox(
+              height: 48.h,
+            )
           ],
         ),
       ),

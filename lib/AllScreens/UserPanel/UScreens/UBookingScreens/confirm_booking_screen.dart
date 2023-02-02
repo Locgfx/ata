@@ -31,20 +31,26 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-     appBar: CuswhiteAppBar(appBarText: 'Confirm your booking', imgPath: 'assets/images/iconbackappbar2.png',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Confirm your booking',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       body: Form(
         key: _fKey,
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Selected Psychologists', style: kManRope_700_16_001314),
                 SizedBox(
                   height: 25.h,
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
@@ -64,7 +70,8 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                         SizedBox(
                           width: 18.w,
                         ),
-                        Column(mainAxisAlignment: MainAxisAlignment.center,
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -121,8 +128,7 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => UDoctorProfileScreen(
-                                )));
+                                builder: (context) => UDoctorProfileScreen()));
                       },
                       child: Container(
                         // color: Colors.red,
@@ -289,7 +295,10 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                 //   ),
                 // ),
                 SizedBox(height: 8),
-                Text("“Coupon code applied successfully”",style: kManRope_400_10_006D77,),
+                Text(
+                  "“Coupon code applied successfully”",
+                  style: kManRope_400_10_006D77,
+                ),
                 SizedBox(height: 47.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -310,14 +319,17 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                         child: MainButton(
                           color: k006D77,
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10), // <-- Radius
+                            borderRadius:
+                                BorderRadius.circular(10), // <-- Radius
                           ),
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                    const BookingSuccessfulScreen()));
+                                        const BookingSuccessfulScreen(
+                                          isCancellationAvailable: true,
+                                        )));
                             // Navigator.push(
                             //     context,
                             //     MaterialPageRoute(
@@ -337,7 +349,6 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                   ],
                 ),
                 SizedBox(height: 40.h),
-
               ],
             ),
           ),

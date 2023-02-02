@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/schedule_appointment_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UListsViews.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/schedule_appointment_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -38,14 +38,18 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
       //     ),
       //   ),
       // ),
-      appBar: CuswhiteAppBar(appBarText: "", imgPath: 'assets/images/iconbackappbar2.png'),
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: "",
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Stack(
               children: [
                 Container(
-                  height :276.h,
+                  height: 276.h,
                   width: 1.sw,
                   clipBehavior: Clip.hardEdge,
                   decoration: const BoxDecoration(
@@ -60,7 +64,7 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                   ),
                 ),
                 Padding(
-                  padding:  EdgeInsets.only(top: 247.h),
+                  padding: EdgeInsets.only(top: 247.h),
                   child: Container(
                     // margin: EdgeInsets.only(top: 246.h),
                     decoration: const BoxDecoration(
@@ -73,7 +77,8 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                     // height: 1190.h,
                     width: 428.w,
                     child: Padding(
-                      padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
+                      padding:
+                          EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -99,14 +104,18 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                                     text: '599',
                                     title: "Clients"),
                               ),
-                              SizedBox(width: 10.w,),
+                              SizedBox(
+                                width: 10.w,
+                              ),
                               Expanded(
                                 child: DoctorDetailsCard(
                                     imgPath: 'assets/icons/tickCircle.svg',
                                     text: '2 Years',
                                     title: "Experience"),
                               ),
-                              SizedBox(width: 10.w,),
+                              SizedBox(
+                                width: 10.w,
+                              ),
                               Expanded(
                                 child: DoctorDetailsCard(
                                     imgPath: 'assets/icons/starOutline.svg',
@@ -173,8 +182,7 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                             height: 8.h,
                           ),
                           Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               SizedBox(
                                 width: 80.w,
@@ -189,10 +197,8 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                                     'EMERGENCY CALL ONLY',
                                     style: kManRope_500_14_626A6A,
                                   ),
-
                                 ],
                               ),
-
                             ],
                           ),
 
@@ -366,15 +372,17 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                                     child: MainButton(
                                       color: k006D77,
                                       shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10), // <-- Radius
+                                        borderRadius: BorderRadius.circular(
+                                            10), // <-- Radius
                                       ),
                                       onPressed: () {
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
-                                                builder: (context) => ScheduleAppointmentScreen(
-                                                  issue: 'issue',
-                                                )));
+                                                builder: (context) =>
+                                                    ScheduleAppointmentScreen(
+                                                      issue: 'issue',
+                                                    )));
                                       },
                                       child: Text(
                                         'Book session',

@@ -21,12 +21,16 @@ class SliderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //print(index);
     return Container(
-      width: 330.w,
+      width: 1.sw,
       margin: EdgeInsets.only(right: 16),
       padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
       decoration: BoxDecoration(
-        image: DecorationImage(image: AssetImage(_bgImageList[index])),
+        image: DecorationImage(
+          image: AssetImage(_bgImageList[index]),
+          fit: BoxFit.fill,
+        ),
         borderRadius: BorderRadius.circular(24),
       ),
       child: Row(
@@ -38,19 +42,22 @@ class SliderCard extends StatelessWidget {
             children: [
               Text(
                 'Get Upto',
-                style: kManRope_400_14_626A6A,
+                style:
+                    index == 1 ? kManRope_400_14_white : kManRope_400_14_626A6A,
               ),
-              SizedBox(height: 8.h),
+              SizedBox(height: 4),
               Text(
                 '40% OFF',
-                style: kManRope_700_24_001314,
+                style:
+                    index == 1 ? kManRope_700_24_white : kManRope_700_24_001314,
               ),
-              SizedBox(height: 8.h),
+              SizedBox(height: 4),
               Text(
                 'on your first instant booking',
-                style: kManRope_400_14_626A6A,
+                style:
+                    index == 1 ? kManRope_400_14_white : kManRope_400_14_626A6A,
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 10),
               DottedBorder(
                 child: Text(
                   'WELCOME30',
@@ -63,11 +70,12 @@ class SliderCard extends StatelessWidget {
             ],
           )),
           Expanded(
-              child: Image.asset(
-            _charImageList[index],
-            width: 95.w,
-            height: 115.h,
-          ))
+            child: Image.asset(
+              _charImageList[index],
+              width: 95.w,
+              height: 115.h,
+            ),
+          ),
         ],
       ),
     );

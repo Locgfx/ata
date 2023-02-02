@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/Joiningmeetingdetails.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/tabs_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
+import '../UExploreScreens/booking_confirmation.dart';
 
 class BookingSuccessfulScreen extends StatelessWidget {
-  const  BookingSuccessfulScreen({Key? key}) : super(key: key);
+  final bool isCancellationAvailable;
+  const BookingSuccessfulScreen(
+      {Key? key, required this.isCancellationAvailable})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 20.h,
@@ -81,13 +84,20 @@ class BookingSuccessfulScreen extends StatelessWidget {
                     ),
                     RichText(
                       text: TextSpan(
-                         style: kManRope_400_16_626A6A,
+                        style: kManRope_400_16_626A6A,
                         children: <TextSpan>[
                           TextSpan(text: 'Hi ', style: kManRope_400_16_626A6A),
-                          TextSpan(text: 'Pankaj ',style: kManRope_500_16_001314),
-                          TextSpan(text: ' your appointment with\n',style: kManRope_400_16_001314 ),
-                          TextSpan(text: 'Priya Singh ',style: kManRope_500_16_001314),
-                          TextSpan(text: 'has been created', style: kManRope_400_16_626A6A),
+                          TextSpan(
+                              text: 'Pankaj ', style: kManRope_500_16_001314),
+                          TextSpan(
+                              text: ' your appointment with\n',
+                              style: kManRope_400_16_001314),
+                          TextSpan(
+                              text: 'Priya Singh ',
+                              style: kManRope_500_16_001314),
+                          TextSpan(
+                              text: 'has been created',
+                              style: kManRope_400_16_626A6A),
                         ],
                       ),
                     ),
@@ -123,7 +133,9 @@ class BookingSuccessfulScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(height: 112.h,)
+                    SizedBox(
+                      height: 112.h,
+                    )
                   ],
                 ),
               ),
@@ -138,11 +150,14 @@ class BookingSuccessfulScreen extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => JoiningMeetingDetails()));
-
+                              builder: (context) => BookingConfirmationScreen(
+                                    isCancellationAvailable: true,
+                                  )));
                     },
-                    child: Text( 'See Appointment',
-                      style: kManRope_400_16_white,),
+                    child: Text(
+                      'See Appointment',
+                      style: kManRope_400_16_white,
+                    ),
                     color: k006D77,
                     shape: CustomDecoration().border16Decoration()),
               ),
@@ -178,11 +193,12 @@ class BookingSuccessfulScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const UTabsScreen()));
-
                     },
-                    child: Text( 'Home',
-                      style: kManRope_400_16_Black,),
-                    color: kWhiteBGColor,
+                    child: Text(
+                      'Home',
+                      style: kManRope_400_16_Black,
+                    ),
+                    color: kEDF6F9,
                     shape: CustomDecoration().outline16ButtonDecoration()),
               ),
 

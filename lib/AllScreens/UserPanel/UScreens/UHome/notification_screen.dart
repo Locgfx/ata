@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -10,13 +11,17 @@ class NotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Notificaton', imgPath: 'assets/images/iconbackappbar2.png',
-        text:Text("Mark as read") ,),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: 'Notificaton',
+        imgPath: 'assets/images/iconbackappbar2.png',
+      ),
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h,bottom: 20.h),
+        padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 20.h),
         child: ListView(
           children: [
+            SizedBox(height: 40.h),
             Text(
               'Today',
               style: kManRope_500_16_001314,
@@ -24,151 +29,37 @@ class NotificationsScreen extends StatelessWidget {
             SizedBox(
               height: 45.h,
             ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
+            for (int i = 0; i < 5; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 36.h,
+                      width: 36.w,
+                      decoration: const BoxDecoration(
+                        color: kD9D9D9,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16.w,
+                    ),
+                    Text(
+                      'Your appointment confirmed with pankaj ',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: kManRope_400_14_001314,
+                    ),
+                    Spacer(),
+                    Text(
+                      '12 m',
+                      style: kManRope_400_14_626A6A,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your appointment confirmed with pankaj ',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 40.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your appointment confirmed with pankaj ',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 40.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your appointment confirmed with pankaj ',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 40.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your appointment confirmed with pankaj ',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 40.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your appointment confirmed with pankaj ',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 40.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 50.h,
-            ),
+              ),
+            SizedBox(height: 30),
             Text(
               'This week',
               style: kManRope_500_16_001314,
@@ -176,148 +67,38 @@ class NotificationsScreen extends StatelessWidget {
             SizedBox(
               height: 45.h,
             ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
+            for (int i = 0; i < 5; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 36.h,
+                      width: 36.w,
+                      decoration: const BoxDecoration(
+                        color: kD9D9D9,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    SizedBox(
+                      width: 16.w,
+                    ),
+                    Expanded(
+                      child: Text(
+                        'Your appointment confirmed with pankaj ',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: kManRope_400_14_001314,
+                      ),
+                    ),
+                    Spacer(),
+                    Text(
+                      '12 m',
+                      style: kManRope_400_14_626A6A,
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your appointment has been canceled \nsuccessfully',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 50.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your appointment confirmed with pankaj ',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 40.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your password has been changed \nsuccessfully',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 65.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Your appointment confirmed with pankaj ',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 40.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            Row(
-              children: [
-                Container(
-                  height: 36.h,
-                  width: 36.w,
-                  decoration: const BoxDecoration(
-                    color: kD9D9D9,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                SizedBox(
-                  width: 16.w,
-                ),
-                Text(
-                  'Welcome to cerebral ',
-                  style: kManRope_400_14_001314,
-                ),
-                SizedBox(
-                  width: 50.w,
-                ),
-                Text(
-                  '12 m',
-                  style: kManRope_400_14_626A6A,
-                ),
-              ],
-            ),
+              ),
           ],
         ),
       ),

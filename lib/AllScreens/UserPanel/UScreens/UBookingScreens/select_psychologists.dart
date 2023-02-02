@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UInstantScreens/confirm_booking_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
@@ -17,8 +17,12 @@ class SelectAvailablePsychologists extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(imgPath: 'assets/images/iconbackappbar2.png', appBarText: 'Available Psychologists',),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        imgPath: 'assets/images/iconbackappbar2.png',
+        appBarText: 'Available Psychologists',
+      ),
       // appBar: AppBar(
       //   elevation: 0,
       //   leadingWidth: 40.w,
@@ -44,7 +48,8 @@ class SelectAvailablePsychologists extends StatelessWidget {
       //   ),
       // ),
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h,bottom: 20.h),
+        padding:
+            EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h, bottom: 20.h),
         child: ListView.separated(
             itemBuilder: (ctx, index) {
               return Container(
@@ -59,7 +64,8 @@ class SelectAvailablePsychologists extends StatelessWidget {
                     // mainAxisSize: MainAxisSize.min,
                     children: [
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 24.h),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 20.w, vertical: 24.h),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,9 +77,11 @@ class SelectAvailablePsychologists extends StatelessWidget {
                                   height: 64.h,
                                   // clipBehavior: Clip.hardEdge,
                                   decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                      image: AssetImage("assets/images/userP.png",),fit: BoxFit.cover
-                                    ),
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                            "assets/images/userP.png",
+                                          ),
+                                          fit: BoxFit.cover),
                                       color: Colors.grey,
                                       borderRadius: BorderRadius.circular(10)),
                                 ),
@@ -118,17 +126,20 @@ class SelectAvailablePsychologists extends StatelessWidget {
                       ),
                       SizedBox(height: 5.h),
                       Padding(
-                        padding: EdgeInsets.only(left: 20.w,right: 20.w,bottom: 24.h),
+                        padding: EdgeInsets.only(
+                            left: 20.w, right: 20.w, bottom: 24.h),
                         child: Row(
                           children: [
-                            Expanded(child: GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => UDoctorProfileScreen()));
-                              },
-                                child: SecondaryCardButton())),
+                            Expanded(
+                                child: GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UDoctorProfileScreen()));
+                                    },
+                                    child: SecondaryCardButton())),
                             SizedBox(width: 8.w),
                             Expanded(
                               child: GestureDetector(
@@ -146,10 +157,9 @@ class SelectAvailablePsychologists extends StatelessWidget {
                           ],
                         ),
                       ),
-                ],
-
+                    ],
+                  ),
                 ),
-              ),
               );
             },
             separatorBuilder: (ctx, index) {

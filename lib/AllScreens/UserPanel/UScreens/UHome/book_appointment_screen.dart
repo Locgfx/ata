@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/available_psychologists_screen.dart';
 import 'package:greymatter/constants/Lists.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/available_psychologists_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/home_screen_widgets/grid_card.dart';
 
@@ -14,9 +14,15 @@ class BookAppointmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: 'Book Appointment', imgPath: 'assets/images/iconbackappbar2.png',
-          text: Text("Help",style: kManRope_500_16_006D77,)),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+          hasThreeDots: false,
+          appBarText: 'Book Appointment',
+          imgPath: 'assets/images/iconbackappbar2.png',
+          text: Text(
+            "Help",
+            style: kManRope_500_16_006D77,
+          )),
       body: SingleChildScrollView(
         child: Container(
           //padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -30,10 +36,13 @@ class BookAppointmentScreen extends StatelessWidget {
                   children: [
                     Container(
                       height: 56.h,
-                      decoration:CustomDecoration().
-                      outline5A72EDDecoration(),
+                      decoration: CustomDecoration().outline5A72EDDecoration(),
                       child: TextField(
-                        decoration: TextfieldDecoration(label: 'Search for health problem, Psychologist',hintstyle:kManRope_400_14_626A6A ).whiteColorSearchField(),
+                        decoration: TextfieldDecoration(
+                                label:
+                                    'Search for health problem, Psychologist',
+                                hintstyle: kManRope_400_14_626A6A)
+                            .whiteColorSearchField(),
                       ),
                     ),
                     SizedBox(height: 40.h),

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-const kWhiteBGColor = Color(0xFFEDF6F9);
 const k05AF01 = Color(0xFF05AF01);
 const kEDF6F9 = Color(0xFFEDF6F9);
 const kC7C7C7 = Color(0xFFC7C7C7);
@@ -18,7 +17,6 @@ const kBC2445 = Color(0xFFBC2445);
 const k91C9CE = Color(0xFF91C9CE);
 const kDFBE13 = Color(0xFFDFBE13);
 const k66898D = Color(0xFF66898D);
-const kEDF6F9D = Color(0xFFEDF6F9);
 const kD4EAEB = Color(0xFFD4EAEB);
 const kB64C4C = Color(0xFFB64C4C);
 const kD9D9D9 = Color(0xFFD9D9D9);
@@ -41,4 +39,3 @@ const k28303F = Color(0xFFFFFFFF);
 const kBD4D4D = Color(0xFFBD4D4D);
 const k929292 = Color(0xFF929292);
 const k353535 = Color(0xFF353535);
-

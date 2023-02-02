@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/earning_history_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/withdraw_earnings_screen.dart';
 import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/earning_history_screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../../../constants/fonts.dart';
@@ -20,15 +20,20 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: HomeAppBar(color: kWhiteBGColor,
-        text: Text("Good Morning, Pankaj",
-          style:kManRope_700_20_686868,), child: Image.asset(
+      backgroundColor: kEDF6F9,
+      appBar: HomeAppBar(
+        color: kEDF6F9,
+        text: Text(
+          "Good Morning, Pankaj",
+          style: kManRope_700_20_686868,
+        ),
+        child: Image.asset(
           'assets/images/iconnotificationlarge.png',
           width: 48.w,
-          height: 48.h,
+          height: 48.w,
           // color: imagecolor,
-        ),),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -38,7 +43,7 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
               //   height: 10.h,
               // ),
               Padding(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w,top: 30.h),
+                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 30.h),
                 child: Container(
                   // height: 173.h,
                   width: 1.sw,
@@ -233,27 +238,29 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                     // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       SizedBox(
-                        width:69.w,
+                        width: 69.w,
                         // height: 16.h,
                         child: Text(
                           'Date',
                           style: kManRope_500_14_263238,
                         ),
                       ),
-                      SizedBox(width: 78.w,),
-
                       SizedBox(
-                        width:100.w,
+                        width: 78.w,
+                      ),
+                      SizedBox(
+                        width: 100.w,
                         // height: 16.h,
                         child: Text(
                           'Transaction No',
                           style: kManRope_500_14_263238,
                         ),
                       ),
-                      SizedBox(width: 78.w,),
-
                       SizedBox(
-                        width:53.w,
+                        width: 78.w,
+                      ),
+                      SizedBox(
+                        width: 53.w,
                         // height: 16.h,
                         child: Text(
                           'Amount',
@@ -275,8 +282,8 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                     right: 25.h,
                   ),
                   child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
                       itemBuilder: (ctx, index) {
                         return Column(
@@ -285,25 +292,29 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 SizedBox(
-                                  width:69.w,
+                                  width: 69.w,
                                   // height: 16.h,
                                   child: Text(
                                     '09.12.2022',
                                     style: kManRope_400_14_626A6A,
                                   ),
                                 ),
-                                SizedBox(width: 78.w,),
                                 SizedBox(
-                                  width:100.w,
+                                  width: 78.w,
+                                ),
+                                SizedBox(
+                                  width: 100.w,
                                   // height: 16.h,
                                   child: Text(
                                     '123456789',
                                     style: kManRope_400_16_626A6A,
                                   ),
                                 ),
-                                SizedBox(width: 78.w,),
                                 SizedBox(
-                                  width:40.w,
+                                  width: 78.w,
+                                ),
+                                SizedBox(
+                                  width: 40.w,
                                   // height: 16.h,
                                   child: Text(
                                     '500',

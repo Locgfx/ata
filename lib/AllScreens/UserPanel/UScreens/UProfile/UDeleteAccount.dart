@@ -17,9 +17,10 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       resizeToAvoidBottomInset: true,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Delete Account',
       ),
@@ -53,8 +54,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: "Enter your password",
-                    hintStyle: kManRope_400_16_001314
-                ),
+                    hintStyle: kManRope_400_16_001314),
               ),
               // TextField(decoration: TextfieldDecoration(label: 'Priyasingh344@1234',hintstyle: kManRope_400_16_Black,).blankfieldDecoration(),),
               // Text(
@@ -84,7 +84,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                             "Cancel",
                             style: kManRope_500_16_Black,
                           ),
-                          color: kWhiteBGColor,
+                          color: kEDF6F9,
                           shape: CustomDecoration().button16Decoration()),
                     ),
                   ),
@@ -98,7 +98,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                             //     MaterialPageRoute(builder: (context) => PTabsScreen()));
                           },
                           child: Padding(
-                            padding:  EdgeInsets.symmetric(vertical: 16.h),
+                            padding: EdgeInsets.symmetric(vertical: 16.h),
                             child: Text(
                               "Delete Account",
                               style: kManRope_500_16_white,

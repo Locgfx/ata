@@ -31,9 +31,10 @@ class _BankVerifyScreenState extends State<BankVerifyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CusAppBar(
-        appBarText: 'Withdraw',
+      appBar: CuswhiteAppBar(
+        appBarText: '',
         imgPath: 'assets/images/iconbackappbarlarge.png',
+        hasThreeDots: false,
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),

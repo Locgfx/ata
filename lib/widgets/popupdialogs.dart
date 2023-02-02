@@ -104,7 +104,7 @@ class CalenderPopup extends StatelessWidget {
         ),
       ],
       offset: Offset(0, 100),
-      color: kWhiteBGColor,
+      color: kEDF6F9,
       elevation: 2,
       // on selected we show the dialog box
       onSelected: (value) {},
@@ -119,7 +119,6 @@ class CalenderWidget extends StatelessWidget {
 
   const CalenderWidget({
     Key? key,
-
     required this.child,
 
     // this.padding,
@@ -135,8 +134,9 @@ class CalenderWidget extends StatelessWidget {
           surface: k006D77,
           onSurface: k001314,
         ),
-        dialogBackgroundColor:kWhiteBGColor,
-      ), child: child!,
+        dialogBackgroundColor: kEDF6F9,
+      ),
+      child: child!,
     );
   }
 }
@@ -144,7 +144,7 @@ class CalenderWidget extends StatelessWidget {
 class TimeWidget extends StatelessWidget {
   final Widget? child;
   // final EdgeInsets? padding;
-   TimeWidget({
+  TimeWidget({
     Key? key,
     required this.child,
     // this.padding,
@@ -157,7 +157,7 @@ class TimeWidget extends StatelessWidget {
         colorScheme: ColorScheme.light(
           // change the border color
           primary: k006D77,
-          background: kWhiteBGColor,
+          background: kEDF6F9,
           // change the text color
           onSurface: k006D77,
         ),
@@ -165,18 +165,11 @@ class TimeWidget extends StatelessWidget {
 
         buttonTheme: ButtonThemeData(
           colorScheme: ColorScheme.light(
-            primary: kWhiteBGColor,
+            primary: kEDF6F9,
           ),
         ),
-      ), child: child!,
+      ),
+      child: child!,
     );
   }
-
 }
-
-
-
-
-
-
-

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -16,31 +17,15 @@ class UCreatePost extends StatefulWidget {
 class _UCreatePostState extends State<UCreatePost> {
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-      // bottomNavigationBar: Container(
-      //   margin: EdgeInsets.symmetric(horizontal: 100),
-      //   child: Padding(
-      //     padding: const EdgeInsets.only(bottom: 60.0),
-      //     child: MainButton(
-      //         onPressed: () {},
-      //         child: Padding(
-      //           padding: EdgeInsets.only(top: 16.h, bottom: 16.h),
-      //           child: Text(
-      //             "Post",
-      //             style: kManRope_400_16_white,
-      //           ),
-      //         ),
-      //         color: k006D77,
-      //         shape: CustomDecoration().smallButton10Decoration()),
-      //   ),
-      // ),
-      backgroundColor: kWhiteBGColor,
+    return Scaffold(
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         appBarText: 'Create post',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 42.h),
+        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +55,8 @@ class _UCreatePostState extends State<UCreatePost> {
                         ),
                       ],
                     ),
-                    Row(crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
                           height: 18,
@@ -106,12 +92,12 @@ class _UCreatePostState extends State<UCreatePost> {
               Container(
                 width: 1.sw,
                 height: 546.h,
-                decoration: BoxDecoration(
-
-                ),
+                decoration: BoxDecoration(),
                 child: Padding(
                   padding: EdgeInsets.only(left: 0.w),
                   child: TextField(
+                    maxLines: 10,
+                    textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: 'What do you want to share?...',
@@ -120,7 +106,9 @@ class _UCreatePostState extends State<UCreatePost> {
                   ),
                 ),
               ),
-              SizedBox(height: 24.h,),
+              SizedBox(
+                height: 24.h,
+              ),
               Padding(
                 padding: EdgeInsets.only(bottom: 96.h),
                 child: Center(
@@ -129,7 +117,7 @@ class _UCreatePostState extends State<UCreatePost> {
                     child: MainButton(
                         onPressed: () {},
                         child: Padding(
-                          padding: EdgeInsets.only(left:74.w,right: 74.w ),
+                          padding: EdgeInsets.only(left: 74.w, right: 74.w),
                           child: Text(
                             "Post",
                             style: kManRope_400_16_white,
@@ -141,7 +129,6 @@ class _UCreatePostState extends State<UCreatePost> {
                 ),
               ),
               // SizedBox(height:96.h ,)
-
 
               // Center(
               //   child: SizedBox(

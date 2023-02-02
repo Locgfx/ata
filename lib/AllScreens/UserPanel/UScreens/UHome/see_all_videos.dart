@@ -12,21 +12,33 @@ class SeeAllVideos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
-      appBar: CuswhiteAppBar(appBarText: "All videos", imgPath: "assets/images/iconbackappbar2.png"),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        hasThreeDots: false,
+        appBarText: "All videos",
+        imgPath: "assets/images/iconbackappbar2.png",
+      ),
       body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
+        padding: EdgeInsets.only(left: 24.w, right: 24.w),
         child: ListView(
           children: [
+            SizedBox(
+              height: 40.h,
+            ),
             Container(
               decoration: BoxDecoration(
                   color: kFFFFFF,
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: k5A72ED.withOpacity(0.24))
-              ),
+                  border: Border.all(color: k5A72ED.withOpacity(0.24))),
               child: TextField(
-                decoration: TextfieldDecoration(label: 'Nauture',child:
-                Image.asset("assets/images/iconsearchblue.png",height: 48.h,width: 48.w,)).searchFieldBigIconDecoration(),
+                decoration: TextfieldDecoration(
+                  label: 'Nature',
+                  child: Image.asset(
+                    "assets/images/iconsearchblue.png",
+                    height: 48.h,
+                    width: 48.w,
+                  ),
+                ).searchFieldBigIconDecoration(),
               ),
             ),
             // TextField(
@@ -60,25 +72,22 @@ class SeeAllVideos extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 16.w,
                     mainAxisSpacing: 25.h,
-                    childAspectRatio: 0.95),
+                    childAspectRatio: 0.8),
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: 160.h,
-                        child: Container(
-                          height: 182.h,
-                          width: 182.w,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: const BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                          child: Image.asset(
-                            'assets/images/videodemo1.png',
-                            fit: BoxFit.fill,
-                          ),
+                      Container(
+                        height: 182.w,
+                        width: 182.w,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: const BoxDecoration(
+                          color: Colors.grey,
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                        child: Image.asset(
+                          'assets/images/videodemo1.png',
+                          fit: BoxFit.fill,
                         ),
                       ),
                       SizedBox(height: 16),

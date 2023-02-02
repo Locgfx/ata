@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -10,8 +11,9 @@ class AgreementDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
+        hasThreeDots: false,
         imgPath: 'assets/images/iconbackappbarlarge.png',
         appBarText: 'Agreement',
       ),

@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/SuccefulSessionScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/SuccefulSessionScreen.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
@@ -38,34 +38,22 @@ class _JoiningScreenState extends State<JoiningScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: Padding(
-      //   padding: EdgeInsets.only(left: 110.w, right: 110.w, bottom: 20.h),
-      //   child: MaterialButton(
-      //     color: k66898D,
-      //     onPressed: () {
-      //       Navigator.of(context).push(
-      //           MaterialPageRoute(builder: (ctx) => SuccesfulSesionScreen()));
-      //     },
-      //     child: Padding(
-      //       padding: EdgeInsets.only(
-      //           left: 46.w, right: 46.w, top: 19.h, bottom: 19.h),
-      //       child: Text(
-      //         "Join meeting ",
-      //         style: kManRope_400_16_white,
-      //       ),
-      //     ),
-      //   ),
-      // ),
-      backgroundColor: kWhiteBGColor,
-      appBar: DotappBar(imgPath: "assets/images/3doticonlarge.png", onTap: () {
-        showModalBottomSheet(
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-                    ),
-                    context: context,
-                    builder: (context) => HistoryFilterBottomSheet());
-      },),
+      backgroundColor: kEDF6F9,
+      appBar: CuswhiteAppBar(
+        appBarText: '',
+        imgPath: "assets/images/iconbackappbarlarge.png",
+        hasThreeDots: true,
+        onThreeDotTap: () {
+          showModalBottomSheet(
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(20),
+                    topLeft: Radius.circular(20)),
+              ),
+              context: context,
+              builder: (context) => HistoryFilterBottomSheet());
+        },
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w),
@@ -77,7 +65,7 @@ class _JoiningScreenState extends State<JoiningScreen> {
                   height: 133.h,
                   width: 135.w,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(16),
                       image: DecorationImage(
                           image: AssetImage("assets/images/Rectangle 26.png"),
                           fit: BoxFit.cover)),

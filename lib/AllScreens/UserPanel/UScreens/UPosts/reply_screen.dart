@@ -41,7 +41,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
           ),
         ),
       ),
-      backgroundColor: kWhiteBGColor,
+      backgroundColor: kEDF6F9,
       bottomNavigationBar: Padding(
         padding:
             EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
