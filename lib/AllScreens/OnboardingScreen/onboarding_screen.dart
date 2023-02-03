@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PLoginScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/form_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -297,7 +298,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             child: CustomSecondaryButton(
               onPressed: () {
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (ctx) => FormScreen()));
+                    .push(MaterialPageRoute(builder: (ctx) => PLoginScreen()));
               },
               text: 'I am a psychologist',
             ),

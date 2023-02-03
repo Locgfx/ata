@@ -7,9 +7,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/booking_confirmation.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/all_psochologist_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/book_appointment_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidget.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/PModels/home_models/loader.dart';
 import 'package:greymatter/widgets/home_screen_widgets/bookings.dart';
 import 'package:greymatter/widgets/home_screen_widgets/grid_card.dart';
 import 'package:greymatter/widgets/home_screen_widgets/info.dart';
@@ -32,33 +34,11 @@ class UHomeScreen extends StatefulWidget {
 class _UHomeScreenState extends State<UHomeScreen> {
   final PageController _controller = PageController();
 
-  // final _pageController = PageController(viewportFraction: 0.877);
-  //
-  // double currentPage = 0;
-  //
-  //
-  // @override
-  // void initState() {
-  //   _pageController.addListener(() {
-  //     setState(() {
-  //       currentPage = _pageController.page!.toDouble();
-  //     });
-  //   });
-  //   super.initState();
-  // }
-
+  bool _isLoading = false;
   int _index = 0;
   int _index2 = 0;
-  List _bgImageList = [
-    'assets/images/offercard1.png',
-    'assets/images/offercard2.png',
-    'assets/images/offercard3.png',
-  ];
-  // List<String> _charImageList = [
-  //   'assets/images/sliderchar1.png',
-  //   'assets/images/sliderchar2.png',
-  //   'assets/images/sliderchar3.png',
-  // ];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,23 +80,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
           ),
         ],
       ),
-      /*HomeAppBar(
-        text: Text(
-          "Good Morning, Pankaj",
-          style: kManRope_700_20_white,
-        ),
-        color: k5A72ED,
-        child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const NotificationsScreen()));
-            },
-            child: Image.asset(
-              "assets/images/iconwhitenotification.png",
-              height: 48.h,
-              width: 48.w,
-            )),
-      ),*/
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,95 +129,96 @@ class _UHomeScreenState extends State<UHomeScreen> {
                       ),
                     ),
                     SizedBox(height: 24.h),
-                    Container(
-                      height: 250.h,
-                      child: CarouselSlider.builder(
-                        options: CarouselOptions(
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              _index = index;
-                            });
-                            //print(_index);
-                          },
-                          aspectRatio: 2,
-                          viewportFraction: 0.8,
-                          autoPlay: true,
-                          reverse: false,
-                          enableInfiniteScroll: false,
-                        ),
-                        itemBuilder:
-                            (BuildContext context, int index, int realIndex) {
-                          return SliderCard(
-                              index: int.parse((realIndex % 3).toString()));
-                        },
-                        itemCount: 300,
-                      ),
-                    ),
-                    SizedBox(height: 24.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 4.h,
-                          decoration: BoxDecoration(
-                            color: k5A72ED.withOpacity(0.15),
-                            borderRadius: BorderRadius.horizontal(
-                                left: Radius.circular(2)),
-                          ),
-                          child: AnimatedContainer(
-                            alignment: Alignment.centerLeft,
-                            // height: 4,
-                            width: 24,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2),
-                              color: _index % 3 == 0
-                                  ? k5A72ED
-                                  : Colors.transparent,
-                            ),
-                            duration: Duration(milliseconds: 100),
-                          ),
-                        ),
-                        Container(
-                          height: 4.h,
-                          decoration: BoxDecoration(
-                            color: k5A72ED.withOpacity(0.15),
-                            //borderRadius: BorderRadius.circular(2),
-                          ),
-                          child: AnimatedContainer(
-                            alignment: Alignment.centerLeft,
-                            // height: 4,
-                            width: 24,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2),
-                              color: _index % 3 == 1
-                                  ? k5A72ED
-                                  : Colors.transparent,
-                            ),
-                            duration: Duration(milliseconds: 100),
-                          ),
-                        ),
-                        Container(
-                          height: 4.h,
-                          decoration: BoxDecoration(
-                            color: k5A72ED.withOpacity(0.15),
-                            borderRadius: BorderRadius.horizontal(
-                                right: Radius.circular(2)),
-                          ),
-                          child: AnimatedContainer(
-                            alignment: Alignment.centerLeft,
-                            // height: 4,
-                            width: 24,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(2),
-                              color: _index % 3 == 2
-                                  ? k5A72ED
-                                  : Colors.transparent,
-                            ),
-                            duration: Duration(milliseconds: 100),
-                          ),
-                        ),
-                      ],
-                    ),
+                    OfferBanner(),
+                    // Container(
+                    //   height: 250.h,
+                    //   child: CarouselSlider.builder(
+                    //     options: CarouselOptions(
+                    //       onPageChanged: (index, reason) {
+                    //         setState(() {
+                    //           _index = index;
+                    //         });
+                    //         //print(_index);
+                    //       },
+                    //       aspectRatio: 2,
+                    //       viewportFraction: 0.8,
+                    //       autoPlay: true,
+                    //       reverse: false,
+                    //       enableInfiniteScroll: false,
+                    //     ),
+                    //     itemBuilder:
+                    //         (BuildContext context, int index, int realIndex) {
+                    //       return SliderCard(
+                    //           index: int.parse((realIndex % 3).toString()));
+                    //     },
+                    //     itemCount: 300,
+                    //   ),
+                    // ),
+                    // SizedBox(height: 24.h),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Container(
+                    //       height: 4.h,
+                    //       decoration: BoxDecoration(
+                    //         color: k5A72ED.withOpacity(0.15),
+                    //         borderRadius: BorderRadius.horizontal(
+                    //             left: Radius.circular(2)),
+                    //       ),
+                    //       child: AnimatedContainer(
+                    //         alignment: Alignment.centerLeft,
+                    //         // height: 4,
+                    //         width: 24,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(2),
+                    //           color: _index % 3 == 0
+                    //               ? k5A72ED
+                    //               : Colors.transparent,
+                    //         ),
+                    //         duration: Duration(milliseconds: 100),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       height: 4.h,
+                    //       decoration: BoxDecoration(
+                    //         color: k5A72ED.withOpacity(0.15),
+                    //         //borderRadius: BorderRadius.circular(2),
+                    //       ),
+                    //       child: AnimatedContainer(
+                    //         alignment: Alignment.centerLeft,
+                    //         // height: 4,
+                    //         width: 24,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(2),
+                    //           color: _index % 3 == 1
+                    //               ? k5A72ED
+                    //               : Colors.transparent,
+                    //         ),
+                    //         duration: Duration(milliseconds: 100),
+                    //       ),
+                    //     ),
+                    //     Container(
+                    //       height: 4.h,
+                    //       decoration: BoxDecoration(
+                    //         color: k5A72ED.withOpacity(0.15),
+                    //         borderRadius: BorderRadius.horizontal(
+                    //             right: Radius.circular(2)),
+                    //       ),
+                    //       child: AnimatedContainer(
+                    //         alignment: Alignment.centerLeft,
+                    //         // height: 4,
+                    //         width: 24,
+                    //         decoration: BoxDecoration(
+                    //           borderRadius: BorderRadius.circular(2),
+                    //           color: _index % 3 == 2
+                    //               ? k5A72ED
+                    //               : Colors.transparent,
+                    //         ),
+                    //         duration: Duration(milliseconds: 100),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(
                       height: 10.h,
                     ),
@@ -263,57 +228,6 @@ class _UHomeScreenState extends State<UHomeScreen> {
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // Row(
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   children: [
-                          //     Container(
-                          //       height: 4.h,
-                          //       decoration: BoxDecoration(
-                          //         color: k5A72ED.withOpacity(0.15),
-                          //         borderRadius: BorderRadius.circular(2),
-                          //       ),
-                          //       child: Row(
-                          //         mainAxisSize: MainAxisSize.min,
-                          //         mainAxisAlignment: MainAxisAlignment.center,
-                          //         children: [
-                          //           AnimatedContainer(
-                          //             width: 24.w,
-                          //             decoration: BoxDecoration(
-                          //               color: _index % 3 == 0
-                          //                   ? k5A72ED
-                          //                   : Colors.transparent,
-                          //               borderRadius: BorderRadius.circular(2),
-                          //             ),
-                          //             duration:
-                          //             const Duration(milliseconds: 200),
-                          //           ),
-                          //           AnimatedContainer(
-                          //             width: 24.w,
-                          //             decoration: BoxDecoration(
-                          //               color: _index % 3 == 1
-                          //                   ? k5A72ED
-                          //                   : Colors.transparent,
-                          //               borderRadius: BorderRadius.circular(2),
-                          //             ),
-                          //             duration:
-                          //             const Duration(milliseconds: 200),
-                          //           ),
-                          //           AnimatedContainer(
-                          //             width: 24.w,
-                          //             decoration: BoxDecoration(
-                          //               color: _index % 3 == 2
-                          //                   ? k5A72ED
-                          //                   : Colors.transparent,
-                          //               borderRadius: BorderRadius.circular(2),
-                          //             ),
-                          //             duration:
-                          //             const Duration(milliseconds: 200),
-                          //           )
-                          //         ],
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
                           SizedBox(height: 40.h),
                           GestureDetector(
                               onTap: () {
@@ -337,68 +251,69 @@ class _UHomeScreenState extends State<UHomeScreen> {
                             style: kManRope_400_16_626A64_07,
                           ),
                           SizedBox(height: 24.h),
-                          GridView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              padding: const EdgeInsets.only(top: 5),
-                              shrinkWrap: true,
-                              itemCount: 8,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 4,
-                                      childAspectRatio: 1 / 1.5,
-                                      mainAxisSpacing: 1.0,
-                                      crossAxisSpacing: 5.0),
-                              itemBuilder: (ctx, index) {
-                                if (index >= 7) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (ctx) =>
-                                                  const BookAppointmentScreen()));
-                                    },
-                                    child: Container(
-                                      color: Colors.transparent,
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Container(
-                                            width: 84.w,
-                                            height: 84.h,
-                                            clipBehavior: Clip.hardEdge,
-                                            decoration: BoxDecoration(
-                                                // image: DecorationImage(
-                                                //   image: AssetImage("assets/images/iconrightarrow24white.png"),
-                                                //   fit: BoxFit.cover
-                                                // ),
-                                                border: Border.all(
-                                                    color: kFFFFFF, width: 1),
-                                                borderRadius:
-                                                    BorderRadius.circular(24),
-                                                color: k006D77),
-                                            child: Padding(
-                                              padding: EdgeInsets.all(18.0),
-                                              child: Image.asset(
-                                                'assets/images/iconrightarrow24white.png',
-                                                height: 24.h,
-                                                width: 24.w,
-                                                fit: BoxFit.cover,
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(height: 8.h),
-                                          Text(
-                                            'Show all',
-                                            style: kManRope_400_16_626A6A,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  );
-                                } else {
-                                  return GridCard(index: index);
-                                }
-                              }),
+                          TopSpecialistGridview(),
+                          // GridView.builder(
+                          //     physics: const NeverScrollableScrollPhysics(),
+                          //     padding: const EdgeInsets.only(top: 5),
+                          //     shrinkWrap: true,
+                          //     itemCount: 8,
+                          //     gridDelegate:
+                          //         const SliverGridDelegateWithFixedCrossAxisCount(
+                          //             crossAxisCount: 4,
+                          //             childAspectRatio: 1 / 1.5,
+                          //             mainAxisSpacing: 1.0,
+                          //             crossAxisSpacing: 5.0),
+                          //     itemBuilder: (ctx, index) {
+                          //       if (index >= 7) {
+                          //         return GestureDetector(
+                          //           onTap: () {
+                          //             Navigator.of(context).push(
+                          //                 MaterialPageRoute(
+                          //                     builder: (ctx) =>
+                          //                         const BookAppointmentScreen()));
+                          //           },
+                          //           child: Container(
+                          //             color: Colors.transparent,
+                          //             child: Column(
+                          //               mainAxisSize: MainAxisSize.min,
+                          //               children: [
+                          //                 Container(
+                          //                   width: 84.w,
+                          //                   height: 84.h,
+                          //                   clipBehavior: Clip.hardEdge,
+                          //                   decoration: BoxDecoration(
+                          //                       // image: DecorationImage(
+                          //                       //   image: AssetImage("assets/images/iconrightarrow24white.png"),
+                          //                       //   fit: BoxFit.cover
+                          //                       // ),
+                          //                       border: Border.all(
+                          //                           color: kFFFFFF, width: 1),
+                          //                       borderRadius:
+                          //                           BorderRadius.circular(24),
+                          //                       color: k006D77),
+                          //                   child: Padding(
+                          //                     padding: EdgeInsets.all(18.0),
+                          //                     child: Image.asset(
+                          //                       'assets/images/iconrightarrow24white.png',
+                          //                       height: 24.h,
+                          //                       width: 24.w,
+                          //                       fit: BoxFit.cover,
+                          //                     ),
+                          //                   ),
+                          //                 ),
+                          //                 SizedBox(height: 8.h),
+                          //                 Text(
+                          //                   'Show all',
+                          //                   style: kManRope_400_16_626A6A,
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         );
+                          //       } else {
+                          //         return GridCard(index: index);
+                          //       }
+                          //     }),
                           SizedBox(height: 40.h),
                           const Bookings(),
                           SizedBox(height: 40.h),
@@ -523,7 +438,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                           ),
                         )),
                     SizedBox(height: 20.h),
-                    const RecommendedVideos(),
+                     RecommendedVideos(),
                     SizedBox(
                       height: 20.h,
                     ),

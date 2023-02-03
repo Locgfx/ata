@@ -4,9 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UprofileScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UBottomsheet.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
+import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_profile_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_profile_models/user_profile_model.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
@@ -58,8 +60,48 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
         context: context,
         builder: (context) => DatePickerBottomSheet());
   }
-
   bool isreadable = true;
+
+  @override
+  void initState() {
+    _getData();
+    super.initState();
+  }
+
+  UserProfileModel model = UserProfileModel();
+  bool _isLoading = false;
+
+  _getData() {
+    _isLoading = true;
+    final resp = UserProfileApi().get();
+    print(resp);
+    resp.then((value) {
+      print(value);
+      setState(() {
+        try {
+          model = UserProfileModel.fromJson(value);
+          print(model);
+          _isLoading = false;
+        } catch (e) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      });
+    });
+  }
+
+//---------------------------------------------
+//   Update Api
+  TextEditingController updateName = TextEditingController();
+  TextEditingController updateDob = TextEditingController();
+  TextEditingController updateGender = TextEditingController();
+  TextEditingController updateRelationshipStatus = TextEditingController();
+  TextEditingController updateOccupation = TextEditingController();
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -95,7 +137,17 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           width: 102.w,
                           decoration: const BoxDecoration(
                               color: Color(0xFF006D77), shape: BoxShape.circle),
-                          child: Image.asset('assets/images/userP.png'),
+                          child: Image.network(
+                            model.photo.toString(),
+                            errorBuilder: (q, w, e) => Container(
+                              height: 102.h,
+                              width: 102.w,
+                              decoration:  BoxDecoration(
+                                 image: DecorationImage(image: AssetImage("assets/images/person-pngrepo-com.png"),
+                                 fit: BoxFit.cover),
+                                  color: kFFFFFF, shape: BoxShape.circle),
+                            ),
+                          ),
                           clipBehavior: Clip.hardEdge,
                         ),
                       ),
@@ -117,7 +169,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Priya Singh",
+                              model.name.toString(),
+
+
                               style: kManRope_400_16_001314,
                             ),
                           ],
@@ -126,8 +180,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           height: 40.h,
                         ),
                         Text(
-                          'Date of birth',
-                          style: kManRope_400_16_626A6A,
+                          "Date of birth",
+                          style: kManRope_400_16_001314,
                         ),
                         SizedBox(
                           height: 8.h,
@@ -136,7 +190,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "25/02/1993",
+                              model.dob.toString(),
                               style: kManRope_400_16_001314,
                             ),
                           ],
@@ -155,7 +209,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Female",
+                              model.gender.toString(),
                               style: kManRope_400_16_001314,
                             ),
                           ],
@@ -174,7 +228,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Single",
+                              model.relationshipStatus.toString(),
                               style: kManRope_400_16_001314,
                             ),
                           ],
@@ -193,7 +247,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Student",
+                              model.occupation.toString(),
                               style: kManRope_400_16_001314,
                             ),
                           ],
@@ -328,11 +382,11 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                 )
                               ],
                             ),
-                            Image.asset(
-                              "assets/images/iconedit.png",
-                              height: 20,
-                              width: 20,
-                            )
+                            // Image.asset(
+                            //   "assets/images/iconedit.png",
+                            //   height: 20,
+                            //   width: 20,
+                            // )
                           ],
                         ),
                         SizedBox(

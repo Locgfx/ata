@@ -3,7 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/add_personal_details_screen.dart';
+import 'package:greymatter/Apis/UserAPis/usignupapi/otpverifyapi.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
@@ -11,13 +13,19 @@ import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.da
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class EnterOTPScreen extends StatefulWidget {
-  const EnterOTPScreen({Key? key}) : super(key: key);
+  final String signUpField;
+  const EnterOTPScreen({Key? key, required this.signUpField}) : super(key: key);
 
   @override
   State<EnterOTPScreen> createState() => _EnterOTPScreenState();
 }
 
 class _EnterOTPScreenState extends State<EnterOTPScreen> {
+  final TextEditingController otpController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  bool otpEmpty = true;
+
   Timer? _timer;
   int _start = 30;
   String otp = '';
@@ -53,7 +61,7 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final number = ModalRoute.of(context)!.settings.arguments as String;
+    // final number = ModalRoute.of(context)!.settings.arguments as String;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -77,18 +85,30 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
               SizedBox(height: 40.h),
               Text('Enter OTP', style: kManRope_700_20_001314),
               SizedBox(height: 16.h),
-              Text('Please enter the OTP sent to \n$number',
+              Text('Please enter the OTP sent to',
+                  // ' \n$number',
                   style: kManRope_400_14_626A6A),
               SizedBox(height: 40.h),
               PinCodeTextField(
-                appContext: context,
-                length: 4,
-                cursorColor: k006D77,
-                keyboardType: TextInputType.number,
-                textStyle: kManRope_400_20_Black,
                 onChanged: (val) {
-                  otp = val;
+                  if (val.isNotEmpty) {
+                    setState(() {
+                      otpEmpty = false;
+                    });
+                  }
                 },
+                // validator: (otpText) {
+                //   if (otpText == null || otpText.isEmpty) {
+                //     return "Enter pin";
+                //   }
+                //   return null;
+                // },
+                controller: otpController,
+                keyboardType: TextInputType.number,
+                appContext: context,
+                length: 6,
+                cursorColor: k006D77,
+                textStyle: kManRope_400_20_Black,
                 pinTheme: PinTheme(
                   inactiveColor: Colors.black,
                   //activeFillColor: kECF0F8,
@@ -96,7 +116,7 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
                   //selectedFillColor: kECF0F8,
                   selectedColor: k006D77,
                   borderWidth: 0,
-                  fieldWidth: 55.w,
+                  // fieldWidth: 30.w,
                   fieldHeight: 50.h,
                   //borderRadius: BorderRadius.circular(8),
                   //inactiveFillColor: kECF0F8,
@@ -136,14 +156,28 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
                 ],
               ),
               const Spacer(),
-              otp.length == 4
-                  ? CustomActiveTextButton(
-                      onPressed: () {
+              otpEmpty
+                  ? CustomDeactiveTextButton(onPressed: () {} , text: 'Continue')
+                  : CustomActiveTextButton(
+                  onPressed: () {
+                    final resp =
+                    OtpVerifyApi().get(otp: otpController.text);
+                    resp.then((value) {
+                      print(value);
+                      if (value['status'] == true) {
+                        Fluttertoast.showToast(msg: value['message']);
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => AddPersonalDetailsScreen()));
-                      },
-                      text: 'Continue')
-                  : CustomDeactiveTextButton(onPressed: () {}, text: 'Continue')
+                            builder: (context) =>
+                                AddPersonalDetailsScreen()));
+                      } else {
+                        Fluttertoast.showToast(
+                            msg: 'Please enter valid otp');
+                      }
+                    });
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (ctx) => AddPersonalDetailsScreen()));
+                  },
+                  text: 'Continue')
             ],
           ),
         ),

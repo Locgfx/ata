@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/enter_otp_screen.dart';
+import 'package:greymatter/Apis/UserAPis/usignupapi/generateotpapi.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
 
@@ -99,18 +102,34 @@ class _EnterMobileScreenState extends State<EnterMobileScreen> {
                               onPressed: () {}, text: 'Generate OTP')
                           : CustomActiveTextButton(
                               onPressed: () {
-                                var _isValid =
-                                    _formKey.currentState!.validate();
-                                if (!_isValid) {
-                                  return;
-                                } else {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (ctx) {
-                                        return EnterOTPScreen();
-                                      },
-                                      settings: RouteSettings(
-                                          arguments:
-                                              '${_mobileController.text}')));
+                                if (_formKey.currentState!.validate()) {
+                                  final resp = Generateotpapi().get(
+                                    mobileNo: _mobileController.text,
+                                  );
+                                  print(_mobileController.text);
+                                  resp.then((value) async {
+                                    print(value);
+                                    if (value['status'] == false) {
+                                      Fluttertoast.showToast(
+                                          msg: 'login failed');
+                                    } else {
+                                      var prefs =
+                                      await SharedPreferences.getInstance();
+                                      prefs.setString(
+                                          'cookies', value['session_id']);
+                                      //print(value['session_id']);
+                                      print(prefs.getString('cookies'));
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  EnterOTPScreen(
+                                                    signUpField:
+                                                    _mobileController.text,
+                                                  )));
+                                      Fluttertoast.showToast(
+                                          msg: 'Your OTP is ${value['otp']}');
+                                    }
+                                  });
                                 }
                               },
                               text: 'Generate OTP'),

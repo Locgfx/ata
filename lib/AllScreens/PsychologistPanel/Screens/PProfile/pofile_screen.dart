@@ -5,11 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PLoginScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/agreement_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/help_and_support_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/kyc_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/order_history_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/slots_availability_screens.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
+import 'package:greymatter/Apis/UserAPis/loginapi/loginapi.dart';
+import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_logout_api.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 import '../../../../constants/colors.dart';
@@ -462,15 +467,10 @@ class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
               top: false,
               child: Column(
                 children: [
-                  GestureDetector(
-                      onTap: () => setState(() {
-                            _gIndex = 0;
-                            Navigator.of(context).pop();
-                          }),
-                      child: Text(
-                        "Log out",
-                        style: kManRope_700_20_001314,
-                      )),
+                  Text(
+                    "Log out",
+                    style: kManRope_700_20_001314,
+                  ),
                   SizedBox(height: 16.h),
                   Text(
                     "You will be returned to the login screen.",
@@ -506,14 +506,30 @@ class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
                         width: 1,
                       ),
                       Expanded(
-                          child: Container(
-                              padding: EdgeInsets.only(top: 16),
-                              height: 52.h,
-                              child: Center(
-                                  child: Text(
-                                "Logout",
-                                style: kManRope_500_20_B64949,
-                              )))),
+                          child: GestureDetector(
+                            onTap: () {
+                              final resp =
+                              UserLogoutApi().get();
+                              resp.then((value) {
+                                print(value);
+                                if (value['status'] == true) {
+                                  Fluttertoast.showToast(msg: value['msg']);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => PLoginScreen()));
+                                } else {
+                                  Fluttertoast.showToast(msg: value['error']);
+                                }
+                              });
+                            },
+                            child: Container(
+                                padding: EdgeInsets.only(top: 16),
+                                height: 52.h,
+                                child: Center(
+                                    child: Text(
+                                  "Logout",
+                                  style: kManRope_500_20_B64949,
+                                ))),
+                          )),
                     ],
                   ),
                   // GestureDetector(

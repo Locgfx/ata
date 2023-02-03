@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/enter_new_password_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/enter_new_password_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';

@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/UForgotPasswordOtpScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/question_screen1.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/enter_mobile_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/enter_otp_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/reset_password_otp_screen.dart';
+import 'package:greymatter/Apis/UserAPis/loginapi/loginapi.dart';
+import 'package:greymatter/Apis/UserAPis/loginapi/user_forgot_password_otp_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
 
@@ -20,19 +26,25 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final GlobalKey<FormState> _formKey1 = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey2 = GlobalKey<FormState>();
+
 
   final TextEditingController _emailController = TextEditingController();
 
   final TextEditingController _passwordController = TextEditingController();
 
+  bool hasEmailFocus = false;
+  bool hasPassFocus = false;
   bool emailEmpty = true;
-
   bool passEmpty = true;
+
+
+  bool visible = true;
+
+
   final passwordNode = FocusNode();
   final emailNode = FocusNode();
-  bool hasPassFocus = false;
-  bool hasEmailFocus = false;
+
   @override
   void initState() {
     super.initState();
@@ -85,9 +97,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: TextFormField(
                         focusNode: emailNode,
                         onChanged: (val) {
+
                           if (val.isNotEmpty) {
                             setState(() {
-                              emailEmpty = false;
+                              emailEmpty= false;
                               hasEmailFocus = true;
                             });
                           }
@@ -99,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                         validator: (val) {
-                          if (_emailController.text.trim().isEmpty) {
+                          if (_emailController.text.trim().isEmpty && _emailController.text.contains("@") ) {
                             return 'Please enter an email/mobile';
                           } else {
                             return null;
@@ -139,13 +152,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text('Password', style: kManRope_400_14_626A6A),
                     if (hasPassFocus) SizedBox(height: 14),*/
                     Form(
-                      key: _formKey1,
+                      key: _formKey2,
                       child: TextFormField(
                         focusNode: passwordNode,
                         onChanged: (val) {
                           if (val.isNotEmpty) {
                             setState(() {
-                              passEmpty = false;
+                              passEmpty= false;
                               hasPassFocus = true;
                             });
                           }
@@ -164,70 +177,113 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                         controller: _passwordController,
-                        obscureText: true,
+                        obscureText: visible,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(top: 8),
                           labelText: 'Password',
                           labelStyle: kManRope_400_16_626A6A,
-                          //floatingLabelStyle: kManRope_400_20_626A6A,
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: k5A72ED,
-                              width: 1,
-                            ),
-                          ),
-                          errorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: kB5BABA,
-                              width: 1,
-                            ),
-                          ),
-                          focusedErrorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                              color: kB5BABA,
-                              width: 1,
-                            ),
-                          ),
+                          floatingLabelStyle: kManRope_400_20_626A6A,
                           suffixIconConstraints:
-                              BoxConstraints(minHeight: 24.w, minWidth: 24.h),
-                          suffixIcon:
-                              SvgPicture.asset('assets/icons/eyeopen.svg'),
+                          BoxConstraints(minHeight: 24.w, minWidth: 24.h),
+                          suffixIcon: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  visible = !visible;
+                                });
+                              },
+                              child:
+                              SvgPicture.asset('assets/icons/eyeopen.svg')),
                         ),
                       ),
                     ),
                   ],
                 ),
-                SizedBox(height: 30.h),
+                SizedBox(height: 20.h),
                 InkWell(
                     onTap: () {
                       if (_emailController.text.trim().isEmpty) {
                         _formKey.currentState!.validate();
                       } else {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (ctx) => ResetPasswordOTPScreen(),
-                            settings: RouteSettings(
-                                arguments: _emailController.text)));
+                        if (_formKey.currentState!.validate()) {
+                          final resp = UserForgotPasswordOtpApi().get(
+                            emailMobile: _emailController.text,
+                          );
+                          print(_emailController.text);
+                          resp.then((value) async {
+                            print(value);
+                            if
+                            (value['status'] == false)
+                            {
+                              Fluttertoast.showToast(
+                                  msg: 'login failed');
+                            } else {
+                              var prefs =
+                              await SharedPreferences.getInstance();
+                              prefs.setString(
+                                  'cookies', value['session_id']);
+                              //print(value['session_id']);
+                              print(prefs.getString('cookies'));
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => UForgotPasswordOTPScreen(signUpField:_emailController.text,),
+                                  settings: RouteSettings(
+                                      arguments: _emailController.text)));
+                              // Navigator.of(context).push(
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //             UForgotPasswordOTPScreen(
+                              //               signUpField:
+                              //               _emailController.text,
+                              //             )));
+                              Fluttertoast.showToast(
+                                  msg: 'Your OTP is ${value['otp']}');
+                            }
+                          });
+                        }
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (ctx) => UForgotPasswordOTPScreen(signUpField:_emailController.text,),
+                        //     settings: RouteSettings(
+                        //         arguments: _emailController.text)));
                       }
+                      // if (_emailController.text.trim().isEmpty) {
+                      //   _formKey.currentState!.validate();
+                      // }
                     },
                     child:
-                        Text('Forgot Password', style: kManRope_500_14_BC2445)),
-                SizedBox(height: 40.h),
+                        Container(
+                          color: Colors.transparent,
+                            padding: EdgeInsets.only(top:10,bottom: 10,right: 10),
+                            child: Text('Forgot Password', style: kManRope_500_14_BC2445))),
+                SizedBox(height: 30.h),
                 emailEmpty
                     ? CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-                    : passEmpty
-                        ? CustomDeactiveTextButton(
-                            onPressed: () {}, text: 'Login')
-                        : CustomActiveTextButton(
+                :passEmpty ?
+                CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
+                : CustomActiveTextButton(
                             onPressed: () {
-                              var _isValid = _formKey.currentState!.validate();
-                              if (!_isValid) {
-                                return;
-                              } else {
-                                FocusScope.of(context).unfocus();
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (ctx) => Questions()));
-                                /*Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (ctx) => WelcomeScreen()));*/
+                              if (_formKey.currentState!.validate()) {
+                                final resp = UserLoginApi().get(
+                                    username: _emailController.text,
+                                    password: _passwordController.text);
+                                resp.then((value) async {
+                                  print(value);
+                                  if (value['status'] == false) {
+                                    Fluttertoast.showToast(
+                                        msg: value['error']);
+                                  } else {
+                                    var prefs =
+                                    await SharedPreferences.getInstance();
+                                    prefs.setString(
+                                        'cookies', value['session_id']);
+                                    print(value['session_id']);
+                                    print(prefs.getString('cookies'));
+                                    Fluttertoast.showToast(
+                                        msg: 'Login Successful');
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                Questions()));
+                                  }
+                                });
                               }
                             },
                             text: 'Login'),
