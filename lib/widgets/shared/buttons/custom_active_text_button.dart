@@ -39,6 +39,39 @@ class CustomActiveTextButton extends StatelessWidget {
   }
 }
 
+class CustomSmallActiveTextButton extends StatelessWidget {
+  final Function() onPressed;
+  final String text;
+  const CustomSmallActiveTextButton(
+      {Key? key, required this.onPressed, required this.text})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: MaterialButton(
+        height: 56.h,
+        minWidth:168.w ,
+        onPressed: onPressed,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              text,
+              style: kManRope_500_16_white,
+            ),
+          ],
+        ),
+        color: k006D77,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(48), // <-- Radius
+        ),
+      ),
+    );
+  }
+}
+
 class CustomActiveTextButton1 extends StatelessWidget {
   final Function() onPressed;
   final String text;

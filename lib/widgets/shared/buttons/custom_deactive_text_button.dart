@@ -38,3 +38,37 @@ class CustomDeactiveTextButton extends StatelessWidget {
     );
   }
 }
+
+
+class CustomSmallDeactiveTextButton extends StatelessWidget {
+  final Function() onPressed;
+  final String text;
+  const CustomSmallDeactiveTextButton(
+      {Key? key, required this.onPressed, required this.text})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: MaterialButton(
+        height: 56.h,
+        minWidth:168.w ,
+        onPressed: onPressed,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              text,
+              style: kManRope_500_16_626A6A,
+            ),
+          ],
+        ),
+        color: Colors.grey,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(48), // <-- Radius
+        ),
+      ),
+    );
+  }
+}

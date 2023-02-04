@@ -56,6 +56,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kEDF6F9,
       appBar: AppBar(
         toolbarHeight: 0,

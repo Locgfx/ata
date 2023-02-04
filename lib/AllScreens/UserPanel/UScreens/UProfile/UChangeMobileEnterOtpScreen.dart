@@ -6,59 +6,29 @@ import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_change_email_otp
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
+import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
+import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 import 'package:otp_text_field/otp_text_field.dart';
 import 'package:otp_text_field/style.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class UMobileOtpScreen extends StatefulWidget {
-  const UMobileOtpScreen({
+class UChangeMobileEnterOtpScreen extends StatefulWidget {
+  const UChangeMobileEnterOtpScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<UMobileOtpScreen> createState() => _UMobileOtpScreenState();
+  State<UChangeMobileEnterOtpScreen> createState() => _UChangeMobileEnterOtpScreenState();
 }
 
-class _UMobileOtpScreenState extends State<UMobileOtpScreen> {
+class _UChangeMobileEnterOtpScreenState extends State<UChangeMobileEnterOtpScreen> {
   TextEditingController otpController = TextEditingController();
+
+  bool otpEmpty = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(bottom: 40.h, left: 135.w, right: 135.w),
-        child: SizedBox(
-          height: 60.h,
-          // width: 168.w,
-          child: MaterialButton(
-            color: k006D77,
-            height: 60,
-            minWidth: 168,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(48),
-              side: const BorderSide(color: k006D77),
-            ),
-            onPressed: () {
-              // final resp =
-              //     ChangeEmailOtpVerifyApi().get(otp: otpController.text);
-              // resp.then((value) {
-              //   print(value);
-              //   if (value['status'] == true) {
-              //     Fluttertoast.showToast(msg: value['message']);
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) => UAccountScreen()));
-              //   } else {
-              //     Fluttertoast.showToast(msg: 'Please enter valid otp');
-              //   }
-              // });
-            },
-            child: Text(
-              'Save',
-              style: kManRope_400_16_white,
-            ),
-          ),
-        ),
-      ),
       appBar: AppBar(
         elevation: 0,
         toolbarHeight: 40,
@@ -67,9 +37,9 @@ class _UMobileOtpScreenState extends State<UMobileOtpScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: kEDF6F9,
       body: SafeArea(
-        child: SingleChildScrollView(
-          physics: NeverScrollableScrollPhysics(),
-          child: Container(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: Container(
             padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,11 +61,19 @@ class _UMobileOtpScreenState extends State<UMobileOtpScreen> {
                     style: kManRope_400_14_626A6A),
                 SizedBox(height: 42.h),
                 PinCodeTextField(
-                  validator: (name) {
-                    if (name == null || name.isEmpty) {
-                      return ' please confirm your email';
+                  onChanged: (val) {
+                    if (val.isNotEmpty) {
+                      setState(() {
+                        otpEmpty = false;
+                      });
                     }
                   },
+                  // validator: (otpText) {
+                  //   if (otpText == null || otpText.isEmpty) {
+                  //     return "Enter pin";
+                  //   }
+                  //   return null;
+                  // },
                   controller: otpController,
                   keyboardType: TextInputType.number,
                   appContext: context,
@@ -116,9 +94,15 @@ class _UMobileOtpScreenState extends State<UMobileOtpScreen> {
                     activeColor: k006D77,
                     shape: PinCodeFieldShape.underline,
                   ),
-                  onChanged: (String value) {},
                 ),
-                SizedBox(height: 525.h),
+                Spacer(),
+                // SizedBox(height: 525.h),
+                otpEmpty ?
+                CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Save') :
+                CustomSmallActiveTextButton(onPressed: () {
+
+                }, text: 'Save'),
+                SizedBox(height: 40.h,)
 
                 // Center(
                 //   child: SizedBox(

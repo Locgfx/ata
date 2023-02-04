@@ -16,6 +16,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_scr
 import 'package:greymatter/Apis/UserAPis/loginapi/loginapi.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_logout_api.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/global/Sharedprefs.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../UserPanel/UScreens/UProfile/UMyActivity.dart';
@@ -33,14 +34,14 @@ class PsychologistProfileScreen extends StatefulWidget {
 class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
   bool _switchValue = true;
 
-  void _profileLogoutBottomSheet() {
+  void _pprofileLogoutBottomSheet() {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (BuildContext context) => const ProfileLogoutBottomSheet());
+        builder: (BuildContext context) => const PProfileLogoutBottomSheet());
   }
 
   @override
@@ -394,7 +395,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      _profileLogoutBottomSheet();
+                      _pprofileLogoutBottomSheet();
                       // _logOutBottomSheet();
                     },
                     child: SizedBox(
@@ -416,14 +417,14 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
   }
 }
 
-class ProfileLogoutBottomSheet extends StatefulWidget {
-  const ProfileLogoutBottomSheet({Key? key}) : super(key: key);
+class PProfileLogoutBottomSheet extends StatefulWidget {
+  const PProfileLogoutBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<ProfileLogoutBottomSheet> createState() => _ProfileLogoutBottomSheet();
+  State<PProfileLogoutBottomSheet> createState() => _PProfileLogoutBottomSheet();
 }
 
-class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
+class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
   int _gIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -508,18 +509,13 @@ class _ProfileLogoutBottomSheet extends State<ProfileLogoutBottomSheet> {
                       Expanded(
                           child: GestureDetector(
                             onTap: () {
-                              final resp =
-                              UserLogoutApi().get();
-                              resp.then((value) {
-                                print(value);
-                                if (value['status'] == true) {
-                                  Fluttertoast.showToast(msg: value['msg']);
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => PLoginScreen()));
-                                } else {
-                                  Fluttertoast.showToast(msg: value['error']);
-                                }
-                              });
+                              UserPrefs().setLoginFalse();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PLoginScreen(),
+                                ),
+                              );
                             },
                             child: Container(
                                 padding: EdgeInsets.only(top: 16),

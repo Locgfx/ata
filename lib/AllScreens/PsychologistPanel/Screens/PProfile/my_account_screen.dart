@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChangePasswordScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/change_email_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/change_password_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/deleteaccount.dart';
@@ -82,7 +83,7 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
-                          PsychologistChangePasswordScreen()));
+                          PChangePasswordScreen()));
                 },
                 child: Container(
                   color: Colors.transparent,

@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/pofile_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAgreementscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UHelpandsupport.dart';
@@ -13,6 +14,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UOrderhistory.
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPersonalInfoScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/global/Sharedprefs.dart';
 
 class UProfileScreen extends StatefulWidget {
   const UProfileScreen({Key? key}) : super(key: key);
@@ -23,14 +25,14 @@ class UProfileScreen extends StatefulWidget {
 
 class _UProfileScreenState extends State<UProfileScreen> {
   bool _switchValue = true;
-  void _profileLogoutBottomSheet() {
+  void _uprofileLogoutBottomSheet() {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (BuildContext context) => ProfileLogoutBottomSheet());
+        builder: (BuildContext context) => UProfileLogoutBottomSheet());
   }
 
   Widget arrow() {
@@ -306,7 +308,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                   child: GestureDetector(
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
-                      _profileLogoutBottomSheet();
+                      _uprofileLogoutBottomSheet();
                     },
                     child: SizedBox(
                       height: 43.h,
@@ -322,6 +324,174 @@ class _UProfileScreenState extends State<UProfileScreen> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+
+
+class UProfileLogoutBottomSheet extends StatefulWidget {
+  const UProfileLogoutBottomSheet({Key? key}) : super(key: key);
+
+  @override
+  State<UProfileLogoutBottomSheet> createState() => _UProfileLogoutBottomSheet();
+}
+
+class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
+  int _gIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      // decoration: const BoxDecoration(
+      //   // color: k006D77,
+      //   borderRadius: BorderRadius.only(
+      //       topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      // ),
+      //
+      // height: 251.h,
+      child: Column(
+        children: [
+          // Container(
+          //   height: 71.h,
+          //   decoration: const BoxDecoration(
+          //     color: k006D77,
+          //     borderRadius: BorderRadius.only(
+          //         topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+          //   ),
+          //   child: Center(
+          //     child: Text(
+          //       '',
+          //       style: kManRope_700_16_white,
+          //     ),
+          //   ),
+          // ),
+          Container(
+            height: 180.h,
+            decoration: const BoxDecoration(
+              color: kEDF6F9,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            ),
+            padding: EdgeInsets.only(top: 20.h),
+            margin: EdgeInsets.only(
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            // color: CupertinoColors.systemBackground.resolveFrom(context),
+            child: SafeArea(
+              top: false,
+              child: Column(
+                children: [
+                  Text(
+                    "Log out",
+                    style: kManRope_700_20_001314,
+                  ),
+                  SizedBox(height: 16.h),
+                  Text(
+                    "You will be returned to the login screen.",
+                    style: kManRope_500_16_626A6A,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: Container(
+                      height: 1,
+                      width: 1.sw,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Container(
+                                height: 52.h,
+                                padding: EdgeInsets.only(top: 16),
+                                child: Center(
+                                    child: Text(
+                                      "Cancel",
+                                      style: kManRope_500_20_006D77,
+                                    ))),
+                          )),
+                      Container(
+                        height: 52.h,
+                        color: Colors.white,
+                        width: 1,
+                      ),
+                      Expanded(
+                          child: GestureDetector(
+                            onTap: () {
+                              UserPrefs().setLoginFalse();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => LoginScreen(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                                padding: EdgeInsets.only(top: 16),
+                                height: 52.h,
+                                child: Center(
+                                    child: Text(
+                                      "Logout",
+                                      style: kManRope_500_20_B64949,
+                                    ))),
+                          )),
+                    ],
+                  ),
+                  // GestureDetector(
+                  //   onTap: () => setState(() {
+                  //     _gIndex = 1;
+                  //     Navigator.of(context).pop();
+                  //   }),
+                  //   child: Container(
+                  //     height: 50.h,
+                  //     width: 215.w,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius:
+                  //       const BorderRadius.all(Radius.circular(5)),
+                  //       color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                  //     ),
+                  //     child: Center(
+                  //         child: Text(
+                  //           'This Week',
+                  //           style: _gIndex == 1
+                  //               ? kManRope_500_16_white
+                  //               : kManRope_500_16_626A6A,
+                  //         )),
+                  //   ),
+                  // ),
+                  // SizedBox(height: 8.h),
+                  // GestureDetector(
+                  //   onTap: () => setState(() {
+                  //     _gIndex = 1;
+                  //     Navigator.of(context).pop();
+                  //   }),
+                  //   child: Container(
+                  //     height: 44.h,
+                  //     width: 215.w,
+                  //     decoration: BoxDecoration(
+                  //       borderRadius:
+                  //       const BorderRadius.all(Radius.circular(5)),
+                  //       color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                  //     ),
+                  //     child: Center(
+                  //         child: Text(
+                  //           'This Year',
+                  //           style: _gIndex == 1
+                  //               ? kManRope_500_16_white
+                  //               : kManRope_500_16_626A6A,
+                  //         )),
+                  //   ),
+                  // ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

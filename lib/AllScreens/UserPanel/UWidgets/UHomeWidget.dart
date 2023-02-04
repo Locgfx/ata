@@ -23,7 +23,7 @@ class OfferBanner extends StatefulWidget {
 
 class _OfferBannerState extends State<OfferBanner> {
   int _index = 0;
-  int _index2 = 0;
+  // int _index2 = 0;
   List _bgImageList = [
     'assets/images/offercard1.png',
     'assets/images/offercard2.png',
@@ -56,14 +56,7 @@ class _OfferBannerState extends State<OfferBanner> {
 
   @override
   Widget build(BuildContext context) {
-    return _isLoading
-        ? Center(
-          child: SpinKitChasingDots(
-            size: 25,
-            color: k006D77,
-          ),
-        )
-        :
+    return
       Column(
       children: [
         Container(
@@ -125,70 +118,6 @@ class _OfferBannerState extends State<OfferBanner> {
             },
           ),
         ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: [
-        //     Container(
-        //       height: 4.h,
-        //       decoration: BoxDecoration(
-        //         color: k5A72ED.withOpacity(0.15),
-        //         borderRadius: BorderRadius.horizontal(
-        //             left: Radius.circular(2)),
-        //       ),
-        //       child: AnimatedContainer(
-        //         alignment: Alignment.centerLeft,
-        //         // height: 4,
-        //         width: 24,
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(2),
-        //           color: _index % 3 == 0
-        //               ? k5A72ED
-        //               : Colors.transparent,
-        //         ),
-        //         duration: Duration(milliseconds: 100),
-        //       ),
-        //     ),
-        //     Container(
-        //       height: 4.h,
-        //       decoration: BoxDecoration(
-        //         color: k5A72ED.withOpacity(0.15),
-        //         //borderRadius: BorderRadius.circular(2),
-        //       ),
-        //       child: AnimatedContainer(
-        //         alignment: Alignment.centerLeft,
-        //         // height: 4,
-        //         width: 24,
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(2),
-        //           color: _index % 3 == 1
-        //               ? k5A72ED
-        //               : Colors.transparent,
-        //         ),
-        //         duration: Duration(milliseconds: 100),
-        //       ),
-        //     ),
-        //     Container(
-        //       height: 4.h,
-        //       decoration: BoxDecoration(
-        //         color: k5A72ED.withOpacity(0.15),
-        //         borderRadius: BorderRadius.horizontal(
-        //             right: Radius.circular(2)),
-        //       ),
-        //       child: AnimatedContainer(
-        //         alignment: Alignment.centerLeft,
-        //         // height: 4,
-        //         width: 24,
-        //         decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(2),
-        //           color: _index % 3 == 2
-        //               ? k5A72ED
-        //               : Colors.transparent,
-        //         ),
-        //         duration: Duration(milliseconds: 100),
-        //       ),
-        //     ),
-        //   ],
-        // ),
       ],
     );
   }
