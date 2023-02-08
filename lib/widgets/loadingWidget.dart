@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -12,24 +14,17 @@ class LoadingWidget extends StatelessWidget {
     return Container(
       width: 1.sw,
       height: 1.sh,
-      color: Color.fromARGB(100, 22, 44, 33),
+      color: Colors.white.withOpacity(0.5),
       child: Center(
         child: Stack(
           children: [
             Center(
-              child: Container(
-                width: 60,
-                height: 60,
-                decoration: BoxDecoration(
-                  // color: Color.fromARGB(100, 22, 44, 33),
-                  shape: BoxShape.circle,
-                ),
+              child: SpinKitDancingSquare(
+                size: 60,
+                color: k006D77,
               ),
             ),
-            SpinKitDancingSquare(
-              size: 60,
-              color: k006D77,
-            ),
+
 
           ],
         ),

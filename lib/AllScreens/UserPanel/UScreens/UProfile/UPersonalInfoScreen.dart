@@ -1,4 +1,6 @@
-import 'dart:html';
+
+
+import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -26,15 +28,15 @@ class UserPersonalInfoScreen extends StatefulWidget {
 }
 
 class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
-  void _selectGenderBottomSheet() {
-    showModalBottomSheet(
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-        ),
-        context: context,
-        builder: (context) => const SelectGenderBottomSheet());
-  }
+  // void _selectGenderBottomSheet() {
+  //   showModalBottomSheet(
+  //       shape: const RoundedRectangleBorder(
+  //         borderRadius: BorderRadius.only(
+  //             topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+  //       ),
+  //       context: context,
+  //       builder: (context) => const SelectGenderBottomSheet());
+  // }
 
   void _relationStatusBottomSheet() {
     showModalBottomSheet(
@@ -106,6 +108,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
 
   final _formKey = GlobalKey<FormState>();
 
+  File imageFile = File('');
+
 
 
 
@@ -157,7 +161,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           ),
                         ),
                       ),
-                      Column(
+                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
@@ -173,7 +177,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              _isLoading ? SizedBox() :Text(
                                 model.name.toString(),
                                 style: kManRope_400_16_001314,
                               ),
@@ -184,7 +188,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           ),
                           Text(
                             "Date of birth",
-                            style: kManRope_400_16_001314,
+                            style: kManRope_400_16_626A6A,
                           ),
                           SizedBox(
                             height: 8.h,
@@ -192,7 +196,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              _isLoading ? SizedBox() : Text(
                           // groupName == null ? '' : groupName
 
                                 model.dob.toString() ,
@@ -213,7 +217,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              _isLoading ? SizedBox() :Text(
                                 model.gender.toString(),
                                 style: kManRope_400_16_001314,
                               ),
@@ -232,7 +236,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              _isLoading ? SizedBox() : Text(
                                 model.relationshipStatus.toString(),
                                 style: kManRope_400_16_001314,
                               ),
@@ -251,7 +255,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
+                              _isLoading ? SizedBox() :Text(
                                 model.occupation.toString(),
                                 style: kManRope_400_16_001314,
                               ),
@@ -291,40 +295,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                   CustomDecoration().smallButtonDecoration()),
                             ),
                           )
-                          // Center(1
-                          //   child: MainButton(
-                          //     child: Padding(
-                          //       padding: const EdgeInsets.symmetric(horizontal: 63, vertical: 15),
-                          //       child: Text(
-                          //         "Done",
-                          //         style: kManRope_500_18_FFFFF,
-                          //       ),
-                          //     ),
-                          //     color: k006D77,
-                          //     shape: CustomDecoration().smallButtonDecoration(),
-                          //     onPressed: () {},
-                          //   ),
-                          // ),
-                          // Center(
-                          //   child: SizedBox(
-                          //     height: 56.h,
-                          //     width: 168.w,
-                          //     child: MaterialButton(
-                          //       color: k006D77,
-                          //       shape: RoundedRectangleBorder(
-                          //         borderRadius: BorderRadius.circular(48), // <-- Radius
-                          //       ),
-                          //       onPressed: () {
-                          //         Navigator.of(context).push(MaterialPageRoute(
-                          //             builder: (context) => PsychologistEditPersonalInfo()));
-                          //       },
-                          //       child: Text(
-                          //         'Edit',
-                          //         style: kManRope_400_16_white,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
                         ],
                       ),
                     ],
@@ -362,9 +332,12 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Text(
-                        "Change Photo",
-                        style: kManRope_500_16_404040,
+                      GestureDetector(
+                        onTap: () {},
+                        child: Text(
+                          "Change Photo",
+                          style: kManRope_500_16_404040,
+                        ),
                       ),
                       SizedBox(
                         height: 40.h,
@@ -385,7 +358,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     // readOnly: true,
                                     onTap: () {},
                                     decoration: TextfieldDecoration(
-                                        label: 'Priya singh')
+                                        label: 'Enter your Name')
                                         .textfieldProfileDecoration()),
                               )
                             ],
@@ -421,7 +394,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                               Container(
                                 // color: Colors.red,
                                 width: 320.w,
-                                child: TextField(
+                                child: TextFormField(
+                                  controller: updateDobController,
                                     style: kManRope_400_16_001314,
                                     readOnly: true,
                                     onTap: () {
@@ -471,10 +445,22 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                 // color: Colors.red,
                                 width: 320.w,
                                 child: TextField(
+                                  controller: updateGenderController,
                                     style: kManRope_400_16_001314,
                                     readOnly: true,
                                     onTap: () {
-                                      _selectGenderBottomSheet();
+                                    setState(() {
+
+                                      
+                                    });
+                                      showModalBottomSheet(
+                                          shape: const RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.only(
+                                                topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+                                          ),
+                                          context: context,
+                                          builder: (context) =>  SelectGenderBottomSheet()
+                                      );
                                     },
                                     decoration:
                                     TextfieldDecoration(label: 'Female')
@@ -484,7 +470,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              _selectGenderBottomSheet();
+                              // _selectGenderBottomSheet();
                             },
                             child: Container(
                               // color: Colors.red,
@@ -520,7 +506,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                               Container(
                                 // color: Colors.red,
                                 width: 320.w,
-                                child: TextField(
+                                child: TextFormField(
+                                    controller: relationshipStatusController,
                                     style: kManRope_400_16_001314,
                                     readOnly: true,
                                     onTap: () {
@@ -569,7 +556,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                               Container(
                                 // color: Colors.red,
                                 width: 320.w,
-                                child: TextField(
+                                child: TextFormField(
+                                  controller: updateOccupationController,
                                     style: kManRope_400_16_001314,
                                     readOnly: true,
                                     onTap: () {

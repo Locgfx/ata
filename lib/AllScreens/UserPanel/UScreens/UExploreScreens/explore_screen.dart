@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/explore_page.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/widgets/loadingWidget.dart';
 
 import 'my_sessions_page.dart';
 
@@ -56,6 +57,8 @@ class _ExploreScreenState extends State<ExploreScreen>
     }*/
   }
 
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -68,9 +71,9 @@ class _ExploreScreenState extends State<ExploreScreen>
           backgroundColor: Colors.white,
           systemOverlayStyle: Platform.isAndroid
               ? SystemUiOverlayStyle(
-                  statusBarColor: Colors.white,
-                  statusBarIconBrightness: Brightness.dark,
-                )
+            statusBarColor: Colors.white,
+            statusBarIconBrightness: Brightness.dark,
+          )
               : SystemUiOverlayStyle.dark,
         ),
         body: SafeArea(
@@ -117,10 +120,10 @@ class _ExploreScreenState extends State<ExploreScreen>
                   child: TabBarView(
                     controller: _pageController,
                     /*onPageChanged: (page) {
-                      setState(() {
-                        pageIndex = page;
-                      });
-                    },*/
+                  setState(() {
+                    pageIndex = page;
+                  });
+                },*/
                     children: [
                       ExplorePage(issue: ''),
                       MySessionPage(),

@@ -14,7 +14,7 @@ class UserPrivacyPolicyApi {
       'Cookie': 'PHPSESSID=$v'
     };
     var request = http.Request(
-        'GET', Uri.parse('$kAPIConst/api-user//privacy-policy.php'));
+        'GET', Uri.parse('$baseUrl/privacy-policy.php'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var rsp = jsonDecode(await response.stream.bytesToString());

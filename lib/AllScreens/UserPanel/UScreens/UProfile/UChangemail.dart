@@ -12,6 +12,7 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 
+import '../../../../Apis/UserAPis/user_profile_apis/user_change_email_api.dart';
 import '../../../../Apis/UserAPis/user_profile_apis/user_change_mobileno_api.dart';
 
 class UChangeEmailScreen extends StatefulWidget {

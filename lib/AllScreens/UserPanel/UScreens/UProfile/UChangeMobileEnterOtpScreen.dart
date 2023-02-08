@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UprofileScreen.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_change_email_otp_api.dart';
+import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_change_mobile_no_enter_otp_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
@@ -13,6 +15,7 @@ import 'package:otp_text_field/style.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class UChangeMobileEnterOtpScreen extends StatefulWidget {
+
   const UChangeMobileEnterOtpScreen({
     Key? key,
   }) : super(key: key);
@@ -100,6 +103,20 @@ class _UChangeMobileEnterOtpScreenState extends State<UChangeMobileEnterOtpScree
                 otpEmpty ?
                 CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Save') :
                 CustomSmallActiveTextButton(onPressed: () {
+                  final resp =
+                  ChangeMobileNoEnterOtpApi().get(otp: otpController.text);
+                  resp.then((value) {
+                    print(value);
+                    if (value['status'] == true) {
+                      Fluttertoast.showToast(msg: value['message']);
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              UProfileScreen()));
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: 'Please enter valid otp');
+                    }
+                  });
 
                 }, text: 'Save'),
                 SizedBox(height: 40.h,)

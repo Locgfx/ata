@@ -30,7 +30,7 @@ class _MySessionPageState extends State<MySessionPage> {
       backgroundColor: kEDF6F9,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h),
+          padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h,bottom: 30.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -28,7 +28,7 @@ class _PostScreenState extends State<PostScreen> with TickerProviderStateMixin {
   }
 
   int selectedIndex = 0;
-
+  bool isLoading = false;
   @override
   void initState() {
     super.initState();
@@ -42,7 +42,7 @@ class _PostScreenState extends State<PostScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return  DefaultTabController(
       length: 2,
       initialIndex: widget.index,
       child: Scaffold(
@@ -102,8 +102,8 @@ class _PostScreenState extends State<PostScreen> with TickerProviderStateMixin {
                     //physics: NeverScrollableScrollPhysics(),
                     controller: _pageController,
                     children: [
-                      PostPage(),
-                      SavedScreen(),
+                      PostPage(isCommentsViewable: true,),
+                      SavedScreen(isCommentsViewable: true),
                     ],
                   ),
                 ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/see_all_videos.dart';
+import 'package:greymatter/Apis/UserAPis/user_home_apis/user_video_category_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_home_models/user_video_category_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class AllVideos extends StatefulWidget {
@@ -17,7 +19,38 @@ class _AllVideosState extends State<AllVideos> {
   final controller = PageController(viewportFraction: 0.8, keepPage: true);
 
   @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  bool _isLoading = false;
+  UserVideoCategoryModel model = UserVideoCategoryModel();
+
+  getData() {
+    _isLoading = true;
+    final resp = UserVideoCategoryApi().get();
+    resp.then((value) {
+      print(value);
+      setState(() {
+        try {
+          model = UserVideoCategoryModel.fromJson(value);
+          // print(model.text);
+          _isLoading = false;
+        } catch (e) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      });
+    });
+  }
+
+
+
+  @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
@@ -45,23 +78,6 @@ class _AllVideosState extends State<AllVideos> {
                       )).searchFieldBigIconDecoration(),
                 ),
               ),
-              // TextField(
-              //   decoration: InputDecoration(
-              //     hintText: 'Nature',
-              //     hintStyle: kManRope_400_14_626A6A,
-              //     border: OutlineInputBorder(
-              //         borderSide: BorderSide.none,
-              //         borderRadius: BorderRadius.circular(16.0)),
-              //     fillColor: Colors.white,
-              //     filled: true,
-              //     suffixIconConstraints:
-              //         BoxConstraints(maxHeight: 48.h, maxWidth: 48.w),
-              //     suffixIcon: Padding(
-              //       padding: EdgeInsets.only(right: 16.w),
-              //       child: SvgPicture.asset('assets/icons/search.svg'),
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 height: 40.h,
               ),

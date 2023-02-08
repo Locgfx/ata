@@ -24,209 +24,271 @@ class PsychologistSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return GridView.builder(
       scrollDirection: Axis.horizontal,
-      child: Padding(
-        padding: EdgeInsets.only(left: 25.w, top: 21.h),
+        padding: const EdgeInsets.only(top: 5),
+        shrinkWrap: true,
+        itemCount: 3,
+        gridDelegate:
+        const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            ),
+        itemBuilder: (ctx, index) {
+    return Container(
+      height: 83.h,
+      // width: 2.w,
+      child: Center(
         child: Row(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  // color: Colors.red,
-                  height: 83.h,
-                  // width: 2.w,
-                  child: Center(
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 80.h,
-                          width: 81.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              image: DecorationImage(
-                                  image: AssetImage("assets/images/userP.png"),
-                                  fit: BoxFit.cover)),
-                        ),
-                        SizedBox(
-                          width: 9.w,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Raghuram Singh ddhsdgh",
-                              style: kManRope_400_16_001314,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            Text(
-                              "psychologist",
-                              style: kManRope_400_14_626A6A,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            StarWidget()
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 19.h,
-                ),
-                Container(
-                  height: 83.h,
-                  // width: 260.w,
-                  child: Center(
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 80.h,
-                          width: 81.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage("assets/images/userpic3.png"),
-                                  fit: BoxFit.cover)),
-                        ),
-                        SizedBox(
-                          width: 9.w,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Animesh Jain",
-                              style: kManRope_400_16_001314,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            Text(
-                              "psychologist",
-                              style: kManRope_400_14_626A6A,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            StarWidget()
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+            Container(
+              height: 80.h,
+              width: 81.w,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/userP.png"),
+                      fit: BoxFit.cover)),
             ),
-            SizedBox(width: 17.w),
+            SizedBox(
+              width: 9.w,
+            ),
             Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 83.h,
-                  width: 281.w,
-                  child: Center(
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 80.h,
-                          width: 81.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage("assets/images/userpic2.png"),
-                                  fit: BoxFit.cover)),
-                        ),
-                        SizedBox(
-                          width: 9.w,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Ekta Sahu",
-                              style: kManRope_400_16_001314,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            Text(
-                              "Cardiologist",
-                              style: kManRope_400_14_626A6A,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            StarWidget()
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                Text(
+                  "Raghuram Singh ddhsdgh",
+                  style: kManRope_400_16_001314,
                 ),
                 SizedBox(
-                  height: 19.h,
+                  height: 8.h,
                 ),
-                Container(
-                  height: 83.h,
-                  width: 281.w,
-                  child: Center(
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 80.h,
-                          width: 81.w,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage("assets/images/userpic4.png"),
-                                  fit: BoxFit.cover)),
-                        ),
-                        SizedBox(
-                          width: 9.w,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Faisal Khan",
-                              style: kManRope_400_16_001314,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            Text(
-                              "Anaesthetics",
-                              style: kManRope_400_14_626A6A,
-                            ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            StarWidget()
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
+                Text(
+                  "psychologist",
+                  style: kManRope_400_14_626A6A,
                 ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                StarWidget()
               ],
             )
           ],
         ),
       ),
     );
+    } );
+  }
+}
+
+
+
+
+
+
+    //   SingleChildScrollView(
+    //   scrollDirection: Axis.horizontal,
+    //   child: Padding(
+    //     padding: EdgeInsets.only(left: 25.w, top: 21.h),
+    //     child: Row(
+    //       children: [
+    //         Column(
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           children: [
+    //             Container(
+    //               // color: Colors.red,
+    //               height: 83.h,
+    //               // width: 2.w,
+    //               child: Center(
+    //                 child: Row(
+    //                   children: [
+    //                     Container(
+    //                       height: 80.h,
+    //                       width: 81.w,
+    //                       decoration: BoxDecoration(
+    //                           borderRadius: BorderRadius.circular(16),
+    //                           image: DecorationImage(
+    //                               image: AssetImage("assets/images/userP.png"),
+    //                               fit: BoxFit.cover)),
+    //                     ),
+    //                     SizedBox(
+    //                       width: 9.w,
+    //                     ),
+    //                     Column(
+    //                       mainAxisAlignment: MainAxisAlignment.center,
+    //                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                       children: [
+    //                         Text(
+    //                           "Raghuram Singh ddhsdgh",
+    //                           style: kManRope_400_16_001314,
+    //                         ),
+    //                         SizedBox(
+    //                           height: 8.h,
+    //                         ),
+    //                         Text(
+    //                           "psychologist",
+    //                           style: kManRope_400_14_626A6A,
+    //                         ),
+    //                         SizedBox(
+    //                           height: 8.h,
+    //                         ),
+    //                         StarWidget()
+    //                       ],
+    //                     )
+    //                   ],
+    //                 ),
+    //               ),
+    //             ),
+    //             SizedBox(
+    //               height: 19.h,
+    //             ),
+    //             Container(
+    //               height: 83.h,
+    //               // width: 260.w,
+    //               child: Center(
+    //                 child: Row(
+    //                   children: [
+    //                     Container(
+    //                       height: 80.h,
+    //                       width: 81.w,
+    //                       decoration: BoxDecoration(
+    //                           borderRadius: BorderRadius.circular(16),
+    //                           image: DecorationImage(
+    //                               image:
+    //                                   AssetImage("assets/images/userpic3.png"),
+    //                               fit: BoxFit.cover)),
+    //                     ),
+    //                     SizedBox(
+    //                       width: 9.w,
+    //                     ),
+    //                     Column(
+    //                       mainAxisAlignment: MainAxisAlignment.center,
+    //                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                       children: [
+    //                         Text(
+    //                           "Animesh Jain",
+    //                           style: kManRope_400_16_001314,
+    //                         ),
+    //                         SizedBox(
+    //                           height: 8.h,
+    //                         ),
+    //                         Text(
+    //                           "psychologist",
+    //                           style: kManRope_400_14_626A6A,
+    //                         ),
+    //                         SizedBox(
+    //                           height: 8.h,
+    //                         ),
+    //                         StarWidget()
+    //                       ],
+    //                     )
+    //                   ],
+    //                 ),
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //         SizedBox(width: 17.w),
+    //         Column(
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           children: [
+    //             Container(
+    //               height: 83.h,
+    //               width: 281.w,
+    //               child: Center(
+    //                 child: Row(
+    //                   children: [
+    //                     Container(
+    //                       height: 80.h,
+    //                       width: 81.w,
+    //                       decoration: BoxDecoration(
+    //                           borderRadius: BorderRadius.circular(16),
+    //                           image: DecorationImage(
+    //                               image:
+    //                                   AssetImage("assets/images/userpic2.png"),
+    //                               fit: BoxFit.cover)),
+    //                     ),
+    //                     SizedBox(
+    //                       width: 9.w,
+    //                     ),
+    //                     Column(
+    //                       mainAxisAlignment: MainAxisAlignment.center,
+    //                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                       children: [
+    //                         Text(
+    //                           "Ekta Sahu",
+    //                           style: kManRope_400_16_001314,
+    //                         ),
+    //                         SizedBox(
+    //                           height: 8.h,
+    //                         ),
+    //                         Text(
+    //                           "Cardiologist",
+    //                           style: kManRope_400_14_626A6A,
+    //                         ),
+    //                         SizedBox(
+    //                           height: 8.h,
+    //                         ),
+    //                         StarWidget()
+    //                       ],
+    //                     )
+    //                   ],
+    //                 ),
+    //               ),
+    //             ),
+    //             SizedBox(
+    //               height: 19.h,
+    //             ),
+    //             Container(
+    //               height: 83.h,
+    //               width: 281.w,
+    //               child: Center(
+    //                 child: Row(
+    //                   children: [
+    //                     Container(
+    //                       height: 80.h,
+    //                       width: 81.w,
+    //                       decoration: BoxDecoration(
+    //                           borderRadius: BorderRadius.circular(16),
+    //                           image: DecorationImage(
+    //                               image:
+    //                                   AssetImage("assets/images/userpic4.png"),
+    //                               fit: BoxFit.cover)),
+    //                     ),
+    //                     SizedBox(
+    //                       width: 9.w,
+    //                     ),
+    //                     Column(
+    //                       mainAxisAlignment: MainAxisAlignment.center,
+    //                       crossAxisAlignment: CrossAxisAlignment.start,
+    //                       children: [
+    //                         Text(
+    //                           "Faisal Khan",
+    //                           style: kManRope_400_16_001314,
+    //                         ),
+    //                         SizedBox(
+    //                           height: 8.h,
+    //                         ),
+    //                         Text(
+    //                           "Anaesthetics",
+    //                           style: kManRope_400_14_626A6A,
+    //                         ),
+    //                         SizedBox(
+    //                           height: 8.h,
+    //                         ),
+    //                         StarWidget()
+    //                       ],
+    //                     )
+    //                   ],
+    //                 ),
+    //               ),
+    //             ),
+    //           ],
+    //         )
+    //       ],
+    //     ),
+    //   ),
+    // );
     // return SizedBox(
     // // width: 1.sw,
     // height: 182.h,
@@ -497,5 +559,3 @@ class PsychologistSlider extends StatelessWidget {
     //   // },
     //
     // );
-  }
-}
