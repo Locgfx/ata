@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PLoginScreen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/form_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/onboarding_screen_widgets/onb_slide.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_text_w_icon_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
 
@@ -282,11 +283,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: CustomTextWIconButton(
-              onPressed: () {
+              onPressed: () async {
+                var prefs = await SharedPreferences.getInstance();
+                prefs.setBool(Keys().isUser, true);
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (ctx) =>
                         // WelcomeScreen(),
-                        LoginScreen()));
+                        LoginScreen(showBack: true)));
               },
               text: 'I am seeking help',
             ),
@@ -297,7 +300,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             width: 1.sw,
             height: 56.h,
             child: CustomSecondaryButton(
-              onPressed: () {
+              onPressed: () async {
+                var prefs = await SharedPreferences.getInstance();
+                prefs.setBool(Keys().isUser, false);
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (ctx) => PLoginScreen()));
               },

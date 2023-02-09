@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/constants/globals.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../widgets/shared/buttons/custom_active_text_button.dart';
@@ -45,8 +47,8 @@ class _Form1State extends State<Form1> {
     'Nonbinary woman',
     'Pangender',
   ];
-  int _radioSelected = 0;
-  String _radioVal = '';
+
+  int _radioVal = 0;
 
   String problem = 'Male';
 
@@ -54,6 +56,37 @@ class _Form1State extends State<Form1> {
   bool b = false;
 
   FocusNode missingFocus = FocusNode();
+  final missingSomething = TextEditingController();
+
+  saveResponse() async {
+    var prefs = await SharedPreferences.getInstance();
+    if (widget.labels.isEmpty) {
+      if (missingSomething.text.isNotEmpty) {
+        prefs.setString(Keys().identity, missingSomething.text);
+      } else {
+        prefs.setString(Keys().identity, problem);
+      }
+    } else {
+      if (widget.index == 1) {
+        prefs.setString(Keys().physicalHealth, widget.labels[_radioVal]);
+      } else if (widget.index == 2) {
+        prefs.setString(Keys().mentalHealth, widget.labels[_radioVal]);
+      } else if (widget.index == 3) {
+        prefs.setString(Keys().mentalHealthPeace, widget.labels[_radioVal]);
+      } else if (widget.index == 4) {
+        prefs.setString(Keys().lowTime, widget.labels[_radioVal]);
+      } else if (widget.index == 5) {
+        prefs.setString(Keys().emotionDay, widget.labels[_radioVal]);
+      } else if (widget.index == 6) {
+        prefs.setString(Keys().isHappy, widget.labels[_radioVal]);
+      } else if (widget.index == 7) {
+        prefs.setString(Keys().mentalDiagnosis, widget.labels[_radioVal]);
+      } else if (widget.index == 8) {
+        prefs.setString(Keys().lineageProblem, widget.labels[_radioVal]);
+      }
+      //prefs.setString(key, value);
+    }
+  }
 
   @override
   void initState() {
@@ -223,6 +256,7 @@ class _Form1State extends State<Form1> {
                           ),
                           TextFormField(
                             focusNode: missingFocus,
+                            controller: missingSomething,
                             cursorColor: Colors.black,
                             decoration: InputDecoration(
                               //contentPadding: EdgeInsets.zero,
@@ -258,13 +292,12 @@ class _Form1State extends State<Form1> {
                                   Row(
                                     children: [
                                       Radio(
-                                        value: 1,
-                                        groupValue: _radioSelected,
-                                        //activeColor: Colors.blue,
+                                        value: index,
+                                        groupValue: _radioVal,
+                                        activeColor: k006D77,
                                         onChanged: (value) {
                                           setState(() {
-                                            // _radioSelected = value;
-                                            _radioVal = '';
+                                            _radioVal = index;
                                           });
                                         },
                                       ),
@@ -304,6 +337,7 @@ class _Form1State extends State<Form1> {
               height: 56,
               child: CustomActiveTextButton(
                 onPressed: () {
+                  saveResponse();
                   widget.onNextTap();
                 },
                 text: 'Next',

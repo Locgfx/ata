@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UWelcome/welcome_screen.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/question_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 // import 'package:greymatter/screens/UserPanel/UScreens/UWelcome/welcome_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -96,6 +99,14 @@ class _QuestionsState extends State<Questions> {
       },
       child: Scaffold(
         backgroundColor: kEDF6F9,
+        appBar: AppBar(
+          elevation: 0,
+          toolbarHeight: 0,
+          backgroundColor: kEDF6F9,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: kEDF6F9,
+          ),
+        ),
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(vertical: 24),
@@ -121,7 +132,9 @@ class _QuestionsState extends State<Questions> {
                         width: 80.w,
                       ),
                       InkWell(
-                        onTap: () {
+                        onTap: () async {
+                          var prefs = await SharedPreferences.getInstance();
+                          prefs.setBool(Keys().questionsDone, false);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => WelcomeScreen()));
                         },
@@ -136,7 +149,7 @@ class _QuestionsState extends State<Questions> {
                 Expanded(
                   //height: 300.h,
                   child: PageView(
-                    //physics: NeverScrollableScrollPhysics(),
+                    physics: NeverScrollableScrollPhysics(),
                     controller: _pageController,
                     onPageChanged: (v) {
                       setState(() {
@@ -149,7 +162,7 @@ class _QuestionsState extends State<Questions> {
                         questions: questionList[i].question,
                         questionControllers: questionList[i].questionController,
                         labels: questionList[i].label,
-                        onNextTap: () {
+                        onNextTap: () async {
                           if (i != 8) {
                             _pageController.nextPage(
                               duration: Duration(milliseconds: 300),
@@ -157,7 +170,8 @@ class _QuestionsState extends State<Questions> {
                             );
                           } else {
                             // SharedPrefs.setQuestionsLog(true);
-
+                            var prefs = await SharedPreferences.getInstance();
+                            prefs.setBool(Keys().questionsDone, true);
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (ctx) => WelcomeScreen()));
                             /* Navigator.push(
@@ -171,7 +185,7 @@ class _QuestionsState extends State<Questions> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
                     if (currentIndex == 8) {
                       Navigator.of(context).push(
                           MaterialPageRoute(builder: (ctx) => WelcomeScreen()));
@@ -181,6 +195,8 @@ class _QuestionsState extends State<Questions> {
                         curve: Curves.fastOutSlowIn,
                       );
                     }
+                    var prefs = await SharedPreferences.getInstance();
+                    prefs.setBool(Keys().questionsDone, false);
                   },
                   child: Container(
                     color: Colors.transparent,

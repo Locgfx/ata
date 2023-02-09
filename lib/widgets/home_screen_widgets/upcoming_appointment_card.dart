@@ -3,9 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
-class UpcomingAppointmentCard extends StatelessWidget {
+class UpcomingAppointmentCard extends StatefulWidget {
   const UpcomingAppointmentCard({Key? key}) : super(key: key);
 
+  @override
+  State<UpcomingAppointmentCard> createState() =>
+      _UpcomingAppointmentCardState();
+}
+
+class _UpcomingAppointmentCardState extends State<UpcomingAppointmentCard> {
   @override
   Widget build(BuildContext context) {
     return Stack(

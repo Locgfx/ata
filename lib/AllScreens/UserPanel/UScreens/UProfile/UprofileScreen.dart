@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/pofile_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAgreementscreen.dart';
@@ -329,13 +328,12 @@ class _UProfileScreenState extends State<UProfileScreen> {
   }
 }
 
-
-
 class UProfileLogoutBottomSheet extends StatefulWidget {
   const UProfileLogoutBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<UProfileLogoutBottomSheet> createState() => _UProfileLogoutBottomSheet();
+  State<UProfileLogoutBottomSheet> createState() =>
+      _UProfileLogoutBottomSheet();
 }
 
 class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
@@ -403,18 +401,18 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
                     children: [
                       Expanded(
                           child: GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                                height: 52.h,
-                                padding: EdgeInsets.only(top: 16),
-                                child: Center(
-                                    child: Text(
-                                      "Cancel",
-                                      style: kManRope_500_20_006D77,
-                                    ))),
-                          )),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            height: 52.h,
+                            padding: EdgeInsets.only(top: 16),
+                            child: Center(
+                                child: Text(
+                              "Cancel",
+                              style: kManRope_500_20_006D77,
+                            ))),
+                      )),
                       Container(
                         height: 52.h,
                         color: Colors.white,
@@ -422,24 +420,24 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
                       ),
                       Expanded(
                           child: GestureDetector(
-                            onTap: () {
-                              UserPrefs().setLoginFalse();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => LoginScreen(),
-                                ),
-                              );
-                            },
-                            child: Container(
-                                padding: EdgeInsets.only(top: 16),
-                                height: 52.h,
-                                child: Center(
-                                    child: Text(
-                                      "Logout",
-                                      style: kManRope_500_20_B64949,
-                                    ))),
-                          )),
+                        onTap: () {
+                          UserPrefs().setLoginFalse();
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => LoginScreen(showBack: false),
+                            ),
+                          );
+                        },
+                        child: Container(
+                            padding: EdgeInsets.only(top: 16),
+                            height: 52.h,
+                            child: Center(
+                                child: Text(
+                              "Logout",
+                              style: kManRope_500_20_B64949,
+                            ))),
+                      )),
                     ],
                   ),
                   // GestureDetector(

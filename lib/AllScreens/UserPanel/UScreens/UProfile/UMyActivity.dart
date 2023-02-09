@@ -56,7 +56,7 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                             children: [
                               Container(
                                 height: 45.h,
-                                width: 135.w,
+                                width: 136.w,
                                 child: Row(
                                   children: [
                                     Container(

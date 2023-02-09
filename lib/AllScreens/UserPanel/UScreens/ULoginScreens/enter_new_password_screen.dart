@@ -22,14 +22,16 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
 
   final TextEditingController _passwordController = TextEditingController();
 
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   bool hasPassFocus = false;
   bool hasCPassFocus = false;
   bool passEmpty = true;
   bool cPassEmpty = true;
 
-  bool visible = true;bool visible2 = true;
+  bool visible = true;
+  bool visible2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -58,28 +60,27 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
               SizedBox(height: 24.h),
               Text('Create Password', style: kManRope_700_20_001314),
               SizedBox(height: 16.h),
-              Text('Enter New Password for ',
-                  style: kManRope_400_14_626A6A),
+              Text('Enter New Password for ', style: kManRope_400_14_626A6A),
               SizedBox(height: 40.h),
               Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextFormField(
-                  onChanged: (val) {
-                  if (val.isNotEmpty) {
-                   setState(() {
-                   passEmpty= false;
-                    hasPassFocus = true;
-                     });
-                    }
-                   if (val.isEmpty) {
-                    setState(() {
-                      passEmpty = true;
-                      hasPassFocus = false;
-                    });
-                     }
-                      },
+                    onChanged: (val) {
+                      if (val.isNotEmpty) {
+                        setState(() {
+                          passEmpty = false;
+                          hasPassFocus = true;
+                        });
+                      }
+                      if (val.isEmpty) {
+                        setState(() {
+                          passEmpty = true;
+                          hasPassFocus = false;
+                        });
+                      }
+                    },
                     controller: _passwordController,
                     obscureText: visible,
                     decoration: InputDecoration(
@@ -87,11 +88,12 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
                       labelStyle: kManRope_400_16_626A6A,
                       suffixIconConstraints:
                           BoxConstraints(minHeight: 24.w, minWidth: 24.h),
-                      suffixIcon: InkWell(onTap: () {
-                        setState(() {
-                          visible = !visible;
-                        });
-                      },
+                      suffixIcon: InkWell(
+                        onTap: () {
+                          setState(() {
+                            visible = !visible;
+                          });
+                        },
                         child: SvgPicture.asset(
                           'assets/icons/eyeopen.svg',
                           width: 24.w,
@@ -105,7 +107,7 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
                     onChanged: (val) {
                       if (val.isNotEmpty) {
                         setState(() {
-                          cPassEmpty= false;
+                          cPassEmpty = false;
                           hasCPassFocus = true;
                         });
                       }
@@ -147,38 +149,38 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
                 ],
               ),
               const Spacer(),
-              passEmpty ?
-              CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-                  :cPassEmpty ?
-              CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-              :  CustomActiveTextButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      final resp = UserCreateNewPasswordApi().get(
-                          newPassword: _passwordController.text,
-                          confirmPassword: _confirmPasswordController.text
-                        );
-                      resp.then((value) {
-                        print(value);
-                        if (value['status'] == true) {
-                          Fluttertoast.showToast(
-                              msg: value['message']);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
-                        } else {
-                          Fluttertoast.showToast(
-                              msg: value['error']);
-                          /* Navigator.push(
+              passEmpty
+                  ? CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
+                  : cPassEmpty
+                      ? CustomDeactiveTextButton(
+                          onPressed: () {}, text: 'Login')
+                      : CustomActiveTextButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              final resp = UserCreateNewPasswordApi().get(
+                                  newPassword: _passwordController.text,
+                                  confirmPassword:
+                                      _confirmPasswordController.text);
+                              resp.then((value) {
+                                print(value);
+                                if (value['status'] == true) {
+                                  Fluttertoast.showToast(msg: value['message']);
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          LoginScreen(showBack: true)));
+                                } else {
+                                  Fluttertoast.showToast(msg: value['error']);
+                                  /* Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PDashboard()),
                                   );*/
 
-                        }
-                      });
-                    }
-                  },
-                  text: 'Change Password'),
+                                }
+                              });
+                            }
+                          },
+                          text: 'Change Password'),
               SizedBox(height: 20.h)
             ],
           ),
