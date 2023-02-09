@@ -4,10 +4,9 @@ import 'package:greymatter/constants/urlconstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
-class UserChangeEmailApi {
-  Future<dynamic> get({
-    required String newEmail,
-    required String confirmEmail,
+class DoctorChangeEmailOtpVerifyApi {
+  get({
+    required String otp,
   }) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString('cookies');
@@ -16,18 +15,19 @@ class UserChangeEmailApi {
       'Cookie': 'PHPSESSID=$v'
     };
     var request = http.Request(
-        'POST', Uri.parse('$baseUrl/change-email.php'));
-    print(v);
-    request.body =
-        json.encode({"new_email": newEmail, "cnew_email": confirmEmail});
-    request.headers.addAll(headers);
+        'POST',
+        Uri.parse(
+            '$baseUrl/verify-otp-for-mail.php'));
+    request.body = json.encode({"otp": otp});
     print(request.body);
+    request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
-    var rsp = jsonDecode(await response.stream.bytesToString());
+    var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
-      return rsp;
+      return resp;
     } else {
-      return rsp;
+      print(response.reasonPhrase);
+      return resp;
     }
   }
 }

@@ -301,7 +301,7 @@ class _PLoginScreenState extends State<PLoginScreen> {
                 InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => EnterMobileScreen()));
+                        builder: (ctx) => FormScreen()));
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

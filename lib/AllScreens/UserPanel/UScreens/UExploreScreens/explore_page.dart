@@ -54,242 +54,247 @@ class _ExplorePageState extends State<ExplorePage> {
   }
   @override
   Widget build(BuildContext context) {
-    return _isLoading ? Padding(
-      padding: const EdgeInsets.only(bottom: 150.0),
-      child: LoadingWidget(),
-    ) :Scaffold(
-      backgroundColor: kEDF6F9,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h,bottom: 80.h),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Stack(
+      children: [
+        Scaffold(
+          backgroundColor: kEDF6F9,
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h,bottom: 80.h),
+              child: Column(
                 children: [
-                  Text(
-                    '213 psychologists',
-                    style: kManRope_500_16_001314,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const FilterScreen()));
-                    },
-                    child: Container(
-                      color: Colors.transparent,
-                      padding: const EdgeInsets.all(10.0),
-                      child: SvgPicture.asset(
-                        'assets/icons/filter.svg',
-                        height: 20.w,
-                        width: 18.w,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '213 psychologists',
+                        style: kManRope_500_16_001314,
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              ListView.separated(
-                itemCount: psychologists.length,
-                scrollDirection: Axis.vertical,
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemBuilder: (ctx, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      top: index == 0 ? 24 : 0,
-                      //bottom: 16,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(24),
-                      child: Container(
-                        //clipBehavior: Clip.hardEdge,
-                        margin: EdgeInsets.all(5),
-                        decoration: CustomDecoration().card24Edf6Decoration(),
-                        padding: EdgeInsets.only(
-                          left: 20.w,
-                          right: 20,
-                          top: 24,
-                          bottom: 24,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const FilterScreen()));
+                        },
+                        child: Container(
+                          color: Colors.transparent,
+                          padding: const EdgeInsets.all(10.0),
+                          child: SvgPicture.asset(
+                            'assets/icons/filter.svg',
+                            height: 20.w,
+                            width: 18.w,
+                          ),
                         ),
-                        child: Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              // crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
+                    ],
+                  ),
+                  ListView.separated(
+                    itemCount: psychologists.length,
+                    scrollDirection: Axis.vertical,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                          top: index == 0 ? 24 : 0,
+                          //bottom: 16,
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(24),
+                          child: Container(
+                            //clipBehavior: Clip.hardEdge,
+                            margin: EdgeInsets.all(5),
+                            decoration: CustomDecoration().card24Edf6Decoration(),
+                            padding: EdgeInsets.only(
+                              left: 20.w,
+                              right: 20,
+                              top: 24,
+                              bottom: 24,
+                            ),
+                            child: Column(
                               children: [
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  // crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Container(
-                                        width: 64.w,
-                                        height: 64.h,
-                                        clipBehavior: Clip.hardEdge,
-                                        decoration: BoxDecoration(
-                                          color: kFFFFFF,
-                                            borderRadius:
-                                            BorderRadius.circular(10)),
-                                        child: CachedNetworkImage(
-                                          imageUrl:
-                                          psychologists[index]
-                                              .profilePhoto
-                                              .toString(),fit: BoxFit.cover,
-                                          placeholder: (context, url) =>  Center(
-                                            child: SpinKitThreeBounce(
-                                              color: k006D77,
-                                              size: 10,
-                                            ),
-                                          ),
-                                          errorWidget: (context, url, error) =>  Icon(Icons.error),
-                                        ),
-                                    ),
-                                    SizedBox(width: 12.w),
-                                    Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                    Row(
                                       children: [
-                                        Text('Priya Singh',
-                                            style: kManRope_600_16_Black),
-                                        SizedBox(height: 4.h),
-                                        Text( psychologists[index].education.toString(),
-                                            style: kManRope_400_14_626A6A),
-                                        SizedBox(height: 8.h),
-                                        // StarWidget()
-                                        Row(
+                                        Container(
+                                          width: 64.w,
+                                          height: 64.h,
+                                          clipBehavior: Clip.hardEdge,
+                                          decoration: BoxDecoration(
+                                              color: kFFFFFF,
+                                              borderRadius:
+                                              BorderRadius.circular(10)),
+                                          child: CachedNetworkImage(
+                                            imageUrl:
+                                            psychologists[index]
+                                                .profilePhoto
+                                                .toString(),fit: BoxFit.cover,
+                                            placeholder: (context, url) =>  Center(
+                                              child: SpinKitThreeBounce(
+                                                color: k006D77,
+                                                size: 10,
+                                              ),
+                                            ),
+                                            errorWidget: (context, url, error) =>  Icon(Icons.error),
+                                          ),
+                                        ),
+                                        SizedBox(width: 12.w),
+                                        Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                           children: [
-                                            Image.asset(
-                                              'assets/images/Star 1.png',
-                                              width: 12.w,
-                                              height: 12.h,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Text(
-                                              '4.0',
-                                              style: kManRope_400_12_001314,
-                                            ),
-                                            SizedBox(
-                                              width: 4,
-                                            ),
-                                            Text(
-                                              '.',
-                                              style: kManRope_400_12_001314,
-                                            ),
-                                            SizedBox(
-                                              width: 4.w,
-                                            ),
-                                            Text(
-                                              psychologists[index]
-                                                  .totalExprience
-                                                  .toString(),
-                                              style: kManRope_400_12_001314,
-                                            ),
-                                            Text(
-                                              ' Yrs. Exp',
-                                              style: kManRope_400_12_001314,
+                                            Text('Priya Singh',
+                                                style: kManRope_600_16_Black),
+                                            SizedBox(height: 4.h),
+                                            Text( psychologists[index].education.toString(),
+                                                style: kManRope_400_14_626A6A),
+                                            SizedBox(height: 8.h),
+                                            // StarWidget()
+                                            Row(
+                                              children: [
+                                                Image.asset(
+                                                  'assets/images/Star 1.png',
+                                                  width: 12.w,
+                                                  height: 12.h,
+                                                ),
+                                                SizedBox(
+                                                  width: 4,
+                                                ),
+                                                Text(
+                                                  '4.0',
+                                                  style: kManRope_400_12_001314,
+                                                ),
+                                                SizedBox(
+                                                  width: 4,
+                                                ),
+                                                Text(
+                                                  '.',
+                                                  style: kManRope_400_12_001314,
+                                                ),
+                                                SizedBox(
+                                                  width: 4.w,
+                                                ),
+                                                Text(
+                                                  psychologists[index]
+                                                      .totalExprience
+                                                      .toString(),
+                                                  style: kManRope_400_12_001314,
+                                                ),
+                                                Text(
+                                                  ' Yrs. Exp',
+                                                  style: kManRope_400_12_001314,
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
                                       ],
                                     ),
+                                    // Text('₹270', style: kManRope_400_12_001314),
                                   ],
                                 ),
-                                // Text('₹270', style: kManRope_400_12_001314),
-                              ],
-                            ),
-                            SizedBox(height: 24.h),
-                            Row(
-                              children: [
-                                SizedBox(width: 10),
-                                Text(
-                                  "Expertise in :",
-                                  style: kManRope_400_12_001314,
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                  width: 200,
+                                SizedBox(height: 24.h),
+                                Row(
+                                  children: [
+                                    SizedBox(width: 10),
+                                    Text(
+                                      "Expertise in :",
+                                      style: kManRope_400_12_001314,
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                      width: 200,
 
+                                    ),
+                                    // Text.rich(
+                                    //   TextSpan(
+                                    //     children: [
+                                    //       TextSpan(
+                                    //           text:
+                                    //               'Anxiety, Stress, Depression,Rel..',
+                                    //           style: kManRope_400_12_626A6A),
+                                    //       TextSpan(
+                                    //           text: 'Show more',
+                                    //           style: kManRope_400_12_006D77),
+                                    //     ],
+                                    //   ),
+                                    // )
+                                  ],
                                 ),
-                                // Text.rich(
-                                //   TextSpan(
-                                //     children: [
-                                //       TextSpan(
-                                //           text:
-                                //               'Anxiety, Stress, Depression,Rel..',
-                                //           style: kManRope_400_12_626A6A),
-                                //       TextSpan(
-                                //           text: 'Show more',
-                                //           style: kManRope_400_12_006D77),
-                                //     ],
-                                //   ),
-                                // )
-                              ],
-                            ),
-                            SizedBox(height: 24.h),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: SizedBox(
-                                    height: 56.h,
-                                    child: MainButton(
-                                        onPressed: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                  const UDoctorProfileScreen()));
-                                        },
-                                        child: Text(
-                                          "View Profile",
-                                          style: kManRope_500_16_006D77,
-                                        ),
-                                        color: kEDF6F9,
-                                        shape: CustomDecoration()
-                                            .button10outlineDecoration()),
-                                  ),
-                                ),
-                                SizedBox(width: 8.w),
-                                Expanded(
-                                  child: SizedBox(
-                                    height: 56.h,
-                                    child: MainButton(
-                                        onPressed: () {
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ConfirmAppointmentBooking(
-                                                        issue: widget.issue,
-                                                        date: date,
-                                                      )));
-                                        },
-                                        child: Text(
-                                          "Book session",
-                                          style: kManRope_500_16_white,
-                                        ),
-                                        color: k006D77,
-                                        shape: CustomDecoration()
-                                            .smallButton10Decoration()),
-                                  ),
-                                ),
+                                SizedBox(height: 24.h),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 56.h,
+                                        child: MainButton(
+                                            onPressed: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                      const UDoctorProfileScreen()));
+                                            },
+                                            child: Text(
+                                              "View Profile",
+                                              style: kManRope_500_16_006D77,
+                                            ),
+                                            color: kEDF6F9,
+                                            shape: CustomDecoration()
+                                                .button10outlineDecoration()),
+                                      ),
+                                    ),
+                                    SizedBox(width: 8.w),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: 56.h,
+                                        child: MainButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          ConfirmAppointmentBooking(
+                                                            issue: widget.issue,
+                                                            date: date,
+                                                          )));
+                                            },
+                                            child: Text(
+                                              "Book session",
+                                              style: kManRope_500_16_white,
+                                            ),
+                                            color: k006D77,
+                                            shape: CustomDecoration()
+                                                .smallButton10Decoration()),
+                                      ),
+                                    ),
 
+                                  ],
+                                ),
                               ],
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                },
-                separatorBuilder: (ctx, index) {
-                  return SizedBox(height: 24.h);
-                },
+                      );
+                    },
+                    separatorBuilder: (ctx, index) {
+                      return SizedBox(height: 24.h);
+                    },
+                  ),
+                  SizedBox(height: 130),
+                ],
               ),
-              SizedBox(height: 130),
-            ],
+            ),
           ),
         ),
-      ),
+        if (_isLoading) Padding(
+          padding:  EdgeInsets.only(bottom: 190.h),
+          child: LoadingWidget(),
+        )
+      ],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -16,7 +17,7 @@ class ChangeEmailOtpVerifyApi {
     var request = http.Request(
         'POST',
         Uri.parse(
-            'https://beta.alfrik.com/ataraxis/api-user//verify-otp-for-mail.php'));
+            '$baseUrl/verify-otp-for-mail.php'));
     request.body = json.encode({"otp": otp});
     print(request.body);
     request.headers.addAll(headers);

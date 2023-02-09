@@ -48,7 +48,7 @@ class _FormScreenState extends State<FormScreen> {
               Container(
                 // height: 1.h,
                 width: 1.sw,
-                decoration: CustomDecoration().topCircularRadius(),
+                decoration: CustomDecoration().top50containerDecoration(),
                 child: Padding(
                   padding: EdgeInsets.only(left: 24.w, top: 44.h, right: 24.w),
                   child: Column(
@@ -86,7 +86,7 @@ class _FormScreenState extends State<FormScreen> {
                           },
                           style: kManRope_500_16_626A6A,
                           decoration: TextfieldDecoration(label: 'Type name here')
-                              .textfieldDecoration(),
+                              .textFieldEDF6F9Decoration(),
                         ),
                       ),
                       // SizedBox(height: 20),
@@ -113,7 +113,7 @@ class _FormScreenState extends State<FormScreen> {
                           style: kManRope_500_16_626A6A,
                           decoration:
                               TextfieldDecoration(label: 'Type email here')
-                                  .textfieldDecoration(),
+                                  .textFieldEDF6F9Decoration(),
                         ),
                       ),
 
@@ -141,7 +141,7 @@ class _FormScreenState extends State<FormScreen> {
                           style: kManRope_500_16_626A6A,
                           decoration:
                               TextfieldDecoration(label: 'Type Phone No here')
-                                  .textfieldDecoration(),
+                                  .textFieldEDF6F9Decoration(),
                         ),
                       ),
                       SizedBox(
@@ -168,7 +168,7 @@ class _FormScreenState extends State<FormScreen> {
                           style: kManRope_500_16_626A6A,
                           decoration:
                               TextfieldDecoration(label: 'Type Alternate Phone No here')
-                                  .textfieldDecoration(),
+                                  .textFieldEDF6F9Decoration(),
                         ),
                       ),
 
@@ -195,7 +195,7 @@ class _FormScreenState extends State<FormScreen> {
                           style:kManRope_500_16_626A6A ,
                           decoration:
                           TextfieldDecoration(label: 'Add Adress')
-                              .textfieldDecoration(),
+                              .textFieldEDF6F9Decoration(),
                         ),
                       ),
                       SizedBox(
@@ -220,7 +220,7 @@ class _FormScreenState extends State<FormScreen> {
                           style: kManRope_500_16_626A6A,
                           decoration:
                               TextfieldDecoration(label: 'Type Timing here')
-                                  .textfieldDecoration(),
+                                  .textFieldEDF6F9Decoration(),
                         ),
                       ),
                       SizedBox(
@@ -244,7 +244,7 @@ class _FormScreenState extends State<FormScreen> {
                           },
                           style: kManRope_500_16_626A6A,
                           decoration: TextfieldDecoration(label: 'Type Date here')
-                              .textfieldDecoration(),
+                              .textFieldEDF6F9Decoration(),
                         ),
                       ),
 

@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/agreement_details_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/privacy_and_policy_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/terms_and_conditions_screen.dart';
+import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_agreement_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_profile_models/user_agreement_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class AgreementScreen extends StatelessWidget {

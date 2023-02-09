@@ -8,8 +8,6 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class PChangePasswordEnterOtpScreen extends StatefulWidget {

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChangePasswordEnterOtpScreen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/my_account_screen.dart';
+import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_change_password_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
@@ -30,40 +33,15 @@ class _PChangePasswordScreenState
   bool cPassEmpty = true;
 
 
-  final TextEditingController oPassController = TextEditingController();
-  final TextEditingController nPassController = TextEditingController();
-  final TextEditingController cPassController = TextEditingController();
+  final TextEditingController oldPasswordController = TextEditingController();
+  final TextEditingController newPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(resizeToAvoidBottomInset: false,
-      // bottomNavigationBar: Padding(
-      //   padding: EdgeInsets.only(bottom: 20.h),
-      //   child: SingleChildScrollView(
-      //     child: Center(
-      //       child: SizedBox(
-      //         height: 60.h,
-      //         width: 168.w,
-      //         child: MaterialButton(
-      //           onPressed: () {
-      //             Navigator.of(context).push(
-      //                 MaterialPageRoute(builder: (context) => PTabsScreen()));
-      //           },
-      //           color: k006D77,
-      //           shape: RoundedRectangleBorder(
-      //             borderRadius: BorderRadius.all(Radius.circular(48)),
-      //           ),
-      //           child: Center(
-      //             child: Text(
-      //               'Save',
-      //               style: kManRope_500_16_white,
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ),
       backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
         hasThreeDots: false,
@@ -72,116 +50,142 @@ class _PChangePasswordScreenState
       ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 44.h),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Enter Old password ',
-              style: kManRope_400_16_626A6A,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            SizedBox(
-              height: 47.h,
-              width: 1.sw,
-              child: TextFormField(
-                controller:oPassController ,
-                onChanged: (val) {
-                  if (val.isNotEmpty) {
-                    setState(() {
-                      oPassEmpty = false;
-                      hasoPassFocus = true;
-                    });
-                  }
-                  if (val.isEmpty) {
-                    setState(() {
-                      oPassEmpty = true;
-                      oPassEmpty = false;
-                    });
-                  }
-                },
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Enter Old password ',
+                style: kManRope_400_16_626A6A,
               ),
-            ),
-            SizedBox(
-              height: 40.h,
-            ),
-            Text(
-              'Enter New password',
-              style: kManRope_400_16_626A6A,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            SizedBox(
-              height: 47.h,
-              width: 1.sw,
-              child: TextFormField(
-                controller:nPassController ,
-                onChanged: (val) {
-                  if (val.isNotEmpty) {
-                    setState(() {
-                      nPassEmpty = false;
-                      hasNPassFocus = true;
-                    });
-                  }
-                  if (val.isEmpty) {
-                    setState(() {
-                      nPassEmpty = true;
-                      hasNPassFocus = false;
-                    });
-                  }
-                },
+              SizedBox(
+                height: 8.h,
               ),
-            ),
-            SizedBox(
-              height: 40.h,
-            ),
-            Text(
-              'Confirm new password',
-              style: kManRope_400_16_626A6A,
-            ),
-            SizedBox(
-              height: 8.h,
-            ),
-            SizedBox(
-              height: 47.h,
-              width: 1.sw,
-              child: TextFormField(
-                controller:cPassController ,
-                onChanged: (val) {
-                  if (val.isNotEmpty) {
-                    setState(() {
-                      cPassEmpty = false;
-                      hasCPassFocus = true;
-                    });
-                  }
-                  if (val.isEmpty) {
-                    setState(() {
-                      cPassEmpty = true;
-                      hasCPassFocus = false;
-                    });
-                  }
-                },
+              SizedBox(
+                height: 47.h,
+                width: 1.sw,
+                child: TextFormField(
+                  controller:oldPasswordController ,
+                  onChanged: (val) {
+                    if (val.isNotEmpty) {
+                      setState(() {
+                        oPassEmpty = false;
+                        hasoPassFocus = true;
+                      });
+                    }
+                    if (val.isEmpty) {
+                      setState(() {
+                        oPassEmpty = true;
+                        oPassEmpty = false;
+                      });
+                    }
+                  },
+                ),
               ),
-            ),
-            Spacer(),
-            oPassEmpty ?
-            CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                :nPassEmpty ?
-            CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                :cPassEmpty ?
-            CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                :CustomSmallActiveTextButton(onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PChangePasswordEnterOtpScreen()),
-              );
+              SizedBox(
+                height: 40.h,
+              ),
+              Text(
+                'Enter New password',
+                style: kManRope_400_16_626A6A,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              SizedBox(
+                height: 47.h,
+                width: 1.sw,
+                child: TextFormField(
+                  controller:newPasswordController ,
+                  onChanged: (val) {
+                    if (val.isNotEmpty) {
+                      setState(() {
+                        nPassEmpty = false;
+                        hasNPassFocus = true;
+                      });
+                    }
+                    if (val.isEmpty) {
+                      setState(() {
+                        nPassEmpty = true;
+                        hasNPassFocus = false;
+                      });
+                    }
+                  },
+                ),
+              ),
+              SizedBox(
+                height: 40.h,
+              ),
+              Text(
+                'Confirm new password',
+                style: kManRope_400_16_626A6A,
+              ),
+              SizedBox(
+                height: 8.h,
+              ),
+              SizedBox(
+                height: 47.h,
+                width: 1.sw,
+                child: TextFormField(
+                  controller:confirmPasswordController ,
+                  onChanged: (val) {
+                    if (val.isNotEmpty) {
+                      setState(() {
+                        cPassEmpty = false;
+                        hasCPassFocus = true;
+                      });
+                    }
+                    if (val.isEmpty) {
+                      setState(() {
+                        cPassEmpty = true;
+                        hasCPassFocus = false;
+                      });
+                    }
+                  },
+                ),
+              ),
+              Spacer(),
+              oPassEmpty ?
+              CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
+                  :nPassEmpty ?
+              CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
+                  :cPassEmpty ?
+              CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
+                  :CustomActiveTextButton(onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  final resp = DoctorChangePasswordApi().get(
+                      oldPassword: oldPasswordController.text,
+                      newPassword: newPasswordController.text,
+                      cNewPassword: confirmPasswordController.text
+                  );
+                  resp.then((value) async {
+                    print(value);
+                    if (value['status'] == true) {
+                      Fluttertoast.showToast(
+                          msg: 'Password changed successfully');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => PsychologistAccountScreen()));
+                    } else {
+                      Fluttertoast.showToast(msg: value['error']);
+                      /* Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => PDashboard()),
+                                      );*/
+                    }
+                  });
+                }
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => PChangePasswordEnterOtpScreen()),
+                // );
 
 
-            }, text: 'Next',),
-            SizedBox(height: 40.h,)
-          ],
+              }, text: 'Next',),
+              SizedBox(height: 40.h,)
+            ],
+          ),
         ),
       ),
     );

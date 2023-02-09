@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PLoginScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/agreement_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/help_and_support_screen.dart';
@@ -513,7 +514,7 @@ class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => PLoginScreen(),
+                                  builder: (_) => OnBoardingScreen(),
                                 ),
                               );
                             },

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAgreementscreen.dart';
@@ -425,7 +426,8 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => LoginScreen(showBack: false),
+                              builder: (_) => OnBoardingScreen(),
+                              // builder: (_) => LoginScreen(showBack: false),
                             ),
                           );
                         },

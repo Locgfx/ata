@@ -4,14 +4,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/post_view_container.dart';
+
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_posts_api.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:readmore/readmore.dart';
-
 import '../../../../constants/colors.dart';
 import 'UCreatepost.dart';
 
@@ -40,22 +39,24 @@ class _PostPageState extends State<PostPage> {
   int pageIndex = 0;
 
   UserPostModel model = UserPostModel();
-  List<UserPostModel> postsmodel = [];
+  List<UserPostModel> postModel = [];
 
   bool isLoading = false;
   bool isLoading2 = false;
+
 
   getData() {
     isLoading = true;
     final resp = UserPostApi().get();
     resp.then((value) {
       print(value);
-      setState(() {
-        for (var v in value) {
-          postsmodel.add(UserPostModel.fromJson(v));
-        }
-        isLoading = false;
-      });
+      if(mounted){
+        setState(() {
+          for (var v in value) {
+            postModel.add(UserPostModel.fromJson(v));
+          }
+          isLoading = false;
+        });}
     });
   }
 
@@ -83,7 +84,7 @@ class _PostPageState extends State<PostPage> {
               child: LoadingWidget(),) :Padding(
               padding: EdgeInsets.only(left: 24.w, right: 24.h, bottom: 159),
               child: ListView.separated(
-                itemCount:postsmodel.length,
+                itemCount:postModel.length,
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemBuilder: (ctx, index) {
@@ -103,7 +104,7 @@ class _PostPageState extends State<PostPage> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   height: 45.h,
                                   // width: 135.w,
                                   child: Row(
@@ -115,7 +116,7 @@ class _PostPageState extends State<PostPage> {
                                             color: Colors.white, shape: BoxShape.circle),
                                         clipBehavior: Clip.hardEdge,
                                         child: CachedNetworkImage(
-                                          imageUrl: postsmodel[index].photo.toString(),fit: BoxFit.cover,
+                                          imageUrl: postModel[index].photo.toString(),fit: BoxFit.cover,
                                           placeholder: (context, url) =>  Center(
                                             child: SpinKitThreeBounce(
                                               color: k006D77,
@@ -130,7 +131,7 @@ class _PostPageState extends State<PostPage> {
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text(postsmodel[index].name.toString(), style: kManRope_500_16_Black),
+                                          Text(postModel[index].name.toString(), style: kManRope_500_16_Black),
                                           // SizedBox(height: 1.h),
                                           Text('2 hours ago', style: kManRope_400_12_626A6A),
                                           // SizedBox(height: 8.h),
@@ -167,13 +168,13 @@ class _PostPageState extends State<PostPage> {
                               color: Colors.white,
                             ),
                             child: PageView.builder(
-                              itemCount: postsmodel[index].gallary!.length,
+                              itemCount: postModel[index].gallary!.length,
                                controller: page,
                                  scrollDirection: Axis.horizontal,
                                   pageSnapping: true,
                                      itemBuilder: (BuildContext context,ind) {
                                        return CachedNetworkImage(
-                                         imageUrl: postsmodel[index].gallary![ind].toString(),fit: BoxFit.cover,
+                                         imageUrl: postModel[index].gallary![ind].toString(),fit: BoxFit.cover,
                                          placeholder: (context, url) =>  Center(
                                            child: SpinKitThreeBounce(
                                              color: k006D77,
@@ -182,11 +183,7 @@ class _PostPageState extends State<PostPage> {
                                          ),
                                          errorWidget: (context, url, error) =>  Icon(Icons.error),
                                        );
-                                       //   Image.network(postsmodel[index].gallary![ind].toString(),fit: BoxFit.cover,
-                                       // errorBuilder: (q,w,e) => SpinKitFadingCircle(
-                                       //   size: 60,
-                                       //   color: k006D77,
-                                       // ),);
+
                                      }
                             )
                           ),
@@ -201,7 +198,7 @@ class _PostPageState extends State<PostPage> {
                               children: [
                                 Row(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       height: 48.h,
                                       width: 73.w,
                                       // color: Colors.red,
@@ -255,7 +252,7 @@ class _PostPageState extends State<PostPage> {
                                               },
                                               child: Padding(
                                                 padding: const EdgeInsets.only(left: 12),
-                                                child: Container(
+                                                child: SizedBox(
                                                   height: 24.h,
                                                   width: 24.w,
                                                   // color: Colors.red,
@@ -280,7 +277,7 @@ class _PostPageState extends State<PostPage> {
                                 ),
                                 Row(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       height: 48,
                                       width: 48,
                                       // color: Colors.red,
@@ -293,7 +290,7 @@ class _PostPageState extends State<PostPage> {
                                     // SizedBox(
                                     //   width: 8.w,
                                     // ),
-                                    Container(
+                                    SizedBox(
                                       height: 48,
                                       width: 48,
                                       // color: Colors.red,
@@ -308,19 +305,10 @@ class _PostPageState extends State<PostPage> {
                               ],
                             ),
                           ),
-                          // SizedBox(
-                          //   height: 16.h,
-                          // ),
-                          // Align(
-                          //   alignment: Alignment.centerLeft,
-                          //   child: Text( "dsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfda",
-                          //     style:kManRope_400_14_626A6A ,
-                          //     overflow: TextOverflow.ellipsis,
-                          //   ),
-                          // ),
+
                         Align(
                            alignment: Alignment.centerLeft,
-                          child: ReadMoreText(postsmodel[index].caption.toString(),
+                          child: ReadMoreText(postModel[index].caption.toString(),
                             style:kManRope_400_14_626A6A ,
                             trimLines: 1,
                             colorClickableText: k006D77,

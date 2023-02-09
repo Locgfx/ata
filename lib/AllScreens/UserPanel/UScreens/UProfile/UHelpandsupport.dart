@@ -25,37 +25,6 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
         appBarText: 'Help And Support',
         imgPath: 'assets/images/iconbackappbar2.png',
       ),
-      /*appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        toolbarHeight:30,
-        elevation: 0,
-      ),*/
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 40.w,
-      //   backgroundColor: kEDF6F9,
-      //   centerTitle: false,
-      //   title: Text(
-      //     'Help and support',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   titleSpacing: 18.w,
-      //   leading: GestureDetector(
-      //     behavior: HitTestBehavior.translucent,
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [

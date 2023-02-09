@@ -19,6 +19,7 @@ class UserProfileUpdateApi {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v',
     };
+    print(headers);
     var request = http.Request('PUT', Uri.parse('$baseUrl/update-profile.php'));
     request.body = json.encode({
       "name": name,
@@ -27,9 +28,11 @@ class UserProfileUpdateApi {
       "relationship_status": relationshipStatus,
       "occupation": occupation,
     });
+    print(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var rsp = jsonDecode(await response.stream.bytesToString());
+    print(rsp);
     if (response.statusCode == 200) {
       return rsp;
     } else {

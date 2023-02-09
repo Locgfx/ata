@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChangeEmailOtpEnterScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/basic_details_widget.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/reset_email_otp_screen.dart';
+import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_change_email_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -21,14 +23,16 @@ class PsychologistChangeEmailScreen extends StatefulWidget {
 class _PsychologistChangeEmailScreenState
     extends State<PsychologistChangeEmailScreen> {
 
-  final TextEditingController nEmailController = TextEditingController();
-  final TextEditingController cEmailController = TextEditingController();
+  final TextEditingController newEmailController = TextEditingController();
+  final TextEditingController confirmEmailController = TextEditingController();
 
   bool hasNEmailFocus = false;
   bool hasCEmailFocus = false;
 
   bool nEmailEmpty = true;
   bool cEmailEmpty = true;
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +74,7 @@ class _PsychologistChangeEmailScreenState
               height: 48.h,
               // color: Colors.red,
               child: TextField(
-                controller: nEmailController,
+                controller: newEmailController,
                 onChanged: (val) {
                   if (val.isNotEmpty) {
                     setState(() {
@@ -112,7 +116,7 @@ class _PsychologistChangeEmailScreenState
               height: 48.h,
               // color: Colors.red,
               child: TextField(
-                controller: cEmailController,
+                controller: confirmEmailController,
                 onChanged: (val) {
                   if (val.isNotEmpty) {
                     setState(() {
@@ -150,14 +154,32 @@ class _PsychologistChangeEmailScreenState
 
             Spacer(),
             nEmailEmpty ?
-            CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
+            CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
                 :cEmailEmpty ?
-            CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                :CustomSmallActiveTextButton(onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PEmailEnterOtpScreen()),
-              );
+            CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
+                :CustomActiveTextButton(onPressed: () {
+              final resp = DoctorChangeEmailApi().get(
+                  newEmail: newEmailController.text,
+                  confirmEmail: confirmEmailController.text);
+              resp.then((value) async {
+                print(resp);
+                // var prefs = await SharedPreferences.getInstance();
+                // print(prefs.getString('cookies'));
+                if (value['status'] == true) {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => PEmailEnterOtpScreen()));
+                  Fluttertoast.showToast(
+                      msg: 'Your OTP is ${value['otp']}');
+                } else {
+                  print(value.toString());
+                  Fluttertoast.showToast(
+                      msg: value['error']);
+                }
+              });
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => PEmailEnterOtpScreen()),
+              // );
 
 
             }, text: 'Next',),

@@ -4,8 +4,8 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/my_acco
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
-import 'package:otp_text_field/otp_text_field.dart';
-import 'package:otp_text_field/style.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
+
 
 class ResetEmailOTPScreen extends StatefulWidget {
   const ResetEmailOTPScreen({Key? key}) : super(key: key);
@@ -64,17 +64,40 @@ class _ResetPasswordOTPScreen extends State<ResetEmailOTPScreen> {
                 Text('an OTP has been sent to XYZ@gmail.com',
                     style: kManRope_400_14_626A6A),
                 SizedBox(height: 42.h),
-                OTPTextField(
-                  spaceBetween: 12,
-                  length: 4,
-                  width: 281.w,
-                  fieldWidth: 41,
-                  style: TextStyle(fontSize: 17),
-                  textFieldAlignment: MainAxisAlignment.spaceEvenly,
-                  fieldStyle: FieldStyle.underline,
-                  onCompleted: (pin) {
-                    print("Completed: " + pin);
-                  },
+                PinCodeTextField(
+                  // onChanged: (val) {
+                  //   if (val.isNotEmpty) {
+                  //     setState(() {
+                  //       otpEmpty = false;
+                  //     });
+                  //   }
+                  // },
+                  // validator: (otpText) {
+                  //   if (otpText == null || otpText.isEmpty) {
+                  //     return "Enter pin";
+                  //   }
+                  //   return null;
+                  // },
+                  // controller: otpController,
+                  keyboardType: TextInputType.number,
+                  appContext: context,
+                  length: 6,
+                  cursorColor: k006D77,
+                  textStyle: kManRope_400_20_Black,
+                  pinTheme: PinTheme(
+                    inactiveColor: Colors.black,
+                    //activeFillColor: kECF0F8,
+                    fieldOuterPadding: const EdgeInsets.all(0),
+                    //selectedFillColor: kECF0F8,
+                    selectedColor: k006D77,
+                    borderWidth: 0,
+                    // fieldWidth: 30.w,
+                    fieldHeight: 50.h,
+                    //borderRadius: BorderRadius.circular(8),
+                    //inactiveFillColor: kECF0F8,
+                    activeColor: k006D77,
+                    shape: PinCodeFieldShape.underline,
+                  ), onChanged: (String value) { },
                 ),
                 SizedBox(height: 506.h),
 

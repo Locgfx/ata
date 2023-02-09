@@ -13,6 +13,16 @@ class CustomDecoration {
     );
   }
 
+  BoxDecoration top50containerDecoration() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(50),
+          topRight: Radius.circular(50)
+      ),
+      color: kFFFFFF,
+    );
+  }
+
   BoxDecoration outline5A72EDDecoration() {
     return BoxDecoration(
         borderRadius: BorderRadius.circular(16),
@@ -299,6 +309,31 @@ class TextfieldDecoration {
             borderSide: BorderSide.none),
         focusColor: kEDF6F9,
         fillColor: Colors.white,
+        hintText: label,
+        hintStyle: kManRope_400_14_626A6A,
+        suffixIconConstraints: BoxConstraints(minHeight: 10, minWidth: 10),
+        suffixIcon: child ?? SizedBox.shrink());
+  }
+  InputDecoration textFieldEDF6F9Decoration() {
+    return InputDecoration(
+        contentPadding: EdgeInsets.symmetric(horizontal: 16),
+        filled: true,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+        errorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide.none),
+        focusedErrorBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide.none),
+        focusColor: kEDF6F9,
+        fillColor: kEDF6F9,
         hintText: label,
         hintStyle: kManRope_400_14_626A6A,
         suffixIconConstraints: BoxConstraints(minHeight: 10, minWidth: 10),

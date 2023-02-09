@@ -16,7 +16,7 @@ class UserProfileApi {
     var request = http.Request(
         'GET',
         Uri.parse(
-            'https://beta.alfrik.com/ataraxis/api-user//user-profile.php'));
+            '$baseUrl/user-profile.php'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var rsp = jsonDecode(await response.stream.bytesToString());
