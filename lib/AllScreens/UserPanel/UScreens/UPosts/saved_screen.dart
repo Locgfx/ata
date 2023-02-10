@@ -5,7 +5,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UCreatepost.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/post_view_container.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_saved_posts_api.dart';
 import 'package:greymatter/model/UModels/user_posts_model/user_saved_posts_model.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
@@ -97,9 +96,8 @@ class _SavedScreenState extends State<SavedScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                   height: 45.h,
-                                  // width: 135.w,
                                   child: Row(
                                     children: [
                                       Container(
@@ -134,7 +132,6 @@ class _SavedScreenState extends State<SavedScreen> {
                                   ),
                                 ),
                                 GestureDetector(
-
                                   onTap: () {
                                     _postbottomsheet();
                                   },
@@ -176,11 +173,6 @@ class _SavedScreenState extends State<SavedScreen> {
                                       ),
                                       errorWidget: (context, url, error) =>  Icon(Icons.error),
                                     );
-                                    //   Image.network(postsmodel[index].gallary![ind].toString(),fit: BoxFit.cover,
-                                    // errorBuilder: (q,w,e) => SpinKitFadingCircle(
-                                    //   size: 60,
-                                    //   color: k006D77,
-                                    // ),);
                                   }
                               )
                           ),
@@ -195,11 +187,9 @@ class _SavedScreenState extends State<SavedScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       height: 48.h,
                                       width: 73.w,
-                                      // color: Colors.red,
-
                                       child: Padding(
                                         padding: const EdgeInsets.only(left: 12),
                                         child: Row(
@@ -249,11 +239,9 @@ class _SavedScreenState extends State<SavedScreen> {
                                               },
                                               child: Padding(
                                                 padding: const EdgeInsets.only(left: 12),
-                                                child: Container(
+                                                child: SizedBox(
                                                   height: 24.h,
                                                   width: 24.w,
-                                                  // color: Colors.red,
-
                                                   child: Image.asset(
                                                     'assets/images/iconcomment24.png',
                                                     height: 24.h,
@@ -274,7 +262,7 @@ class _SavedScreenState extends State<SavedScreen> {
                                 ),
                                 Row(
                                   children: [
-                                    Container(
+                                    SizedBox(
                                       height: 48,
                                       width: 48,
                                       // color: Colors.red,
@@ -287,7 +275,7 @@ class _SavedScreenState extends State<SavedScreen> {
                                     // SizedBox(
                                     //   width: 8.w,
                                     // ),
-                                    Container(
+                                    SizedBox(
                                       height: 48,
                                       width: 48,
                                       // color: Colors.red,
@@ -302,16 +290,6 @@ class _SavedScreenState extends State<SavedScreen> {
                               ],
                             ),
                           ),
-                          // SizedBox(
-                          //   height: 16.h,
-                          // ),
-                          // Align(
-                          //   alignment: Alignment.centerLeft,
-                          //   child: Text( "dsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfdadsfdsfda",
-                          //     style:kManRope_400_14_626A6A ,
-                          //     overflow: TextOverflow.ellipsis,
-                          //   ),
-                          // ),
                           Align(
                             alignment: Alignment.centerLeft,
                             child: ReadMoreText(savedpostlist[index].caption.toString(),

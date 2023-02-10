@@ -39,12 +39,13 @@ class _RecommendedVideosSliderState extends State<RecommendedVideosSlider> {
     final resp = UserRecommendedVideosApi().get();
     resp.then((value) {
       print(value);
-      setState(() {
-        for (var v in value) {
-          recommendedVideos.add(UserRecommendedVideoModel.fromJson(v));
-        }
-        _isLoading = false;
-      });
+      if(mounted){
+        setState(() {
+          for (var v in value) {
+            recommendedVideos.add(UserRecommendedVideoModel.fromJson(v));
+          }
+          _isLoading = false;
+        });}
     });
   }
 

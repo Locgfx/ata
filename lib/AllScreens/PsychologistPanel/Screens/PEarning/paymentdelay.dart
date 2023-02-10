@@ -35,15 +35,12 @@ class _PaymentDelayState extends State<PaymentDelay> {
                         onTap: () {
                           Navigator.pop(context);
                         },
-                        child: Container(
-                          // color: Colors.red,
-                          child: Image.asset(
-                            "assets/images/iconcross.png",
-                            height: 24.h,
-                            width: 24.w,
-                            // height: 12.h,
-                            // width: 12.w,
-                          ),
+                        child: Image.asset(
+                          "assets/images/iconcross.png",
+                          height: 24.h,
+                          width: 24.w,
+                          // height: 12.h,
+                          // width: 12.w,
                         ),
                       )),
                   SizedBox(

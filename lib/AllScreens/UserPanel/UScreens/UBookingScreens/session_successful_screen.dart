@@ -6,7 +6,6 @@ import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/AppWidgets.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -28,27 +27,6 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
         automaticallyImplyLeading: false,
         toolbarHeight: 20.h,
       ),
-      /*appBar: AppBar(
-        elevation: 0,
-        leadingWidth: 40.w,
-        centerTitle: false,
-        backgroundColor: Colors.white,
-        titleSpacing: 18.w,
-        */ /*leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),*/ /*
-      ),*/
-
       body: SizedBox.expand(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
@@ -66,73 +44,56 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                   height: 183.h,
                   width: 186.w,
                 ),
-                Container(
-                  // height: 68.h,
-                  // color: Colors.red,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          height: 64.h,
+                          width: 64.w,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Image.asset(
+                            'assets/images/personss.png',
                             height: 64.h,
                             width: 64.w,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Image.asset(
-                              'assets/images/personss.png',
-                              height: 64.h,
-                              width: 64.w,
-                              fit: BoxFit.cover,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 16.h,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Priya Singh',
+                              style: kManRope_500_16_001314,
                             ),
-                          ),
-                          SizedBox(
-                            width: 16.h,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Priya Singh',
-                                style: kManRope_500_16_001314,
-                              ),
-                              SizedBox(
-                                height: 4.h,
-                              ),
-                              Text(
-                                'MA in Counselling Psychology',
-                                style: kManRope_400_12_626A6A,
-                              ),
-                              SizedBox(
-                                height: 8.h,
-                              ),
-                              StarWidget()
-                              // Row(
-                              //   children: [
-                              //     SvgPicture.asset(
-                              //       'assets/icons/star.svg',
-                              //       width: 12.w,
-                              //       height: 12.h,
-                              //     ),
-                              //     Text(
-                              //       '12 Yrs. Exp',
-                              //       style: kManRope_400_12_001314,
-                              //     )
-                              //   ],
-                              // )
-                            ],
-                          ),
-                        ],
-                      ),
-                      Image.asset(
-                        'assets/images/3dot48.png',
-                        width: 48.w,
-                        height: 48.h,
-                      ),
-                    ],
-                  ),
+                            SizedBox(
+                              height: 4.h,
+                            ),
+                            Text(
+                              'MA in Counselling Psychology',
+                              style: kManRope_400_12_626A6A,
+                            ),
+                            SizedBox(
+                              height: 8.h,
+                            ),
+                            StarWidget()
+                          ],
+                        ),
+                      ],
+                    ),
+                    Image.asset(
+                      'assets/images/3dot48.png',
+                      width: 48.w,
+                      height: 48.h,
+                    ),
+                  ],
                 ),
                 SizedBox(
                   height: 34.h,
@@ -310,14 +271,6 @@ class _SessionSuccessfulState extends State<SessionSuccessful> {
                       style: kManRope_500_16_white,
                     ),
                   ),
-                  // child: CustomActiveTextButton(
-                  //     onPressed: () {
-                  //       Navigator.of(context).push(MaterialPageRoute(
-                  //           builder: (ctx) => HomeScreen()));
-                  //       /*Navigator.of(context).push(MaterialPageRoute(
-                  //                     builder: (ctx) => WelcomeScreen()));*/
-                  //     },
-                  //     text: 'Home'),
                 ),
                 SizedBox(height: 24.h),
               ],

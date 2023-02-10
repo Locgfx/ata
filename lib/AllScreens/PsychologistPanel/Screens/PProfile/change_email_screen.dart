@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChangeEmailOtpEnterScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/basic_details_widget.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/reset_email_otp_screen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_change_email_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -67,10 +66,7 @@ class _PsychologistChangeEmailScreenState
               'Enter New email ',
               style: kManRope_400_16_626A6A,
             ),
-            // SizedBox(
-            //   height: 8.h,
-            // ),
-            Container(
+            SizedBox(
               height: 48.h,
               // color: Colors.red,
               child: TextField(
@@ -109,10 +105,8 @@ class _PsychologistChangeEmailScreenState
               'Confirm new email ',
               style: kManRope_400_16_626A6A,
             ),
-            // SizedBox(
-            //   height: 8.h,
-            // ),
-            Container(
+
+            SizedBox(
               height: 48.h,
               // color: Colors.red,
               child: TextField(
@@ -176,61 +170,11 @@ class _PsychologistChangeEmailScreenState
                       msg: value['error']);
                 }
               });
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => PEmailEnterOtpScreen()),
-              // );
-
-
             }, text: 'Next',),
             SizedBox(height: 40.h,)
-
-
-
           ],
         ),
       ),
-
-      // bottomNavigationBar: SingleChildScrollView(
-      //   child: Column(
-      //     children: [
-      //       Center(
-      //         child: Text(
-      //           'You will receive an otp to your new email after clicking next',
-      //           style: kManRope_400_16_626A6A,
-      //           textAlign: TextAlign.center,
-      //         ),
-      //       ),
-      //       SizedBox(height: 16),
-      //       Center(
-      //         child: SizedBox(
-      //           height: 60.h,
-      //           width: 168.w,
-      //           child: MaterialButton(
-      //             onPressed: () {
-      //               /*if (mNo.text == mCNo.text && mCNo.text.length == 10) {
-      //
-      //               }*/
-      //               Navigator.of(context).push(MaterialPageRoute(
-      //                   builder: (context) => ResetEmailOTPScreen()));
-      //             },
-      //             color: (e.text == eC.text && eC.text.contains('@'))
-      //                 ? k006D77
-      //                 : kB5BABA,
-      //             shape: CustomDecoration().smallButtonDecoration(),
-      //             child: Center(
-      //               child: Text(
-      //                 'Next',
-      //                 style: kManRope_500_16_white,
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //       SizedBox(height: 24),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

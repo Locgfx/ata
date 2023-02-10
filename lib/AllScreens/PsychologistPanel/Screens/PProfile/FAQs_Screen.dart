@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/chatmessage.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -99,7 +98,7 @@ class FAQsScreen extends StatelessWidget {
                         BoxConstraints(maxHeight: 55.h, maxWidth: 55.w),
                     suffixIcon: Padding(
                       padding: EdgeInsets.only(right: 8),
-                      child: Container(
+                      child: SizedBox(
                           height: 48,
                           width: 48,
                           // color: Colors.red,
@@ -115,7 +114,7 @@ class FAQsScreen extends StatelessWidget {
               SizedBox(
                 height: 40.h,
               ),
-              Container(
+              SizedBox(
                 height: 48.h,
                 width: 380.w,
                 child: Row(
@@ -125,7 +124,7 @@ class FAQsScreen extends StatelessWidget {
                       'What is carebal ?',
                       style: kManRope_500_16_001314,
                     ),
-                    Container(
+                    SizedBox(
                       height: 48,
                       width: 48,
                       // color: Colors.red,
@@ -156,7 +155,7 @@ class FAQsScreen extends StatelessWidget {
               SizedBox(
                 height: 20.h,
               ),
-              Container(
+              SizedBox(
                 height: 48.h,
                 width: 380.w,
                 child: Row(
@@ -166,7 +165,7 @@ class FAQsScreen extends StatelessWidget {
                       'What is carebal ?',
                       style: kManRope_500_16_001314,
                     ),
-                    Container(
+                    SizedBox(
                       height: 48,
                       width: 48,
                       // color: Colors.red,

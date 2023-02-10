@@ -123,7 +123,7 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                                     ],
                                   ),
                                   Center(
-                                    child: Container(
+                                    child: SizedBox(
                                       height: 48,
                                       width: 48,
                                       // color: Colors.red,
@@ -172,7 +172,7 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                                   ],
                                 ),
                                 Center(
-                                  child: Container(
+                                  child: SizedBox(
                                     height: 48,
                                     width: 48,
                                     // color: Colors.red,

@@ -164,40 +164,6 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
             ),
           ),
         )
-        // Center(
-        //   child: MainButton(
-        //     child: Padding(
-        //       padding: const EdgeInsets.symmetric(horizontal: 63, vertical: 15),
-        //       child: Text(
-        //         "Done",
-        //         style: kManRope_500_18_FFFFF,
-        //       ),
-        //     ),
-        //     color: k006D77,
-        //     shape: CustomDecoration().smallButtonDecoration(),
-        //     onPressed: () {},
-        //   ),
-        // ),
-        // Center(
-        //   child: SizedBox(
-        //     height: 56.h,
-        //     width: 168.w,
-        //     child: MaterialButton(
-        //       color: k006D77,
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(48), // <-- Radius
-        //       ),
-        //       onPressed: () {
-        //         Navigator.of(context).push(MaterialPageRoute(
-        //             builder: (context) => PsychologistEditPersonalInfo()));
-        //       },
-        //       child: Text(
-        //         'Edit',
-        //         style: kManRope_400_16_white,
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ],
     ) :
     Column(
@@ -217,8 +183,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
                         style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
-                      // color: Colors.red,
+                    SizedBox(
                       width: 335.w,
                       child: TextField(
                         // readOnly: true,
@@ -250,8 +215,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
                         style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
-                      // color: Colors.red,
+                    SizedBox(
                       width: 335.w,
                       child: TextField(
                           style: kManRope_400_16_001314,
@@ -286,8 +250,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
                         style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
-                      // color: Colors.red,
+                    SizedBox(
                       width: 320.w,
                       child: TextField(
                           style: kManRope_400_16_001314,
@@ -306,7 +269,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
                     _SpecializationBottomSheet();
 
                   },
-                  child: Container(
+                  child: SizedBox(
                       height: 48,
                       width: 48,
                       child: Image.asset("assets/images/icondropdownlargee.png",height: 20,width: 20,)),
@@ -331,8 +294,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
                         style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
-                      // color: Colors.red,
+                    SizedBox(
                       width: 320.w,
                       child: TextField(
                           style: kManRope_400_16_001314,
@@ -350,7 +312,7 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
                     _LanguageBottomSheet();
 
                   },
-                  child: Container(   height: 48,
+                  child: SizedBox(   height: 48,
                       width: 48,
                       child: Image.asset("assets/images/icondropdownlargee.png")),
                 )
@@ -387,8 +349,6 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
                 ),
               ],
             ),
-
-
           ],
         ),
         SizedBox(
@@ -425,180 +385,5 @@ class _EditDoctorProfileState extends State<EditDoctorProfile> {
 
       ],
     );
-    // return SingleChildScrollView(
-    //   child: SizedBox(
-    //     // height: 600.h,
-    //     child: Column(
-    //       crossAxisAlignment: CrossAxisAlignment.start,
-    //       children: [
-    //         SizedBox(
-    //           height: 36.h,
-    //         ),
-    //         Text(
-    //           'About',
-    //           style: kManRope_400_16_626A6A,
-    //         ),
-    //         SizedBox(
-    //           height: 5.h,
-    //         ),
-    //         TextField(
-    //           readOnly: isreadable? true:false,
-    //           decoration: TextfieldDecoration(
-    //               label: 'About',
-    //               child: Image.asset(
-    //                 "assets/images/editbutton.png",
-    //                 height: 20,
-    //               )).underlinefieldDecoration(),
-    //         ),
-    //         SizedBox(
-    //           height: 20.h,
-    //         ),
-    //         Text(
-    //           'Total exprience',
-    //           style: kManRope_400_16_626A6A,
-    //         ),
-    //         SizedBox(
-    //           height: 8.h,
-    //         ),
-    //         TextField(
-    //           readOnly: isreadable? true:false,
-    //           decoration: TextfieldDecoration(
-    //               label: 'Total experience',
-    //               child: Image.asset(
-    //                 "assets/images/editbutton.png",
-    //                 height: 20,
-    //               )).underlinefieldDecoration(),
-    //         ),
-    //         SizedBox(
-    //           height: 20.h,
-    //         ),
-    //         Text(
-    //
-    //           'Specialization',
-    //           style: kManRope_400_16_626A6A,
-    //         ),
-    //         SizedBox(
-    //           height: 8.h,
-    //         ),
-    //         TextField(
-    //           readOnly: isreadable? true:false,
-    //           onTap: () {
-    //
-    //             _SpecializationBottomSheet();
-    //           },
-    //           // readOnly: true,
-    //           decoration: TextfieldDecoration(
-    //               label: 'Specialization',
-    //               child: Image.asset(
-    //                 "assets/images/downarrowblack.png",
-    //                 height: 5,
-    //               )).underlinefieldDecoration(),
-    //         ),
-    //         SizedBox(
-    //           height: 20.h,
-    //         ),
-    //         Text(
-    //           'Language',
-    //           style: kManRope_400_16_626A6A,
-    //         ),
-    //         SizedBox(
-    //           height: 8.h,
-    //         ),
-    //         TextField(
-    //           readOnly: isreadable? true:false,
-    //           onTap: () {
-    //             _LanguageBottomSheet();
-    //           },
-    //           // readOnly: true,
-    //           decoration: TextfieldDecoration(
-    //               label: 'Language',
-    //               child: Image.asset(
-    //                 "assets/images/downarrowblack.png",
-    //                 height: 5,
-    //               )).underlinefieldDecoration(),
-    //         ),
-    //         SizedBox(
-    //           height: 20.h,
-    //         ),
-    //         Text(
-    //           'Pricing',
-    //           style: kManRope_400_16_626A6A,
-    //         ),
-    //         SizedBox(height: 8.h),
-    //
-    //         Container(
-    //           height: 39.h,
-    //           decoration: BoxDecoration(
-    //             color: kE2F2F4,
-    //             borderRadius: BorderRadius.all(Radius.circular(10)),
-    //           ),
-    //           child: TextField(
-    //             decoration: TextfieldDecoration(label: 'Type Price Here').textfielde2f2f4Decoration(),
-    //           )
-    //         ),
-    //         SizedBox(
-    //           height: 40.h,
-    //         ),
-    //         Padding(
-    //           padding: EdgeInsets.only(bottom: 20.h),
-    //           child: Center(
-    //             child: MainButton(
-    //                 onPressed: () {
-    //                   setState(() {
-    //                     isreadable = false;
-    //
-    //
-    //
-    //
-    //                   });
-    //                   // Navigator.push(
-    //                   //   context,
-    //                   //   MaterialPageRoute(builder: (context) =>  BasicDetails()),
-    //                   // );
-    //
-    //                 },
-    //                 child: Padding(
-    //                   padding: EdgeInsets.only(
-    //                       top: 16.h, bottom: 16.h, left: 63.w, right: 63.w),
-    //                   child: isreadable ? Text(
-    //                     "Edit",
-    //                     style: kManRope_500_18_FFFFF,
-    //                   ):
-    //                   Text(
-    //                     "Save",
-    //                     style: kManRope_500_18_FFFFF,
-    //                   ),
-    //                 ),
-    //                 color: k006D77,
-    //                 shape: CustomDecoration().smallButtonDecoration()),
-    //           ),
-    //         )
-    //         // Padding(
-    //         //   padding: const EdgeInsets.only(bottom: 50.0),
-    //         //   child: Center(
-    //         //     child: MainButton(
-    //         //         onPressed: () {
-    //         //           Navigator.push(
-    //         //             context,
-    //         //             MaterialPageRoute(
-    //         //                 builder: (context) => PsychologistEditDoctorInfo()),
-    //         //           );
-    //         //         },
-    //         //         child: Padding(
-    //         //           padding: const EdgeInsets.symmetric(
-    //         //               horizontal: 63, vertical: 15),
-    //         //           child: Text(
-    //         //             "Save",
-    //         //             style: kManRope_500_18_FFFFF,
-    //         //           ),
-    //         //         ),
-    //         //         color: k006D77,
-    //         //         shape: CustomDecoration().smallButtonDecoration()),
-    //         //   ),
-    //         // ),
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

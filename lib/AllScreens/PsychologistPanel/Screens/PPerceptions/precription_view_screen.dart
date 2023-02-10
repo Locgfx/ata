@@ -18,25 +18,6 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: Padding(
-      //   padding: EdgeInsets.only(left: 130.w, right: 130.w, bottom: 52.h),
-      //   child: MainButton(
-      //       onPressed: () {
-      //         Navigator.push(
-      //           context,
-      //           MaterialPageRoute(builder: (context) => PrescriptionScreen()),
-      //         );
-      //       },
-      //       child: Padding(
-      //         padding: EdgeInsets.only(top: 15, bottom: 14),
-      //         child: Text(
-      //           "Save",
-      //           style: kManRope_500_16_white,
-      //         ),
-      //       ),
-      //       color: k006D77,
-      //       shape: CustomDecoration().smallButtonDecoration()),
-      // ),
       backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
         hasThreeDots: false,
@@ -216,19 +197,6 @@ class _PrescriptionViewScreenState extends State<PrescriptionViewScreen> {
                     color: k006D77,
                     shape: CustomDecoration().smallButtonDecoration()),
               ),
-              // Center(
-              //   child: SizedBox(
-              //     height: 56.h,
-              //     width: 168.w,
-              //     child: CustomActiveTextButton1(
-              //         onPressed: () {
-              //           Navigator.of(context).push(MaterialPageRoute(
-              //               builder: (context) =>
-              //                   EditPrescriptionViewScreen()));
-              //         },
-              //         text: 'Edit'),
-              //   ),
-              // ),
             ],
           ),
         ),

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/see_all_videos.dart';
-import 'package:greymatter/Apis/UserAPis/user_home_apis/user_video_category_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/model/UModels/user_home_models/user_video_category_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class AllVideos extends StatefulWidget {
@@ -16,36 +14,36 @@ class AllVideos extends StatefulWidget {
 }
 
 class _AllVideosState extends State<AllVideos> {
-  final controller = PageController(viewportFraction: 0.8, keepPage: true);
+  // final controller = PageController(viewportFraction: 0.8, keepPage: true);
 
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
-
-  bool _isLoading = false;
-  UserVideoCategoryModel model = UserVideoCategoryModel();
-
-  getData() {
-    _isLoading = true;
-    final resp = UserVideoCategoryApi().get();
-    resp.then((value) {
-      print(value);
-      setState(() {
-        try {
-          model = UserVideoCategoryModel.fromJson(value);
-          // print(model.text);
-          _isLoading = false;
-        } catch (e) {
-          setState(() {
-            _isLoading = false;
-          });
-        }
-      });
-    });
-  }
-
+  // @override
+  // void initState() {
+  //   getData();
+  //   super.initState();
+  // }
+  //
+  //
+  // UserVideoCategoryModel model = UserVideoCategoryModel();
+  // bool _isLoading = false;
+  // getData() {
+  //   _isLoading = true;
+  //   final resp = UserVideoCategoryApi().get();
+  //   resp.then((value) {
+  //     print(value);
+  //     setState(() {
+  //       try {
+  //         model = UserVideoCategoryModel.fromJson(value);
+  //         // print(model.text);
+  //         _isLoading = false;
+  //       } catch (e) {
+  //         setState(() {
+  //           _isLoading = false;
+  //         });
+  //       }
+  //     });
+  //   });
+  // }
+  //
 
 
   @override
@@ -62,6 +60,7 @@ class _AllVideosState extends State<AllVideos> {
           padding: EdgeInsets.only(top: 40.h),
           child: Column(
             children: [
+
               Container(
                 margin: EdgeInsets.symmetric(horizontal: 24),
                 decoration: BoxDecoration(
@@ -70,7 +69,7 @@ class _AllVideosState extends State<AllVideos> {
                     border: Border.all(color: k5A72ED.withOpacity(0.24))),
                 child: TextField(
                   decoration: TextfieldDecoration(
-                      label: 'Nauture',
+                      label: 'Nature',
                       child: Image.asset(
                         "assets/images/iconsearchblue.png",
                         height: 48.h,
@@ -108,6 +107,7 @@ class _AllVideosState extends State<AllVideos> {
                   ),
                 ),
               ),
+
               SizedBox(
                 height: 24.h,
               ),
@@ -120,32 +120,29 @@ class _AllVideosState extends State<AllVideos> {
                   shrinkWrap: true,
                   itemCount: 4,
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      // margin: EdgeInsets.only(left: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 182.w,
-                            width: 182.w,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: Image.asset(
-                              'assets/images/yogavideodemo.png',
-                              fit: BoxFit.fill,
-                            ),
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 182.w,
+                          width: 182.w,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20)),
                           ),
-                          SizedBox(height: 16),
-                          Text(
-                            'Name xyz',
-                            style: kManRope_500_16_001314,
+                          child: Image.asset(
+                            'assets/images/yogavideodemo.png',
+                            fit: BoxFit.fill,
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Name xyz',
+                          style: kManRope_500_16_001314,
+                        ),
+                      ],
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) =>
@@ -157,21 +154,6 @@ class _AllVideosState extends State<AllVideos> {
               SizedBox(
                 height: 20.h,
               ),
-              /*Center(
-                child: SmoothPageIndicator(
-                  controller: controller,
-                  count: 4,
-                  effect: const ExpandingDotsEffect(
-                    activeDotColor: k5A72ED,
-                    strokeWidth: 0.8,
-                    dotWidth: 8,
-                    dotHeight: 8,
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 40.h,
-              ),*/
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: Row(
@@ -199,32 +181,29 @@ class _AllVideosState extends State<AllVideos> {
                   shrinkWrap: true,
                   itemCount: 4,
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      // margin: EdgeInsets.only(left: 16),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 182.w,
-                            width: 182.w,
-                            clipBehavior: Clip.hardEdge,
-                            decoration: const BoxDecoration(
-                              color: Colors.grey,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                            ),
-                            child: Image.asset(
-                              'assets/images/fitnessvideodemo.png',
-                              fit: BoxFit.fill,
-                            ),
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 182.w,
+                          width: 182.w,
+                          clipBehavior: Clip.hardEdge,
+                          decoration: const BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(20)),
                           ),
-                          SizedBox(height: 16),
-                          Text(
-                            'Name xyz',
-                            style: kManRope_500_16_001314,
+                          child: Image.asset(
+                            'assets/images/fitnessvideodemo.png',
+                            fit: BoxFit.fill,
                           ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(height: 16),
+                        Text(
+                          'Name xyz',
+                          style: kManRope_500_16_001314,
+                        ),
+                      ],
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) =>
@@ -236,36 +215,6 @@ class _AllVideosState extends State<AllVideos> {
               SizedBox(
                 height: 20.h,
               ),
-              /*Center(
-                child: SmoothPageIndicator(
-                  controller: controller,
-                  count: 4,
-                  effect: const ExpandingDotsEffect(
-                    activeDotColor: k5A72ED,
-                    strokeWidth: 0.8,
-                    dotWidth: 8,
-                    dotHeight: 8,
-                  ),
-                ),
-              ),*/
-              /*SizedBox(
-                height: 40.h,
-              ),*/
-              /*SizedBox(
-                height: 20.h,
-              ),
-              Center(
-                child: SmoothPageIndicator(
-                  controller: controller,
-                  count: 4,
-                  effect: const ExpandingDotsEffect(
-                    activeDotColor: k5A72ED,
-                    strokeWidth: 0.8,
-                    dotWidth: 8,
-                    dotHeight: 8,
-                  ),
-                ),
-              ),*/
             ],
           ),
         ),

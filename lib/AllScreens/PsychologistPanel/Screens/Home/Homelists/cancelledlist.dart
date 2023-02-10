@@ -1,11 +1,15 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/Cancelledmeetings.dart';
+import 'package:greymatter/Apis/DoctorApis/home_apis/cancelled_booking_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-
+import 'package:greymatter/model/PModels/home_models/cancelled_booking_model.dart';
 import '../../../../../constants/decorations.dart';
 import '../../../../../widgets/buttons.dart';
-import 'Upcomingmeetings.dart';
+
 
 class CancelledList extends StatefulWidget {
   const CancelledList({Key? key}) : super(key: key);
@@ -16,13 +20,43 @@ class CancelledList extends StatefulWidget {
 
 class _CancelledListState extends State<CancelledList> {
   @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  CancelledBookingModel model = CancelledBookingModel();
+  List<CancelledBookingModel> cancelledBooking = [];
+  bool _isLoading = false;
+
+  getData() {
+    _isLoading = true;
+    final resp = CancelledBookingApi().get();
+    resp.then((value) {
+      print(value);
+      setState(() {
+        for (var v in value) {
+          cancelledBooking.add(CancelledBookingModel.fromJson(v));
+        }
+        _isLoading = false;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      body: Column(
+      body: _isLoading || cancelledBooking.isEmpty ? Center(
+        child: SpinKitThreeBounce(
+          color: k006D77,
+          size: 30,
+        ),
+      ) :Column(
         children: [
           Expanded(
             child: ListView.separated(
+                itemCount: cancelledBooking.length,
                 scrollDirection: Axis.vertical,
                 //physics: NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
@@ -56,9 +90,19 @@ class _CancelledListState extends State<CancelledList> {
                                   color: Colors.grey,
                                 ),
                                 clipBehavior: Clip.hardEdge,
-                                child: Image.asset(
-                                  'assets/images/userP.png',
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                  cancelledBooking[index]
+                                      .photo
+                                      .toString(),
                                   fit: BoxFit.cover,
+                                  placeholder: (context, url) =>  Center(
+                                    child: SpinKitThreeBounce(
+                                      color: k006D77,
+                                      size: 10,
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>  Icon(Icons.error),
                                 ),
                               ),
                             ),
@@ -68,19 +112,38 @@ class _CancelledListState extends State<CancelledList> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Priyanka singh',
+                                  Text(cancelledBooking[index]
+                                      .name.toString(),
                                       style: kManRope_500_16_001314),
                                   Row(
                                     children: [
-                                      Text('Anxiety',
+                                      Text(cancelledBooking[index]
+                                          .issueName.toString(),
                                           style: kManRope_400_14_626A6A),
                                       // SizedBox(width: 24.w),
-                                      Expanded(
-                                        child: Text(
-                                          '10 June 2022, 8:00AM',
-                                          style: kManRope_400_14_626A6A,
-                                          textAlign: TextAlign.end,
-                                        ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            cancelledBooking[
+                                            index]
+                                                .date
+                                                .toString(),
+                                            style:
+                                            kManRope_400_14_626A6A,
+                                            textAlign:
+                                            TextAlign.end,
+                                          ),
+                                          Text(
+                                            cancelledBooking[
+                                            index]
+                                                .timeSlot
+                                                .toString(),
+                                            style:
+                                            kManRope_400_14_626A6A,
+                                            textAlign:
+                                            TextAlign.end,
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -98,7 +161,7 @@ class _CancelledListState extends State<CancelledList> {
                           child: MainButton(
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => UpcomingMeetings()));
+                                    builder: (context) => CancelledMeetings()));
                               },
                               child: Padding(
                                 padding:
@@ -117,26 +180,9 @@ class _CancelledListState extends State<CancelledList> {
                 separatorBuilder: (ctx, index) {
                   return SizedBox(height: 12.h);
                 },
-                itemCount: 4),
+              ),
           ),
-          // SizedBox(height: 24.h),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //       child: MainButton(
-          //           onPressed: () {},
-          //           child: Padding(
-          //             padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
-          //             child: Text(
-          //               "See all",
-          //               style: kManRope_500_16_white,
-          //             ),
-          //           ),
-          //           color: k006D77,
-          //           shape: CustomDecoration().button16Decoration()),
-          //     ),
-          //   ],
-          // ),
+          SizedBox(height: 40.h,)
         ],
       ),
     );

@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/my_account_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_change_email_enter_otp_api.dart';
-import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_change_email_otp_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -72,83 +69,38 @@ class _PEmailEnterOtpScreenState extends State<PEmailEnterOtpScreen> {
                 textStyle: kManRope_400_20_Black,
                 pinTheme: PinTheme(
                   inactiveColor: Colors.black,
-                  //activeFillColor: kECF0F8,
                   fieldOuterPadding: const EdgeInsets.all(0),
-                  //selectedFillColor: kECF0F8,
                   selectedColor: k006D77,
                   borderWidth: 0,
-                  // fieldWidth: 30.w,
                   fieldHeight: 50.h,
-                  //borderRadius: BorderRadius.circular(8),
-                  //inactiveFillColor: kECF0F8,
                   activeColor: k006D77,
                   shape: PinCodeFieldShape.underline,
                 ),
               ),
               Spacer(),
               // SizedBox(height: 525.h),
-              otpEmpty ?
-                  CustomDeactiveTextButton(onPressed: () {}, text: 'Save') :
-                  CustomActiveTextButton(onPressed: () {
-                    final resp =
-                    DoctorChangeEmailOtpVerifyApi().get(otp: otpController.text);
-                    resp.then((value) {
-                      print(value);
-                      if (value['status'] == true) {
-                        Fluttertoast.showToast(msg: value['message']);
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PsychologistAccountScreen()));
-                      } else {
-                        Fluttertoast.showToast(msg: value['error']);
-                      }
-                    });
-                  }, text: 'Save'),
-              SizedBox(height: 40.h,)
-
-              // Center(
-              //   child: SizedBox(
-              //     height: 60.h,
-              //     width: 168.w,
-              //     child: MaterialButton(
-              //       onPressed: () {
-              //         Navigator.of(context).push(MaterialPageRoute(
-              //             builder: (context) => ResetEmailOTPScreen()));
-              //       },
-              //       color: k006D77,
-              //       shape: CustomDecoration().smallButtonDecoration(),
-              //       child: Center(
-              //         child: Text(
-              //           'Next',
-              //           style: kManRope_500_16_white,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // const Spacer(),
-              // Padding(
-              //   padding: EdgeInsets.only(bottom: 40.h),
-              //   child: Center(
-              //     child: SizedBox(
-              //       height: 60.h,
-              //       width: 168.w,
-              //       child: MaterialButton(
-              //         color: k006D77,
-              //         height: 60,
-              //         minWidth: 168,
-              //         shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.circular(48),
-              //           side: const BorderSide(color: k006D77),
-              //         ),
-              //         onPressed: () {},
-              //         child: Text(
-              //           'Save',
-              //           style: kManRope_400_16_white,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
+              otpEmpty
+                  ? CustomDeactiveTextButton(onPressed: () {}, text: 'Save')
+                  : CustomActiveTextButton(
+                      onPressed: () {
+                        final resp = DoctorChangeEmailOtpVerifyApi()
+                            .get(otp: otpController.text);
+                        resp.then((value) {
+                          print(value);
+                          if (value['status'] == true) {
+                            Fluttertoast.showToast(msg: value['message']);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    PsychologistAccountScreen()));
+                          } else {
+                            Fluttertoast.showToast(msg: value['error']);
+                          }
+                        });
+                      },
+                      text: 'Save'),
+              SizedBox(
+                height: 40.h,
+              )
             ],
           ),
         ),

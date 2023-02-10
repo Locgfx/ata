@@ -14,11 +14,11 @@ import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
 
 class LoginScreen extends StatefulWidget {
   final bool showBack;
+
   LoginScreen({Key? key, required this.showBack}) : super(key: key);
 
   @override
@@ -243,26 +243,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 settings: RouteSettings(
                                                     arguments: _emailController
                                                         .text)));
-                                        // Navigator.of(context).push(
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             UForgotPasswordOTPScreen(
-                                        //               signUpField:
-                                        //               _emailController.text,
-                                        //             )));
+
                                         Fluttertoast.showToast(
                                             msg: 'Your OTP is ${value['otp']}');
                                       }
                                     });
                                   }
-                                  // Navigator.of(context).push(MaterialPageRoute(
-                                  //     builder: (ctx) => UForgotPasswordOTPScreen(signUpField:_emailController.text,),
-                                  //     settings: RouteSettings(
-                                  //         arguments: _emailController.text)));
                                 }
-                                // if (_emailController.text.trim().isEmpty) {
-                                //   _formKey.currentState!.validate();
-                                // }
                               },
                               child: Container(
                                   color: Colors.transparent,
@@ -398,10 +385,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                /*if (_emailController.text.trim().isNotEmpty)
-                            Text('Email / Mobile Number',
-                                style: kManRope_400_14_626A6A),
-                          if (hasEmailFocus) SizedBox(height: 14),*/
                                 Form(
                                   key: _formKey,
                                   child: TextFormField(
@@ -562,14 +545,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         }
                                       });
                                     }
-                                    // Navigator.of(context).push(MaterialPageRoute(
-                                    //     builder: (ctx) => UForgotPasswordOTPScreen(signUpField:_emailController.text,),
-                                    //     settings: RouteSettings(
-                                    //         arguments: _emailController.text)));
                                   }
-                                  // if (_emailController.text.trim().isEmpty) {
-                                  //   _formKey.currentState!.validate();
-                                  // }
                                 },
                                 child: Container(
                                     color: Colors.transparent,

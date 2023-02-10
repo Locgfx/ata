@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/comment_widgets/user_comment_widget.dart';
@@ -70,7 +68,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
                     hintStyle: kManRope_400_14_626A6A,
                     suffixIcon: GestureDetector(
                       onTap: () {},
-                      child: Container(
+                      child: SizedBox(
                         width: 200,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,

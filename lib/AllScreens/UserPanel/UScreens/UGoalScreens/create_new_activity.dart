@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/new_activity_added_screen.dart';
 import 'package:greymatter/constants/Lists.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -247,7 +245,7 @@ class _CreateNewActivityState extends State<CreateNewActivity> {
               SizedBox(
                 height: 24.h,
               ),
-              Container(
+              SizedBox(
                 height: 39.w,
                 child: ListView.builder(
                   shrinkWrap: true,

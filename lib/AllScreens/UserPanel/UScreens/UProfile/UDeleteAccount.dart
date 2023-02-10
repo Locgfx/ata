@@ -43,9 +43,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                   "Email ",
                   style: kManRope_400_16_626A6A,
                 ),
-                // SizedBox(
-                //   height: 8.h,
-                // ),
+
                 TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -59,10 +57,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                       hintText: "Enter your email",
                       hintStyle:kManRope_400_16_001314),
                 ),
-                // Text(
-                //   "priyasingh344@gmail.com",
-                //   style: kManRope_400_16_Black,
-                // ),
+
                 SizedBox(height: 40.h),
                 Text(
                   "Password  ",
@@ -83,11 +78,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                       hintText: "Enter your password",
                       hintStyle:kManRope_400_16_001314),
                 ),
-                // TextField(decoration: TextfieldDecoration(label: 'Priyasingh344@1234',hintstyle: kManRope_400_16_Black,).blankfieldDecoration(),),
-                // Text(
-                //   "Priyasingh344@1234",
-                //   style: kManRope_400_16_Black,
-                // ),
+
                 SizedBox(
                   height: 140.h,
                 ),
@@ -100,7 +91,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                      child: Container(
+                      child: SizedBox(
                         height: 48,
                         child: MainButton(
                             onPressed: () {
@@ -117,48 +108,42 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                     ),
                     // SizedBox(width: 16.w,),
                     Expanded(
-                      child: Container(
-                        // height: 48,
-                        child: MainButton(
-                            onPressed: () {
-                              if (_formKey.currentState!.validate()) {
-                                final resp = UserDeleteAccountAPi().get(
-                                    email: emailController.text,
-                                    password: passwordController.text
-                                    );
-                                resp.then((value) {
-                                  print(value);
-                                  if (value['status'] == true) {
-                                    Fluttertoast.showToast(
-                                        msg: 'Profile Successfully Deleted');
-                                    Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (context) => OnBoardingScreen()));
-                                  } else {
-                                    Fluttertoast.showToast(
-                                        msg: value['error']);
-                                    /* Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => PDashboard()),
-                                  );*/
+                      child: MainButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              final resp = UserDeleteAccountAPi().get(
+                                  email: emailController.text,
+                                  password: passwordController.text
+                                  );
+                              resp.then((value) {
+                                print(value);
+                                if (value['status'] == true) {
+                                  Fluttertoast.showToast(
+                                      msg: 'Profile Successfully Deleted');
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => OnBoardingScreen()));
+                                } else {
+                                  Fluttertoast.showToast(
+                                      msg: value['error']);
+                                  /* Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => PDashboard()),
+                                );*/
 
-                                  }
-                                });
-                              }
-
-                              // Navigator.of(context).push(
-                              //     MaterialPageRoute(builder: (context) => PTabsScreen()));
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 16.h),
-                              child: Text(
-                                "Delete Account",
-                                style: kManRope_500_16_white,
-                              ),
+                                }
+                              });
+                            }
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 16.h),
+                            child: Text(
+                              "Delete Account",
+                              style: kManRope_500_16_white,
                             ),
-                            color: kB64C4C,
-                            shape: CustomDecoration().button16Decoration()),
-                      ),
+                          ),
+                          color: kB64C4C,
+                          shape: CustomDecoration().button16Decoration()),
                     ),
                   ],
                 ),

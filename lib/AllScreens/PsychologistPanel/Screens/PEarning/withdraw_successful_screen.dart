@@ -20,10 +20,6 @@ class _WithdrawSuccessfulState extends State<WithdrawSuccessful> {
   @override
   void initState() {
     super.initState();
-    /*Future.delayed(Duration(seconds: 2), () {
-      setPage();
-    });*/
-    //setPage();
   }
 
   setPage() {

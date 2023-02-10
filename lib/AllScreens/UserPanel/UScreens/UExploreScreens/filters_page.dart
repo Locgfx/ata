@@ -5,7 +5,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -468,29 +467,6 @@ class _FilterScreenState extends State<FilterScreen> {
                   ),
                 ],
               ),
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       child: SizedBox(
-              //         height: 56.h,
-              //         child: AppButtonTransparent(
-              //           onTap: () {},
-              //           title: 'Clear All',
-              //         ),
-              //       ),
-              //     ),
-              //     SizedBox(width: 16),
-              //     Expanded(
-              //       child: SizedBox(
-              //         height: 56.h,
-              //         child: AppButton(
-              //           onTap: () {},
-              //           title: 'Finish',
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
             ],
           ),
         ),

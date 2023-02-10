@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,26 +8,16 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/booking
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivity.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/all_psochologist_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/all_videos.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/book_appointment_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidget.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/Apis/UserAPis/user_explore_apis/user_explore_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_activity_api.dart';
-import 'package:greymatter/Apis/UserAPis/user_home_apis/user_offer_banner_api.dart';
-import 'package:greymatter/Apis/UserAPis/user_home_apis/user_recommended_videos_api.dart';
-import 'package:greymatter/Apis/UserAPis/user_home_apis/user_specialist_model.dart';
-import 'package:greymatter/Apis/UserAPis/user_home_apis/userspecialistapi.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_home_models/user_activity_model.dart';
-import 'package:greymatter/model/UModels/user_home_models/user_offer_banner_model.dart';
-import 'package:greymatter/model/UModels/user_home_models/user_recommended_videos.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/home_screen_widgets/bookings.dart';
 import 'package:greymatter/widgets/home_screen_widgets/info.dart';
-import 'package:greymatter/widgets/home_screen_widgets/psycologist_slider.dart';
-import 'package:greymatter/widgets/home_screen_widgets/recommended_activities.dart';
 import 'package:greymatter/widgets/home_screen_widgets/recommended_videos.dart';
 import 'package:greymatter/widgets/home_screen_widgets/upcoming_appointment_card.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
@@ -239,9 +228,6 @@ class _UHomeScreenState extends State<UHomeScreen> {
                         //--------------------------------psychologistslider-------------------
                         isLoading || psychologists.isEmpty ? SizedBox() :Container(
                             color: Colors.white,
-                            // height: 314.h,
-                            // padding: EdgeInsets.only(top: 20.h),
-                            // width: 1.sw,
                             child: Column(
                               children: [
                                 // PsychologistSlider(),
@@ -366,7 +352,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                         SizedBox(height: 20.h),
                         // RecommendedVideos(),
                         //---------------------------------------------------------------------------
-                        Container(
+                        SizedBox(
                           width: 1.sw,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -435,7 +421,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  const AllVideos()));
+                                                  AllVideos()));
                                     },
                                     text: 'View All Videos',
                                   ),

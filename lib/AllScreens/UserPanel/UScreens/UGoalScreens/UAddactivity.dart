@@ -8,7 +8,6 @@ import 'package:greymatter/constants/Lists.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_home_models/user_activity_model.dart';
-import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 
@@ -43,7 +42,6 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
   UserActivityModel model = UserActivityModel();
   List<UserActivityModel> modeluseractivity = [];
   bool _isLoading = false;
-  bool _isLoading2 = false;
 
   getData() {
     _isLoading = true;
@@ -58,11 +56,12 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-         Scaffold(
+        Scaffold(
           backgroundColor: kEDF6F9,
           appBar: CuswhiteAppBar(
               hasThreeDots: false,
@@ -87,8 +86,8 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                       shrinkWrap: true,
                       itemBuilder: (ctx, index) {
                         for (int i = 0; i < activityList.length; i++) {
-                          a.add(
-                              ActivityValue(slide: false, name: activityList[i]));
+                          a.add(ActivityValue(
+                              slide: false, name: activityList[i]));
                         }
 
                         return Padding(
@@ -133,9 +132,6 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                   },
                                   child: Container(
                                     height: 88.h,
-                                    // width: 380.w,
-                                    // margin: EdgeInsets.only(left: 10, right: 10),
-                                    // padding: EdgeInsets.symmetric(horizontal: 10.w),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(10),
                                       color: k5A72ED,
@@ -154,7 +150,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                               horizontal: 24.w),
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
                                               SizedBox(
                                                 width: 200.w,
@@ -168,38 +164,42 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                                   cursorColor: Colors.white,
                                                   decoration: InputDecoration(
                                                     enabled: activityList[
-                                                    index] ==
-                                                        'Add Activity Name'
+                                                                index] ==
+                                                            'Add Activity Name'
                                                         ? true
                                                         : false,
-                                                    hintText: activityList[index],
+                                                    hintText:
+                                                        activityList[index],
                                                     hintStyle:
-                                                    kManRope_600_18_white,
+                                                        kManRope_600_18_white,
                                                     contentPadding:
-                                                    EdgeInsets.zero,
+                                                        EdgeInsets.zero,
                                                     disabledBorder:
-                                                    OutlineInputBorder(
+                                                        OutlineInputBorder(
                                                       borderSide: BorderSide(
-                                                        color: Colors.transparent,
+                                                        color:
+                                                            Colors.transparent,
                                                       ),
                                                     ),
                                                     enabledBorder:
-                                                    OutlineInputBorder(
+                                                        OutlineInputBorder(
                                                       borderSide: BorderSide(
-                                                        color: Colors.transparent,
+                                                        color:
+                                                            Colors.transparent,
                                                       ),
                                                     ),
                                                     focusedBorder:
-                                                    OutlineInputBorder(
+                                                        OutlineInputBorder(
                                                       borderSide: BorderSide(
-                                                        color: Colors.transparent,
+                                                        color:
+                                                            Colors.transparent,
                                                       ),
                                                     ),
                                                   ),
                                                 ),
                                               ),
                                               if (a[index].name !=
-                                                  'Add Activity Name' &&
+                                                      'Add Activity Name' &&
                                                   a[index].name.isNotEmpty)
                                                 GestureDetector(
                                                   onTap: () {
@@ -207,12 +207,12 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                                       MaterialPageRoute(
                                                         builder: (context) =>
                                                             AddNewActivity(
-                                                              text: activityList[
-                                                              index] ==
+                                                          text: activityList[
+                                                                      index] ==
                                                                   'Add Activity Name'
-                                                                  ? ''
-                                                                  : a[index].name,
-                                                            ),
+                                                              ? ''
+                                                              : a[index].name,
+                                                        ),
                                                       ),
                                                     );
                                                   },
@@ -220,11 +220,11 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                                     height: 48.h,
                                                     width: 70.w,
                                                     decoration:
-                                                    const BoxDecoration(
+                                                        const BoxDecoration(
                                                       borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(
-                                                              10)),
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10)),
                                                       color: Colors.white,
                                                     ),
                                                     child: Center(
@@ -257,25 +257,8 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
               ),
             ),
           ),
-          /* bottomNavigationBar: Container(
-          height: 100.h,
-          padding: EdgeInsets.only(left: 102.w, right: 102.w, bottom: 40.h),
-          child: SizedBox(
-            height: 56.h,
-            width: 223.w,
-            child: MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              onPressed: () {
-                setState(() {
-                  activityList.add('Add Activity Name');
-                });
-          ),
-        ),*/
         ),
         if (_isLoading) LoadingWidget(),
-
       ],
     );
     ;

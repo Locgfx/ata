@@ -89,36 +89,6 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                               height: 8.h,
                             ),
                             StarWidget()
-                            // Row(
-                            //   children: [
-                            //     SvgPicture.asset(
-                            //       'assets/icons/star.svg',
-                            //       width: 12.w,
-                            //       height: 12.h,
-                            //     ),
-                            //     SizedBox(
-                            //       width: 4,
-                            //     ),
-                            //     Text(
-                            //       '4.0',
-                            //       style: kManRope_400_12_001314,
-                            //     ),
-                            //     SizedBox(
-                            //       width: 4,
-                            //     ),
-                            //     Text(
-                            //       '.',
-                            //       style: kManRope_400_12_001314,
-                            //     ),
-                            //     SizedBox(
-                            //       width: 4,
-                            //     ),
-                            //     Text(
-                            //       '12 Yrs. Exp',
-                            //       style: kManRope_400_12_001314,
-                            //     )
-                            //   ],
-                            // )
                           ],
                         ),
                       ],
@@ -130,13 +100,10 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                             MaterialPageRoute(
                                 builder: (context) => UDoctorProfileScreen()));
                       },
-                      child: Container(
-                        // color: Colors.red,
-                        child: SvgPicture.asset(
-                          'assets/icons/Frame 8498.svg',
-                          width: 48.w,
-                          height: 48.h,
-                        ),
+                      child: SvgPicture.asset(
+                        'assets/icons/Frame 8498.svg',
+                        width: 48.w,
+                        height: 48.h,
                       ),
                     ),
                   ],
@@ -226,7 +193,7 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                         height: 58.h,
                         color: const Color(0xFFB5BABA),
                       ),
-                      Container(
+                      SizedBox(
                         width: 55.w,
                         child: Center(
                           child: Text(
@@ -238,62 +205,6 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
                     ],
                   ),
                 ),
-                // Container(
-                //   width: 380.w,
-                //   height: 48.h,
-                //   padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(10),
-                //       border: Border.all(color: const Color(0xFFB5BABA))),
-                //   child: Row(
-                //     children: [
-                //       SizedBox(
-                //         width: 200.w,
-                //         child: Padding(
-                //           padding: EdgeInsets.all(2.w),
-                //           child: TextFormField(
-                //             onChanged: (val) {
-                //               if (val.isNotEmpty) {
-                //                 setState(() {
-                //                   couponEmpty = false;
-                //                 });
-                //               }
-                //             },
-                //             validator: (val) {
-                //               if (_couponController.text.trim().isEmpty) {
-                //                 return 'This coupon code is invalid or has expired.';
-                //               } else {
-                //                 return null;
-                //               }
-                //             },
-                //             keyboardType: TextInputType.emailAddress,
-                //             controller: _couponController,
-                //             decoration: InputDecoration(
-                //               border: InputBorder.none,
-                //               hintText: 'Coupon',
-                //               hintStyle: kManRope_400_16_626A6A,
-                //             ),
-                //           ),
-                //         ),
-                //       ),
-                //       SizedBox(
-                //         width: 90.w,
-                //       ),
-                //       Container(
-                //         width: 1.w,
-                //         height: 58.h,
-                //         color: const Color(0xFFB5BABA),
-                //       ),
-                //       SizedBox(
-                //         width: 20.w,
-                //       ),
-                //       Text(
-                //         'Apply',
-                //         style: kManRope_500_16_006D77,
-                //       )
-                //     ],
-                //   ),
-                // ),
                 SizedBox(height: 8),
                 Text(
                   "“Coupon code applied successfully”",
@@ -354,42 +265,6 @@ class _ConfirmAppointmentBookingState extends State<ConfirmAppointmentBooking> {
           ),
         ),
       ),
-      // bottomNavigationBar: Container(
-      //   height: 83.h,
-      //   child: Padding(
-      //     padding: EdgeInsets.only(left: 24.w, right: 24.w),
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //       children: [
-      //         Text(
-      //           '₹230',
-      //           style: kManRope_500_20_006D77,
-      //         ),
-      //         SizedBox(
-      //           height: 56.h,
-      //           width: 200,
-      //           child: MaterialButton(
-      //             color: k006D77,
-      //             shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(10), // <-- Radius
-      //             ),
-      //             onPressed: () {
-      //               Navigator.push(
-      //                   context,
-      //                   MaterialPageRoute(
-      //                       builder: (context) =>
-      //                           const BookingSuccessfulScreen()));
-      //             },
-      //             child: Text(
-      //               'Proceed to payment',
-      //               style: kManRope_400_16_white,
-      //             ),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

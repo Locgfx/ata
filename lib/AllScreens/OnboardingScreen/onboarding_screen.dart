@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +10,6 @@ import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/onboarding_screen_widgets/onb_slide.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_text_w_icon_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
 
 class OnBoardingScreen extends StatefulWidget {

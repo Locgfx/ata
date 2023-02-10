@@ -238,10 +238,8 @@ class _UChatSupportState extends State<UChatSupport> {
                 height: 100.h,
                 child: GroupedListView<Messages, DateTime>(
                   physics: NeverScrollableScrollPhysics(),
-                  // padding: EdgeInsets.zero,
                   reverse: true,
                   order: GroupedListOrder.DESC,
-                  // padding: EdgeInsets.all(20),
                   elements: messages,
                   groupBy: (messages) => DateTime(messages.date.year,
                       messages.date.month, messages.date.day),
@@ -258,13 +256,6 @@ class _UChatSupportState extends State<UChatSupport> {
                         padding: const EdgeInsets.only(bottom: 32.0),
                         child: Column(
                           children: [
-                            // Align(
-                            //     alignment: messages.isSentByme
-                            //         ? Alignment.centerRight
-                            //         : Alignment.centerLeft,
-                            //
-                            //     child: Text("hiii")),
-
                             Container(
                               // width: 281.w,
                               decoration: BoxDecoration(

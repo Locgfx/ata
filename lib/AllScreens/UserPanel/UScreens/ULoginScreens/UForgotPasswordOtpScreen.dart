@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -109,15 +108,10 @@ class _UForgotPasswordOTPScreen extends State<UForgotPasswordOTPScreen> {
                 textStyle: kManRope_400_20_Black,
                 pinTheme: PinTheme(
                   inactiveColor: Colors.black,
-                  //activeFillColor: kECF0F8,
                   fieldOuterPadding: const EdgeInsets.all(0),
-                  //selectedFillColor: kECF0F8,
                   selectedColor: k006D77,
                   borderWidth: 0,
-                  // fieldWidth: 30.w,
                   fieldHeight: 50.h,
-                  //borderRadius: BorderRadius.circular(8),
-                  //inactiveFillColor: kECF0F8,
                   activeColor: k006D77,
                   shape: PinCodeFieldShape.underline,
                 ),

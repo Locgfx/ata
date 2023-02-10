@@ -112,7 +112,6 @@ class _HolidayConfirmScreenState extends State<HolidayConfirmScreen> {
                   ],
                 ),
               ),
-
             ],
           ),
         ),

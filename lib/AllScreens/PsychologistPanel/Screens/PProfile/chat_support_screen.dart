@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -329,14 +328,6 @@ class ChatSupportScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            /*Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: ImageIcon(
-                                AssetImage("assets/images/photoimage.png"),
-                                size: 24,
-                                // color: ThemeColor.primarycolor,
-                              ),
-                            ),*/
                             Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: ImageIcon(

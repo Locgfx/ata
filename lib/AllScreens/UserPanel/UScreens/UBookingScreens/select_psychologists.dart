@@ -10,8 +10,7 @@ import 'package:greymatter/widgets/shared/buttons/card_buttons/primary_card_butt
 import 'package:greymatter/widgets/shared/buttons/card_buttons/secondary_card_button.dart';
 
 class SelectAvailablePsychologists extends StatelessWidget {
-  const SelectAvailablePsychologists({Key? key, required this.issue})
-      : super(key: key);
+  const SelectAvailablePsychologists({Key? key, required this.issue}) : super(key: key);
   final String issue;
 
   @override
@@ -23,39 +22,13 @@ class SelectAvailablePsychologists extends StatelessWidget {
         imgPath: 'assets/images/iconbackappbar2.png',
         appBarText: 'Available Psychologists',
       ),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 40.w,
-      //   centerTitle: false,
-      //   backgroundColor: Colors.white,
-      //   title: Text(
-      //     'Available Psychologists',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   titleSpacing: 18.w,
-      //   leading: InkWell(
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: Padding(
         padding:
             EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h, bottom: 20.h),
         child: ListView.separated(
             itemBuilder: (ctx, index) {
               return Container(
-                // height: 180,
                 width: 1.sw,
-                // padding: EdgeInsets.symmetric(),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(24),
                     color: Colors.white),
@@ -103,19 +76,6 @@ class SelectAvailablePsychologists extends StatelessWidget {
                                         style: kManRope_400_12_353535_07),
                                     SizedBox(height: 4),
                                     StarWidget()
-                                    // Row(
-                                    //   children: [
-                                    //     Image.asset("assets/images/Star 1.png",height: 18.h,width: 18.w,),
-                                    //     SizedBox(width: 4.w),
-                                    //     Text('4.0',
-                                    //         style: kManRope_400_12_626A6A),
-                                    //     SizedBox(width: 4.w),
-                                    //     // Text('.', style: kManRope_700_16_001314),
-                                    //     // SizedBox(width: 4.w),
-                                    //     Text('12 Yrs. Exp',
-                                    //         style: kManRope_400_12_626A6A),
-                                    //   ],
-                                    // ),
                                   ],
                                 ),
                               ],

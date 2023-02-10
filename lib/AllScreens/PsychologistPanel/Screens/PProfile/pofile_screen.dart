@@ -1,24 +1,16 @@
 import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PLoginScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/agreement_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/help_and_support_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/kyc_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/order_history_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/slots_availability_screens.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
-import 'package:greymatter/Apis/UserAPis/loginapi/loginapi.dart';
-import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_logout_api.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/global/Sharedprefs.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../UserPanel/UScreens/UProfile/UMyActivity.dart';
 import 'my_account_screen.dart';
@@ -120,7 +112,7 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                         builder: (context) =>
                             const PsychologistPersonalInfoScreen()));
                   },
-                  child: Container(
+                  child: SizedBox(
                     height: 48.h,
                     width: 380.w,
                     child: Row(
@@ -130,13 +122,10 @@ class _PsychologistProfileScreenState extends State<PsychologistProfileScreen> {
                           'Personal Info',
                           style: kManRope_500_16_001314,
                         ),
-                        Container(
-                          // color: Colors.red,
-                          child: Image.asset(
-                            'assets/images/iconrightblack.png',
-                            height: 24.w,
-                            width: 24.w,
-                          ),
+                        Image.asset(
+                          'assets/images/iconrightblack.png',
+                          height: 24.w,
+                          width: 24.w,
                         ),
                       ],
                     ),
@@ -430,29 +419,8 @@ class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      // decoration: const BoxDecoration(
-      //   // color: k006D77,
-      //   borderRadius: BorderRadius.only(
-      //       topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-      // ),
-      //
-      // height: 251.h,
       child: Column(
         children: [
-          // Container(
-          //   height: 71.h,
-          //   decoration: const BoxDecoration(
-          //     color: k006D77,
-          //     borderRadius: BorderRadius.only(
-          //         topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-          //   ),
-          //   child: Center(
-          //     child: Text(
-          //       '',
-          //       style: kManRope_700_16_white,
-          //     ),
-          //   ),
-          // ),
           Container(
             height: 180.h,
             decoration: const BoxDecoration(
@@ -529,51 +497,6 @@ class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
                           )),
                     ],
                   ),
-                  // GestureDetector(
-                  //   onTap: () => setState(() {
-                  //     _gIndex = 1;
-                  //     Navigator.of(context).pop();
-                  //   }),
-                  //   child: Container(
-                  //     height: 50.h,
-                  //     width: 215.w,
-                  //     decoration: BoxDecoration(
-                  //       borderRadius:
-                  //       const BorderRadius.all(Radius.circular(5)),
-                  //       color: _gIndex == 1 ? k006D77 : Colors.transparent,
-                  //     ),
-                  //     child: Center(
-                  //         child: Text(
-                  //           'This Week',
-                  //           style: _gIndex == 1
-                  //               ? kManRope_500_16_white
-                  //               : kManRope_500_16_626A6A,
-                  //         )),
-                  //   ),
-                  // ),
-                  // SizedBox(height: 8.h),
-                  // GestureDetector(
-                  //   onTap: () => setState(() {
-                  //     _gIndex = 1;
-                  //     Navigator.of(context).pop();
-                  //   }),
-                  //   child: Container(
-                  //     height: 44.h,
-                  //     width: 215.w,
-                  //     decoration: BoxDecoration(
-                  //       borderRadius:
-                  //       const BorderRadius.all(Radius.circular(5)),
-                  //       color: _gIndex == 1 ? k006D77 : Colors.transparent,
-                  //     ),
-                  //     child: Center(
-                  //         child: Text(
-                  //           'This Year',
-                  //           style: _gIndex == 1
-                  //               ? kManRope_500_16_white
-                  //               : kManRope_500_16_626A6A,
-                  //         )),
-                  //   ),
-                  // ),
                 ],
               ),
             ),

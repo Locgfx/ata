@@ -69,9 +69,6 @@ class _UAccountScreenState extends State<UAccountScreen> {
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => UChangeEmailScreen()));
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) =>
-                  //         PsychologistChangeEmailScreen()));
                 },
                 child: Container(
                   color: Colors.transparent,
@@ -152,87 +149,6 @@ class _UAccountScreenState extends State<UAccountScreen> {
                   ),
                 ),
               ),
-              // GestureDetector(
-              //   onTap: () {
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) => PsychologistChangeEmailScreen()));
-              //   },
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text(
-              //         'Change email',
-              //         style: kManRope_500_16_001314,
-              //       ),
-              //       SvgPicture.asset(
-              //         'assets/icons/downArrow.svg',
-              //         width: 24.w,
-              //         height: 24.h,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 1.h,
-              // ),
-              // SizedBox(
-              //   height: 48.h,
-              //   width: 1.sw,
-              //   child: TextField(
-              //     onTap: () {
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //           builder: (context) =>
-              //               PsychologistChangePasswordScreen()));
-              //     },
-              //     readOnly: true,
-              //     decoration: TextfieldDecoration(
-              //         hintstyle: kManRope_500_16_001314,
-              //         label: 'Change Password',
-              //         child: Image.asset(
-              //           "assets/images/downarrowblack.png",
-              //           height: 5,
-              //         )).underlinefieldDecoration(),
-              //   ),
-              // ),
-              // GestureDetector(
-              //   onTap: () {
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) =>
-              //             PsychologistChangePasswordScreen()));
-              //   },
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text(
-              //         'Change password',
-              //         style: kManRope_500_16_001314,
-              //       ),
-              //       SvgPicture.asset(
-              //         'assets/icons/downArrow.svg',
-              //         width: 24.w,
-              //         height: 24.h,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 30.h,
-              // ),
-              // GestureDetector(
-              //   behavior: HitTestBehavior.translucent,
-              //   onTap: () {
-              //     Navigator.of(context).push(
-              //         MaterialPageRoute(builder: (context) => DeleteAccount()));
-              //   },
-              //   child: SizedBox(
-              //     height: 48.h,
-              //     width: 1.sw,
-              //     child: Text(
-              //       'Delete Account',
-              //       style: kManRope_500_16_B64949,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

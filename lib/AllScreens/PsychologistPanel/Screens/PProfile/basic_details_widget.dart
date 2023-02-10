@@ -25,7 +25,7 @@ class _BasicDetailsState extends State<BasicDetails> {
         builder: (context) => const SelectGenderBottomSheet());
   }
 
-  void _SelectDesignationBottomSheet() {
+  void _selectDesignationBottomSheet() {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -128,7 +128,7 @@ class _BasicDetailsState extends State<BasicDetails> {
         TextField(
           readOnly: true,
           onTap: () {
-            _SelectDesignationBottomSheet();
+            _selectDesignationBottomSheet();
           },
           decoration: TextfieldDecoration(
               label: 'Designation',
@@ -175,40 +175,6 @@ class _BasicDetailsState extends State<BasicDetails> {
                 shape: CustomDecoration().smallButtonDecoration()),
           ),
         )
-        // Center(
-        //   child: MainButton(
-        //     child: Padding(
-        //       padding: const EdgeInsets.symmetric(horizontal: 63, vertical: 15),
-        //       child: Text(
-        //         "Done",
-        //         style: kManRope_500_18_FFFFF,
-        //       ),
-        //     ),
-        //     color: k006D77,
-        //     shape: CustomDecoration().smallButtonDecoration(),
-        //     onPressed: () {},
-        //   ),
-        // ),
-        // Center(
-        //   child: SizedBox(
-        //     height: 56.h,
-        //     width: 168.w,
-        //     child: MaterialButton(
-        //       color: k006D77,
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(48), // <-- Radius
-        //       ),
-        //       onPressed: () {
-        //         Navigator.of(context).push(MaterialPageRoute(
-        //             builder: (context) => PsychologistEditPersonalInfo()));
-        //       },
-        //       child: Text(
-        //         'Edit',
-        //         style: kManRope_400_16_white,
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ],
     );
   }

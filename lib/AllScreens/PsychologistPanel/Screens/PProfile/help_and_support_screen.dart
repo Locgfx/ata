@@ -19,37 +19,12 @@ class HelpAndSupportScreen extends StatelessWidget {
         toolbarHeight: 30,
         elevation: 0,
       ),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 40.w,
-      //   backgroundColor: kEDF6F9,
-      //   centerTitle: false,
-      //   title: Text(
-      //     'Help and support',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   titleSpacing: 18.w,
-      //   leading: GestureDetector(
-      //     behavior: HitTestBehavior.translucent,
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Padding(
               padding: EdgeInsets.only(left: 24.w, top: 12.h),
-              child: Container(
+              child: SizedBox(
                 height: 48,
                 // color: Colors.red,
                 child: Row(
@@ -58,14 +33,11 @@ class HelpAndSupportScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Container(
-                          // height: 48,
-                          //   color: Colors.red,
-                          child: Image.asset(
+                      child: Image.asset(
                         "assets/images/iconbackappbar2.png",
                         height: 48,
                         width: 32,
-                      )),
+                      ),
                     ),
                     Text(
                       "Help and support",
@@ -170,7 +142,7 @@ class HelpAndSupportScreen extends StatelessWidget {
                                     ],
                                   ),
                                   Center(
-                                    child: Container(
+                                    child: SizedBox(
                                       height: 48,
                                       width: 48,
                                       // color: Colors.red,
@@ -219,7 +191,7 @@ class HelpAndSupportScreen extends StatelessWidget {
                                   ],
                                 ),
                                 Center(
-                                  child: Container(
+                                  child: SizedBox(
                                     height: 48,
                                     width: 48,
                                     // color: Colors.red,

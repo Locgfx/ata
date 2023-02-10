@@ -73,10 +73,7 @@ class DeleteAccountScreen extends StatelessWidget {
                   style: kManRope_400_16_001314,
                 ),
               ),
-              /*Text(
-                'priyasingh344@1234',
-                style: kManRope_400_16_001314,
-              ),*/
+
               SizedBox(
                 height: 140.h,
               ),

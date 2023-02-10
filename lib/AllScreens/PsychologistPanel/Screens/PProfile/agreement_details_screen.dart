@@ -4,7 +4,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_agreement_api.dart';
 import 'package:greymatter/model/UModels/user_profile_models/user_agreement_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 

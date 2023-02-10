@@ -6,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/confirm_booking_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/filters_page.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/Apis/UserAPis/user_explore_apis/user_explore_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -14,7 +13,6 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
-import 'package:readmore/readmore.dart';
 
 class ExplorePage extends StatefulWidget {
   const ExplorePage({Key? key, required this.issue}) : super(key: key);
@@ -210,19 +208,6 @@ class _ExplorePageState extends State<ExplorePage> {
                                       width: 200,
 
                                     ),
-                                    // Text.rich(
-                                    //   TextSpan(
-                                    //     children: [
-                                    //       TextSpan(
-                                    //           text:
-                                    //               'Anxiety, Stress, Depression,Rel..',
-                                    //           style: kManRope_400_12_626A6A),
-                                    //       TextSpan(
-                                    //           text: 'Show more',
-                                    //           style: kManRope_400_12_006D77),
-                                    //     ],
-                                    //   ),
-                                    // )
                                   ],
                                 ),
                                 SizedBox(height: 24.h),

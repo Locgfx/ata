@@ -15,8 +15,6 @@ class UPrivacyandPolicy extends StatefulWidget {
 }
 
 class _UPrivacyandPolicyState extends State<UPrivacyandPolicy> {
-  @override
-
   UserPrivacyPolicyModel model = UserPrivacyPolicyModel();
   @override
   void initState() {
@@ -46,6 +44,7 @@ class _UPrivacyandPolicyState extends State<UPrivacyandPolicy> {
   }
 
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,

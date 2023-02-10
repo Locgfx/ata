@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,7 +7,6 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivi
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UBottomsheet.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:table_calendar/table_calendar.dart';
-
 import '../../../../constants/fonts.dart';
 
 class UGoalScreen extends StatefulWidget {

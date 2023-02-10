@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
-
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_posts_api.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
@@ -132,7 +131,7 @@ class _PostPageState extends State<PostPage> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
                                           Text(postModel[index].name.toString(), style: kManRope_500_16_Black),
-                                          // SizedBox(height: 1.h),
+
                                           Text('2 hours ago', style: kManRope_400_12_626A6A),
                                           // SizedBox(height: 8.h),
                                         ],
@@ -319,28 +318,6 @@ class _PostPageState extends State<PostPage> {
                             lessStyle: kManRope_600_14_006D77,
                           ),
                         ),
-
-                          // RichText(
-                          //   text: TextSpan(
-                          //     children: [
-                          //       TextSpan(
-                          //         style: kManRope_400_14_626A6A,
-                          //         text:
-                          //         postsModel[index].caption.toString(),
-                          //       ),
-                          //       WidgetSpan(
-                          //         child: Container(
-                          //           padding: EdgeInsets.symmetric(horizontal: 5),
-                          //           color: Colors.transparent,
-                          //           child: Text(
-                          //             'Read more',
-                          //             style: kManRope_600_14_006D77,
-                          //           ),
-                          //         ),
-                          //       ),
-                          //     ],
-                          //   ),
-                          // ),
                         ],
                       ),
                     ),

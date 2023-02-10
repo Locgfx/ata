@@ -413,8 +413,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             _isLoading ? SizedBox() : Text(
-                              // groupName == null ? '' : groupName
-
                               model.dob.toString() ,
                               style: kManRope_400_16_001314,
                             ),
@@ -433,7 +431,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _isLoading ? SizedBox() :Text(
+                            _isLoading ? SizedBox() : Text(
                               model.gender.toString(),
                               style: kManRope_400_16_001314,
                             ),
@@ -477,7 +475,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                             ),
                           ],
                         ),
-
                         SizedBox(
                           height: 104.h,
                         ),
@@ -495,13 +492,10 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                           isreadable = false;
                                         });
                                       },
-                                      child:
-                                           Text(
+                                      child: Text(
                                         "Edit",
                                         style: kManRope_500_18_FFFFF,
                                       ),
-
-
                                       shape:
                                       CustomDecoration().smallButton10Decoration()),
                                 ),
@@ -514,7 +508,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                   ],
                 ),
               ],
-            )
+               )
                 : Form(
                    key:_formKey,
                   child: Column(
@@ -622,7 +616,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                               SizedBox(
                                 height: 8.h,
                               ),
-                              Container(
+                              SizedBox(
                                 // color: Colors.red,
                                 width: 320.w,
                                 child: TextFormField(
@@ -662,7 +656,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                             onTap: () {
                               _datePickerBottomSheet();
                             },
-                            child: Container(
+                            child: SizedBox(
                                 height: 48,
                                 width: 48,
                                 // color: Colors.red,
@@ -692,7 +686,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                               SizedBox(
                                 height: 8.h,
                               ),
-                              Container(
+                              SizedBox(
                                 // color: Colors.red,
                                 width: 320.w,
                                 child: TextFormField(
@@ -715,14 +709,12 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     //     return 'Enter your Gender';
                                     //   }
                                     // },
-
                                     controller: updateGenderController,
                                     style: kManRope_400_16_001314,
                                     readOnly: true,
                                     onTap: () {
                                       setState(() {
                                       });
-
                                     },
                                     decoration:
                                     TextfieldDecoration(label: genderValue)
@@ -890,11 +882,13 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                               SizedBox(
                                 height: 8.h,
                               ),
-                              Container(
+                              SizedBox(
                                 // color: Colors.red,
                                 width: 320.w,
                                 child: TextFormField(
                                     onChanged: (val) {
+                                      setState(() {
+                                      });
                                       if (val.isNotEmpty) {
                                         setState(() {
                                           relationshipEmpty= false;
@@ -928,7 +922,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                             onTap: () {
                               _relationStatusBottomSheet();
                             },
-                            child: Container(
+                            child: SizedBox(
                                 height: 48,
                                 width: 48,
                                 child: Image.asset(
@@ -958,7 +952,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                               SizedBox(
                                 height: 8.h,
                               ),
-                              Container(
+                              SizedBox(
                                 // color: Colors.red,
                                 width: 320.w,
                                 child: TextFormField(
@@ -998,7 +992,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                             onTap: () {
                               _occupationBottomSheet();
                             },
-                            child: Container(
+                            child: SizedBox(
                                 height: 48,
                                 width: 48,
                                 child: Image.asset(

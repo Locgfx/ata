@@ -189,10 +189,8 @@ class _AddPersonalDetailsScreenState extends State<AddPersonalDetailsScreen> {
                                   passwordVisible2 = !passwordVisible2;
                                 });
                               },
-                              child: Container(
+                              child: SizedBox(
                                 height: 48,
-                                // width: 48,
-                                // color: Colors.red,
                                 child: SvgPicture.asset(
                                   'assets/icons/eyeopen.svg',
                                   width: 24.w,

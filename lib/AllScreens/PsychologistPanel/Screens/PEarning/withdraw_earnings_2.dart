@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/add_bank.dart';
@@ -8,7 +7,6 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
-
 import '../../../../constants/fonts.dart';
 
 class WithDrawEarningsScreen2 extends StatefulWidget {
@@ -77,28 +75,6 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                           .textfieldDecoration()),
                 ),
               ),
-              // Center(
-              //   child: Container(
-              //     height: 56.h,
-              //     width: 182.w,
-              //     decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.all(Radius.circular(8)),
-              //       color: kEDF6F9,
-              //     ),
-              //     child: Center(
-              //       child: SizedBox(
-              //         width: 136.w,
-              //         child: TextField(
-              //           decoration: InputDecoration(
-              //             border: InputBorder.none,
-              //             hintText: 'Type amount here',
-              //             hintStyle: kManRope_500_16_626A6A,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               SizedBox(
                 height: 40.h,
               ),
@@ -125,23 +101,6 @@ class _WithDrawEarningsScreen2State extends State<WithDrawEarningsScreen2> {
                       ),
                     ).textfieldDecoration()),
               ),
-              // SizedBox(
-              //   height: 48.h,
-              //   child: TextField(
-              //       onTap: () {
-              //         _selectAccountNumbers();
-              //       },
-              //       readOnly: true,
-              //       decoration: TextfieldDecoration(
-              //           child: Image.asset(
-              //             "assets/images/downarrow.png",
-              //             height: 10,
-              //             width: 10,
-              //           ),
-              //           label: "This field will filled automatically")
-              //           .textfieldDecoration()),
-              // ),
-
               SizedBox(
                 height: 40.h,
               ),

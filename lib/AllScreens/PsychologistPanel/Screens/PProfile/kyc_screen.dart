@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,6 +18,7 @@ class KycScreen extends StatefulWidget {
 
 class _KycScreenState extends State<KycScreen> {
   bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,26 +75,6 @@ class _KycScreenState extends State<KycScreen> {
                             .textfieldDecoration(),
                       ),
                     ),
-                    // Container(
-                    //   height: 62.h,
-                    //   width: 1.sw,
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.all(Radius.circular(8)),
-                    //     color: kECF0F8,
-                    //   ),
-                    //   child: Padding(
-                    //     padding: EdgeInsets.only(left: 16.w),
-                    //     child: Center(
-                    //       child: TextField(
-                    //         decoration: InputDecoration(
-                    //           border: InputBorder.none,
-                    //           hintText: 'Enter your PAN',
-                    //           hintStyle: kManRope_400_16_626A6A,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     SizedBox(
                       height: 14.h,
                     ),
@@ -146,7 +126,7 @@ class _KycScreenState extends State<KycScreen> {
                                 'Your data is protected by \nAtaraxis',
                                 style: kManRope_500_16_001314,
                               ),
-                              Container(
+                              SizedBox(
                                 height: 64,
                                 width: 46,
                                 // color: Colors.red,
@@ -190,12 +170,6 @@ class _KycScreenState extends State<KycScreen> {
                         ],
                       ),
                     ),
-                    // CustomActiveTextButton(
-                    //     onPressed: () {
-                    //       Navigator.of(context).push(MaterialPageRoute(
-                    //           builder: (context) => ConfirmName()));
-                    //     },
-                    //     text: 'Next'),
                   ],
                 ),
               ),

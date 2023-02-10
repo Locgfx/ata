@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PHomeScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PPerceptions/prescription_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PPosts/post_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/pofile_screen.dart';
 import 'package:greymatter/constants/colors.dart';
-
 import '../PEarning/my_earnings_screen.dart';
 import 'psychologist_home_screen.dart';
 
@@ -28,7 +28,7 @@ class _PTabsScreenState extends State<PTabsScreen> {
       child: Scaffold(
         extendBody: true,
         body: [
-          PsychologistHomeScreen(),
+          PHomeScreen(),
           MyEarningsScreen(),
           PsychologistPostScreen(index: 1),
           PrescriptionScreen(),

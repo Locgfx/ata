@@ -7,7 +7,6 @@ import 'package:greymatter/widgets/AppWidgets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/primary_card_button.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/secondary_card_button.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -25,30 +24,6 @@ class AvailablePsychologists extends StatelessWidget {
         appBarText: 'Available Psychologists',
         imgPath: 'assets/images/iconbackappbar2.png',
       ),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 60.w,
-      //   centerTitle: false,
-      //   backgroundColor: Colors.white,
-      //   title: Text(
-      //     'Available Psychologists',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   titleSpacing: 0.w,
-      //   leading: InkWell(
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: Padding(
         padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h),
         child: ListView.separated(

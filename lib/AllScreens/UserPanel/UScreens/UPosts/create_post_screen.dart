@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -81,85 +80,6 @@ class CreatePostScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              /* SizedBox(
-                height: 45.h,
-              ),*/
-              /* Text(
-                'Select Media',
-                style: kManRope_700_16_001314,
-              ),*/
-              /* SizedBox(
-                height: 16.h,
-              ),*/
-              /* Row(
-                children: [
-                  Container(
-                    height: 56.h,
-                    width: 184.w,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      border: Border.all(
-                        color: const Color(0xFFDFDFDF),
-                      ),
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 12.w),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/icons/files.svg',
-                              height: 24.h,
-                              width: 24.w,
-                            ),
-                            SizedBox(
-                              width: 22.w,
-                            ),
-                            Text(
-                              'Files',
-                              style: kManRope_400_14_001314,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 8.w,
-                  ),
-                  Container(
-                    height: 56.h,
-                    width: 184.w,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(Radius.circular(8)),
-                      border: Border.all(
-                        color: const Color(0xFFDFDFDF),
-                      ),
-                    ),
-                    child: Center(
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 12.w),
-                        child: Row(
-                          children: [
-                            SvgPicture.asset(
-                              'assets/icons/camera2.svg',
-                              height: 24.h,
-                              width: 24.w,
-                            ),
-                            SizedBox(
-                              width: 22.w,
-                            ),
-                            Text(
-                              'Camera',
-                              style: kManRope_400_14_001314,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),*/
               SizedBox(
                 height: 16,
               ),

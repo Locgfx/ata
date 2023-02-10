@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/Completedmeetings.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-
 import '../../../../../constants/decorations.dart';
 import '../../../../../widgets/buttons.dart';
-import 'Upcomingmeetings.dart';
+
 
 class CompletedList extends StatefulWidget {
   const CompletedList({Key? key}) : super(key: key);
@@ -98,7 +98,7 @@ class _CompletedListState extends State<CompletedList> {
                           child: MainButton(
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => UpcomingMeetings()));
+                                    builder: (context) => CompletedMeetings()));
                               },
                               child: Padding(
                                 padding:
@@ -119,24 +119,7 @@ class _CompletedListState extends State<CompletedList> {
                 },
                 itemCount: 4),
           ),
-          // SizedBox(height: 24.h),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //       child: MainButton(
-          //           onPressed: () {},
-          //           child: Padding(
-          //             padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
-          //             child: Text(
-          //               "See all",
-          //               style: kManRope_500_16_white,
-          //             ),
-          //           ),
-          //           color: k006D77,
-          //           shape: CustomDecoration().button16Decoration()),
-          //     ),
-          //   ],
-          // ),
+          SizedBox(height: 40.h,)
         ],
       ),
     );

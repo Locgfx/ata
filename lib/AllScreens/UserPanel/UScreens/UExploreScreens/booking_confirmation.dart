@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,7 +7,6 @@ import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -146,33 +144,6 @@ class _BookingConfirmationScreenState extends State<BookingConfirmationScreen> {
               SizedBox(
                 height: 77.h,
               ),
-              // Row(mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     MainButton(
-              //         onPressed: () {},
-              //         child: Padding(
-              //           padding:  EdgeInsets.only(top:19.h,bottom: 19.h,left: 42.w,right: 42.w),
-              //           child: Text("Join meeting",style: kManRope_400_16_white,),
-              //         ),
-              //         color: k66898D,
-              //         shape: CustomDecoration().button08Decoration()),
-              //   ],
-              // )
-              // SizedBox(
-              //   height: 56.h,
-              //   width: 183.w,
-              //   child: MaterialButton(
-              //     color: k006D77,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10), // <-- Radius
-              //     ),
-              //     onPressed: () {},
-              //     child: Text(
-              //       'Join meeting',
-              //       style: kManRope_400_16_white,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -39,19 +38,6 @@ class _JoiningMeetingDetailsState extends State<JoiningMeetingDetails> {
               builder: (context) => HistoryFilterBottomSheet());
         },
       ),
-      /*appBar: DotappBar(
-        imgPath: 'assets/images/3doticonlarge.png',
-        onTap: () {
-          showModalBottomSheet(
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(20),
-                    topLeft: Radius.circular(20)),
-              ),
-              context: context,
-              builder: (context) => HistoryFilterBottomSheet());
-        },
-      ),*/
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 32.h),
@@ -105,47 +91,14 @@ class _JoiningMeetingDetailsState extends State<JoiningMeetingDetails> {
                             height: 8.h,
                           ),
                           StarWidget()
-                          // Row(
-                          //   children: [
-                          //     SvgPicture.asset(
-                          //       'assets/icons/star.svg',
-                          //       width: 12.w,
-                          //       height: 12.h,
-                          //     ),
-                          //     SizedBox(
-                          //       width: 4,
-                          //     ),
-                          //     Text(
-                          //       '4.0',
-                          //       style: kManRope_400_12_001314,
-                          //     ),
-                          //     SizedBox(
-                          //       width: 4,
-                          //     ),
-                          //     Text(
-                          //       '.',
-                          //       style: kManRope_400_12_001314,
-                          //     ),
-                          //     SizedBox(
-                          //       width: 4,
-                          //     ),
-                          //     Text(
-                          //       '12 Yrs. Exp',
-                          //       style: kManRope_400_12_001314,
-                          //     )
-                          //   ],
-                          // )
                         ],
                       ),
                     ],
                   ),
-                  Container(
-                    // color: Colors.red,
-                    child: SvgPicture.asset(
-                      'assets/icons/Frame 8498.svg',
-                      width: 48.w,
-                      height: 48.h,
-                    ),
+                  SvgPicture.asset(
+                    'assets/icons/Frame 8498.svg',
+                    width: 48.w,
+                    height: 48.h,
                   ),
                 ],
               ),

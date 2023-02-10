@@ -38,51 +38,6 @@ class _UChangePasswordScreenState extends State<UChangePasswordScreen> {
       key: _formKey,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        // bottomNavigationBar: Padding(
-        //   padding: EdgeInsets.only(bottom: 20.h, left: 135.w, right: 135.w),
-        //   child: SizedBox(
-        //     height: 60.h,
-        //     width: 168.w,
-        //     child: MaterialButton(
-        //       onPressed: () {
-        //         if (_formKey.currentState!.validate()) {
-        //           final resp = UserChangePasswordApi().get(
-        //               oldPassword: oldPasswordController.text,
-        //               newPassword: newPasswordController.text,
-        //               cNewPassword: confirmPasswordController.text);
-        //           resp.then((value) async {
-        //             print(value);
-        //             if (value['status'] == true) {
-        //               Fluttertoast.showToast(
-        //                   msg: 'Password changed successfully');
-        //               Navigator.of(context).push(MaterialPageRoute(
-        //                   builder: (context) => UProfileScreen()));
-        //             } else {
-        //               Fluttertoast.showToast(msg: value['error']);
-        //               /* Navigator.push(
-        //                               context,
-        //                               MaterialPageRoute(
-        //                                   builder: (context) => PDashboard()),
-        //                             );*/
-        //             }
-        //           });
-        //         }
-        //         // Navigator.of(context).push(MaterialPageRoute(
-        //         //     builder: (context) => PTabsScreen()));
-        //       },
-        //       color: k006D77,
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.all(Radius.circular(48)),
-        //       ),
-        //       child: Center(
-        //         child: Text(
-        //           'Save',
-        //           style: kManRope_500_16_white,
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
         backgroundColor: kEDF6F9,
         appBar: CuswhiteAppBar(
           hasThreeDots: false,
@@ -214,40 +169,9 @@ class _UChangePasswordScreenState extends State<UChangePasswordScreen> {
                     }
                   });
                 }
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => PChangePasswordEnterOtpScreen()),
-                // );
-
-
               }, text: 'Next',),
               SizedBox(height: 40.h,)
 
-              // Padding(
-              //   padding: EdgeInsets.only(bottom: 20.h),
-              //   child: Center(
-              //     child: SizedBox(
-              //       height: 60.h,
-              //       width: 168.w,
-              //       child: MaterialButton(
-              //         onPressed: () {
-              //           // Navigator.of(context).push(MaterialPageRoute(
-              //           //     builder: (context) => PTabsScreen()));
-              //         },
-              //         color: k006D77,
-              //         shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadius.all(Radius.circular(48)),
-              //         ),
-              //         child: Center(
-              //           child: Text(
-              //             'Save',
-              //             style: kManRope_500_16_white,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

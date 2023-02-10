@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/BottomSheets.dart';
 import 'UAllcomments.dart';
@@ -42,7 +41,7 @@ class _PostViewContainerState extends State<PostViewContainer> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
+                SizedBox(
                   height: 45.h,
                   width: 135.w,
                   child: Row(
@@ -112,7 +111,7 @@ class _PostViewContainerState extends State<PostViewContainer> {
               children: [
                 Row(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 48.h,
                       width: 73.w,
                       // color: Colors.red,
@@ -166,11 +165,9 @@ class _PostViewContainerState extends State<PostViewContainer> {
                               },
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 12),
-                                child: Container(
+                                child: SizedBox(
                                   height: 24.h,
                                   width: 24.w,
-                                  // color: Colors.red,
-
                                   child: Image.asset(
                                     'assets/images/iconcomment24.png',
                                     height: 24.h,
@@ -191,7 +188,7 @@ class _PostViewContainerState extends State<PostViewContainer> {
                 ),
                 Row(
                   children: [
-                    Container(
+                    SizedBox(
                       height: 48,
                       width: 48,
                       // color: Colors.red,
@@ -204,7 +201,7 @@ class _PostViewContainerState extends State<PostViewContainer> {
                     // SizedBox(
                     //   width: 8.w,
                     // ),
-                    Container(
+                    SizedBox(
                       height: 48,
                       width: 48,
                       // color: Colors.red,

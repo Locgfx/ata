@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -39,17 +38,6 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    /*GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                        size: 20.sp,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 107.w,
-                    ),*/
                     Text(
                       'Select Date',
                       style: kManRope_700_20_white,
@@ -61,25 +49,15 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
             Container(
               height: 190.h,
               padding: const EdgeInsets.only(top: 6.0),
-              // The Bottom margin is provided to align the popup above the system navigation bar.
               margin: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
-              // Provide a background color for the popup.
               color: CupertinoColors.systemBackground.resolveFrom(context),
-              // Use a SafeArea widget to avoid system overlaps.
               child: SafeArea(
                 top: false,
                 child: child,
               ),
             ),
-            /*CupertinoButton(
-              child: Text(
-                'OK',
-                style: kManRope_500_16_006D77,
-              ),
-              onPressed: () => Navigator.of(context).pop(),
-            ),*/
           ],
         ),
       ),
@@ -168,12 +146,6 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                             decoration: BoxDecoration(shape: BoxShape.circle),
                             child: Image.asset('assets/images/userP.png'),
                           ),
-                          /*Container(
-                            height: 106.h,
-                            width: 106.w,
-                            decoration: const BoxDecoration(
-                                color: Color(0xFF006D77), shape: BoxShape.circle),
-                          ),*/
                         ),
                       ],
                     ),
@@ -189,7 +161,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                 SizedBox(
                   height: 40.h,
                 ),
-                Container(
+                SizedBox(
                   height: 43,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,18 +253,6 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                   "25/ 02/1993",
                   style: kManRope_400_16_001314,
                 ),
-                /*SizedBox(
-                  height: 20,
-                  child: TextField(
-                    decoration: InputDecoration(
-
-                      border: InputBorder.none,
-                      hintText: '25/ 02/1993',
-                      hintStyle: kManRope_400_16_001314,
-                    ),
-                    style: kManRope_400_16_001314,
-                  ),
-                ),*/
                 SizedBox(
                   height: 20.h,
                 ),
@@ -335,17 +295,6 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                   "Female",
                   style: kManRope_400_16_001314,
                 ),
-                /*SizedBox(
-                  height: 20,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Female',
-                      hintStyle: kManRope_400_16_001314,
-                    ),
-                    style: kManRope_400_16_001314,
-                  ),
-                ),*/
                 SizedBox(
                   height: 20.h,
                 ),
@@ -386,17 +335,6 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                   "Single",
                   style: kManRope_400_16_001314,
                 ),
-                /* SizedBox(
-                  height: 20,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Single',
-                      hintStyle: kManRope_400_16_001314,
-                    ),
-                    style: kManRope_400_16_001314,
-                  ),
-                ),*/
                 SizedBox(
                   height: 20.h,
                 ),
@@ -437,17 +375,7 @@ class _EditPersonalInfoState extends State<EditPersonalInfo> {
                   "Student",
                   style: kManRope_400_16_001314,
                 ),
-                /*SizedBox(
-                  height: 20,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Student',
-                      hintStyle: kManRope_400_16_001314,
-                    ),
-                    style: kManRope_400_16_001314,
-                  ),
-                ),*/
+
                 SizedBox(
                   height: 20.h,
                 ),
@@ -625,13 +553,6 @@ class _GenderBottomSheetState extends State<GenderBottomSheet> {
               ),
             ),
           ),
-          /* CupertinoButton(
-            child: Text(
-              'OK',
-              style: kManRope_500_16_006D77,
-            ),
-            onPressed: () => Navigator.of(context).pop(),
-          ),*/
         ],
       ),
     );
@@ -690,9 +611,6 @@ class _RelationshipBottomSheetState extends State<RelationshipBottomSheet> {
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
-            // Provide a background color for the popup.
-            // color: CupertinoColors.systemBackground.resolveFrom(context),
-            // Use a SafeArea widget to avoid system overlaps.
             child: SafeArea(
               top: false,
               child: Padding(

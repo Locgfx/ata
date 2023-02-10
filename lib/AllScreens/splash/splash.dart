@@ -8,7 +8,6 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/qu
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../constants/colors.dart';
 
 class SplashScreen extends StatefulWidget {

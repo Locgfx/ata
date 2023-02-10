@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_privacy_policy_api.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../model/UModels/user_profile_models/user_privacy_policy_model.dart';
@@ -16,6 +15,7 @@ class PrivacyAndPolicyScreen extends StatefulWidget {
 }
 
 class _PrivacyAndPolicyScreenState extends State<PrivacyAndPolicyScreen> {
+  @override
   void initState() {
     getData();
     super.initState();

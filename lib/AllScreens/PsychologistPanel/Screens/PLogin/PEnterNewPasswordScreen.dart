@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PLoginScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_login_apis/doctor_change_password_api.dart';
-import 'package:greymatter/Apis/UserAPis/loginapi/user_create_new_password_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
@@ -170,11 +169,6 @@ class _PEnterNewPasswordScreenState extends State<PEnterNewPasswordScreen> {
                             } else {
                               Fluttertoast.showToast(
                                   msg: value['error']);
-                              /* Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => PDashboard()),
-                                  );*/
 
                             }
                           });

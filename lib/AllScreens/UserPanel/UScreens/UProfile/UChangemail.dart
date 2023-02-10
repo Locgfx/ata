@@ -2,18 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/Editbasicdetails.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UChangeEmailOtpScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UOtpScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
-
 import '../../../../Apis/UserAPis/user_profile_apis/user_change_email_api.dart';
-import '../../../../Apis/UserAPis/user_profile_apis/user_change_mobileno_api.dart';
 
 class UChangeEmailScreen extends StatefulWidget {
   const UChangeEmailScreen({Key? key}) : super(key: key);
@@ -71,9 +67,8 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
               // SizedBox(
               //   height: 8.h,
               // ),
-              Container(
+              SizedBox(
                 height: 48.h,
-                // color: Colors.red,
                 child: TextFormField(
                   controller: newEmailController,
                   onChanged: (val) {
@@ -113,7 +108,7 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
               // SizedBox(
               //   height: 8.h,
               // ),
-              Container(
+              SizedBox(
                 height: 48.h,
                 // color: Colors.red,
                 child: TextFormField(
@@ -186,59 +181,6 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
           ),
         ),
       ),
-      // bottomNavigationBar: SingleChildScrollView(
-      //   child: Column(
-      //     children: [
-      //       Center(
-      //         child: Text(
-      //           'You will receive an otp to your new email after clicking next',
-      //           style: kManRope_400_16_626A6A,
-      //           textAlign: TextAlign.center,
-      //         ),
-      //       ),
-      //       SizedBox(height: 16),
-      //       Center(
-      //         child: SizedBox(
-      //           height: 60.h,
-      //           width: 168.w,
-      //           child: MaterialButton(
-      //             onPressed: () {
-      //               final resp = UserChangeEmailApi().get(
-      //                   newEmail: newEmailController.text,
-      //                   confirmEmail: confirmEmailController.text);
-      //               resp.then((value) async {
-      //                 print(resp);
-      //                 // var prefs = await SharedPreferences.getInstance();
-      //                 // print(prefs.getString('cookies'));
-      //                 if (value['status'] == true) {
-      //                   Navigator.of(context).push(MaterialPageRoute(
-      //                       builder: (context) => UEmailOtpScreen()));
-      //                   Fluttertoast.showToast(
-      //                       msg: 'Your OTP is ${value['otp']}');
-      //                 } else {
-      //                   print(value.toString());
-      //                   Fluttertoast.showToast(
-      //                       msg: value['error']);
-      //                 }
-      //               });
-      //             },
-      //             color:
-      //                  k006D77,
-      //
-      //             shape: CustomDecoration().smallButtonDecoration(),
-      //             child: Center(
-      //               child: Text(
-      //                 'Next',
-      //                 style: kManRope_500_16_white,
-      //               ),
-      //             ),
-      //           ),
-      //         ),
-      //       ),
-      //       SizedBox(height: 24),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }

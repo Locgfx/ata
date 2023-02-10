@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/add_bank.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 import '../../../../constants/fonts.dart';
 
 class WithDrawEarningsScreen extends StatefulWidget {

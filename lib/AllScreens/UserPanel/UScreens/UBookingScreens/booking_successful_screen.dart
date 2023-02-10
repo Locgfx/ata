@@ -5,11 +5,11 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../UExploreScreens/booking_confirmation.dart';
 
 class BookingSuccessfulScreen extends StatelessWidget {
   final bool isCancellationAvailable;
+
   const BookingSuccessfulScreen(
       {Key? key, required this.isCancellationAvailable})
       : super(key: key);
@@ -24,30 +24,6 @@ class BookingSuccessfulScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
       ),
-      /* appBar: AppBar(
-        elevation: 0,
-        leadingWidth: 10.w,
-        centerTitle: false,
-        backgroundColor: Colors.white,
-        title: Text(
-          'Appointment',
-          style: kManRope_500_16_006D77,
-        ),
-        titleSpacing: 50.w,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Icon(
-              Icons.arrow_back_ios,
-              color: Colors.black,
-              size: 20,
-            ),
-          ),
-        ),
-      ),*/
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
@@ -64,17 +40,11 @@ class BookingSuccessfulScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    /*  SizedBox(
-                      height: 10.h,
-                    ),*/
                     Image.asset(
                       'assets/images/success.gif',
                       height: 200.h,
                       width: 200.w,
                     ),
-                    // SizedBox(
-                    //   height: 20.h,
-                    // ),
                     Text(
                       'Congratulations',
                       style: kManRope_700_24_001314,
@@ -201,28 +171,6 @@ class BookingSuccessfulScreen extends StatelessWidget {
                     color: kEDF6F9,
                     shape: CustomDecoration().outline16ButtonDecoration()),
               ),
-
-              // SizedBox(
-              //   height: 56.h,
-              //   width: 400.h,
-              //   child: MaterialButton(
-              //     color: Colors.white,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10),
-              //       side: BorderSide(color: k006D77, width: 1), // <-- Radius
-              //     ),
-              //     onPressed: () {
-              //       Navigator.push(
-              //           context,
-              //           MaterialPageRoute(
-              //               builder: (context) => const TabsScreen()));
-              //     },
-              //     child: Text(
-              //       'Home',
-              //       style: kManRope_400_16_001314,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

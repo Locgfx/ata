@@ -1,13 +1,10 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PEnterNewPasswordScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/enter_new_password_screen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_login_apis/doctor_enter_otp_api.dart';
-import 'package:greymatter/Apis/UserAPis/loginapi/user_forgot_password_enter_otp_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
@@ -63,7 +60,6 @@ class _PForgotPasswordEnterOTPScreen extends State<PForgotPasswordEnterOTPScreen
 
   @override
   Widget build(BuildContext context) {
-    final number = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kEDF6F9,

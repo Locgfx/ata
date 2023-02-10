@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/session_successful_screen.dart';
@@ -79,30 +78,6 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
         appBarText: 'Confirm your booking',
         imgPath: 'assets/images/iconbackappbar2.png',
       ),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 40.w,
-      //   centerTitle: false,
-      //   backgroundColor: Colors.white,
-      //   title: Text(
-      //     'Confirm your booking',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   titleSpacing: 18.w,
-      //   leading: InkWell(
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: SingleChildScrollView(
         physics: NeverScrollableScrollPhysics(),
         child: Padding(
@@ -118,13 +93,10 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Container(
-                        // color: Colors.red,
-                        child: Image.asset(
-                          'assets/images/iconcircletick24.png',
-                          height: 48.h,
-                          width: 48.w,
-                        ),
+                      Image.asset(
+                        'assets/images/iconcircletick24.png',
+                        height: 48.h,
+                        width: 48.w,
                       ),
                       SizedBox(
                         width: 10.w,
@@ -190,36 +162,6 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
                             height: 8.h,
                           ),
                           StarWidget(),
-                          // Row(
-                          //   children: [
-                          //     Image.asset(
-                          //       'assets/images/Star 1.png',
-                          //       width: 20.w,
-                          //       height: 20.h,
-                          //     ),
-                          //     SizedBox(
-                          //       width: 4,
-                          //     ),
-                          //     Text(
-                          //       '4.0',
-                          //       style: kManRope_400_12_001314,
-                          //     ),
-                          //     SizedBox(
-                          //       width: 4,
-                          //     ),
-                          //     Text(
-                          //       '.',
-                          //       style: kManRope_400_12_001314,
-                          //     ),
-                          //     SizedBox(
-                          //       width:4.w,
-                          //     ),
-                          //     Text(
-                          //       '12 Yrs. Exp',
-                          //       style: kManRope_400_12_001314,
-                          //     )
-                          //   ],
-                          // )
                         ],
                       ),
                     ],
@@ -238,28 +180,6 @@ class _BookingSuccessfulState extends State<BookingSuccessful> {
               SizedBox(
                 height: 233.h,
               ),
-              // SizedBox(
-              //   height: 56.h,
-              //   width: 183.w,
-              //   child: MaterialButton(
-              //     color: k006D77,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10), // <-- Radius
-              //     ),
-              //     onPressed: () {
-              //       if (!_flag) {
-              //         Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //                 builder: (context) => const SessionSuccessful()));
-              //       }
-              //     },
-              //     child: Text(
-              //       'Join Meeting',
-              //       style: kManRope_400_16_white,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

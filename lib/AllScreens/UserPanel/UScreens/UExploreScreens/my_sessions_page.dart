@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/session_details_page.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/AppWidgets.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import 'booking_confirmation.dart';
@@ -30,7 +28,8 @@ class _MySessionPageState extends State<MySessionPage> {
       backgroundColor: kEDF6F9,
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h,bottom: 30.h),
+          padding:
+              EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h, bottom: 30.h),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -117,37 +116,6 @@ class _MySessionPageState extends State<MySessionPage> {
                             ],
                           ),
                         ),
-                        /*SizedBox(
-                          width: 65.w,
-                        ),*/
-                        /*Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            SvgPicture.asset(
-                              'assets/icons/kebabMenu.svg',
-                              height: 20,
-                              width: 4,
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            SizedBox(
-                              height: 32.h,
-                              width: 72.w,
-                              child: MaterialButton(
-                                color: kB5BABA,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                onPressed: () {},
-                                child: Text(
-                                  'Join',
-                                  style: kManRope_400_16_white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        )*/
                       ],
                     ),
                   ),

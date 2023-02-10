@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChangePasswordEnterOtpScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/my_account_screen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_change_password_api.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -11,19 +9,14 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 
-// import '../../../profile_screens/reset_email_otp_screen.dart';
-
 class PChangePasswordScreen extends StatefulWidget {
   const PChangePasswordScreen({Key? key}) : super(key: key);
 
   @override
-  State<PChangePasswordScreen> createState() =>
-      _PChangePasswordScreenState();
+  State<PChangePasswordScreen> createState() => _PChangePasswordScreenState();
 }
 
-class _PChangePasswordScreenState
-    extends State<PChangePasswordScreen> {
-
+class _PChangePasswordScreenState extends State<PChangePasswordScreen> {
   bool hasoPassFocus = false;
   bool hasNPassFocus = false;
   bool hasCPassFocus = false;
@@ -32,16 +25,17 @@ class _PChangePasswordScreenState
   bool nPassEmpty = true;
   bool cPassEmpty = true;
 
-
   final TextEditingController oldPasswordController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
         hasThreeDots: false,
@@ -66,7 +60,7 @@ class _PChangePasswordScreenState
                 height: 47.h,
                 width: 1.sw,
                 child: TextFormField(
-                  controller:oldPasswordController ,
+                  controller: oldPasswordController,
                   onChanged: (val) {
                     if (val.isNotEmpty) {
                       setState(() {
@@ -97,7 +91,7 @@ class _PChangePasswordScreenState
                 height: 47.h,
                 width: 1.sw,
                 child: TextFormField(
-                  controller:newPasswordController ,
+                  controller: newPasswordController,
                   onChanged: (val) {
                     if (val.isNotEmpty) {
                       setState(() {
@@ -128,7 +122,7 @@ class _PChangePasswordScreenState
                 height: 47.h,
                 width: 1.sw,
                 child: TextFormField(
-                  controller:confirmPasswordController ,
+                  controller: confirmPasswordController,
                   onChanged: (val) {
                     if (val.isNotEmpty) {
                       setState(() {
@@ -146,44 +140,42 @@ class _PChangePasswordScreenState
                 ),
               ),
               Spacer(),
-              oPassEmpty ?
-              CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :nPassEmpty ?
-              CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :cPassEmpty ?
-              CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :CustomActiveTextButton(onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  final resp = DoctorChangePasswordApi().get(
-                      oldPassword: oldPasswordController.text,
-                      newPassword: newPasswordController.text,
-                      cNewPassword: confirmPasswordController.text
-                  );
-                  resp.then((value) async {
-                    print(value);
-                    if (value['status'] == true) {
-                      Fluttertoast.showToast(
-                          msg: 'Password changed successfully');
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PsychologistAccountScreen()));
-                    } else {
-                      Fluttertoast.showToast(msg: value['error']);
-                      /* Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => PDashboard()),
-                                      );*/
-                    }
-                  });
-                }
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => PChangePasswordEnterOtpScreen()),
-                // );
-
-
-              }, text: 'Next',),
-              SizedBox(height: 40.h,)
+              oPassEmpty
+                  ? CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
+                  : nPassEmpty
+                      ? CustomDeactiveTextButton(onPressed: () {}, text: 'Next')
+                      : cPassEmpty
+                          ? CustomDeactiveTextButton(
+                              onPressed: () {}, text: 'Next')
+                          : CustomActiveTextButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  final resp = DoctorChangePasswordApi().get(
+                                      oldPassword: oldPasswordController.text,
+                                      newPassword: newPasswordController.text,
+                                      cNewPassword:
+                                          confirmPasswordController.text);
+                                  resp.then((value) async {
+                                    print(value);
+                                    if (value['status'] == true) {
+                                      Fluttertoast.showToast(
+                                          msg: 'Password changed successfully');
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PsychologistAccountScreen()));
+                                    } else {
+                                      Fluttertoast.showToast(
+                                          msg: value['error']);
+                                    }
+                                  });
+                                }
+                              },
+                              text: 'Next',
+                            ),
+              SizedBox(
+                height: 40.h,
+              ),
             ],
           ),
         ),

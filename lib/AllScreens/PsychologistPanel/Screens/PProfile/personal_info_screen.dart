@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/Editbasicdetails.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/Editdoctordetails.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -124,12 +123,8 @@ class _PsychologistPersonalInfoScreenState
                   ),
                 ],
               ),
-              // flag ? BasicDetails() : EditDoctorProfile(),
-
               flag ? EditbasicDetails() : EditDoctorProfile(),
-              // flag ? PsychologistPersonalInfoScreen() : DoctorProfile(),
             ],
-            // EditbasicDetails()
           ),
         ),
       ),

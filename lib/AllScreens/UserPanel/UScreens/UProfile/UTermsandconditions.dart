@@ -33,6 +33,6 @@ class _UTermsandConditionsState extends State<UTermsandConditions> {
         ),
       ),
     );
-    ;
+
   }
 }

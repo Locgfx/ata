@@ -6,13 +6,9 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/question_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-// import 'package:greymatter/screens/UserPanel/UScreens/UWelcome/welcome_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../../../constants/colors.dart';
-import '../../../../model/question_model.dart';
 import 'form.dart';
-// import '../UserPanel/UWelcome/welcome_screen.dart';
 
 class Questions extends StatefulWidget {
   const Questions({
@@ -174,10 +170,6 @@ class _QuestionsState extends State<Questions> {
                             prefs.setBool(Keys().questionsDone, true);
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (ctx) => WelcomeScreen()));
-                            /* Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => DashBoard(),),);*/
                           }
                         },
                       );

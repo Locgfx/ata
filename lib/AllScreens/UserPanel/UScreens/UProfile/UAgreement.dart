@@ -6,7 +6,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_profile_models/user_agreement_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-import 'package:greymatter/widgets/loadingWidget.dart';
 
 class UAgreement extends StatefulWidget {
   const UAgreement({Key? key}) : super(key: key);

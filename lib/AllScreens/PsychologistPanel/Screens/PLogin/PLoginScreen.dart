@@ -2,16 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/psychologist_home_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PForgotPasswordEnterOtpScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/form_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/question_screen1.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/enter_mobile_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/reset_password_otp_screen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_login_apis/Dloginapi.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_login_apis/doctor_forgot_password_api.dart';
-import 'package:greymatter/Apis/UserAPis/loginapi/loginapi.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
@@ -228,27 +223,13 @@ class _PLoginScreenState extends State<PLoginScreen> {
                                   builder: (ctx) => PForgotPasswordEnterOTPScreen(signUpField:_emailController.text,),
                                   settings: RouteSettings(
                                       arguments: _emailController.text)));
-                              // Navigator.of(context).push(
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             UForgotPasswordOTPScreen(
-                              //               signUpField:
-                              //               _emailController.text,
-                              //             )));
                               Fluttertoast.showToast(
                                   msg: 'Your OTP is ${value['otp']}');
                             }
                           });
                         }
-
-                        // Navigator.of(context).push(MaterialPageRoute(
-                        //     builder: (ctx) => UForgotPasswordOTPScreen(signUpField:_emailController.text,),
-                        //     settings: RouteSettings(
-                        //         arguments: _emailController.text)));
                       }
-                      // if (_emailController.text.trim().isEmpty) {
-                      //   _formKey.currentState!.validate();
-                      // }
+
                     },
                     child:
                     Container(

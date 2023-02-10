@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,7 +9,6 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -381,30 +379,6 @@ class _AddNewActivityState extends State<AddNewActivity> {
               SizedBox(
                 height: 40.h,
               )
-              // Center(
-              //   child: SizedBox(
-              //     height: 56,
-              //     width: 132.w,
-              //     child: MaterialButton(
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(10),
-              //       ),
-              //       onPressed: () {
-              //         Navigator.push(
-              //             context,
-              //             MaterialPageRoute(
-              //                 builder: (context) => NewActivityAddedScreen()));
-              //       },
-              //       color: k006D77,
-              //       child: Center(
-              //         child: Text(
-              //           'ADD',
-              //           style: kManRope_500_16_white,
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

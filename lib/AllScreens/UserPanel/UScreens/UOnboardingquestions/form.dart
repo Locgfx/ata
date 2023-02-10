@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../widgets/shared/buttons/custom_active_text_button.dart';
 
@@ -103,23 +102,6 @@ class _Form1State extends State<Form1> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      /*height: (widget.index == 0)
-                        ? 300.h
-                        : (widget.index == 1 || widget.index == 2)
-                            ? 600.h
-                            : (widget.index == 4)
-                                ? 600.h
-                                : (widget.index == 5)
-                                    ? 600.h
-                                    : (widget.index == 3)
-                                        ? 600.h
-                                        : (widget.index == 6)
-                                            ? 600.h
-                                            : (widget.index == 7)
-                                                ? 600.h
-                                                : (widget.index == 8)
-                                                    ? 600.h
-                                                    : 600.h,*/
       width: 1.sw,
       padding: EdgeInsets.all(24),
       margin: EdgeInsets.all(24),

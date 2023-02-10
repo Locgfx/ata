@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/joining.dart';
+import 'package:greymatter/Apis/DoctorApis/home_apis/upcoming_booking_api.dart';
 import 'package:greymatter/constants/colors.dart';
-
+import 'package:greymatter/model/PModels/home_models/upcoming_booking_model.dart';
 import '../../../../../constants/decorations.dart';
 import '../../../../../constants/fonts.dart';
 import '../../../../../widgets/buttons.dart';
@@ -17,15 +20,44 @@ class UpcomingList extends StatefulWidget {
 
 class _UpcomingListState extends State<UpcomingList> {
   @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  UpcomingBookingModel model = UpcomingBookingModel();
+  List<UpcomingBookingModel> upcomingBooking = [];
+  bool _isLoading = false;
+
+  getData() {
+    _isLoading = true;
+    final resp = UpcomingBookingApi().get();
+    resp.then((value) {
+      print(value);
+      setState(() {
+        for (var v in value) {
+          upcomingBooking.add(UpcomingBookingModel.fromJson(v));
+        }
+        _isLoading = false;
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      body: Column(
+      body: _isLoading || upcomingBooking.isEmpty ? Center(
+        child: SpinKitThreeBounce(
+          color: k006D77,
+          size: 30,
+        ),
+      ) :Column(
         children: [
           Expanded(
             child: ListView.separated(
+              itemCount: 5,
                 scrollDirection: Axis.vertical,
-                //physics: NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
                 itemBuilder: (ctx, index) {
                   return Column(
@@ -57,9 +89,19 @@ class _UpcomingListState extends State<UpcomingList> {
                                   color: Colors.grey,
                                 ),
                                 clipBehavior: Clip.hardEdge,
-                                child: Image.asset(
-                                  'assets/images/userP.png',
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                  upcomingBooking[index]
+                                      .photo
+                                      .toString(),
                                   fit: BoxFit.cover,
+                                  placeholder: (context, url) =>  Center(
+                                    child: SpinKitThreeBounce(
+                                      color: k006D77,
+                                      size: 10,
+                                    ),
+                                  ),
+                                  errorWidget: (context, url, error) =>  Icon(Icons.error),
                                 ),
                               ),
                             ),
@@ -69,19 +111,40 @@ class _UpcomingListState extends State<UpcomingList> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Priyanka singh',
+                                  Text( upcomingBooking[index]
+                                      .name
+                                      .toString(),
                                       style: kManRope_500_16_001314),
-                                  Row(
+                                  Row( mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text('Anxiety',
+                                      Text(upcomingBooking[index]
+                                          .issueName
+                                          .toString(),
                                           style: kManRope_400_14_626A6A),
                                       // SizedBox(width: 24.w),
-                                      Expanded(
-                                        child: Text(
-                                          '10 June 2022, 8:00AM',
-                                          style: kManRope_400_14_626A6A,
-                                          textAlign: TextAlign.end,
-                                        ),
+                                      Row(
+                                        children: [
+                                          Text(
+                                            upcomingBooking[
+                                            index]
+                                                .date
+                                                .toString(),
+                                            style:
+                                            kManRope_400_14_626A6A,
+                                            textAlign:
+                                            TextAlign.end,
+                                          ),
+                                          Text(
+                                            upcomingBooking[
+                                            index]
+                                                .timeSlot
+                                                .toString(),
+                                            style:
+                                            kManRope_400_14_626A6A,
+                                            textAlign:
+                                            TextAlign.end,
+                                          ),
+                                        ],
                                       ),
                                     ],
                                   ),
@@ -96,6 +159,7 @@ class _UpcomingListState extends State<UpcomingList> {
                         Container(
                           margin: EdgeInsets.symmetric(horizontal: 24),
                           width: 1.sw,
+                          height:56.h,
                           child: MainButton(
                               onPressed: () {
                                 Navigator.of(context).push(MaterialPageRoute(
@@ -118,25 +182,10 @@ class _UpcomingListState extends State<UpcomingList> {
                 separatorBuilder: (ctx, index) {
                   return SizedBox(height: 12.h);
                 },
-                itemCount: 5),
+               ),
           ),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //       child: MainButton(
-          //           onPressed: () {},
-          //           child: Padding(
-          //             padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
-          //             child: Text(
-          //               "See all",
-          //               style: kManRope_500_16_white,
-          //             ),
-          //           ),
-          //           color: k006D77,
-          //           shape: CustomDecoration().button16Decoration()),
-          //     ),
-          //   ],
-          // ),
+
+          SizedBox(height: 40.h,)
         ],
       ),
     );

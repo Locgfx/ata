@@ -3,10 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAgreement.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPrivacyandpolicy.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UTermsandconditions.dart';
-import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_agreement_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/model/UModels/user_profile_models/user_agreement_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class UAgreementScreen extends StatefulWidget {
@@ -47,7 +45,7 @@ class _UAgreementScreenState extends State<UAgreementScreen> {
                       'Agreement',
                       style: kManRope_500_16_001314,
                     ),
-                    Container(
+                    SizedBox(
                       height: 48,
                       width: 48,
                       // color: Colors.red,
@@ -80,7 +78,7 @@ class _UAgreementScreenState extends State<UAgreementScreen> {
                       'Privacy and Policy',
                       style: kManRope_500_16_001314,
                     ),
-                    Container(
+                    SizedBox(
                       height: 48,
                       width: 48,
                       // color: Colors.red,
@@ -113,7 +111,7 @@ class _UAgreementScreenState extends State<UAgreementScreen> {
                       'Terms and Conditions',
                       style: kManRope_500_16_001314,
                     ),
-                    Container(
+                    SizedBox(
                       height: 48,
                       width: 48,
                       // color: Colors.red,

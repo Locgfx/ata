@@ -5,9 +5,8 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/earning
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/withdraw_earnings_screen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 import '../../../../constants/fonts.dart';
-// import '../../../psychologist_screen/my_earning_screens/earning_history_screen.dart';
+
 
 class MyEarningsScreen extends StatefulWidget {
   const MyEarningsScreen({Key? key}) : super(key: key);
@@ -274,63 +273,60 @@ class _MyEarningsScreenState extends State<MyEarningsScreen> {
               SizedBox(
                 height: 17.h,
               ),
-              Container(
-                // height: 229.h,
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: 25.w,
-                    right: 25.h,
-                  ),
-                  child: ListView.separated(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      padding: EdgeInsets.zero,
-                      itemBuilder: (ctx, index) {
-                        return Column(
-                          children: [
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width: 69.w,
-                                  // height: 16.h,
-                                  child: Text(
-                                    '09.12.2022',
-                                    style: kManRope_400_14_626A6A,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 78.w,
-                                ),
-                                SizedBox(
-                                  width: 100.w,
-                                  // height: 16.h,
-                                  child: Text(
-                                    '123456789',
-                                    style: kManRope_400_16_626A6A,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 78.w,
-                                ),
-                                SizedBox(
-                                  width: 40.w,
-                                  // height: 16.h,
-                                  child: Text(
-                                    '500',
-                                    style: kManRope_400_16_626A6A,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        );
-                      },
-                      separatorBuilder: (ctx, index) {
-                        return SizedBox(height: 29.h);
-                      },
-                      itemCount: 5),
+              Padding(
+                padding: EdgeInsets.only(
+                  left: 25.w,
+                  right: 25.h,
                 ),
+                child: ListView.separated(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (ctx, index) {
+                      return Column(
+                        children: [
+                          Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: 69.w,
+                                // height: 16.h,
+                                child: Text(
+                                  '09.12.2022',
+                                  style: kManRope_400_14_626A6A,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 78.w,
+                              ),
+                              SizedBox(
+                                width: 100.w,
+                                // height: 16.h,
+                                child: Text(
+                                  '123456789',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 78.w,
+                              ),
+                              SizedBox(
+                                width: 40.w,
+                                // height: 16.h,
+                                child: Text(
+                                  '500',
+                                  style: kManRope_400_16_626A6A,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      );
+                    },
+                    separatorBuilder: (ctx, index) {
+                      return SizedBox(height: 29.h);
+                    },
+                    itemCount: 5),
               ),
               SizedBox(
                 height: 20.h,

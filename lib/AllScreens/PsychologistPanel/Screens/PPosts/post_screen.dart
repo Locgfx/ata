@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PPosts/post_page.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PPosts/saved_page.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -104,7 +102,7 @@ class _PsychologistPostScreenState extends State<PsychologistPostScreen>
                     controller: _pageController,
                     children: [
                       PsychologistPostPage(),
-                      PsychologistSavedScreen(),
+                      PsychologistSavedScreen(isCommentsViewable: true,),
                     ],
                   ),
                 ),

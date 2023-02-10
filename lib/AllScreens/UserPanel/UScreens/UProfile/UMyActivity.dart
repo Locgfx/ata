@@ -54,7 +54,7 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 45.h,
                                 width: 136.w,
                                 child: Row(
@@ -93,12 +93,11 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                                   onTap: () {
                                     _postbottomsheet();
                                   },
-                                  child: Container(
-                                      child: Image.asset(
+                                  child: Image.asset(
                                     "assets/images/Frame 8565.png",
                                     height: 48.h,
                                     width: 48.w,
-                                  )))
+                                  ))
                               // PopupMenuButton<int>(
                               //   shape: RoundedRectangleBorder(
                               //     borderRadius:
@@ -173,11 +172,9 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                             children: [
                               Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 48.h,
                                     width: 73.w,
-                                    // color: Colors.red,
-
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 12),
                                       child: Row(
@@ -209,7 +206,7 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                                         ),
                                       );
                                     },
-                                    child: Container(
+                                    child: SizedBox(
                                       height: 48.h,
                                       width: 75.w,
                                       // color: Colors.red,
@@ -227,7 +224,7 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                                             child: Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 12),
-                                              child: Container(
+                                              child: SizedBox(
                                                 height: 24.h,
                                                 width: 24.w,
                                                 // color: Colors.red,
@@ -253,7 +250,7 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                               ),
                               Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height: 48,
                                     width: 48,
                                     // color: Colors.red,
@@ -266,7 +263,7 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                                   // SizedBox(
                                   //   width: 8.w,
                                   // ),
-                                  Container(
+                                  SizedBox(
                                     height: 48,
                                     width: 48,
                                     // color: Colors.red,
@@ -316,21 +313,6 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
           ),
 
           SizedBox(height: 20.h),
-          // Positioned(
-          //   bottom: 200.h,
-          //   child: GestureDetector(
-          //     onTap: () {
-          //       Navigator.of(context).push(MaterialPageRoute(
-          //           builder: (context) => UCreatePost()));
-          //     },
-          //     child: SvgPicture.asset(
-          //       'assets/icons/addPost_1.svg',
-          //       height: 72.h,
-          //       width: 72.w,
-          //     ),
-          //   ),
-          // ),
-          // SizedBox(height: 20.h),
         ],
       ),
     );

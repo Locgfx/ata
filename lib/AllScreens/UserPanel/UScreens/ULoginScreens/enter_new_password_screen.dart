@@ -7,7 +7,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
-
 import 'login_screen.dart';
 
 class EnterNewPasswordScreen extends StatefulWidget {
@@ -19,11 +18,8 @@ class EnterNewPasswordScreen extends StatefulWidget {
 
 class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
   final _formKey = GlobalKey<FormState>();
-
   final TextEditingController _passwordController = TextEditingController();
-
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
 
   bool hasPassFocus = false;
   bool hasCPassFocus = false;
@@ -35,7 +31,6 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // final number = ModalRoute.of(context)!.settings.arguments as String;
     return Form(
       key: _formKey,
       child: SafeArea(
@@ -170,12 +165,6 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
                                           LoginScreen(showBack: true)));
                                 } else {
                                   Fluttertoast.showToast(msg: value['error']);
-                                  /* Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => PDashboard()),
-                                  );*/
-
                                 }
                               });
                             }

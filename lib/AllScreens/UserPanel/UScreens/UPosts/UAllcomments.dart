@@ -272,10 +272,6 @@ class _UCommentPageState extends State<UCommentPage> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                // Navigator.push(
-                                //     context,
-                                //     MaterialPageRoute(
-                                //         builder: (context) => ReplyScreen()));
                               },
                               child: Row(
                                 children: [

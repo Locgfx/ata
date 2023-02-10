@@ -27,14 +27,11 @@ class _UFaqScreenState extends State<UFaqScreen> {
     getData();
     super.initState();
   }
-
+  bool isSelected = false;
   bool isLoading = false;
 
   UserFaqModel model = UserFaqModel();
   List<UserFaqModel> faqList = [];
-
-
-
 
   getData() {
     isLoading = true;
@@ -117,7 +114,6 @@ class _UFaqScreenState extends State<UFaqScreen> {
                     child: ListView.builder(
                         itemCount: faqList.length,
                         shrinkWrap: true,
-
                         itemBuilder: (BuildContext context, int index) {
                           return Column(
                             children: [
@@ -136,7 +132,6 @@ class _UFaqScreenState extends State<UFaqScreen> {
                                       onTap: () {
                                         setState(() {
                                           dropdownContainer = !dropdownContainer;
-
                                         });
                                       },
                                       child: SizedBox(
@@ -185,98 +180,6 @@ class _UFaqScreenState extends State<UFaqScreen> {
 
                         }),
                   ),
-                  // Container(
-                  //   height: 48.h,
-                  //   width: 380.w,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(
-                  //         "what is ??",
-                  //         style: kManRope_500_16_001314,
-                  //       ),
-                  //       Container(
-                  //         height: 48,
-                  //         width: 48,
-                  //         // color: Colors.red,
-                  //         child: Image.asset(
-                  //           'assets/images/icondownlarge.png',
-                  //           height: 48.h,
-                  //           width: 48.w,
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 24.h,
-                  // ),
-                  // Text(
-                  //   'At ATARAXIS everything we expert at a day’s start is you, better and happier than yesterday. We have got you covered. Share your concern or check our frequently asked question listed below.',
-                  //   style: kManRope_400_16_626A6A,
-                  // ),
-                  // SizedBox(
-                  //   height: 20.h,
-                  // ),
-                  // Container(
-                  //   height: 1.h,
-                  //   width: 380.w,
-                  //   color: kD9D9D9,
-                  // ),
-                  // SizedBox(
-                  //   height: 20.h,
-                  // ),
-                  // Container(
-                  //   height: 48.h,
-                  //   width: 380.w,
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(
-                  //         'What is ATARAXIS ?',
-                  //         style: kManRope_500_16_001314,
-                  //       ),
-                  //       GestureDetector(
-                  //         onTap: () {setState(() {
-                  //           dropdownContainer = !dropdownContainer;
-                  //
-                  //         });
-                  //
-                  //
-                  //         },
-                  //         child: SizedBox(
-                  //           height: 48,
-                  //           width: 48,
-                  //           // color: Colors.red,
-                  //           child: Image.asset(
-                  //             'assets/images/icondownlarge.png',
-                  //             height: 48.h,
-                  //             width: 48.w,
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // AnimatedContainer(
-                  //   duration: Duration(milliseconds: 300),
-                  //   curve: Curves.fastOutSlowIn,
-                  //   height: dropdownContainer ? 100.h : 0,
-                  //   width: 1.sw,
-                  //   decoration:  BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(10),
-                  //     color: kFFFFFF,
-                  //   ),
-                  //
-                  // ),
-                  // SizedBox(
-                  //   height: 20.h,
-                  // ),
-                  // Container(
-                  //   height: 1.h,
-                  //   width: 380.w,
-                  //   color: kD9D9D9,
-                  // ),
                   SizedBox(
                     height: 20.h,
                   ),

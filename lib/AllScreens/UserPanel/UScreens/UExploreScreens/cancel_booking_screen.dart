@@ -60,31 +60,6 @@ class CancelBookingScreen extends StatelessWidget {
               maxLines: 3,
             ),
             Spacer(),
-            // SizedBox(
-            //   height: 56.h,
-            //   width: 380.w,
-            //   child: MaterialButton(
-            //     color: kEDF6F9,
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(10), // <-- Radius
-            //       side: BorderSide(
-            //         color: k006D77,
-            //       ),
-            //     ),
-            //     onPressed: () {
-            //       Navigator.push(
-            //         context,
-            //         MaterialPageRoute(
-            //           builder: (_) => TabsScreen(),
-            //         ),
-            //       );
-            //     },
-            //     child: Text(
-            //       'Home',
-            //       style: kManRope_400_16_001314,
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

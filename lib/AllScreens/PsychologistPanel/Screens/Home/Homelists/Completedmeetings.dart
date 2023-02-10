@@ -58,23 +58,6 @@ class _CompletedMeetingsState extends State<CompletedMeetings> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Text(
-                  //       'Completed   (18)',
-                  //       style: kManRope_700_16_001314,
-                  //     ),
-                  //     CalenderPopup(),
-                  //   ],
-                  // ),
-                  // SizedBox(
-                  //   height: 29.h,
-                  // ),
-                  // Text(
-                  //   'Today (2)',
-                  //   style: kManRope_500_16_001314,
-                  // ),
                   SizedBox(
                     height: 24.h,
                   ),

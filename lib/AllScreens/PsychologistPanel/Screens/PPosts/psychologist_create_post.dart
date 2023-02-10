@@ -4,8 +4,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
-import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
 class PsychologistCreatePostScreen extends StatelessWidget {
@@ -14,23 +12,6 @@ class PsychologistCreatePostScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: Container(
-      //   margin: EdgeInsets.symmetric(horizontal: 100),
-      //   child: Padding(
-      //     padding: const EdgeInsets.only(bottom: 60.0),
-      //     child: MainButton(
-      //         onPressed: () {},
-      //         child: Padding(
-      //           padding: EdgeInsets.only(top: 16.h, bottom: 16.h),
-      //           child: Text(
-      //             "Post",
-      //             style: kManRope_400_16_white,
-      //           ),
-      //         ),
-      //         color: k006D77,
-      //         shape: CustomDecoration().smallButton10Decoration()),
-      //   ),
-      // ),
       backgroundColor: kEDF6F9,
       appBar: CuswhiteAppBar(
         hasThreeDots: false,
@@ -71,7 +52,7 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 18,
                           width: 20,
                           // color: Colors.red,
@@ -84,7 +65,7 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                         SizedBox(
                           width: 14.w,
                         ),
-                        Container(
+                        SizedBox(
                           height: 18,
                           width: 20,
                           // color: Colors.red,
@@ -139,25 +120,6 @@ class PsychologistCreatePostScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              // SizedBox(height:96.h ,)
-
-              // Center(
-              //   child: SizedBox(
-              //     height: 56.h,
-              //     width: 182,
-              //     child: MaterialButton(
-              //       color: k006D77,
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(10), // <-- Radius
-              //       ),
-              //       onPressed: () {},
-              //       child: Text(
-              //         'Post',
-              //         style: kManRope_400_16_white,
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

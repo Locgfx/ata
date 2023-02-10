@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -41,23 +40,6 @@ class SeeAllVideos extends StatelessWidget {
                 ).searchFieldBigIconDecoration(),
               ),
             ),
-            // TextField(
-            //   decoration: InputDecoration(
-            //     hintText: 'Nature',
-            //     hintStyle: kManRope_400_14_626A6A,
-            //     border: OutlineInputBorder(
-            //         borderSide: BorderSide.none,
-            //         borderRadius: BorderRadius.circular(16.0)),
-            //     fillColor: Colors.white,
-            //     filled: true,
-            //     suffixIconConstraints:
-            //         BoxConstraints(maxHeight: 48.h, maxWidth: 48.w),
-            //     suffixIcon: Padding(
-            //       padding: EdgeInsets.only(right: 16.w),
-            //       child: SvgPicture.asset('assets/icons/search.svg'),
-            //     ),
-            //   ),
-            // ),
             SizedBox(
               height: 40.h,
             ),

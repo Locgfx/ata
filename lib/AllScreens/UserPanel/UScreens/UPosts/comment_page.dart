@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -60,17 +59,15 @@ class _CommentPageState extends State<CommentPage> {
                         borderSide:
                             BorderSide(width: 2, color: Color(0xffDBE8FA)),
                       ),
-                      //fillColor: Colors.white,
                       hintText: "Add a comment",
-                      // hintStyle: kManRope_400_14_626A6A,
                       suffixIcon: GestureDetector(
                         onTap: () {},
-                        child: Container(
+                        child: SizedBox(
                           width: 200,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Container(
+                              SizedBox(
                                   height: 48,
                                   width: 48,
                                   // color: Colors.red,
@@ -79,7 +76,7 @@ class _CommentPageState extends State<CommentPage> {
                                     height: 48,
                                     width: 48,
                                   )),
-                              Container(
+                              SizedBox(
                                   height: 48,
                                   width: 48,
                                   // color: Colors.red,
@@ -88,7 +85,7 @@ class _CommentPageState extends State<CommentPage> {
                                     height: 48,
                                     width: 48,
                                   )),
-                              Container(
+                              SizedBox(
                                   height: 48,
                                   width: 48,
                                   // color: Colors.red,
@@ -129,7 +126,7 @@ class _CommentPageState extends State<CommentPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 45.h,
                           width: 135.w,
                           child: Row(
@@ -164,12 +161,11 @@ class _CommentPageState extends State<CommentPage> {
                             onTap: () {
                               _postbottomsheet();
                             },
-                            child: Container(
-                                child: Image.asset(
+                            child: Image.asset(
                               "assets/images/Frame 8565.png",
                               height: 48.h,
                               width: 48.w,
-                            )))
+                            ))
                         // PopupMenuButton<int>(
                         //   shape: RoundedRectangleBorder(
                         //     borderRadius:
@@ -244,11 +240,9 @@ class _CommentPageState extends State<CommentPage> {
                       children: [
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               height: 48.h,
                               width: 73.w,
-                              // color: Colors.red,
-
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 12),
                                 child: Row(
@@ -271,14 +265,7 @@ class _CommentPageState extends State<CommentPage> {
                               width: 16.w,
                             ),
                             GestureDetector(
-                              // onTap :() {
-                              //   Navigator.of(context).push(
-                              //     MaterialPageRoute(
-                              //       builder: (context) => const CommentPage(),
-                              //     ),
-                              //   );
-                              // },
-                              child: Container(
+                              child: SizedBox(
                                 height: 48.h,
                                 width: 75.w,
                                 // color: Colors.red,
@@ -296,7 +283,7 @@ class _CommentPageState extends State<CommentPage> {
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(left: 12),
-                                        child: Container(
+                                        child: SizedBox(
                                           height: 24.h,
                                           width: 24.w,
                                           // color: Colors.red,
@@ -321,7 +308,7 @@ class _CommentPageState extends State<CommentPage> {
                         ),
                         Row(
                           children: [
-                            Container(
+                            SizedBox(
                               height: 48,
                               width: 48,
                               // color: Colors.red,
@@ -334,7 +321,7 @@ class _CommentPageState extends State<CommentPage> {
                             // SizedBox(
                             //   width: 8.w,
                             // ),
-                            Container(
+                            SizedBox(
                               height: 48,
                               width: 48,
                               // color: Colors.red,
@@ -377,146 +364,6 @@ class _CommentPageState extends State<CommentPage> {
               ),
             ),
           ),
-          // Column(
-          //   // mainAxisSize: MainAxisSize.min,
-          //   children: [
-          //     // SizedBox(
-          //     //   height: 40,
-          //     // ),
-          //     // usercommentWidget(),
-          //     // Padding(
-          //     //   padding: const EdgeInsets.only(left: 8, right: 8),
-          //     //   child: Container(
-          //     //     height: 285.h,
-          //     //     width: 380.w,
-          //     //     decoration: const BoxDecoration(
-          //     //       borderRadius: BorderRadius.all(Radius.circular(10)),
-          //     //       color: Colors.grey,
-          //     //     ),
-          //     //     child: Image.asset(
-          //     //       'assets/images/post.png',
-          //     //       fit: BoxFit.fill,
-          //     //     ),
-          //     //   ),
-          //     // // ),
-          //     // SizedBox(
-          //     //   height: 8.h,
-          //     // ),
-          //     // Padding(
-          //     //   padding: EdgeInsets.symmetric(horizontal :24.w),
-          //     //   child: SizedBox(
-          //     //     height: 48.h,
-          //     //     width: 1.sw,
-          //     //     child: Row(
-          //     //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     //       children: [
-          //     //         Row(
-          //     //           children: [
-          //     //             Container(
-          //     //               height: 48.h,
-          //     //               width: 73.w,
-          //     //               // color: Colors.red,
-          //     //
-          //     //               child: Padding(
-          //     //                 padding: const EdgeInsets.only(left: 12),
-          //     //                 child: Row(
-          //     //                   children: [
-          //     //                     Image.asset(
-          //     //                       'assets/images/iconlike24.png',
-          //     //                       height: 24.h,
-          //     //                       width: 24.w,
-          //     //                     ),
-          //     //                     Padding(
-          //     //                       padding: EdgeInsets.only(left: 12.w),
-          //     //                       child: Text('375', style: kManRope_400_14_626A6A),
-          //     //                     ),
-          //     //                   ],
-          //     //                 ),
-          //     //               ),
-          //     //             ),
-          //     //             SizedBox(width: 16.w,),
-          //     //
-          //     //             GestureDetector(
-          //     //               onTap :() {
-          //     //                 Navigator.of(context).push(
-          //     //                   MaterialPageRoute(
-          //     //                     builder: (context) => const CommentPage(),
-          //     //                   ),
-          //     //                 );
-          //     //               },
-          //     //               child: Container(
-          //     //                 height: 48.h,
-          //     //                 width: 75.w,
-          //     //                 // color: Colors.red,
-          //     //                 child: Row(
-          //     //                   children: [
-          //     //                     GestureDetector(
-          //     //                       onTap :() {
-          //     //                         Navigator.of(context).push(
-          //     //                           MaterialPageRoute(
-          //     //                             builder: (context) => const CommentPage(),
-          //     //                           ),
-          //     //                         );
-          //     //                       },
-          //     //                       child: Padding(
-          //     //                         padding: const EdgeInsets.only(left: 12),
-          //     //                         child: Container(
-          //     //                           height: 24.h,
-          //     //                           width: 24.w,
-          //     //                           // color: Colors.red,
-          //     //
-          //     //                           child: Image.asset(
-          //     //                             'assets/images/iconcomment24.png',
-          //     //                             height: 24.h,
-          //     //                             width: 24.w,
-          //     //                           ),
-          //     //                         ),
-          //     //                       ),
-          //     //                     ),
-          //     //                     SizedBox(
-          //     //                       width: 12.w,
-          //     //                     ),
-          //     //                     Text('20', style: kManRope_400_14_626A6A),
-          //     //                   ],
-          //     //                 ),
-          //     //               ),
-          //     //             ),
-          //     //           ],
-          //     //         ),
-          //     //
-          //     //         Row(
-          //     //           children: [
-          //     //             Container(
-          //     //               height:48,
-          //     //               width: 48,
-          //     //               // color: Colors.red,
-          //     //               child: Image.asset(
-          //     //                 'assets/images/iconbookmark48.png',
-          //     //                 height: 48,
-          //     //                 width: 48,
-          //     //               ),
-          //     //             ),
-          //     //             // SizedBox(
-          //     //             //   width: 8.w,
-          //     //             // ),
-          //     //             Container(
-          //     //               height:48,
-          //     //               width: 48,
-          //     //               // color: Colors.red,
-          //     //               child: Image.asset(
-          //     //                 'assets/images/iconshare48.png',
-          //     //                 height: 44,
-          //     //                 width: 44,
-          //     //               ),
-          //     //             ),
-          //     //           ],
-          //     //         ),
-          //     //       ],
-          //     //     ),
-          //     //   ),
-          //     // ),
-          //   ],
-          // ),
           SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.only(left: 25, bottom: 24),

@@ -4,7 +4,6 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UInstantScreens/booking
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -32,30 +31,6 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
         appBarText: 'Confirm your booking',
         imgPath: 'assets/images/iconbackappbar2.png',
       ),
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   leadingWidth: 10.w,
-      //   centerTitle: false,
-      //   backgroundColor: Colors.white,
-      //   title: Text(
-      //     'Confirm your booking',
-      //     style: kManRope_500_16_006D77,
-      //   ),
-      //   titleSpacing: 50.w,
-      //   leading: InkWell(
-      //     onTap: () {
-      //       Navigator.pop(context);
-      //     },
-      //     child: const Padding(
-      //       padding: EdgeInsets.all(20.0),
-      //       child: Icon(
-      //         Icons.arrow_back_ios,
-      //         color: Colors.black,
-      //         size: 20,
-      //       ),
-      //     ),
-      //   ),
-      // ),
       body: Form(
         key: _fKey,
         child: SingleChildScrollView(
@@ -122,30 +97,6 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                               height: 11.h,
                             ),
                             StarWidget()
-                            // Row(
-                            //   children: [
-                            //     Image.asset(
-                            //       'assets/images/Star 1.png',
-                            //       width: 20.w,
-                            //       height: 20.h,
-                            //     ),
-                            //     SizedBox(
-                            //       width:4.w,
-                            //     ),
-                            //     Text(
-                            //       '4.0',
-                            //       style: kManRope_400_12_001314,
-                            //     ),
-                            //     SizedBox(
-                            //       width:12.w,
-                            //     ),
-                            //
-                            //     Text(
-                            //       '12 Yrs. Exp',
-                            //       style: kManRope_400_12_001314,
-                            //     ),
-                            //   ],
-                            // )
                           ],
                         ),
                       ],
@@ -157,66 +108,6 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                     )
                   ],
                 ),
-                // Row(
-                //   children: [
-                //     ClipRRect(
-                //       borderRadius: BorderRadius.circular(24),
-                //       child: Image.asset(
-                //         'assets/images/userP.png',
-                //         height: 64.h,
-                //         width: 64.w,
-                //         fit: BoxFit.cover,
-                //       ),
-                //     ),
-                //     SizedBox(
-                //       width: 18.w,
-                //     ),
-                //     Column(
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: [
-                //         SizedBox(
-                //           width: 190,
-                //           child: Text(
-                //             'Priya Singh',
-                //             overflow: TextOverflow.ellipsis,
-                //             style: kManRope_400_16_001314,
-                //           ),
-                //         ),
-                //         SizedBox(
-                //           height: 8.h,
-                //         ),
-                //         Text(
-                //           'MA in Counselling Psychology',
-                //           style: kManRope_400_14_626A6A,
-                //         ),
-                //         SizedBox(
-                //           height: 8.h,
-                //         ),
-                //         Row(
-                //           children: [
-                //             SvgPicture.asset(
-                //               'assets/icons/star.svg',
-                //               width: 12.w,
-                //               height: 12.h,
-                //             ),
-                //             Text(
-                //               '12.  12 Yrs. Exp',
-                //               style: kManRope_400_12_001314,
-                //             )
-                //           ],
-                //         )
-                //       ],
-                //     ),
-                //     SizedBox(
-                //       width: 72.w,
-                //     ),
-                //     SvgPicture.asset(
-                //       'assets/icons/sarrow.svg',
-                //       width: 24.w,
-                //       height: 24.h,
-                //     ),
-                //   ],
-                // ),
                 SizedBox(
                   height: 43.h,
                 ),
@@ -269,7 +160,7 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
                         height: 58.h,
                         color: const Color(0xFFB5BABA),
                       ),
-                      Container(
+                      SizedBox(
                         width: 55.w,
                         child: Center(
                           child: Text(
@@ -358,42 +249,6 @@ class _ConfirmBookingState extends State<ConfirmBooking> {
           ),
         ),
       ),
-
-      // bottomNavigationBar: SizedBox(
-      //   height: 83.h,
-      //   child: Padding(
-      //     padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.w),
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //       children: [
-      //         Text(
-      //           '₹230',
-      //           style: kManRope_500_20_006D77,
-      //         ),
-      //         SizedBox(
-      //           height: 56.h,
-      //           width: 200,
-      //           child: MaterialButton(
-      //             color: k006D77,
-      //             shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(10), // <-- Radius
-      //             ),
-      //             onPressed: () {
-      //               Navigator.push(
-      //                   context,
-      //                   MaterialPageRoute(
-      //                       builder: (context) => const BookingSuccessful()));
-      //             },
-      //             child: Text(
-      //               'Proceed to payment',
-      //               style: kManRope_400_16_white,
-      //             ),
-      //           ),
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

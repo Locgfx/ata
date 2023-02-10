@@ -5,7 +5,6 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/AppWidgets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../UBookingScreens/schedule_appointment_screen.dart';
@@ -65,21 +64,6 @@ class SessionDetailsScreen extends StatelessWidget {
                         height: 4.h,
                       ),
                       StarWidget()
-                      // Row(
-                      //   children: [
-                      //     SvgPicture.asset(
-                      //       'assets/icons/star.svg',
-                      //       width: 12.w,
-                      //       height: 12.h,
-                      //     ),
-                      //     SizedBox(width: 4.w),
-                      //     Text('4.0', style: kManRope_400_12_001314),
-                      //     SizedBox(width: 4.w),
-                      //     Text('.', style: kManRope_700_16_001314),
-                      //     SizedBox(width: 4.w),
-                      //     Text('12 Yrs. Exp', style: kManRope_400_12_001314),
-                      //   ],
-                      // )
                     ],
                   ),
                   SizedBox(
@@ -279,25 +263,6 @@ class SessionDetailsScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              // SizedBox(
-              //   height: 56.h,
-              //   width: 380.w,
-              //   child: MaterialButton(
-              //     color: k006D77,
-              //     shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(10), // <-- Radius
-              //     ),
-              //     onPressed: () {
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //           builder: (context) =>
-              //               const BookingConfirmationScreen()));
-              //     },
-              //     child: Text(
-              //       'Reschedule',
-              //       style: kManRope_500_16_white,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

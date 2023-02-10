@@ -25,7 +25,7 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
         builder: (context) => const SelectGenderBottomSheet());
   }
 
-  void _SelectDesignationBottomSheet() {
+  void _selectDesignationBottomSheet() {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -163,40 +163,6 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
             ),
           ),
         )
-        // Center(
-        //   child: MainButton(
-        //     child: Padding(
-        //       padding: const EdgeInsets.symmetric(horizontal: 63, vertical: 15),
-        //       child: Text(
-        //         "Done",
-        //         style: kManRope_500_18_FFFFF,
-        //       ),
-        //     ),
-        //     color: k006D77,
-        //     shape: CustomDecoration().smallButtonDecoration(),
-        //     onPressed: () {},
-        //   ),
-        // ),
-        // Center(
-        //   child: SizedBox(
-        //     height: 56.h,
-        //     width: 168.w,
-        //     child: MaterialButton(
-        //       color: k006D77,
-        //       shape: RoundedRectangleBorder(
-        //         borderRadius: BorderRadius.circular(48), // <-- Radius
-        //       ),
-        //       onPressed: () {
-        //         Navigator.of(context).push(MaterialPageRoute(
-        //             builder: (context) => PsychologistEditPersonalInfo()));
-        //       },
-        //       child: Text(
-        //         'Edit',
-        //         style: kManRope_400_16_white,
-        //       ),
-        //     ),
-        //   ),
-        // ),
       ],
     ) :
     Column(
@@ -216,7 +182,7 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
                       style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
+                    SizedBox(
                       // color: Colors.red,
                       width: 335.w,
                       child: TextField(
@@ -249,7 +215,7 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
                         style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
+                    SizedBox(
                       // color: Colors.red,
                       width: 320.w,
                       child: TextField(  style: kManRope_400_16_001314,
@@ -267,10 +233,9 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
                     _datePickerBottomSheet();
 
                   },
-                  child: Container(
+                  child: SizedBox(
                     height: 48,
                       width: 48,
-                      // color: Colors.red,
                       child: Image.asset("assets/images/icondropdownlargee.png",)),
                 )
               ],
@@ -293,8 +258,7 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
                         style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
-                      // color: Colors.red,
+                    SizedBox(
                       width: 320.w,
                       child: TextField(  style: kManRope_400_16_001314,
                         readOnly: true,
@@ -310,7 +274,7 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
                   onTap: () {
                     _selectGenderBottomSheet();
                   },
-                  child: Container(
+                  child: SizedBox(
                     // color: Colors.red,
                       height: 48,
                       width: 48,
@@ -336,13 +300,12 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
                         style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
-                      // color: Colors.red,
+                    SizedBox(
                       width: 320.w,
                       child: TextField(  style: kManRope_400_16_001314,
                         readOnly: true,
                         onTap: () {
-                          _SelectDesignationBottomSheet();
+                          _selectDesignationBottomSheet();
                         },
                         decoration:  TextfieldDecoration(label: 'Other').textfieldProfileDecoration()
                       ),
@@ -351,9 +314,9 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    _SelectDesignationBottomSheet();
+                    _selectDesignationBottomSheet();
                   },
-                  child: Container(
+                  child: SizedBox(
                       height: 48,
                       width: 48,
                       child: Image.asset("assets/images/icondropdownlargee.png",)),
@@ -378,8 +341,7 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
                         style: kManRope_400_16_626A6A
                     ),
                     SizedBox(height: 8.h,),
-                    Container(
-                      // color: Colors.red,
+                    SizedBox(
                       width: 335.w,
                       child: TextField(  style: kManRope_400_16_001314,
 
@@ -395,96 +357,6 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
 
           ],
         ),
-
-        // Text(
-        //   'Date of birth',
-        //   style: kManRope_400_16_626A6A,
-        // ),
-        // SizedBox(
-        //   height: 5.h,
-        // ),
-        // TextField(
-        //   readOnly: isreadable? true:false,
-        //   onTap: () {
-        //     _datePickerBottomSheet();
-        //   },
-        //   decoration: TextfieldDecoration(
-        //       label: '25/ 02/1993',
-        //       child: Image.asset(
-        //         "assets/images/downarrowblack.png",
-        //         height: 5,
-        //       )).underlinefieldDecoration(),
-        // ),
-        // BlackUnderline(),
-        // SizedBox(
-        //   height: 15.h,
-        // ),
-        // Text(
-        //   'Gender',
-        //   style: kManRope_400_16_626A6A,
-        // ),
-        // SizedBox(
-        //   height: 5.h,
-        // ),
-        // TextField(
-        //   onTap: () {
-        //     setState(() {
-        //
-        //     });
-        //     _selectGenderBottomSheet();
-        //   },
-        //   readOnly: isreadable? true:false,
-        //   decoration: TextfieldDecoration(
-        //       label: 'Female',
-        //       child: Image.asset(
-        //         "assets/images/downarrowblack.png",
-        //         height: 5,
-        //       )).underlinefieldDecoration(),
-        // ),
-        // BlackUnderline(),
-        // SizedBox(
-        //   height: 15.h,
-        // ),
-        // Text(
-        //   'Designation',
-        //   style: kManRope_400_16_626A6A,
-        // ),
-        // SizedBox(
-        //   height: 5.h,
-        // ),
-        // TextField(
-        //   readOnly: isreadable? true:false,
-        //   onTap: () {
-        //     _SelectDesignationBottomSheet();
-        //   },
-        //   decoration: TextfieldDecoration(
-        //       label: 'Other',
-        //       child: Image.asset(
-        //         "assets/images/downarrowblack.png",
-        //         height: 5,
-        //       )).underlinefieldDecoration(),
-        // ),
-        // BlackUnderline(),
-        // SizedBox(
-        //   height: 8.h,
-        // ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     Text(
-        //       'Add signature',
-        //       style: kManRope_400_16_626A6A,
-        //     ),
-        //     Image.asset(
-        //       'assets/images/signature.png',
-        //       height: 48.h,
-        //       width: 64.w,
-        //     ),
-        //   ],
-        // ),
-        // SizedBox(
-        //   height: 34.h,
-        // ),
         Padding(
           padding: EdgeInsets.only(bottom: 20.h),
           child: Center(
@@ -513,7 +385,6 @@ class _EditbasicDetailsState extends State<EditbasicDetails> {
             ),
           ),
         )
-
       ],
     );
 

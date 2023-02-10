@@ -100,32 +100,6 @@ class _ConfirmNameState extends State<ConfirmName> {
                         ),
                       ],
                     ),
-                    // Row(
-                    //   children: [
-                    //     Expanded(
-                    //         child: SizedBox(height:56,
-                    //           child: MainButton(
-                    //               onPressed: () {
-                    //                 Navigator.of(context).push(MaterialPageRoute(
-                    //                     builder: (context) => KycConfirmName()));
-                    //               },
-                    //               child: Text(
-                    //                 "Next",
-                    //                 style: kManRope_500_16_white,
-                    //               ),
-                    //               color: k006D77,
-                    //               shape: CustomDecoration().button16Decoration()),
-                    //         ))
-                    //   ],
-                    // ),
-                    // Center(
-                    //   child: CustomActiveTextButton(
-                    //       onPressed: () {
-                    //         Navigator.of(context).push(MaterialPageRoute(
-                    //             builder: (context) => PANVerified()));
-                    //       },
-                    //       text: 'Next'),
-                    // ),
                     SizedBox(
                       height: 16.h,
                     ),
@@ -152,24 +126,6 @@ class _ConfirmNameState extends State<ConfirmName> {
                         ],
                       ),
                     ),
-
-                    // GestureDetector(
-                    //   onTap: () {},
-                    //   child: Container(
-                    //     height: 56.h,
-                    //     width: 380.w,
-                    //     decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.all(Radius.circular(10)),
-                    //       border: Border.all(color: k006D77),
-                    //     ),
-                    //     child: Center(
-                    //       child: Text(
-                    //         'Edit PAN',
-                    //         style: kManRope_500_16_006D77,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                   ],
                 ),
               ),

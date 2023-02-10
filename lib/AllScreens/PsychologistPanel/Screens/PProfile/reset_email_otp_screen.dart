@@ -49,15 +49,6 @@ class _ResetPasswordOTPScreen extends State<ResetEmailOTPScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // InkWell(
-                //   onTap: () {
-                //     Navigator.of(context).pop();
-                //   },
-                //   child: Container(
-                //     padding: const EdgeInsets.all(15),
-                //     child: SvgPicture.asset('assets/icons/iosbackarrow.svg'),
-                //   ),
-                // ),
                 SizedBox(height: 88.h),
                 Text('Enter OTP', style: kManRope_700_20_001314),
                 SizedBox(height: 8.h),
@@ -86,42 +77,15 @@ class _ResetPasswordOTPScreen extends State<ResetEmailOTPScreen> {
                   textStyle: kManRope_400_20_Black,
                   pinTheme: PinTheme(
                     inactiveColor: Colors.black,
-                    //activeFillColor: kECF0F8,
                     fieldOuterPadding: const EdgeInsets.all(0),
-                    //selectedFillColor: kECF0F8,
                     selectedColor: k006D77,
                     borderWidth: 0,
-                    // fieldWidth: 30.w,
                     fieldHeight: 50.h,
-                    //borderRadius: BorderRadius.circular(8),
-                    //inactiveFillColor: kECF0F8,
                     activeColor: k006D77,
                     shape: PinCodeFieldShape.underline,
                   ), onChanged: (String value) { },
                 ),
                 SizedBox(height: 506.h),
-
-                // Center(
-                //   child: SizedBox(
-                //     height: 60.h,
-                //     width: 168.w,
-                //     child: MaterialButton(
-                //       onPressed: () {
-                //         Navigator.of(context).push(MaterialPageRoute(
-                //             builder: (context) => ResetEmailOTPScreen()));
-                //       },
-                //       color: k006D77,
-                //       shape: CustomDecoration().smallButtonDecoration(),
-                //       child: Center(
-                //         child: Text(
-                //           'Next',
-                //           style: kManRope_500_16_white,
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // const Spacer(),
                 Padding(
                   padding: EdgeInsets.only(bottom: 40.h),
                   child: Center(

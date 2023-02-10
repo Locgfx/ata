@@ -10,7 +10,6 @@ import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/primary_card_button.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/secondary_card_button.dart';
-
 import '../UBookingScreens/schedule_appointment_screen.dart';
 
 class AllPsychologistScreen extends StatefulWidget {
@@ -86,73 +85,70 @@ class _AllPsychologistScreenState extends State<AllPsychologistScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          //width: 280.h,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    width: 64.w,
-                                    height: 64.h,
-                                    clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(
-                                        color:kEDF6F9,
-                                        borderRadius: BorderRadius.circular(10)),
-                                    child: CachedNetworkImage(
-                                      imageUrl: psychologists[i]
-                                          .profilePhoto
-                                          .toString(),fit: BoxFit.cover,
-                                      placeholder: (context, url) =>  Center(
-                                        child: SpinKitThreeBounce(
-                                          color: k006D77,
-                                          size: 10,
-                                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                  width: 64.w,
+                                  height: 64.h,
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                      color:kEDF6F9,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: CachedNetworkImage(
+                                    imageUrl: psychologists[i]
+                                        .profilePhoto
+                                        .toString(),fit: BoxFit.cover,
+                                    placeholder: (context, url) =>  Center(
+                                      child: SpinKitThreeBounce(
+                                        color: k006D77,
+                                        size: 10,
                                       ),
-                                      errorWidget: (context, url, error) =>  Icon(Icons.error),
                                     ),
+                                    errorWidget: (context, url, error) =>  Icon(Icons.error),
                                   ),
-                                  SizedBox(width: 8.w),
-                                  Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(psychologists[i].name.toString(),
-                                          style: kManRope_400_16_Black),
-                                      //SizedBox(width: 10,),
-                                      SizedBox(height: 8.h),
-                                      Text(psychologists[i].education.toString(),
-                                          style: kManRope_400_14_626A6A),
-                                      SizedBox(height: 8.h),
-                                      Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Image.asset('assets/images/Star 1.png',
-                                              width: 15.w, height: 15.w),
-                                          SizedBox(width: 4.w),
-                                          Text('4.0',
-                                              style: kManRope_400_12_001314),
-                                          SizedBox(width: 4.w),
-                                          Text('.', style: kManRope_700_16_001314),
-                                          SizedBox(width: 4.w),
-                                          Text('12 Yrs. Exp',
-                                              style: kManRope_400_12_001314),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text('₹', style: kManRope_400_12_001314),
-                                  Text(psychologists[i].price.toString(), style: kManRope_400_12_001314),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                                SizedBox(width: 8.w),
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(psychologists[i].name.toString(),
+                                        style: kManRope_400_16_Black),
+                                    //SizedBox(width: 10,),
+                                    SizedBox(height: 8.h),
+                                    Text(psychologists[i].education.toString(),
+                                        style: kManRope_400_14_626A6A),
+                                    SizedBox(height: 8.h),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Image.asset('assets/images/Star 1.png',
+                                            width: 15.w, height: 15.w),
+                                        SizedBox(width: 4.w),
+                                        Text('4.0',
+                                            style: kManRope_400_12_001314),
+                                        SizedBox(width: 4.w),
+                                        Text('.', style: kManRope_700_16_001314),
+                                        SizedBox(width: 4.w),
+                                        Text('12 Yrs. Exp',
+                                            style: kManRope_400_12_001314),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text('₹', style: kManRope_400_12_001314),
+                                Text(psychologists[i].price.toString(), style: kManRope_400_12_001314),
+                              ],
+                            ),
+                          ],
                         ),
                         SizedBox(height: 20.h),
                         Row(

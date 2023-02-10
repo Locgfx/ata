@@ -348,28 +348,6 @@ class _PsychologistPostPageState extends State<PsychologistPostPage> {
                                     lessStyle: kManRope_600_14_006D77,
                                   ),
                                 ),
-
-                                // RichText(
-                                //   text: TextSpan(
-                                //     children: [
-                                //       TextSpan(
-                                //         style: kManRope_400_14_626A6A,
-                                //         text:
-                                //         postsModel[index].caption.toString(),
-                                //       ),
-                                //       WidgetSpan(
-                                //         child: Container(
-                                //           padding: EdgeInsets.symmetric(horizontal: 5),
-                                //           color: Colors.transparent,
-                                //           child: Text(
-                                //             'Read more',
-                                //             style: kManRope_600_14_006D77,
-                                //           ),
-                                //         ),
-                                //       ),
-                                //     ],
-                                //   ),
-                                // ),
                               ],
                             ),
                           ),

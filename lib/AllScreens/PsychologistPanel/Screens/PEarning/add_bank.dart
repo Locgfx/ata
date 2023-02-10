@@ -5,7 +5,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../../../../constants/fonts.dart';
 import 'bank_account_verify_screen.dart';
 
@@ -248,79 +247,6 @@ class _AddBankScreenState extends State<AddBankScreen> {
   }
 }
 
-// void _banksBottomSheet() {
-//   showModalBottomSheet(
-//       shape: RoundedRectangleBorder(
-//         borderRadius: BorderRadius.only(
-//             topRight: Radius.circular(20), topLeft: Radius.circular(20)),
-//       ),
-//       context: context,
-//       builder: (BuildContext context) => SizedBox(
-//         height: 800.h,
-//         child: Column(
-//           children: [
-//             Container(
-//               height: 71.h,
-//               decoration: BoxDecoration(
-//                 color: k006D77,
-//                 borderRadius: BorderRadius.only(
-//                     topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-//               ),
-//               child: Center(
-//                 child: Text(
-//                   'Select Bank',
-//                   style: kManRope_700_20_white,
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 20,),
-//             Padding(
-//               padding:EdgeInsets.symmetric(horizontal: 24.w),
-//               child: Container(
-//                 height: 56.h,
-//                 width: 1.sw,
-//                 decoration: BoxDecoration(
-//                   borderRadius: BorderRadius.all(Radius.circular(16)),
-//                   border: Border.all(color: k5A72ED.withOpacity(0.24)),
-//                 ),
-//                 child: TextField(
-//                   decoration: TextfieldDecoration(label: 'Search Transaction No',child: Image.asset("assets/images/searchicon.png",height:16,width: 16 ,)).searchFieldUutlineDecoration(),
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 20.h),
-//             SizedBox(
-//               height: 236.h,
-//               child: ListView.builder(
-//                 itemCount:Banks.length,
-//                 itemBuilder: (context, index) {
-//                   return Padding(
-//                     padding: EdgeInsets.only(bottom: 8.h,left: 24.w),
-//                     child: Row(
-//                       children: [
-//                         Container(height: 48,
-//                           // color:Colors.red,
-//                           child: Center(
-//                             child: Padding(
-//                               padding:  EdgeInsets.only(left: 24.w),
-//                               child: Text(
-//                                 Banks[index],
-//                                 style: kManRope_400_16_001314,
-//                               ),
-//                             ),
-//                           ),
-//                         ),
-//                       ],
-//                     ),
-//                   );
-//                 },
-//               ),
-//             ),
-//
-//           ],
-//         ),
-//       ),
-// }
 class BanksBottomSheet extends StatefulWidget {
   const BanksBottomSheet({Key? key}) : super(key: key);
 

@@ -75,7 +75,7 @@ class _FormScreenState extends State<FormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Container(
+                      SizedBox(
                         height: 48.h,
                         child: TextFormField(
                           controller: nameController,
@@ -100,7 +100,7 @@ class _FormScreenState extends State<FormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Container(
+                      SizedBox(
                         height: 48.h,
                         child: TextFormField(
                           validator: (val) {
@@ -127,7 +127,7 @@ class _FormScreenState extends State<FormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Container(
+                      SizedBox(
                         height: 48.h,
                         child: TextFormField(
                           keyboardType: TextInputType.number,
@@ -154,7 +154,7 @@ class _FormScreenState extends State<FormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Container(
+                      SizedBox(
                         height: 48.h,
                         child: TextFormField(
                           inputFormatters: [LengthLimitingTextInputFormatter(10)],
@@ -183,12 +183,12 @@ class _FormScreenState extends State<FormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Container(
+                      SizedBox(
                         height: 48.h,
                         child: TextFormField(
                           controller: adressController,
-                          validator: (adress) {
-                            if (adress == null || adress.isEmpty) {
+                          validator: (val) {
+                            if (val == null || val.isEmpty) {
                               return 'Enter your Adress';
                             }
                           },
@@ -208,7 +208,7 @@ class _FormScreenState extends State<FormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Container(
+                      SizedBox(
                         height: 48.h,
                         child: TextFormField(
                           controller: timingController,
@@ -233,7 +233,7 @@ class _FormScreenState extends State<FormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      Container(
+                      SizedBox(
                         height: 48.h,
                         child: TextFormField(
                           controller: dateController,

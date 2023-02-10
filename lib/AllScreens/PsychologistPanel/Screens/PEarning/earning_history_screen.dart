@@ -4,7 +4,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/BottomSheets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
 import '../../../../constants/fonts.dart';
 
 class EarningHistoryScreen extends StatefulWidget {
@@ -84,7 +83,7 @@ class _EarningHistoryScreenState extends State<EarningHistoryScreen> {
                     onTap: () {
                       _filterbottomsheet();
                     },
-                    child: Container(
+                    child: SizedBox(
                       height: 32,
                       width: 32,
                       // color: Colors.red,

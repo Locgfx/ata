@@ -25,7 +25,6 @@ class _EnterMobileScreenState extends State<EnterMobileScreen> {
 
   final TextEditingController _mobileController = TextEditingController();
 
-  final TextEditingController _passwordController = TextEditingController();
 
   bool mobileEmpty = true;
 
@@ -141,7 +140,7 @@ class _EnterMobileScreenState extends State<EnterMobileScreen> {
                         ],
                       ),
                       SizedBox(height: 24.h),
-                      const CustomGoogleSignInButton(),
+                      CustomGoogleSignInButton(),
                       SizedBox(height: 22.h),
                       InkWell(
                         onTap: () {

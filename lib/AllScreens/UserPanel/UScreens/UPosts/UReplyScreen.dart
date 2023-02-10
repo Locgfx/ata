@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/comment_widgets/user_comment_widget.dart';
-
 import '../../../../widgets/app_bar/app_bar.dart';
 
 class UReplyScreen extends StatefulWidget {
@@ -51,7 +50,6 @@ class _UReplyScreenState extends State<UReplyScreen> {
                     },
                     textInputAction: TextInputAction.done,
                     decoration: InputDecoration(
-                      //contentPadding: EdgeInsets.symmetric(horizontal: 8),
                       enabledBorder: OutlineInputBorder(
                         borderSide:
                             BorderSide(width: 0, color: Colors.transparent),
@@ -60,9 +58,7 @@ class _UReplyScreenState extends State<UReplyScreen> {
                         borderSide:
                             BorderSide(width: 0, color: Colors.transparent),
                       ),
-                      //fillColor: Colors.white,
                       hintText: "Add a comment",
-                      // hintStyle: kManRope_400_14_626A6A,
                     ),
                   ),
                 ),

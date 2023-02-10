@@ -1,15 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChangePasswordScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/change_email_screen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/change_password_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/deleteaccount.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
-
 import '../../../../constants/decorations.dart';
 
 class PsychologistAccountScreen extends StatefulWidget {
@@ -132,87 +129,6 @@ class _PsychologistAccountScreenState extends State<PsychologistAccountScreen> {
                   ),
                 ),
               ),
-              // GestureDetector(
-              //   onTap: () {
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) => PsychologistChangeEmailScreen()));
-              //   },
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text(
-              //         'Change email',
-              //         style: kManRope_500_16_001314,
-              //       ),
-              //       SvgPicture.asset(
-              //         'assets/icons/downArrow.svg',
-              //         width: 24.w,
-              //         height: 24.h,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 1.h,
-              // ),
-              // SizedBox(
-              //   height: 48.h,
-              //   width: 1.sw,
-              //   child: TextField(
-              //     onTap: () {
-              //       Navigator.of(context).push(MaterialPageRoute(
-              //           builder: (context) =>
-              //               PsychologistChangePasswordScreen()));
-              //     },
-              //     readOnly: true,
-              //     decoration: TextfieldDecoration(
-              //         hintstyle: kManRope_500_16_001314,
-              //         label: 'Change Password',
-              //         child: Image.asset(
-              //           "assets/images/downarrowblack.png",
-              //           height: 5,
-              //         )).underlinefieldDecoration(),
-              //   ),
-              // ),
-              // GestureDetector(
-              //   onTap: () {
-              //     Navigator.of(context).push(MaterialPageRoute(
-              //         builder: (context) =>
-              //             PsychologistChangePasswordScreen()));
-              //   },
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //     children: [
-              //       Text(
-              //         'Change password',
-              //         style: kManRope_500_16_001314,
-              //       ),
-              //       SvgPicture.asset(
-              //         'assets/icons/downArrow.svg',
-              //         width: 24.w,
-              //         height: 24.h,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 30.h,
-              // ),
-              // GestureDetector(
-              //   behavior: HitTestBehavior.translucent,
-              //   onTap: () {
-              //     Navigator.of(context).push(
-              //         MaterialPageRoute(builder: (context) => DeleteAccount()));
-              //   },
-              //   child: SizedBox(
-              //     height: 48.h,
-              //     width: 1.sw,
-              //     child: Text(
-              //       'Delete Account',
-              //       style: kManRope_500_16_B64949,
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),
@@ -277,30 +193,6 @@ class _DeleteAccountBottomSheetState extends State<DeleteAccountBottomSheet> {
                   ),
                   color: kB64C4C,
                   shape: CustomDecoration().button16Decoration()),
-              // SizedBox(
-              //   height: 60.h,
-              //   width: 182.w,
-              //   child: CupertinoButton(
-              //     child: Text(
-              //       'Cancel',
-              //       style: kManRope_500_16_001314,
-              //     ),
-              //     onPressed: () => Navigator.of(context).pop(),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: 60.h,
-              //   width: 182.w,
-              //   child: CupertinoButton(
-              //     borderRadius: BorderRadius.all(Radius.circular(16)),
-              //     color: kB64949,
-              //     child: Text(
-              //       'Delete Account',
-              //       style: kManRope_500_16_white,
-              //     ),
-              //     onPressed: () => Navigator.of(context).pop(),
-              //   ),
-              // ),
             ],
           ),
         ],

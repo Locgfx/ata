@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -58,7 +57,7 @@ class _UCreatePostState extends State<UCreatePost> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 18,
                           width: 20,
                           // color: Colors.red,
@@ -71,7 +70,7 @@ class _UCreatePostState extends State<UCreatePost> {
                         SizedBox(
                           width: 14.w,
                         ),
-                        Container(
+                        SizedBox(
                           height: 18,
                           width: 20,
                           // color: Colors.red,
@@ -128,25 +127,6 @@ class _UCreatePostState extends State<UCreatePost> {
                   ),
                 ),
               ),
-              // SizedBox(height:96.h ,)
-
-              // Center(
-              //   child: SizedBox(
-              //     height: 56.h,
-              //     width: 182,
-              //     child: MaterialButton(
-              //       color: k006D77,
-              //       shape: RoundedRectangleBorder(
-              //         borderRadius: BorderRadius.circular(10), // <-- Radius
-              //       ),
-              //       onPressed: () {},
-              //       child: Text(
-              //         'Post',
-              //         style: kManRope_400_16_white,
-              //       ),
-              //     ),
-              //   ),
-              // ),
             ],
           ),
         ),

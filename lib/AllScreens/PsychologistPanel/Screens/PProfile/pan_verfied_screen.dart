@@ -95,10 +95,6 @@ class _PANVerifiedState extends State<PANVerified> {
                         ))
                       ],
                     ),
-                    // Center(
-                    //   child: CustomActiveTextButton(
-                    //       onPressed: () {}, text: 'Go to Home'),
-                    // )
                   ],
                 ),
               ),

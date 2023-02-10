@@ -6,7 +6,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/popupdialogs.dart';
-
 import '../../../../constants/fonts.dart';
 
 class SlotsAvailabilityScreen extends StatefulWidget {
@@ -58,7 +57,6 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
     'off',
     'off'
   ];
-
   final List<String> timepm = [
     '08:00 PM',
     '08:00 PM',
@@ -69,6 +67,7 @@ class _SlotsAvailabilityScreenState extends State<SlotsAvailabilityScreen> {
     '',
     ''
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
