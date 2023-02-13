@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/see_all_videos.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/USeelAllVideosScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -18,7 +18,7 @@ class _UAllVideosState extends State<UAllVideos> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
           hasThreeDots: false,
           appBarText: "All videos",
           imgPath: "assets/images/iconbackappbar2.png"),
@@ -61,7 +61,7 @@ class _UAllVideosState extends State<UAllVideos> {
                             GestureDetector(
                               onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) => const SeeAllVideos())),
+                                      builder: (context) => const USeeAllVideosScreen())),
                               child: Text(
                                 'See all',
                                 style: kManRope_500_16_006D77,

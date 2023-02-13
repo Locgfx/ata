@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/my_account_screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PMyAccountScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_change_email_enter_otp_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -91,7 +91,7 @@ class _PEmailEnterOtpScreenState extends State<PEmailEnterOtpScreen> {
                             Fluttertoast.showToast(msg: value['message']);
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>
-                                    PsychologistAccountScreen()));
+                                    PAccountScreen()));
                           } else {
                             Fluttertoast.showToast(msg: value['error']);
                           }

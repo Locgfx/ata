@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UPostViewContainer.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UReplyScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/post_view_container.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
@@ -20,7 +20,7 @@ class _UCommentPageState extends State<UCommentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         imgPath: 'assets/images/iconbackappbar2.png',
         appBarText: 'All Comments',
         hasThreeDots: false,
@@ -137,7 +137,7 @@ class _UCommentPageState extends State<UCommentPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                PostViewContainer(
+                UPostViewContainer(
                   isCommentsViewable: false,
                 ),
                 SizedBox(height: 24),

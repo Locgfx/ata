@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/enter_new_password_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/UEnterNewPasswordScreen.dart';
 import 'package:greymatter/Apis/UserAPis/loginapi/user_forgot_password_enter_otp_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -159,7 +159,7 @@ class _UForgotPasswordOTPScreen extends State<UForgotPasswordOTPScreen> {
                       if (value['status'] == true) {
                         Fluttertoast.showToast(msg: value['message']);
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => EnterNewPasswordScreen()));
+                            builder: (context) => UEnterNewPasswordScreen()));
                       } else {
                         Fluttertoast.showToast(msg: value['error']);
                       }

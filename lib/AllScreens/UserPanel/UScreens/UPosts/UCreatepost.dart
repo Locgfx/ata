@@ -18,7 +18,7 @@ class _UCreatePostState extends State<UCreatePost> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         appBarText: 'Create post',
         imgPath: 'assets/images/iconbackappbarlarge.png',

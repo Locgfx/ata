@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/cancelledlist.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/completedlist.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/Homelists/upcominglist.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/notification_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidget.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/cancelledlist.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/completedlist.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/upcominglist.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UNotificationScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UClipClass.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import '../../../../constants/fonts.dart';
@@ -71,7 +71,7 @@ class _PHomeScreenState extends State<PHomeScreen>
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const NotificationsScreen()));
+                        builder: (context) => const UNotificationsScreen()));
                   },
                   child: Container(
                     color: Colors.transparent,

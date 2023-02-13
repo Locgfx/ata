@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/widgets/BottomSheets.dart';
+import 'package:greymatter/widgets/BottomSheets/PostBottomSheet.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class UMyActivityScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
           hasThreeDots: false,
           appBarText: "My activity",
           imgPath: "assets/images/iconbackappbar2.png"),

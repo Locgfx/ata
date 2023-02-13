@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/my_account_screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PMyAccountScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_change_password_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -27,8 +27,7 @@ class _PChangePasswordScreenState extends State<PChangePasswordScreen> {
 
   final TextEditingController oldPasswordController = TextEditingController();
   final TextEditingController newPasswordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
-      TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -37,7 +36,7 @@ class _PChangePasswordScreenState extends State<PChangePasswordScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         appBarText: 'Change password',
         imgPath: 'assets/images/iconbackappbarlarge.png',
@@ -163,7 +162,7 @@ class _PChangePasswordScreenState extends State<PChangePasswordScreen> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  PsychologistAccountScreen()));
+                                                  PAccountScreen()));
                                     } else {
                                       Fluttertoast.showToast(
                                           msg: value['error']);

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -129,19 +128,16 @@ class MyPostOptionsDialog1 extends StatelessWidget {
                             showModalBottomSheet(
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.only(
-                                        topLeft: const Radius.circular(20.0),
-                                        topRight: const Radius.circular(20.0))),
+                                        topLeft:  Radius.circular(20.0),
+                                        topRight:  Radius.circular(20.0))),
                                 context: context,
                                 builder: (builder) {
                                   return Container(
                                       height: 317,
-                                      decoration: new BoxDecoration(
-                                          // color: Colors.transparent,
-                                          borderRadius: new BorderRadius.only(
-                                              topLeft:
-                                                  const Radius.circular(20.0),
-                                              topRight:
-                                                  const Radius.circular(20.0))),
+                                      decoration:  BoxDecoration(
+                                          borderRadius:  BorderRadius.only(
+                                              topLeft: Radius.circular(20.0),
+                                              topRight: Radius.circular(20.0))),
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(left: 16),

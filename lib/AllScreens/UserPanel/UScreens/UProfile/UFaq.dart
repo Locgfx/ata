@@ -56,7 +56,7 @@ class _UFaqScreenState extends State<UFaqScreen> {
       children: [
         Scaffold(
           backgroundColor: kEDF6F9,
-          appBar: CuswhiteAppBar(
+          appBar: CustomWhiteAppBar(
             hasThreeDots: false,
             appBarText: 'FAQs',
             imgPath: 'assets/images/iconbackappbar2.png',

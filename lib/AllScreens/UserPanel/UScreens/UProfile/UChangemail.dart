@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/Editbasicdetails.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PBasicDetailsWIdget.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UChangeEmailOtpScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -33,7 +33,7 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(resizeToAvoidBottomInset: false,
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         appBarText: 'Change email',
         imgPath: 'assets/images/iconbackappbarlarge.png',

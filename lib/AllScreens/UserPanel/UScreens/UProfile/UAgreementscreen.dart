@@ -20,7 +20,7 @@ class _UAgreementScreenState extends State<UAgreementScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         appBarText: 'Agreement',
         imgPath: 'assets/images/iconbackappbar2.png',

@@ -11,7 +11,7 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_profile_models/user_profile_model.dart';
-import 'package:greymatter/widgets/BottomSheets.dart';
+import 'package:greymatter/widgets/BottomSheets/DatePickerBottomSheet.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
@@ -335,7 +335,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
     return Stack(
       children: [Scaffold(
         backgroundColor: kEDF6F9,
-        appBar: CuswhiteAppBar(
+        appBar: CustomWhiteAppBar(
             hasThreeDots: false,
             appBarText: "Account",
             imgPath: "assets/images/iconbackappbar2.png"),

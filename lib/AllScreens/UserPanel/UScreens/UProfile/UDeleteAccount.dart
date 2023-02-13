@@ -27,7 +27,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
       child: Scaffold(
         backgroundColor: kEDF6F9,
         resizeToAvoidBottomInset: true,
-        appBar: CuswhiteAppBar(
+        appBar: CustomWhiteAppBar(
           hasThreeDots: false,
           imgPath: 'assets/images/iconbackappbarlarge.png',
           appBarText: 'Delete Account',

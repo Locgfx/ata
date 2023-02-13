@@ -39,7 +39,7 @@ class _UChangePasswordScreenState extends State<UChangePasswordScreen> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         backgroundColor: kEDF6F9,
-        appBar: CuswhiteAppBar(
+        appBar: CustomWhiteAppBar(
           hasThreeDots: false,
           appBarText: 'Change password',
           imgPath: 'assets/images/iconbackappbarlarge.png',

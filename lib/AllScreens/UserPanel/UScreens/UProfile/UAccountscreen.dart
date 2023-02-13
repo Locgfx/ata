@@ -20,7 +20,7 @@ class _UAccountScreenState extends State<UAccountScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         appBarText: 'Account',
         imgPath: 'assets/images/iconbackappbarlarge.png',

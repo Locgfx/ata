@@ -17,7 +17,7 @@ class _UOrderHistoryState extends State<UOrderHistory> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         imgPath: "assets/images/iconbackappbarlarge.png",
         appBarText: "Order History",

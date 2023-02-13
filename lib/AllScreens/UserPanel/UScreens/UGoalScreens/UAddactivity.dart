@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/activity_model.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/add_new_activity.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UActivityModel.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddNewActivityScreen.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_activity_api.dart';
 import 'package:greymatter/constants/Lists.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -19,7 +19,7 @@ class UAddActivityScreen extends StatefulWidget {
 }
 
 class _UAddActivityScreenState extends State<UAddActivityScreen> {
-  List<ActivityValue> a = [];
+  List<UActivityValue> a = [];
   List dx = [
     0.0,
     0.0,
@@ -63,7 +63,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
       children: [
         Scaffold(
           backgroundColor: kEDF6F9,
-          appBar: CuswhiteAppBar(
+          appBar: CustomWhiteAppBar(
               hasThreeDots: false,
               appBarText: 'All activities',
               imgPath: 'assets/images/iconbackappbar2.png'),
@@ -86,7 +86,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                       shrinkWrap: true,
                       itemBuilder: (ctx, index) {
                         for (int i = 0; i < activityList.length; i++) {
-                          a.add(ActivityValue(
+                          a.add(UActivityValue(
                               slide: false, name: activityList[i]));
                         }
 
@@ -206,7 +206,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                                     Navigator.of(context).push(
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            AddNewActivity(
+                                                            UAddNewActivityScreen(
                                                           text: activityList[
                                                                       index] ==
                                                                   'Add Activity Name'

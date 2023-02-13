@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/schedule_appointment_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UScheduleAppointmentScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UListsViews.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -19,7 +19,7 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         appBarText: "",
         imgPath: 'assets/images/iconbackappbar2.png',
@@ -212,7 +212,7 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    ScheduleAppointmentScreen(
+                                                    UScheduleAppointmentScreen(
                                                       issue: 'issue',
                                                     )));
                                       },

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PTabsScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PForgotPasswordEnterOtpScreen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/form_screen.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PSignupFormScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_login_apis/Dloginapi.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_login_apis/doctor_forgot_password_api.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -282,7 +282,7 @@ class _PLoginScreenState extends State<PLoginScreen> {
                 InkWell(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => FormScreen()));
+                        builder: (ctx) => PSignupFormScreen()));
                   },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,

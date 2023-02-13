@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/tabs_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/tabs_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/question_screen1.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PTabsScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/ULoginScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/UQuestionScreen.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => Questions(),
+                builder: (_) => UQuestions(),
               ),
             );
           }
@@ -77,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => LoginScreen(showBack: false),
+            builder: (_) => ULoginScreen(showBack: false),
           ),
         );
       }

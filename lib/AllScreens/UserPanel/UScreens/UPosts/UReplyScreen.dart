@@ -18,7 +18,7 @@ class _UReplyScreenState extends State<UReplyScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         imgPath: 'assets/images/iconbackappbar2.png',
         appBarText: '',

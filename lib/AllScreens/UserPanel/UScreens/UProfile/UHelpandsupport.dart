@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChatMessage.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UFaq.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
-import '../../../PsychologistPanel/Screens/PProfile/chatmessage.dart';
 
 class UHelpandSupport extends StatefulWidget {
   const UHelpandSupport({Key? key}) : super(key: key);
@@ -20,7 +20,7 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      appBar: CuswhiteAppBar(
+      appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         appBarText: 'Help And Support',
         imgPath: 'assets/images/iconbackappbar2.png',
@@ -65,7 +65,7 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => ChatMessages()));
+                                builder: (context) => PChatMessages()));
                           },
                           child: Align(
                             alignment: Alignment.centerRight,

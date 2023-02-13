@@ -4,11 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/booking_confirmation.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UBookingConfirmationScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivity.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/all_psochologist_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/all_videos.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidget.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllPsychologistScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllVideosScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UNotificationScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UBookings.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UClipClass.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UInfo.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UOfferBanner.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/URecommendedVideos.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UTopSpecialistGridview.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UUpcomingAppointmentCard.dart';
 import 'package:greymatter/Apis/UserAPis/user_explore_apis/user_explore_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_activity_api.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -16,13 +23,8 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_home_models/user_activity_model.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
-import 'package:greymatter/widgets/home_screen_widgets/bookings.dart';
-import 'package:greymatter/widgets/home_screen_widgets/info.dart';
-import 'package:greymatter/widgets/home_screen_widgets/recommended_videos.dart';
-import 'package:greymatter/widgets/home_screen_widgets/upcoming_appointment_card.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
-import 'notification_screen.dart';
 
 class UHomeScreen extends StatefulWidget {
   const UHomeScreen({Key? key}) : super(key: key);
@@ -110,7 +112,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const NotificationsScreen()));
+                      builder: (context) => const UNotificationsScreen()));
                 },
                 child: Container(
                   color: Colors.transparent,
@@ -191,11 +193,11 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                BookingConfirmationScreen(
+                                                UBookingConfirmationScreen(
                                                   isCancellationAvailable: true,
                                                 )));
                                   },
-                                  child: UpcomingAppointmentCard()),
+                                  child: UUpcomingAppointmentCard()),
                               SizedBox(height: 40.h),
                               Text(
                                 'Choose from Top Specialities',
@@ -209,7 +211,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                               SizedBox(height: 24.h),
                               isLoading ? SizedBox() : TopSpecialistGridview(),
                               SizedBox(height: 40.h),
-                              const Bookings(),
+                              UBookings(),
                               SizedBox(height: 40.h),
                               Text(
                                 'We are here to help you',
@@ -340,7 +342,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (ctx) =>
-                                                    AllPsychologistScreen()));
+                                                    UAllPsychologistScreen()));
                                       },
                                       text: 'View All Psychologist'),
                                 ),
@@ -378,7 +380,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                 ),
                               ),
 
-                              RecommendedVideosSlider(),
+                              URecommendedVideosSlider(),
 
                               // SizedBox(
                               //   height: 160.h,
@@ -421,7 +423,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  AllVideos()));
+                                                  UAllVideosScreen()));
                                     },
                                     text: 'View All Videos',
                                   ),
@@ -517,7 +519,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                             ],
                           ),
                         ),
-                        Info(),
+                        UInfo(),
                       ],
                     ),
                   ],

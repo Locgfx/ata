@@ -12,12 +12,10 @@ class PChangePasswordEnterOtpScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<PChangePasswordEnterOtpScreen> createState() =>
-      _PChangePasswordEnterOtpScreenState();
-}
+  State<PChangePasswordEnterOtpScreen> createState() => _PChangePasswordEnterOtpScreenState();}
 
-class _PChangePasswordEnterOtpScreenState
-    extends State<PChangePasswordEnterOtpScreen> {
+class _PChangePasswordEnterOtpScreenState extends State<PChangePasswordEnterOtpScreen> {
+
   TextEditingController otpController = TextEditingController();
 
   bool otpEmpty = true;

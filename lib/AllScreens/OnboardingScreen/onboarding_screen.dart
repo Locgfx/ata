@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PLogin/PLoginScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/login_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/ULoginScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/onboarding_screen_widgets/onb_slide.dart';
@@ -287,7 +287,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (ctx) =>
                         // WelcomeScreen(),
-                        LoginScreen(showBack: true)));
+                    ULoginScreen(showBack: true)));
               },
               text: 'I am seeking help',
             ),
