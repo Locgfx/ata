@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -18,13 +19,19 @@ import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UTopSpecia
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UUpcomingAppointmentCard.dart';
 import 'package:greymatter/Apis/UserAPis/user_explore_apis/user_explore_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_activity_api.dart';
+import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_order_history_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/UModels/user_home_models/user_activity_model.dart';
+import 'package:greymatter/model/UModels/user_order_model/upcoming_orders.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
-import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../UExploreScreens/UDoctorprofile.dart';
 
 class UHomeScreen extends StatefulWidget {
   const UHomeScreen({Key? key}) : super(key: key);
@@ -38,13 +45,39 @@ class _UHomeScreenState extends State<UHomeScreen> {
 
   @override
   void initState() {
+    getData();
     getPsychologistData();
     getActivityData();
+    getUpcomingAppointments();
     super.initState();
   }
 
-  bool isLoading = false;
+  UpcomingOrderData upcomingOrderData = UpcomingOrderData(data: []);
 
+  getUpcomingAppointments() {
+    setState(() {
+      isLoading = true;
+    });
+    UserOrderHistoryApi()
+        .getUpcoming(page: 0)
+        .then((value) => setState(() {
+              upcomingOrderData = value;
+            }))
+        .then((value) => setState(() {
+              isLoading = false;
+            }));
+  }
+
+  String userName = '';
+  getData() async {
+    var prefs = await SharedPreferences.getInstance();
+    String a = prefs.getString(Keys().userName)!;
+    setState(() {
+      userName = a;
+    });
+  }
+
+  bool isLoading = false;
 
   UserActivityModel modelUserActivity = UserActivityModel();
   List<UserActivityModel> userActivity = [];
@@ -53,13 +86,15 @@ class _UHomeScreenState extends State<UHomeScreen> {
     isLoading = true;
     final resp = UserActivityApi().get();
     resp.then((value) {
-      print(value);
-      setState(() {
-        for (var v in value) {
-          userActivity.add(UserActivityModel.fromJson(v));
-        }
-        isLoading = false;
-      });
+      //print(value);
+      if (mounted) {
+        setState(() {
+          for (var v in value) {
+            userActivity.add(UserActivityModel.fromJson(v));
+          }
+          isLoading = false;
+        });
+      }
     });
   }
 
@@ -67,20 +102,26 @@ class _UHomeScreenState extends State<UHomeScreen> {
 
   UPsychologistModel model = UPsychologistModel();
   List<UPsychologistModel> psychologists = [];
-  bool _isLoading = false;
 
   getPsychologistData() {
-    _isLoading = true;
+    isLoading = true;
     final resp = UserExploreApi().get();
     resp.then((value) {
-      print(value);
-      setState(() {
-        for (var v in value) {
-          psychologists.add(UPsychologistModel.fromJson(v));
-        }
-        _isLoading = false;
-      });
+      //print(value);
+      if (mounted) {
+        setState(() {
+          for (var v in value) {
+            psychologists.add(UPsychologistModel.fromJson(v));
+          }
+          isLoading = false;
+        });
+      }
     });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -104,7 +145,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
               padding: EdgeInsets.only(left: 6.w),
               color: Colors.transparent,
               child: Text(
-                "Good Morning, Pankaj",
+                "Good ${DateTime.now().hour < 12 ? 'Morning' : DateTime.now().hour > 12 && DateTime.now().hour < 15 ? 'Afternoon' : 'Evening'}, ${userName != '' ? userName : 'User'}",
                 style: kManRope_700_20_white,
               ),
             ),
@@ -177,27 +218,32 @@ class _UHomeScreenState extends State<UHomeScreen> {
                         //-------------------------offerCard--------------------------------
                         OfferBanner(),
 
-                        SizedBox(
-                          height: 10.h,
-                        ),
+                        SizedBox(height: 10.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.w),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 40.h),
-                              GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
+                              if (upcomingOrderData.data.isNotEmpty)
+                                SizedBox(height: 40.h),
+                              if (upcomingOrderData.data.isNotEmpty)
+                                GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                UBookingConfirmationScreen(
-                                                  isCancellationAvailable: true,
-                                                )));
-                                  },
-                                  child: UUpcomingAppointmentCard()),
+                                          builder: (context) =>
+                                              UBookingConfirmationScreen(
+                                            isCancellationAvailable: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: UUpcomingAppointmentCard(
+                                      data: upcomingOrderData.data.last,
+                                      loading: isLoading,
+                                    )),
                               SizedBox(height: 40.h),
                               Text(
                                 'Choose from Top Specialities',
@@ -228,129 +274,206 @@ class _UHomeScreenState extends State<UHomeScreen> {
                         SizedBox(height: 24.h),
 
                         //--------------------------------psychologistslider-------------------
-                        isLoading || psychologists.isEmpty ? SizedBox() :Container(
-                            color: Colors.white,
-                            child: Column(
-                              children: [
-                                // PsychologistSlider(),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 25,top: 20),
-                                  child: SizedBox(
-                                    height: 200.h,
-                                    child: GridView.builder(
-                                      shrinkWrap: true,
-                                      padding: EdgeInsets.zero,
-                                      scrollDirection: Axis.horizontal,
-                                      physics: ScrollPhysics(),
-                                      itemCount: psychologists.length,
-                                      gridDelegate:
-                                          SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 10,
-                                        childAspectRatio: 0.3,
+                        isLoading || psychologists.isEmpty
+                            ? Opacity(
+                                opacity: 0.9,
+                                child: Shimmer.fromColors(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: 1.sw,
+                                        height: 80,
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: 16),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(24),
+                                        ),
                                       ),
-                                      itemBuilder: (context, _in) {
-                                        return Row(
-                                          children: [
-                                            Container(
-                                              height: 80.h,
-                                              width: 81.w,
-                                              clipBehavior: Clip.hardEdge,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(16),
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl: psychologists[_in]
-                                                    .profilePhoto
-                                                    .toString(),
-                                                fit: BoxFit.cover,
-                                                placeholder: (context, url) =>
-                                                    Center(
-                                                  child: SpinKitThreeBounce(
-                                                    color: k006D77,
-                                                    size: 20,
-                                                  ),
-                                                ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 9.w,
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  psychologists[_in]
-                                                      .name
-                                                      .toString(),
-                                                  style: kManRope_400_16_001314,
-                                                ),
-                                                SizedBox(
-                                                  height: 8.h,
-                                                ),
-                                                Text(
-                                                  "psychologist",
-                                                  style: kManRope_400_14_626A6A,
-                                                ),
-                                                SizedBox(
-                                                  height: 8.h,
-                                                ),
-                                                Row(
-                                                  mainAxisSize: MainAxisSize.min,
+                                      SizedBox(height: 16),
+                                      Container(
+                                        width: 1.sw,
+                                        height: 80,
+                                        margin: EdgeInsets.only(
+                                            left: 16, right: 16, bottom: 24),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(24),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  baseColor: Colors.black12,
+                                  highlightColor: Colors.white,
+                                ),
+                              )
+                            : Container(
+                                color: Colors.white,
+                                child: Column(
+                                  children: [
+                                    // PsychologistSlider(),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 25, top: 20),
+                                      child: SizedBox(
+                                        height: 200.h,
+                                        child: GridView.builder(
+                                          shrinkWrap: true,
+                                          padding: EdgeInsets.zero,
+                                          scrollDirection: Axis.horizontal,
+                                          physics: ScrollPhysics(),
+                                          itemCount: psychologists.length,
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            crossAxisSpacing: 10,
+                                            childAspectRatio: 0.3,
+                                          ),
+                                          itemBuilder: (context, i) {
+                                            return GestureDetector(
+                                              onTap: () {
+                                                Navigator.of(context).push(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            UDoctorProfileScreen(
+                                                              showBookSession:
+                                                                  true,
+                                                              issue: '',
+                                                              psychologistData:
+                                                                  psychologists[
+                                                                      i],
+                                                            )));
+                                              },
+                                              child: Container(
+                                                color: Colors.transparent,
+                                                child: Row(
                                                   children: [
-                                                    Image.asset('assets/images/Star 1.png',
-                                                        width: 15.w, height: 15.w),
-                                                    SizedBox(width: 4.w),
-                                                    Text('4.0',
-                                                        style: kManRope_400_12_001314),
-                                                    SizedBox(width: 4.w),
-                                                    Text('.', style: kManRope_700_16_001314),
-                                                    SizedBox(width: 4.w),
-                                                    Text(psychologists[_in]
-                                                        .totalExprience
-                                                        .toString(),
-                                                        style: kManRope_400_12_001314),
-                                                    Text(' Yrs. Exp',
-                                                        style: kManRope_400_12_001314),
+                                                    Container(
+                                                      height: 80.h,
+                                                      width: 81.w,
+                                                      clipBehavior:
+                                                          Clip.hardEdge,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(16),
+                                                      ),
+                                                      child: CachedNetworkImage(
+                                                        imageUrl:
+                                                            psychologists[i]
+                                                                .profilePhoto
+                                                                .toString(),
+                                                        fit: BoxFit.cover,
+                                                        placeholder:
+                                                            (context, url) =>
+                                                                Center(
+                                                          child:
+                                                              SpinKitThreeBounce(
+                                                            color: k006D77,
+                                                            size: 20,
+                                                          ),
+                                                        ),
+                                                        errorWidget: (context,
+                                                                url, error) =>
+                                                            Icon(Icons.error),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 9.w),
+                                                    Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          psychologists[i]
+                                                              .name
+                                                              .toString(),
+                                                          style:
+                                                              kManRope_400_16_001314,
+                                                        ),
+                                                        SizedBox(height: 8.h),
+                                                        Text(
+                                                          psychologists[i]
+                                                              .specialities!
+                                                              .first
+                                                              .name
+                                                              .toString(),
+                                                          style:
+                                                              kManRope_400_14_626A6A,
+                                                        ),
+                                                        SizedBox(height: 8.h),
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            Image.asset(
+                                                              'assets/images/Star 1.png',
+                                                              width: 15.w,
+                                                              height: 15.w,
+                                                            ),
+                                                            SizedBox(
+                                                                width: 4.w),
+                                                            Text(
+                                                                psychologists[i]
+                                                                    .rating
+                                                                    .toString(),
+                                                                style:
+                                                                    kManRope_400_12_001314),
+                                                            SizedBox(
+                                                                width: 4.w),
+                                                            Text('.',
+                                                                style:
+                                                                    kManRope_700_16_001314),
+                                                            SizedBox(
+                                                                width: 4.w),
+                                                            Text(
+                                                                psychologists[i]
+                                                                    .totalExprience
+                                                                    .toString(),
+                                                                style:
+                                                                    kManRope_400_12_001314),
+                                                            Text(' Yrs. Exp',
+                                                                style:
+                                                                    kManRope_400_12_001314),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    )
                                                   ],
                                                 ),
-                                              ],
-                                            )
-                                          ],
-                                        );
-                                      },
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
 
-                                //----------------------------------------------------------------
-                                SizedBox(height: 16.h),
-                                Container(
-                                  width: 1.sw,
-                                  height: 56.h,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 24.w),
-                                  child: CustomSecondaryButton(
-                                      onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (ctx) =>
-                                                    UAllPsychologistScreen()));
-                                      },
-                                      text: 'View All Psychologist'),
-                                ),
-                                SizedBox(
-                                  height: 20.h,
-                                )
-                              ],
-                            )),
+                                    //----------------------------------------------------------------
+                                    SizedBox(height: 16.h),
+                                    Container(
+                                      width: 1.sw,
+                                      height: 56.h,
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 24.w),
+                                      child: CustomSecondaryButton(
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (ctx) =>
+                                                        UAllPsychologistScreen()));
+                                          },
+                                          text: 'View All Psychologist'),
+                                    ),
+                                    SizedBox(
+                                      height: 20.h,
+                                    )
+                                  ],
+                                )),
                         SizedBox(height: 20.h),
                         // RecommendedVideos(),
                         //---------------------------------------------------------------------------
@@ -379,39 +502,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                   ],
                                 ),
                               ),
-
                               URecommendedVideosSlider(),
-
-                              // SizedBox(
-                              //   height: 160.h,
-                              //   child: ListView.builder(
-                              //     itemCount: recommendedVideos.length,
-                              //     shrinkWrap: true,
-                              //     scrollDirection: Axis.horizontal,
-                              //     itemBuilder: (_, i) {
-                              //       return Container(
-                              //         width: 248.w,
-                              //         clipBehavior: Clip.hardEdge,
-                              //         margin: EdgeInsets.only(left: 24.w),
-                              //         decoration: BoxDecoration(
-                              //           borderRadius: BorderRadius.circular(20),
-                              //         ),
-                              //         child: CachedNetworkImage(
-                              //           imageUrl: recommendedVideos[i]
-                              //               .videoPoster
-                              //               .toString(),fit: BoxFit.cover,
-                              //           placeholder: (context, url) =>  Center(
-                              //             child: SpinKitThreeBounce(
-                              //               color: k006D77,
-                              //               size: 20,
-                              //             ),
-                              //           ),
-                              //           errorWidget: (context, url, error) =>  Icon(Icons.error),
-                              //         ),
-                              //       );
-                              //     },
-                              //   ),
-                              // ),
                               SizedBox(height: 20),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -468,37 +559,40 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                 ),
                               ),
                               SizedBox(height: 16.h),
-                              isLoading || userActivity.isEmpty ? SizedBox() :SizedBox(
-                                height: 87.h,
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (_, i) {
-                                    return Container(
+                              isLoading || userActivity.isEmpty
+                                  ? SizedBox()
+                                  : SizedBox(
                                       height: 87.h,
-                                      width: 248.w,
-                                      margin: EdgeInsets.only(left: 24.w),
-                                      decoration: BoxDecoration(
-                                        color: k5A72ED,
-                                        borderRadius: BorderRadius.circular(10),
-                                        image: DecorationImage(
-                                            image: AssetImage(
-                                              'assets/images/backimg.png',
+                                      child: ListView.builder(
+                                        shrinkWrap: true,
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (_, i) {
+                                          return Container(
+                                            height: 87.h,
+                                            width: 248.w,
+                                            margin: EdgeInsets.only(left: 24.w),
+                                            decoration: BoxDecoration(
+                                              color: k5A72ED,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                    'assets/images/backimg.png',
+                                                  ),
+                                                  fit: BoxFit.cover),
                                             ),
-                                            fit: BoxFit.cover),
+                                            child: Center(
+                                              child: Text(
+                                                userActivity[i].name.toString(),
+                                                overflow: TextOverflow.ellipsis,
+                                                style: kManRope_600_18_white,
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                        itemCount: 3,
                                       ),
-                                      child: Center(
-                                        child: Text(
-                                          userActivity[i].name.toString(),
-                                          overflow: TextOverflow.ellipsis,
-                                          style: kManRope_600_18_white,
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  itemCount: 3,
-                                ),
-                              ),
+                                    ),
                               SizedBox(height: 20),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -528,7 +622,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
             ),
           ),
         ),
-        if (isLoading) LoadingWidget(),
+        /*if (isLoading) LoadingWidget(),*/
       ],
     );
   }
