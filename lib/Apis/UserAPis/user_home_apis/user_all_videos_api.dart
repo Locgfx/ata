@@ -1,17 +1,22 @@
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 
-class UserAllVideosApi{
-  Future<dynamic> get()async {
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../constants/globals.dart';
+
+class UserAllVideosApi {
+  Future<dynamic> get() async {
     var prefs = await SharedPreferences.getInstance();
-    var v = prefs.getString('cookies');
+    var v = prefs.getString(Keys().cookie);
     var headers = {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
-    var request = http.Request('GET',
-        Uri.parse('https://beta.alfrik.com/ataraxis/api-user//videos.php?category_id=2'));
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            'https://beta.alfrik.com/ataraxis/api-user//videos.php?category_id=2'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var resp = jsonDecode(await response.stream.bytesToString());

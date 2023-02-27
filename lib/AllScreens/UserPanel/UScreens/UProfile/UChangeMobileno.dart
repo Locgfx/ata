@@ -11,7 +11,6 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 
-
 class UChangeMobileNoScreen extends StatefulWidget {
   const UChangeMobileNoScreen({Key? key}) : super(key: key);
 
@@ -30,10 +29,8 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
   // bool nMobileNoEmpty = true;
   // bool cMobileNoEmpty = true;
 
-
   bool nMobileEmpty = true;
   bool cMobileEmpty = true;
-
 
   @override
   Widget build(BuildContext context) {
@@ -85,8 +82,7 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
                         nMobileEmpty = false;
                       });
                     }
-                    if (mobileNOController.text.trim().length ==
-                        10) {
+                    if (mobileNOController.text.trim().length == 10) {
                       FocusScope.of(context).unfocus();
                     }
                   },
@@ -123,8 +119,7 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
                         cMobileEmpty = false;
                       });
                     }
-                    if (cMobileNOController.text.trim().length ==
-                        10) {
+                    if (cMobileNOController.text.trim().length == 10) {
                       FocusScope.of(context).unfocus();
                     }
                   },
@@ -159,46 +154,53 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
               Spacer(),
               Align(
                 alignment: Alignment.center,
-
-                child: Text('You will receive an otp to your new email after clicking next',
-                  style:kManRope_400_16_626A6A ,),
+                child: Text(
+                  'You will receive an otp to your new email after clicking next',
+                  style: kManRope_400_16_626A6A,
+                ),
               ),
-              SizedBox(height: 134.h,),
-              nMobileEmpty ?
-              CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :cMobileEmpty ?
-              CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :CustomSmallActiveTextButton(onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  final resp = UserChangeMobileNoApi().get(
-                      mobileNo: mobileNOController.text,
-                      cMobileNo: cMobileNOController.text
-
-                  );
-                  resp.then((value) {
-                    print(value);
-                    if (value['status'] == true) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => UChangeMobileEnterOtpScreen()));
-                      Fluttertoast.showToast(
-                          msg: 'Your OTP is ${value['otp']}');
-                    } else {
-                      Fluttertoast.showToast(
-                          msg: value['error']);
-                      /* Navigator.push(
+              SizedBox(
+                height: 134.h,
+              ),
+              nMobileEmpty
+                  ? CustomSmallDeactiveTextButton(
+                      onPressed: () {}, text: 'Next')
+                  : cMobileEmpty
+                      ? CustomSmallDeactiveTextButton(
+                          onPressed: () {}, text: 'Next')
+                      : CustomSmallActiveTextButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              final resp = UserChangeMobileNoApi().get(
+                                  mobileNo: mobileNOController.text,
+                                  cMobileNo: cMobileNOController.text);
+                              resp.then((value) {
+                                //print(value);
+                                if (value['status'] == true) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          UChangeMobileEnterOtpScreen()));
+                                  Fluttertoast.showToast(
+                                      msg: 'Your OTP is ${value['otp']}');
+                                } else {
+                                  Fluttertoast.showToast(msg: value['error']);
+                                  /* Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PDashboard()),
                                   );*/
-                    }
-                  });
-                }
-              }, text: 'Next',),
-              SizedBox(height: 40.h,)
+                                }
+                              });
+                            }
+                          },
+                          text: 'Next',
+                        ),
+              SizedBox(
+                height: 40.h,
+              )
             ],
           ),
         ),
-
       ),
     );
   }

@@ -1,13 +1,15 @@
 import 'dart:convert';
 
 import 'package:greymatter/constants/urlconstants.dart';
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart'as http;
+
+import '../../../constants/globals.dart';
 
 class UserLogoutApi {
-  Future<dynamic> get()async{
+  Future<dynamic> get() async {
     var prefs = await SharedPreferences.getInstance();
-    var v = prefs.getString('cookies');
+    var v = prefs.getString(Keys().cookie);
     print(v);
     var headers = {
       'Content-Type': 'application/json',
@@ -25,7 +27,5 @@ class UserLogoutApi {
     } else {
       return rsp;
     }
-
-
   }
 }

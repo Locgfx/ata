@@ -1,9 +1,10 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/ULoginScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAgreementscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UHelpandsupport.dart';
@@ -12,7 +13,8 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UOrderhistory.
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPersonalInfoScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
-import 'package:greymatter/global/Sharedprefs.dart';
+import 'package:greymatter/constants/globals.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UProfileScreen extends StatefulWidget {
   const UProfileScreen({Key? key}) : super(key: key);
@@ -114,7 +116,6 @@ class _UProfileScreenState extends State<UProfileScreen> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const UserPersonalInfoScreen()));
-
                   },
                   child: SizedBox(
                     height: 48.h,
@@ -306,9 +307,10 @@ class _UProfileScreenState extends State<UProfileScreen> {
                     onTap: () {
                       _uprofileLogoutBottomSheet();
                     },
-                    child: SizedBox(
+                    child: Container(
                       height: 43.h,
-                      width: 79.w,
+                      width: 1.sw,
+                      color: Colors.transparent,
                       child: Text(
                         'Log Out',
                         style: kManRope_500_16_B64949,
@@ -340,85 +342,82 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
       child: Column(
         children: [
           Container(
-            height: 180.h,
             decoration: const BoxDecoration(
               color: kEDF6F9,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
             padding: EdgeInsets.only(top: 20.h),
-            margin: EdgeInsets.only(
-              bottom: MediaQuery.of(context).viewInsets.bottom,
-            ),
             // color: CupertinoColors.systemBackground.resolveFrom(context),
-            child: SafeArea(
-              top: false,
-              child: Column(
-                children: [
-                  Text(
-                    "Log out",
-                    style: kManRope_700_20_001314,
-                  ),
-                  SizedBox(height: 16.h),
-                  Text(
-                    "You will be returned to the login screen.",
-                    style: kManRope_500_16_626A6A,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20.0),
-                    child: Container(
-                      height: 1,
-                      width: 1.sw,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                          child: GestureDetector(
+            child: Column(
+              children: [
+                Text(
+                  "Log out",
+                  style: kManRope_700_20_001314,
+                ),
+                SizedBox(height: 16.h),
+                Text(
+                  "You will be returned to the login screen.",
+                  style: kManRope_500_16_626A6A,
+                ),
+                SizedBox(height: 20.h),
+                Container(
+                  height: 1,
+                  width: 1.sw,
+                  color: Colors.white,
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: GestureDetector(
                         onTap: () {
                           Navigator.pop(context);
                         },
                         child: Container(
-                            height: 52.h,
-                            padding: EdgeInsets.only(top: 16),
-                            child: Center(
-                                child: Text(
+                          height: 56.h,
+                          color: Colors.transparent,
+                          child: Center(
+                            child: Text(
                               "Cancel",
                               style: kManRope_500_20_006D77,
-                            ))),
-                      )),
-                      Container(
-                        height: 52.h,
-                        color: Colors.white,
-                        width: 1,
+                            ),
+                          ),
+                        ),
                       ),
-                      Expanded(
-                          child: GestureDetector(
-                        onTap: () {
-                          UserPrefs().setLoginFalse();
+                    ),
+                    Container(
+                      height: 56.h,
+                      color: Colors.white,
+                      width: 1,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () async {
+                          var prefs = await SharedPreferences.getInstance();
+                          prefs.setBool(Keys().loginDone, false);
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => OnBoardingScreen(),
-                              // builder: (_) => LoginScreen(showBack: false),
+                              //builder: (_) => OnBoardingScreen(),
+                              builder: (_) => ULoginScreen(showBack: false),
                             ),
                           );
                         },
                         child: Container(
-                            padding: EdgeInsets.only(top: 16),
-                            height: 52.h,
-                            child: Center(
-                                child: Text(
+                          height: 56.h,
+                          color: Colors.transparent,
+                          child: Center(
+                            child: Text(
                               "Logout",
                               style: kManRope_500_20_B64949,
-                            ))),
-                      )),
-                    ],
-                  ),
-
-                ],
-              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ],

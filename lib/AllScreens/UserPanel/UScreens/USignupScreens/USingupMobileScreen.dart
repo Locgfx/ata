@@ -25,7 +25,6 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
 
   final TextEditingController _mobileController = TextEditingController();
 
-
   bool mobileEmpty = true;
 
   @override
@@ -52,7 +51,7 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                         child: Container(
                           padding: const EdgeInsets.only(top: 24, right: 24),
                           child:
-                          SvgPicture.asset('assets/icons/iosbackarrow.svg'),
+                              SvgPicture.asset('assets/icons/iosbackarrow.svg'),
                         ),
                       ),
                       SizedBox(height: 24.h),
@@ -98,40 +97,40 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                       SizedBox(height: 40.h),
                       mobileEmpty
                           ? CustomDeactiveTextButton(
-                          onPressed: () {}, text: 'Generate OTP')
+                              onPressed: () {}, text: 'Generate OTP')
                           : CustomActiveTextButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              final resp = Generateotpapi().get(
-                                mobileNo: _mobileController.text,
-                              );
-                              print(_mobileController.text);
-                              resp.then((value) async {
-                                print(value);
-                                if (value['status'] == false) {
-                                  Fluttertoast.showToast(
-                                      msg: 'login failed');
-                                } else {
-                                  var prefs =
-                                  await SharedPreferences.getInstance();
-                                  prefs.setString(
-                                      'cookies', value['session_id']);
-                                  //print(value['session_id']);
-                                  print(prefs.getString('cookies'));
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              USignEnterOTPScreen(
-                                                signUpField:
-                                                _mobileController.text,
-                                              )));
-                                  Fluttertoast.showToast(
-                                      msg: 'Your OTP is ${value['otp']}');
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  final resp = Generateotpapi().get(
+                                    mobileNo: _mobileController.text,
+                                  );
+                                  print(_mobileController.text);
+                                  resp.then((value) async {
+                                    print(value);
+                                    if (value['status'] == false) {
+                                      Fluttertoast.showToast(
+                                          msg: 'login failed');
+                                    } else {
+                                      var prefs =
+                                          await SharedPreferences.getInstance();
+                                      prefs.setString(
+                                          'cookies', value['session_id']);
+                                      //print(value['session_id']);
+                                      //print(prefs.getString(Keys().cookie));
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  USignEnterOTPScreen(
+                                                    signUpField:
+                                                        _mobileController.text,
+                                                  )));
+                                      Fluttertoast.showToast(
+                                          msg: 'Your OTP is ${value['otp']}');
+                                    }
+                                  });
                                 }
-                              });
-                            }
-                          },
-                          text: 'Generate OTP'),
+                              },
+                              text: 'Generate OTP'),
                       SizedBox(height: 24.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

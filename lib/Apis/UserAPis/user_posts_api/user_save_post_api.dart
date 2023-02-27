@@ -1,20 +1,23 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
-class UserSavePostApi{
+import '../../../constants/globals.dart';
+
+class UserSavePostApi {
   Future<dynamic> get({
     required String postId,
     required String postType,
-}) async {
+  }) async {
     var prefs = await SharedPreferences.getInstance();
-    var v = prefs.getString('cookies');
+    var v = prefs.getString(Keys().cookie);
     var headers = {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
-    var request = http.Request('POST', Uri.parse('https://beta.alfrik.com/ataraxis/api-user//save-post.php'));
+    var request = http.Request('POST',
+        Uri.parse('https://beta.alfrik.com/ataraxis/api-user//save-post.php'));
     request.body = json.encode({
       "post_id": postId,
       "post_type": postType,
@@ -28,7 +31,5 @@ class UserSavePostApi{
       print(response.reasonPhrase);
       return resp;
     }
-
   }
-
 }

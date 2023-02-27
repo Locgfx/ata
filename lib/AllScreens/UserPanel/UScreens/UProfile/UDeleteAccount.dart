@@ -43,7 +43,6 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                   "Email ",
                   style: kManRope_400_16_626A6A,
                 ),
-
                 TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -52,18 +51,17 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                     return null;
                   },
                   controller: emailController,
-                  decoration: InputDecoration(isDense: true,
+                  decoration: InputDecoration(
+                      isDense: true,
                       border: InputBorder.none,
                       hintText: "Enter your email",
-                      hintStyle:kManRope_400_16_001314),
+                      hintStyle: kManRope_400_16_001314),
                 ),
-
                 SizedBox(height: 40.h),
                 Text(
                   "Password  ",
                   style: kManRope_400_16_626A6A,
                 ),
-
                 TextFormField(
                   controller: passwordController,
                   validator: (value) {
@@ -76,9 +74,8 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                       isDense: true,
                       border: InputBorder.none,
                       hintText: "Enter your password",
-                      hintStyle:kManRope_400_16_001314),
+                      hintStyle: kManRope_400_16_001314),
                 ),
-
                 SizedBox(
                   height: 140.h,
                 ),
@@ -113,18 +110,17 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                             if (_formKey.currentState!.validate()) {
                               final resp = UserDeleteAccountAPi().get(
                                   email: emailController.text,
-                                  password: passwordController.text
-                                  );
+                                  password: passwordController.text);
                               resp.then((value) {
-                                print(value);
+                                //print(value);
                                 if (value['status'] == true) {
                                   Fluttertoast.showToast(
                                       msg: 'Profile Successfully Deleted');
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => OnBoardingScreen()));
+                                      builder: (context) =>
+                                          OnBoardingScreen()));
                                 } else {
-                                  Fluttertoast.showToast(
-                                      msg: value['error']);
+                                  Fluttertoast.showToast(msg: value['error']);
                                   /* Navigator.push(
                                   context,
                                   MaterialPageRoute(

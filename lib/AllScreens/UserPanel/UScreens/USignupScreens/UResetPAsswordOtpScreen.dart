@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,7 +32,7 @@ class _UResetPasswordOTPScreen extends State<UResetPasswordOTPScreen> {
     const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSec,
-          (Timer timer) {
+      (Timer timer) {
         if (_start == 0) {
           setState(() {
             timer.cancel();
@@ -118,14 +119,14 @@ class _UResetPasswordOTPScreen extends State<UResetPasswordOTPScreen> {
                       InkWell(
                           onTap: _start == 0
                               ? () {
-                            setState(() {
-                              _start = 30;
-                            });
-                            _startTimer();
-                          }
+                                  setState(() {
+                                    _start = 30;
+                                  });
+                                  _startTimer();
+                                }
                               : () {
-                            print(otp.length);
-                          },
+                                  //print(otp.length);
+                                },
                           child: Text('Resend',
                               style: _start == 0
                                   ? kManRope_400_16_006D77
@@ -137,12 +138,12 @@ class _UResetPasswordOTPScreen extends State<UResetPasswordOTPScreen> {
               const Spacer(),
               otp.length == 4
                   ? CustomActiveTextButton(
-                  onPressed: () {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (ctx) => UEnterNewPasswordScreen(),
-                        settings: RouteSettings(arguments: number)));
-                  },
-                  text: 'Continue')
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (ctx) => UEnterNewPasswordScreen(),
+                            settings: RouteSettings(arguments: number)));
+                      },
+                      text: 'Continue')
                   : CustomDeactiveTextButton(onPressed: () {}, text: 'Continue')
             ],
           ),

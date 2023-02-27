@@ -16,17 +16,15 @@ class UFaqScreen extends StatefulWidget {
 }
 
 class _UFaqScreenState extends State<UFaqScreen> {
-
   bool dropdown = false;
   bool dropdownContainer = false;
-
-
 
   @override
   void initState() {
     getData();
     super.initState();
   }
+
   bool isSelected = false;
   bool isLoading = false;
 
@@ -37,18 +35,18 @@ class _UFaqScreenState extends State<UFaqScreen> {
     isLoading = true;
     final resp = UserFaqApi().get();
     resp.then((value) {
-      print(value);
-      if(mounted){
+      //print(value);
+      if (mounted) {
         setState(() {
           for (var v in value) {
             faqList.add(UserFaqModel.fromJson(v));
-            print(faqList);
+            //print(faqList);
           }
           isLoading = false;
-        });}
+        });
+      }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +89,7 @@ class _UFaqScreenState extends State<UFaqScreen> {
                       fillColor: Colors.white,
                       filled: true,
                       suffixIconConstraints:
-                      BoxConstraints(maxHeight: 55.h, maxWidth: 55.w),
+                          BoxConstraints(maxHeight: 55.h, maxWidth: 55.w),
                       suffixIcon: Padding(
                         padding: EdgeInsets.only(right: 8),
                         child: SizedBox(
@@ -122,7 +120,8 @@ class _UFaqScreenState extends State<UFaqScreen> {
                                 height: 48.h,
                                 width: 380.w,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Text(
                                       faqList[index].ques.toString(),
@@ -131,7 +130,8 @@ class _UFaqScreenState extends State<UFaqScreen> {
                                     GestureDetector(
                                       onTap: () {
                                         setState(() {
-                                          dropdownContainer = !dropdownContainer;
+                                          dropdownContainer =
+                                              !dropdownContainer;
                                         });
                                       },
                                       child: SizedBox(
@@ -153,19 +153,20 @@ class _UFaqScreenState extends State<UFaqScreen> {
                                 curve: Curves.fastOutSlowIn,
                                 height: dropdownContainer ? 100.h : 0,
                                 width: 1.sw,
-                                decoration:  BoxDecoration(
+                                decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
                                   color: kFFFFFF,
                                 ),
-                                child:   Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 8.0),
                                   child: Center(
-                                    child: Text(faqList[index].ans.toString(),
-                                      style: kManRope_400_16_626A6A,),
+                                    child: Text(
+                                      faqList[index].ans.toString(),
+                                      style: kManRope_400_16_626A6A,
+                                    ),
                                   ),
                                 ),
-
-
                               ),
                               SizedBox(
                                 height: 20.h,
@@ -177,7 +178,6 @@ class _UFaqScreenState extends State<UFaqScreen> {
                               ),
                             ],
                           );
-
                         }),
                   ),
                   SizedBox(

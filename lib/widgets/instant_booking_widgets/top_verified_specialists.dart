@@ -24,7 +24,7 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
     _pageController.addListener(() {
       setState(() {
         currentPage = _pageController.page!.toDouble();
-        print(currentPage);
+        //print(currentPage);
       });
     });
     super.initState();
@@ -330,13 +330,13 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
               width: 1.sw,
               child: CarouselSlider.builder(
                 options: CarouselOptions(
-                  padEnds: false,
+                    padEnds: false,
                     onPageChanged: (index, reason) {
                       setState(() {
                         _index = index;
                       });
                     },
-                    aspectRatio: 16/9,
+                    aspectRatio: 16 / 9,
                     viewportFraction: 0.7,
                     reverse: false,
                     enableInfiniteScroll: false),
@@ -354,8 +354,9 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                       ], begin: Alignment.topLeft, end: Alignment.bottomRight),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.only(left: 24.h,top: 24.h),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                      padding: EdgeInsets.only(left: 24.h, top: 24.h),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Column(
@@ -387,8 +388,9 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                                   height: 48.h,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                      image: AssetImage("assets/images/person1instant.png"),fit: BoxFit.cover
-                                    ),
+                                        image: AssetImage(
+                                            "assets/images/person1instant.png"),
+                                        fit: BoxFit.cover),
                                     color: Colors.grey,
                                     shape: BoxShape.circle,
                                     border: Border.all(color: Colors.white),
@@ -403,8 +405,9 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                                   height: 48.h,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage("assets/images/person2instant.png"),fit: BoxFit.cover
-                                    ),
+                                        image: AssetImage(
+                                            "assets/images/person2instant.png"),
+                                        fit: BoxFit.cover),
                                     color: Colors.grey,
                                     shape: BoxShape.circle,
                                     border: Border.all(color: Colors.white),
@@ -419,8 +422,9 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                                   height: 48.h,
                                   decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage("assets/images/person3instant.png"),fit: BoxFit.cover
-                                    ),
+                                        image: AssetImage(
+                                            "assets/images/person3instant.png"),
+                                        fit: BoxFit.cover),
                                     color: Colors.grey,
                                     shape: BoxShape.circle,
                                     border: Border.all(color: Colors.white),

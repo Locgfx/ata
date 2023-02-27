@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/BottomSheets/CancelBookingBottomSheet.dart';
@@ -22,7 +21,8 @@ class UBookingConfirmationScreen extends StatefulWidget {
       _UBookingConfirmationScreenState();
 }
 
-class _UBookingConfirmationScreenState extends State<UBookingConfirmationScreen> {
+class _UBookingConfirmationScreenState
+    extends State<UBookingConfirmationScreen> {
   void _selectGender() {
     showModalBottomSheet(
         backgroundColor: kFFFFFF,
@@ -47,7 +47,7 @@ class _UBookingConfirmationScreenState extends State<UBookingConfirmationScreen>
       ),
       body: Padding(
         padding:
-        EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w, bottom: 35.h),
+            EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w, bottom: 35.h),
         child: SizedBox(
           child: ListView(
             children: [
@@ -91,14 +91,14 @@ class _UBookingConfirmationScreenState extends State<UBookingConfirmationScreen>
                         SizedBox(
                           height: 8.h,
                         ),
-                        StarWidget()
+                        //StarWidget()
                       ],
                     ),
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => UDoctorProfileScreen()));
+                      /*Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => UDoctorProfileScreen()));*/
                     },
                     child: SvgPicture.asset(
                       'assets/icons/sarrow.svg',

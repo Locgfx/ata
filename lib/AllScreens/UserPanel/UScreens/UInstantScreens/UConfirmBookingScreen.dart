@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UBookingSuccessfulScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
 class UConfirmBookingScreen extends StatefulWidget {
-  const UConfirmBookingScreen({Key? key, required this.issue}) : super(key: key);
+  const UConfirmBookingScreen({Key? key, required this.issue})
+      : super(key: key);
   final String issue;
 
   @override
@@ -96,7 +97,7 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                             SizedBox(
                               height: 11.h,
                             ),
-                            StarWidget()
+                            //StarWidget()
                           ],
                         ),
                       ],
@@ -175,12 +176,10 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                 SizedBox(
                   height: 8.h,
                 ),
-
                 Text(
                   "“Coupon code applied successfully”",
                   style: kManRope_400_10_006D77,
                 ),
-
                 SizedBox(
                   height: 239.h,
                 ),
@@ -199,7 +198,6 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                   ),
                 ),
                 SizedBox(height: 40.h),
-
                 SizedBox(
                   height: 83.h,
                   child: Row(
@@ -222,14 +220,16 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                             color: k006D77,
                             shape: RoundedRectangleBorder(
                               borderRadius:
-                              BorderRadius.circular(10), // <-- Radius
+                                  BorderRadius.circular(10), // <-- Radius
                             ),
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                      const UBookingSuccessfulScreen(isCancellationAvailable: true,)));
+                                          const UBookingSuccessfulScreen(
+                                            isCancellationAvailable: true,
+                                          )));
                             },
                             child: Text(
                               'Proceed to payment',

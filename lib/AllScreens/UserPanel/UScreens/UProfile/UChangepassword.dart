@@ -21,7 +21,6 @@ class _UChangePasswordScreenState extends State<UChangePasswordScreen> {
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
-
   bool hasoPassFocus = false;
   bool hasNPassFocus = false;
   bool hasCPassFocus = false;
@@ -140,38 +139,49 @@ class _UChangePasswordScreenState extends State<UChangePasswordScreen> {
                 ),
               ),
               Spacer(),
-              oPassEmpty ?
-              CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :nPassEmpty ?
-              CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :cPassEmpty ?
-              CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :CustomSmallActiveTextButton(onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  final resp = UserChangePasswordApi().get(
-                      oldPassword: oldPasswordController.text,
-                      newPassword: newPasswordController.text,
-                      cNewPassword: confirmPasswordController.text);
-                  resp.then((value) async {
-                    print(value);
-                    if (value['status'] == true) {
-                      Fluttertoast.showToast(
-                          msg: 'Password changed successfully');
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => UProfileScreen()));
-                    } else {
-                      Fluttertoast.showToast(msg: value['error']);
-                      /* Navigator.push(
+              oPassEmpty
+                  ? CustomSmallDeactiveTextButton(
+                      onPressed: () {}, text: 'Next')
+                  : nPassEmpty
+                      ? CustomSmallDeactiveTextButton(
+                          onPressed: () {}, text: 'Next')
+                      : cPassEmpty
+                          ? CustomSmallDeactiveTextButton(
+                              onPressed: () {}, text: 'Next')
+                          : CustomSmallActiveTextButton(
+                              onPressed: () {
+                                if (_formKey.currentState!.validate()) {
+                                  final resp = UserChangePasswordApi().get(
+                                      oldPassword: oldPasswordController.text,
+                                      newPassword: newPasswordController.text,
+                                      cNewPassword:
+                                          confirmPasswordController.text);
+                                  resp.then((value) async {
+                                    //print(value);
+                                    if (value['status'] == true) {
+                                      Fluttertoast.showToast(
+                                          msg: 'Password changed successfully');
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  UProfileScreen()));
+                                    } else {
+                                      Fluttertoast.showToast(
+                                          msg: value['error']);
+                                      /* Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => PDashboard()),
                                     );*/
-                    }
-                  });
-                }
-              }, text: 'Next',),
-              SizedBox(height: 40.h,)
-
+                                    }
+                                  });
+                                }
+                              },
+                              text: 'Next',
+                            ),
+              SizedBox(
+                height: 40.h,
+              )
             ],
           ),
         ),

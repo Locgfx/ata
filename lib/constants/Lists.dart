@@ -28,14 +28,14 @@ final List<String> timeList = [
   '8:00 PM',
 ];
 
-final List<String> activityList = [
+/*final List<String> activityList = [
   'Cycling',
   'Walking',
   'Running',
   'Climbing Stairs',
   'Deep Breathing',
   'Mindful Walking'
-];
+];*/
 
 final List<String> weekDays = [
   'S',

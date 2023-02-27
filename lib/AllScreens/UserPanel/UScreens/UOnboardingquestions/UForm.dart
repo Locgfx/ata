@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../widgets/shared/buttons/custom_active_text_button.dart';
 
@@ -83,6 +84,7 @@ class _Form1State extends State<Form1> {
       } else if (widget.index == 8) {
         prefs.setString(Keys().lineageProblem, widget.labels[_radioVal]);
       }
+
       //prefs.setString(key, value);
     }
   }
@@ -135,166 +137,166 @@ class _Form1State extends State<Form1> {
                 ),
                 widget.labels.isEmpty
                     ? Column(
-                  children: [
-                    Container(
-                      height: 1,
-                      width: 1.sw,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          showOptions1 = !showOptions1;
-                          if (showOptions1) {
-                            missingFocus.unfocus();
-                          }
-                        });
-                      },
-                      child: Container(
-                        height: 58.h,
-                        width: 380.w,
-                        decoration: BoxDecoration(
-                          /*borderRadius: showOptions1
+                        children: [
+                          Container(
+                            height: 1,
+                            width: 1.sw,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                            ),
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                showOptions1 = !showOptions1;
+                                if (showOptions1) {
+                                  missingFocus.unfocus();
+                                }
+                              });
+                            },
+                            child: Container(
+                              height: 58.h,
+                              width: 380.w,
+                              decoration: BoxDecoration(
+                                /*borderRadius: showOptions1
                                     ? BorderRadius.vertical(
                                         top: Radius.circular(10))
                                     : BorderRadius.circular(10),*/
-                          color: Colors.transparent,
-                          border: Border(
-                            bottom: BorderSide(
-                              color: showOptions1
-                                  ? kB5BABA
-                                  : Colors.transparent,
-                              width: 1,
-                            ),
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              problem,
-                              style: kManRope_500_14_626A6A,
-                            ),
-                            (showOptions1)
-                                ? Padding(
-                              padding: EdgeInsets.only(right: 12.w),
-                              child: SvgPicture.asset(
-                                'assets/icons/circleCancel.svg',
-                                height: 24.h,
-                                width: 24.h,
-                              ),
-                            )
-                                : Image.asset(
-                              "assets/images/icondropdownlargee.png",
-                              height: 48.h,
-                              width: 48.w,
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    AnimatedContainer(
-                      duration: Duration(milliseconds: 300),
-                      curve: Curves.fastOutSlowIn,
-                      height: showOptions1 ? 290.h : 0,
-                      width: 1.sw,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            bottomRight: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)),
-                        color: Colors.transparent,
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            for (int i = 0; i < identifyList.length; i++)
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    showOptions1 = false;
-                                    problem = identifyList[i];
-                                  });
-                                },
-                                child: Container(
-                                  color: Colors.transparent,
-                                  padding:
-                                  EdgeInsets.symmetric(vertical: 10),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(left: 24.w),
-                                    child: Text(
-                                      identifyList[i],
-                                      style: kManRope_400_12_626A6A,
-                                    ),
+                                color: Colors.transparent,
+                                border: Border(
+                                  bottom: BorderSide(
+                                    color: showOptions1
+                                        ? kB5BABA
+                                        : Colors.transparent,
+                                    width: 1,
                                   ),
                                 ),
                               ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    TextFormField(
-                      focusNode: missingFocus,
-                      controller: missingSomething,
-                      cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                        //contentPadding: EdgeInsets.zero,
-                        hintText: 'Type if we\'re missing something',
-                        hintStyle: kManRope_500_14_626A6A,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                            width: 1,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Colors.white,
-                            width: 1,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-                    : Column(
-                  children: [
-                    Container(
-                        height: 1, width: 1.sw, color: Colors.white),
-                    ListView.builder(
-                      itemCount: widget.labels.length,
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            Row(
-                              children: [
-                                Radio(
-                                  value: index,
-                                  groupValue: _radioVal,
-                                  activeColor: k006D77,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _radioVal = index;
-                                    });
-                                  },
-                                ),
-                                Text(
-                                  widget.labels[index],
-                                  style: kManRope_400_16_263238,
-                                ),
-                              ],
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    problem,
+                                    style: kManRope_500_14_626A6A,
+                                  ),
+                                  (showOptions1)
+                                      ? Padding(
+                                          padding: EdgeInsets.only(right: 12.w),
+                                          child: SvgPicture.asset(
+                                            'assets/icons/circleCancel.svg',
+                                            height: 24.h,
+                                            width: 24.h,
+                                          ),
+                                        )
+                                      : Image.asset(
+                                          "assets/images/icondropdownlargee.png",
+                                          height: 48.h,
+                                          width: 48.w,
+                                        )
+                                ],
+                              ),
                             ),
-                          ],
-                        );
-                      },
-                    ),
-                  ],
-                ),
+                          ),
+                          AnimatedContainer(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.fastOutSlowIn,
+                            height: showOptions1 ? 290.h : 0,
+                            width: 1.sw,
+                            decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  bottomRight: Radius.circular(10),
+                                  bottomLeft: Radius.circular(10)),
+                              color: Colors.transparent,
+                            ),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  for (int i = 0; i < identifyList.length; i++)
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          showOptions1 = false;
+                                          problem = identifyList[i];
+                                        });
+                                      },
+                                      child: Container(
+                                        color: Colors.transparent,
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 10),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: 24.w),
+                                          child: Text(
+                                            identifyList[i],
+                                            style: kManRope_400_12_626A6A,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          TextFormField(
+                            focusNode: missingFocus,
+                            controller: missingSomething,
+                            cursorColor: Colors.black,
+                            decoration: InputDecoration(
+                              //contentPadding: EdgeInsets.zero,
+                              hintText: 'Type if we\'re missing something',
+                              hintStyle: kManRope_500_14_626A6A,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                  width: 1,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.white,
+                                  width: 1,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Container(
+                              height: 1, width: 1.sw, color: Colors.white),
+                          ListView.builder(
+                            itemCount: widget.labels.length,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (BuildContext context, int index) {
+                              return Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Radio(
+                                        value: index,
+                                        groupValue: _radioVal,
+                                        activeColor: k006D77,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _radioVal = index;
+                                          });
+                                        },
+                                      ),
+                                      Text(
+                                        widget.labels[index],
+                                        style: kManRope_400_16_263238,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        ],
+                      ),
 
                 /* TextFormField(
                   controller: widget.questionControllers[j],

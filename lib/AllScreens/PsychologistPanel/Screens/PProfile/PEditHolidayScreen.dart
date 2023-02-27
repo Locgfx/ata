@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PHolidayConfirmScreen.dart';
@@ -9,6 +10,7 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/popupdialogs.dart';
+
 import '../../../../constants/fonts.dart';
 
 class PEditHolidayScreen extends StatefulWidget {
@@ -129,7 +131,9 @@ class _PEditHolidayScreenState extends State<PEditHolidayScreen> {
                           if (Platform.isIOS) {
                             showDialog(
                               context: context,
-                              builder: (_) => TimePickerApp(),
+                              builder: (_) => TimePickerApp(
+                                dateTime: DateTime.now(),
+                              ),
                             );
                           } else {
                             _showTimepicker();
@@ -193,7 +197,9 @@ class _PEditHolidayScreenState extends State<PEditHolidayScreen> {
                           if (Platform.isIOS) {
                             showDialog(
                               context: context,
-                              builder: (_) => TimePickerApp(),
+                              builder: (_) => TimePickerApp(
+                                dateTime: DateTime.now(),
+                              ),
                             );
                           } else {
                             _showTimepicker();

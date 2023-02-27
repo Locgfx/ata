@@ -1,23 +1,23 @@
 import 'dart:convert';
 
 import 'package:greymatter/constants/urlconstants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../constants/globals.dart';
 
 class ChangeMobileNoEnterOtpApi {
   get({
     required String otp,
   }) async {
     var prefs = await SharedPreferences.getInstance();
-    var v = prefs.getString('cookies');
+    var v = prefs.getString(Keys().cookie);
     var headers = {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
-    var request = http.Request(
-        'POST',
-        Uri.parse(
-            '$baseUrl/verify-otp-for-mobile.php'));
+    var request =
+        http.Request('POST', Uri.parse('$baseUrl/verify-otp-for-mobile.php'));
     request.body = json.encode({"otp": otp});
     print(request.body);
     request.headers.addAll(headers);

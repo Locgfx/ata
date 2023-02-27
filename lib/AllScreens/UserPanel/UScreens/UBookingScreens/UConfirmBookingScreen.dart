@@ -1,18 +1,28 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UBookingSuccessfulScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
+import '../UExploreScreens/UDoctorprofile.dart';
+
 class UConfirmAppointmentBooking extends StatefulWidget {
-  const UConfirmAppointmentBooking(
-      {Key? key, required this.issue, required this.date})
-      : super(key: key);
+  const UConfirmAppointmentBooking({
+    Key? key,
+    required this.issue,
+    required this.date,
+    required this.psychologist,
+    required this.slot,
+  }) : super(key: key);
+  final UPsychologistModel psychologist;
+  final String slot;
   final String issue;
   final String date;
 
@@ -21,12 +31,14 @@ class UConfirmAppointmentBooking extends StatefulWidget {
       _UConfirmAppointmentBookingState();
 }
 
-class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking> {
+class _UConfirmAppointmentBookingState
+    extends State<UConfirmAppointmentBooking> {
   final GlobalKey<FormState> _fKey = GlobalKey<FormState>();
 
   final TextEditingController _couponController = TextEditingController();
 
   bool couponEmpty = true;
+  bool applied = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,68 +57,86 @@ class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking>
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Selected Psychologists', style: kManRope_700_16_001314),
+                Text('Selected Psychologist', style: kManRope_700_16_001314),
                 SizedBox(
                   height: 25.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UDoctorProfileScreen(
+                                  showBookSession: false,
+                                  psychologistData: widget.psychologist,
+                                  issue: widget.issue,
+                                )));
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 133.h,
-                          width: 133.w,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(24)),
-                          child: Image.asset(
-                            'assets/images/userP.png',
-                            height: 135.h,
-                            width: 133.w,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 18.w,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            Text(
-                              'Priya Singh',
-                              style: kManRope_400_16_001314,
+                            Container(
+                              height: 133.w,
+                              width: 133.w,
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(24)),
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    widget.psychologist.profilePhoto.toString(),
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => Center(
+                                  child: SpinKitThreeBounce(
+                                    color: k006D77,
+                                    size: 10,
+                                  ),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              ),
                             ),
                             SizedBox(
-                              height: 8.h,
+                              width: 18.w,
                             ),
-                            Text(
-                              'psychologist',
-                              style: kManRope_400_14_626A6A,
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.psychologist.name!,
+                                  style: kManRope_400_16_001314,
+                                ),
+                                SizedBox(
+                                  height: 8.h,
+                                ),
+                                Text(
+                                  widget.psychologist.designation!,
+                                  style: kManRope_400_14_626A6A,
+                                ),
+                                SizedBox(
+                                  height: 8.h,
+                                ),
+                                StarWidget(
+                                  rating: widget.psychologist.rating.toString(),
+                                  experience: widget.psychologist.totalExprience
+                                      .toString(),
+                                )
+                              ],
                             ),
-                            SizedBox(
-                              height: 8.h,
-                            ),
-                            StarWidget()
                           ],
+                        ),
+                        SvgPicture.asset(
+                          'assets/icons/Frame 8498.svg',
+                          width: 48.w,
+                          height: 48.h,
                         ),
                       ],
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UDoctorProfileScreen()));
-                      },
-                      child: SvgPicture.asset(
-                        'assets/icons/Frame 8498.svg',
-                        width: 48.w,
-                        height: 48.h,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
                 SizedBox(
                   height: 40.h,
@@ -138,7 +168,7 @@ class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking>
                   height: 24.h,
                 ),
                 Text(
-                  '1:00 PM',
+                  widget.slot,
                   style: kManRope_500_16_006D77,
                 ),
                 SizedBox(
@@ -153,15 +183,13 @@ class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking>
                 ),
                 Container(
                   width: 380.w,
-                  height: 48.h,
                   // padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: const Color(0xFFB5BABA))),
                   child: Row(
                     children: [
-                      SizedBox(
-                        width: 310.w,
+                      Expanded(
                         child: TextFormField(
                           onChanged: (val) {
                             if (val.isNotEmpty) {
@@ -180,8 +208,8 @@ class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking>
                           keyboardType: TextInputType.emailAddress,
                           controller: _couponController,
                           decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(left: 10),
-                            isDense: true,
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 10),
                             border: InputBorder.none,
                             hintText: 'Coupon',
                             hintStyle: kManRope_500_16_626A6A,
@@ -193,12 +221,16 @@ class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking>
                         height: 58.h,
                         color: const Color(0xFFB5BABA),
                       ),
-                      SizedBox(
-                        width: 55.w,
-                        child: Center(
-                          child: Text(
-                            'Apply',
-                            style: kManRope_500_16_006D77,
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          color: Colors.transparent,
+                          width: 55.w,
+                          child: Center(
+                            child: Text(
+                              'Apply',
+                              style: kManRope_500_16_006D77,
+                            ),
                           ),
                         ),
                       )
@@ -206,10 +238,11 @@ class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking>
                   ),
                 ),
                 SizedBox(height: 8),
-                Text(
-                  "“Coupon code applied successfully”",
-                  style: kManRope_400_10_006D77,
-                ),
+                if (applied)
+                  Text(
+                    "“Coupon code applied successfully”",
+                    style: kManRope_400_14_006D77,
+                  ),
                 SizedBox(height: 47.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -218,7 +251,7 @@ class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking>
                       child: SizedBox(
                         // height:56.h,
                         child: Text(
-                          '₹599',
+                          '₹${widget.psychologist.price}',
                           style: kManRope_500_20_006D77,
                         ),
                       ),
@@ -231,24 +264,16 @@ class _UConfirmAppointmentBookingState extends State<UConfirmAppointmentBooking>
                           color: k006D77,
                           shape: RoundedRectangleBorder(
                             borderRadius:
-                            BorderRadius.circular(10), // <-- Radius
+                                BorderRadius.circular(10), // <-- Radius
                           ),
                           onPressed: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
-                                    const UBookingSuccessfulScreen(
-                                      isCancellationAvailable: true,
-                                    )));
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => ConfirmAppointmentBooking(
-                            //           issue: widget.issue,
-                            //           date: date,
-                            //         ))
-                            // );
+                                        const UBookingSuccessfulScreen(
+                                          isCancellationAvailable: true,
+                                        )));
                           },
                           child: Text(
                             'Book session',

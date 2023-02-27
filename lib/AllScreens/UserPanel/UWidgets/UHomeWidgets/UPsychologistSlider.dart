@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/fonts.dart';
 // import 'package:greymatter/screens/UserPanel/UWidgets/Uwidgets.dart';
 
@@ -29,8 +28,7 @@ class PsychologistSlider extends StatelessWidget {
         padding: const EdgeInsets.only(top: 5),
         shrinkWrap: true,
         itemCount: 3,
-        gridDelegate:
-        const SliverGridDelegateWithFixedCrossAxisCount(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3,
         ),
         itemBuilder: (ctx, index) {
@@ -70,18 +68,13 @@ class PsychologistSlider extends StatelessWidget {
                       SizedBox(
                         height: 8.h,
                       ),
-                      StarWidget()
+                      //StarWidget()
                     ],
                   )
                 ],
               ),
             ),
           );
-        } );
+        });
   }
 }
-
-
-
-
-

@@ -24,7 +24,7 @@ class _RecommendedActivitiesSliderState
     isLoading = true;
     final resp = UserActivityApi().get();
     resp.then((value) {
-      print(value);
+      //print(value);
       setState(() {
         for (var v in value) {
           userActivity.add(UserActivityModel.fromJson(v));

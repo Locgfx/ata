@@ -4,6 +4,8 @@ import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../constants/globals.dart';
+
 class UserChangePasswordApi {
   Future<dynamic> get({
     required String oldPassword,
@@ -11,8 +13,8 @@ class UserChangePasswordApi {
     required String cNewPassword,
   }) async {
     var prefs = await SharedPreferences.getInstance();
-    var v = prefs.getString('cookies');
-    print(v);
+    var v = prefs.getString(Keys().cookie);
+    //print(v);
     var headers = {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'

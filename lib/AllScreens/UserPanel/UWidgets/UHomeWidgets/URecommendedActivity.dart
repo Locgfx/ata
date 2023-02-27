@@ -25,8 +25,7 @@ class _URecommendedActivitiesState extends State<URecommendedActivities> {
     'assets/images/activitycardbg.png',
   ];
 
-
-  UserActivityModel  modelUserActivity= UserActivityModel();
+  UserActivityModel modelUserActivity = UserActivityModel();
   List<UserActivityModel> userActivity = [];
   bool _isLoading = false;
 
@@ -34,7 +33,7 @@ class _URecommendedActivitiesState extends State<URecommendedActivities> {
     _isLoading = true;
     final resp = UserActivityApi().get();
     resp.then((value) {
-      print(value);
+      //print(value);
       setState(() {
         for (var v in value) {
           userActivity.add(UserActivityModel.fromJson(v));
@@ -43,9 +42,10 @@ class _URecommendedActivitiesState extends State<URecommendedActivities> {
       });
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return       Container(
+    return Container(
       padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
       width: 1.sw,
       child: Column(
@@ -67,7 +67,8 @@ class _URecommendedActivitiesState extends State<URecommendedActivities> {
             ),
           ),
           SizedBox(height: 16.h),
-          SizedBox( height: 87.h,
+          SizedBox(
+            height: 87.h,
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
@@ -117,4 +118,3 @@ class _URecommendedActivitiesState extends State<URecommendedActivities> {
     );
   }
 }
-

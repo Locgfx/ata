@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UConfirmBookingScreen.dart';
 import 'package:greymatter/constants/Lists.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:table_calendar/table_calendar.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
 class UScheduleAppointmentScreen extends StatefulWidget {
-  const UScheduleAppointmentScreen({Key? key, required this.issue})
-      : super(key: key);
+  final UPsychologistModel psychologist;
+  const UScheduleAppointmentScreen({
+    Key? key,
+    required this.issue,
+    required this.psychologist,
+  }) : super(key: key);
   final String issue;
 
   @override
@@ -18,11 +24,14 @@ class UScheduleAppointmentScreen extends StatefulWidget {
       _UScheduleAppointmentScreenState();
 }
 
-class _UScheduleAppointmentScreenState extends State<UScheduleAppointmentScreen> {
+class _UScheduleAppointmentScreenState
+    extends State<UScheduleAppointmentScreen> {
   DateTime selectedDay = DateTime.now();
+  int weekDay = DateTime.now().weekday;
   DateTime focusedDay = DateTime.now();
   bool flag = false;
-  String date = '';
+  String date =
+      '${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}';
   int selectedIndex = 0;
   BoxDecoration constDecoration = const BoxDecoration(
     shape: BoxShape.rectangle,
@@ -69,6 +78,15 @@ class _UScheduleAppointmentScreenState extends State<UScheduleAppointmentScreen>
         Month = 'December';
         break;
     }
+  }
+
+  getSlotCount() {
+    int a = 0;
+    /*switch(weekDay) {
+      case 1:
+        a = widget.psychologist.availability.monday.split('-').first;
+    }*/
+    return a;
   }
 
   @override
@@ -128,12 +146,14 @@ class _UScheduleAppointmentScreenState extends State<UScheduleAppointmentScreen>
               rowHeight: 56.h,
               onDaySelected: (DateTime selectDay, DateTime focusDay) {
                 setState(() {
+                  print(selectDay.weekday);
                   selectedDay = selectDay;
+                  weekDay = selectDay.weekday;
                   focusedDay = focusDay;
                   flag = true;
                   monthSet(selectDay.month);
                   date =
-                  '${selectDay.day}/${selectDay.month}/${selectDay.year}';
+                      '${selectDay.day}/${selectDay.month}/${selectDay.year}';
                 });
               },
               selectedDayPredicate: (DateTime date) {
@@ -150,50 +170,55 @@ class _UScheduleAppointmentScreenState extends State<UScheduleAppointmentScreen>
             SizedBox(
               height: 24.h,
             ),
-            SizedBox(
-              // height: 300.h,
-              child: GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    mainAxisSpacing: 16,
-                    childAspectRatio: 2,
-                    crossAxisSpacing: 8,
-                  ),
-                  itemCount: timeList.length,
-                  itemBuilder: (BuildContext ctx, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          selectedIndex = index;
-                        });
-                      },
-                      child: Container(
-                        height: 34.h,
-                        width: 60.w,
-                        decoration: BoxDecoration(
-                          color: selectedIndex == index
-                              ? k006D77
-                              : Colors.transparent,
-                          border: Border.all(
-                            color: k006D77,
+            getSlotCount() == 0
+                ? Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Center(
+                        child:
+                            Text('No Available Slots for the selected date.')),
+                  )
+                : GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      mainAxisSpacing: 16,
+                      childAspectRatio: 2,
+                      crossAxisSpacing: 8,
+                    ),
+                    itemCount: getSlotCount(),
+                    itemBuilder: (BuildContext ctx, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedIndex = index;
+                          });
+                        },
+                        child: Container(
+                          height: 34.h,
+                          width: 60.w,
+                          decoration: BoxDecoration(
+                            color: selectedIndex == index
+                                ? k006D77
+                                : Colors.transparent,
+                            border: Border.all(
+                              color: k006D77,
+                            ),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(8)),
                           ),
-                          borderRadius:
-                          const BorderRadius.all(Radius.circular(8)),
-                        ),
-                        child: Center(
-                          child: Text(
-                            timeList[index],
-                            style: selectedIndex == index
-                                ? kManRope_400_14_white
-                                : kManRope_400_14_001314,
+                          child: Center(
+                            child: Text(
+                              timeList[index],
+                              style: selectedIndex == index
+                                  ? kManRope_400_14_white
+                                  : kManRope_400_14_001314,
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-            ),
+                      );
+                    }),
             SizedBox(height: 16),
           ],
         ),
@@ -209,7 +234,7 @@ class _UScheduleAppointmentScreenState extends State<UScheduleAppointmentScreen>
                 child: SizedBox(
                   // height:56.h,
                   child: Text(
-                    '₹599',
+                    '₹${widget.psychologist.price}',
                     style: kManRope_500_20_006D77,
                   ),
                 ),
@@ -219,22 +244,31 @@ class _UScheduleAppointmentScreenState extends State<UScheduleAppointmentScreen>
                   height: 56.h,
                   // width: 200,
                   child: MainButton(
-                    color: k006D77,
+                    color: getSlotCount() == 0
+                        ? k006D77.withOpacity(0.16)
+                        : k006D77,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10), // <-- Radius
                     ),
                     onPressed: () {
+                      /*getSlotCount() == 0
+                          ? () {}
+                          : */
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => UConfirmAppointmentBooking(
-                                issue: widget.issue,
-                                date: date,
-                              )));
+                                    slot: timeList[selectedIndex],
+                                    psychologist: widget.psychologist,
+                                    issue: widget.issue,
+                                    date: date,
+                                  )));
                     },
                     child: Text(
                       'Book session',
-                      style: kManRope_400_16_white,
+                      style: getSlotCount() == 0
+                          ? kManRope_400_16_Black
+                          : kManRope_400_16_white,
                     ),
                   ),
                 ),

@@ -36,7 +36,6 @@ class _PLoginScreenState extends State<PLoginScreen> {
   // bool emailEmpty = true;
   bool visible = true;
 
-
   final passwordNode = FocusNode();
   final emailNode = FocusNode();
   // bool hasEmailFocus = false;
@@ -93,22 +92,22 @@ class _PLoginScreenState extends State<PLoginScreen> {
                       child: TextFormField(
                         focusNode: emailNode,
                         onChanged: (val) {
-
-                            if (val.isNotEmpty) {
-                              setState(() {
-                                emailEmpty= false;
-                                hasEmailFocus = true;
-                              });
-                            }
-                            if (val.isEmpty) {
-                              setState(() {
-                                emailEmpty = true;
-                                hasEmailFocus = false;
-                              });
-                            }
+                          if (val.isNotEmpty) {
+                            setState(() {
+                              emailEmpty = false;
+                              hasEmailFocus = true;
+                            });
+                          }
+                          if (val.isEmpty) {
+                            setState(() {
+                              emailEmpty = true;
+                              hasEmailFocus = false;
+                            });
+                          }
                         },
                         validator: (val) {
-                          if (_emailController.text.trim().isEmpty && _emailController.text.contains("@") ) {
+                          if (_emailController.text.trim().isEmpty &&
+                              _emailController.text.contains("@")) {
                             return 'Please enter an email/mobile';
                           } else {
                             return null;
@@ -154,7 +153,7 @@ class _PLoginScreenState extends State<PLoginScreen> {
                         onChanged: (val) {
                           if (val.isNotEmpty) {
                             setState(() {
-                              passEmpty= false;
+                              passEmpty = false;
                               hasPassFocus = true;
                             });
                           }
@@ -180,7 +179,7 @@ class _PLoginScreenState extends State<PLoginScreen> {
                           labelStyle: kManRope_400_16_626A6A,
                           floatingLabelStyle: kManRope_400_20_626A6A,
                           suffixIconConstraints:
-                          BoxConstraints(minHeight: 24.w, minWidth: 24.h),
+                              BoxConstraints(minHeight: 24.w, minWidth: 24.h),
                           suffixIcon: InkWell(
                               onTap: () {
                                 setState(() {
@@ -188,7 +187,7 @@ class _PLoginScreenState extends State<PLoginScreen> {
                                 });
                               },
                               child:
-                              SvgPicture.asset('assets/icons/eyeopen.svg')),
+                                  SvgPicture.asset('assets/icons/eyeopen.svg')),
                         ),
                       ),
                     ),
@@ -207,20 +206,18 @@ class _PLoginScreenState extends State<PLoginScreen> {
                           print(_emailController.text);
                           resp.then((value) async {
                             print(value);
-                            if
-                            (value['status'] == false)
-                            {
-                              Fluttertoast.showToast(
-                                  msg: 'login failed');
+                            if (value['status'] == false) {
+                              Fluttertoast.showToast(msg: 'login failed');
                             } else {
-                              var prefs =
-                              await SharedPreferences.getInstance();
-                              prefs.setString(
-                                  'cookies', value['session_id']);
+                              var prefs = await SharedPreferences.getInstance();
+                              prefs.setString('cookies', value['session_id']);
                               //print(value['session_id']);
-                              print(prefs.getString('cookies'));
+                              //print(prefs.getString(Keys().cookie));
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (ctx) => PForgotPasswordEnterOTPScreen(signUpField:_emailController.text,),
+                                  builder: (ctx) =>
+                                      PForgotPasswordEnterOTPScreen(
+                                        signUpField: _emailController.text,
+                                      ),
                                   settings: RouteSettings(
                                       arguments: _emailController.text)));
                               Fluttertoast.showToast(
@@ -229,46 +226,47 @@ class _PLoginScreenState extends State<PLoginScreen> {
                           });
                         }
                       }
-
                     },
-                    child:
-                    Container(
+                    child: Container(
                         color: Colors.transparent,
-                        padding: EdgeInsets.only(top:10,bottom: 10,right: 10),
-                        child: Text('Forgot Password', style: kManRope_500_14_BC2445))),
+                        padding:
+                            EdgeInsets.only(top: 10, bottom: 10, right: 10),
+                        child: Text('Forgot Password',
+                            style: kManRope_500_14_BC2445))),
                 SizedBox(height: 30.h),
                 emailEmpty
                     ? CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-                :passEmpty ?CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-                    : CustomActiveTextButton(
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        final resp = DoctorLoginApi().get(
-                            username: _emailController.text,
-                            password: _passwordController.text);
-                        resp.then((value) async {
-                          print(value);
-                          if (value['status'] == false) {
-                            Fluttertoast.showToast(
-                                msg: value['error']);
-                          } else {
-                            var prefs =
-                            await SharedPreferences.getInstance();
-                            prefs.setString(
-                                'cookies', value['session_id']);
-                            print(value['session_id']);
-                            print(prefs.getString('cookies'));
-                            Fluttertoast.showToast(
-                                msg: 'Login Successful');
-                            Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        PTabsScreen()));
-                          }
-                        });
-                      }
-                    },
-                    text: 'Login'),
+                    : passEmpty
+                        ? CustomDeactiveTextButton(
+                            onPressed: () {}, text: 'Login')
+                        : CustomActiveTextButton(
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                final resp = DoctorLoginApi().get(
+                                    username: _emailController.text,
+                                    password: _passwordController.text);
+                                resp.then((value) async {
+                                  print(value);
+                                  if (value['status'] == false) {
+                                    Fluttertoast.showToast(msg: value['error']);
+                                  } else {
+                                    var prefs =
+                                        await SharedPreferences.getInstance();
+                                    prefs.setString(
+                                        'cookies', value['session_id']);
+                                    //print(value['session_id']);
+                                    //print(prefs.getString(Keys().cookie));
+                                    Fluttertoast.showToast(
+                                        msg: 'Login Successful');
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                PTabsScreen()));
+                                  }
+                                });
+                              }
+                            },
+                            text: 'Login'),
                 SizedBox(height: 24.h),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

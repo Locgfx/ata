@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/USessionSucessfulScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -10,15 +9,16 @@ import 'package:greymatter/widgets/BottomSheets/HistoryFilterBottomSheet.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
-
 class UJoiningMeetingDetailsScreen extends StatefulWidget {
   const UJoiningMeetingDetailsScreen({Key? key}) : super(key: key);
 
   @override
-  State<UJoiningMeetingDetailsScreen> createState() => _UJoiningMeetingDetailsScreenState();
+  State<UJoiningMeetingDetailsScreen> createState() =>
+      _UJoiningMeetingDetailsScreenState();
 }
 
-class _UJoiningMeetingDetailsScreenState extends State<UJoiningMeetingDetailsScreen> {
+class _UJoiningMeetingDetailsScreenState
+    extends State<UJoiningMeetingDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +90,7 @@ class _UJoiningMeetingDetailsScreenState extends State<UJoiningMeetingDetailsScr
                           SizedBox(
                             height: 8.h,
                           ),
-                          StarWidget()
+                          //StarWidget()
                         ],
                       ),
                     ],
@@ -156,8 +156,10 @@ class _UJoiningMeetingDetailsScreenState extends State<UJoiningMeetingDetailsScr
             shape: CustomDecoration().button08Decoration(),
             color: k66898D,
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => USessionSuccessfulScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => USessionSuccessfulScreen()));
             },
             child: Text(
               "Join meeting",

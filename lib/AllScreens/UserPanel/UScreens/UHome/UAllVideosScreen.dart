@@ -13,6 +13,8 @@ import 'package:greymatter/model/UModels/user_home_models/user_video_category_mo
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 
+import '../../../../widgets/shared/video_player.dart';
+
 class UAllVideosScreen extends StatefulWidget {
   const UAllVideosScreen({Key? key}) : super(key: key);
 
@@ -22,8 +24,6 @@ class UAllVideosScreen extends StatefulWidget {
 
 class _UAllVideosScreenState extends State<UAllVideosScreen> {
   // final controller = PageController(viewportFraction: 0.8, keepPage: true);
-
-
 
   @override
   void initState() {
@@ -41,16 +41,16 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
     final resp = UserVideoCategoryApi().get();
     resp.then((value) {
       print(value);
-      if(mounted){
+      if (mounted) {
         setState(() {
           for (var v in value) {
             topvideolistcategory.add(UserVideoCategoryModel.fromJson(v));
           }
           _isLoading = false;
-        });}
+        });
+      }
     });
   }
-
 
   UserAllVideosModel allvideos = UserAllVideosModel();
   List<UserAllVideosModel> allvideolist = [];
@@ -59,17 +59,17 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
     _isLoading = true;
     final resp = UserAllVideosApi().get();
     resp.then((value) {
-      print(value);
-      if(mounted){
+      //print(value);
+      if (mounted) {
         setState(() {
           for (var v in value) {
             allvideolist.add(UserAllVideosModel.fromJson(v));
           }
           _isLoading = false;
-        });}
+        });
+      }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +79,7 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
           backgroundColor: kEDF6F9,
           appBar: CustomWhiteAppBar(
               hasThreeDots: false,
-              appBarText: "All videos",
+              appBarText: "All Videos",
               imgPath: "assets/images/iconbackappbar2.png"),
           body: SingleChildScrollView(
             child: Padding(
@@ -119,9 +119,10 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                         return Column(
                           children: [
                             Padding(
-                              padding:  EdgeInsets.symmetric(horizontal: 24.w),
+                              padding: EdgeInsets.symmetric(horizontal: 24.w),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     topvideolistcategory[index].name.toString(),
@@ -130,7 +131,8 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                                   GestureDetector(
                                     onTap: () => Navigator.of(context).push(
                                         MaterialPageRoute(
-                                            builder: (context) => const USeeAllVideosScreen())),
+                                            builder: (context) =>
+                                                const USeeAllVideosScreen())),
                                     child: Text(
                                       'See all',
                                       style: kManRope_500_16_006D77,
@@ -150,60 +152,81 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                                 itemCount: allvideolist.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Stack(
-                                        alignment: AlignmentDirectional.center,
-                                        children: [
-                                          Container(
-                                            height: 182.w,
-                                            width: 182.w,
-                                            clipBehavior: Clip.hardEdge,
-                                            decoration: const BoxDecoration(
-                                              color: Colors.grey,
-                                              borderRadius:
-                                              BorderRadius.all(Radius.circular(20)),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) => VideoPlayerWidget(
+                                                  videoLink: allvideolist[index]
+                                                      .video
+                                                      .toString()),
                                             ),
-                                            child: CachedNetworkImage(
-                                              imageUrl:
-                                              allvideolist[index]
-                                                  .videoPoster
-                                                  .toString(),fit: BoxFit.cover,
-                                              placeholder: (context, url) =>  Center(
-                                                child: SpinKitThreeBounce(
-                                                  color: k006D77,
-                                                  size: 10,
-                                                ),
+                                          );
+                                        },
+                                        child: Stack(
+                                          alignment:
+                                              AlignmentDirectional.center,
+                                          children: [
+                                            Container(
+                                              height: 182.w,
+                                              width: 182.w,
+                                              clipBehavior: Clip.hardEdge,
+                                              decoration: const BoxDecoration(
+                                                color: Colors.grey,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(20)),
                                               ),
-                                              errorWidget: (context, url, error) =>  Icon(Icons.error),
+                                              child: CachedNetworkImage(
+                                                imageUrl: allvideolist[index]
+                                                    .videoPoster
+                                                    .toString(),
+                                                fit: BoxFit.cover,
+                                                placeholder: (context, url) =>
+                                                    Center(
+                                                  child: SpinKitThreeBounce(
+                                                    color: k006D77,
+                                                    size: 10,
+                                                  ),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.error),
+                                              ),
                                             ),
-                                          ),
-                                          Image.asset("assets/images/youtube.png",height: 36,width: 36,)
-                                        ],
+                                            Image.asset(
+                                              "assets/images/youtube.png",
+                                              height: 36,
+                                              width: 36,
+                                            )
+                                          ],
+                                        ),
                                       ),
                                       SizedBox(height: 16),
                                       Text(
-                                        allvideolist[index]
-                                            .name
-                                            .toString(),
+                                        allvideolist[index].name.toString(),
                                         style: kManRope_500_16_001314,
                                       ),
                                     ],
                                   );
                                 },
-                                separatorBuilder: (BuildContext context, int index) =>
-                                    SizedBox(
-                                      width: 16.w,
-                                    ),
+                                separatorBuilder:
+                                    (BuildContext context, int index) =>
+                                        SizedBox(
+                                  width: 16.w,
+                                ),
                               ),
                             ),
-
                           ],
                         );
                       },
                       separatorBuilder: (BuildContext context, int index) =>
                           SizedBox(
-                            width: 16.w,
-                          ),
+                        width: 16.w,
+                      ),
                     ),
                   ),
                   // GestureDetector(

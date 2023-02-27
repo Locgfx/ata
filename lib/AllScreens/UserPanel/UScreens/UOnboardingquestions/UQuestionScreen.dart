@@ -6,8 +6,11 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UWelcome/UWelcomeScreen
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/question_model.dart';
+import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../../Apis/UserAPis/send_question_data/send_question_data.dart';
 import '../../../../constants/colors.dart';
 
 class UQuestions extends StatefulWidget {
@@ -85,8 +88,22 @@ class _UQuestionsState extends State<UQuestions> {
       ],
       questionController: [TextEditingController()],
       label: ['Yes', 'No', 'Can’t Recall'],
-    )
+    ),
   ];
+
+  Future sendQuestionData() async {
+    setState(() {
+      loading = true;
+    });
+    sendQuestionsData().then(
+      (value) => setState(() {
+        loading = false;
+      }),
+    );
+  }
+
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -103,102 +120,117 @@ class _UQuestionsState extends State<UQuestions> {
             statusBarColor: kEDF6F9,
           ),
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 24),
-            child: Column(
-              children: [
-                SizedBox(height: 8),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Row(
-                    children: [
-                      SmoothPageIndicator(
+        body: Stack(
+          children: [
+            SafeArea(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 24),
+                child: Column(
+                  children: [
+                    SizedBox(height: 8),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Row(
+                        children: [
+                          SmoothPageIndicator(
+                            controller: _pageController,
+                            count: 9,
+                            effect: WormEffect(
+                              radius: 2,
+                              dotWidth: 19.w,
+                              dotHeight: 4.h,
+                              dotColor: k006D77.withOpacity(0.36),
+                              activeDotColor: k006D77,
+                            ),
+                          ),
+                          SizedBox(
+                            width: 80.w,
+                          ),
+                          InkWell(
+                            onTap: () async {
+                              var prefs = await SharedPreferences.getInstance();
+                              prefs.setBool(Keys().questionsDone, false);
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (ctx) => UWelcomeScreen()));
+                            },
+                            child: Text(
+                              "Skip all",
+                              style: kManRope_500_16_006D77,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      //height: 300.h,
+                      child: PageView(
+                        physics: NeverScrollableScrollPhysics(),
                         controller: _pageController,
-                        count: 9,
-                        effect: WormEffect(
-                          radius: 2,
-                          dotWidth: 19.w,
-                          dotHeight: 4.h,
-                          dotColor: k006D77.withOpacity(0.36),
-                          activeDotColor: k006D77,
-                        ),
+                        onPageChanged: (v) {
+                          setState(() {
+                            currentIndex = v;
+                          });
+                        },
+                        children: List.generate(questionList.length, (i) {
+                          return Form1(
+                            index: i,
+                            questions: questionList[i].question,
+                            questionControllers:
+                                questionList[i].questionController,
+                            labels: questionList[i].label,
+                            onNextTap: () async {
+                              if (i != 8) {
+                                _pageController.nextPage(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.fastOutSlowIn,
+                                );
+                              } else {
+                                // SharedPrefs.setQuestionsLog(true);
+                                sendQuestionData().then(
+                                  (value) async {
+                                    var prefs =
+                                        await SharedPreferences.getInstance();
+                                    prefs.setBool(Keys().questionsDone, true);
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (ctx) => UWelcomeScreen(),
+                                      ),
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                          );
+                        }),
                       ),
-                      SizedBox(
-                        width: 80.w,
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          var prefs = await SharedPreferences.getInstance();
-                          prefs.setBool(Keys().questionsDone, false);
+                    ),
+                    GestureDetector(
+                      onTap: () async {
+                        if (currentIndex == 8) {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => UWelcomeScreen()));
-                        },
-                        child: Text(
-                          "Skip all",
-                          style: kManRope_500_16_006D77,
-                        ),
-                      )
-                    ],
-                  ),
+                        } else {
+                          _pageController.nextPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.fastOutSlowIn,
+                          );
+                        }
+                        var prefs = await SharedPreferences.getInstance();
+                        prefs.setBool(Keys().questionsDone, false);
+                      },
+                      child: Container(
+                        color: Colors.transparent,
+                        padding: EdgeInsets.all(10),
+                        child:
+                            Text('Skip For Now', style: kManRope_500_16_006D77),
+                      ),
+                    ),
+                  ],
                 ),
-                Expanded(
-                  //height: 300.h,
-                  child: PageView(
-                    physics: NeverScrollableScrollPhysics(),
-                    controller: _pageController,
-                    onPageChanged: (v) {
-                      setState(() {
-                        currentIndex = v;
-                      });
-                    },
-                    children: List.generate(questionList.length, (i) {
-                      return Form1(
-                        index: i,
-                        questions: questionList[i].question,
-                        questionControllers: questionList[i].questionController,
-                        labels: questionList[i].label,
-                        onNextTap: () async {
-                          if (i != 8) {
-                            _pageController.nextPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.fastOutSlowIn,
-                            );
-                          } else {
-                            // SharedPrefs.setQuestionsLog(true);
-                            var prefs = await SharedPreferences.getInstance();
-                            prefs.setBool(Keys().questionsDone, true);
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (ctx) => UWelcomeScreen()));
-                          }
-                        },
-                      );
-                    }),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () async {
-                    if (currentIndex == 8) {
-                      Navigator.of(context).push(
-                          MaterialPageRoute(builder: (ctx) => UWelcomeScreen()));
-                    } else {
-                      _pageController.nextPage(
-                        duration: Duration(milliseconds: 300),
-                        curve: Curves.fastOutSlowIn,
-                      );
-                    }
-                    var prefs = await SharedPreferences.getInstance();
-                    prefs.setBool(Keys().questionsDone, false);
-                  },
-                  child: Container(
-                    color: Colors.transparent,
-                    padding: EdgeInsets.all(10),
-                    child: Text('Skip For Now', style: kManRope_500_16_006D77),
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+            if (loading) LoadingWidget(),
+          ],
         ),
       ),
     );

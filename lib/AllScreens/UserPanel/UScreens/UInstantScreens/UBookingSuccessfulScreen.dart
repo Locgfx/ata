@@ -1,8 +1,8 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/USessionSucessfulScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -13,7 +13,8 @@ class UBookingSuccessfulScreen extends StatefulWidget {
   const UBookingSuccessfulScreen({Key? key}) : super(key: key);
 
   @override
-  State<UBookingSuccessfulScreen> createState() => _UBookingSuccessfulScreenState();
+  State<UBookingSuccessfulScreen> createState() =>
+      _UBookingSuccessfulScreenState();
 }
 
 class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
@@ -161,7 +162,7 @@ class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
                           SizedBox(
                             height: 8.h,
                           ),
-                          StarWidget(),
+                          //StarWidget(),
                         ],
                       ),
                     ],

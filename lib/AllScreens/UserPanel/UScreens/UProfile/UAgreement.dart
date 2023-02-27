@@ -28,11 +28,11 @@ class _UAgreementState extends State<UAgreement> {
     _isLoading = true;
     final resp = UserAgreementApi().get();
     resp.then((value) {
-      print(value);
+      //print(value);
       setState(() {
         try {
           model = UserAgreementModel.fromJson(value[0]);
-          print(model.text);
+          //print(model.text);
           _isLoading = false;
         } catch (e) {
           setState(() {
@@ -42,7 +42,6 @@ class _UAgreementState extends State<UAgreement> {
       });
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +56,15 @@ class _UAgreementState extends State<UAgreement> {
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
         child: Column(
           children: [
-            _isLoading ? SpinKitThreeBounce(
-              color: k006D77,
-              size: 20,
-            ):Text(model.text.toString(),
-              style: kManRope_400_14_626A6A,
-            )
+            _isLoading
+                ? SpinKitThreeBounce(
+                    color: k006D77,
+                    size: 20,
+                  )
+                : Text(
+                    model.text.toString(),
+                    style: kManRope_400_14_626A6A,
+                  )
           ],
         ),
       ),

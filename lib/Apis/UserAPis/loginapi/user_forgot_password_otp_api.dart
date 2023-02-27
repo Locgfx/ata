@@ -1,23 +1,27 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart'as http;
+
+import '../../../constants/globals.dart';
 
 class UserForgotPasswordOtpApi {
   Future<dynamic> get({
-  required String emailMobile,
+    required String emailMobile,
     // required String user,
-})async{
+  }) async {
     var prefs = await SharedPreferences.getInstance();
-    var v = prefs.getString('cookies');
+    var v = prefs.getString(Keys().cookie);
     var headers = {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
     print(v);
     print(headers);
-    var request = http.Request('POST',
-        Uri.parse('https://beta.alfrik.com/ataraxis/api-user/send-otp-forget-password.php'));
+    var request = http.Request(
+        'POST',
+        Uri.parse(
+            'https://beta.alfrik.com/ataraxis/api-user/send-otp-forget-password.php'));
     request.body = json.encode({
       "email_mobile": emailMobile,
       "user": "user",

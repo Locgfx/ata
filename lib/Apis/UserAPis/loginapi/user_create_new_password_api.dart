@@ -1,22 +1,26 @@
 import 'dart:convert';
 
+import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart'as http;
 
-class UserCreateNewPasswordApi{
+import '../../../constants/globals.dart';
+
+class UserCreateNewPasswordApi {
   Future<dynamic> get({
-  required String newPassword,
+    required String newPassword,
     required String confirmPassword,
-
-}) async {
+  }) async {
     var prefs = await SharedPreferences.getInstance();
-    var v = prefs.getString('cookies');
+    var v = prefs.getString(Keys().cookie);
     print(v);
     var headers = {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
-    var request = http.Request('POST', Uri.parse('https://beta.alfrik.com/ataraxis/api-user//change-forget-password.php'));
+    var request = http.Request(
+        'POST',
+        Uri.parse(
+            'https://beta.alfrik.com/ataraxis/api-user//change-forget-password.php'));
     request.body = json.encode({
       "new_password": newPassword,
       "cnew_password": confirmPassword,
@@ -29,8 +33,5 @@ class UserCreateNewPasswordApi{
     } else {
       return rsp;
     }
-
-
-
   }
 }

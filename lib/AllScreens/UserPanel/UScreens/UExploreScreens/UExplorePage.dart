@@ -2,10 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UConfirmBookingScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UFiltersPage.dart';
 import 'package:greymatter/Apis/UserAPis/user_explore_apis/user_explore_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -14,8 +11,14 @@ import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 
+import '../../UWidgets/Uwidgets.dart';
+import '../UBookingScreens/UScheduleAppointmentScreen.dart';
+
 class UExplorePage extends StatefulWidget {
-  const UExplorePage({Key? key, required this.issue}) : super(key: key);
+  const UExplorePage({
+    Key? key,
+    required this.issue,
+  }) : super(key: key);
   final String issue;
   @override
   State<UExplorePage> createState() => _UExplorePageState();
@@ -40,16 +43,18 @@ class _UExplorePageState extends State<UExplorePage> {
     _isLoading = true;
     final resp = UserExploreApi().get();
     resp.then((value) {
-      print(value);
-      if(mounted){
+      //print(value);
+      if (mounted) {
         setState(() {
           for (var v in value) {
             psychologists.add(UPsychologistModel.fromJson(v));
           }
           _isLoading = false;
-        });}
+        });
+      }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -58,17 +63,18 @@ class _UExplorePageState extends State<UExplorePage> {
           backgroundColor: kEDF6F9,
           body: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h,bottom: 80.h),
+              padding: EdgeInsets.only(
+                  left: 24.w, top: 40.h, right: 24.h, bottom: 80.h),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '213 psychologists',
+                        '${psychologists.length} psychologists',
                         style: kManRope_500_16_001314,
                       ),
-                      GestureDetector(
+                      /*GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const UFilterScreen()));
@@ -82,7 +88,7 @@ class _UExplorePageState extends State<UExplorePage> {
                             width: 18.w,
                           ),
                         ),
-                      ),
+                      ),*/
                     ],
                   ),
                   ListView.separated(
@@ -101,7 +107,8 @@ class _UExplorePageState extends State<UExplorePage> {
                           child: Container(
                             //clipBehavior: Clip.hardEdge,
                             margin: EdgeInsets.all(5),
-                            decoration: CustomDecoration().card24Edf6Decoration(),
+                            decoration:
+                                CustomDecoration().card24Edf6Decoration(),
                             padding: EdgeInsets.only(
                               left: 20.w,
                               right: 20,
@@ -111,82 +118,63 @@ class _UExplorePageState extends State<UExplorePage> {
                             child: Column(
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   // crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       children: [
                                         Container(
                                           width: 64.w,
-                                          height: 64.h,
+                                          height: 64.w,
                                           clipBehavior: Clip.hardEdge,
                                           decoration: BoxDecoration(
                                               color: kFFFFFF,
                                               borderRadius:
-                                              BorderRadius.circular(10)),
+                                                  BorderRadius.circular(10)),
                                           child: CachedNetworkImage(
-                                            imageUrl:
-                                            psychologists[index]
+                                            imageUrl: psychologists[index]
                                                 .profilePhoto
-                                                .toString(),fit: BoxFit.cover,
-                                            placeholder: (context, url) =>  Center(
+                                                .toString(),
+                                            fit: BoxFit.cover,
+                                            placeholder: (context, url) =>
+                                                Center(
                                               child: SpinKitThreeBounce(
                                                 color: k006D77,
                                                 size: 10,
                                               ),
                                             ),
-                                            errorWidget: (context, url, error) =>  Icon(Icons.error),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Icon(Icons.error),
                                           ),
                                         ),
                                         SizedBox(width: 12.w),
                                         Column(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                              MainAxisAlignment.center,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Text('Priya Singh',
+                                            Text(
+                                                psychologists[index]
+                                                    .name
+                                                    .toString(),
                                                 style: kManRope_600_16_Black),
                                             SizedBox(height: 4.h),
-                                            Text( psychologists[index].education.toString(),
+                                            Text(
+                                                psychologists[index]
+                                                    .education
+                                                    .toString(),
                                                 style: kManRope_400_14_626A6A),
                                             SizedBox(height: 8.h),
-                                            // StarWidget()
-                                            Row(
-                                              children: [
-                                                Image.asset(
-                                                  'assets/images/Star 1.png',
-                                                  width: 12.w,
-                                                  height: 12.h,
-                                                ),
-                                                SizedBox(
-                                                  width: 4,
-                                                ),
-                                                Text(
-                                                  '4.0',
-                                                  style: kManRope_400_12_001314,
-                                                ),
-                                                SizedBox(
-                                                  width: 4,
-                                                ),
-                                                Text(
-                                                  '.',
-                                                  style: kManRope_400_12_001314,
-                                                ),
-                                                SizedBox(
-                                                  width: 4.w,
-                                                ),
-                                                Text(
-                                                  psychologists[index]
-                                                      .totalExprience
-                                                      .toString(),
-                                                  style: kManRope_400_12_001314,
-                                                ),
-                                                Text(
-                                                  ' Yrs. Exp',
-                                                  style: kManRope_400_12_001314,
-                                                ),
-                                              ],
+                                            StarWidget(
+                                              rating: psychologists[index]
+                                                  .rating
+                                                  .toString(),
+                                              experience: psychologists[index]
+                                                  .totalExprience
+                                                  .toString(),
                                             ),
                                           ],
                                         ),
@@ -198,15 +186,11 @@ class _UExplorePageState extends State<UExplorePage> {
                                 SizedBox(height: 24.h),
                                 Row(
                                   children: [
-                                    SizedBox(width: 10),
-                                    Text(
-                                      "Expertise in :",
-                                      style: kManRope_400_12_001314,
-                                    ),
-                                    SizedBox(
-                                      height: 10,
-                                      width: 200,
-
+                                    Expanded(
+                                      child: Text(
+                                        "Expertise in : ${psychologists[index].specialities!.first.name}",
+                                        style: kManRope_400_12_001314,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -221,7 +205,14 @@ class _UExplorePageState extends State<UExplorePage> {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                      const UDoctorProfileScreen()));
+                                                          UDoctorProfileScreen(
+                                                            showBookSession:
+                                                                true,
+                                                            issue: '',
+                                                            psychologistData:
+                                                                psychologists[
+                                                                    index],
+                                                          )));
                                             },
                                             child: Text(
                                               "View Profile",
@@ -238,13 +229,23 @@ class _UExplorePageState extends State<UExplorePage> {
                                         height: 56.h,
                                         child: MainButton(
                                             onPressed: () {
-                                              Navigator.push(
+                                              /*Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           UConfirmAppointmentBooking(
                                                             issue: widget.issue,
                                                             date: date,
+                                                          )));*/
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UScheduleAppointmentScreen(
+                                                            psychologist:
+                                                                psychologists[
+                                                                    index],
+                                                            issue: widget.issue,
                                                           )));
                                             },
                                             child: Text(
@@ -256,7 +257,6 @@ class _UExplorePageState extends State<UExplorePage> {
                                                 .smallButton10Decoration()),
                                       ),
                                     ),
-
                                   ],
                                 ),
                               ],
@@ -275,12 +275,12 @@ class _UExplorePageState extends State<UExplorePage> {
             ),
           ),
         ),
-        if (_isLoading) Padding(
-          padding:  EdgeInsets.only(bottom: 190.h),
-          child: LoadingWidget(),
-        )
+        if (_isLoading)
+          Padding(
+            padding: EdgeInsets.only(bottom: 190.h),
+            child: LoadingWidget(),
+          )
       ],
     );
   }
 }
-

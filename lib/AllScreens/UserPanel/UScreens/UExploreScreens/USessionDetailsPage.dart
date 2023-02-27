@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UScheduleAppointmentScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UMainCardWidget.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -63,7 +63,7 @@ class USessionDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: 4.h,
                       ),
-                      StarWidget()
+                      //StarWidget()
                     ],
                   ),
                   SizedBox(
@@ -107,29 +107,29 @@ class USessionDetailsScreen extends StatelessWidget {
                   SizedBox(width: 8),
                   Expanded(
                       child: SizedBox(
-                        height: 56.h,
-                        child: MainButton(
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                "assets/images/icondownload18.png",
-                                height: 18,
-                              ),
-                              SizedBox(
-                                width: 9.w,
-                              ),
-                              Text(
-                                "Download Invoice",
-                                style: kManRope_500_16_white,
-                              ),
-                            ],
+                    height: 56.h,
+                    child: MainButton(
+                      onPressed: () {},
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/icondownload18.png",
+                            height: 18,
                           ),
-                          color: k006D77,
-                          shape: CustomDecoration().border10Decoration(),
-                        ),
-                      )),
+                          SizedBox(
+                            width: 9.w,
+                          ),
+                          Text(
+                            "Download Invoice",
+                            style: kManRope_500_16_white,
+                          ),
+                        ],
+                      ),
+                      color: k006D77,
+                      shape: CustomDecoration().border10Decoration(),
+                    ),
+                  )),
                 ],
               ),
               SizedBox(
@@ -242,13 +242,14 @@ class USessionDetailsScreen extends StatelessWidget {
                     Expanded(
                       child: MainButton(
                           onPressed: () {
-                            Navigator.push(
+                            /*Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         UScheduleAppointmentScreen(
+                                          psychologist: ,
                                           issue: 'issue',
-                                        )));
+                                        )));*/
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 20.h),

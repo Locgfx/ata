@@ -6,6 +6,7 @@ import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UMainCardW
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/buttons.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -13,7 +14,8 @@ class USessionSuccessfulScreen extends StatefulWidget {
   const USessionSuccessfulScreen({Key? key}) : super(key: key);
 
   @override
-  State<USessionSuccessfulScreen> createState() => _USessionSuccessfulScreenState();
+  State<USessionSuccessfulScreen> createState() =>
+      _USessionSuccessfulScreenState();
 }
 
 class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
@@ -83,7 +85,7 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                             SizedBox(
                               height: 8.h,
                             ),
-                            StarWidget()
+                            //StarWidget()
                           ],
                         ),
                       ],
@@ -111,7 +113,7 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                             ),
                             color: kFFFFFF,
                             shape:
-                            CustomDecoration().button10outlineDecoration()),
+                                CustomDecoration().button10outlineDecoration()),
                       ),
                     ),
                     SizedBox(
@@ -119,29 +121,29 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                     ),
                     Expanded(
                         child: SizedBox(
-                          height: 56.h,
-                          child: MainButton(
-                            onPressed: () {},
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Image.asset(
-                                  "assets/images/icondownload18.png",
-                                  height: 18,
-                                ),
-                                SizedBox(
-                                  width: 9.w,
-                                ),
-                                Text(
-                                  "Prescription",
-                                  style: kManRope_500_16_white,
-                                ),
-                              ],
+                      height: 56.h,
+                      child: MainButton(
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              "assets/images/icondownload18.png",
+                              height: 18,
                             ),
-                            color: k006D77,
-                            shape: CustomDecoration().border10Decoration(),
-                          ),
-                        )),
+                            SizedBox(
+                              width: 9.w,
+                            ),
+                            Text(
+                              "Prescription",
+                              style: kManRope_500_16_white,
+                            ),
+                          ],
+                        ),
+                        color: k006D77,
+                        shape: CustomDecoration().border10Decoration(),
+                      ),
+                    )),
                   ],
                 ),
                 Column(

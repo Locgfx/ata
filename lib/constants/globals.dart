@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../widgets/popupdialogs.dart';
 
@@ -12,9 +13,18 @@ class Globals {
       },
     );
   }
+
+  showToast(String msg) {
+    Fluttertoast.showToast(msg: msg);
+  }
 }
 
 class Keys {
+  final String goalReminderTime = 'goal_reminder_time';
+  final String cookie = 'cookies';
+  final String email = 'email';
+  final String password = 'password';
+  final String userName = 'user_name';
   final String isUser = 'is_user';
   final String firstRun = 'first_run';
   final String questionsDone = 'questions_done';

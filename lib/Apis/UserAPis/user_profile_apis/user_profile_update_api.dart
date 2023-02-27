@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:greymatter/constants/urlconstants.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../constants/globals.dart';
 
 class UserProfileUpdateApi {
   Future<dynamic> get({
@@ -13,7 +15,7 @@ class UserProfileUpdateApi {
     required String occupation,
   }) async {
     var prefs = await SharedPreferences.getInstance();
-    var v = prefs.getString('cookies');
+    var v = prefs.getString(Keys().cookie);
     print(v);
     var headers = {
       'Content-Type': 'application/json',

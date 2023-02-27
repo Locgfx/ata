@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PTabsScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
@@ -8,6 +9,8 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/UQ
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../Apis/UserAPis/loginapi/loginapi.dart';
 import '../../constants/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -51,12 +54,24 @@ class _SplashScreenState extends State<SplashScreen> {
       if (loginDone) {
         if (isUser) {
           if (questionsDone) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => UTabsScreen(),
-              ),
+            final resp = UserLoginApi().get(
+              username: 'user01@gmail.com' /*prefs.getString(Keys().email)!*/,
+              password: '1234' /*prefs.getString(Keys().password)!*/,
             );
+            resp.then((value) {
+              if (value['status'] == false) {
+                Fluttertoast.showToast(
+                    msg: value['Error! Please Login Again.']);
+              } else {
+                prefs.setString(Keys().cookie, value['session_id']);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => UTabsScreen(),
+                  ),
+                );
+              }
+            });
           } else {
             Navigator.push(
               context,

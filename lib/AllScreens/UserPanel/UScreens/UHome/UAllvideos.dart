@@ -20,7 +20,7 @@ class _UAllVideosState extends State<UAllVideos> {
       backgroundColor: kEDF6F9,
       appBar: CustomWhiteAppBar(
           hasThreeDots: false,
-          appBarText: "All videos",
+          appBarText: "All Videos",
           imgPath: "assets/images/iconbackappbar2.png"),
       body: SingleChildScrollView(
         child: Padding(
@@ -61,7 +61,8 @@ class _UAllVideosState extends State<UAllVideos> {
                             GestureDetector(
                               onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) => const USeeAllVideosScreen())),
+                                      builder: (context) =>
+                                          const USeeAllVideosScreen())),
                               child: Text(
                                 'See all',
                                 style: kManRope_500_16_006D77,
@@ -73,10 +74,9 @@ class _UAllVideosState extends State<UAllVideos> {
                     );
                   })
             ],
-          ) ,
+          ),
         ),
       ),
-
     );
   }
 }

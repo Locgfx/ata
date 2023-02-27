@@ -1,9 +1,7 @@
 import 'dart:convert';
 
 import 'package:greymatter/constants/urlconstants.dart';
-import 'package:greymatter/global/Sharedprefs.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UserLoginApi {
   Future<dynamic> get({
@@ -11,7 +9,7 @@ class UserLoginApi {
     required String password,
   }) async {
     // var prefs = await SharedPreferences.getInstance();
-    // var v = prefs.getString('cookies');
+    // var v = prefs.getString(Keys().cookie);
     // print(v);
     // var headers = {
     //   'Content-Type': 'application/json',
@@ -23,15 +21,17 @@ class UserLoginApi {
       "username": username,
       "password": password,
     });
-    print(request.headers);
+    //print(request.headers);
     // request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    print(response.statusCode);
     var resp = jsonDecode(await response.stream.bytesToString());
+    print(resp);
     if (response.statusCode == 200) {
       return resp;
     } else {
-      print(response.reasonPhrase);
-      return resp;
+      print(response.statusCode);
+      //return resp;
     }
   }
 }

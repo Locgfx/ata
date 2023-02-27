@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UAvailablePsychologistsScreen.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_specialist_model.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/userspecialistapi.dart';
-import 'package:greymatter/constants/Lists.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
+import 'UAllPsychologistScreen.dart';
 
 class UBookAppointmentScreen extends StatefulWidget {
   const UBookAppointmentScreen({Key? key}) : super(key: key);
@@ -36,6 +36,12 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
   }
 
   @override
+  void initState() {
+    getTopSpecialistData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
@@ -60,9 +66,8 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                   decoration: CustomDecoration().outline5A72EDDecoration(),
                   child: TextField(
                     decoration: TextfieldDecoration(
-                        label:
-                        'Search for health problem, Psychologist',
-                        hintstyle: kManRope_400_14_626A6A)
+                            label: 'Search for health problem, Psychologist',
+                            hintstyle: kManRope_400_14_626A6A)
                         .whiteColorSearchField(),
                   ),
                 ),
@@ -74,12 +79,11 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                     style: kManRope_400_16_626A6A),
                 SizedBox(height: 24.h),
                 GridView.builder(
-                    physics:  NeverScrollableScrollPhysics(),
-                    padding:  EdgeInsets.only(top: 5, right: 5),
+                    physics: NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.only(top: 5, right: 5),
                     shrinkWrap: true,
                     itemCount: specialistModel.length,
-                    gridDelegate:
-                    SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 4,
                         childAspectRatio: 1 / 1.5,
                         mainAxisSpacing: 5.0,
@@ -88,13 +92,14 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                       return GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => PAvailablePsychologistsScreen(
-                                  issue: titleList[index])));
+                              builder: (ctx) => UAllPsychologistScreen(
+                                  issue:
+                                      specialistModel[index].name.toString())));
                         },
                         child: Column(
                           children: [
                             Container(
-                              height: 84.h,
+                              height: 84.w,
                               width: 84.w,
                               decoration: BoxDecoration(
                                   color: kFFFFFF.withOpacity(0.40),

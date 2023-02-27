@@ -6,7 +6,10 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 class StarWidget extends StatelessWidget {
-  StarWidget({Key? key}) : super(key: key);
+  final String rating;
+  final String experience;
+  StarWidget({Key? key, required this.rating, required this.experience})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class StarWidget extends StatelessWidget {
         SizedBox(width: 4),
         Padding(
           padding: const EdgeInsets.only(top: 2),
-          child: Text('4.0', style: kManRope_400_12_626A6A),
+          child: Text('$rating.0', style: kManRope_400_12_626A6A),
         ),
         SizedBox(width: 4),
         Padding(
@@ -29,7 +32,7 @@ class StarWidget extends StatelessWidget {
         SizedBox(width: 4.w),
         Padding(
           padding: const EdgeInsets.only(top: 2),
-          child: Text('12 Yrs. Exp', style: kManRope_400_12_626A6A),
+          child: Text('$experience Yrs. Exp', style: kManRope_400_12_626A6A),
         )
       ],
     );

@@ -9,6 +9,7 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
+
 import '../../../../Apis/UserAPis/user_profile_apis/user_change_email_api.dart';
 
 class UChangeEmailScreen extends StatefulWidget {
@@ -31,7 +32,8 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(resizeToAvoidBottomInset: false,
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kEDF6F9,
       appBar: CustomWhiteAppBar(
         hasThreeDots: false,
@@ -143,40 +145,45 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
               Spacer(),
               Align(
                 alignment: Alignment.center,
-
-                child: Text('You will receive an otp to your new email after clicking next',
-                  style:kManRope_400_16_626A6A ,),
+                child: Text(
+                  'You will receive an otp to your new email after clicking next',
+                  style: kManRope_400_16_626A6A,
+                ),
               ),
-              SizedBox(height: 134.h,),
-              nEmailEmpty ?
-              CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :cEmailEmpty ?
-              CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Next')
-                  :CustomSmallActiveTextButton(onPressed: () {
-                final resp = UserChangeEmailApi().get(
-                                      newEmail: newEmailController.text,
-                                      confirmEmail: confirmEmailController.text);
-                                  resp.then((value) async {
-                                    print(resp);
-                                    // var prefs = await SharedPreferences.getInstance();
-                                    // print(prefs.getString('cookies'));
-                                    if (value['status'] == true) {
-                                      Navigator.of(context).push(MaterialPageRoute(
-                                          builder: (context) => UEmailOtpScreen()));
-                                      Fluttertoast.showToast(
-                                          msg: 'Your OTP is ${value['otp']}');
-                                    } else {
-                                      print(value.toString());
-                                      Fluttertoast.showToast(
-                                          msg: value['error']);
-                                    }
-                                  });
-
-
-
-
-              }, text: 'Next',),
-              SizedBox(height: 40.h,)
+              SizedBox(
+                height: 134.h,
+              ),
+              nEmailEmpty
+                  ? CustomSmallDeactiveTextButton(
+                      onPressed: () {}, text: 'Next')
+                  : cEmailEmpty
+                      ? CustomSmallDeactiveTextButton(
+                          onPressed: () {}, text: 'Next')
+                      : CustomSmallActiveTextButton(
+                          onPressed: () {
+                            final resp = UserChangeEmailApi().get(
+                                newEmail: newEmailController.text,
+                                confirmEmail: confirmEmailController.text);
+                            resp.then((value) async {
+                              //print(resp);
+                              // var prefs = await SharedPreferences.getInstance();
+                              // print(prefs.getString(Keys().cookie));
+                              if (value['status'] == true) {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => UEmailOtpScreen()));
+                                Fluttertoast.showToast(
+                                    msg: 'Your OTP is ${value['otp']}');
+                              } else {
+                                //print(value.toString());
+                                Fluttertoast.showToast(msg: value['error']);
+                              }
+                            });
+                          },
+                          text: 'Next',
+                        ),
+              SizedBox(
+                height: 40.h,
+              )
             ],
           ),
         ),

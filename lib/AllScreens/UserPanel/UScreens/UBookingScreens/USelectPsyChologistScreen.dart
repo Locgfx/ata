@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UInstantScreens/UConfirmBookingScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
@@ -10,7 +8,8 @@ import 'package:greymatter/widgets/shared/buttons/card_buttons/primary_card_butt
 import 'package:greymatter/widgets/shared/buttons/card_buttons/secondary_card_button.dart';
 
 class USelectPsychologistsScreen extends StatelessWidget {
-  const USelectPsychologistsScreen({Key? key, required this.issue}) : super(key: key);
+  const USelectPsychologistsScreen({Key? key, required this.issue})
+      : super(key: key);
   final String issue;
 
   @override
@@ -24,7 +23,7 @@ class USelectPsychologistsScreen extends StatelessWidget {
       ),
       body: Padding(
         padding:
-        EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h, bottom: 20.h),
+            EdgeInsets.only(left: 24.w, top: 40.h, right: 24.h, bottom: 20.h),
         child: ListView.separated(
             itemBuilder: (ctx, index) {
               return Container(
@@ -75,7 +74,7 @@ class USelectPsychologistsScreen extends StatelessWidget {
                                     Text('MA in Counselling Psychology',
                                         style: kManRope_400_12_353535_07),
                                     SizedBox(height: 4),
-                                    StarWidget()
+                                    //StarWidget()
                                   ],
                                 ),
                               ],
@@ -93,11 +92,11 @@ class USelectPsychologistsScreen extends StatelessWidget {
                             Expanded(
                                 child: GestureDetector(
                                     onTap: () {
-                                      Navigator.push(
+                                      /*Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  UDoctorProfileScreen()));
+                                                  UDoctorProfileScreen()));*/
                                     },
                                     child: SecondaryCardButton())),
                             SizedBox(width: 8.w),
@@ -107,9 +106,10 @@ class USelectPsychologistsScreen extends StatelessWidget {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => UConfirmBookingScreen(
-                                            issue: issue,
-                                          )));
+                                          builder: (context) =>
+                                              UConfirmBookingScreen(
+                                                issue: issue,
+                                              )));
                                 },
                                 child: const PrimaryCardButton(),
                               ),

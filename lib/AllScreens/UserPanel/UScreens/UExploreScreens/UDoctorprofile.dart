@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UScheduleAppointmentScreen.dart';
@@ -5,17 +6,43 @@ import 'package:greymatter/AllScreens/UserPanel/UWidgets/UListsViews.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class UDoctorProfileScreen extends StatefulWidget {
-  const UDoctorProfileScreen({Key? key}) : super(key: key);
+  final bool showBookSession;
+  final UPsychologistModel psychologistData;
+  final String issue;
+  const UDoctorProfileScreen({
+    Key? key,
+    required this.psychologistData,
+    required this.issue,
+    required this.showBookSession,
+  }) : super(key: key);
 
   @override
   State<UDoctorProfileScreen> createState() => _UDoctorProfileScreenState();
 }
 
 class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  getSpecialities() {
+    String a = '';
+    for (int i = 0; i < widget.psychologistData.specialities!.length; i++) {
+      if (i != widget.psychologistData.specialities!.length - 1) {
+        a = a + widget.psychologistData.specialities![i].name.toString() + ', ';
+      } else {
+        a = a + widget.psychologistData.specialities![i].name.toString();
+      }
+    }
+    return a;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,9 +66,18 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                       topRight: Radius.circular(24.0),
                     ),
                   ),
-                  child: Image.asset(
-                    'assets/images/doctorprofileimage.png',
+                  child: CachedNetworkImage(
+                    imageUrl: widget.psychologistData.profilePhoto.toString(),
                     fit: BoxFit.cover,
+                    placeholder: (context, url) => Opacity(
+                      opacity: 0.9,
+                      child: Container(
+                        color: Colors.white,
+                        width: 64.w,
+                        height: 64.w,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
                 Padding(
@@ -64,124 +100,80 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Animesha Jain',
+                            widget.psychologistData.name.toString(),
                             style: kManRope_500_20_001314,
                           ),
-                          SizedBox(
-                            height: 8.h,
-                          ),
+                          SizedBox(height: 8.h),
                           Text(
-                            'Psychiatrist',
+                            widget.psychologistData.designation.toString(),
                             style: kManRope_400_14_626A6A,
                           ),
-                          SizedBox(
-                            height: 40.h,
-                          ),
+                          SizedBox(height: 40.h),
                           Row(
                             children: [
                               Expanded(
                                 child: DoctorDetailsCard(
                                     imgPath: 'assets/icons/profile.svg',
-                                    text: '599',
+                                    text: '0',
                                     title: "Clients"),
                               ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
+                              SizedBox(width: 10.w),
                               Expanded(
                                 child: DoctorDetailsCard(
                                     imgPath: 'assets/icons/tickCircle.svg',
-                                    text: '2 Years',
+                                    text:
+                                        '${widget.psychologistData.totalExprience} Years',
                                     title: "Experience"),
                               ),
-                              SizedBox(
-                                width: 10.w,
-                              ),
+                              SizedBox(width: 10.w),
                               Expanded(
                                 child: DoctorDetailsCard(
                                     imgPath: 'assets/icons/starOutline.svg',
-                                    text: '5.0',
+                                    text: '${widget.psychologistData.rating}',
                                     title: "RATING"),
                               ),
                             ],
                           ),
-                          SizedBox(
-                            height: 40.h,
-                          ),
+                          SizedBox(height: 40.h),
                           Text(
                             'About',
                             style: kManRope_700_16_001314,
                           ),
-                          SizedBox(
-                            height: 24.h,
-                          ),
+                          SizedBox(height: 24.h),
                           Text(
-                            'Animesha is a Counselling Psychologist with distinction in both BA and MA. She also holds a Diploma in Counselling Skills from Tata Institute of Social Sciences. She has trained in REBT, CBT and NLP therapy techniques. When providing therapy, she uses an eclectic approach to understand what suits her clients the best. She believes that a blend of different approaches helps her in establishing a good therapeutic relationship with her clients while further facilitating their effective healing process. She primarily uses the Client Centered approach, Cognitive behavioral therapy, and Narrative Therapy based on the concerns of the clients.',
+                            widget.psychologistData.about.toString(),
                             style: kManRope_400_14_626A6A,
                           ),
-                          SizedBox(
-                            height: 40.h,
-                          ),
+                          SizedBox(height: 40.h),
                           Text(
                             'Specialization',
                             style: kManRope_700_16_001314,
                           ),
-                          SizedBox(
-                            height: 24.h,
-                          ),
+                          SizedBox(height: 24.h),
                           Text(
-                            'Anxiety, Depression, Relationship Issue, Couple Counseling, Grief & Loss, Suiciddal Ideation, Sleep Issues, Trauma, Narcissistic Abuse, Family Therphy, Body Image, Psycho-Somatic Disorders, LGBTQI',
+                            getSpecialities(),
                             style: kManRope_400_14_626A6A,
                           ),
-                          SizedBox(
-                            height: 40.h,
-                          ),
+                          SizedBox(height: 40.h),
                           Text(
                             'Language',
                             style: kManRope_700_16_001314,
                           ),
-                          SizedBox(
-                            height: 24.h,
-                          ),
+                          SizedBox(height: 24.h),
                           Text(
-                            "English, Hindi, Tamil",
+                            widget.psychologistData.language.toString(),
                             style: kManRope_400_14_626A6A,
                           ),
-                          SizedBox(
-                            height: 40.h,
-                          ),
+                          SizedBox(height: 40.h),
                           Text(
                             'Availability',
                             style: kManRope_700_16_001314,
                           ),
-                          SizedBox(
-                            height: 24.h,
-                          ),
-
-                          PsychologistTimingList(),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SizedBox(
-                                width: 80.w,
-                                child: Text(
-                                  'Sunday',
-                                  style: kManRope_400_14_626A6A,
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Text(
-                                    'EMERGENCY CALL ONLY',
-                                    style: kManRope_500_14_626A6A,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
+                          SizedBox(height: 24.h),
+                          if (widget.psychologistData.availability != null)
+                            PsychologistTimingList(
+                                availability:
+                                    widget.psychologistData.availability!),
                           SizedBox(height: 40.h),
                           SizedBox(
                             height: 83.h,
@@ -192,37 +184,40 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                                   child: SizedBox(
                                     // height:56.h,
                                     child: Text(
-                                      '₹599',
+                                      '₹${widget.psychologistData.price}',
                                       style: kManRope_500_20_006D77,
                                     ),
                                   ),
                                 ),
-                                Expanded(
-                                  child: SizedBox(
-                                    height: 56.h,
-                                    // width: 200,
-                                    child: MainButton(
-                                      color: k006D77,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                            10), // <-- Radius
-                                      ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    UScheduleAppointmentScreen(
-                                                      issue: 'issue',
-                                                    )));
-                                      },
-                                      child: Text(
-                                        'Book session',
-                                        style: kManRope_400_16_white,
+                                if (widget.showBookSession)
+                                  Expanded(
+                                    child: SizedBox(
+                                      height: 56.h,
+                                      // width: 200,
+                                      child: MainButton(
+                                        color: k006D77,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                              10), // <-- Radius
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      UScheduleAppointmentScreen(
+                                                        psychologist: widget
+                                                            .psychologistData,
+                                                        issue: widget.issue,
+                                                      )));
+                                        },
+                                        child: Text(
+                                          'Book session',
+                                          style: kManRope_400_16_white,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                               ],
                             ),
                           ),

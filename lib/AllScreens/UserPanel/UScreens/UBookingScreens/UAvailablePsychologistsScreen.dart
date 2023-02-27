@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UScheduleAppointmentScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UMainCardWidget.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/primary_card_button.dart';
 import 'package:greymatter/widgets/shared/buttons/card_buttons/secondary_card_button.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -92,23 +91,24 @@ class PAvailablePsychologistsScreen extends StatelessWidget {
                           Expanded(
                               child: GestureDetector(
                                   onTap: () {
-                                    Navigator.of(context).push(
+                                    /*Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                            const UDoctorProfileScreen()));
+                                            const UDoctorProfileScreen()));*/
                                   },
                                   child: const SecondaryCardButton())),
                           SizedBox(width: 8.w),
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
-                                Navigator.push(
+                                /*Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
                                             UScheduleAppointmentScreen(
+                                              psychologist: ,
                                               issue: issue,
-                                            )));
+                                            )));*/
                               },
                               child: const PrimaryCardButton(),
                             ),

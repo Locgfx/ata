@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,9 +69,9 @@ class _UExploreScreenState extends State<UExploreScreen>
           backgroundColor: Colors.white,
           systemOverlayStyle: Platform.isAndroid
               ? SystemUiOverlayStyle(
-            statusBarColor: Colors.white,
-            statusBarIconBrightness: Brightness.dark,
-          )
+                  statusBarColor: Colors.white,
+                  statusBarIconBrightness: Brightness.dark,
+                )
               : SystemUiOverlayStyle.dark,
         ),
         body: SafeArea(
