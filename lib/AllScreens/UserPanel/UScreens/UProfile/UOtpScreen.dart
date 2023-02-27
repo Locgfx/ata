@@ -65,8 +65,8 @@ class _UOtpScreenState extends State<UOtpScreen> {
               //side: const BorderSide(color: k006D77),
             ),
             onPressed: () {
-              Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => UAccountScreen()));
+              /* Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => UAccountScreen()));*/
             },
             child: Text(
               'Verify',

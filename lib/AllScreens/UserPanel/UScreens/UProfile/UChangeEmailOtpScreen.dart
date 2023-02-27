@@ -89,18 +89,18 @@ class _UEmailOtpScreenState extends State<UEmailOtpScreen> {
                 otpEmpty ?
                 CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Save') :
                 CustomSmallActiveTextButton(onPressed: () {
-                  final resp =
+                  /*final resp =
                               ChangeEmailOtpVerifyApi().get(otp: otpController.text);
                           resp.then((value) {
                             print(value);
                             if (value['status'] == true) {
                               Fluttertoast.showToast(msg: value['message']);
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => UAccountScreen()));
+                                  builder: (context) => UAccountScreen(model: null,)));
                             } else {
                               Fluttertoast.showToast(msg: value['error']);
                             }
-                          });
+                          });*/
                 }, text: 'Save'),
                 SizedBox(height: 40.h,)
               ],

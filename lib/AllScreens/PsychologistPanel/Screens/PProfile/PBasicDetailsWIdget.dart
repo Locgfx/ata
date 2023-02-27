@@ -44,7 +44,9 @@ class _PBasicDetailsState extends State<PBasicDetails> {
               topRight: Radius.circular(8), topLeft: Radius.circular(8)),
         ),
         context: context,
-        builder: (context) => DatePickerBottomSheet());
+        builder: (context) => DatePickerBottomSheet(
+              onPop: (date) {},
+            ));
   }
 
   @override

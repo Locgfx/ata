@@ -10,10 +10,12 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class USignEnterOTPScreen extends StatefulWidget {
   final String signUpField;
-  const USignEnterOTPScreen({Key? key, required this.signUpField}) : super(key: key);
+  const USignEnterOTPScreen({Key? key, required this.signUpField})
+      : super(key: key);
 
   @override
   State<USignEnterOTPScreen> createState() => _USignEnterOTPScreenState();
@@ -37,7 +39,7 @@ class _USignEnterOTPScreenState extends State<USignEnterOTPScreen> {
     const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSec,
-          (Timer timer) {
+      (Timer timer) {
         if (_start == 0) {
           setState(() {
             timer.cancel();
@@ -137,14 +139,14 @@ class _USignEnterOTPScreenState extends State<USignEnterOTPScreen> {
                       InkWell(
                           onTap: _start == 0
                               ? () {
-                            setState(() {
-                              _start = 30;
-                            });
-                            _startTimer();
-                          }
+                                  setState(() {
+                                    _start = 30;
+                                  });
+                                  _startTimer();
+                                }
                               : () {
-                            print(otp.length);
-                          },
+                                  print(otp.length);
+                                },
                           child: Text('Resend',
                               style: _start == 0
                                   ? kManRope_400_16_006D77
@@ -155,27 +157,29 @@ class _USignEnterOTPScreenState extends State<USignEnterOTPScreen> {
               ),
               const Spacer(),
               otpEmpty
-                  ? CustomDeactiveTextButton(onPressed: () {} , text: 'Continue')
+                  ? CustomDeactiveTextButton(onPressed: () {}, text: 'Continue')
                   : CustomActiveTextButton(
-                  onPressed: () {
-                    final resp =
-                    OtpVerifyApi().get(otp: otpController.text);
-                    resp.then((value) {
-                      print(value);
-                      if (value['status'] == true) {
-                        Fluttertoast.showToast(msg: value['message']);
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                UAddPersonalDetailsScreen()));
-                      } else {
-                        Fluttertoast.showToast(
-                            msg: 'Please enter valid otp');
-                      }
-                    });
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (ctx) => AddPersonalDetailsScreen()));
-                  },
-                  text: 'Continue')
+                      onPressed: () {
+                        final resp =
+                            OtpVerifyApi().get(otp: otpController.text);
+                        resp.then((value) async {
+                          print(value);
+                          if (value['status'] == true) {
+                            var prefs = await SharedPreferences.getInstance();
+                            prefs.setString('cookies', value['session_id']);
+                            Fluttertoast.showToast(msg: value['message']);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    UAddPersonalDetailsScreen()));
+                          } else {
+                            Fluttertoast.showToast(
+                                msg: 'Please enter valid otp');
+                          }
+                        });
+                        // Navigator.of(context).push(MaterialPageRoute(
+                        //     builder: (ctx) => AddPersonalDetailsScreen()));
+                      },
+                      text: 'Continue')
             ],
           ),
         ),

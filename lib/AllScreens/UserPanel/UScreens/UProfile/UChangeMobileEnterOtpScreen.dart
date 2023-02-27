@@ -10,16 +10,17 @@ import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.da
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class UChangeMobileEnterOtpScreen extends StatefulWidget {
-
-  const UChangeMobileEnterOtpScreen({
-    Key? key,
-  }) : super(key: key);
+  final String number;
+  const UChangeMobileEnterOtpScreen({Key? key, required this.number})
+      : super(key: key);
 
   @override
-  State<UChangeMobileEnterOtpScreen> createState() => _UChangeMobileEnterOtpScreenState();
+  State<UChangeMobileEnterOtpScreen> createState() =>
+      _UChangeMobileEnterOtpScreenState();
 }
 
-class _UChangeMobileEnterOtpScreenState extends State<UChangeMobileEnterOtpScreen> {
+class _UChangeMobileEnterOtpScreenState
+    extends State<UChangeMobileEnterOtpScreen> {
   TextEditingController otpController = TextEditingController();
 
   bool otpEmpty = true;
@@ -46,7 +47,7 @@ class _UChangeMobileEnterOtpScreenState extends State<UChangeMobileEnterOtpScree
                 SizedBox(height: 88.h),
                 Text('Enter OTP', style: kManRope_700_20_001314),
                 SizedBox(height: 8.h),
-                Text('an OTP has been sent to XYZ@gmail.com',
+                Text('an OTP has been sent to ${widget.number}',
                     style: kManRope_400_14_626A6A),
                 SizedBox(height: 42.h),
                 PinCodeTextField(
@@ -81,26 +82,33 @@ class _UChangeMobileEnterOtpScreenState extends State<UChangeMobileEnterOtpScree
                 ),
                 Spacer(),
                 // SizedBox(height: 525.h),
-                otpEmpty ?
-                CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Save') :
-                CustomSmallActiveTextButton(onPressed: () {
-                  final resp =
-                  ChangeMobileNoEnterOtpApi().get(otp: otpController.text);
-                  resp.then((value) {
-                    print(value);
-                    if (value['status'] == true) {
-                      Fluttertoast.showToast(msg: value['message']);
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              UProfileScreen()));
-                    } else {
-                      Fluttertoast.showToast(
-                          msg: 'Please enter valid otp');
-                    }
-                  });
-
-                }, text: 'Save'),
-                SizedBox(height: 40.h,)
+                otpEmpty
+                    ? CustomSmallDeactiveTextButton(
+                        onPressed: () {}, text: 'Save')
+                    : CustomSmallActiveTextButton(
+                        onPressed: () {
+                          final resp = ChangeMobileNoEnterOtpApi()
+                              .get(otp: otpController.text);
+                          resp.then((value) {
+                            print(value);
+                            if (value['status'] == true) {
+                              Fluttertoast.showToast(msg: value['message']);
+                              int count = 0;
+                              Navigator.popUntil(context, (route) {
+                                return count++ == 3;
+                              });
+                              /*Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => UProfileScreen()));*/
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg: 'Please enter valid otp');
+                            }
+                          });
+                        },
+                        text: 'Save'),
+                SizedBox(
+                  height: 40.h,
+                )
               ],
             ),
           ),

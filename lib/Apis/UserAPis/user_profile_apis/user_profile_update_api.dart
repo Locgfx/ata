@@ -30,11 +30,11 @@ class UserProfileUpdateApi {
       "relationship_status": relationshipStatus,
       "occupation": occupation,
     });
-    print(request.body);
+    print(request.body + "req body");
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var rsp = jsonDecode(await response.stream.bytesToString());
-    print(rsp);
+    //print(rsp);
     if (response.statusCode == 200) {
       return rsp;
     } else {

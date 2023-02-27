@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/Apis/UserAPis/user_goals_api/delete_goal_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class UDeleteBottomSheet extends StatefulWidget {
-  const UDeleteBottomSheet({Key? key}) : super(key: key);
+  final int activityId;
+  const UDeleteBottomSheet({Key? key, required this.activityId})
+      : super(key: key);
 
   @override
   State<UDeleteBottomSheet> createState() => _UDeleteBottomSheet();
@@ -48,12 +51,16 @@ class _UDeleteBottomSheet extends State<UDeleteBottomSheet> {
                             ),
                             color: kFFFFFF,
                             shape:
-                            CustomDecoration().button10outlineDecoration()),
+                                CustomDecoration().button10outlineDecoration()),
                       ),
                       SizedBox(width: 16.w),
                       Expanded(
                         child: MainButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              final resp = DeleteGoalApi()
+                                  .get(activityId: widget.activityId);
+                              resp.then((value) {});
+                            },
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.h),
                               child: Text(

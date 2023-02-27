@@ -6,16 +6,26 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UChangepasswor
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UDeleteAccount.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_profile_models/user_profile_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 class UAccountScreen extends StatefulWidget {
-  const UAccountScreen({Key? key}) : super(key: key);
+  final UserProfileModel model;
+  final Function onTap;
+  const UAccountScreen({Key? key, required this.model, required this.onTap})
+      : super(key: key);
 
   @override
   State<UAccountScreen> createState() => _UAccountScreenState();
 }
 
 class _UAccountScreenState extends State<UAccountScreen> {
+  @override
+  void dispose() {
+    widget.onTap();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +45,9 @@ class _UAccountScreenState extends State<UAccountScreen> {
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => UChangeMobileNoScreen()));
+                      builder: (context) => UChangeMobileNoScreen(
+                            model: widget.model,
+                          )));
                 },
                 child: Container(
                   color: Colors.transparent,
@@ -63,7 +75,6 @@ class _UAccountScreenState extends State<UAccountScreen> {
                 ),
               ),
               SizedBox(height: 5.h),
-
               GestureDetector(
                 behavior: HitTestBehavior.translucent,
                 onTap: () {

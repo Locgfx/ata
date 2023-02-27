@@ -7,12 +7,15 @@ import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_change_mobileno_
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_profile_models/user_profile_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 
 class UChangeMobileNoScreen extends StatefulWidget {
-  const UChangeMobileNoScreen({Key? key}) : super(key: key);
+  final UserProfileModel model;
+  const UChangeMobileNoScreen({Key? key, required this.model})
+      : super(key: key);
 
   @override
   State<UChangeMobileNoScreen> createState() => _UChangeMobileNoScreenState();
@@ -57,7 +60,7 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
                 height: 8.h,
               ),
               Text(
-                '9810745330',
+                widget.model.phone.toString(),
                 style: kManRope_400_16_001314,
               ),
               SizedBox(
@@ -155,7 +158,7 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  'You will receive an otp to your new email after clicking next',
+                  'You will receive an otp to your new number after clicking next',
                   style: kManRope_400_16_626A6A,
                 ),
               ),
@@ -179,7 +182,10 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
                                 if (value['status'] == true) {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
-                                          UChangeMobileEnterOtpScreen()));
+                                          UChangeMobileEnterOtpScreen(
+                                            number:
+                                                widget.model.phone.toString(),
+                                          )));
                                   Fluttertoast.showToast(
                                       msg: 'Your OTP is ${value['otp']}');
                                 } else {

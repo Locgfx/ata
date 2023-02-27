@@ -5,7 +5,9 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 class DatePickerBottomSheet extends StatefulWidget {
-  const DatePickerBottomSheet({Key? key}) : super(key: key);
+  final Function(String) onPop;
+  const DatePickerBottomSheet({Key? key, required this.onPop})
+      : super(key: key);
 
   @override
   State<DatePickerBottomSheet> createState() => _DatePickerBottomSheet();
@@ -14,6 +16,7 @@ class DatePickerBottomSheet extends StatefulWidget {
 class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
   int _gIndex = 0;
   int dateSelected = 0;
+  DateTime selectedDate = DateTime.now();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,10 +51,10 @@ class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
                 child: CupertinoDatePicker(
                     mode: CupertinoDatePickerMode.date,
                     minimumYear: 1950,
-                    maximumYear: 2050,
+                    maximumYear: DateTime.now().year,
                     onDateTimeChanged: (val) {
                       setState(() {
-                        dateSelected = val.toString() as int;
+                        selectedDate = val;
                       });
                     }),
               ),
@@ -60,5 +63,11 @@ class _DatePickerBottomSheet extends State<DatePickerBottomSheet> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    widget.onPop(selectedDate.toString());
+    super.dispose();
   }
 }

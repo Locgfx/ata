@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,6 +18,8 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 
 class UserPersonalInfoScreen extends StatefulWidget {
   const UserPersonalInfoScreen({Key? key}) : super(key: key);
@@ -68,8 +72,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
               children: [
                 GestureDetector(
                   onTap: () => setState(() {
-                    _gIndex = 0;
+                    _rIndex = 0;
                     relationshipValue = 'Single';
+                    updaterRelationshipController.text = "Single";
                     Navigator.of(context).pop();
                   }),
                   child: Container(
@@ -77,12 +82,12 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     width: 123.w,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      color: _gIndex == 0 ? k006D77 : Colors.transparent,
+                      color: _rIndex == 0 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
                       'Single',
-                      style: _gIndex == 0
+                      style: _rIndex == 0
                           ? kManRope_500_16_white
                           : kManRope_500_16_626A6A,
                     )),
@@ -93,8 +98,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                 ),
                 GestureDetector(
                   onTap: () => setState(() {
-                    _gIndex = 1;
+                    _rIndex = 1;
                     relationshipValue = 'Married';
+                    updaterRelationshipController.text = "Married";
                     Navigator.of(context).pop();
                   }),
                   child: Container(
@@ -102,12 +108,12 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     width: 123.w,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                      color: _rIndex == 1 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
                       'Married',
-                      style: _gIndex == 1
+                      style: _rIndex == 1
                           ? kManRope_500_16_white
                           : kManRope_500_16_626A6A,
                     )),
@@ -118,8 +124,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                 ),
                 GestureDetector(
                   onTap: () => setState(() {
-                    _gIndex = 2;
+                    _rIndex = 2;
                     relationshipValue = 'Other';
+                    updaterRelationshipController.text = "Other";
                     Navigator.of(context).pop();
                   }),
                   child: Container(
@@ -127,12 +134,12 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     width: 123.w,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      color: _gIndex == 2 ? k006D77 : Colors.transparent,
+                      color: _rIndex == 2 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
                       'Other',
-                      style: _gIndex == 2
+                      style: _rIndex == 2
                           ? kManRope_500_16_white
                           : kManRope_500_16_626A6A,
                     )),
@@ -182,8 +189,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
               children: [
                 GestureDetector(
                   onTap: () => setState(() {
-                    _gIndex = 0;
+                    _oIndex = 0;
                     occupationValue = 'Student';
+                    updateOccupationController.text = "Student";
                     Navigator.of(context).pop();
                   }),
                   child: Container(
@@ -191,12 +199,12 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     width: 123.w,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      color: _gIndex == 0 ? k006D77 : Colors.transparent,
+                      color: _oIndex == 0 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
                       'Student',
-                      style: _gIndex == 0
+                      style: _oIndex == 0
                           ? kManRope_500_16_white
                           : kManRope_500_16_626A6A,
                     )),
@@ -207,8 +215,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                 ),
                 GestureDetector(
                   onTap: () => setState(() {
-                    _gIndex = 1;
+                    _oIndex = 1;
                     occupationValue = 'Working';
+                    updateOccupationController.text = "Working";
                     Navigator.of(context).pop();
                   }),
                   child: Container(
@@ -216,12 +225,12 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     width: 123.w,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                      color: _oIndex == 1 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
                       'Working',
-                      style: _gIndex == 1
+                      style: _oIndex == 1
                           ? kManRope_500_16_white
                           : kManRope_500_16_626A6A,
                     )),
@@ -232,8 +241,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                 ),
                 GestureDetector(
                   onTap: () => setState(() {
-                    _gIndex = 2;
+                    _oIndex = 2;
                     occupationValue = 'Other';
+                    updateOccupationController.text = "Other";
                     Navigator.of(context).pop();
                   }),
                   child: Container(
@@ -241,12 +251,12 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                     width: 123.w,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      color: _gIndex == 2 ? k006D77 : Colors.transparent,
+                      color: _oIndex == 2 ? k006D77 : Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
                       'Other',
-                      style: _gIndex == 2
+                      style: _oIndex == 2
                           ? kManRope_500_16_white
                           : kManRope_500_16_626A6A,
                     )),
@@ -270,9 +280,98 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) => DatePickerBottomSheet());
+        builder: (context) => _picker());
   }
 
+  Widget _picker() {
+    return Container(
+      height: 300.h,
+      decoration: const BoxDecoration(
+        // color: k006D77,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      child: Column(
+        children: [
+          Container(
+            height: 71.h,
+            decoration: const BoxDecoration(
+              color: k006D77,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            ),
+            child: Center(
+              child: Text(
+                'Pick Date',
+                style: kManRope_700_20_white,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              SizedBox(
+                // padding: EdgeInsets.all(10),
+                height: 190.h,
+                child: CupertinoDatePicker(
+                    mode: CupertinoDatePickerMode.date,
+                    minimumYear: 1950,
+                    maximumYear: DateTime.now().year,
+                    onDateTimeChanged: (val) {
+                      setState(() {
+                        updateDobController.text =
+                            DateFormat("dd/MM/yyyy").format(val);
+                        formattedDate = DateFormat("yyyy-MM-dd").format(val);
+                      });
+                    }),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  _setValues() {
+    setState(() {
+      if (model.gender.toString() != "null" && model.gender.toString() == "M") {
+        _gIndex = 0;
+        updateGenderController.text = "Male";
+      } else if (model.gender.toString() != "null" &&
+          model.gender.toString() == "F") {
+        _gIndex = 1;
+        updateGenderController.text = "Female";
+      } else {
+        _gIndex = 2;
+        updateGenderController.text = "Other";
+      }
+
+      if (model.relationshipStatus.toString() != "null" &&
+          model.relationshipStatus.toString() == "S") {
+        _rIndex = 0;
+        updaterRelationshipController.text = "Single";
+      } else if (model.relationshipStatus.toString() != "null" &&
+          model.relationshipStatus.toString() == "M") {
+        _rIndex = 1;
+        updaterRelationshipController.text = "Married";
+      } else {
+        _rIndex = 2;
+        updaterRelationshipController.text = "Other";
+      }
+
+      if (model.occupation.toString() != "null" &&
+          model.occupation.toString() == "Student") {
+        _oIndex = 0;
+      } else if (model.occupation.toString() != "null" &&
+          model.occupation.toString() == "Working") {
+        _oIndex = 1;
+      } else {
+        _oIndex = 2;
+      }
+    });
+  }
+
+  String formattedDate = '';
   bool isreadable = true;
 
   @override
@@ -286,13 +385,25 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
   _getData() {
     _isLoading = true;
     final resp = UserProfileApi().get();
-    //print(resp);
+    print(resp);
     resp.then((value) {
-      //print(value);
+      print(value);
       setState(() {
         try {
           model = UserProfileModel.fromJson(value);
           //print(model);
+          formattedDate = model.dob.toString() == "null"
+              ? ""
+              : "${model.dob!.split("-").first}-${model.dob!.split("-")[1]}-${model.dob!.split("-").last}";
+          updateNameController.text = model.name.toString();
+          updateDobController.text = model.dob.toString() == "null"
+              ? ""
+              : "${model.dob!.split("-").last}/${model.dob!.split("-")[1]}/${model.dob!.split("-").first}";
+          updateGenderController.text = model.gender.toString();
+          updaterRelationshipController.text =
+              model.relationshipStatus.toString();
+          updateOccupationController.text = model.occupation.toString();
+          _setValues();
           _isLoading = false;
         } catch (e) {
           setState(() {
@@ -320,6 +431,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
   String occupationValue = 'Student';
 
   int _gIndex = 0;
+  int _rIndex = 0;
+  int _oIndex = 0;
 
   bool nameEmpty = true;
   bool dobEmpty = true;
@@ -332,6 +445,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
   bool hasGenderFocus = false;
   bool hasRelationShipFocus = false;
   bool hasOccupationFocus = false;
+
+  final ImagePicker _imgPicker = ImagePicker();
+  File _pickedImage = File("");
 
   @override
   Widget build(BuildContext context) {
@@ -404,7 +520,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     _isLoading
                                         ? SizedBox()
                                         : Text(
-                                            model.name.toString(),
+                                            model.name.toString() == "null"
+                                                ? ''
+                                                : model.name.toString(),
                                             style: kManRope_400_16_001314,
                                           ),
                                   ],
@@ -425,8 +543,13 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     _isLoading
                                         ? SizedBox()
                                         : Text(
-                                            model.dob.toString(),
-                                            style: kManRope_400_16_001314,
+                                            model.dob.toString() == "null"
+                                                ? "Edit date of birth"
+                                                : updateDobController.text,
+                                            style:
+                                                model.dob.toString() == "null"
+                                                    ? kManRope_400_16_626A6A
+                                                    : kManRope_400_16_001314,
                                           ),
                                   ],
                                 ),
@@ -446,8 +569,13 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     _isLoading
                                         ? SizedBox()
                                         : Text(
-                                            model.gender.toString(),
-                                            style: kManRope_400_16_001314,
+                                            model.gender.toString() == "null"
+                                                ? "Edit gender"
+                                                : updateGenderController.text,
+                                            style: model.gender.toString() ==
+                                                    "null"
+                                                ? kManRope_400_16_626A6A
+                                                : kManRope_400_16_001314,
                                           ),
                                   ],
                                 ),
@@ -467,8 +595,17 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     _isLoading
                                         ? SizedBox()
                                         : Text(
-                                            model.relationshipStatus.toString(),
-                                            style: kManRope_400_16_001314,
+                                            model.relationshipStatus
+                                                        .toString() ==
+                                                    "null"
+                                                ? "Edit relationship status"
+                                                : updaterRelationshipController
+                                                    .text,
+                                            style: model.relationshipStatus
+                                                        .toString() ==
+                                                    "null"
+                                                ? kManRope_400_16_626A6A
+                                                : kManRope_400_16_001314,
                                           ),
                                   ],
                                 ),
@@ -476,7 +613,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                   height: 40.h,
                                 ),
                                 Text(
-                                  'Occuption',
+                                  'Occupation',
                                   style: kManRope_400_16_626A6A,
                                 ),
                                 SizedBox(
@@ -488,8 +625,16 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     _isLoading
                                         ? SizedBox()
                                         : Text(
-                                            model.occupation.toString(),
-                                            style: kManRope_400_16_001314,
+                                            model.occupation.toString() ==
+                                                    "null"
+                                                ? "Edit date of birth"
+                                                : updateOccupationController
+                                                    .text,
+                                            style:
+                                                model.occupation.toString() ==
+                                                        "null"
+                                                    ? kManRope_400_16_626A6A
+                                                    : kManRope_400_16_001314,
                                           ),
                                   ],
                                 ),
@@ -537,35 +682,47 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                           ),
                           Column(
                             children: [
-                              Center(
-                                child: DottedBorder(
-                                  borderType: BorderType.Circle,
-                                  color: k006D77,
-                                  strokeWidth: 0.5,
-                                  dashPattern: [
-                                    2,
-                                    2,
-                                  ],
-                                  child: Container(
-                                    height: 102.h,
-                                    width: 102.w,
-                                    decoration: const BoxDecoration(
-                                        color: Color(0xFF006D77),
-                                        shape: BoxShape.circle),
-                                    child:
-                                        Image.asset('assets/images/userP.png'),
-                                    clipBehavior: Clip.hardEdge,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 8.h,
-                              ),
                               GestureDetector(
-                                onTap: () {},
-                                child: Text(
-                                  "Change Photo",
-                                  style: kManRope_500_16_404040,
+                                onTap: () async {
+                                  XFile? v = await _imgPicker.pickImage(
+                                      source: ImageSource.gallery);
+                                  if (v != null) {
+                                    setState(() {
+                                      _pickedImage = File(v.path);
+                                    });
+                                  }
+                                },
+                                child: Column(
+                                  children: [
+                                    Center(
+                                      child: DottedBorder(
+                                        borderType: BorderType.Circle,
+                                        color: k006D77,
+                                        strokeWidth: 0.5,
+                                        dashPattern: [
+                                          2,
+                                          2,
+                                        ],
+                                        child: Container(
+                                          height: 102.h,
+                                          width: 102.w,
+                                          decoration: const BoxDecoration(
+                                              color: Color(0xFF006D77),
+                                              shape: BoxShape.circle),
+                                          child: Image.asset(
+                                              'assets/images/userP.png'),
+                                          clipBehavior: Clip.hardEdge,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 8.h,
+                                    ),
+                                    Text(
+                                      "Change Photo",
+                                      style: kManRope_500_16_404040,
+                                    ),
+                                  ],
                                 ),
                               ),
                               SizedBox(
@@ -660,7 +817,6 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                             //     return 'Enter your Dob';
                                             //   }
                                             // },
-
                                             controller: updateDobController,
                                             style: kManRope_400_16_001314,
                                             readOnly: true,
@@ -800,6 +956,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                                             setState(() {
                                                           _gIndex = 0;
                                                           genderValue = 'Male';
+                                                          updateGenderController
+                                                              .text = "Male";
                                                           Navigator.of(context)
                                                               .pop();
                                                         }),
@@ -837,6 +995,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                                           genderValue =
                                                               'Female';
                                                           _gIndex = 1;
+                                                          updateGenderController
+                                                              .text = "Female";
                                                           Navigator.of(context)
                                                               .pop();
                                                         }),
@@ -873,6 +1033,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                                             setState(() {
                                                           genderValue = 'Other';
                                                           _gIndex = 2;
+                                                          updateGenderController
+                                                              .text = "Other";
                                                           Navigator.of(context)
                                                               .pop();
                                                         }),
@@ -1087,7 +1249,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                               if (_formKey.currentState!.validate()) {
                                 final resp = UserProfileUpdateApi().get(
                                   name: updateNameController.text,
-                                  dob: updateDobController.text,
+                                  dob: formattedDate,
                                   gender: updateGenderController.text,
                                   relationshipStatus:
                                       updaterRelationshipController.text,
@@ -1101,6 +1263,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     // Navigator.of(context).push(MaterialPageRoute(
                                     //     builder: (context) => UProfileScreen())
                                     // );
+                                    Navigator.of(context).pop();
                                   } else {
                                     Fluttertoast.showToast(msg: value['error']);
                                   }

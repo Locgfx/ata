@@ -454,6 +454,11 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
           setState(() {
             loading = false;
           });
+        } else {
+          setState(() {
+            loading = false;
+          });
+          // Globals().showToast("Data not submitted");
         }
       },
     );

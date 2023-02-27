@@ -152,7 +152,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                       children: [
                                         Image.asset(
                                           'assets/images/backimg.png',
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.fitWidth,
                                           height: 88.h,
                                           // width: 1.sw,
                                         ),
