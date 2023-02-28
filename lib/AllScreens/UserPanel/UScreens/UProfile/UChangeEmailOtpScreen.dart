@@ -9,11 +9,14 @@ import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../constants/globals.dart';
+import '../ULoginScreens/ULoginScreen.dart';
 
 class UEmailOtpScreen extends StatefulWidget {
-  const UEmailOtpScreen({
-    Key? key,
-  }) : super(key: key);
+  final String email;
+  const UEmailOtpScreen({Key? key, required this.email}) : super(key: key);
 
   @override
   State<UEmailOtpScreen> createState() => _UEmailOtpScreenState();
@@ -46,7 +49,7 @@ class _UEmailOtpScreenState extends State<UEmailOtpScreen> {
                 SizedBox(height: 88.h),
                 Text('Enter OTP', style: kManRope_700_20_001314),
                 SizedBox(height: 8.h),
-                Text('an OTP has been sent to XYZ@gmail.com',
+                Text('an OTP has been sent to ${widget.email}',
                     style: kManRope_400_14_626A6A),
                 SizedBox(height: 42.h),
                 PinCodeTextField(
@@ -86,23 +89,39 @@ class _UEmailOtpScreenState extends State<UEmailOtpScreen> {
                 ),
                 Spacer(),
                 // SizedBox(height: 525.h),
-                otpEmpty ?
-                CustomSmallDeactiveTextButton(onPressed: () {}, text: 'Save') :
-                CustomSmallActiveTextButton(onPressed: () {
-                  /*final resp =
-                              ChangeEmailOtpVerifyApi().get(otp: otpController.text);
-                          resp.then((value) {
+                otpEmpty
+                    ? CustomSmallDeactiveTextButton(
+                        onPressed: () {}, text: 'Save')
+                    : CustomSmallActiveTextButton(
+                        onPressed: () {
+                          final resp = ChangeEmailOtpVerifyApi()
+                              .get(otp: otpController.text);
+                          resp.then((value) async {
                             print(value);
                             if (value['status'] == true) {
                               Fluttertoast.showToast(msg: value['message']);
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => UAccountScreen(model: null,)));
+                              /*int count = 0;
+                              Navigator.popUntil(context, (route) {
+                                return count++ == 3;
+                              });*/
+                              var prefs = await SharedPreferences.getInstance();
+                              prefs.setBool(Keys().loginDone, false);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  //builder: (_) => OnBoardingScreen(),
+                                  builder: (_) => ULoginScreen(showBack: false),
+                                ),
+                              );
                             } else {
                               Fluttertoast.showToast(msg: value['error']);
                             }
-                          });*/
-                }, text: 'Save'),
-                SizedBox(height: 40.h,)
+                          });
+                        },
+                        text: 'Save'),
+                SizedBox(
+                  height: 40.h,
+                )
               ],
             ),
           ),

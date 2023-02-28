@@ -20,6 +20,9 @@ class UserSavedPostsApi {
     var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
       return resp;
+    } else if (response.statusCode == 201) {
+      print(response.reasonPhrase);
+      return [];
     } else {
       print(response.reasonPhrase);
       return resp;

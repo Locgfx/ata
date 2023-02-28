@@ -79,7 +79,9 @@ class _UAccountScreenState extends State<UAccountScreen> {
                 behavior: HitTestBehavior.translucent,
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => UChangeEmailScreen()));
+                      builder: (context) => UChangeEmailScreen(
+                            model: widget.model,
+                          )));
                 },
                 child: Container(
                   color: Colors.transparent,

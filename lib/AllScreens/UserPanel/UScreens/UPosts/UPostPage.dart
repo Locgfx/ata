@@ -1,17 +1,23 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
+import 'package:greymatter/AllScreens/UserPanel/UWidgets/UPostWidget/UPostInteractions.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_posts_api.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
 import 'package:greymatter/widgets/BottomSheets/PostBottomSheet.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:readmore/readmore.dart';
+import 'package:share_plus/share_plus.dart';
 
+import '../../../../Apis/UserAPis/user_posts_api/user_save_post_api.dart';
 import '../../../../constants/colors.dart';
+import '../../../../widgets/BottomSheets/ReportBottomSheet.dart';
 import 'UCreatepost.dart';
 
 class UPostPage extends StatefulWidget {
@@ -25,7 +31,8 @@ class UPostPage extends StatefulWidget {
   State<UPostPage> createState() => _UPostPageState();
 }
 
-class _UPostPageState extends State<UPostPage> {
+class _UPostPageState extends State<UPostPage>
+    with AutomaticKeepAliveClientMixin {
   bool isExpanded = false;
 
   @override
@@ -43,30 +50,46 @@ class _UPostPageState extends State<UPostPage> {
   bool isLoading = false;
   bool isLoading2 = false;
 
+  int scroll = 0;
   getData() {
     isLoading = true;
-    final resp = UserPostApi().get();
+    final resp = UserPostApi().get(scroll: 0.toString());
     resp.then((value) {
-      //print(value);
+      log(value.toString());
       if (mounted) {
+        postModel.clear();
         setState(() {
           for (var v in value) {
             postModel.add(UserPostModel.fromJson(v));
           }
+          //log(postModel.toString());
+          isLoading = false;
+        });
+      } else {
+        setState(() {
           isLoading = false;
         });
       }
     });
   }
 
-  void _postbottomsheet() {
+  void _postbottomsheet(int index) {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) => const PostBottomSheet());
+        builder: (context) => MenuBottomSheet(
+              onPop: () {
+                setState(() {
+                  isLoading = true;
+                });
+                getData();
+              },
+              postModel: postModel,
+              index: index,
+            ));
   }
 
   @override
@@ -85,7 +108,7 @@ class _UPostPageState extends State<UPostPage> {
                   )
                 : Padding(
                     padding:
-                        EdgeInsets.only(left: 24.w, right: 24.h, bottom: 159),
+                        EdgeInsets.only(left: 24.w, right: 24.h, bottom: 200.h),
                     child: ListView.separated(
                       itemCount: postModel.length,
                       scrollDirection: Axis.vertical,
@@ -150,7 +173,6 @@ class _UPostPageState extends State<UPostPage> {
                                                         .toString(),
                                                     style:
                                                         kManRope_500_16_Black),
-
                                                 Text('2 hours ago',
                                                     style:
                                                         kManRope_400_12_626A6A),
@@ -162,7 +184,7 @@ class _UPostPageState extends State<UPostPage> {
                                       ),
                                       GestureDetector(
                                         onTap: () {
-                                          _postbottomsheet();
+                                          _postbottomsheet(index);
                                         },
                                         child: Container(
                                           color: Colors.transparent,
@@ -217,132 +239,10 @@ class _UPostPageState extends State<UPostPage> {
                                 SizedBox(
                                   height: 8.h,
                                 ),
-                                SizedBox(
-                                  height: 48.h,
-                                  width: 1.sw,
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 48.h,
-                                            width: 73.w,
-                                            // color: Colors.red,
-
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 12),
-                                              child: Row(
-                                                children: [
-                                                  Image.asset(
-                                                    'assets/images/iconlike24.png',
-                                                    height: 24.h,
-                                                    width: 24.w,
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 12.w),
-                                                    child: Text('375',
-                                                        style:
-                                                            kManRope_400_14_626A6A),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 16.w,
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              if (widget.isCommentsViewable) {
-                                                Navigator.of(context).push(
-                                                  MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const UCommentPage(),
-                                                  ),
-                                                );
-                                              }
-                                            },
-                                            child: Container(
-                                              height: 48.h,
-                                              width: 75.w,
-                                              color: Colors.transparent,
-                                              child: Row(
-                                                children: [
-                                                  GestureDetector(
-                                                    onTap: () {
-                                                      if (widget
-                                                          .isCommentsViewable) {
-                                                        Navigator.of(context)
-                                                            .push(
-                                                          MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                const UCommentPage(),
-                                                          ),
-                                                        );
-                                                      }
-                                                    },
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 12),
-                                                      child: SizedBox(
-                                                        height: 24.h,
-                                                        width: 24.w,
-                                                        // color: Colors.red,
-
-                                                        child: Image.asset(
-                                                          'assets/images/iconcomment24.png',
-                                                          height: 24.h,
-                                                          width: 24.w,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 12.w,
-                                                  ),
-                                                  Text('20',
-                                                      style:
-                                                          kManRope_400_14_626A6A),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          SizedBox(
-                                            height: 48,
-                                            width: 48,
-                                            // color: Colors.red,
-                                            child: Image.asset(
-                                              'assets/images/iconbookmark48.png',
-                                              height: 48,
-                                              width: 48,
-                                            ),
-                                          ),
-                                          // SizedBox(
-                                          //   width: 8.w,
-                                          // ),
-                                          SizedBox(
-                                            height: 48,
-                                            width: 48,
-                                            // color: Colors.red,
-                                            child: Image.asset(
-                                              'assets/images/iconshare48.png',
-                                              height: 44,
-                                              width: 44,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
+                                UPostInteractions(
+                                  isCommentsViewable: widget.isCommentsViewable,
+                                  modelList: postModel,
+                                  index: index,
                                 ),
                                 Align(
                                   alignment: Alignment.centerLeft,
@@ -383,6 +283,182 @@ class _UPostPageState extends State<UPostPage> {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
+}
+
+class MenuBottomSheet extends StatefulWidget {
+  final List<UserPostModel> postModel;
+  final int index;
+  final Function onPop;
+  const MenuBottomSheet(
+      {Key? key,
+      required this.postModel,
+      required this.index,
+      required this.onPop})
+      : super(key: key);
+
+  @override
+  State<MenuBottomSheet> createState() => _MenuBottomSheet();
+}
+
+class _MenuBottomSheet extends State<MenuBottomSheet> {
+  void _reportbottomsheet() {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+        ),
+        context: context,
+        builder: (context) => const ReportBottomSheet());
+  }
+
+  @override
+  void initState() {
+    if (widget.postModel[widget.index].isSaved == 0) {
+      savedText = "Save";
+    } else {
+      savedText = "Unsave";
+    }
+    super.initState();
+  }
+
+  String savedText = "Save";
+
+  //int _gIndex = 0;
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      // height: 310.h,
+      child: Column(
+        children: [
+          Container(
+            height: 71.h,
+            decoration: const BoxDecoration(
+              color: k006D77,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            ),
+            child: Center(
+              child: Text(
+                'Select Below',
+                style: kManRope_700_16_white,
+              ),
+            ),
+          ),
+          Column(
+            children: [
+              SizedBox(
+                height: 20.h,
+              ),
+              GestureDetector(
+                onTap: () => setState(() {
+                  Share.share("text");
+                  //Navigator.of(context).pop();
+                }),
+                child: Container(
+                  height: 44.h,
+                  width: 80.w,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    color: Colors.transparent,
+                  ),
+                  child: Center(
+                      child: Text(
+                    'Share',
+                    style: kManRope_500_16_626A6A,
+                  )),
+                ),
+              ),
+              SizedBox(height: 8.h),
+              GestureDetector(
+                onTap: () {
+                  final resp = UserSavePostApi().get(
+                      postId: widget.postModel[widget.index].id.toString(),
+                      postType:
+                          widget.postModel[widget.index].postedBy.toString());
+                  resp.then((value) {
+                    setState(() {
+                      if (value['status'] == true) {
+                        if (value['message'] == "Saved") {
+                          //isSaved = 1;
+                          widget.postModel[widget.index].isSaved = 1;
+                          Navigator.of(context).pop();
+                          widget.onPop();
+                        } else {
+                          //isSaved = 0;
+                          widget.postModel[widget.index].isSaved = 0;
+                          Navigator.of(context).pop();
+                          widget.onPop();
+                        }
+                      }
+                    });
+                  });
+                },
+                child: Container(
+                  height: 50.h,
+                  width: 80.w,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    color: Colors.transparent,
+                  ),
+                  child: Center(
+                      child: Text(
+                    savedText,
+                    style: kManRope_500_16_626A6A,
+                  )),
+                ),
+              ),
+              SizedBox(height: 8.h),
+              GestureDetector(
+                onTap: () => setState(() {
+                  Navigator.of(context).pop();
+                }),
+                child: Container(
+                  height: 44.h,
+                  width: 80.w,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    color: Colors.transparent,
+                  ),
+                  child: Center(
+                      child: Text(
+                    'Hide',
+                    style: kManRope_500_16_626A6A,
+                  )),
+                ),
+              ),
+              SizedBox(height: 8.h),
+              GestureDetector(
+                onTap: () => setState(() {
+                  Navigator.of(context).pop();
+                  _reportbottomsheet();
+                }),
+                child: Container(
+                  height: 44.h,
+                  width: 80.w,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                    color: Colors.transparent,
+                  ),
+                  child: Center(
+                      child: Text(
+                    'Report',
+                    style: kManRope_500_16_626A6A,
+                  )),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20.h,
+          )
         ],
       ),
     );

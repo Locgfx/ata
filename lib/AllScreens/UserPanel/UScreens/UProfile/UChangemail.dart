@@ -11,9 +11,11 @@ import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 
 import '../../../../Apis/UserAPis/user_profile_apis/user_change_email_api.dart';
+import '../../../../model/UModels/user_profile_models/user_profile_model.dart';
 
 class UChangeEmailScreen extends StatefulWidget {
-  const UChangeEmailScreen({Key? key}) : super(key: key);
+  final UserProfileModel model;
+  const UChangeEmailScreen({Key? key, required this.model}) : super(key: key);
 
   @override
   State<UChangeEmailScreen> createState() => _UChangeEmailScreenState();
@@ -55,7 +57,7 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
                 height: 8.h,
               ),
               Text(
-                'priyasingh344@gmail.com',
+                widget.model.email.toString(),
                 style: kManRope_400_16_001314,
               ),
               SizedBox(
@@ -170,7 +172,9 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
                               // print(prefs.getString(Keys().cookie));
                               if (value['status'] == true) {
                                 Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => UEmailOtpScreen()));
+                                    builder: (context) => UEmailOtpScreen(
+                                          email: widget.model.email.toString(),
+                                        )));
                                 Fluttertoast.showToast(
                                     msg: 'Your OTP is ${value['otp']}');
                               } else {

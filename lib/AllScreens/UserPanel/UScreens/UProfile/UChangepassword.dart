@@ -161,10 +161,10 @@ class _UChangePasswordScreenState extends State<UChangePasswordScreen> {
                                     if (value['status'] == true) {
                                       Fluttertoast.showToast(
                                           msg: 'Password changed successfully');
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  UProfileScreen()));
+                                      int count = 0;
+                                      Navigator.popUntil(context, (route) {
+                                        return count++ == 2;
+                                      });
                                     } else {
                                       Fluttertoast.showToast(
                                           msg: value['error']);

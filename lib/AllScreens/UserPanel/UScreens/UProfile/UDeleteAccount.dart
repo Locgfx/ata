@@ -92,6 +92,7 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                         height: 48,
                         child: MainButton(
                             onPressed: () {
+                              Navigator.of(context).pop();
                               // Navigator.of(context).push(
                               //     MaterialPageRoute(builder: (context) => PTabsScreen()));
                             },

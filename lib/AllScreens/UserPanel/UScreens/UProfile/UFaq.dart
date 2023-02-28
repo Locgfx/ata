@@ -16,8 +16,8 @@ class UFaqScreen extends StatefulWidget {
 }
 
 class _UFaqScreenState extends State<UFaqScreen> {
-  bool dropdown = false;
-  bool dropdownContainer = false;
+  // bool dropdown = false;
+  //bool dropdownContainer = false;
 
   @override
   void initState() {
@@ -42,10 +42,18 @@ class _UFaqScreenState extends State<UFaqScreen> {
             faqList.add(UserFaqModel.fromJson(v));
             //print(faqList);
           }
+          _setBoolVal();
           isLoading = false;
         });
       }
     });
+  }
+
+  List<bool> boolList = [];
+  _setBoolVal() {
+    for (var v in faqList) {
+      boolList.add(false);
+    }
   }
 
   @override
@@ -130,8 +138,7 @@ class _UFaqScreenState extends State<UFaqScreen> {
                                     GestureDetector(
                                       onTap: () {
                                         setState(() {
-                                          dropdownContainer =
-                                              !dropdownContainer;
+                                          boolList[index] = !boolList[index];
                                         });
                                       },
                                       child: SizedBox(
@@ -151,7 +158,7 @@ class _UFaqScreenState extends State<UFaqScreen> {
                               AnimatedContainer(
                                 duration: Duration(milliseconds: 300),
                                 curve: Curves.fastOutSlowIn,
-                                height: dropdownContainer ? 100.h : 0,
+                                height: boolList[index] ? 100.h : 0,
                                 width: 1.sw,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),

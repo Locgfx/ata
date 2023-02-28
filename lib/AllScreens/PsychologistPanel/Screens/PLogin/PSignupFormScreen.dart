@@ -7,6 +7,7 @@ import 'package:greymatter/Apis/DoctorApis/doctor_login_apis/formapi.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:intl/intl.dart';
 
 class PSignupFormScreen extends StatefulWidget {
   const PSignupFormScreen({Key? key}) : super(key: key);
@@ -27,12 +28,12 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
   TextEditingController dateController = TextEditingController();
   TextEditingController timingController = TextEditingController();
 
-
   @override
   void initState() {
     // timeinput.text = ""; //set the initial value of text field
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +77,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                         height: 8.h,
                       ),
                       SizedBox(
-                        height: 48.h,
+                        // height: 48.h,
                         child: TextFormField(
                           controller: nameController,
                           validator: (name) {
@@ -85,8 +86,9 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                             }
                           },
                           style: kManRope_500_16_626A6A,
-                          decoration: TextfieldDecoration(label: 'Type name here')
-                              .textFieldEDF6F9Decoration(),
+                          decoration:
+                              TextfieldDecoration(label: 'Type name here')
+                                  .textFieldEDF6F9Decoration(),
                         ),
                       ),
                       // SizedBox(height: 20),
@@ -101,7 +103,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                         height: 8.h,
                       ),
                       SizedBox(
-                        height: 48.h,
+                        //  height: 48.h,
                         child: TextFormField(
                           validator: (val) {
                             if (emailController.text.trim().isEmpty) {
@@ -112,8 +114,8 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                           },
                           style: kManRope_500_16_626A6A,
                           decoration:
-                          TextfieldDecoration(label: 'Type email here')
-                              .textFieldEDF6F9Decoration(),
+                              TextfieldDecoration(label: 'Type email here')
+                                  .textFieldEDF6F9Decoration(),
                         ),
                       ),
 
@@ -128,10 +130,12 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                         height: 8.h,
                       ),
                       SizedBox(
-                        height: 48.h,
+                        // height: 48.h,
                         child: TextFormField(
                           keyboardType: TextInputType.number,
-                          inputFormatters: [LengthLimitingTextInputFormatter(10)],
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10)
+                          ],
                           controller: emailController,
                           validator: (email) {
                             if (email == null || email.isEmpty) {
@@ -140,8 +144,8 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                           },
                           style: kManRope_500_16_626A6A,
                           decoration:
-                          TextfieldDecoration(label: 'Type Phone No here')
-                              .textFieldEDF6F9Decoration(),
+                              TextfieldDecoration(label: 'Type Phone No here')
+                                  .textFieldEDF6F9Decoration(),
                         ),
                       ),
                       SizedBox(
@@ -155,9 +159,11 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                         height: 8.h,
                       ),
                       SizedBox(
-                        height: 48.h,
+                        //  height: 48.h,
                         child: TextFormField(
-                          inputFormatters: [LengthLimitingTextInputFormatter(10)],
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10)
+                          ],
                           controller: emailController,
                           validator: (email) {
                             if (email == null || email.isEmpty) {
@@ -166,8 +172,8 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                           },
                           keyboardType: TextInputType.number,
                           style: kManRope_500_16_626A6A,
-                          decoration:
-                          TextfieldDecoration(label: 'Type Alternate Phone No here')
+                          decoration: TextfieldDecoration(
+                                  label: 'Type Alternate Phone No here')
                               .textFieldEDF6F9Decoration(),
                         ),
                       ),
@@ -184,7 +190,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                         height: 8.h,
                       ),
                       SizedBox(
-                        height: 48.h,
+                        //  height: 48.h,
                         child: TextFormField(
                           controller: adressController,
                           validator: (val) {
@@ -192,9 +198,8 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                               return 'Enter your Adress';
                             }
                           },
-                          style:kManRope_500_16_626A6A ,
-                          decoration:
-                          TextfieldDecoration(label: 'Add Adress')
+                          style: kManRope_500_16_626A6A,
+                          decoration: TextfieldDecoration(label: 'Add Adress')
                               .textFieldEDF6F9Decoration(),
                         ),
                       ),
@@ -208,19 +213,38 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      SizedBox(
-                        height: 48.h,
-                        child: TextFormField(
-                          controller: timingController,
-                          validator: (timing) {
-                            if (timing == null || timing.isEmpty) {
-                              return 'Enter Time';
-                            }
-                          },
-                          style: kManRope_500_16_626A6A,
-                          decoration:
-                          TextfieldDecoration(label: 'Type Timing here')
-                              .textFieldEDF6F9Decoration(),
+                      InkWell(
+                        onTap: () async {
+                          var v = await showTimePicker(
+                              context: context, initialTime: TimeOfDay.now());
+                          if (v != null) {
+                            setState(() {
+                              timingController.text =
+                                  DateFormat.jm().format(DateTime(
+                                DateTime.now().year,
+                                DateTime.now().month,
+                                DateTime.now().day,
+                                v.hour,
+                                v.minute,
+                              ));
+                            });
+                          }
+                        },
+                        // height: 48.h,
+                        child: IgnorePointer(
+                          child: TextFormField(
+                            //readOnly: true,
+                            controller: timingController,
+                            validator: (timing) {
+                              if (timing == null || timing.isEmpty) {
+                                return 'Enter Time';
+                              }
+                            },
+                            style: kManRope_500_16_626A6A,
+                            decoration:
+                                TextfieldDecoration(label: 'Add Timing here')
+                                    .textFieldEDF6F9Decoration(),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -233,18 +257,32 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                       SizedBox(
                         height: 8.h,
                       ),
-                      SizedBox(
-                        height: 48.h,
-                        child: TextFormField(
-                          controller: dateController,
-                          validator: (date) {
-                            if (date == null || date.isEmpty) {
-                              return 'Enter date';
-                            }
-                          },
-                          style: kManRope_500_16_626A6A,
-                          decoration: TextfieldDecoration(label: 'Type Date here')
-                              .textFieldEDF6F9Decoration(),
+                      InkWell(
+                        //  height: 48.h,
+                        onTap: () async {
+                          var v = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime.now().add(Duration(days: 60)));
+                          if (v != null) {
+                            dateController.text = DateFormat.yMMMEd().format(v);
+                          }
+                        },
+                        child: IgnorePointer(
+                          child: TextFormField(
+                            readOnly: true,
+                            controller: dateController,
+                            validator: (date) {
+                              if (date == null || date.isEmpty) {
+                                return 'Enter date';
+                              }
+                            },
+                            style: kManRope_500_16_626A6A,
+                            decoration:
+                                TextfieldDecoration(label: 'Add Date here')
+                                    .textFieldEDF6F9Decoration(),
+                          ),
                         ),
                       ),
 
@@ -264,7 +302,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                                   phoneNo: phoneNoController.text,
                                   alternateNo: alternateNoController.text,
                                   adress: adressController.text,
-                                  timing:timingController.text,
+                                  timing: timingController.text,
                                   date: dateController.text,
                                 );
                                 resp.then((value) {
@@ -272,17 +310,19 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                                   if (value['status'] == 0) {
                                     Fluttertoast.showToast(msg: value['error']);
                                   } else {
-                                    Fluttertoast.showToast(msg: 'Details Fill Successful');
+                                    Fluttertoast.showToast(
+                                        msg: 'Details Fill Successful');
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                PRequestSentSuccessfulScreen()));
+                                                PRequestSentSuccessfulScreen(
+                                                  name: nameController.text,
+                                                )));
                                     /* Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PDashboard()),
                                   );*/
-
                                   }
                                 });
                               }

@@ -55,6 +55,7 @@ dependencies:
   chewie: 1.4.0
   shimmer: ^2.0.0
   percent_indicator: 3.4.0
+  share_plus:
 
 
 

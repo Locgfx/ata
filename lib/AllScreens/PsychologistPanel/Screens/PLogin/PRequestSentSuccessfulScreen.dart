@@ -6,13 +6,17 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 class PRequestSentSuccessfulScreen extends StatefulWidget {
-  const PRequestSentSuccessfulScreen({Key? key}) : super(key: key);
+  final String name;
+  PRequestSentSuccessfulScreen({Key? key, required this.name})
+      : super(key: key);
 
   @override
-  State<PRequestSentSuccessfulScreen> createState() => _PRequestSentSuccessfulScreenState();}
+  State<PRequestSentSuccessfulScreen> createState() =>
+      _PRequestSentSuccessfulScreenState();
+}
 
-class _PRequestSentSuccessfulScreenState extends State<PRequestSentSuccessfulScreen> {
-
+class _PRequestSentSuccessfulScreenState
+    extends State<PRequestSentSuccessfulScreen> {
   @override
   void initState() {
     super.initState();
@@ -65,7 +69,7 @@ class _PRequestSentSuccessfulScreenState extends State<PRequestSentSuccessfulScr
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 24.w),
                     child: Text(
-                      'Hey pankaj your request has been sent to our partner he will contact you within 24 hrs.once our partner will verify you your account will enable for appointment.',
+                      'Hey ${widget.name} your request has been sent to our partner he will contact you within 24 hrs.once our partner will verify you your account will enable for appointment.',
                       style: kManRope_400_14_626A6A,
                       textAlign: TextAlign.center,
                     ),
