@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -42,7 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
       questionsDone = prefs.getBool(Keys().questionsDone) ?? false;
       isUser = prefs.getBool(Keys().isUser) ?? true;
     });
+
     if (firstRun) {
+      log(firstRun.toString());
       prefs.setBool(Keys().firstRun, false);
       Navigator.push(
         context,
@@ -52,8 +56,11 @@ class _SplashScreenState extends State<SplashScreen> {
       );
     } else {
       if (loginDone) {
+        log(loginDone.toString());
         if (isUser) {
+          log(isUser.toString());
           if (questionsDone) {
+            log(questionsDone.toString());
             final resp = UserLoginApi().get(
               username: 'user01@gmail.com' /*prefs.getString(Keys().email)!*/,
               password: '1234' /*prefs.getString(Keys().password)!*/,
@@ -89,10 +96,11 @@ class _SplashScreenState extends State<SplashScreen> {
           );
         }
       } else {
+        log("message");
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => ULoginScreen(showBack: false),
+            builder: (_) => OnBoardingScreen(),
           ),
         );
       }

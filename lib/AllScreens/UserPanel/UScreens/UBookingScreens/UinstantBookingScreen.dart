@@ -44,14 +44,13 @@ class _UInstantBookingScreenState extends State<UInstantBookingScreen> {
                     children: [
                       Container(
                         height: 56.h,
-                        decoration: CustomDecoration().outline5A72EDDecoration(),
+                        decoration:
+                            CustomDecoration().outline5A72EDDecoration(),
                         child: TextField(
                           decoration: TextfieldDecoration(
-                              label:
-                              'Search for health problem, Psychologist',
-                              hintstyle: kManRope_400_14_626A6A)
+                                  label: 'Search for counsellors',
+                                  hintstyle: kManRope_400_14_626A6A)
                               .whiteColorSearchField(),
-
                         ),
                       ),
                       SizedBox(height: 40.h),

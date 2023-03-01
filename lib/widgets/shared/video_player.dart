@@ -73,6 +73,24 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                 color: k006D77,
               ),
             ),
+            Positioned(
+              top: 25,
+              left: 10,
+              child: InkWell(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: Container(
+                  color: Colors.transparent,
+                  padding: EdgeInsets.all(10),
+                  child: Icon(
+                    Icons.arrow_back,
+                    size: 40,
+                    color: k006D77,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -12,11 +12,13 @@ import '../../UScreens/UPosts/UAllcomments.dart';
 
 class UPostInteractions extends StatefulWidget {
   bool isCommentsViewable;
+  String savedPost;
   List<UserPostModel> modelList;
   int index;
   UPostInteractions(
       {Key? key,
       required this.isCommentsViewable,
+      required this.savedPost,
       required this.modelList,
       required this.index})
       : super(key: key);
@@ -57,7 +59,9 @@ class _UPostInteractionsState extends State<UPostInteractions>
                   onTap: () {
                     final resp = UserLikePostApi().get(
                         postType: widget.modelList[widget.index].postedBy!,
-                        postId: int.parse(widget.modelList[widget.index].id!));
+                        postId: widget.savedPost == "yes"
+                            ? int.parse(widget.modelList[widget.index].postId!)
+                            : int.parse(widget.modelList[widget.index].id!));
                     resp.then((value) {
                       setState(() {
                         if (value['status'] == true) {
@@ -163,7 +167,9 @@ class _UPostInteractionsState extends State<UPostInteractions>
               InkWell(
                 onTap: () {
                   final resp = UserSavePostApi().get(
-                      postId: widget.modelList[widget.index].id.toString(),
+                      postId: widget.savedPost == "yes"
+                          ? widget.modelList[widget.index].postId.toString()
+                          : widget.modelList[widget.index].id.toString(),
                       postType:
                           widget.modelList[widget.index].postedBy.toString());
                   resp.then((value) {

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -277,7 +279,7 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                               password:
                                                   _passwordController.text);
                                           resp.then((value) async {
-                                            print(value);
+                                            log(value.toString());
                                             setState(() {
                                               loading = false;
                                             });
@@ -298,8 +300,9 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                               //print(prefs.getString(Keys().cookie));
                                               prefs.setBool(
                                                   Keys().loginDone, true);
+                                              //log(value['name']);
                                               prefs.setString(Keys().userName,
-                                                  value['email']);
+                                                  value['name']);
                                               Fluttertoast.showToast(
                                                   msg: 'Login Successful');
                                               if (prefs.getBool(

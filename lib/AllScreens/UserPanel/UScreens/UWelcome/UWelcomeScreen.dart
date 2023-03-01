@@ -1,9 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../constants/globals.dart';
 
 class UWelcomeScreen extends StatefulWidget {
   const UWelcomeScreen({Key? key}) : super(key: key);
@@ -13,6 +17,27 @@ class UWelcomeScreen extends StatefulWidget {
 }
 
 class _UWelcomeScreenState extends State<UWelcomeScreen> {
+  String name = "User";
+  _getPrefs() async {
+    var prefs = await SharedPreferences.getInstance();
+    setState(() {
+      name = prefs.getString(Keys().userName)!;
+    });
+    log("prefs $name");
+  }
+
+  @override
+  void initState() {
+    _getPrefs();
+    super.initState();
+    Future.delayed(Duration(seconds: 3), () {
+      if (mounted) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (ctx) => UTabsScreen()));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +63,7 @@ class _UWelcomeScreenState extends State<UWelcomeScreen> {
                       ),
                     );
                   },
-                  child: Text('Hi Pankaj,', style: kManRope_700_24_8A9393)),
+                  child: Text('Hi $name,', style: kManRope_700_24_8A9393)),
               // SizedBox(height: 16.h),
               TweenAnimationBuilder(
                 duration: Duration(seconds: 2),
@@ -67,16 +92,5 @@ class _UWelcomeScreenState extends State<UWelcomeScreen> {
         ),
       ),
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    Future.delayed(Duration(seconds: 3), () {
-      if (mounted) {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (ctx) => UTabsScreen()));
-      }
-    });
   }
 }

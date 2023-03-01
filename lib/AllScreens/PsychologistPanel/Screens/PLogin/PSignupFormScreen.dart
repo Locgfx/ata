@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,6 +10,9 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../constants/globals.dart';
 
 class PSignupFormScreen extends StatefulWidget {
   const PSignupFormScreen({Key? key}) : super(key: key);
@@ -34,6 +39,8 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
     super.initState();
   }
 
+  String time = "";
+  String date = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,6 +112,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                       SizedBox(
                         //  height: 48.h,
                         child: TextFormField(
+                          controller: emailController,
                           validator: (val) {
                             if (emailController.text.trim().isEmpty) {
                               return 'Please enter your email';
@@ -136,7 +144,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(10)
                           ],
-                          controller: emailController,
+                          controller: phoneNoController,
                           validator: (email) {
                             if (email == null || email.isEmpty) {
                               return 'Enter your phone no';
@@ -164,7 +172,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(10)
                           ],
-                          controller: emailController,
+                          controller: phoneNoController,
                           validator: (email) {
                             if (email == null || email.isEmpty) {
                               return 'Enter your alternate phone no';
@@ -183,7 +191,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                       ),
 
                       Text(
-                        'Adress',
+                        'Address',
                         style: kManRope_500_16_001314,
                       ),
                       SizedBox(
@@ -195,11 +203,11 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                           controller: adressController,
                           validator: (val) {
                             if (val == null || val.isEmpty) {
-                              return 'Enter your Adress';
+                              return 'Enter your Address';
                             }
                           },
                           style: kManRope_500_16_626A6A,
-                          decoration: TextfieldDecoration(label: 'Add Adress')
+                          decoration: TextfieldDecoration(label: 'Add Address')
                               .textFieldEDF6F9Decoration(),
                         ),
                       ),
@@ -227,6 +235,14 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                                 v.hour,
                                 v.minute,
                               ));
+                              time = DateFormat("HH:mm").format(DateTime(
+                                DateTime.now().year,
+                                DateTime.now().month,
+                                DateTime.now().day,
+                                v.hour,
+                                v.minute,
+                              ));
+                              log(time);
                             });
                           }
                         },
@@ -267,6 +283,8 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                               lastDate: DateTime.now().add(Duration(days: 60)));
                           if (v != null) {
                             dateController.text = DateFormat.yMMMEd().format(v);
+                            date = DateFormat("yyyy-MM-dd").format(v);
+                            log(date);
                           }
                         },
                         child: IgnorePointer(
@@ -302,16 +320,20 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                                   phoneNo: phoneNoController.text,
                                   alternateNo: alternateNoController.text,
                                   adress: adressController.text,
-                                  timing: timingController.text,
-                                  date: dateController.text,
+                                  timing: time,
+                                  date: date,
                                 );
-                                resp.then((value) {
-                                  print(value);
-                                  if (value['status'] == 0) {
+                                resp.then((value) async {
+                                  log(value.toString());
+                                  if (value['status'] == false) {
                                     Fluttertoast.showToast(msg: value['error']);
                                   } else {
                                     Fluttertoast.showToast(
                                         msg: 'Details Fill Successful');
+                                    var prefs =
+                                        await SharedPreferences.getInstance();
+                                    prefs.setString(Keys().DocSignUpEmail,
+                                        emailController.text.trim());
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>

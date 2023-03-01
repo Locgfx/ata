@@ -38,4 +38,6 @@ class Keys {
   final String isHappy = 'is_happy';
   final String mentalDiagnosis = 'mental_diagnosis';
   final String lineageProblem = 'lineage_problem';
+  final String requestSent = 'request_sent';
+  final String DocSignUpEmail = 'doc_sign_up_email';
 }

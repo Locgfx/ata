@@ -66,7 +66,7 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                   decoration: CustomDecoration().outline5A72EDDecoration(),
                   child: TextField(
                     decoration: TextfieldDecoration(
-                            label: 'Search for health problem, Psychologist',
+                            label: 'Search for counsellors',
                             hintstyle: kManRope_400_14_626A6A)
                         .whiteColorSearchField(),
                   ),

@@ -4,6 +4,9 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PTabsScreen
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../constants/globals.dart';
 
 class PRequestSentSuccessfulScreen extends StatefulWidget {
   final String name;
@@ -19,14 +22,20 @@ class _PRequestSentSuccessfulScreenState
     extends State<PRequestSentSuccessfulScreen> {
   @override
   void initState() {
+    _setPrefs();
     super.initState();
-    Future.delayed(Duration(seconds: 5), () {
+    /*Future.delayed(Duration(seconds: 5), () {
       setPage();
-    });
+    });*/
     //setPage();
   }
 
-  setPage() {
+  _setPrefs() async {
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setBool(Keys().requestSent, true);
+  }
+
+  _setPage() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => PTabsScreen()));
   }

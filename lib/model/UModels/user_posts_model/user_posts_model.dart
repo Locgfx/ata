@@ -12,12 +12,14 @@ class UserPostModel {
   int? totalLikes;
   int? isLiked;
   int? isSaved;
+  int? postByMe;
   String? totalComments;
 
   UserPostModel(
       {this.id,
       this.caption,
       this.userId,
+      this.postByMe,
       this.dateTime,
       this.postedBy,
       this.status,
@@ -32,6 +34,7 @@ class UserPostModel {
   UserPostModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     postId = json['post_id'];
+    postByMe = json['post_by_me'];
     caption = json['caption'];
     totalLikes = json['total_likes'];
     userId = json['user_id'];
@@ -51,6 +54,7 @@ class UserPostModel {
     data['id'] = this.id;
     data['post_id'] = this.postId;
     data['caption'] = this.caption;
+    data['post_by_me'] = this.postByMe;
     data['total_comments'] = this.totalComments;
     data['total_likes'] = this.totalLikes;
     data['saved_by_me'] = this.isSaved;
