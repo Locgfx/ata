@@ -66,13 +66,13 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                   decoration: CustomDecoration().outline5A72EDDecoration(),
                   child: TextField(
                     decoration: TextfieldDecoration(
-                            label: 'Search for counsellors',
+                            label: 'Search for counselors',
                             hintstyle: kManRope_400_14_626A6A)
                         .whiteColorSearchField(),
                   ),
                 ),
                 SizedBox(height: 40.h),
-                Text('Choose from Top Psychologists',
+                Text('Choose from Top Counselors',
                     style: kManRope_700_16_001314),
                 SizedBox(height: 8.h),
                 Text('Book confirmed appointments',

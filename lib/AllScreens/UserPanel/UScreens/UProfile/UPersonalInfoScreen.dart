@@ -9,6 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_profile_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_profile_update_api.dart';
+import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_update_profile_pic_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -403,6 +404,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
           updaterRelationshipController.text =
               model.relationshipStatus.toString();
           updateOccupationController.text = model.occupation.toString();
+          profilePic = model.photo.toString();
           _setValues();
           _isLoading = false;
         } catch (e) {
@@ -430,6 +432,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
   String relationshipValue = 'Single';
   String occupationValue = 'Student';
 
+  String profilePic = '';
   int _gIndex = 0;
   int _rIndex = 0;
   int _oIndex = 0;
@@ -480,11 +483,14 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                 child: Container(
                                   height: 102.h,
                                   width: 102.w,
-                                  decoration: const BoxDecoration(
-                                      color: Color(0xFF006D77),
-                                      shape: BoxShape.circle),
+                                  // clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: Color(0xFF006D77),
+                                  ),
                                   child: Image.network(
-                                    model.photo.toString(),
+                                    profilePic,
+                                    fit: BoxFit.cover,
                                     errorBuilder: (q, w, e) => Container(
                                       height: 102.h,
                                       width: 102.w,
@@ -690,6 +696,21 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     setState(() {
                                       _pickedImage = File(v.path);
                                     });
+                                    final resp = UserUpdateProfilePic()
+                                        .get(pickedImg: _pickedImage);
+                                    resp.then((value) {
+                                      if (value['status'] == true) {
+                                        setState(() {
+                                          profilePic = value['url'];
+                                          Fluttertoast.showToast(
+                                              msg: "Profile picture updated");
+                                        });
+                                      } else {
+                                        Fluttertoast.showToast(
+                                            msg:
+                                                "Update failed. Please try again.");
+                                      }
+                                    });
                                   }
                                 },
                                 child: Column(
@@ -706,12 +727,26 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                         child: Container(
                                           height: 102.h,
                                           width: 102.w,
-                                          decoration: const BoxDecoration(
-                                              color: Color(0xFF006D77),
-                                              shape: BoxShape.circle),
-                                          child: Image.asset(
-                                              'assets/images/userP.png'),
                                           clipBehavior: Clip.hardEdge,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(100)),
+                                          child: Image.network(
+                                            profilePic,
+                                            fit: BoxFit.cover,
+                                            errorBuilder: (q, w, e) =>
+                                                Container(
+                                              height: 102.h,
+                                              width: 102.w,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          "assets/images/person-pngrepo-com.png"),
+                                                      fit: BoxFit.cover),
+                                                  color: kEDF6F9,
+                                                  shape: BoxShape.circle),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),

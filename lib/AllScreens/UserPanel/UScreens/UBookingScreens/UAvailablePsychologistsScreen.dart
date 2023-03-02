@@ -20,7 +20,7 @@ class PAvailablePsychologistsScreen extends StatelessWidget {
       backgroundColor: kEDF6F9,
       appBar: CustomWhiteAppBar(
         hasThreeDots: false,
-        appBarText: 'Available Psychologists',
+        appBarText: 'Available Counselors',
         imgPath: 'assets/images/iconbackappbar2.png',
       ),
       body: Padding(

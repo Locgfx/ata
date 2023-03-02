@@ -119,6 +119,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                               clipBehavior: Clip.hardEdge,
                               child: Image.network(
                                 model.photo.toString(),
+                                fit: BoxFit.cover,
                                 errorBuilder: (q, w, e) =>
                                     Image.asset('assets/images/userP.png'),
                               ),
@@ -160,9 +161,13 @@ class _UProfileScreenState extends State<UProfileScreen> {
                       GestureDetector(
                         behavior: HitTestBehavior.translucent,
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const UserPersonalInfoScreen()));
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const UserPersonalInfoScreen()))
+                              .then((value) {
+                            _getData();
+                          });
                         },
                         child: SizedBox(
                           height: 48.h,

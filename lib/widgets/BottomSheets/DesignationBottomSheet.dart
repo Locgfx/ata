@@ -11,7 +11,8 @@ class SelectDesignationBottomSheet extends StatefulWidget {
       _SelectDesignationBottomSheet();
 }
 
-class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> {
+class _SelectDesignationBottomSheet
+    extends State<SelectDesignationBottomSheet> {
   int _gIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -52,11 +53,11 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   ),
                   child: Center(
                       child: Text(
-                        'Counselor',
-                        style: _gIndex == 0
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Counselor',
+                    style: _gIndex == 0
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
               SizedBox(
@@ -76,11 +77,11 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   ),
                   child: Center(
                       child: Text(
-                        'Physiatrist',
-                        style: _gIndex == 1
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Physiatrist',
+                    style: _gIndex == 1
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
               SizedBox(
@@ -100,11 +101,11 @@ class _SelectDesignationBottomSheet extends State<SelectDesignationBottomSheet> 
                   ),
                   child: Center(
                       child: Text(
-                        'Psychologist',
-                        style: _gIndex == 2
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Counselor',
+                    style: _gIndex == 2
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
               SizedBox(

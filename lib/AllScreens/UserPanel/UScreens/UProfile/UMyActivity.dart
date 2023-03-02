@@ -188,7 +188,23 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
                                                             .toString(),
                                                         style:
                                                             kManRope_500_16_Black),
-                                                    Text('2 hours ago',
+                                                    Text(
+                                                        DateTime.now()
+                                                                    .difference(DateTime.parse(postModel[
+                                                                            index]
+                                                                        .dateTime
+                                                                        .toString()))
+                                                                    .inMinutes <=
+                                                                59
+                                                            ? "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inMinutes} min ago"
+                                                            : DateTime.now()
+                                                                        .difference(DateTime.parse(postModel[index]
+                                                                            .dateTime
+                                                                            .toString()))
+                                                                        .inHours <=
+                                                                    23
+                                                                ? "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inHours} hour ago"
+                                                                : "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inDays} day ago",
                                                         style:
                                                             kManRope_400_12_626A6A),
                                                     // SizedBox(height: 8.h),

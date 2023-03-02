@@ -201,7 +201,23 @@ class _USavedPostPageState extends State<USavedPostPage> {
                                                               .toString(),
                                                           style:
                                                               kManRope_500_16_Black),
-                                                      Text('2 hours ago',
+                                                      Text(
+                                                          DateTime.now()
+                                                                      .difference(DateTime.parse(savedpostlist[
+                                                                              index]
+                                                                          .dateTime
+                                                                          .toString()))
+                                                                      .inMinutes <=
+                                                                  59
+                                                              ? "${DateTime.now().difference(DateTime.parse(savedpostlist[index].dateTime.toString())).inMinutes} min ago"
+                                                              : DateTime.now()
+                                                                          .difference(DateTime.parse(savedpostlist[index]
+                                                                              .dateTime
+                                                                              .toString()))
+                                                                          .inHours <=
+                                                                      23
+                                                                  ? "${DateTime.now().difference(DateTime.parse(savedpostlist[index].dateTime.toString())).inHours} hour ago"
+                                                                  : "${DateTime.now().difference(DateTime.parse(savedpostlist[index].dateTime.toString())).inDays} day ago",
                                                           style:
                                                               kManRope_400_12_626A6A),
                                                       // SizedBox(height: 8.h),
