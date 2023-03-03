@@ -1,11 +1,20 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
+import '../../constants/decorations.dart';
+import '../../model/UModels/user_posts_model/user_posts_model.dart';
+import '../buttons.dart';
+
 class ReportBottomSheet extends StatefulWidget {
-  const ReportBottomSheet({Key? key}) : super(key: key);
+  final List<UserPostModel> postModel;
+  final int index;
+  const ReportBottomSheet(
+      {Key? key, required this.postModel, required this.index})
+      : super(key: key);
 
   @override
   State<ReportBottomSheet> createState() => _ReportBottomSheetState();
@@ -13,6 +22,17 @@ class ReportBottomSheet extends StatefulWidget {
 
 class _ReportBottomSheetState extends State<ReportBottomSheet> {
   int _gIndex = 0;
+
+  List<String> reportText = [
+    'Spam',
+    'False information',
+    'Harassment or hateful speech',
+    'Adult content',
+    'Violence or physical harm',
+    'Block user',
+    'Other',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -42,7 +62,7 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 0;
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
                   }),
                   child: Container(
                     height: 44.h,
@@ -53,18 +73,18 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     ),
                     child: Center(
                         child: Text(
-                          'Spam',
-                          style: _gIndex == 0
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      reportText[0],
+                      style: _gIndex == 0
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 1;
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
                   }),
                   child: Container(
                     height: 50.h,
@@ -75,18 +95,18 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     ),
                     child: Center(
                         child: Text(
-                          'False information',
-                          style: _gIndex == 1
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      reportText[1],
+                      style: _gIndex == 1
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 2;
-                    Navigator.of(context).pop();
+                    //  Navigator.of(context).pop();
                   }),
                   child: Container(
                     height: 44.h,
@@ -97,18 +117,18 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     ),
                     child: Center(
                         child: Text(
-                          'Harassment or hateful speech',
-                          style: _gIndex == 2
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      reportText[2],
+                      style: _gIndex == 2
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 3;
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
                     // _reportuserbottomsheet();
                   }),
                   child: Container(
@@ -120,18 +140,18 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     ),
                     child: Center(
                         child: Text(
-                          'Adult content',
-                          style: _gIndex == 3
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      reportText[3],
+                      style: _gIndex == 3
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 4;
-                    Navigator.of(context).pop();
+                    //Navigator.of(context).pop();
                     // _reportuserbottomsheet();
                   }),
                   child: Container(
@@ -143,18 +163,18 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     ),
                     child: Center(
                         child: Text(
-                          'Volence or physical harm',
-                          style: _gIndex == 4
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      reportText[4],
+                      style: _gIndex == 4
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 5;
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
                     // _reportuserbottomsheet();
                   }),
                   child: Container(
@@ -166,18 +186,18 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     ),
                     child: Center(
                         child: Text(
-                          'Block user',
-                          style: _gIndex == 5
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      reportText[5],
+                      style: _gIndex == 5
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
                 SizedBox(height: 8.h),
                 GestureDetector(
                   onTap: () => setState(() {
                     _gIndex = 6;
-                    Navigator.of(context).pop();
+                    // Navigator.of(context).pop();
                     // _reportuserbottomsheet();
                   }),
                   child: Container(
@@ -189,11 +209,37 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                     ),
                     child: Center(
                         child: Text(
-                          'Block user',
-                          style: _gIndex == 6
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      reportText[6],
+                      style: _gIndex == 6
+                          ? kManRope_500_16_white
+                          : kManRope_500_16_626A6A,
+                    )),
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 24),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: MainButton(
+                            onPressed: () {
+                              log(reportText[_gIndex]);
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 0.w, right: 0.w),
+                              child: Text(
+                                "Report",
+                                style: kManRope_400_16_white,
+                              ),
+                            ),
+                            color: k006D77,
+                            shape:
+                                CustomDecoration().smallButton10Decoration()),
+                      ),
+                    ],
                   ),
                 ),
               ],

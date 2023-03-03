@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +15,7 @@ class UserPostApi {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
+    log(scroll);
     var request =
         http.Request('GET', Uri.parse('${baseUrl}feed.php?start=$scroll'));
     request.body = '''''';

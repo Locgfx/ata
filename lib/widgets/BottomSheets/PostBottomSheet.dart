@@ -13,13 +13,13 @@ class PostBottomSheet extends StatefulWidget {
 
 class _PostBottomSheet extends State<PostBottomSheet> {
   void _reportbottomsheet() {
-    showModalBottomSheet(
+    /*showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) => const ReportBottomSheet());
+        builder: (context) => ReportBottomSheet());*/
   }
 
   int _gIndex = 0;
@@ -62,11 +62,11 @@ class _PostBottomSheet extends State<PostBottomSheet> {
                   ),
                   child: Center(
                       child: Text(
-                        'Share',
-                        style: _gIndex == 0
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Share',
+                    style: _gIndex == 0
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
               SizedBox(height: 8.h),
@@ -84,11 +84,11 @@ class _PostBottomSheet extends State<PostBottomSheet> {
                   ),
                   child: Center(
                       child: Text(
-                        'Save',
-                        style: _gIndex == 1
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Save',
+                    style: _gIndex == 1
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
               SizedBox(height: 8.h),
@@ -106,11 +106,11 @@ class _PostBottomSheet extends State<PostBottomSheet> {
                   ),
                   child: Center(
                       child: Text(
-                        'Hide',
-                        style: _gIndex == 2
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Hide',
+                    style: _gIndex == 2
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
               SizedBox(height: 8.h),
@@ -129,11 +129,11 @@ class _PostBottomSheet extends State<PostBottomSheet> {
                   ),
                   child: Center(
                       child: Text(
-                        'Report',
-                        style: _gIndex == 3
-                            ? kManRope_500_16_white
-                            : kManRope_500_16_626A6A,
-                      )),
+                    'Report',
+                    style: _gIndex == 3
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                  )),
                 ),
               ),
             ],

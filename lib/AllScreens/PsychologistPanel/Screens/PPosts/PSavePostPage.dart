@@ -13,16 +13,16 @@ import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:readmore/readmore.dart';
 import '../../../../constants/colors.dart';
 
-
 class PSavedPostPage extends StatefulWidget {
   final bool isCommentsViewable;
-  const PSavedPostPage({Key? key, required this.isCommentsViewable}) : super(key: key);
+  const PSavedPostPage({Key? key, required this.isCommentsViewable})
+      : super(key: key);
 
   @override
-  State<PSavedPostPage> createState() => _PSavedPostPageState();}
+  State<PSavedPostPage> createState() => _PSavedPostPageState();
+}
 
 class _PSavedPostPageState extends State<PSavedPostPage> {
-
   @override
   void initState() {
     getData();
@@ -40,7 +40,7 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
 
   getData() {
     isLoading = true;
-    final resp = UserSavedPostsApi().get();
+    final resp = UserSavedPostsApi().get(scroll: 0.toString());
     resp.then((value) {
       print(value);
       setState(() {
@@ -61,6 +61,7 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
         context: context,
         builder: (context) => const PostBottomSheet());
   }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -70,253 +71,294 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
         children: [
           Scaffold(
             backgroundColor: kEDF6F9,
-            body: isLoading ? Padding(
-              padding:  EdgeInsets.only(bottom: 159.0),
-              child: LoadingWidget(),) :Padding(
-              padding: EdgeInsets.only(left: 24.w, right: 24.h, bottom: 159),
-              child: ListView.separated(
-                itemCount:savedpostlist.length,
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemBuilder: (ctx, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(top: index == 0 ? 40 : 0),
-                    child: Container(
-                      width: 1.sw,
-                      decoration: BoxDecoration(
-                        color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
+            body: isLoading
+                ? Padding(
+                    padding: EdgeInsets.only(bottom: 159.0),
+                    child: LoadingWidget(),
+                  )
+                : Padding(
+                    padding:
+                        EdgeInsets.only(left: 24.w, right: 24.h, bottom: 159),
+                    child: ListView.separated(
+                      itemCount: savedpostlist.length,
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      itemBuilder: (ctx, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: index == 0 ? 40 : 0),
+                          child: Container(
                             width: 1.sw,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 SizedBox(
-                                  height: 45.h,
-                                  // width: 135.w,
+                                  width: 1.sw,
                                   child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Container(
+                                      SizedBox(
                                         height: 45.h,
-                                        width: 45.w,
-                                        decoration: const BoxDecoration(
-                                            color: Colors.white, shape: BoxShape.circle),
-                                        clipBehavior: Clip.hardEdge,
-                                        child: CachedNetworkImage(
-                                          imageUrl: savedpostlist[index].photo.toString(),fit: BoxFit.cover,
-                                          placeholder: (context, url) =>  Center(
-                                            child: SpinKitThreeBounce(
-                                              color: k006D77,
-                                              size: 10,
+                                        // width: 135.w,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              height: 45.h,
+                                              width: 45.w,
+                                              decoration: const BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle),
+                                              clipBehavior: Clip.hardEdge,
+                                              child: CachedNetworkImage(
+                                                imageUrl: savedpostlist[index]
+                                                    .photo
+                                                    .toString(),
+                                                fit: BoxFit.cover,
+                                                placeholder: (context, url) =>
+                                                    Center(
+                                                  child: SpinKitThreeBounce(
+                                                    color: k006D77,
+                                                    size: 10,
+                                                  ),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.error),
+                                              ),
                                             ),
-                                          ),
-                                          errorWidget: (context, url, error) =>  Icon(Icons.error),
+                                            SizedBox(width: 8.w),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                    savedpostlist[index]
+                                                        .name
+                                                        .toString(),
+                                                    style:
+                                                        kManRope_500_16_Black),
+                                                // SizedBox(height: 1.h),
+                                                Text('2 hours ago',
+                                                    style:
+                                                        kManRope_400_12_626A6A),
+                                                // SizedBox(height: 8.h),
+                                              ],
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                      SizedBox(width: 8.w),
-                                      Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                      GestureDetector(
+                                        onTap: () {
+                                          _postbottomsheet();
+                                        },
+                                        child: Container(
+                                          color: Colors.transparent,
+                                          child: Image.asset(
+                                            "assets/images/Frame 8565.png",
+                                            height: 48.h,
+                                            width: 48.w,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(height: 17.h),
+                                isLoading
+                                    ? SizedBox()
+                                    : Container(
+                                        height: 285.h,
+                                        width: 380.w,
+                                        clipBehavior: Clip.hardEdge,
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          color: Colors.white,
+                                        ),
+                                        child: PageView.builder(
+                                            itemCount: savedpostlist[index]
+                                                .gallary!
+                                                .length,
+                                            controller: page,
+                                            scrollDirection: Axis.horizontal,
+                                            pageSnapping: true,
+                                            itemBuilder:
+                                                (BuildContext context, ind) {
+                                              return CachedNetworkImage(
+                                                imageUrl: savedpostlist[index]
+                                                    .gallary![ind]
+                                                    .toString(),
+                                                fit: BoxFit.cover,
+                                                placeholder: (context, url) =>
+                                                    Center(
+                                                  child: SpinKitThreeBounce(
+                                                    color: k006D77,
+                                                    size: 30,
+                                                  ),
+                                                ),
+                                                errorWidget:
+                                                    (context, url, error) =>
+                                                        Icon(Icons.error),
+                                              );
+                                            })),
+                                SizedBox(
+                                  height: 8.h,
+                                ),
+                                SizedBox(
+                                  height: 48.h,
+                                  width: 1.sw,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
                                         children: [
-                                          Text(savedpostlist[index].name.toString(), style: kManRope_500_16_Black),
-                                          // SizedBox(height: 1.h),
-                                          Text('2 hours ago', style: kManRope_400_12_626A6A),
-                                          // SizedBox(height: 8.h),
+                                          SizedBox(
+                                            height: 48.h,
+                                            width: 73.w,
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 12),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
+                                                    'assets/images/iconlike24.png',
+                                                    height: 24.h,
+                                                    width: 24.w,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 12.w),
+                                                    child: Text('375',
+                                                        style:
+                                                            kManRope_400_14_626A6A),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 16.w,
+                                          ),
+                                          GestureDetector(
+                                            onTap: () {
+                                              if (widget.isCommentsViewable) {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        const UCommentPage(),
+                                                  ),
+                                                );
+                                              }
+                                            },
+                                            child: Container(
+                                              height: 48.h,
+                                              width: 75.w,
+                                              color: Colors.transparent,
+                                              child: Row(
+                                                children: [
+                                                  GestureDetector(
+                                                    onTap: () {
+                                                      if (widget
+                                                          .isCommentsViewable) {
+                                                        Navigator.of(context)
+                                                            .push(
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                const UCommentPage(),
+                                                          ),
+                                                        );
+                                                      }
+                                                    },
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 12),
+                                                      child: SizedBox(
+                                                        height: 24.h,
+                                                        width: 24.w,
+                                                        // color: Colors.red,
+
+                                                        child: Image.asset(
+                                                          'assets/images/iconcomment24.png',
+                                                          height: 24.h,
+                                                          width: 24.w,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  SizedBox(
+                                                    width: 12.w,
+                                                  ),
+                                                  Text('20',
+                                                      style:
+                                                          kManRope_400_14_626A6A),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        children: [
+                                          SizedBox(
+                                            height: 48,
+                                            width: 48,
+                                            // color: Colors.red,
+                                            child: Image.asset(
+                                              'assets/images/iconbookmark48.png',
+                                              height: 48,
+                                              width: 48,
+                                            ),
+                                          ),
+                                          // SizedBox(
+                                          //   width: 8.w,
+                                          // ),
+                                          SizedBox(
+                                            height: 48,
+                                            width: 48,
+                                            // color: Colors.red,
+                                            child: Image.asset(
+                                              'assets/images/iconshare48.png',
+                                              height: 44,
+                                              width: 44,
+                                            ),
+                                          ),
                                         ],
                                       ),
                                     ],
                                   ),
                                 ),
-                                GestureDetector(
-
-                                  onTap: () {
-                                    _postbottomsheet();
-                                  },
-                                  child: Container(
-                                    color: Colors.transparent,
-                                    child: Image.asset(
-                                      "assets/images/Frame 8565.png",
-                                      height: 48.h,
-                                      width: 48.w,
-                                    ),
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: ReadMoreText(
+                                    savedpostlist[index].caption.toString(),
+                                    style: kManRope_400_14_626A6A,
+                                    trimLines: 1,
+                                    colorClickableText: k006D77,
+                                    trimMode: TrimMode.Line,
+                                    trimCollapsedText: 'Show more',
+                                    trimExpandedText: 'Show less',
+                                    moreStyle: kManRope_600_14_006D77,
+                                    lessStyle: kManRope_600_14_006D77,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                          SizedBox(height: 17.h),
-                          isLoading ? SizedBox(
-                          ): Container(
-                              height: 285.h,
-                              width: 380.w,
-                              clipBehavior: Clip.hardEdge,
-                              decoration: const BoxDecoration(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                                color: Colors.white,
-                              ),
-                              child: PageView.builder(
-                                  itemCount: savedpostlist[index].gallary!.length,
-                                  controller: page,
-                                  scrollDirection: Axis.horizontal,
-                                  pageSnapping: true,
-                                  itemBuilder: (BuildContext context,ind) {
-                                    return CachedNetworkImage(
-                                      imageUrl: savedpostlist[index].gallary![ind].toString(),fit: BoxFit.cover,
-                                      placeholder: (context, url) =>  Center(
-                                        child: SpinKitThreeBounce(
-                                          color: k006D77,
-                                          size: 30,
-                                        ),
-                                      ),
-                                      errorWidget: (context, url, error) =>  Icon(Icons.error),
-                                    );
-                                  }
-                              )
-                          ),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          SizedBox(
-                            height: 48.h,
-                            width: 1.sw,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      height: 48.h,
-                                      width: 73.w,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 12),
-                                        child: Row(
-                                          children: [
-                                            Image.asset(
-                                              'assets/images/iconlike24.png',
-                                              height: 24.h,
-                                              width: 24.w,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(left: 12.w),
-                                              child: Text('375', style: kManRope_400_14_626A6A),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 16.w,
-                                    ),
-                                    GestureDetector(
-                                      onTap: () {
-                                        if (widget.isCommentsViewable) {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) => const UCommentPage(),
-                                            ),
-                                          );
-                                        }
-                                      },
-                                      child: Container(
-                                        height: 48.h,
-                                        width: 75.w,
-                                        color: Colors.transparent,
-                                        child: Row(
-                                          children: [
-                                            GestureDetector(
-                                              onTap: () {
-                                                if (widget.isCommentsViewable) {
-                                                  Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                      const UCommentPage(),
-                                                    ),
-                                                  );
-                                                }
-                                              },
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(left: 12),
-                                                child: SizedBox(
-                                                  height: 24.h,
-                                                  width: 24.w,
-                                                  // color: Colors.red,
-
-                                                  child: Image.asset(
-                                                    'assets/images/iconcomment24.png',
-                                                    height: 24.h,
-                                                    width: 24.w,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              width: 12.w,
-                                            ),
-                                            Text('20', style: kManRope_400_14_626A6A),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    SizedBox(
-                                      height: 48,
-                                      width: 48,
-                                      // color: Colors.red,
-                                      child: Image.asset(
-                                        'assets/images/iconbookmark48.png',
-                                        height: 48,
-                                        width: 48,
-                                      ),
-                                    ),
-                                    // SizedBox(
-                                    //   width: 8.w,
-                                    // ),
-                                    SizedBox(
-                                      height: 48,
-                                      width: 48,
-                                      // color: Colors.red,
-                                      child: Image.asset(
-                                        'assets/images/iconshare48.png',
-                                        height: 44,
-                                        width: 44,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: ReadMoreText(savedpostlist[index].caption.toString(),
-                              style:kManRope_400_14_626A6A ,
-                              trimLines: 1,
-                              colorClickableText: k006D77,
-                              trimMode: TrimMode.Line,
-                              trimCollapsedText: 'Show more',
-                              trimExpandedText: 'Show less',
-                              moreStyle: kManRope_600_14_006D77,
-                              lessStyle: kManRope_600_14_006D77,
-                            ),
-                          ),
-                        ],
-                      ),
+                        );
+                      },
+                      separatorBuilder: (ctx, index) {
+                        return SizedBox(height: 40.h);
+                      },
                     ),
-                  );
-                },
-                separatorBuilder: (ctx, index) {
-                  return SizedBox(height: 40.h);
-                },
-
-              ),
-            ),
+                  ),
           ),
           Positioned(
             bottom: 180,

@@ -5,14 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UPostWidget/UPostInteractions.dart';
+import 'package:greymatter/Apis/UserAPis/user_posts_api/delete_post_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_posts_api.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
 import 'package:greymatter/widgets/BottomSheets/PostBottomSheet.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:intl/intl.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:readmore/readmore.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -51,13 +54,17 @@ class _UPostPageState extends State<UPostPage> {
   bool isLoading2 = false;
 
   int scroll = 0;
-  Future<String> getData() async {
+
+  Future<String> getReloadedData() async {
+    scroll++;
     isLoading = true;
-    final resp = UserPostApi().get(scroll: 0.toString());
+    final resp = UserPostApi().get(scroll: scroll.toString());
     resp.then((value) {
       log(value.toString());
       if (mounted) {
-        postModel.clear();
+        // postModel.clear();
+        _postCount = value.length;
+        log(_postCount.toString());
         setState(() {
           for (var v in value) {
             postModel.add(UserPostModel.fromJson(v));
@@ -76,6 +83,34 @@ class _UPostPageState extends State<UPostPage> {
     return "Success";
   }
 
+  Future<String> getData() async {
+    isLoading = true;
+    final resp = UserPostApi().get(scroll: 0.toString());
+    resp.then((value) {
+      log(value.toString());
+      if (mounted) {
+        postModel.clear();
+        _postCount = value.length;
+        log(_postCount.toString());
+        setState(() {
+          for (var v in value) {
+            postModel.add(UserPostModel.fromJson(v));
+          }
+          //log(postModel.toString());
+          isLoading = false;
+        });
+      } else {
+        if (mounted) {
+          setState(() {
+            isLoading = false;
+          });
+        }
+      }
+    });
+    return "Success";
+  }
+
+  int _postCount = 0;
   @override
   void dispose() {
     super.dispose();
@@ -125,182 +160,212 @@ class _UPostPageState extends State<UPostPage> {
                   : Padding(
                       padding: EdgeInsets.only(
                           left: 24.w, right: 24.h, bottom: 200.h),
-                      child: ListView.separated(
-                        itemCount: postModel.length,
-                        scrollDirection: Axis.vertical,
-                        shrinkWrap: true,
-                        itemBuilder: (ctx, index) {
-                          return Padding(
-                            padding: EdgeInsets.only(top: index == 0 ? 40 : 0),
-                            child: Container(
-                              width: 1.sw,
-                              decoration: BoxDecoration(
-                                color: Colors.transparent,
-                                borderRadius: BorderRadius.circular(24),
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SizedBox(
-                                    width: 1.sw,
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          height: 45.h,
-                                          // width: 135.w,
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 45.h,
-                                                width: 45.w,
-                                                decoration: const BoxDecoration(
-                                                    color: Colors.white,
-                                                    shape: BoxShape.circle),
-                                                clipBehavior: Clip.hardEdge,
-                                                child: CachedNetworkImage(
-                                                  imageUrl: postModel[index]
-                                                      .photo
-                                                      .toString(),
-                                                  fit: BoxFit.cover,
-                                                  placeholder: (context, url) =>
-                                                      Center(
-                                                    child: SpinKitThreeBounce(
-                                                      color: k006D77,
-                                                      size: 10,
+                      child: LazyLoadScrollView(
+                        onEndOfPage: () {
+                          if (_postCount >= 10) {
+                            getReloadedData();
+                          }
+                        },
+                        isLoading: isLoading,
+                        child: ListView.separated(
+                          itemCount: postModel.length + 1,
+                          scrollDirection: Axis.vertical,
+                          shrinkWrap: true,
+                          itemBuilder: (ctx, index) {
+                            if (index < postModel.length) {
+                              return Padding(
+                                padding:
+                                    EdgeInsets.only(top: index == 0 ? 40 : 0),
+                                child: Container(
+                                  width: 1.sw,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    borderRadius: BorderRadius.circular(24),
+                                  ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(
+                                        width: 1.sw,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            SizedBox(
+                                              height: 45.h,
+                                              // width: 135.w,
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    height: 45.h,
+                                                    width: 45.w,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                            color: Colors.white,
+                                                            shape: BoxShape
+                                                                .circle),
+                                                    clipBehavior: Clip.hardEdge,
+                                                    child: CachedNetworkImage(
+                                                      imageUrl: postModel[index]
+                                                          .photo
+                                                          .toString(),
+                                                      fit: BoxFit.cover,
+                                                      placeholder:
+                                                          (context, url) =>
+                                                              Center(
+                                                        child:
+                                                            SpinKitThreeBounce(
+                                                          color: k006D77,
+                                                          size: 10,
+                                                        ),
+                                                      ),
+                                                      errorWidget: (context,
+                                                              url, error) =>
+                                                          Icon(Icons.error),
                                                     ),
                                                   ),
-                                                  errorWidget:
-                                                      (context, url, error) =>
-                                                          Icon(Icons.error),
-                                                ),
-                                              ),
-                                              SizedBox(width: 8.w),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                      postModel[index]
-                                                          .name
-                                                          .toString(),
-                                                      style:
-                                                          kManRope_500_16_Black),
-                                                  Text(
-                                                      DateTime.now()
-                                                                  .difference(DateTime.parse(postModel[
-                                                                          index]
-                                                                      .dateTime
-                                                                      .toString()))
-                                                                  .inMinutes <=
-                                                              59
-                                                          ? "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inMinutes} min ago"
-                                                          : DateTime.now()
+                                                  SizedBox(width: 8.w),
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                          postModel[index]
+                                                              .name
+                                                              .toString(),
+                                                          style:
+                                                              kManRope_500_16_Black),
+                                                      Text(
+                                                          DateTime.now()
                                                                       .difference(DateTime.parse(postModel[
                                                                               index]
                                                                           .dateTime
                                                                           .toString()))
-                                                                      .inHours <=
-                                                                  23
-                                                              ? "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inHours} hour ago"
-                                                              : "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inDays} day ago",
-                                                      style:
-                                                          kManRope_400_12_626A6A),
-                                                  // SizedBox(height: 8.h),
+                                                                      .inMinutes <=
+                                                                  59
+                                                              ? "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inMinutes} min ago"
+                                                              : DateTime.now()
+                                                                          .difference(DateTime.parse(postModel[index]
+                                                                              .dateTime
+                                                                              .toString()))
+                                                                          .inHours <=
+                                                                      23
+                                                                  ? "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inHours} hour ago"
+                                                                  : "${DateTime.now().difference(DateTime.parse(postModel[index].dateTime.toString())).inDays} day ago",
+                                                          style:
+                                                              kManRope_400_12_626A6A),
+                                                      // SizedBox(height: 8.h),
+                                                    ],
+                                                  ),
                                                 ],
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            _postbottomsheet(index);
-                                          },
-                                          child: Container(
-                                            color: Colors.transparent,
-                                            child: Image.asset(
-                                              "assets/images/Frame 8565.png",
-                                              height: 48.h,
-                                              width: 48.w,
                                             ),
-                                          ),
+                                            GestureDetector(
+                                              onTap: () {
+                                                _postbottomsheet(index);
+                                              },
+                                              child: Container(
+                                                color: Colors.transparent,
+                                                child: Image.asset(
+                                                  "assets/images/Frame 8565.png",
+                                                  height: 48.h,
+                                                  width: 48.w,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(height: 17.h),
-                                  isLoading
-                                      ? SizedBox()
-                                      : Container(
-                                          height: 285.h,
-                                          width: 380.w,
-                                          clipBehavior: Clip.hardEdge,
-                                          decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10)),
-                                            color: Colors.white,
-                                          ),
-                                          child: PageView.builder(
-                                              itemCount: postModel[index]
-                                                  .gallary!
-                                                  .length,
-                                              controller: page,
-                                              scrollDirection: Axis.horizontal,
-                                              pageSnapping: true,
-                                              itemBuilder:
-                                                  (BuildContext context, ind) {
-                                                return CachedNetworkImage(
-                                                  imageUrl: postModel[index]
-                                                      .gallary![ind]
-                                                      .toString(),
-                                                  fit: BoxFit.cover,
-                                                  placeholder: (context, url) =>
-                                                      Center(
-                                                    child: SpinKitThreeBounce(
-                                                      color: k006D77,
-                                                      size: 30,
-                                                    ),
-                                                  ),
-                                                  errorWidget:
-                                                      (context, url, error) =>
+                                      ),
+                                      SizedBox(height: 17.h),
+                                      isLoading
+                                          ? SizedBox()
+                                          : Container(
+                                              height: 285.h,
+                                              width: 380.w,
+                                              clipBehavior: Clip.hardEdge,
+                                              decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                color: Colors.white,
+                                              ),
+                                              child: PageView.builder(
+                                                  itemCount: postModel[index]
+                                                      .gallary!
+                                                      .length,
+                                                  controller: page,
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  pageSnapping: true,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          ind) {
+                                                    return CachedNetworkImage(
+                                                      imageUrl: postModel[index]
+                                                          .gallary![ind]
+                                                          .toString(),
+                                                      fit: BoxFit.cover,
+                                                      placeholder:
+                                                          (context, url) =>
+                                                              Center(
+                                                        child:
+                                                            SpinKitThreeBounce(
+                                                          color: k006D77,
+                                                          size: 30,
+                                                        ),
+                                                      ),
+                                                      errorWidget: (context,
+                                                              url, error) =>
                                                           Icon(Icons.error),
-                                                );
-                                              })),
-                                  SizedBox(
-                                    height: 8.h,
+                                                    );
+                                                  })),
+                                      SizedBox(
+                                        height: 8.h,
+                                      ),
+                                      UPostInteractions(
+                                        savedPost: "no",
+                                        isCommentsViewable:
+                                            widget.isCommentsViewable,
+                                        modelList: postModel,
+                                        index: index,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: ReadMoreText(
+                                          postModel[index].caption.toString(),
+                                          style: kManRope_400_14_626A6A,
+                                          trimLines: 1,
+                                          colorClickableText: k006D77,
+                                          trimMode: TrimMode.Line,
+                                          trimCollapsedText: 'Show more',
+                                          trimExpandedText: 'Show less',
+                                          moreStyle: kManRope_600_14_006D77,
+                                          lessStyle: kManRope_600_14_006D77,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  UPostInteractions(
-                                    savedPost: "no",
-                                    isCommentsViewable:
-                                        widget.isCommentsViewable,
-                                    modelList: postModel,
-                                    index: index,
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: ReadMoreText(
-                                      postModel[index].caption.toString(),
-                                      style: kManRope_400_14_626A6A,
-                                      trimLines: 1,
-                                      colorClickableText: k006D77,
-                                      trimMode: TrimMode.Line,
-                                      trimCollapsedText: 'Show more',
-                                      trimExpandedText: 'Show less',
-                                      moreStyle: kManRope_600_14_006D77,
-                                      lessStyle: kManRope_600_14_006D77,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (ctx, index) {
-                          return SizedBox(height: 40.h);
-                        },
+                                ),
+                              );
+                            } else if (_postCount >= 10 && isLoading) {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            } else if (_postCount < 10) {
+                              return SizedBox.shrink();
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          },
+                          separatorBuilder: (ctx, index) {
+                            return SizedBox(height: 40.h);
+                          },
+                        ),
                       ),
                     ),
             ),
@@ -357,7 +422,7 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) => const ReportBottomSheet());
+        builder: (context) => ReportBottomSheet(postModel: widget.postModel, index: widget.index,));
   }
 
   @override
@@ -459,44 +524,86 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
                 ),
               ),
               SizedBox(height: 8.h),
-              GestureDetector(
-                onTap: () => setState(() {
-                  Navigator.of(context).pop();
-                }),
-                child: Container(
-                  height: 44.h,
-                  width: 80.w,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    color: Colors.transparent,
-                  ),
-                  child: Center(
-                      child: Text(
-                    'Hide',
-                    style: kManRope_500_16_626A6A,
-                  )),
-                ),
-              ),
-              SizedBox(height: 8.h),
-              GestureDetector(
-                onTap: () => setState(() {
-                  Navigator.of(context).pop();
-                  _reportbottomsheet();
-                }),
-                child: Container(
-                  height: 44.h,
-                  width: 80.w,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    color: Colors.transparent,
-                  ),
-                  child: Center(
-                      child: Text(
-                    'Report',
-                    style: kManRope_500_16_626A6A,
-                  )),
-                ),
-              ),
+              widget.postModel[widget.index].postByMe.toString() == "0"
+                  ? Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () => setState(() {
+                            Navigator.of(context).pop();
+                          }),
+                          child: Container(
+                            height: 44.h,
+                            width: 80.w,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(5)),
+                              color: Colors.transparent,
+                            ),
+                            child: Center(
+                                child: Text(
+                              'Hide',
+                              style: kManRope_500_16_626A6A,
+                            )),
+                          ),
+                        ),
+                        SizedBox(height: 8.h),
+                        GestureDetector(
+                          onTap: () => setState(() {
+                            Navigator.of(context).pop();
+                            _reportbottomsheet();
+                          }),
+                          child: Container(
+                            height: 44.h,
+                            width: 80.w,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(5)),
+                              color: Colors.transparent,
+                            ),
+                            child: Center(
+                                child: Text(
+                              'Report',
+                              style: kManRope_500_16_626A6A,
+                            )),
+                          ),
+                        ),
+                      ],
+                    )
+                  : GestureDetector(
+                      onTap: () {
+                        final resp = DeletePostApi().get(
+                            postId: widget.savedPost == "yes"
+                                ? widget.postModel[widget.index].postId
+                                    .toString()
+                                : widget.postModel[widget.index].id.toString());
+                        resp.then((value) {
+                          if (value['status'] == true) {
+                            Navigator.of(context).pop();
+                            widget.onPop();
+                            Fluttertoast.showToast(
+                                msg: "Post deleted successfully.");
+                          } else {
+                            Navigator.of(context).pop();
+                            Fluttertoast.showToast(
+                                msg: "Something went wrong. Please try again.");
+                          }
+                        });
+                      },
+                      child: Container(
+                        height: 44.h,
+                        width: 80.w,
+                        decoration: BoxDecoration(
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(5)),
+                          color: Colors.transparent,
+                        ),
+                        child: Center(
+                            child: Text(
+                          'Delete',
+                          style: kManRope_500_16_626A6A,
+                        )),
+                      ),
+                    ),
             ],
           ),
           SizedBox(
