@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/Apis/UserAPis/user_posts_api/report_post_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
@@ -12,8 +14,12 @@ import '../buttons.dart';
 class ReportBottomSheet extends StatefulWidget {
   final List<UserPostModel> postModel;
   final int index;
+  final String savedPost;
   const ReportBottomSheet(
-      {Key? key, required this.postModel, required this.index})
+      {Key? key,
+      required this.postModel,
+      required this.index,
+      required this.savedPost})
       : super(key: key);
 
   @override
@@ -226,6 +232,29 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                       Expanded(
                         child: MainButton(
                             onPressed: () {
+                              final resp = ReportPostApi().get(
+                                  postType: widget
+                                      .postModel[widget.index].postedBy
+                                      .toString(),
+                                  reportText: reportText[_gIndex],
+                                  postId: widget.savedPost == "yes"
+                                      ? int.parse(widget
+                                          .postModel[widget.index].postId
+                                          .toString())
+                                      : int.parse(widget
+                                          .postModel[widget.index].id
+                                          .toString()));
+                              resp.then((value) {
+                                if (value['status'] == true) {
+                                  Navigator.of(context).pop();
+                                  Fluttertoast.showToast(
+                                      msg: "Post reported successfully.");
+                                } else {
+                                  Navigator.of(context).pop();
+                                  Fluttertoast.showToast(
+                                      msg: "Report failed. Please try again");
+                                }
+                              });
                               log(reportText[_gIndex]);
                             },
                             child: Padding(

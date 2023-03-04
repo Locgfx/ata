@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/ULoginScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAgreementscreen.dart';
@@ -11,6 +12,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UHelpandsuppor
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UMyActivity.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UOrderhistory.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPersonalInfoScreen.dart';
+import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_logout_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
@@ -455,15 +457,24 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
                     Expanded(
                       child: GestureDetector(
                         onTap: () async {
-                          var prefs = await SharedPreferences.getInstance();
-                          prefs.setBool(Keys().loginDone, false);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              //builder: (_) => OnBoardingScreen(),
-                              builder: (_) => ULoginScreen(showBack: false),
-                            ),
-                          );
+                          final resp = UserLogoutApi().get();
+                          resp.then((value) async {
+                            if (value['status'] == true) {
+                              var prefs = await SharedPreferences.getInstance();
+                              prefs.setBool(Keys().loginDone, false);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  //builder: (_) => OnBoardingScreen(),
+                                  builder: (_) => ULoginScreen(showBack: false),
+                                ),
+                              );
+                            } else {
+                              Navigator.of(context).pop();
+                              Fluttertoast.showToast(
+                                  msg: "Logout failed! Please try again.");
+                            }
+                          });
                         },
                         child: Container(
                           height: 56.h,

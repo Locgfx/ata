@@ -14,6 +14,8 @@ import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.da
 import 'package:greymatter/widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../constants/globals.dart';
+
 class PLoginScreen extends StatefulWidget {
   PLoginScreen({Key? key}) : super(key: key);
 
@@ -256,6 +258,11 @@ class _PLoginScreenState extends State<PLoginScreen> {
                                         'cookies', value['session_id']);
                                     //print(value['session_id']);
                                     //print(prefs.getString(Keys().cookie));
+                                    prefs.setBool(Keys().loginDone, true);
+                                    prefs.setString(
+                                        Keys().userName, value['name']);
+                                    prefs.setString(
+                                        Keys().userImage, value['image']);
                                     Fluttertoast.showToast(
                                         msg: 'Login Successful');
                                     Navigator.of(context).push(

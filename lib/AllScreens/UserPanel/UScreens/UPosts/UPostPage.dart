@@ -9,6 +9,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UAllcomments.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UPostWidget/UPostInteractions.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/delete_post_api.dart';
+import 'package:greymatter/Apis/UserAPis/user_posts_api/hide_post_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_posts_api.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
@@ -125,11 +126,17 @@ class _UPostPageState extends State<UPostPage> {
         context: context,
         builder: (context) => MenuBottomSheet(
               savedPost: "no",
-              onPop: () {
-                setState(() {
-                  isLoading = true;
-                });
-                getData();
+              onPop: (val) {
+                if (val == "Hide") {
+                  setState(() {
+                    postModel.removeAt(index);
+                  });
+                } else {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  getData();
+                }
               },
               postModel: postModel,
               index: index,
@@ -400,7 +407,7 @@ class _UPostPageState extends State<UPostPage> {
 class MenuBottomSheet extends StatefulWidget {
   final List<UserPostModel> postModel;
   final int index;
-  final Function onPop;
+  final Function(String) onPop;
   final String savedPost;
   const MenuBottomSheet(
       {Key? key,
@@ -422,7 +429,11 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) => ReportBottomSheet(postModel: widget.postModel, index: widget.index,));
+        builder: (context) => ReportBottomSheet(
+              postModel: widget.postModel,
+              index: widget.index,
+              savedPost: widget.savedPost,
+            ));
   }
 
   @override
@@ -498,12 +509,12 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
                           //isSaved = 1;
                           widget.postModel[widget.index].isSaved = 1;
                           Navigator.of(context).pop();
-                          widget.onPop();
+                          widget.onPop("Save");
                         } else {
                           //isSaved = 0;
                           widget.postModel[widget.index].isSaved = 0;
                           Navigator.of(context).pop();
-                          widget.onPop();
+                          widget.onPop("Save");
                         }
                       }
                     });
@@ -529,7 +540,26 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
                       children: [
                         GestureDetector(
                           onTap: () => setState(() {
-                            Navigator.of(context).pop();
+                            final resp = HidePostApi().get(
+                                postId: widget.savedPost == "yes"
+                                    ? widget.postModel[widget.index].postId
+                                        .toString()
+                                    : widget.postModel[widget.index].id
+                                        .toString(),
+                                postType: widget
+                                    .postModel[widget.index].postedBy
+                                    .toString());
+                            resp.then((value) {
+                              if (value['status'] == true) {
+                                Navigator.of(context).pop();
+                                widget.onPop("Hide");
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg:
+                                        "Something went wrong. Please try again.");
+                                Navigator.of(context).pop();
+                              }
+                            });
                           }),
                           child: Container(
                             height: 44.h,
@@ -579,7 +609,7 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
                         resp.then((value) {
                           if (value['status'] == true) {
                             Navigator.of(context).pop();
-                            widget.onPop();
+                            widget.onPop("Delete");
                             Fluttertoast.showToast(
                                 msg: "Post deleted successfully.");
                           } else {

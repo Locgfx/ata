@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PAgreementScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PHealthAndSupportScreen.dart';
@@ -13,15 +14,17 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PPerson
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PSlotsAvailablityScreen.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/global/Sharedprefs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../../Apis/UserAPis/user_profile_apis/user_logout_api.dart';
 import '../../../../constants/colors.dart';
+import '../../../../constants/globals.dart';
 import '../../../UserPanel/UScreens/UProfile/UMyActivity.dart';
 
 class PProfileScreen extends StatefulWidget {
   const PProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<PProfileScreen> createState() =>
-      _PProfileScreenState();
+  State<PProfileScreen> createState() => _PProfileScreenState();
 }
 
 class _PProfileScreenState extends State<PProfileScreen> {
@@ -48,9 +51,9 @@ class _PProfileScreenState extends State<PProfileScreen> {
         automaticallyImplyLeading: false,
         systemOverlayStyle: Platform.isAndroid
             ? SystemUiOverlayStyle(
-          statusBarColor: Colors.white,
-          statusBarIconBrightness: Brightness.dark,
-        )
+                statusBarColor: Colors.white,
+                statusBarIconBrightness: Brightness.dark,
+              )
             : SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
@@ -109,8 +112,7 @@ class _PProfileScreenState extends State<PProfileScreen> {
                   behavior: HitTestBehavior.translucent,
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                        const PPersonalInfoScreen()));
+                        builder: (context) => const PPersonalInfoScreen()));
                   },
                   child: SizedBox(
                     height: 48.h,
@@ -411,7 +413,8 @@ class PProfileLogoutBottomSheet extends StatefulWidget {
   const PProfileLogoutBottomSheet({Key? key}) : super(key: key);
 
   @override
-  State<PProfileLogoutBottomSheet> createState() => _PProfileLogoutBottomSheet();
+  State<PProfileLogoutBottomSheet> createState() =>
+      _PProfileLogoutBottomSheet();
 }
 
 class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
@@ -458,18 +461,18 @@ class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
                     children: [
                       Expanded(
                           child: GestureDetector(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                                height: 52.h,
-                                padding: EdgeInsets.only(top: 16),
-                                child: Center(
-                                    child: Text(
-                                      "Cancel",
-                                      style: kManRope_500_20_006D77,
-                                    ))),
-                          )),
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                            height: 52.h,
+                            padding: EdgeInsets.only(top: 16),
+                            child: Center(
+                                child: Text(
+                              "Cancel",
+                              style: kManRope_500_20_006D77,
+                            ))),
+                      )),
                       Container(
                         height: 52.h,
                         color: Colors.white,
@@ -477,24 +480,34 @@ class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
                       ),
                       Expanded(
                           child: GestureDetector(
-                            onTap: () {
+                        onTap: () async {
+                          final resp = UserLogoutApi().get();
+                          resp.then((value) async {
+                            if (value['status'] == true) {
                               UserPrefs().setLoginFalse();
+                              var prefs = await SharedPreferences.getInstance();
+                              prefs.setBool(Keys().loginDone, false);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) => OnBoardingScreen(),
                                 ),
                               );
-                            },
-                            child: Container(
-                                padding: EdgeInsets.only(top: 16),
-                                height: 52.h,
-                                child: Center(
-                                    child: Text(
-                                      "Logout",
-                                      style: kManRope_500_20_B64949,
-                                    ))),
-                          )),
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg: "Logout failed! Please try again.");
+                            }
+                          });
+                        },
+                        child: Container(
+                            padding: EdgeInsets.only(top: 16),
+                            height: 52.h,
+                            child: Center(
+                                child: Text(
+                              "Logout",
+                              style: kManRope_500_20_B64949,
+                            ))),
+                      )),
                     ],
                   ),
                 ],

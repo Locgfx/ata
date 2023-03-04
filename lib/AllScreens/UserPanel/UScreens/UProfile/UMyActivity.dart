@@ -35,11 +35,17 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
         context: context,
         builder: (context) => MenuBottomSheet(
               savedPost: "no",
-              onPop: () {
-                setState(() {
-                  isLoading = true;
-                });
-                _getData();
+              onPop: (val) {
+                if (val == "Hide") {
+                  setState(() {
+                    postModel.removeAt(index);
+                  });
+                } else {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  _getData();
+                }
               },
               postModel: postModel,
               index: index,

@@ -10,6 +10,8 @@ import 'package:greymatter/widgets/BottomSheets/CalenderBottomSheet.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 
+import '../../../../../model/PModels/home_models/cancelled_booking_model.dart';
+
 class CancelledMeetings extends StatefulWidget {
   const CancelledMeetings({Key? key}) : super(key: key);
 
@@ -107,7 +109,8 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                   color: kEDF6F9,
                                   border: Border.all(color: Colors.white)),
                               child: Padding(
-                                padding: EdgeInsets.only(left: 16.w, right: 16.w),
+                                padding:
+                                    EdgeInsets.only(left: 16.w, right: 16.w),
                                 child: Row(
                                   // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -118,23 +121,25 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                           width: 48.w,
                                           decoration: BoxDecoration(
                                             borderRadius:
-                                            BorderRadius.circular(8),
+                                                BorderRadius.circular(8),
                                             color: Colors.grey,
                                           ),
                                           clipBehavior: Clip.hardEdge,
                                           child: CachedNetworkImage(
-                                            imageUrl:
-                                            cancelledBooking[index]
+                                            imageUrl: cancelledBooking[index]
                                                 .photo
                                                 .toString(),
                                             fit: BoxFit.cover,
-                                            placeholder: (context, url) =>  Center(
+                                            placeholder: (context, url) =>
+                                                Center(
                                               child: SpinKitThreeBounce(
                                                 color: k006D77,
                                                 size: 10,
                                               ),
                                             ),
-                                            errorWidget: (context, url, error) =>  Icon(Icons.error),
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Icon(Icons.error),
                                           ),
                                         ),
                                         SizedBox(width: 16.w),
@@ -142,46 +147,47 @@ class _CancelledMeetingsState extends State<CancelledMeetings> {
                                           width: 280.w,
                                           child: Column(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                             crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                             children: [
-                                              Text(cancelledBooking[index]
-                                                  .name
-                                                  .toString(),
-                                                  style: kManRope_500_16_001314),
+                                              Text(
+                                                  cancelledBooking[index]
+                                                      .name
+                                                      .toString(),
+                                                  style:
+                                                      kManRope_500_16_001314),
                                               Row(
                                                 mainAxisAlignment:
-                                                MainAxisAlignment
-                                                    .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                 children: [
-                                                  Text(cancelledBooking[index]
-                                                      .date
-                                                      .toString(),
+                                                  Text(
+                                                      cancelledBooking[index]
+                                                          .date
+                                                          .toString(),
                                                       style:
-                                                      kManRope_400_14_626A6A),
+                                                          kManRope_400_14_626A6A),
                                                   // SizedBox(width: 24.w),
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        cancelledBooking[
-                                                        index]
+                                                        cancelledBooking[index]
                                                             .date
                                                             .toString(),
                                                         style:
-                                                        kManRope_400_14_626A6A,
+                                                            kManRope_400_14_626A6A,
                                                         textAlign:
-                                                        TextAlign.end,
+                                                            TextAlign.end,
                                                       ),
                                                       Text(
-                                                        cancelledBooking[
-                                                        index]
+                                                        cancelledBooking[index]
                                                             .timeSlot
                                                             .toString(),
                                                         style:
-                                                        kManRope_400_14_626A6A,
+                                                            kManRope_400_14_626A6A,
                                                         textAlign:
-                                                        TextAlign.end,
+                                                            TextAlign.end,
                                                       ),
                                                     ],
                                                   ),

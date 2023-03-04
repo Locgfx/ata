@@ -1,4 +1,4 @@
-class CancelledBookingModel {
+class CompletedBookingModel {
   String? id;
   String? date;
   String? timeSlot;
@@ -8,7 +8,7 @@ class CancelledBookingModel {
   String? photo;
   String? issueName;
 
-  CancelledBookingModel(
+  CompletedBookingModel(
       {this.id,
       this.date,
       this.timeSlot,
@@ -18,7 +18,7 @@ class CancelledBookingModel {
       this.photo,
       this.issueName});
 
-  CancelledBookingModel.fromJson(Map<String, dynamic> json) {
+  CompletedBookingModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     date = json['date'];
     timeSlot = json['time_slot'];
@@ -30,15 +30,15 @@ class CancelledBookingModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = id;
-    data['date'] = date;
-    data['time_slot'] = timeSlot;
-    data['booking_date'] = bookingDate;
-    data['user_id'] = userId;
-    data['name'] = name;
-    data['photo'] = photo;
-    data['issue_name'] = issueName;
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['date'] = this.date;
+    data['time_slot'] = this.timeSlot;
+    data['booking_date'] = this.bookingDate;
+    data['user_id'] = this.userId;
+    data['name'] = this.name;
+    data['photo'] = this.photo;
+    data['issue_name'] = this.issueName;
     return data;
   }
 }

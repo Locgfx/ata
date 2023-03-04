@@ -12,7 +12,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import '../../../../constants/fonts.dart';
 
-
 class PHomeScreen extends StatefulWidget {
   const PHomeScreen({Key? key}) : super(key: key);
 
@@ -55,9 +54,9 @@ class _PHomeScreenState extends State<PHomeScreen>
               automaticallyImplyLeading: false,
               systemOverlayStyle: Platform.isAndroid
                   ? SystemUiOverlayStyle(
-                statusBarColor: k5A72ED,
-                statusBarIconBrightness: Brightness.dark,
-              )
+                      statusBarColor: k5A72ED,
+                      statusBarIconBrightness: Brightness.dark,
+                    )
                   : SystemUiOverlayStyle.dark,
               centerTitle: false,
               title: Padding(
@@ -101,7 +100,8 @@ class _PHomeScreenState extends State<PHomeScreen>
                   ),
                 ),
                 Container(
-                  constraints: BoxConstraints(maxHeight: 660.h),
+                  //constraints: BoxConstraints(maxHeight: 700.h),
+                  margin: EdgeInsets.only(bottom: 50),
                   child: Padding(
                     padding: EdgeInsets.only(top: 40.h),
                     child: Column(
@@ -331,7 +331,7 @@ class _PHomeScreenState extends State<PHomeScreen>
               ],
             ),
           ),
-          if(isLoading) LoadingWidget()
+          if (isLoading) LoadingWidget()
         ],
       ),
     );

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,9 +17,7 @@ class CancelledBookingApi {
 
     print(v);
     var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://beta.alfrik.com/ataraxis/api-psychologist/canceled-booking.php?start=0'));
+        'GET', Uri.parse('${counselorUrl}canceled-booking.php?start=0'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var rsp = jsonDecode(await response.stream.bytesToString());

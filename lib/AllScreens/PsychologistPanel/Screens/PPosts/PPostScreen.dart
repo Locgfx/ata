@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,9 +13,11 @@ class PPostScreen extends StatefulWidget {
   const PPostScreen({Key? key, required this.index}) : super(key: key);
 
   @override
-  State<PPostScreen> createState() => _PPostScreenState();}
+  State<PPostScreen> createState() => _PPostScreenState();
+}
 
-class _PPostScreenState extends State<PPostScreen> with TickerProviderStateMixin {
+class _PPostScreenState extends State<PPostScreen>
+    with TickerProviderStateMixin {
   late TabController _pageController;
   int pageIndex = 0;
 

@@ -25,6 +25,7 @@ class Keys {
   final String email = 'email';
   final String password = 'password';
   final String userName = 'user_name';
+  final String userImage = 'user_Image';
   final String isUser = 'is_user';
   final String firstRun = 'first_run';
   final String questionsDone = 'questions_done';

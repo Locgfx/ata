@@ -90,11 +90,17 @@ class _USavedPostPageState extends State<USavedPostPage> {
         context: context,
         builder: (context) => MenuBottomSheet(
               savedPost: "yes",
-              onPop: () {
-                setState(() {
-                  isLoading = true;
-                });
-                getData();
+              onPop: (val) {
+                if (val == "Hide") {
+                  setState(() {
+                    savedpostlist.removeAt(index);
+                  });
+                } else {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  getData();
+                }
               },
               postModel: savedpostlist,
               index: index,

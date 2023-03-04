@@ -30,14 +30,18 @@ class _UCreatePostState extends State<UCreatePost> {
   final TextEditingController controller = TextEditingController();
 
   String userName = '';
+  String image = '';
   _setPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     String a = prefs.getString(Keys().userName)!;
+    String b = prefs.getString(Keys().userImage)!;
     setState(() {
       userName = a;
+      image = b;
     });
   }
 
+  bool _btnLoading = false;
   @override
   void initState() {
     _setPrefs();
@@ -73,7 +77,12 @@ class _UCreatePostState extends State<UCreatePost> {
                           decoration: const BoxDecoration(
                               color: Colors.grey, shape: BoxShape.circle),
                           clipBehavior: Clip.hardEdge,
-                          child: Image.asset('assets/images/userP.png'),
+                          child: Image.network(
+                            image,
+                            errorBuilder: (q, w, e) =>
+                                Image.asset('assets/images/userP.png'),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                         SizedBox(
                           width: 8.w,
@@ -189,30 +198,45 @@ class _UCreatePostState extends State<UCreatePost> {
           child: Center(
             child: SizedBox(
               height: 56.h,
-              child: MainButton(
-                  onPressed: () {
-                    final resp = AddPost().get(
-                        captions: controller.text, pickedImg: _pickedImages);
-                    resp.then((value) {
-                      if (value['status'] == true) {
+              child: _btnLoading
+                  ? Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : MainButton(
+                      onPressed: () {
                         setState(() {
-                          Fluttertoast.showToast(msg: "Posted successfully.");
-                          Navigator.of(context).pop();
+                          _btnLoading = true;
                         });
-                      } else {
-                        Fluttertoast.showToast(msg: "Something went wrong");
-                      }
-                    });
-                  },
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 74.w, right: 74.w),
-                    child: Text(
-                      "Post",
-                      style: kManRope_400_16_white,
-                    ),
-                  ),
-                  color: k006D77,
-                  shape: CustomDecoration().smallButton10Decoration()),
+                        final resp = AddPost().get(
+                            captions: controller.text,
+                            pickedImg: _pickedImages);
+                        resp.then((value) {
+                          if (value['status'] == true) {
+                            setState(() {
+                              Fluttertoast.showToast(
+                                  msg: "Posted successfully.");
+                              setState(() {
+                                _btnLoading = false;
+                              });
+                              Navigator.of(context).pop();
+                            });
+                          } else {
+                            setState(() {
+                              _btnLoading = false;
+                            });
+                            Fluttertoast.showToast(msg: "Something went wrong");
+                          }
+                        });
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 74.w, right: 74.w),
+                        child: Text(
+                          "Post",
+                          style: kManRope_400_16_white,
+                        ),
+                      ),
+                      color: k006D77,
+                      shape: CustomDecoration().smallButton10Decoration()),
             ),
           ),
         ),
