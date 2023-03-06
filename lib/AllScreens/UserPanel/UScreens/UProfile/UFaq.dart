@@ -75,7 +75,7 @@ class _UFaqScreenState extends State<UFaqScreen> {
                   Padding(
                     padding: EdgeInsets.only(top: 40.h),
                     child: Text(
-                      'We are here to help you with anything and everything on AtarAxis',
+                      'We are here to help you with anything and everything on Ataraxis',
                       style: kManRope_700_20_001314,
                     ),
                   ),
@@ -83,7 +83,7 @@ class _UFaqScreenState extends State<UFaqScreen> {
                     height: 16.h,
                   ),
                   Text(
-                    'At AtarAxis everything we expert at a day’s start is you, better and happier than yesterday. We have got you covered. Share your concern or check our frequently asked question listed below.',
+                    'At Ataraxis everything we expert at a day’s start is you, better and happier than yesterday. We have got you covered. Share your concern or check our frequently asked question listed below.',
                     style: kManRope_400_16_626A6A,
                   ),
                   SizedBox(height: 40.h),

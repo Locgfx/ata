@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "97431679076",
+    "project_id": "atar-axis",
+    "storage_bucket": "atar-axis.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:97431679076:android:965ed200df8fd7642b6f71",
+        "android_client_info": {
+          "package_name": "com.locgfx.ataraxis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "97431679076-8kcm66jq64sonj61v33riqkqtl42tdd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0_k_G7hvjiEHlCpTBUweh0CAnbUUpG88"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "97431679076-8kcm66jq64sonj61v33riqkqtl42tdd2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

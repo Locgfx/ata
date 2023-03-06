@@ -51,20 +51,16 @@ class _HistoryFilterBottomSheet extends State<HistoryFilterBottomSheet> {
                     width: 215.w,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(5)),
-                      color: _gIndex == 0 ? k006D77 : Colors.transparent,
+                      color: Colors.transparent,
                     ),
                     child: Center(
                         child: Text(
-                          'Cancel Meeting',
-                          style: _gIndex == 0
-                              ? kManRope_500_16_white
-                              : kManRope_500_16_626A6A,
-                        )),
+                      'Cancel Meeting',
+                      style: kManRope_500_16_626A6A,
+                    )),
                   ),
                 ),
-
                 SizedBox(height: 20.h),
-
               ],
             ),
           ),

@@ -11,6 +11,7 @@ import 'package:greymatter/model/PModels/home_models/completed_booking_models.da
 import 'package:intl/intl.dart';
 import '../../../../../constants/decorations.dart';
 import '../../../../../widgets/buttons.dart';
+import '../PJoiningScreen.dart';
 
 class CompletedList extends StatefulWidget {
   const CompletedList({Key? key}) : super(key: key);
@@ -58,26 +59,31 @@ class _CompletedListState extends State<CompletedList> {
                       itemBuilder: (ctx, index) {
                         return Column(
                           children: [
-                            Container(
-                              height: 80,
-                              width: 1.sw,
-                              margin: EdgeInsets.symmetric(horizontal: 24),
-                              padding: EdgeInsets.all(16.w),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color: kEDF6F9,
-                                  border: Border.all(color: Colors.white)),
-                              child: Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      /*Navigator.push(
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => JoiningScreen()),
-                                );*/
-                                    },
-                                    child: Container(
+                                      builder: (context) => PJoiningScreen(
+                                            userId: modelList[index]
+                                                .userId
+                                                .toString(),
+                                            status: "s",
+                                          )),
+                                );
+                              },
+                              child: Container(
+                                height: 80,
+                                width: 1.sw,
+                                margin: EdgeInsets.symmetric(horizontal: 24),
+                                padding: EdgeInsets.all(16.w),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: kEDF6F9,
+                                    border: Border.all(color: Colors.white)),
+                                child: Row(
+                                  children: [
+                                    Container(
                                       height: 48.h,
                                       width: 48.w,
                                       decoration: BoxDecoration(
@@ -93,42 +99,43 @@ class _CompletedListState extends State<CompletedList> {
                                         fit: BoxFit.cover,
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(width: 16.w),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(modelList[index].name.toString(),
-                                            style: kManRope_500_16_001314),
-                                        Row(
-                                          children: [
-                                            Text(
-                                                modelList[index]
-                                                    .issueName
-                                                    .toString(),
-                                                style: kManRope_400_14_626A6A),
-                                            // SizedBox(width: 24.w),
-                                            Expanded(
-                                              child: Text(
-                                                DateFormat.yMMMd()
-                                                    .add_jm()
-                                                    .format(DateTime.parse(
-                                                        "${modelList[index].date} ${modelList[index].timeSlot}")),
-                                                //'10 June 2022, 8:00AM',
-                                                style: kManRope_400_14_626A6A,
-                                                textAlign: TextAlign.end,
+                                    SizedBox(width: 16.w),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(modelList[index].name.toString(),
+                                              style: kManRope_500_16_001314),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                  modelList[index]
+                                                      .issueName
+                                                      .toString(),
+                                                  style:
+                                                      kManRope_400_14_626A6A),
+                                              // SizedBox(width: 24.w),
+                                              Expanded(
+                                                child: Text(
+                                                  DateFormat.yMMMd()
+                                                      .add_jm()
+                                                      .format(DateTime.parse(
+                                                          "${modelList[index].date} ${modelList[index].timeSlot}")),
+                                                  //'10 June 2022, 8:00AM',
+                                                  style: kManRope_400_14_626A6A,
+                                                  textAlign: TextAlign.end,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             if (index == 4) SizedBox(height: 16),
@@ -161,7 +168,7 @@ class _CompletedListState extends State<CompletedList> {
                       separatorBuilder: (ctx, index) {
                         return SizedBox(height: 12.h);
                       },
-                      itemCount: modelList.length >= 4 ? 5 : modelList.length),
+                      itemCount: modelList.length > 4 ? 5 : modelList.length),
                 ),
                 SizedBox(
                   height: 40.h,

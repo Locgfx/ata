@@ -69,14 +69,14 @@ class PFAQsScreen extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'We are here to help you with anything and everything on AtarAxis',
+                'We are here to help you with anything and everything on Ataraxis',
                 style: kManRope_700_20_001314,
               ),
               SizedBox(
                 height: 16.h,
               ),
               Text(
-                'At AtarAxis everything we expert at a day’s start is you, better and happier than yesterday. We have got you covered. Share your concern or check our frequently asked question listed below.',
+                'At Ataraxis everything we expert at a day’s start is you, better and happier than yesterday. We have got you covered. Share your concern or check our frequently asked question listed below.',
                 style: kManRope_400_16_626A6A,
               ),
               SizedBox(
@@ -95,7 +95,7 @@ class PFAQsScreen extends StatelessWidget {
                     fillColor: Colors.white,
                     filled: true,
                     suffixIconConstraints:
-                    BoxConstraints(maxHeight: 55.h, maxWidth: 55.w),
+                        BoxConstraints(maxHeight: 55.h, maxWidth: 55.w),
                     suffixIcon: Padding(
                       padding: EdgeInsets.only(right: 8),
                       child: SizedBox(

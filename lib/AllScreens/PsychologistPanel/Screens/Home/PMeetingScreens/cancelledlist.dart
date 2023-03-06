@@ -58,7 +58,7 @@ class _CancelledListState extends State<CancelledList> {
               children: [
                 Expanded(
                   child: ListView.separated(
-                    itemCount: cancelledBooking.length >= 4
+                    itemCount: cancelledBooking.length > 4
                         ? 5
                         : cancelledBooking.length,
                     scrollDirection: Axis.vertical,
@@ -78,36 +78,27 @@ class _CancelledListState extends State<CancelledList> {
                                 border: Border.all(color: Colors.white)),
                             child: Row(
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    /*Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => JoiningScreen()),
-                                );*/
-                                  },
-                                  child: Container(
-                                    height: 48.h,
-                                    width: 48.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: Colors.grey,
-                                    ),
-                                    clipBehavior: Clip.hardEdge,
-                                    child: CachedNetworkImage(
-                                      imageUrl: cancelledBooking[index]
-                                          .photo
-                                          .toString(),
-                                      fit: BoxFit.cover,
-                                      placeholder: (context, url) => Center(
-                                        child: SpinKitThreeBounce(
-                                          color: k006D77,
-                                          size: 10,
-                                        ),
+                                Container(
+                                  height: 48.h,
+                                  width: 48.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.grey,
+                                  ),
+                                  clipBehavior: Clip.hardEdge,
+                                  child: CachedNetworkImage(
+                                    imageUrl: cancelledBooking[index]
+                                        .photo
+                                        .toString(),
+                                    fit: BoxFit.cover,
+                                    placeholder: (context, url) => Center(
+                                      child: SpinKitThreeBounce(
+                                        color: k006D77,
+                                        size: 10,
                                       ),
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
                                     ),
+                                    errorWidget: (context, url, error) =>
+                                        Icon(Icons.error),
                                   ),
                                 ),
                                 SizedBox(width: 16.w),

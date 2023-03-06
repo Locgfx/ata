@@ -87,14 +87,14 @@ class _PRequestSentSuccessfulScreenState
                     height: 40.h,
                   ),
                   Text(
-                    'AtarAxis partner',
+                    'Ataraxis partner',
                     style: kManRope_500_24_001314,
                   ),
                   SizedBox(
                     height: 16.h,
                   ),
                   Text(
-                    'Our AtarAxis partner will not charged you for any work',
+                    'Our Ataraxis partner will not charged you for any work',
                     style: kManRope_400_14_626A6A,
                   ),
                   SizedBox(

@@ -51,7 +51,7 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                 SizedBox(
                   height: 40.h,
                 ),
-                Text('Selected Psychologists', style: kManRope_700_16_001314),
+                Text('Selected Counselors', style: kManRope_700_16_001314),
                 SizedBox(
                   height: 24.h,
                 ),

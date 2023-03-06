@@ -78,7 +78,7 @@ class _UWelcomeScreenState extends State<UWelcomeScreen> {
                   );
                 },
                 child: Text(
-                  'Welcome to AtarAxis, your personal healing app',
+                  'Welcome to Ataraxis, your personal healing app',
                   style: kManRope_700_24_001314,
                 ),
               ),

@@ -86,147 +86,147 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: const [
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Psychologists',
+                        'Book an instant appointment with the right  Counselors',
                     image: 'assets/images/onb4.png'),
               ],
             ),
@@ -287,7 +287,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (ctx) =>
                         // WelcomeScreen(),
-                    ULoginScreen(showBack: true)));
+                        ULoginScreen(showBack: true)));
               },
               text: 'I am seeking help',
             ),
@@ -304,7 +304,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (ctx) => PLoginScreen()));
               },
-              text: 'I am a psychologist',
+              text: 'I am a counselor',
             ),
           ),
           SizedBox(height: 38.h),
