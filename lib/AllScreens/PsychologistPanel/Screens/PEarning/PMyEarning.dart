@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/PEarningHistoryScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/PWithdrawEarningScreen.dart';
+import 'package:greymatter/Apis/DoctorApis/earning_apis/last_transactions_api.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/model/PModels/home_models/earning_models/last_transactions_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/loadingWidget.dart';
+import 'package:intl/intl.dart';
 import '../../../../constants/fonts.dart';
-
+import '../../../../widgets/BottomSheets/FilterBottomSheet.dart';
 
 class PMyEarningsScreen extends StatefulWidget {
   const PMyEarningsScreen({Key? key}) : super(key: key);
@@ -16,6 +22,42 @@ class PMyEarningsScreen extends StatefulWidget {
 }
 
 class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
+  @override
+  void initState() {
+    _getData();
+    super.initState();
+  }
+
+  bool _isLoading = false;
+  LastTransactionsModel model = LastTransactionsModel();
+
+  _getData() {
+    _isLoading = true;
+    final resp = LastTransactionsApi().get();
+    resp.then((value) {
+      if (value['status'] == true) {
+        setState(() {
+          model = LastTransactionsModel.fromJson(value);
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    });
+  }
+
+  void _filterbottomsheet() {
+    showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(20), topLeft: Radius.circular(20)),
+        ),
+        context: context,
+        builder: (context) => FilterBottomSheet());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,9 +80,6 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // SizedBox(
-              //   height: 10.h,
-              // ),
               Padding(
                 padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 30.h),
                 child: Container(
@@ -51,8 +90,7 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                   ),
                   child: Padding(
-                    padding:
-                    EdgeInsets.only(left: 24.w, right: 24.w, top: 28.h),
+                    padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 0.h),
                     child: Column(
                       children: [
                         Row(
@@ -62,16 +100,26 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
                               'Total',
                               style: kManRope_500_16_001314,
                             ),
-                            SvgPicture.asset(
-                              'assets/icons/downArrow.svg',
-                              height: 24.h,
-                              width: 24.w,
+                            GestureDetector(
+                              onTap: () {
+                                _filterbottomsheet();
+                              },
+                              child: Container(
+                                color: Colors.transparent,
+                                padding: EdgeInsets.only(
+                                    left: 16, top: 16, bottom: 16),
+                                child: SvgPicture.asset(
+                                  'assets/icons/downArrow.svg',
+                                  height: 24.h,
+                                  width: 24.w,
+                                ),
+                              ),
                             ),
                           ],
                         ),
-                        SizedBox(
+                        /*SizedBox(
                           height: 28.h,
-                        ),
+                        ),*/
                         Container(
                           height: 1.5,
                           width: 1.sw,
@@ -137,7 +185,7 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
                   ),
                   child: Padding(
                     padding:
-                    EdgeInsets.only(left: 24.w, right: 24.w, top: 24.h),
+                        EdgeInsets.only(left: 24.w, right: 24.w, top: 24.h),
                     child: Column(
                       children: [
                         Row(
@@ -278,55 +326,82 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
                   left: 25.w,
                   right: 25.h,
                 ),
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (ctx, index) {
-                      return Column(
-                        children: [
-                          Row(
-                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: _isLoading
+                    ? Center(
+                        child: SizedBox(
+                            height: 100, width: 100, child: LoadingWidget()))
+                    : ListView.separated(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (ctx, index) {
+                          return Column(
                             children: [
-                              SizedBox(
-                                width: 69.w,
-                                // height: 16.h,
-                                child: Text(
-                                  '09.12.2022',
-                                  style: kManRope_400_14_626A6A,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 78.w,
-                              ),
-                              SizedBox(
-                                width: 100.w,
-                                // height: 16.h,
-                                child: Text(
-                                  '123456789',
-                                  style: kManRope_400_16_626A6A,
-                                ),
-                              ),
-                              SizedBox(
-                                width: 78.w,
-                              ),
-                              SizedBox(
-                                width: 40.w,
-                                // height: 16.h,
-                                child: Text(
-                                  '500',
-                                  style: kManRope_400_16_626A6A,
-                                ),
+                              Row(
+                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  SizedBox(
+                                    width: 75.w,
+                                    // height: 16.h,
+                                    child: Text(
+                                      DateFormat("dd.MM.yyyy").format(
+                                          DateTime.parse(model
+                                              .allTransaction![index]
+                                              .dateTime!)),
+                                      style: kManRope_400_14_626A6A,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 72.w,
+                                  ),
+                                  InkWell(
+                                    onLongPress: () {
+                                      Clipboard.setData(ClipboardData(
+                                              text: model.allTransaction![index]
+                                                  .transactionId
+                                                  .toString()))
+                                          .then((value) {
+                                        /*Fluttertoast.showToast(
+                                            msg: "ID copied to clipboard");*/
+                                      });
+                                    },
+                                    child: SizedBox(
+                                      width: 100.w,
+                                      // height: 16.h,
+                                      child: SingleChildScrollView(
+                                        scrollDirection: Axis.horizontal,
+                                        child: Text(
+                                          model.allTransaction![index]
+                                              .transactionId
+                                              .toString(),
+                                          style: kManRope_400_16_626A6A,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 78.w,
+                                  ),
+                                  SizedBox(
+                                    width: 40.w,
+                                    // height: 16.h,
+                                    child: Text(
+                                      model.allTransaction![index].totalPayment
+                                          .toString(),
+                                      style: kManRope_400_16_626A6A,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
-                          ),
-                        ],
-                      );
-                    },
-                    separatorBuilder: (ctx, index) {
-                      return SizedBox(height: 29.h);
-                    },
-                    itemCount: 5),
+                          );
+                        },
+                        separatorBuilder: (ctx, index) {
+                          return SizedBox(height: 29.h);
+                        },
+                        itemCount: model.allTransaction!.length > 5
+                            ? 5
+                            : model.allTransaction!.length),
               ),
               SizedBox(
                 height: 20.h,

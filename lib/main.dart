@@ -105,7 +105,6 @@ class _MyAppState extends State<MyApp> {
         AwesomeNotifications().actionStream.listen((event1) {
           fn(event);
         });*/
-
         RemoteNotification? notification = event.notification;
         AndroidNotification? android = event.notification?.android;
         if (notification != null && android != null) {

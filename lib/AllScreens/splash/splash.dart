@@ -44,7 +44,6 @@ class _SplashScreenState extends State<SplashScreen> {
       questionsDone = prefs.getBool(Keys().questionsDone) ?? false;
       isUser = prefs.getBool(Keys().isUser) ?? true;
     });
-
     if (firstRun) {
       log(firstRun.toString());
       prefs.setBool(Keys().firstRun, false);

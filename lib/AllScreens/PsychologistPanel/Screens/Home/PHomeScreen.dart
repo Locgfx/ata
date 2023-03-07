@@ -8,8 +8,12 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScr
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/upcominglist.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UNotificationScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UClipClass.dart';
+import 'package:greymatter/Apis/DoctorApis/home_apis/total_revenue_api/total_revenue_api.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:greymatter/model/PModels/home_models/total_revenue_model/total_revenue_model.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
+import 'package:greymatter/widgets/shimmerLoader.dart';
+import 'package:shimmer/shimmer.dart';
 import '../../../../constants/fonts.dart';
 
 class PHomeScreen extends StatefulWidget {
@@ -27,6 +31,7 @@ class _PHomeScreenState extends State<PHomeScreen>
   @override
   void initState() {
     _pageController = TabController(length: 3, vsync: this);
+    _getData();
     super.initState();
   }
 
@@ -34,6 +39,25 @@ class _PHomeScreenState extends State<PHomeScreen>
   void dispose() {
     _pageController.dispose();
     super.dispose();
+  }
+
+  bool _isLoading = false;
+  TotalRevenueModel model = TotalRevenueModel();
+  _getData() {
+    _isLoading = true;
+    final resp = TotalRevenueApi().get();
+    resp.then((value) {
+      if (value['status'] == true) {
+        setState(() {
+          model = TotalRevenueModel.fromJson(value);
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    });
   }
 
   int selectedIndex = 0;
@@ -106,123 +130,131 @@ class _PHomeScreenState extends State<PHomeScreen>
                     padding: EdgeInsets.only(top: 40.h),
                     child: Column(
                       children: [
-                        Container(
-                          // height: 180.h,
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          width: 1.sw,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(16)),
-                            color: kE1EEF2,
-                            border: Border.all(
-                              color: Colors.white,
-                              width: 1.5,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                              left: 24.w,
-                              right: 24.w,
-                              top: 24.h,
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icons/Revenue.svg',
-                                          height: 48.h,
-                                          width: 48.w,
-                                        ),
-                                        SizedBox(
-                                          width: 16.w,
-                                        ),
-                                        Text(
-                                          'Revenue',
-                                          style: kManRope_400_16_263238,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    Container(
-                                      height: 1.h,
-                                      width: 143.w,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    Text(
-                                      '\$4391',
-                                      style: kManRope_700_36_36B3BF,
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    Text(
-                                      'Last Month: \$4239',
-                                      style: kManRope_400_16_263238,
-                                    ),
-                                    SizedBox(
-                                      height: 24.h,
-                                    )
-                                  ],
+                        _isLoading
+                            ? ShimmerLoader(
+                                height: 150,
+                              )
+                            : Container(
+                                // height: 180.h,
+                                margin: EdgeInsets.symmetric(horizontal: 24),
+                                width: 1.sw,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(16)),
+                                  color: kE1EEF2,
+                                  border: Border.all(
+                                    color: Colors.white,
+                                    width: 1.5,
+                                  ),
                                 ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        SvgPicture.asset(
-                                          'assets/icons/Bookings.svg',
-                                          height: 48.h,
-                                          width: 48.w,
-                                        ),
-                                        SizedBox(
-                                          width: 16.w,
-                                        ),
-                                        Text(
-                                          'Bookings',
-                                          style: kManRope_400_16_263238,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    Container(
-                                      height: 1.h,
-                                      width: 143.w,
-                                      color: Colors.white,
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    Text(
-                                      '391',
-                                      style: kManRope_700_36_36B3BF,
-                                    ),
-                                    SizedBox(
-                                      height: 8.h,
-                                    ),
-                                    Text(
-                                      'Last Month: 239',
-                                      style: kManRope_400_16_263238,
-                                    ),
-                                    SizedBox(
-                                      height: 24.h,
-                                    )
-                                  ],
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 24.w,
+                                    right: 24.w,
+                                    top: 24.h,
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                'assets/icons/Revenue.svg',
+                                                height: 48.h,
+                                                width: 48.w,
+                                              ),
+                                              SizedBox(
+                                                width: 16.w,
+                                              ),
+                                              Text(
+                                                'Revenue',
+                                                style: kManRope_400_16_263238,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Container(
+                                            height: 1.h,
+                                            width: 143.w,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Text(
+                                            "₹${model.totalRs}",
+                                            style: kManRope_700_36_36B3BF,
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Text(
+                                            'Last Month: ₹${model.lastMonthRs}',
+                                            style: kManRope_400_16_263238,
+                                          ),
+                                          SizedBox(
+                                            height: 24.h,
+                                          )
+                                        ],
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                'assets/icons/Bookings.svg',
+                                                height: 48.h,
+                                                width: 48.w,
+                                              ),
+                                              SizedBox(
+                                                width: 16.w,
+                                              ),
+                                              Text(
+                                                'Bookings',
+                                                style: kManRope_400_16_263238,
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Container(
+                                            height: 1.h,
+                                            width: 143.w,
+                                            color: Colors.white,
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Text(
+                                            model.totalBooking.toString(),
+                                            style: kManRope_700_36_36B3BF,
+                                          ),
+                                          SizedBox(
+                                            height: 8.h,
+                                          ),
+                                          Text(
+                                            'Last Month: ${model.lastMonthBooking}',
+                                            style: kManRope_400_16_263238,
+                                          ),
+                                          SizedBox(
+                                            height: 24.h,
+                                          )
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
+                              ),
                         SizedBox(height: 40.h),
                         Row(
                           children: [
