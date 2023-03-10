@@ -41,4 +41,5 @@ class Keys {
   final String lineageProblem = 'lineage_problem';
   final String requestSent = 'request_sent';
   final String DocSignUpEmail = 'doc_sign_up_email';
+  final String userType = 'userType';
 }

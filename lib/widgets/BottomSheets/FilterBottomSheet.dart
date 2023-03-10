@@ -4,7 +4,8 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 class FilterBottomSheet extends StatefulWidget {
-  const FilterBottomSheet({Key? key}) : super(key: key);
+  final Function(String) onPop;
+  const FilterBottomSheet({Key? key, required this.onPop}) : super(key: key);
 
   @override
   State<FilterBottomSheet> createState() => _FilterBottomSheet();
@@ -45,7 +46,7 @@ class _FilterBottomSheet extends State<FilterBottomSheet> {
                 children: [
                   GestureDetector(
                     onTap: () => setState(() {
-                      _gIndex = 0;
+                      widget.onPop("w");
                       Navigator.of(context).pop();
                     }),
                     child: Container(
@@ -53,22 +54,20 @@ class _FilterBottomSheet extends State<FilterBottomSheet> {
                       margin: EdgeInsets.symmetric(horizontal: 130),
                       decoration: BoxDecoration(
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
-                        color: _gIndex == 0 ? k006D77 : Colors.white,
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: Colors.transparent,
                       ),
                       child: Center(
                           child: Text(
-                            'One Week',
-                            style: _gIndex == 0
-                                ? kManRope_500_16_white
-                                : kManRope_500_16_626A6A,
-                          )),
+                        'One Week',
+                        style: kManRope_500_16_626A6A,
+                      )),
                     ),
                   ),
                   SizedBox(height: 8.h),
                   GestureDetector(
                     onTap: () => setState(() {
-                      _gIndex = 1;
+                      widget.onPop("m");
                       Navigator.of(context).pop();
                     }),
                     child: Container(
@@ -76,22 +75,20 @@ class _FilterBottomSheet extends State<FilterBottomSheet> {
                       margin: EdgeInsets.symmetric(horizontal: 130),
                       decoration: BoxDecoration(
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
-                        color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: Colors.transparent,
                       ),
                       child: Center(
                           child: Text(
-                            'One Month',
-                            style: _gIndex == 1
-                                ? kManRope_500_16_white
-                                : kManRope_500_16_626A6A,
-                          )),
+                        'One Month',
+                        style: kManRope_500_16_626A6A,
+                      )),
                     ),
                   ),
                   SizedBox(height: 8.h),
                   GestureDetector(
                     onTap: () => setState(() {
-                      _gIndex = 2;
+                      widget.onPop("y");
                       Navigator.of(context).pop();
                     }),
                     child: Container(
@@ -99,20 +96,17 @@ class _FilterBottomSheet extends State<FilterBottomSheet> {
                       margin: EdgeInsets.symmetric(horizontal: 130),
                       decoration: BoxDecoration(
                         borderRadius:
-                        const BorderRadius.all(Radius.circular(5)),
-                        color: _gIndex == 2 ? k006D77 : Colors.transparent,
+                            const BorderRadius.all(Radius.circular(5)),
+                        color: Colors.transparent,
                       ),
                       child: Center(
                           child: Text(
-                            'One Year',
-                            style: _gIndex == 2
-                                ? kManRope_500_16_white
-                                : kManRope_500_16_626A6A,
-                          )),
+                        'One Year',
+                        style: kManRope_500_16_626A6A,
+                      )),
                     ),
                   ),
                   SizedBox(height: 8.h),
-
                 ],
               ),
             ),

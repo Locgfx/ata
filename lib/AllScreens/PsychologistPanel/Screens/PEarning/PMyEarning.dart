@@ -6,10 +6,13 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/PEarningHistoryScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/PWithdrawEarningScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/earning_apis/last_transactions_api.dart';
+import 'package:greymatter/Apis/DoctorApis/earning_apis/total_earnings_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/PModels/home_models/earning_models/last_transactions_model.dart';
+import 'package:greymatter/model/PModels/home_models/earning_models/total_earnings_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
+import 'package:greymatter/widgets/shimmerLoader.dart';
 import 'package:intl/intl.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/BottomSheets/FilterBottomSheet.dart';
@@ -24,6 +27,7 @@ class PMyEarningsScreen extends StatefulWidget {
 class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
   @override
   void initState() {
+    _getTotalEarnings();
     _getData();
     super.initState();
   }
@@ -31,9 +35,30 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
   bool _isLoading = false;
   LastTransactionsModel model = LastTransactionsModel();
 
+  TotalEarningsModel earningsModel = TotalEarningsModel();
+  String filter = '';
+
+  bool _earningsLoading = false;
+  _getTotalEarnings() {
+    _earningsLoading = true;
+    final resp = TotalEarningApi().get(filter: filter);
+    resp.then((value) {
+      if (value['status'] == true) {
+        setState(() {
+          earningsModel = TotalEarningsModel.fromJson(value);
+          _earningsLoading = false;
+        });
+      } else {
+        setState(() {
+          _earningsLoading = false;
+        });
+      }
+    });
+  }
+
   _getData() {
     _isLoading = true;
-    final resp = LastTransactionsApi().get();
+    final resp = LastTransactionsApi().get(search: '', filter: '');
     resp.then((value) {
       if (value['status'] == true) {
         setState(() {
@@ -55,7 +80,13 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) => FilterBottomSheet());
+        builder: (context) => FilterBottomSheet(onPop: (val) {
+              setState(() {
+                _earningsLoading = true;
+                filter = val;
+              });
+              _getTotalEarnings();
+            }));
   }
 
   @override
@@ -80,186 +111,214 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 30.h),
-                child: Container(
-                  // height: 173.h,
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 0.h),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Total',
-                              style: kManRope_500_16_001314,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                _filterbottomsheet();
-                              },
-                              child: Container(
-                                color: Colors.transparent,
-                                padding: EdgeInsets.only(
-                                    left: 16, top: 16, bottom: 16),
-                                child: SvgPicture.asset(
-                                  'assets/icons/downArrow.svg',
-                                  height: 24.h,
-                                  width: 24.w,
-                                ),
-                              ),
-                            ),
-                          ],
+              _earningsLoading
+                  ? Padding(
+                      padding: EdgeInsets.only(top: 30.h),
+                      child: ShimmerLoader(height: 173),
+                    )
+                  : Padding(
+                      padding:
+                          EdgeInsets.only(left: 24.w, right: 24.w, top: 30.h),
+                      child: Container(
+                        // height: 173.h,
+                        width: 1.sw,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
                         ),
-                        /*SizedBox(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: 24.w, right: 24.w, top: 0.h),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    filter == "w"
+                                        ? "This Week"
+                                        : filter == "m"
+                                            ? "This Month"
+                                            : filter == "y"
+                                                ? "This Year"
+                                                : 'Total',
+                                    style: kManRope_500_16_001314,
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      _filterbottomsheet();
+                                    },
+                                    child: Container(
+                                      color: Colors.transparent,
+                                      padding: EdgeInsets.only(
+                                          left: 16, top: 16, bottom: 16),
+                                      child: SvgPicture.asset(
+                                        'assets/icons/downArrow.svg',
+                                        height: 24.h,
+                                        width: 24.w,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              /*SizedBox(
                           height: 28.h,
                         ),*/
-                        Container(
-                          height: 1.5,
-                          width: 1.sw,
-                          color: Colors.white,
+
+                              Container(
+                                height: 1.5,
+                                width: 1.sw,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                height: 24.h,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Total Earning',
+                                        style: kManRope_700_20_001314,
+                                      ),
+                                      SizedBox(
+                                        height: 16.h,
+                                      ),
+                                      Text(
+                                        earningsModel.allEarning.toString(),
+                                        style: kManRope_500_16_626A6A,
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Total Order',
+                                        style: kManRope_700_20_001314,
+                                      ),
+                                      SizedBox(
+                                        height: 16.h,
+                                      ),
+                                      Text(
+                                        earningsModel.order!.toString(),
+                                        style: kManRope_500_16_626A6A,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              SizedBox(height: 24),
+                            ],
+                          ),
                         ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Total Earning',
-                                  style: kManRope_700_20_001314,
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                Text(
-                                  '100000+',
-                                  style: kManRope_500_16_626A6A,
-                                ),
-                              ],
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Total Order',
-                                  style: kManRope_700_20_001314,
-                                ),
-                                SizedBox(
-                                  height: 16.h,
-                                ),
-                                Text(
-                                  '500+',
-                                  style: kManRope_500_16_626A6A,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 24),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              ),
               SizedBox(
                 height: 40.h,
               ),
-              Padding(
-                padding: EdgeInsets.only(left: 24.w, right: 24.w),
-                child: Container(
-                  // height: 173.h,
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
-                  ),
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(left: 24.w, right: 24.w, top: 24.h),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Total Earning',
-                                  style: kManRope_700_20_001314,
-                                ),
-                                SizedBox(
-                                  height: 12.h,
-                                ),
-                                Text(
-                                  '100000+',
-                                  style: kManRope_500_16_626A6A,
-                                ),
-                              ],
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        PWithDrawEarningsScreen()));
-                              },
-                              child: Text(
-                                'WITHDRAW',
-                                style: kManRope_600_18_006D77,
+              _earningsLoading
+                  ? Padding(
+                      padding: EdgeInsets.only(top: 30.h),
+                      child: ShimmerLoader(height: 173),
+                    )
+                  : Padding(
+                      padding: EdgeInsets.only(left: 24.w, right: 24.w),
+                      child: Container(
+                        // height: 173.h,
+                        width: 1.sw,
+                        decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white, width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: 24.w, right: 24.w, top: 24.h),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Total Earning',
+                                        style: kManRope_700_20_001314,
+                                      ),
+                                      SizedBox(
+                                        height: 12.h,
+                                      ),
+                                      Text(
+                                        earningsModel.fixAmount.toString(),
+                                        style: kManRope_500_16_626A6A,
+                                      ),
+                                    ],
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PWithDrawEarningsScreen()));
+                                    },
+                                    child: Text(
+                                      'WITHDRAW',
+                                      style: kManRope_600_18_006D77,
+                                    ),
+                                  )
+                                ],
                               ),
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                          height: 24.h,
-                        ),
-                        Container(
-                          height: 1.5,
-                          width: 1.sw,
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 19.h,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'History',
-                              style: kManRope_500_18_001314,
-                            ),
-                            GestureDetector(
-                              behavior: HitTestBehavior.translucent,
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        PEarningHistoryScreen()));
-                              },
-                              child: Image.asset(
-                                'assets/images/iconrightarrow.png',
+                              SizedBox(
                                 height: 24.h,
-                                width: 24.w,
-                                color: k006D77,
                               ),
-                            )
-                          ],
+                              Container(
+                                height: 1.5,
+                                width: 1.sw,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                height: 19.h,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    'History',
+                                    style: kManRope_500_18_001314,
+                                  ),
+                                  GestureDetector(
+                                    behavior: HitTestBehavior.translucent,
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  PEarningHistoryScreen()));
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/iconrightarrow.png',
+                                      height: 24.h,
+                                      width: 24.w,
+                                      color: k006D77,
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 27.h),
+                            ],
+                          ),
                         ),
-                        SizedBox(height: 27.h),
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              ),
               SizedBox(
                 height: 40.h,
               ),

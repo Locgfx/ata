@@ -277,6 +277,8 @@ class _PLoginScreenState extends State<PLoginScreen> {
                                             Keys().userName, value['name']);
                                         prefs.setString(
                                             Keys().userImage, value['image']);
+                                        prefs.setString(Keys().userType,
+                                            value['user_type']);
                                         setState(() {
                                           loading = false;
                                         });
