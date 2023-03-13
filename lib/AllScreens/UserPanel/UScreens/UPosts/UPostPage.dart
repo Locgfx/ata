@@ -143,6 +143,7 @@ class _UPostPageState extends State<UPostPage> {
             ));
   }
 
+  int imgIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -290,45 +291,83 @@ class _UPostPageState extends State<UPostPage> {
                                       SizedBox(height: 17.h),
                                       isLoading
                                           ? SizedBox()
-                                          : Container(
-                                              height: 285.h,
-                                              width: 380.w,
-                                              clipBehavior: Clip.hardEdge,
-                                              decoration: const BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(10)),
-                                                color: Colors.white,
-                                              ),
-                                              child: PageView.builder(
-                                                  itemCount: postModel[index]
-                                                      .gallary!
-                                                      .length,
-                                                  controller: page,
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  pageSnapping: true,
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                          ind) {
-                                                    return CachedNetworkImage(
-                                                      imageUrl: postModel[index]
-                                                          .gallary![ind]
-                                                          .toString(),
-                                                      fit: BoxFit.cover,
-                                                      placeholder:
-                                                          (context, url) =>
-                                                              Center(
-                                                        child:
-                                                            SpinKitThreeBounce(
-                                                          color: k006D77,
-                                                          size: 30,
-                                                        ),
+                                          : Stack(
+                                              children: [
+                                                Container(
+                                                    height: 285.h,
+                                                    width: 380.w,
+                                                    clipBehavior: Clip.hardEdge,
+                                                    decoration:
+                                                        const BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10)),
+                                                      color: Colors.white,
+                                                    ),
+                                                    child: PageView.builder(
+                                                        itemCount:
+                                                            postModel[index]
+                                                                .gallary!
+                                                                .length,
+                                                        controller: page,
+                                                        onPageChanged: (val) {
+                                                          setState(() {
+                                                            imgIndex = val;
+                                                          });
+                                                        },
+                                                        scrollDirection:
+                                                            Axis.horizontal,
+                                                        pageSnapping: true,
+                                                        itemBuilder:
+                                                            (BuildContext
+                                                                    context,
+                                                                ind) {
+                                                          return CachedNetworkImage(
+                                                            imageUrl: postModel[
+                                                                    index]
+                                                                .gallary![ind]
+                                                                .toString(),
+                                                            fit: BoxFit.cover,
+                                                            placeholder:
+                                                                (context,
+                                                                        url) =>
+                                                                    Center(
+                                                              child:
+                                                                  SpinKitThreeBounce(
+                                                                color: k006D77,
+                                                                size: 30,
+                                                              ),
+                                                            ),
+                                                            errorWidget:
+                                                                (context, url,
+                                                                        error) =>
+                                                                    Icon(Icons
+                                                                        .error),
+                                                          );
+                                                        })),
+                                                Positioned(
+                                                    right: 10,
+                                                    top: 10,
+                                                    child: Container(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 10,
+                                                              vertical: 5),
+                                                      decoration: BoxDecoration(
+                                                          color: Colors.black45,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      50)),
+                                                      child: Text(
+                                                        "${imgIndex + 1}/${postModel[index].gallary!.length}",
+                                                        style:
+                                                            kManRope_400_14_white,
                                                       ),
-                                                      errorWidget: (context,
-                                                              url, error) =>
-                                                          Icon(Icons.error),
-                                                    );
-                                                  })),
+                                                    ))
+                                              ],
+                                            ),
                                       SizedBox(
                                         height: 8.h,
                                       ),

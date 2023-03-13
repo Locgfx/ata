@@ -24,7 +24,10 @@ class _PBasicDetailsState extends State<PBasicDetails> {
               topRight: Radius.circular(8), topLeft: Radius.circular(8)),
         ),
         context: context,
-        builder: (context) => const SelectGenderBottomSheet());
+        builder: (context) => SelectGenderBottomSheet(
+              gender: "",
+              onPop: (val) {},
+            ));
   }
 
   void _selectDesignationBottomSheet() {
@@ -34,7 +37,10 @@ class _PBasicDetailsState extends State<PBasicDetails> {
               topRight: Radius.circular(8), topLeft: Radius.circular(8)),
         ),
         context: context,
-        builder: (context) => const SelectDesignationBottomSheet());
+        builder: (context) => SelectDesignationBottomSheet(
+              designation: "",
+              onPop: (val) {},
+            ));
   }
 
   void _datePickerBottomSheet() {

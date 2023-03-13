@@ -4,7 +4,11 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 class SelectDesignationBottomSheet extends StatefulWidget {
-  const SelectDesignationBottomSheet({Key? key}) : super(key: key);
+  final String designation;
+  final Function(String) onPop;
+  const SelectDesignationBottomSheet(
+      {Key? key, required this.onPop, required this.designation})
+      : super(key: key);
 
   @override
   State<SelectDesignationBottomSheet> createState() =>
@@ -14,6 +18,17 @@ class SelectDesignationBottomSheet extends StatefulWidget {
 class _SelectDesignationBottomSheet
     extends State<SelectDesignationBottomSheet> {
   int _gIndex = 0;
+
+  @override
+  void initState() {
+    if (widget.designation == "Counselor") {
+      _gIndex = 0;
+    } else {
+      _gIndex = 1;
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -43,6 +58,7 @@ class _SelectDesignationBottomSheet
                 onTap: () => setState(() {
                   _gIndex = 0;
                   Navigator.of(context).pop();
+                  widget.onPop("Counselor");
                 }),
                 child: Container(
                   height: 44.h,
@@ -67,6 +83,7 @@ class _SelectDesignationBottomSheet
                 onTap: () => setState(() {
                   _gIndex = 1;
                   Navigator.of(context).pop();
+                  widget.onPop("Psychologist");
                 }),
                 child: Container(
                   height: 44.h,
@@ -77,14 +94,14 @@ class _SelectDesignationBottomSheet
                   ),
                   child: Center(
                       child: Text(
-                    'Physiatrist',
+                    'Psychologist',
                     style: _gIndex == 1
                         ? kManRope_500_16_white
                         : kManRope_500_16_626A6A,
                   )),
                 ),
               ),
-              SizedBox(
+              /*SizedBox(
                 height: 8.h,
               ),
               GestureDetector(
@@ -107,7 +124,7 @@ class _SelectDesignationBottomSheet
                         : kManRope_500_16_626A6A,
                   )),
                 ),
-              ),
+              ),*/
               SizedBox(
                 height: 20.h,
               )

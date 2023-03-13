@@ -54,7 +54,6 @@ class _PTabsScreenState extends State<PTabsScreen> {
         ].elementAt(_index),
         bottomNavigationBar: userType.toLowerCase() == "p"
             ? Container(
-                //padding: EdgeInsets.symmetric(horizontal: 22.w, vertical: 16.h),
                 decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(

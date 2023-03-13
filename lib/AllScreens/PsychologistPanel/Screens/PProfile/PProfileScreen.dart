@@ -16,9 +16,13 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/global/Sharedprefs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../Apis/UserAPis/user_profile_apis/user_logout_api.dart';
+import '../../../../Apis/UserAPis/user_profile_apis/user_profile_api.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/globals.dart';
+import '../../../../model/UModels/user_profile_models/user_profile_model.dart';
+import '../../../UserPanel/UScreens/UProfile/UAccountscreen.dart';
 import '../../../UserPanel/UScreens/UProfile/UMyActivity.dart';
+import '../../../UserPanel/UScreens/UProfile/UOrderhistory.dart';
 
 class PProfileScreen extends StatefulWidget {
   const PProfileScreen({Key? key}) : super(key: key);
@@ -41,6 +45,34 @@ class _PProfileScreenState extends State<PProfileScreen> {
   }
 
   @override
+  void initState() {
+    _getData();
+    super.initState();
+  }
+
+  UserProfileModel model = UserProfileModel();
+  bool _isLoading = false;
+  _getData() {
+    print("object");
+    _isLoading = true;
+    final resp = UserProfileApi().get();
+    print(resp);
+    resp.then((value) {
+      print(value);
+      setState(() {
+        try {
+          model = UserProfileModel.fromJson(value);
+          _isLoading = false;
+        } catch (e) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
@@ -56,355 +88,384 @@ class _PProfileScreenState extends State<PProfileScreen> {
               )
             : SystemUiOverlayStyle.dark,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 52.h,
-                  width: 380.w,
-                  child: Row(
+      body: _isLoading
+          ? Center(
+              child: Image.asset(
+                'assets/images/loader.gif',
+                width: 200.w,
+                height: 200.h,
+                //color: k006D77,
+              ),
+            )
+          : SafeArea(
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(left: 24.w, top: 40.h, right: 24.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 55.h,
-                        width: 55.w,
-                        decoration: const BoxDecoration(
-                            color: Colors.grey, shape: BoxShape.circle),
-                        clipBehavior: Clip.hardEdge,
-                        child: Image.asset('assets/images/userP.png'),
+                      SizedBox(
+                        height: 52.h,
+                        width: 380.w,
+                        child: Row(
+                          children: [
+                            Container(
+                              height: 55.h,
+                              width: 55.w,
+                              decoration: const BoxDecoration(
+                                  color: Colors.grey, shape: BoxShape.circle),
+                              clipBehavior: Clip.hardEdge,
+                              child: Image.network(
+                                model.photo.toString(),
+                                fit: BoxFit.cover,
+                                errorBuilder: (q, w, e) =>
+                                    Image.asset('assets/images/userP.png'),
+                              ),
+                            ),
+                            SizedBox(
+                              width: 16.w,
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  model.name.toString(),
+                                  style: kManRope_500_16_001314,
+                                ),
+                                SizedBox(
+                                  height: 4.h,
+                                ),
+                                Text(
+                                  model.email.toString() == "null"
+                                      ? model.phone.toString()
+                                      : model.email.toString(),
+                                  style: kManRope_400_14_626A6A,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(
-                        width: 16.w,
+                        height: 31.h,
                       ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Text(
+                        'Account',
+                        style: kManRope_500_12_626A6A,
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      const PPersonalInfoScreen()))
+                              .then((value) {
+                            _getData();
+                          });
+                        },
+                        child: SizedBox(
+                          height: 48.h,
+                          width: 380.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Personal Info',
+                                style: kManRope_500_16_001314,
+                              ),
+                              Image.asset(
+                                'assets/images/iconrightblack.png',
+                                height: 24.w,
+                                width: 24.w,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => UAccountScreen(
+                                    model: model,
+                                    onTap: () {
+                                      _getData();
+                                    },
+                                  )));
+                        },
+                        child: Container(
+                          height: 48.h,
+                          width: 380.w,
+                          color: Colors.transparent,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => PAccountScreen()));
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'My account',
+                                  style: kManRope_500_16_001314,
+                                ),
+                                Image.asset(
+                                  'assets/images/iconrightblack.png',
+                                  height: 24.w,
+                                  width: 24.w,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => UMyActivityScreen()));
+                        },
+                        child: SizedBox(
+                          height: 48.h,
+                          width: 380.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'My Activity',
+                                style: kManRope_500_16_001314,
+                              ),
+                              Image.asset(
+                                'assets/images/iconrightblack.png',
+                                height: 24.w,
+                                width: 24.w,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => PKycScreen()));
+                        },
+                        child: SizedBox(
+                          height: 48.h,
+                          width: 380.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'E-KYC',
+                                style: kManRope_500_16_001314,
+                              ),
+                              Image.asset(
+                                'assets/images/iconrightblack.png',
+                                height: 24.w,
+                                width: 24.w,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  PSlotsAvailabilityScreen()));
+                        },
+                        child: SizedBox(
+                          height: 48.h,
+                          width: 380.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Slots availability',
+                                style: kManRope_500_16_001314,
+                              ),
+                              Image.asset(
+                                'assets/images/iconrightblack.png',
+                                height: 24.w,
+                                width: 24.w,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => UOrderHistory()));
+                        },
+                        child: SizedBox(
+                          height: 48.h,
+                          width: 380.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Order history',
+                                style: kManRope_500_16_001314,
+                              ),
+                              Image.asset(
+                                'assets/images/iconrightblack.png',
+                                height: 24.w,
+                                width: 24.w,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40.h,
+                      ),
+                      Text(
+                        'Help and support',
+                        style: kManRope_500_12_626A6A,
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => PAgreementScreen()));
+                        },
+                        child: GestureDetector(
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => PAgreementScreen())),
+                          child: SizedBox(
+                            height: 48.h,
+                            width: 380.w,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Agreements',
+                                  style: kManRope_500_16_001314,
+                                ),
+                                Image.asset(
+                                  'assets/images/iconrightblack.png',
+                                  height: 24.w,
+                                  width: 24.w,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 8.h,
+                      ),
+                      GestureDetector(
+                        behavior: HitTestBehavior.translucent,
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  const PHelpAndSupportScreen()));
+                        },
+                        child: SizedBox(
+                          height: 48.h,
+                          width: 380.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Help and support',
+                                style: kManRope_500_16_001314,
+                              ),
+                              Image.asset(
+                                'assets/images/iconrightblack.png',
+                                height: 24.w,
+                                width: 24.w,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 40.h,
+                      ),
+                      Text(
+                        'Settings',
+                        style: kManRope_500_12_626A6A,
+                      ),
+                      SizedBox(
+                        height: 16.h,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Priya singh',
+                            'Notifications',
                             style: kManRope_500_16_001314,
                           ),
-                          SizedBox(
-                            height: 4.h,
+                          FlutterSwitch(
+                            width: 40,
+                            height: 18,
+                            padding: 3,
+                            toggleSize: 14,
+                            activeColor: k006D77,
+                            value: _switchValue,
+                            onToggle: (val) {
+                              setState(() {
+                                _switchValue = val;
+                              });
+                            },
                           ),
-                          Text(
-                            'priyasingh344@gmail.com',
-                            style: kManRope_400_14_626A6A,
-                          )
                         ],
+                      ),
+                      SizedBox(
+                        height: 52.h,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 40.h),
+                        child: GestureDetector(
+                          behavior: HitTestBehavior.translucent,
+                          onTap: () {
+                            _pprofileLogoutBottomSheet();
+                            // _logOutBottomSheet();
+                          },
+                          child: SizedBox(
+                            height: 43.h,
+                            width: 79.w,
+                            child: Text(
+                              'Log Out',
+                              style: kManRope_500_16_B64949,
+                            ),
+                          ),
+                        ),
                       )
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: 31.h,
-                ),
-                Text(
-                  'Account',
-                  style: kManRope_500_12_626A6A,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PPersonalInfoScreen()));
-                  },
-                  child: SizedBox(
-                    height: 48.h,
-                    width: 380.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Personal Info',
-                          style: kManRope_500_16_001314,
-                        ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PAccountScreen()));
-                  },
-                  child: Container(
-                    height: 48.h,
-                    width: 380.w,
-                    color: Colors.transparent,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => PAccountScreen()));
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'My account',
-                            style: kManRope_500_16_001314,
-                          ),
-                          Image.asset(
-                            'assets/images/iconrightblack.png',
-                            height: 24.w,
-                            width: 24.w,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => UMyActivityScreen()));
-                  },
-                  child: SizedBox(
-                    height: 48.h,
-                    width: 380.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'My Activity',
-                          style: kManRope_500_16_001314,
-                        ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => PKycScreen()));
-                  },
-                  child: SizedBox(
-                    height: 48.h,
-                    width: 380.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'E-KYC',
-                          style: kManRope_500_16_001314,
-                        ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PSlotsAvailabilityScreen()));
-                  },
-                  child: SizedBox(
-                    height: 48.h,
-                    width: 380.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Slots availability',
-                          style: kManRope_500_16_001314,
-                        ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const POrderHistoryScreen()));
-                  },
-                  child: SizedBox(
-                    height: 48.h,
-                    width: 380.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Order history',
-                          style: kManRope_500_16_001314,
-                        ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                Text(
-                  'Help and support',
-                  style: kManRope_500_12_626A6A,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PAgreementScreen()));
-                  },
-                  child: GestureDetector(
-                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => PAgreementScreen())),
-                    child: SizedBox(
-                      height: 48.h,
-                      width: 380.w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'Agreements',
-                            style: kManRope_500_16_001314,
-                          ),
-                          Image.asset(
-                            'assets/images/iconrightblack.png',
-                            height: 24.w,
-                            width: 24.w,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                GestureDetector(
-                  behavior: HitTestBehavior.translucent,
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const PHelpAndSupportScreen()));
-                  },
-                  child: SizedBox(
-                    height: 48.h,
-                    width: 380.w,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Help and support',
-                          style: kManRope_500_16_001314,
-                        ),
-                        Image.asset(
-                          'assets/images/iconrightblack.png',
-                          height: 24.w,
-                          width: 24.w,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 40.h,
-                ),
-                Text(
-                  'Settings',
-                  style: kManRope_500_12_626A6A,
-                ),
-                SizedBox(
-                  height: 16.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Notifications',
-                      style: kManRope_500_16_001314,
-                    ),
-                    FlutterSwitch(
-                      width: 40,
-                      height: 18,
-                      padding: 3,
-                      toggleSize: 14,
-                      activeColor: k006D77,
-                      value: _switchValue,
-                      onToggle: (val) {
-                        setState(() {
-                          _switchValue = val;
-                        });
-                      },
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 52.h,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 40.h),
-                  child: GestureDetector(
-                    behavior: HitTestBehavior.translucent,
-                    onTap: () {
-                      _pprofileLogoutBottomSheet();
-                      // _logOutBottomSheet();
-                    },
-                    child: SizedBox(
-                      height: 43.h,
-                      width: 79.w,
-                      child: Text(
-                        'Log Out',
-                        style: kManRope_500_16_B64949,
-                      ),
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }
