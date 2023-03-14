@@ -312,7 +312,7 @@ class _PLoginScreenState extends State<PLoginScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            'New to cerebral?',
+                            'New to ataraxis?',
                             style: kManRope_400_14_Black,
                           ),
                           SizedBox(width: 5.w),

@@ -1,27 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greymatter/Apis/UserAPis/user_home_apis/user_specialist_model.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
-  const LanguageBottomSheet({Key? key}) : super(key: key);
+  List<LanguageModel> languageList;
+  List<LanguageModel> selectedLanguageList;
+  final Function(List<LanguageModel>) onPop;
+  LanguageBottomSheet(
+      {Key? key,
+      required this.languageList,
+      required this.onPop,
+      required this.selectedLanguageList})
+      : super(key: key);
 
   @override
   State<LanguageBottomSheet> createState() => _LanguageBottomSheetState();
 }
 
 class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
-  final List<String> languages = [
-    'Hindi',
-    'English',
-    'Tamil',
-    'Sanskrit',
-    'Marathi',
-    'Punjabi',
-  ];
+  List<LanguageModel> languages = [];
+  List<LanguageModel> selectedLanguages = [];
+
+  List<bool> valList = [];
+
+  @override
+  void initState() {
+    languages = widget.languageList;
+    for (var v in languages) {
+      if (widget.selectedLanguageList.contains(v)) {
+        valList.add(true);
+      } else {
+        valList.add(false);
+      }
+      selectedLanguages = widget.selectedLanguageList;
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -44,28 +64,34 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
           ),
           SizedBox(height: 20.h),
           SizedBox(
-            height: 236.h,
+            height: 250.h,
+            width: 200.h,
             child: ListView.builder(
               itemCount: languages.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(bottom: 16.h, left: 140.w),
-                  child: Row(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/icons/box.svg',
-                        height: 24.h,
-                        width: 24.w,
-                      ),
-                      SizedBox(
-                        width: 15.w,
-                      ),
-                      Text(
-                        languages[index],
-                        style: kManRope_400_16_626A6A,
-                      ),
-                    ],
+                return CheckboxListTile(
+                  value: valList[index],
+                  onChanged: (val) {
+                    setState(() {
+                      valList[index] = !valList[index];
+                    });
+                    if (valList[index] == true) {
+                      selectedLanguages.add(languages[index]);
+                    } else {
+                      selectedLanguages.removeWhere(
+                          (element) => element.id == languages[index].id);
+                    }
+                  },
+                  title: Text(
+                    languages[index].name.toString(),
+                    style: kManRope_400_16_626A6A,
                   ),
+                  activeColor: k006D77,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
                 );
               },
             ),
@@ -79,7 +105,7 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                 child: MainButton(
                   child: Padding(
                     padding:
-                    EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
+                        EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
                     child: Text(
                       "Done",
                       style: kManRope_500_18_FFFFF,
@@ -87,7 +113,10 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
                   ),
                   color: k006D77,
                   shape: CustomDecoration().smallButtonDecoration(),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    widget.onPop(selectedLanguages);
+                  },
                 ),
               ),
             ),

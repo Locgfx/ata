@@ -1,3 +1,5 @@
+import '../../../Apis/UserAPis/user_home_apis/user_specialist_model.dart';
+
 class CounselorProfileModel {
   String? id;
   String? name;
@@ -13,37 +15,36 @@ class CounselorProfileModel {
   String? dob;
   String? designation;
   String? totalExprience;
-  String? language;
+  List<LanguageModel>? language;
   String? pricing;
   String? status;
   String? education;
   String? rating;
   String? signature;
-  String? specialities;
+  List<UserSpecialistModel>? specialities;
 
-  CounselorProfileModel({
-    this.id,
-    this.name,
-    this.email,
-    this.phone,
-    this.alternatePhone,
-    this.address,
-    this.timing,
-    this.date,
-    this.photo,
-    this.about,
-    this.gender,
-    this.dob,
-    this.designation,
-    this.totalExprience,
-    this.language,
-    this.pricing,
-    this.status,
-    this.education,
-    this.rating,
-    this.signature,
-    this.specialities,
-  });
+  CounselorProfileModel(
+      {this.id,
+      this.name,
+      this.email,
+      this.phone,
+      this.alternatePhone,
+      this.address,
+      this.timing,
+      this.date,
+      this.photo,
+      this.about,
+      this.gender,
+      this.dob,
+      this.designation,
+      this.totalExprience,
+      this.language,
+      this.pricing,
+      this.status,
+      this.education,
+      this.rating,
+      this.signature,
+      this.specialities});
 
   CounselorProfileModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -60,13 +61,23 @@ class CounselorProfileModel {
     dob = json['dob'];
     designation = json['designation'];
     totalExprience = json['total_exprience'];
-    language = json['language'];
+    if (json['language'] != null) {
+      language = <LanguageModel>[];
+      json['language'].forEach((v) {
+        language!.add(new LanguageModel.fromJson(v));
+      });
+    }
     pricing = json['pricing'];
     status = json['status'];
     education = json['education'];
     rating = json['rating'];
     signature = json['signature'];
-    specialities = json['specialities'];
+    if (json['specialities'] != null) {
+      specialities = <UserSpecialistModel>[];
+      json['specialities'].forEach((v) {
+        specialities!.add(new UserSpecialistModel.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -85,13 +96,17 @@ class CounselorProfileModel {
     data['dob'] = this.dob;
     data['designation'] = this.designation;
     data['total_exprience'] = this.totalExprience;
-    data['language'] = this.language;
+    if (this.language != null) {
+      data['language'] = this.language!.map((v) => v.toJson()).toList();
+    }
     data['pricing'] = this.pricing;
     data['status'] = this.status;
     data['education'] = this.education;
     data['rating'] = this.rating;
     data['signature'] = this.signature;
-    data['specialities'] = this.specialities;
+    if (this.specialities != null) {
+      data['specialities'] = this.specialities!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

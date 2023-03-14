@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -58,7 +59,7 @@ class _PProfileScreenState extends State<PProfileScreen> {
     final resp = UserProfileApi().get();
     print(resp);
     resp.then((value) {
-      print(value);
+      log(value.toString());
       setState(() {
         try {
           model = UserProfileModel.fromJson(value);

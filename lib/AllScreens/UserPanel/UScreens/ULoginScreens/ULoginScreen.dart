@@ -344,7 +344,7 @@ class _ULoginScreenState extends State<ULoginScreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  'New to cerebral?',
+                                  'New to ataraxis?',
                                   style: kManRope_400_14_Black,
                                 ),
                                 SizedBox(width: 5.w),
@@ -642,7 +642,7 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    'New to cerebral?',
+                                    'New to ataraxis?',
                                     style: kManRope_400_14_Black,
                                   ),
                                   SizedBox(width: 5.w),

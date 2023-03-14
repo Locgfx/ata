@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UInvoicedetails.dart';
@@ -29,10 +31,13 @@ class _UOrderHistoryState extends State<UOrderHistory> {
     _isLoading = true;
     final resp = ProfileOrderHistory().get(scroll: "0");
     resp.then((value) {
+      log(value.toString());
       setState(() {
         for (var v in value) {
           orderList.add(ProfileOrderHistoryModel.fromJson(v));
         }
+        orderList.removeWhere(
+            (element) => element.status.toString().toLowerCase() != "s");
         _isLoading = false;
       });
     });
@@ -73,7 +78,9 @@ class _UOrderHistoryState extends State<UOrderHistory> {
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => UInvoiceDetails()));
+                                builder: (context) => UInvoiceDetails(
+                                      bookingId: orderList[index].id.toString(),
+                                    )));
                           },
                           child: Padding(
                             padding: EdgeInsets.only(top: index == 0 ? 40 : 0),

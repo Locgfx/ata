@@ -19,6 +19,8 @@ class UserSpecialistApi {
     var v = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
       return v;
+    } else if (response.statusCode == 201) {
+      return [];
     } else {
       print(response.reasonPhrase);
       return v;

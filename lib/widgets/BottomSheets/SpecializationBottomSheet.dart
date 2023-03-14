@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -6,8 +8,18 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
+import '../../Apis/UserAPis/user_home_apis/user_specialist_model.dart';
+
 class SpecializationBottomSheet extends StatefulWidget {
-  const SpecializationBottomSheet({Key? key}) : super(key: key);
+  final List<UserSpecialistModel> specialistModel;
+  final List<UserSpecialistModel> selectedSpecialistModel;
+  final Function(List<UserSpecialistModel>) onPop;
+  SpecializationBottomSheet(
+      {Key? key,
+      required this.specialistModel,
+      required this.onPop,
+      required this.selectedSpecialistModel})
+      : super(key: key);
 
   @override
   State<SpecializationBottomSheet> createState() =>
@@ -15,27 +27,45 @@ class SpecializationBottomSheet extends StatefulWidget {
 }
 
 class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
-  final List<String> data = [
-    'Anxiety',
-    'Relationship Issue',
-    'Suicidal Ideation',
-    'Grief & Loss',
-    'Anxiety',
-    'Depression',
-    'Stress',
-    'OCD',
-    'Grief',
-    'Anger',
-  ];
+  List<UserSpecialistModel> data = [];
 
-  final List<String> languages = [
+  /*final List<String> languages = [
     'Hindi',
     'English',
     'Tamil',
     'Sanskrit',
     'Marathi',
     'Punjabi',
-  ];
+  ];*/
+  List<UserSpecialistModel> selectedSpecialities = [];
+
+  List<bool> valList = [];
+  @override
+  void initState() {
+    data = widget.specialistModel;
+    for (var v in data) {
+      /*log("1");
+      for (var u in widget.selectedSpecialistModel) {
+        log("2");
+        if (v.id == u.id) {
+          log("3");
+          valList.add(true);
+          selectedSpecialities.add(u);
+        } else {
+          log("4");
+          valList.add(false);
+        }
+      }*/
+      if (widget.selectedSpecialistModel.contains(v)) {
+        valList.add(true);
+      } else {
+        valList.add(false);
+      }
+    }
+    selectedSpecialities = widget.selectedSpecialistModel;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -56,35 +86,38 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
             ),
           ),
           SizedBox(height: 20.h),
-          Padding(
-            padding: EdgeInsets.only(left: 140.w),
-            child: SizedBox(
-              height: 280.h,
-              child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: data.length,
-                itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: 8.h, top: 8.h),
-                    child: Row(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/icons/box.svg',
-                          height: 24.h,
-                          width: 24.w,
-                        ),
-                        SizedBox(
-                          width: 15.w,
-                        ),
-                        Text(
-                          data[index],
-                          style: kManRope_400_16_626A6A,
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+          SizedBox(
+            height: 280.h,
+            width: 200.h,
+            child: ListView.builder(
+              // physics: NeverScrollableScrollPhysics(),
+              itemCount: data.length,
+              itemBuilder: (context, index) {
+                return CheckboxListTile(
+                  value: valList[index],
+                  onChanged: (val) {
+                    setState(() {
+                      valList[index] = !valList[index];
+                    });
+                    if (valList[index] == true) {
+                      selectedSpecialities.add(data[index]);
+                    } else {
+                      selectedSpecialities.removeWhere(
+                          (element) => element.id == data[index].id);
+                    }
+                  },
+                  title: Text(
+                    data[index].name.toString(),
+                    style: kManRope_400_16_626A6A,
+                  ),
+                  activeColor: k006D77,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
+                );
+              },
             ),
           ),
           Padding(
@@ -93,7 +126,7 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
               child: MainButton(
                 child: Padding(
                   padding:
-                  EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
+                      EdgeInsets.symmetric(horizontal: 63.h, vertical: 15.h),
                   child: Text(
                     "Done",
                     style: kManRope_500_18_FFFFF,
@@ -101,7 +134,13 @@ class _SpecializationBottomSheetState extends State<SpecializationBottomSheet> {
                 ),
                 color: k006D77,
                 shape: CustomDecoration().smallButtonDecoration(),
-                onPressed: () {},
+                onPressed: () {
+                  for (var v in selectedSpecialities) {
+                    log(v.name.toString() + v.id.toString());
+                  }
+                  Navigator.of(context).pop();
+                  widget.onPop(selectedSpecialities);
+                },
               ),
             ),
           ),
