@@ -44,7 +44,7 @@ class _PEditBasicDetailsScreenState extends State<PEditBasicDetailsScreen> {
             : "Other";
     _designationController.text =
         widget.model.designation.toString().toUpperCase() == "C"
-            ? "Counselor"
+            ? "Counsellors"
             : "Psychologist";
     super.initState();
   }
@@ -191,7 +191,7 @@ class _PEditBasicDetailsScreenState extends State<PEditBasicDetailsScreen> {
                 children: [
                   Text(
                     widget.model.designation.toString().toUpperCase() == "C"
-                        ? "Counselor"
+                        ? "Counsellors"
                         : "Psychologist",
                     style: kManRope_400_16_001314,
                   ),

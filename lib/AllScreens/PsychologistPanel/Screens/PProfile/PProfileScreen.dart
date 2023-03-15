@@ -255,7 +255,7 @@ class _PProfileScreenState extends State<PProfileScreen> {
                           ),
                         ),
                       ),
-                      SizedBox(
+                      /*SizedBox(
                         height: 8.h,
                       ),
                       GestureDetector(
@@ -282,7 +282,7 @@ class _PProfileScreenState extends State<PProfileScreen> {
                             ],
                           ),
                         ),
-                      ),
+                      ),*/
                       SizedBox(
                         height: 8.h,
                       ),

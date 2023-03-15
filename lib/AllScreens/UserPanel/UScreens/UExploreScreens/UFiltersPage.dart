@@ -20,7 +20,7 @@ class _UFilterScreenState extends State<UFilterScreen> {
     'Anxiety',
     'Depression',
     'Relationship Issue',
-    'Couple Counseling',
+    'Couple Counselling',
     'Grief & Loss',
     'Sleep Issues',
     'Trauma',
@@ -93,18 +93,18 @@ class _UFilterScreenState extends State<UFilterScreen> {
                             ),
                             (showOptions1)
                                 ? Padding(
-                              padding: EdgeInsets.only(right: 12.w),
-                              child: SvgPicture.asset(
-                                'assets/icons/circleCancel.svg',
-                                height: 24.h,
-                                width: 24.h,
-                              ),
-                            )
+                                    padding: EdgeInsets.only(right: 12.w),
+                                    child: SvgPicture.asset(
+                                      'assets/icons/circleCancel.svg',
+                                      height: 24.h,
+                                      width: 24.h,
+                                    ),
+                                  )
                                 : Image.asset(
-                              "assets/images/icondropdownlargee.png",
-                              height: 48.h,
-                              width: 48.w,
-                            )
+                                    "assets/images/icondropdownlargee.png",
+                                    height: 48.h,
+                                    width: 48.w,
+                                  )
                           ],
                         ),
                       ),
@@ -205,18 +205,18 @@ class _UFilterScreenState extends State<UFilterScreen> {
                             ),
                             (showOptions2)
                                 ? Padding(
-                              padding: EdgeInsets.only(right: 12.w),
-                              child: SvgPicture.asset(
-                                'assets/icons/circleCancel.svg',
-                                height: 24.h,
-                                width: 24.h,
-                              ),
-                            )
+                                    padding: EdgeInsets.only(right: 12.w),
+                                    child: SvgPicture.asset(
+                                      'assets/icons/circleCancel.svg',
+                                      height: 24.h,
+                                      width: 24.h,
+                                    ),
+                                  )
                                 : Image.asset(
-                              "assets/images/icondropdownlargee.png",
-                              height: 48.h,
-                              width: 48.w,
-                            )
+                                    "assets/images/icondropdownlargee.png",
+                                    height: 48.h,
+                                    width: 48.w,
+                                  )
                           ],
                         ),
                       ),
@@ -240,8 +240,8 @@ class _UFilterScreenState extends State<UFilterScreen> {
                   borderRadius: showOptions2
                       ? BorderRadius.vertical(bottom: Radius.circular(10))
                       : BorderRadius.only(
-                      bottomRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(10)),
+                          bottomRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10)),
                   color: Colors.white,
                 ),
                 child: SingleChildScrollView(
@@ -319,18 +319,18 @@ class _UFilterScreenState extends State<UFilterScreen> {
                             ),
                             (showOptions3)
                                 ? Padding(
-                              padding: EdgeInsets.only(right: 12.w),
-                              child: SvgPicture.asset(
-                                'assets/icons/circleCancel.svg',
-                                height: 24.h,
-                                width: 24.h,
-                              ),
-                            )
+                                    padding: EdgeInsets.only(right: 12.w),
+                                    child: SvgPicture.asset(
+                                      'assets/icons/circleCancel.svg',
+                                      height: 24.h,
+                                      width: 24.h,
+                                    ),
+                                  )
                                 : Image.asset(
-                              "assets/images/icondropdownlargee.png",
-                              height: 48.h,
-                              width: 48.w,
-                            )
+                                    "assets/images/icondropdownlargee.png",
+                                    height: 48.h,
+                                    width: 48.w,
+                                  )
                           ],
                         ),
                       ),
@@ -354,8 +354,8 @@ class _UFilterScreenState extends State<UFilterScreen> {
                   borderRadius: showOptions3
                       ? BorderRadius.vertical(bottom: Radius.circular(10))
                       : BorderRadius.only(
-                      bottomRight: Radius.circular(10),
-                      bottomLeft: Radius.circular(10)),
+                          bottomRight: Radius.circular(10),
+                          bottomLeft: Radius.circular(10)),
                   color: Colors.white,
                 ),
                 child: SingleChildScrollView(
@@ -504,7 +504,7 @@ class _AppDatePickerState extends State<AppDatePicker> {
                   mode: CupertinoDatePickerMode.date,
                   initialDateTime: DateTime.now(),
                   minimumDate:
-                  DateTime.now().subtract(Duration(milliseconds: 1)),
+                      DateTime.now().subtract(Duration(milliseconds: 1)),
                   maximumDate: DateTime.now().add(Duration(days: 15)),
                   onDateTimeChanged: (v) {},
                 ),

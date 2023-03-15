@@ -201,7 +201,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                 width: 1.sw,
                                 child: TextField(
                                     decoration: TextfieldDecoration(
-                                            label: 'Search for counselors')
+                                            label: 'Search for Counsellorss')
                                         .whiteColorSearchField()),
                               ),
                               SizedBox(height: 36.h),

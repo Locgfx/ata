@@ -6,10 +6,13 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import '../../../../constants/fonts.dart';
 
 class PWithDrawEarningsScreen extends StatefulWidget {
-  const PWithDrawEarningsScreen({Key? key}) : super(key: key);
+  final String currentBalance;
+  const PWithDrawEarningsScreen({Key? key, required this.currentBalance})
+      : super(key: key);
 
   @override
-  State<PWithDrawEarningsScreen> createState() => _PWithDrawEarningsScreenState();
+  State<PWithDrawEarningsScreen> createState() =>
+      _PWithDrawEarningsScreenState();
 }
 
 class _PWithDrawEarningsScreenState extends State<PWithDrawEarningsScreen> {
@@ -39,7 +42,7 @@ class _PWithDrawEarningsScreenState extends State<PWithDrawEarningsScreen> {
                     style: kManRope_500_16_001314,
                   ),
                   Text(
-                    '\$4391',
+                    '₹${widget.currentBalance}',
                     style: kManRope_400_36_001314,
                   )
                 ],
@@ -59,7 +62,7 @@ class _PWithDrawEarningsScreenState extends State<PWithDrawEarningsScreen> {
               height: 13.h,
             ),
             Text(
-              'You don’t have add any bank account to withdraw money.',
+              'You haven\'t added any bank account to withdraw money.',
               style: kManRope_400_16_626A6A,
               textAlign: TextAlign.start,
             ),
@@ -80,7 +83,9 @@ class _PWithDrawEarningsScreenState extends State<PWithDrawEarningsScreen> {
                     behavior: HitTestBehavior.translucent,
                     onTap: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PAddBankScreen()));
+                          builder: (context) => PAddBankScreen(
+                                currentBalance: widget.currentBalance,
+                              )));
                     },
                     child: Image.asset(
                       'assets/images/iconaddlarge.png',

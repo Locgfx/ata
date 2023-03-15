@@ -45,7 +45,7 @@ class _UJoiningMeetingDetailsScreenState
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Selected Counselors",
+                "Selected Counsellorss",
                 style: kManRope_700_16_001314,
               ),
               SizedBox(
@@ -84,7 +84,7 @@ class _UJoiningMeetingDetailsScreenState
                             height: 8.h,
                           ),
                           Text(
-                            'Counselors',
+                            'Counsellorss',
                             style: kManRope_400_14_626A6A,
                           ),
                           SizedBox(

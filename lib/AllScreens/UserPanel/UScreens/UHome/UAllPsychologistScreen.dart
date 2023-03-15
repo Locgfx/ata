@@ -58,7 +58,7 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
             backgroundColor: Colors.white,
             centerTitle: false,
             title: Text(
-              'Available Counselors',
+              'Available Counsellorss',
               style: kManRope_500_16_006D77,
             ),
             titleSpacing: 0.w,

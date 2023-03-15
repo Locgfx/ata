@@ -36,7 +36,7 @@ android {
 
     defaultConfig {
         applicationId "com.locgfx.ataraxis"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         multiDexEnabled true
         versionCode flutterVersionCode.toInteger()

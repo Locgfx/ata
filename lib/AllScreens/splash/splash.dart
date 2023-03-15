@@ -132,7 +132,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 style: kManRope_700_32_white,
               ),
               Text(
-                'Axis',
+                'axis',
                 style: kManRope_400_32_white,
               ),
             ],

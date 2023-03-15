@@ -51,7 +51,7 @@ class _UBookingConfirmationScreenState
         child: SizedBox(
           child: ListView(
             children: [
-              Text('Selected Counselors', style: kManRope_700_16_001314),
+              Text('Selected Counsellorss', style: kManRope_700_16_001314),
               SizedBox(
                 height: 24.h,
               ),
@@ -85,7 +85,7 @@ class _UBookingConfirmationScreenState
                           height: 8.h,
                         ),
                         Text(
-                          'Counselors',
+                          'Counsellorss',
                           style: kManRope_400_14_626A6A,
                         ),
                         SizedBox(

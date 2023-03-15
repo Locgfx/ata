@@ -71,7 +71,7 @@ class _UExplorePageState extends State<UExplorePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${psychologists.length} counselors',
+                        '${psychologists.length} Counsellorss',
                         style: kManRope_500_16_001314,
                       ),
                       /*GestureDetector(

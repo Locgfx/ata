@@ -362,7 +362,7 @@
 				DEVELOPMENT_TEAM = YMM57ZQXHA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AtarAxis;
+				INFOPLIST_KEY_CFBundleDisplayName = Ataraxis;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -497,7 +497,7 @@
 				DEVELOPMENT_TEAM = YMM57ZQXHA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AtarAxis;
+				INFOPLIST_KEY_CFBundleDisplayName = Ataraxis;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -526,7 +526,7 @@
 				DEVELOPMENT_TEAM = YMM57ZQXHA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AtarAxis;
+				INFOPLIST_KEY_CFBundleDisplayName = Ataraxis;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (

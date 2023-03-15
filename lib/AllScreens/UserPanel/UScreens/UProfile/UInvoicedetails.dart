@@ -119,7 +119,7 @@ class _UInvoiceDetailsState extends State<UInvoiceDetails> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Counselor',
+                          'Counsellors',
                           style: kManRope_500_14_001314,
                         ),
                         Text(

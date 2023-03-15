@@ -21,7 +21,7 @@ class _SelectDesignationBottomSheet
 
   @override
   void initState() {
-    if (widget.designation == "Counselor") {
+    if (widget.designation == "Counsellors") {
       _gIndex = 0;
     } else {
       _gIndex = 1;
@@ -58,7 +58,7 @@ class _SelectDesignationBottomSheet
                 onTap: () => setState(() {
                   _gIndex = 0;
                   Navigator.of(context).pop();
-                  widget.onPop("Counselor");
+                  widget.onPop("Counsellors");
                 }),
                 child: Container(
                   height: 44.h,
@@ -69,7 +69,7 @@ class _SelectDesignationBottomSheet
                   ),
                   child: Center(
                       child: Text(
-                    'Counselor',
+                    'Counsellors',
                     style: _gIndex == 0
                         ? kManRope_500_16_white
                         : kManRope_500_16_626A6A,
@@ -118,7 +118,7 @@ class _SelectDesignationBottomSheet
                   ),
                   child: Center(
                       child: Text(
-                    'Counselor',
+                    'Counsellors',
                     style: _gIndex == 2
                         ? kManRope_500_16_white
                         : kManRope_500_16_626A6A,

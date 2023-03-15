@@ -19,7 +19,7 @@ class USelectPsychologistsScreen extends StatelessWidget {
       appBar: CustomWhiteAppBar(
         hasThreeDots: false,
         imgPath: 'assets/images/iconbackappbar2.png',
-        appBarText: 'Available Counselors',
+        appBarText: 'Available Counsellorss',
       ),
       body: Padding(
         padding:

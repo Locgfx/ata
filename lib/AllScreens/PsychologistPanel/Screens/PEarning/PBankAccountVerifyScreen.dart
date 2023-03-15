@@ -5,10 +5,13 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import '../../../../constants/fonts.dart';
 
 class PAccountBankVerifyScreen extends StatefulWidget {
-  const PAccountBankVerifyScreen({Key? key}) : super(key: key);
+  final String currentBalance;
+  const PAccountBankVerifyScreen({Key? key, required this.currentBalance})
+      : super(key: key);
 
   @override
-  State<PAccountBankVerifyScreen> createState() => _PAccountBankVerifyScreenState();
+  State<PAccountBankVerifyScreen> createState() =>
+      _PAccountBankVerifyScreenState();
 }
 
 class _PAccountBankVerifyScreenState extends State<PAccountBankVerifyScreen> {
@@ -22,8 +25,10 @@ class _PAccountBankVerifyScreenState extends State<PAccountBankVerifyScreen> {
   }
 
   setPage() {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => PWithDrawEarningsScreen2()));
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => PWithDrawEarningsScreen2(
+              currentBalance: "",
+            )));
   }
 
   @override
@@ -51,7 +56,7 @@ class _PAccountBankVerifyScreenState extends State<PAccountBankVerifyScreen> {
                     style: kManRope_500_16_001314,
                   ),
                   Text(
-                    '\$4391',
+                    '₹${widget.currentBalance}',
                     style: kManRope_400_36_001314,
                   )
                 ],

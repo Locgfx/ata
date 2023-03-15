@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -16,6 +18,7 @@ import 'package:greymatter/widgets/shimmerLoader.dart';
 import 'package:intl/intl.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/BottomSheets/FilterBottomSheet.dart';
+import 'PWithdrawEarning2Screen.dart';
 
 class PMyEarningsScreen extends StatefulWidget {
   const PMyEarningsScreen({Key? key}) : super(key: key);
@@ -43,13 +46,16 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
     _earningsLoading = true;
     final resp = TotalEarningApi().get(filter: filter);
     resp.then((value) {
+      log(value.toString());
       if (value['status'] == true) {
+        log("message");
         setState(() {
           earningsModel = TotalEarningsModel.fromJson(value);
           _earningsLoading = false;
         });
       } else {
         setState(() {
+          log("me");
           _earningsLoading = false;
         });
       }
@@ -265,10 +271,27 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  PWithDrawEarningsScreen()));
+                                      if (earningsModel.bankStatus! == 0) {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    PWithDrawEarningsScreen(
+                                                      currentBalance:
+                                                          earningsModel
+                                                              .currentBalance
+                                                              .toString(),
+                                                    )));
+                                      } else {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    PWithDrawEarningsScreen2(
+                                                      currentBalance:
+                                                          earningsModel
+                                                              .currentBalance
+                                                              .toString(),
+                                                    )));
+                                      }
                                     },
                                     child: Text(
                                       'WITHDRAW',

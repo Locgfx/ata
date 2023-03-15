@@ -10,10 +10,13 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class PWithdrawSuccessfulScreen extends StatefulWidget {
-  const PWithdrawSuccessfulScreen({Key? key}) : super(key: key);
+  final String currentBalance;
+  const PWithdrawSuccessfulScreen({Key? key, required this.currentBalance})
+      : super(key: key);
 
   @override
-  State<PWithdrawSuccessfulScreen> createState() => _PWithdrawSuccessfulScreenState();
+  State<PWithdrawSuccessfulScreen> createState() =>
+      _PWithdrawSuccessfulScreenState();
 }
 
 class _PWithdrawSuccessfulScreenState extends State<PWithdrawSuccessfulScreen> {
