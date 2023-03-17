@@ -205,25 +205,19 @@ class _PProfileScreenState extends State<PProfileScreen> {
                           height: 48.h,
                           width: 380.w,
                           color: Colors.transparent,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => PAccountScreen()));
-                            },
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'My account',
-                                  style: kManRope_500_16_001314,
-                                ),
-                                Image.asset(
-                                  'assets/images/iconrightblack.png',
-                                  height: 24.w,
-                                  width: 24.w,
-                                ),
-                              ],
-                            ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'My account',
+                                style: kManRope_500_16_001314,
+                              ),
+                              Image.asset(
+                                'assets/images/iconrightblack.png',
+                                height: 24.w,
+                                width: 24.w,
+                              ),
+                            ],
                           ),
                         ),
                       ),
