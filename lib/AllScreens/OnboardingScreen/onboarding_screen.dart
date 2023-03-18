@@ -86,147 +86,129 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               children: const [
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counsellorss',
+                        'Book an instant appointment with the right  Counsellors',
                     image: 'assets/images/onb1.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Get 24*7 chat support',
                     image: 'assets/images/onb2.png'),
                 OnbSlide(
-                    text:
-                        'Book an instant appointment with the right  Counsellorss',
+                    text: 'Schedule meeting as per your requirement',
                     image: 'assets/images/onb3.png'),
                 OnbSlide(
                     text:
-                        'Book an instant appointment with the right  Counselors',
+                        'Get expert guidance from certified counsellors and therapists',
                     image: 'assets/images/onb4.png'),
               ],
             ),

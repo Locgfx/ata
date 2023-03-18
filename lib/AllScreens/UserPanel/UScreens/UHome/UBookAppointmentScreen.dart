@@ -119,6 +119,7 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                             SizedBox(height: 8.h),
                             Text(
                               specialistModel[index].name.toString(),
+                              overflow: TextOverflow.ellipsis,
                               style: kManRope_400_16_626A6A,
                             ),
                           ],

@@ -6,16 +6,20 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PJoiningScr
 import 'package:greymatter/Apis/DoctorApis/home_apis/upcoming_booking_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/PModels/home_models/see_all_booking_model.dart';
 import 'package:greymatter/model/PModels/home_models/upcoming_booking_model.dart';
 import 'package:greymatter/widgets/BottomSheets/CalenderBottomSheet.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../Apis/DoctorApis/home_apis/see_all_booking_api.dart';
 import '../../../../../widgets/BottomSheets/FilterBottomSheet.dart';
 
 class UpcomingMeetings extends StatefulWidget {
-  const UpcomingMeetings({Key? key}) : super(key: key);
+  final String screenName;
+  const UpcomingMeetings({Key? key, required this.screenName})
+      : super(key: key);
 
   @override
   State<UpcomingMeetings> createState() => _UpcomingMeetingsState();
@@ -30,11 +34,11 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
         ),
         context: context,
         builder: (context) => FilterBottomSheet(onPop: (val) {
-              /*setState(() {
-            _earningsLoading = true;
-            filter = val;
-          });
-          _getTotalEarnings();*/
+              setState(() {
+                _isLoading = true;
+                filter = val;
+              });
+              getData();
             }));
   }
 
@@ -44,22 +48,33 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
     super.initState();
   }
 
-  UpcomingBookingModel model = UpcomingBookingModel();
-  List<UpcomingBookingModel> upcomingBooking = [];
+  //UpcomingBookingModel model = UpcomingBookingModel();
+  //List<UpcomingBookingModel> upcomingBooking = [];
   bool _isLoading = false;
 
+  SeeAllBookingsModel model = SeeAllBookingsModel();
+  String filter = "";
   int _scroll = 0;
   getData() {
     _isLoading = true;
-    final resp = UpcomingBookingApi().get(scroll: "0");
+    final resp = SeeAllApiBooking().get(
+        filter: filter,
+        val: widget.screenName == "Upcoming"
+            ? "u"
+            : widget.screenName == "Cancelled"
+                ? "c"
+                : "s");
     resp.then((value) {
-      print(value);
-      setState(() {
-        for (var v in value) {
-          upcomingBooking.add(UpcomingBookingModel.fromJson(v));
-        }
-        _isLoading = false;
-      });
+      if (value['status'] == true) {
+        setState(() {
+          model = SeeAllBookingsModel.fromJson(value);
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          _isLoading = false;
+        });
+      }
     });
   }
 
@@ -68,7 +83,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
     return Scaffold(
       backgroundColor: kEDF6F9,
       appBar: CustomWhiteAppBar(
-        appBarText: 'Upcoming',
+        appBarText: widget.screenName,
         imgPath: 'assets/images/iconbackappbarlarge.png',
         hasThreeDots: false,
       ),
@@ -84,7 +99,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Upcoming   (17)',
+                          '${widget.screenName}  (${model.totalBooking})',
                           style: kManRope_700_16_001314,
                         ),
                         GestureDetector(
@@ -118,7 +133,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                             height: 24.h,
                           ),*/
                           ListView.separated(
-                            itemCount: upcomingBooking.length,
+                            itemCount: model.message!.length,
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (ctx, index) {
@@ -128,10 +143,16 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PJoiningScreen(
-                                              userId: upcomingBooking[index]
-                                                  .userId
+                                              userId: model
+                                                  .message![index].userId
                                                   .toString(),
-                                              status: "u",
+                                              status: widget.screenName ==
+                                                      "Upcoming"
+                                                  ? "u"
+                                                  : widget.screenName ==
+                                                          "Cancelled"
+                                                      ? "c"
+                                                      : "s",
                                             )),
                                   );
                                 },
@@ -160,8 +181,8 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                               ),
                                               clipBehavior: Clip.hardEdge,
                                               child: CachedNetworkImage(
-                                                imageUrl: upcomingBooking[index]
-                                                    .photo
+                                                imageUrl: model
+                                                    .message![index].photo
                                                     .toString(),
                                                 fit: BoxFit.cover,
                                                 placeholder: (context, url) =>
@@ -186,8 +207,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                      upcomingBooking[index]
-                                                          .name
+                                                      model.message![index].name
                                                           .toString(),
                                                       style:
                                                           kManRope_500_16_001314),
@@ -197,7 +217,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                                             .spaceBetween,
                                                     children: [
                                                       Text(
-                                                          upcomingBooking[index]
+                                                          model.message![index]
                                                               .issueName
                                                               .toString(),
                                                           style:
@@ -207,7 +227,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                                         DateFormat.yMMMd()
                                                             .add_jm()
                                                             .format(DateTime.parse(
-                                                                "${upcomingBooking[index].date.toString()} ${upcomingBooking[index].timeSlot.toString()}")),
+                                                                "${model.message![index].date.toString()} ${model.message![index].timeSlot.toString()}")),
                                                         style:
                                                             kManRope_400_14_626A6A,
                                                         textAlign:

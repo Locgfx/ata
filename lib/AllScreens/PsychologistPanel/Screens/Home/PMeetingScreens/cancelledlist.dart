@@ -10,6 +10,7 @@ import 'package:greymatter/model/PModels/home_models/cancelled_booking_model.dar
 import 'package:intl/intl.dart';
 import '../../../../../constants/decorations.dart';
 import '../../../../../widgets/buttons.dart';
+import 'Upcomingmeetings.dart';
 
 class CancelledList extends StatefulWidget {
   const CancelledList({Key? key}) : super(key: key);
@@ -149,7 +150,9 @@ class _CancelledListState extends State<CancelledList> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                CancelledMeetings()));
+                                                UpcomingMeetings(
+                                                  screenName: "Cancelled",
+                                                )));
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(

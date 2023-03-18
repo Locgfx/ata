@@ -174,7 +174,9 @@ class _UpcomingListState extends State<UpcomingList> {
                                     Navigator.of(context).push(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                UpcomingMeetings()));
+                                                UpcomingMeetings(
+                                                  screenName: "Upcoming",
+                                                )));
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(

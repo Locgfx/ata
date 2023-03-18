@@ -14,6 +14,7 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../agora/meeting_screen.dart';
 import '../../../../widgets/loadingWidget.dart';
 
 class PJoiningScreen extends StatefulWidget {
@@ -270,7 +271,7 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                         color: k66898D,
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => PSuccessfulSessionScreen()));
+                              builder: (ctx) => MeetingScreen()));
                         },
                         child: Padding(
                           padding: EdgeInsets.only(

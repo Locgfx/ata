@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/Completedmeetings.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/Upcomingmeetings.dart';
 import 'package:greymatter/Apis/DoctorApis/home_apis/completed_booking_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -148,7 +149,9 @@ class _CompletedListState extends State<CompletedList> {
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  CompletedMeetings()));
+                                                  UpcomingMeetings(
+                                                    screenName: "Completed",
+                                                  )));
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.only(

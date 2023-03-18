@@ -64,6 +64,7 @@ dependencies:
   firebase_auth: 3.3.19
   agora_rtc_engine: ^6.1.0
   agora_chat_sdk: ^1.1.0
+  permission_handler: ^10.2.0
 
 
 
