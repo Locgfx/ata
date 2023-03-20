@@ -6,6 +6,7 @@ class UserGoalsModel {
   String? days;
   String? reminder;
   String? activityId;
+  String? activityName;
   String? reminderTime;
 
   UserGoalsModel(
@@ -16,6 +17,7 @@ class UserGoalsModel {
       this.activityId,
       this.days,
       this.reminder,
+      this.activityName,
       this.reminderTime});
 
   UserGoalsModel.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class UserGoalsModel {
     goalType = json['goal_type'];
     goal = json['goal'];
     days = json['days'];
+    activityName = json['activity_name'];
     reminder = json['reminder'];
     reminderTime = json['reminder_time'];
   }
@@ -35,6 +38,7 @@ class UserGoalsModel {
     data['icon'] = this.icon;
     data['activity_id'] = this.activityId;
     data['goal_type'] = this.goalType;
+    data['activity_name'] = this.activityName;
     data['goal'] = this.goal;
     data['days'] = this.days;
     data['reminder'] = this.reminder;

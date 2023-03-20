@@ -202,29 +202,35 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                     )
                   : MainButton(
                       onPressed: () {
-                        setState(() {
-                          _btnLoading = true;
-                        });
-                        final resp = AddPost().get(
-                            captions: controller.text,
-                            pickedImg: _pickedImages);
-                        resp.then((value) {
-                          if (value['status'] == true) {
-                            setState(() {
+                        if (_pickedImages.isNotEmpty) {
+                          setState(() {
+                            _btnLoading = true;
+                          });
+                          final resp = AddPost().get(
+                              captions: controller.text,
+                              pickedImg: _pickedImages);
+                          resp.then((value) {
+                            if (value['status'] == true) {
+                              setState(() {
+                                Fluttertoast.showToast(
+                                    msg: "Posted successfully.");
+                                setState(() {
+                                  _btnLoading = false;
+                                });
+                                Navigator.of(context).pop();
+                              });
+                            } else {
                               Fluttertoast.showToast(
-                                  msg: "Posted successfully.");
+                                  msg: "Something went wrong");
                               setState(() {
                                 _btnLoading = false;
                               });
-                              Navigator.of(context).pop();
-                            });
-                          } else {
-                            Fluttertoast.showToast(msg: "Something went wrong");
-                            setState(() {
-                              _btnLoading = false;
-                            });
-                          }
-                        });
+                            }
+                          });
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "Please select an image first.");
+                        }
                       },
                       child: Padding(
                         padding: EdgeInsets.only(left: 74.w, right: 74.w),

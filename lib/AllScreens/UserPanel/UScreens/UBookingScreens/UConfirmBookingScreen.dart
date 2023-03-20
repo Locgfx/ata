@@ -57,7 +57,7 @@ class _UConfirmAppointmentBookingState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Selected Counsellorss', style: kManRope_700_16_001314),
+                Text('Selected Counsellors', style: kManRope_700_16_001314),
                 SizedBox(
                   height: 25.h,
                 ),

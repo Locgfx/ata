@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -45,13 +46,20 @@ class _UGoalScreenState extends State<UGoalScreen> {
     0.0,
   ];
 
-  void _uDeleteBottomsheet(int activityId) {
+  void _uDeleteBottomsheet(int activityId, int removeIndex) {
     showModalBottomSheet(
         context: context,
         backgroundColor: kFFFFFF,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         builder: (BuildContext context) => UDeleteBottomSheet(
+              onPop: () {
+                setState(() {
+                  _isLoading = true;
+                  modelList.removeAt(removeIndex);
+                });
+                _getData();
+              },
               activityId: activityId,
             ));
   }
@@ -72,6 +80,8 @@ class _UGoalScreenState extends State<UGoalScreen> {
     _isLoading = true;
     final resp = UserGoalsApi().get();
     resp.then((value) {
+      log(value.toString());
+
       if (value['status'] == true) {
         modelList.clear();
         setState(() {
@@ -194,8 +204,10 @@ class _UGoalScreenState extends State<UGoalScreen> {
                     Spacer(),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => UAddActivityScreen()));
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(
+                                builder: (context) => UAddActivityScreen()))
+                            .then((value) => _getData());
                       },
                       child: SvgPicture.asset(
                         'assets/icons/circlepluswithbackground.svg',
@@ -232,8 +244,10 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                 children: [
                                   GestureDetector(
                                     onTap: () {
-                                      _uDeleteBottomsheet(int.parse(
-                                          modelList[index].activityId!));
+                                      _uDeleteBottomsheet(
+                                          int.parse(
+                                              modelList[index].activityId!),
+                                          index);
                                     },
                                     child: Container(
                                       margin: EdgeInsets.only(top: 16.h),
@@ -312,7 +326,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                                       SizedBox(width: 12.w),
                                                       Text(
                                                         modelList[index]
-                                                            .goal
+                                                            .activityName
                                                             .toString(),
                                                         style:
                                                             kManRope_500_16_white,

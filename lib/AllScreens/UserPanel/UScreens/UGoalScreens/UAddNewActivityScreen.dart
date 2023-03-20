@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -18,6 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
+import '../../../../widgets/popupdialogs.dart';
 import 'UNewActivityAddedScreen.dart';
 
 class UAddNewActivityScreen extends StatefulWidget {
@@ -38,9 +40,13 @@ class UAddNewActivityScreen extends StatefulWidget {
 class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
   bool _switchValue = true;
   bool goalFlag = true;
+  TimeOfDay? _pickedTime;
+  TimeOfDay holder = TimeOfDay.now();
+  String selectTime = "select time";
   int flag = 0;
   int selectedDay = 0;
   List selectedDays = [];
+  List<String> daysName = [];
   String a = DateTime(DateTime.now().year, DateTime.now().month,
           DateTime.now().day, 6, 0, 0, 0, 0)
       .toString();
@@ -70,11 +76,16 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10.w),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      //color: Colors.black,
+                    ),
+                    clipBehavior: Clip.hardEdge,
                     child: CachedNetworkImage(
                       imageUrl: widget.activityImage,
-                      fit: BoxFit.cover,
+                      fit: BoxFit.fill,
                       placeholder: (context, url) => Center(
                         child: SpinKitThreeBounce(
                           color: k006D77,
@@ -371,16 +382,38 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
                           style: kManRope_500_16_001314,
                         ),
                         GestureDetector(
-                          onTap: () {
-                            if (Platform.isAndroid) {
-                              Globals().showTimepicker(context);
-                            } else {
+                          onTap: () async {
+                            // if (Platform.isAndroid) {
+                            _pickedTime = await showTimePicker(
+                              initialTime: selectTime == 'select time'
+                                  ? TimeOfDay.now()
+                                  : holder,
+                              context: context,
+                              builder: (BuildContext context, child) {
+                                return TimeWidget(child: child);
+                              },
+                            );
+                            if (_pickedTime != null) {
+                              log(_pickedTime.toString());
+                              final now = DateTime.now();
+                              holder = _pickedTime!;
+                              setState(() {
+                                selectTime = DateFormat.jm().format(DateTime(
+                                    now.year,
+                                    now.month,
+                                    now.day,
+                                    _pickedTime!.hour,
+                                    _pickedTime!.minute));
+                                log(holder.toString().substring(10, 15));
+                              });
+                            }
+                            /*} else {
                               showDialog(
                                 context: context,
                                 builder: (_) =>
                                     TimePickerApp(dateTime: DateTime.parse(a)),
                               ).then((value) => getReminderTime());
-                            }
+                            }*/
                           },
                           child: Container(
                             width: 100,
@@ -390,7 +423,7 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
                                 borderRadius: BorderRadius.circular(10)),
                             child: Center(
                               child: Text(
-                                DateFormat('hh:mm a').format(DateTime.parse(a)),
+                                selectTime,
                                 style: kManRope_400_14_001314,
                               ),
                             ),
@@ -439,9 +472,9 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
           : flag == 1
               ? 'ms'
               : 'c',
-      days: flag == 2 ? getDays() : '',
+      days: flag == 2 ? getDays().map((c) => c).toList().join(',') : '',
       reminder: _switchValue ? '1' : '0',
-      reminderTime: DateFormat('hh:mm').format(DateTime.parse(a)),
+      reminderTime: holder.toString().substring(10, 15),
     ).then(
       (value) {
         if (value) {
@@ -467,28 +500,28 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
   getDays() {
     String a = '';
     if (selectedDays.contains(0)) {
-      a = a + 'sun,';
+      daysName.add("sun");
     }
     if (selectedDays.contains(1)) {
-      a = a + 'mon,';
+      daysName.add("mon");
     }
     if (selectedDays.contains(2)) {
-      a = a + 'tues,';
+      daysName.add("tues");
     }
     if (selectedDays.contains(3)) {
-      a = a + 'wed,';
+      daysName.add("wed");
     }
     if (selectedDays.contains(4)) {
-      a = a + 'thur,';
+      daysName.add("thur");
     }
     if (selectedDays.contains(5)) {
-      a = a + 'fri,';
+      daysName.add("fri");
     }
     if (selectedDays.contains(6)) {
-      a = a + 'sat,';
+      daysName.add("sat");
     }
     print(a);
-    return a;
+    return daysName;
   }
 }
 

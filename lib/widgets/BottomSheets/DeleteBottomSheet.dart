@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/Apis/UserAPis/user_goals_api/delete_goal_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -8,7 +11,9 @@ import 'package:greymatter/widgets/buttons.dart';
 
 class UDeleteBottomSheet extends StatefulWidget {
   final int activityId;
-  const UDeleteBottomSheet({Key? key, required this.activityId})
+  final Function onPop;
+  const UDeleteBottomSheet(
+      {Key? key, required this.activityId, required this.onPop})
       : super(key: key);
 
   @override
@@ -59,7 +64,15 @@ class _UDeleteBottomSheet extends State<UDeleteBottomSheet> {
                             onPressed: () {
                               final resp = DeleteGoalApi()
                                   .get(activityId: widget.activityId);
-                              resp.then((value) {});
+                              resp.then((value) {
+                                log(value.toString());
+                                if (value['status'] == true) {
+                                  Navigator.of(context).pop();
+                                  widget.onPop();
+                                } else {
+                                  Fluttertoast.showToast(msg: value["error"]);
+                                }
+                              });
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.h),

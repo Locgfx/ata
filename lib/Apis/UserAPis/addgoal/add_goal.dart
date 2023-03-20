@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,14 +29,15 @@ Future addGoalApi({
     'reminder': reminder,
     'reminder_time': reminderTime
   });
-
+  //log(request.fields.toString());
   request.headers.addAll(headers);
 
   http.StreamedResponse response = await request.send();
 
   var resp = jsonDecode(await response.stream.bytesToString());
   if (response.statusCode == 200 && resp['status']) {
-    Globals().showToast(resp['message']);
+    log(resp.toString());
+    Globals().showToast("Activity added.");
     return resp['status'];
   } else {
     Globals().showToast(resp['error']);

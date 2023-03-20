@@ -71,7 +71,7 @@ class _UExplorePageState extends State<UExplorePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        '${psychologists.length} Counsellorss',
+                        '${psychologists.length} Counsellors',
                         style: kManRope_500_16_001314,
                       ),
                       /*GestureDetector(
@@ -188,7 +188,7 @@ class _UExplorePageState extends State<UExplorePage> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        "Expertise in : ${psychologists[index].specialities!.first.name}",
+                                        "Specializes in : ${psychologists[index].specialities!.first.name}",
                                         style: kManRope_400_12_001314,
                                       ),
                                     ),

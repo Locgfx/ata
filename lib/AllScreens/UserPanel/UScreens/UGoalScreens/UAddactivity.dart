@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -44,7 +46,8 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
     _isLoading = true;
     final resp = UserActivityApi().get();
     resp.then((value) {
-      //print(value);
+      log(value.toString());
+      modeluseractivity.clear();
       setState(() {
         for (var v in value) {
           modeluseractivity.add(UserActivityModel.fromJson(v));
@@ -90,7 +93,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                           padding: EdgeInsets.only(bottom: 16.h),
                           child: Stack(
                             children: [
-                              Container(
+                              /*Container(
                                 height: 80.h,
                                 width: 80.w,
                                 decoration: BoxDecoration(
@@ -115,7 +118,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                     'assets/images/bin.png',
                                   ),
                                 ),
-                              ),
+                              ),*/
                               Transform.translate(
                                 offset: Offset(dx[index], 0),
                                 child: GestureDetector(
@@ -211,7 +214,7 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                                         activityImage:
                                                             modeluseractivity[
                                                                     index]
-                                                                .icon!,
+                                                                .image!,
                                                         activityId:
                                                             modeluseractivity[
                                                                     index]

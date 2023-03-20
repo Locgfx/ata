@@ -48,13 +48,13 @@ class _UInstantBookingScreenState extends State<UInstantBookingScreen> {
                             CustomDecoration().outline5A72EDDecoration(),
                         child: TextField(
                           decoration: TextfieldDecoration(
-                                  label: 'Search for Counsellorss',
+                                  label: 'Search for Counsellors',
                                   hintstyle: kManRope_400_14_626A6A)
                               .whiteColorSearchField(),
                         ),
                       ),
                       SizedBox(height: 40.h),
-                      Text('Choose from Top Counsellorss',
+                      Text('Choose from Top Counsellors',
                           style: kManRope_700_16_001314),
                       SizedBox(height: 8.h),
                       Text('Book confirmed appointments',

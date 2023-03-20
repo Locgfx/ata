@@ -204,29 +204,35 @@ class _UCreatePostState extends State<UCreatePost> {
                     )
                   : MainButton(
                       onPressed: () {
-                        setState(() {
-                          _btnLoading = true;
-                        });
-                        final resp = AddPost().get(
-                            captions: controller.text,
-                            pickedImg: _pickedImages);
-                        resp.then((value) {
-                          if (value['status'] == true) {
-                            setState(() {
-                              Fluttertoast.showToast(
-                                  msg: "Posted successfully.");
+                        if (_pickedImages.isNotEmpty) {
+                          setState(() {
+                            _btnLoading = true;
+                          });
+                          final resp = AddPost().get(
+                              captions: controller.text,
+                              pickedImg: _pickedImages);
+                          resp.then((value) {
+                            if (value['status'] == true) {
+                              setState(() {
+                                Fluttertoast.showToast(
+                                    msg: "Posted successfully.");
+                                setState(() {
+                                  _btnLoading = false;
+                                });
+                                Navigator.of(context).pop();
+                              });
+                            } else {
                               setState(() {
                                 _btnLoading = false;
                               });
-                              Navigator.of(context).pop();
-                            });
-                          } else {
-                            setState(() {
-                              _btnLoading = false;
-                            });
-                            Fluttertoast.showToast(msg: "Something went wrong");
-                          }
-                        });
+                              Fluttertoast.showToast(
+                                  msg: "Something went wrong");
+                            }
+                          });
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "Please select an image first.");
+                        }
                       },
                       child: Padding(
                         padding: EdgeInsets.only(left: 74.w, right: 74.w),

@@ -201,7 +201,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                 width: 1.sw,
                                 child: TextField(
                                     decoration: TextfieldDecoration(
-                                            label: 'Search for Counsellorss')
+                                            label: 'Search for Counsellors')
                                         .whiteColorSearchField()),
                               ),
                               SizedBox(height: 36.h),
@@ -569,7 +569,9 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                           return Container(
                                             height: 87.h,
                                             width: 248.w,
-                                            margin: EdgeInsets.only(left: 24.w),
+                                            margin: EdgeInsets.only(
+                                                right: 24.w,
+                                                left: i == 0 ? 24.w : 0),
                                             decoration: BoxDecoration(
                                               color: k5A72ED,
                                               borderRadius:

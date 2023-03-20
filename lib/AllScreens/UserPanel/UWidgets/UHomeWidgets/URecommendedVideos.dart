@@ -104,7 +104,8 @@ class _URecommendedVideosSliderState extends State<URecommendedVideosSlider> {
                   child: Container(
                     width: 248.w,
                     clipBehavior: Clip.hardEdge,
-                    margin: EdgeInsets.only(left: 24.w),
+                    margin:
+                        EdgeInsets.only(right: 24.w, left: i == 0 ? 24.w : 0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                     ),
