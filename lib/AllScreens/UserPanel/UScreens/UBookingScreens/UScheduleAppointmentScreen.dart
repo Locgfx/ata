@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UConfirmBookingScreen.dart';
@@ -89,6 +91,7 @@ class _UScheduleAppointmentScreenState
     return a;
   }
 
+  int value = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -99,128 +102,158 @@ class _UScheduleAppointmentScreenState
         imgPath: 'assets/images/iconbackappbar2.png',
       ),
 
-      body: Padding(
-        padding: EdgeInsets.only(top: 40.h, left: 24.w, right: 24.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              flag ? '$Month ${selectedDay.year}' : 'Select Date',
-              style: kManRope_500_16_001314,
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            TableCalendar(
-              focusedDay: selectedDay,
-              firstDay: DateTime.now(),
-              lastDay: DateTime.now().add(Duration(days: 30)),
-              calendarFormat: CalendarFormat.week,
-              headerVisible: false,
-              calendarStyle: CalendarStyle(
-                isTodayHighlighted: false,
-                withinRangeTextStyle: kManRope_400_14_white,
-                todayTextStyle: kManRope_400_14_white,
-                rangeEndTextStyle: kManRope_400_14_white,
-                rangeStartTextStyle: kManRope_400_14_white,
-                todayDecoration: constDecoration,
-                defaultDecoration: constDecoration,
-                withinRangeDecoration: constDecoration,
-                disabledDecoration: constDecoration,
-                holidayDecoration: constDecoration,
-                markerDecoration: constDecoration,
-                outsideDecoration: constDecoration,
-                rangeEndDecoration: constDecoration,
-                rangeStartDecoration: constDecoration,
-                rowDecoration: constDecoration,
-                weekendDecoration: constDecoration,
-                selectedDecoration: BoxDecoration(
-                  border: Border.all(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(top: 40.h, left: 24.w, right: 24.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                flag ? '$Month ${selectedDay.year}' : 'Select Date',
+                style: kManRope_500_16_001314,
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              TableCalendar(
+                focusedDay: selectedDay,
+                firstDay: DateTime.now(),
+                lastDay: DateTime.now().add(Duration(days: 15)),
+                calendarFormat: CalendarFormat.week,
+                headerVisible: false,
+                calendarStyle: CalendarStyle(
+                  isTodayHighlighted: false,
+                  withinRangeTextStyle: kManRope_400_14_white,
+                  todayTextStyle: kManRope_400_14_white,
+                  rangeEndTextStyle: kManRope_400_14_white,
+                  rangeStartTextStyle: kManRope_400_14_white,
+                  todayDecoration: constDecoration,
+                  defaultDecoration: constDecoration,
+                  withinRangeDecoration: constDecoration,
+                  disabledDecoration: constDecoration,
+                  holidayDecoration: constDecoration,
+                  markerDecoration: constDecoration,
+                  outsideDecoration: constDecoration,
+                  rangeEndDecoration: constDecoration,
+                  rangeStartDecoration: constDecoration,
+                  rowDecoration: constDecoration,
+                  weekendDecoration: constDecoration,
+                  selectedDecoration: BoxDecoration(
+                    border: Border.all(
+                      color: k006D77,
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    shape: BoxShape.rectangle,
                     color: k006D77,
                   ),
-                  borderRadius: BorderRadius.circular(10),
-                  shape: BoxShape.rectangle,
-                  color: k006D77,
                 ),
+                rowHeight: 56.h,
+                onDaySelected: (DateTime selectDay, DateTime focusDay) {
+                  setState(() {
+                    print(selectDay.weekday);
+                    selectedDay = selectDay;
+                    weekDay = selectDay.weekday;
+                    focusedDay = focusDay;
+                    flag = true;
+                    monthSet(selectDay.month);
+                    date =
+                        '${selectDay.day}/${selectDay.month}/${selectDay.year}';
+                  });
+                },
+                selectedDayPredicate: (DateTime date) {
+                  return isSameDay(selectedDay, date);
+                },
               ),
-              rowHeight: 56.h,
-              onDaySelected: (DateTime selectDay, DateTime focusDay) {
-                setState(() {
-                  print(selectDay.weekday);
-                  selectedDay = selectDay;
-                  weekDay = selectDay.weekday;
-                  focusedDay = focusDay;
-                  flag = true;
-                  monthSet(selectDay.month);
-                  date =
-                      '${selectDay.day}/${selectDay.month}/${selectDay.year}';
-                });
-              },
-              selectedDayPredicate: (DateTime date) {
-                return isSameDay(selectedDay, date);
-              },
-            ),
-            SizedBox(
-              height: 40.h,
-            ),
-            Text(
-              'Available Slots',
-              style: kManRope_500_16_001314,
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            getSlotCount() == 0
-                ? Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Center(
-                        child:
-                            Text('No Available Slots for the selected date.')),
-                  )
-                : GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      mainAxisSpacing: 16,
-                      childAspectRatio: 2,
-                      crossAxisSpacing: 8,
-                    ),
-                    itemCount: getSlotCount(),
-                    itemBuilder: (BuildContext ctx, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: Container(
-                          height: 34.h,
-                          width: 60.w,
-                          decoration: BoxDecoration(
-                            color: selectedIndex == index
-                                ? k006D77
-                                : Colors.transparent,
-                            border: Border.all(
-                              color: k006D77,
+              SizedBox(
+                height: 40.h,
+              ),
+              Text(
+                'Available Slots',
+                style: kManRope_500_16_001314,
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              getSlotCount() == 0
+                  ? Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Center(
+                          child: Text(
+                              'No Available Slots for the selected date.')),
+                    )
+                  : GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        mainAxisSpacing: 16,
+                        childAspectRatio: 2,
+                        crossAxisSpacing: 8,
+                      ),
+                      itemCount: getSlotCount(),
+                      itemBuilder: (BuildContext ctx, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedIndex = index;
+                            });
+                          },
+                          child: Container(
+                            height: 34.h,
+                            width: 60.w,
+                            decoration: BoxDecoration(
+                              color: selectedIndex == index
+                                  ? k006D77
+                                  : Colors.transparent,
+                              border: Border.all(
+                                color: k006D77,
+                              ),
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(8)),
                             ),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(8)),
-                          ),
-                          child: Center(
-                            child: Text(
-                              timeList[index],
-                              style: selectedIndex == index
-                                  ? kManRope_400_14_white
-                                  : kManRope_400_14_001314,
+                            child: Center(
+                              child: Text(
+                                timeList[index],
+                                style: selectedIndex == index
+                                    ? kManRope_400_14_white
+                                    : kManRope_400_14_001314,
+                              ),
                             ),
                           ),
-                        ),
-                      );
-                    }),
-            SizedBox(height: 16),
-          ],
+                        );
+                      }),
+              SizedBox(height: 50),
+              Text(
+                "Select Issue",
+                style: kManRope_400_16_001314,
+              ),
+              SizedBox(height: 24),
+              ListView.builder(
+                itemCount: 10,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (ctx, index) {
+                  return RadioListTile(
+                      contentPadding: EdgeInsets.zero,
+                      controlAffinity: ListTileControlAffinity.trailing,
+                      title: Text(
+                        "data",
+                        style: kManRope_400_14_001314,
+                      ),
+                      value: index,
+                      groupValue: value,
+                      activeColor: k006D77,
+                      onChanged: (val) {
+                        setState(() {
+                          value = int.parse(val.toString());
+                        });
+                        log(val.toString());
+                      });
+                },
+              )
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Padding(

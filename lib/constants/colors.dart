@@ -23,6 +23,7 @@ const kD9D9D9 = Color(0xFFD9D9D9);
 const k5A898B = Color(0xFF5A898B);
 const kB64949 = Color(0xFFB64949);
 const k82DDF0 = Color(0xFF82DDF0);
+const kDDEBEC = Color(0xFFDDEBEC);
 const kFFB1A5 = Color(0xFFFFB1A5);
 const kBC5656 = Color(0xFFBC5656);
 const kFF482C = Color(0xFFFF482C);

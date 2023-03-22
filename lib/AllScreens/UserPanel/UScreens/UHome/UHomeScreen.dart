@@ -464,7 +464,9 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                             Navigator.of(context).push(
                                                 MaterialPageRoute(
                                                     builder: (ctx) =>
-                                                        UAllPsychologistScreen()));
+                                                        UAllPsychologistScreen(
+                                                          issue: "",
+                                                        )));
                                           },
                                           text: 'View All Psychologist'),
                                     ),

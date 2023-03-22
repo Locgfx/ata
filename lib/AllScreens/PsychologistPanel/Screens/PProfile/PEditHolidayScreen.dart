@@ -75,7 +75,7 @@ class _PEditHolidayScreenState extends State<PEditHolidayScreen> {
       ),
       appBar: CustomWhiteAppBar(
         hasThreeDots: false,
-        appBarText: 'Slots Availability',
+        appBarText: 'Add Holiday',
         imgPath: 'assets/images/iconbackappbarlarge.png',
       ),
       body: SingleChildScrollView(

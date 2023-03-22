@@ -16,9 +16,7 @@ class CustomDecoration {
   BoxDecoration top50containerDecoration() {
     return BoxDecoration(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(50),
-          topRight: Radius.circular(50)
-      ),
+          topLeft: Radius.circular(50), topRight: Radius.circular(50)),
       color: kFFFFFF,
     );
   }
@@ -181,11 +179,15 @@ class TextfieldDecoration {
   final TextStyle? hintstyle;
   final String label;
   final Widget? child;
+  final double radius;
+  final Color fillColor;
 
   // final String? ImageButton;
   TextfieldDecoration({
     this.hintstyle,
     this.child,
+    this.radius = 16,
+    this.fillColor = Colors.white,
     // this.ImageButton,
     required this.label,
   });
@@ -199,15 +201,15 @@ class TextfieldDecoration {
         hintStyle: kManRope_400_14_626A6A,
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide.none,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(radius),
         ),
         border: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(16)),
+            borderRadius: BorderRadius.circular(radius)),
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide.none,
-            borderRadius: BorderRadius.circular(16)),
-        fillColor: Colors.white,
+            borderRadius: BorderRadius.circular(radius)),
+        fillColor: fillColor,
         filled: true,
         suffixIconConstraints: BoxConstraints(maxHeight: 35.h, maxWidth: 35.w),
         // suffixIcon: SvgPicture.asset('assets/icons/search.svg'),
@@ -294,26 +296,27 @@ class TextfieldDecoration {
         contentPadding: EdgeInsets.symmetric(horizontal: 16),
         filled: true,
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(radius),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(radius),
           borderSide: BorderSide.none,
         ),
         errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide.none),
         focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(radius),
             borderSide: BorderSide.none),
         focusColor: kEDF6F9,
-        fillColor: Colors.white,
+        fillColor: fillColor,
         hintText: label,
         hintStyle: kManRope_400_14_626A6A,
         suffixIconConstraints: BoxConstraints(minHeight: 10, minWidth: 10),
         suffixIcon: child ?? SizedBox.shrink());
   }
+
   InputDecoration textFieldEDF6F9Decoration() {
     return InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 16),
