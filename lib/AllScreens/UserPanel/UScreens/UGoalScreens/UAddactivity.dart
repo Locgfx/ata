@@ -143,22 +143,21 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                   child: Container(
                                     height: 88.h,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                        color: Colors.white,
-                                        width: 1,
-                                      ),
-                                      color: k5A72ED,
-                                    ),
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        color: k5A72ED,
+                                        image: DecorationImage(
+                                          image: AssetImage(
+                                            'assets/images/backimg.png',
+                                          ),
+                                          fit: BoxFit.fitWidth,
+                                        )),
                                     child: Stack(
                                       alignment: Alignment.centerLeft,
                                       children: [
-                                        Image.asset(
-                                          'assets/images/backimg.png',
-                                          fit: BoxFit.fitWidth,
-                                          height: 88.h,
-                                          // width: 1.sw,
-                                        ),
                                         Padding(
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 24.w),
