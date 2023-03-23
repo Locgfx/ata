@@ -19,6 +19,7 @@ import '../../../../widgets/popupdialogs.dart';
 
 class PEditSlotsAvailabilityScreen extends StatefulWidget {
   final SlotsModel model;
+
   const PEditSlotsAvailabilityScreen({Key? key, required this.model})
       : super(key: key);
 
@@ -35,8 +36,8 @@ class _PEditSlotsAvailabilityScreenState
     true,
     true,
     true,
-    false,
-    false,
+    true,
+    true,
   ];
 
   final List<String> day = [
@@ -45,7 +46,7 @@ class _PEditSlotsAvailabilityScreenState
     'Wednesday',
     'Thursday',
     'Friday',
-    'Satuday',
+    'Saturday',
     'Sunday'
   ];
   final List<String> timeam = [
@@ -335,21 +336,71 @@ class _PEditSlotsAvailabilityScreenState
             .last
             .split(":")
             .last))));
-    mondayStart = timeam[0].split(" ").first;
-    mondayEnd = timepm[0].split(" ").first;
-    tuesdayStart = timeam[1].split(" ").first;
-    tuesdayEnd = timepm[1].split(" ").first;
-    wednesdayStart = timeam[2].split(" ").first;
-    wednesdayEnd = timepm[2].split(" ").first;
-    thursdayStart = timeam[3].split(" ").first;
-    thursdayEnd = timepm[3].split(" ").first;
-    fridayStart = timeam[4].split(" ").first;
-    fridayEnd = timepm[4].split(" ").first;
-    saturdayStart = timeam[5].split(" ").first;
-    saturdayEnd = timepm[5].split(" ").first;
-    sundayStart = timeam[6].split(" ").first;
-    sundayEnd = timepm[6].split(" ").first;
-    // mondayStart =
+    mondayStart =
+        widget.model.availabilityData!.monday.toString().split(" - ").first;
+    mondayEnd =
+        widget.model.availabilityData!.monday.toString().split(" - ").last;
+    tuesdayStart =
+        widget.model.availabilityData!.tuesday.toString().split(" - ").first;
+    tuesdayEnd =
+        widget.model.availabilityData!.tuesday.toString().split(" - ").last;
+    wednesdayStart =
+        widget.model.availabilityData!.wednesday.toString().split(" - ").first;
+    wednesdayEnd =
+        widget.model.availabilityData!.wednesday.toString().split(" - ").last;
+    thursdayStart =
+        widget.model.availabilityData!.thursday.toString().split(" - ").first;
+    thursdayEnd =
+        widget.model.availabilityData!.thursday.toString().split(" - ").last;
+    fridayStart =
+        widget.model.availabilityData!.friday.toString().split(" - ").first;
+    fridayEnd =
+        widget.model.availabilityData!.friday.toString().split(" - ").last;
+    saturdayStart =
+        widget.model.availabilityData!.saturday.toString().split(" - ").first;
+    saturdayEnd =
+        widget.model.availabilityData!.saturday.toString().split(" - ").last;
+    sundayStart =
+        widget.model.availabilityData!.sunday.toString().split(" - ").first;
+    sundayEnd =
+        widget.model.availabilityData!.sunday.toString().split(" - ").last;
+    switchValues.clear();
+    if (widget.model.availabilityData!.monStatus == "1") {
+      switchValues.add(true);
+    } else {
+      switchValues.add(false);
+    }
+    if (widget.model.availabilityData!.tuesStatus == "1") {
+      switchValues.add(true);
+    } else {
+      switchValues.add(false);
+    }
+    if (widget.model.availabilityData!.wedStatus == "1") {
+      switchValues.add(true);
+    } else {
+      switchValues.add(false);
+    }
+    if (widget.model.availabilityData!.thurStatus == "1") {
+      switchValues.add(true);
+    } else {
+      switchValues.add(false);
+    }
+    if (widget.model.availabilityData!.friStatus == "1") {
+      switchValues.add(true);
+    } else {
+      switchValues.add(false);
+    }
+    if (widget.model.availabilityData!.satStatus == "1") {
+      switchValues.add(true);
+    } else {
+      switchValues.add(false);
+    }
+    if (widget.model.availabilityData!.sunStatus == "1") {
+      switchValues.add(true);
+    } else {
+      switchValues.add(false);
+    }
+
     super.initState();
   }
 
@@ -423,6 +474,7 @@ class _PEditSlotsAvailabilityScreenState
                               });
                               Fluttertoast.showToast(
                                   msg: "Updated Successfully.");
+                              Navigator.of(context).pop();
                             } else {
                               setState(() {
                                 _submitLoading = false;
@@ -576,9 +628,13 @@ class _PEditSlotsAvailabilityScreenState
                                       },
                                       child: Container(
                                         // height: 48.h,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 5),
                                         width: 79.w,
-                                        decoration:
-                                            BoxDecoration(color: kDDEBEC),
+                                        decoration: BoxDecoration(
+                                            color: kDDEBEC,
+                                            borderRadius:
+                                                BorderRadius.circular(16)),
                                         child: Text(
                                           timeam[index],
                                           style: kManRope_400_14_626A6A,
@@ -661,9 +717,13 @@ class _PEditSlotsAvailabilityScreenState
                                       },
                                       child: Container(
                                         // height: 48.h,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5, vertical: 5),
                                         width: 81.w,
-                                        decoration:
-                                            BoxDecoration(color: kDDEBEC),
+                                        decoration: BoxDecoration(
+                                            color: kDDEBEC,
+                                            borderRadius:
+                                                BorderRadius.circular(16)),
                                         child: Text(
                                           timepm[index],
                                           style: kManRope_400_14_626A6A,
@@ -673,9 +733,13 @@ class _PEditSlotsAvailabilityScreenState
                                     ),
                                     SizedBox(width: 25.w),
                                     _toggleLoading && _index == index
-                                        ? SpinKitThreeBounce(
-                                            color: k006D77,
-                                            size: 20,
+                                        ? SizedBox(
+                                            height: 48.h,
+                                            width: 48.w,
+                                            child: SpinKitThreeBounce(
+                                              color: k006D77,
+                                              size: 25,
+                                            ),
                                           )
                                         : SizedBox(
                                             height: 48.h,
@@ -704,7 +768,7 @@ class _PEditSlotsAvailabilityScreenState
                                                                     : index == 4
                                                                         ? "fri_status"
                                                                         : index == 5
-                                                                            ? " sat_status"
+                                                                            ? "sat_status"
                                                                             : "sun_status");
                                                 resp.then((value) {
                                                   log(value.toString());
