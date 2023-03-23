@@ -11,6 +11,7 @@ import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
+import '../../../../agora/meeting_screen.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
 
 class UConfirmAppointmentBooking extends StatefulWidget {
@@ -267,6 +268,8 @@ class _UConfirmAppointmentBookingState
                                 BorderRadius.circular(10), // <-- Radius
                           ),
                           onPressed: () {
+                            /*Navigator.of(context).push(MaterialPageRoute(
+                                builder: (ctx) => MeetingScreen()));*/
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(

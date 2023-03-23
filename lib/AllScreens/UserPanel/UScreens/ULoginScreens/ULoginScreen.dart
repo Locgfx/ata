@@ -594,7 +594,7 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                 password:
                                                     _passwordController.text);
                                             resp.then((value) async {
-                                              print(value);
+                                              log(value.toString());
                                               setState(() {
                                                 loading = false;
                                               });
@@ -612,6 +612,11 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                     .getString(Keys().cookie));
                                                 prefs.setBool(
                                                     Keys().loginDone, true);
+                                                prefs.setString(Keys().userName,
+                                                    value['name']);
+                                                prefs.setString(
+                                                    Keys().userImage,
+                                                    value['image']);
                                                 Fluttertoast.showToast(
                                                     msg: 'Login Successful');
                                                 Navigator.of(context).push(

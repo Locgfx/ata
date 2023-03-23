@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -61,6 +62,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
     UserOrderHistoryApi()
         .getUpcoming(page: 0)
         .then((value) => setState(() {
+              //log(value.toString());
               upcomingOrderData = value;
             }))
         .then((value) => setState(() {
