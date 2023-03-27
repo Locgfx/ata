@@ -18,8 +18,12 @@ class UExplorePage extends StatefulWidget {
   const UExplorePage({
     Key? key,
     required this.issue,
+    required this.issueId,
+    required this.bookingType,
   }) : super(key: key);
   final String issue;
+  final String issueId;
+  final String bookingType;
   @override
   State<UExplorePage> createState() => _UExplorePageState();
 }
@@ -206,9 +210,13 @@ class _UExplorePageState extends State<UExplorePage> {
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           UDoctorProfileScreen(
+                                                            bookingType: widget
+                                                                .bookingType,
                                                             showBookSession:
                                                                 true,
-                                                            issue: '',
+                                                            issue: widget.issue,
+                                                            issueId:
+                                                                widget.issueId,
                                                             psychologistData:
                                                                 psychologists[
                                                                     index],
@@ -242,10 +250,14 @@ class _UExplorePageState extends State<UExplorePage> {
                                                   MaterialPageRoute(
                                                       builder: (context) =>
                                                           UScheduleAppointmentScreen(
+                                                            bookingType: widget
+                                                                .bookingType,
                                                             psychologist:
                                                                 psychologists[
                                                                     index],
                                                             issue: widget.issue,
+                                                            issueId:
+                                                                widget.issueId,
                                                           )));
                                             },
                                             child: Text(

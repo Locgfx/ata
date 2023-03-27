@@ -236,13 +236,14 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               UBookingConfirmationScreen(
+                                            model: upcomingOrderData.data.first,
                                             isCancellationAvailable: true,
                                           ),
                                         ),
                                       );
                                     },
                                     child: UUpcomingAppointmentCard(
-                                      data: upcomingOrderData.data.last,
+                                      data: upcomingOrderData.data.first,
                                       loading: isLoading,
                                     )),
                               SizedBox(height: 40.h),
@@ -256,7 +257,11 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                 style: kManRope_400_16_626A64_07,
                               ),
                               SizedBox(height: 24.h),
-                              isLoading ? SizedBox() : TopSpecialistGridview(),
+                              isLoading
+                                  ? SizedBox()
+                                  : TopSpecialistGridview(
+                                      bookingType: 'a',
+                                    ),
                               SizedBox(height: 40.h),
                               UBookings(),
                               SizedBox(height: 40.h),
@@ -339,9 +344,21 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             UDoctorProfileScreen(
+                                                              bookingType: 'a',
                                                               showBookSession:
                                                                   true,
-                                                              issue: '',
+                                                              issue: psychologists[
+                                                                      i]
+                                                                  .specialities![
+                                                                      0]
+                                                                  .name
+                                                                  .toString(),
+                                                              issueId: psychologists[
+                                                                      i]
+                                                                  .specialities![
+                                                                      0]
+                                                                  .specialitiesId
+                                                                  .toString(),
                                                               psychologistData:
                                                                   psychologists[
                                                                       i],
@@ -467,7 +484,17 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                                 MaterialPageRoute(
                                                     builder: (ctx) =>
                                                         UAllPsychologistScreen(
-                                                          issue: "",
+                                                          bookingType: 'a',
+                                                          issueId: psychologists[
+                                                                  0]
+                                                              .specialities![0]
+                                                              .specialitiesId
+                                                              .toString(),
+                                                          issue: psychologists[
+                                                                  0]
+                                                              .specialities![0]
+                                                              .name
+                                                              .toString(),
                                                         )));
                                           },
                                           text: 'View All Psychologist'),

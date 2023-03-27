@@ -123,7 +123,11 @@ class _UExploreScreenState extends State<UExploreScreen>
                   });
                 },*/
                     children: [
-                      UExplorePage(issue: ''),
+                      UExplorePage(
+                        issue: '',
+                        issueId: '',
+                        bookingType: 'a',
+                      ),
                       UMySessionPage(),
                     ],
                   ),

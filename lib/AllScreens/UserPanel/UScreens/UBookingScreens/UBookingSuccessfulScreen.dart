@@ -117,12 +117,12 @@ class UBookingSuccessfulScreen extends StatelessWidget {
                 width: 1.sw,
                 child: MainButton(
                     onPressed: () {
-                      Navigator.push(
+                      /*Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => UBookingConfirmationScreen(
                                 isCancellationAvailable: true,
-                              )));
+                              )));*/
                     },
                     child: Text(
                       'See Appointment',

@@ -18,7 +18,13 @@ import '../../UWidgets/Uwidgets.dart';
 
 class UAllPsychologistScreen extends StatefulWidget {
   final String issue;
-  const UAllPsychologistScreen({Key? key, required this.issue})
+  final String issueId;
+  final String bookingType;
+  const UAllPsychologistScreen(
+      {Key? key,
+      required this.issue,
+      required this.issueId,
+      required this.bookingType})
       : super(key: key);
 
   @override
@@ -200,7 +206,7 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              "Specializes in : ${psychologists[i].specialities!.first.name}",
+                                              "Specializes in : ${psychologists[i].specialities!.map((e) => e.name).join(", ")}",
                                               style: kManRope_400_12_001314,
                                             ),
                                           ),
@@ -218,9 +224,15 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
                                                         MaterialPageRoute(
                                                             builder: (context) =>
                                                                 UDoctorProfileScreen(
+                                                                  bookingType:
+                                                                      widget
+                                                                          .bookingType,
                                                                   showBookSession:
                                                                       true,
-                                                                  issue: '',
+                                                                  issue: widget
+                                                                      .issue,
+                                                                  issueId: widget
+                                                                      .issueId,
                                                                   psychologistData:
                                                                       psychologists[
                                                                           i],
@@ -255,11 +267,16 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
                                                         MaterialPageRoute(
                                                             builder: (context) =>
                                                                 UScheduleAppointmentScreen(
+                                                                  bookingType:
+                                                                      widget
+                                                                          .bookingType,
                                                                   psychologist:
                                                                       psychologists[
                                                                           i],
                                                                   issue: widget
                                                                       .issue,
+                                                                  issueId: widget
+                                                                      .issueId,
                                                                 )));
                                                   },
                                                   child: Text(

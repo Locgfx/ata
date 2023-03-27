@@ -10,7 +10,9 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'UAllPsychologistScreen.dart';
 
 class UBookAppointmentScreen extends StatefulWidget {
-  const UBookAppointmentScreen({Key? key}) : super(key: key);
+  final String bookingType;
+  const UBookAppointmentScreen({Key? key, required this.bookingType})
+      : super(key: key);
 
   @override
   State<UBookAppointmentScreen> createState() => _UBookAppointmentScreenState();
@@ -93,8 +95,12 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => UAllPsychologistScreen(
-                                  issue:
-                                      specialistModel[index].name.toString())));
+                                    bookingType: widget.bookingType,
+                                    issue:
+                                        specialistModel[index].name.toString(),
+                                    issueId:
+                                        specialistModel[index].id.toString(),
+                                  )));
                         },
                         child: Column(
                           children: [

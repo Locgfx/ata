@@ -55,14 +55,14 @@ class _UMySessionPageState extends State<UMySessionPage> {
                         )
                       : GestureDetector(
                           onTap: () {
-                            Navigator.push(
+                            /*Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (_) => UBookingConfirmationScreen(
                                   isCancellationAvailable: true,
                                 ),
                               ),
-                            );
+                            );*/
                           },
                           child: UMainCardWidget(
                             decoration:

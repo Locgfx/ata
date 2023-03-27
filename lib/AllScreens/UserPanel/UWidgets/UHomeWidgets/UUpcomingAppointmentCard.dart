@@ -72,9 +72,9 @@ class _UUpcomingAppointmentCardState extends State<UUpcomingAppointmentCard> {
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      /*'10 June 2022, 8:00AM'*/ DateFormat(
-                              'dd MMMM yyyy, hh:MM a')
-                          .format(DateTime.parse(widget.data.date.toString())),
+                      DateFormat('dd MMMM yyyy, hh:MM a').format(DateTime.parse(
+                          "${widget.data.date} ${widget.data.timeSlot}")),
+                      //widget.data.date.toString(),
                       style: kManRope_400_14_001314,
                     )
                   ],
@@ -118,11 +118,11 @@ class _UUpcomingAppointmentCardState extends State<UUpcomingAppointmentCard> {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(widget.data.psychologist,
+                            Text(widget.data.name,
                                 style: kManRope_400_14_001314),
                             SizedBox(height: 4.h),
                             Text(
-                              widget.data.user,
+                              widget.data.designation,
                               style: kManRope_400_12_626A64_07,
                             ),
                           ],

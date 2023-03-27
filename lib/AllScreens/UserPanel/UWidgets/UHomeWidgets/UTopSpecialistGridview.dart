@@ -12,7 +12,9 @@ import '../../UScreens/UHome/UAllPsychologistScreen.dart';
 
 class TopSpecialistGridview extends StatefulWidget {
   final Widget? child;
-  TopSpecialistGridview({Key? key, this.child}) : super(key: key);
+  final String bookingType;
+  TopSpecialistGridview({Key? key, this.child, required this.bookingType})
+      : super(key: key);
 
   @override
   State<TopSpecialistGridview> createState() => _TopSpecialistGridviewState();
@@ -65,7 +67,9 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
                 return GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (ctx) => const UBookAppointmentScreen()));
+                        builder: (ctx) => UBookAppointmentScreen(
+                              bookingType: widget.bookingType,
+                            )));
                   },
                   child: Container(
                     color: Colors.transparent,
@@ -104,7 +108,10 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => UAllPsychologistScreen(
-                            issue: specialistModel[index].name.toString())));
+                              issue: specialistModel[index].name.toString(),
+                              issueId: specialistModel[index].id.toString(),
+                              bookingType: widget.bookingType,
+                            )));
                   },
                   child: Container(
                     width: 84.w,

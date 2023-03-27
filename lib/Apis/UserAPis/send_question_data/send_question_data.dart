@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,6 +39,7 @@ Future sendQuestionsData() async {
   var resp = jsonDecode(await response.stream.bytesToString());
   if (response.statusCode == 200) {
     Globals().showToast(resp['message']);
+    log(resp.toString());
     return resp['status'];
   } else {
     Globals().showToast(resp['message']);

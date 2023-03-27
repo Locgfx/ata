@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/decorations.dart';
+import 'package:greymatter/model/UModels/user_order_model/upcoming_orders.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/BottomSheets/CancelBookingBottomSheet.dart';
+import 'UDoctorprofile.dart';
 
 class UBookingConfirmationScreen extends StatefulWidget {
   final bool isCancellationAvailable;
+  //final UpcomingOrderData
+  final UpcomingOrders model;
   const UBookingConfirmationScreen({
     Key? key,
     required this.isCancellationAvailable,
+    required this.model,
   }) : super(key: key);
 
   @override
@@ -42,7 +48,7 @@ class _UBookingConfirmationScreenState
         onThreeDotTap: () {
           _selectGender();
         },
-        appBarText: '',
+        appBarText: 'Upcoming Appointment',
         imgPath: "assets/images/iconbackappbarlarge.png",
       ),
       body: Padding(
@@ -59,11 +65,17 @@ class _UBookingConfirmationScreenState
                 children: [
                   ClipRRect(
                     borderRadius: BorderRadius.circular(24),
-                    child: Image.asset(
-                      'assets/images/userP.png',
-                      fit: BoxFit.cover,
+                    child: Image.network(
+                      widget.model.image,
                       height: 135.w,
                       width: 135.w,
+                      fit: BoxFit.cover,
+                      errorBuilder: (q, w, e) => Image.asset(
+                        'assets/images/userP.png',
+                        fit: BoxFit.cover,
+                        height: 135.w,
+                        width: 135.w,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -76,7 +88,7 @@ class _UBookingConfirmationScreenState
                         SizedBox(
                           width: 98,
                           child: Text(
-                            'Priya Singh',
+                            widget.model.name.toString(),
                             overflow: TextOverflow.ellipsis,
                             style: kManRope_500_16_001314,
                           ),
@@ -85,7 +97,7 @@ class _UBookingConfirmationScreenState
                           height: 8.h,
                         ),
                         Text(
-                          'Counsellors',
+                          widget.model.designation.toString(),
                           style: kManRope_400_14_626A6A,
                         ),
                         SizedBox(
@@ -95,17 +107,25 @@ class _UBookingConfirmationScreenState
                       ],
                     ),
                   ),
-                  GestureDetector(
+                  /*GestureDetector(
                     onTap: () {
-                      /*Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => UDoctorProfileScreen()));*/
+                      */ /*Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => UDoctorProfileScreen(
+                                bookingType: widget.model.bookingType,
+                                showBookSession: true,
+                                issue: widget.model.issue,
+                                issueId: widget.model.issueId,
+                                psychologistData: widget.model,
+                              )));*/ /*
+                      */ /*Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => UDoctorProfileScreen()));*/ /*
                     },
                     child: SvgPicture.asset(
                       'assets/icons/sarrow.svg',
                       width: 24.w,
                       height: 24.h,
                     ),
-                  ),
+                  ),*/
                 ],
               ),
               SizedBox(
@@ -127,7 +147,8 @@ class _UBookingConfirmationScreenState
                 height: 24.h,
               ),
               Text(
-                'Wed, 12/07/2022',
+                DateFormat.yMMMEd().format(DateTime.parse(
+                    "${widget.model.date} ${widget.model.timeSlot}")),
                 style: kManRope_500_16_006D77,
               ),
               SizedBox(
@@ -138,7 +159,8 @@ class _UBookingConfirmationScreenState
                 height: 24.h,
               ),
               Text(
-                '1:00 PM',
+                DateFormat.jm().format(DateTime.parse(
+                    "${widget.model.date} ${widget.model.timeSlot}")),
                 style: kManRope_500_16_006D77,
               ),
               SizedBox(

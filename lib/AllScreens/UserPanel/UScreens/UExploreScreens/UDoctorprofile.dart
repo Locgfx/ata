@@ -14,10 +14,14 @@ class UDoctorProfileScreen extends StatefulWidget {
   final bool showBookSession;
   final UPsychologistModel psychologistData;
   final String issue;
+  final String bookingType;
+  final String issueId;
   const UDoctorProfileScreen({
     Key? key,
     required this.psychologistData,
     required this.issue,
+    required this.bookingType,
+    required this.issueId,
     required this.showBookSession,
   }) : super(key: key);
 
@@ -206,9 +210,12 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       UScheduleAppointmentScreen(
+                                                        bookingType:
+                                                            widget.bookingType,
                                                         psychologist: widget
                                                             .psychologistData,
                                                         issue: widget.issue,
+                                                        issueId: widget.issueId,
                                                       )));
                                         },
                                         child: Text(

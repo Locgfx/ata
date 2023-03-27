@@ -20,7 +20,8 @@ class UpcomingOrders {
     required this.bookingType,
     required this.status,
     required this.payment,
-    required this.image,
+    required this.name,
+    required this.designation,
   });
   late final String id;
   late final String user;
@@ -34,6 +35,8 @@ class UpcomingOrders {
   late final String bookingType;
   late final String status;
   late final String payment;
+  late final String name;
+  late final String designation;
 
   UpcomingOrders.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -48,6 +51,8 @@ class UpcomingOrders {
     bookingType = json['booking_type'];
     status = json['status'];
     payment = json['payment'];
+    name = json['name'];
+    designation = json['designation'];
   }
 
   Map<String, dynamic> toJson() {

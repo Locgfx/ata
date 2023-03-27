@@ -9,7 +9,9 @@ import 'package:greymatter/widgets/instant_booking_widgets/top_verified_speciali
 import 'package:greymatter/widgets/loadingWidget.dart';
 
 class UInstantBookingScreen extends StatefulWidget {
-  const UInstantBookingScreen({Key? key}) : super(key: key);
+  final String bookingType;
+  const UInstantBookingScreen({Key? key, required this.bookingType})
+      : super(key: key);
 
   @override
   State<UInstantBookingScreen> createState() => _UInstantBookingScreenState();
@@ -60,7 +62,11 @@ class _UInstantBookingScreenState extends State<UInstantBookingScreen> {
                       Text('Book confirmed appointments',
                           style: kManRope_400_16_626A6A),
                       SizedBox(height: 24.h),
-                      isLoading ? SizedBox() : TopSpecialistGridview(),
+                      isLoading
+                          ? SizedBox()
+                          : TopSpecialistGridview(
+                              bookingType: widget.bookingType,
+                            ),
                     ],
                   ),
                 ),
