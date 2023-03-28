@@ -7,11 +7,12 @@ import '../../../constants/globals.dart';
 import '../../../constants/urlconstants.dart';
 
 class UserGoalsApi {
-  Future<dynamic> get() async {
+  Future<dynamic> get({required String date}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
     var headers = {'Cookie': 'PHPSESSID=$v'};
-    var request = http.Request('GET', Uri.parse('${baseUrl}my-goals.php'));
+    var request =
+        http.Request('GET', Uri.parse('${baseUrl}my-goals.php?date=$date'));
 
     request.headers.addAll(headers);
 

@@ -3,6 +3,7 @@ class ProfileOrderHistoryModel {
   String? user;
   String? psychologist;
   String? issue;
+  String? issueName;
   String? date;
   String? timeSlot;
   String? coupon;
@@ -12,6 +13,7 @@ class ProfileOrderHistoryModel {
   String? payment;
   String? image;
   String? name;
+  String? pricing;
   String? designation;
 
   ProfileOrderHistoryModel(
@@ -19,6 +21,7 @@ class ProfileOrderHistoryModel {
       this.user,
       this.psychologist,
       this.issue,
+      this.issueName,
       this.date,
       this.timeSlot,
       this.coupon,
@@ -26,6 +29,7 @@ class ProfileOrderHistoryModel {
       this.bookingType,
       this.status,
       this.payment,
+      this.pricing,
       this.image,
       this.name,
       this.designation});
@@ -35,7 +39,9 @@ class ProfileOrderHistoryModel {
     user = json['user'];
     psychologist = json['psychologist'];
     issue = json['issue'];
+    issueName = json['issue_name'];
     date = json['date'];
+    pricing = json['pricing'];
     timeSlot = json['time_slot'];
     coupon = json['coupon'];
     bookingDate = json['booking_date'];
@@ -53,8 +59,10 @@ class ProfileOrderHistoryModel {
     data['user'] = this.user;
     data['psychologist'] = this.psychologist;
     data['issue'] = this.issue;
+    data['issue_name'] = this.issueName;
     data['date'] = this.date;
     data['time_slot'] = this.timeSlot;
+    data['pricing'] = this.pricing;
     data['coupon'] = this.coupon;
     data['booking_date'] = this.bookingDate;
     data['booking_type'] = this.bookingType;

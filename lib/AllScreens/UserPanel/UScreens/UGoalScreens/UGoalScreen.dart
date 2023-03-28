@@ -4,13 +4,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivity.dart';
+import 'package:greymatter/Apis/UserAPis/addgoal/complete_goal_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_goals_api/user_goals_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/UModels/user_goals_models/user_goals_model.dart';
 import 'package:greymatter/widgets/BottomSheets/DeleteBottomSheet.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
+import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -64,7 +68,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
             ));
   }
 
-  int percentage = 0;
+  double percentage = 0;
 
   List<UserGoalsModel> modelList = [];
 
@@ -78,16 +82,22 @@ class _UGoalScreenState extends State<UGoalScreen> {
 
   _getData() {
     _isLoading = true;
-    final resp = UserGoalsApi().get();
+    final resp =
+        UserGoalsApi().get(date: DateFormat("yyyy-MM-dd").format(selectedDay));
     resp.then((value) {
-      log(value.toString());
-
+      debugPrint(value.toString());
       if (value['status'] == true) {
         modelList.clear();
         setState(() {
           for (var v in value['goals']) {
             modelList.add(UserGoalsModel.fromJson(v));
+            _updateState.add(false);
           }
+          percentage = ((modelList
+                      .where((element) => element.completedGoal == 1)
+                      .length /
+                  modelList.length) *
+              100);
           _isLoading = false;
         });
       } else {
@@ -98,6 +108,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
     });
   }
 
+  List<bool> _updateState = [];
   getCompletedGoals() {
     return 0;
   }
@@ -167,7 +178,9 @@ class _UGoalScreenState extends State<UGoalScreen> {
                   setState(() {
                     selectedDay = selectDay;
                     focusedDay = focusDay;
+                    _isLoading = true;
                   });
+                  _getData();
                 },
                 selectedDayPredicate: (DateTime date) {
                   return isSameDay(selectedDay, date);
@@ -188,7 +201,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                       width: 10,
                     ),
                     Text(
-                      'completion $percentage %',
+                      'completion ${percentage.toString().split(".").first} %',
                       style: kManRope_500_14_626A6A,
                     ),
                     SizedBox(
@@ -197,7 +210,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                     CircularPercentIndicator(
                       radius: 25.0,
                       lineWidth: 2.0,
-                      percent: percentage.toDouble(),
+                      percent: percentage / 100,
                       backgroundColor: k006D77.withOpacity(0.16),
                       progressColor: k006D77,
                     ),
@@ -281,9 +294,11 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(10),
-                                          color: _selectedIndex == index
-                                              ? k05AF01
-                                              : k5A72ED,
+                                          color:
+                                              modelList[index].completedGoal ==
+                                                      1
+                                                  ? k05AF01
+                                                  : k5A72ED,
                                         ),
                                         child: Stack(
                                           alignment: Alignment.centerLeft,
@@ -334,32 +349,106 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                                     ],
                                                   ),
                                                   InkWell(
-                                                    onTap: () {
-                                                      setState(() {
-                                                        if (_selectedIndex ==
-                                                            index) {
-                                                          _selectedIndex = -1;
-                                                        } else {
-                                                          _selectedIndex =
-                                                              index;
-                                                        }
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                      color: Colors.transparent,
-                                                      child: _selectedIndex ==
-                                                              index
-                                                          ? SvgPicture.asset(
-                                                              'assets/icons/greencircletick.svg',
-                                                              height: 36.w,
-                                                              width: 36.w,
-                                                            )
-                                                          : SvgPicture.asset(
-                                                              'assets/icons/greyTick.svg',
-                                                              height: 36.w,
-                                                              width: 36.w,
-                                                            ),
-                                                    ),
+                                                    onTap: DateTime.parse(DateFormat(
+                                                                    "yyyy-MM-dd")
+                                                                .format(
+                                                                    selectedDay))
+                                                            .isBefore(DateTime
+                                                                .parse(DateFormat(
+                                                                        "yyyy-MM-dd")
+                                                                    .format(DateTime
+                                                                        .now())))
+                                                        ? () {}
+                                                        : () {
+                                                            setState(() {
+                                                              _updateState[
+                                                                  index] = true;
+                                                            });
+                                                            final resp = CompleteGoalApi().get(
+                                                                goalId: modelList[
+                                                                        index]
+                                                                    .goalId
+                                                                    .toString(),
+                                                                date: DateFormat(
+                                                                        "yyyy-MM-dd")
+                                                                    .format(
+                                                                        selectedDay));
+                                                            resp.then((value) {
+                                                              /*Fluttertoast
+                                                                  .showToast(
+                                                                      msg: value
+                                                                          .toString());*/
+                                                              if (value[
+                                                                      'status'] ==
+                                                                  true) {
+                                                                if (value[
+                                                                        'message'] ==
+                                                                    "Removed SuccessFully!") {
+                                                                  setState(() {
+                                                                    modelList[
+                                                                            index]
+                                                                        .completedGoal = 0;
+                                                                    percentage =
+                                                                        ((modelList.where((element) => element.completedGoal == 1).length /
+                                                                                modelList.length) *
+                                                                            100);
+                                                                    _updateState[
+                                                                            index] =
+                                                                        false;
+                                                                  });
+                                                                } else {
+                                                                  setState(() {
+                                                                    modelList[
+                                                                            index]
+                                                                        .completedGoal = 1;
+                                                                    percentage =
+                                                                        ((modelList.where((element) => element.completedGoal == 1).length /
+                                                                                modelList.length) *
+                                                                            100);
+                                                                    _updateState[
+                                                                            index] =
+                                                                        false;
+                                                                  });
+                                                                }
+                                                              } else {
+                                                                Fluttertoast.showToast(
+                                                                    msg: value[
+                                                                        'error']);
+                                                                setState(() {
+                                                                  _updateState[
+                                                                          index] =
+                                                                      false;
+                                                                });
+                                                              }
+                                                            });
+                                                          },
+                                                    child: _updateState[index]
+                                                        ? SpinKitThreeBounce(
+                                                            color: Colors.white,
+                                                            size: 15,
+                                                          )
+                                                        : Container(
+                                                            color: Colors
+                                                                .transparent,
+                                                            child: modelList[
+                                                                            index]
+                                                                        .completedGoal ==
+                                                                    1
+                                                                ? SvgPicture
+                                                                    .asset(
+                                                                    'assets/icons/greencircletick.svg',
+                                                                    height:
+                                                                        36.w,
+                                                                    width: 36.w,
+                                                                  )
+                                                                : SvgPicture
+                                                                    .asset(
+                                                                    'assets/icons/greyTick.svg',
+                                                                    height:
+                                                                        36.w,
+                                                                    width: 36.w,
+                                                                  ),
+                                                          ),
                                                   ),
                                                 ],
                                               ),

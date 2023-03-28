@@ -13,6 +13,7 @@ class UpcomingOrders {
     required this.user,
     required this.psychologist,
     required this.issue,
+    required this.issueName,
     required this.date,
     required this.timeSlot,
     required this.coupon,
@@ -28,6 +29,7 @@ class UpcomingOrders {
   late final String image;
   late final String psychologist;
   late final String issue;
+  late final String issueName;
   late final String date;
   late final String timeSlot;
   late final String coupon;
@@ -43,6 +45,7 @@ class UpcomingOrders {
     user = json['user'];
     psychologist = json['psychologist'];
     issue = json['issue'];
+    issueName = json['issue_name'];
     date = json['date'];
     image = json['image'];
     timeSlot = json['time_slot'];
@@ -61,6 +64,7 @@ class UpcomingOrders {
     _data['user'] = user;
     _data['psychologist'] = psychologist;
     _data['issue'] = issue;
+    _data['issue_name'] = issueName;
     _data['date'] = date;
     _data['image'] = image;
     _data['time_slot'] = timeSlot;

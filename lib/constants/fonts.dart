@@ -67,6 +67,11 @@ final kManRope_500_16_white = GoogleFonts.manrope(
   fontSize: 16.sp,
   color: Colors.white,
 );
+final kManRope_500_14_white = GoogleFonts.manrope(
+  fontWeight: FontWeight.w500,
+  fontSize: 14.sp,
+  color: Colors.white,
+);
 final kManRope_500_16_006D77 = GoogleFonts.manrope(
   fontWeight: FontWeight.w500,
   fontSize: 16.sp,

@@ -29,6 +29,7 @@ import 'package:greymatter/model/UModels/user_home_models/user_activity_model.da
 import 'package:greymatter/model/UModels/user_order_model/upcoming_orders.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -64,6 +65,9 @@ class _UHomeScreenState extends State<UHomeScreen> {
         .then((value) => setState(() {
               //log(value.toString());
               upcomingOrderData = value;
+              upcomingOrderData.data.removeWhere((element) =>
+                  DateTime.parse("${element.date} ${element.timeSlot}")
+                      .isBefore(DateTime.now()));
             }))
         .then((value) => setState(() {
               isLoading = false;
@@ -236,14 +240,22 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               UBookingConfirmationScreen(
-                                            model: upcomingOrderData.data.first,
+                                            model: upcomingOrderData.data
+                                                .firstWhere((element) =>
+                                                    DateTime.parse(
+                                                            "${element.date} ${element.timeSlot}")
+                                                        .isAfter(
+                                                            DateTime.now())),
                                             isCancellationAvailable: true,
                                           ),
                                         ),
                                       );
                                     },
                                     child: UUpcomingAppointmentCard(
-                                      data: upcomingOrderData.data.first,
+                                      data: upcomingOrderData.data.firstWhere(
+                                          (element) => DateTime.parse(
+                                                  "${element.date} ${element.timeSlot}")
+                                              .isAfter(DateTime.now())),
                                       loading: isLoading,
                                     )),
                               SizedBox(height: 40.h),

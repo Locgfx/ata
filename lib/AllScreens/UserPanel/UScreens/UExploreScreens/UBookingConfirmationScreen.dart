@@ -136,7 +136,7 @@ class _UBookingConfirmationScreenState
                 height: 24.h,
               ),
               Text(
-                'Loneliness',
+                widget.model.issueName.toString(),
                 style: kManRope_500_16_006D77,
               ),
               SizedBox(

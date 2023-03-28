@@ -3,14 +3,20 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UMainCardWidget.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
+import 'package:greymatter/model/UModels/user_profile_models/user_order_history.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
+import '../UBookingScreens/UScheduleAppointmentScreen.dart';
 
 class USessionDetailsScreen extends StatelessWidget {
-  const USessionDetailsScreen({Key? key}) : super(key: key);
+  final ProfileOrderHistoryModel model;
+  const USessionDetailsScreen({Key? key, required this.model})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +43,13 @@ class USessionDetailsScreen extends StatelessWidget {
                       color: Colors.grey,
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
-                    child: Image.asset(
-                      'assets/images/personss.png',
+                    child: Image.network(
+                      model.image.toString(),
                       fit: BoxFit.cover,
+                      errorBuilder: (q, w, e) => Image.asset(
+                        'assets/images/personss.png',
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -50,14 +60,14 @@ class USessionDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Priya Singh',
+                        model.name.toString(),
                         style: kManRope_500_16_001314,
                       ),
                       SizedBox(
                         height: 4.h,
                       ),
                       Text(
-                        'MA in Counselling Psychology',
+                        model.designation.toString(),
                         style: kManRope_400_12_626A6A,
                       ),
                       SizedBox(
@@ -87,7 +97,7 @@ class USessionDetailsScreen extends StatelessWidget {
                           children: [
                             Image.asset(
                               "assets/images/icondownload18.png",
-                              height: 18,
+                              height: 16,
                               color: k006D77,
                             ),
                             SizedBox(
@@ -95,7 +105,7 @@ class USessionDetailsScreen extends StatelessWidget {
                             ),
                             Text(
                               "Prescription",
-                              style: kManRope_500_16_006D77,
+                              style: kManRope_500_14_006D77,
                             ),
                           ],
                         ),
@@ -115,14 +125,14 @@ class USessionDetailsScreen extends StatelessWidget {
                         children: [
                           Image.asset(
                             "assets/images/icondownload18.png",
-                            height: 18,
+                            height: 16,
                           ),
                           SizedBox(
                             width: 9.w,
                           ),
                           Text(
                             "Download Invoice",
-                            style: kManRope_500_16_white,
+                            style: kManRope_500_14_white,
                           ),
                         ],
                       ),
@@ -157,7 +167,11 @@ class USessionDetailsScreen extends StatelessWidget {
                             style: kManRope_400_16_626A6A,
                           ),
                           Text(
-                            '10, June, 2022',
+                            DateFormat("dd/MM/yyyy, hh:mm a")
+                                .format(DateTime.parse(
+                                    model.bookingDate.toString()))
+                                .split(",")
+                                .first,
                             style: kManRope_400_16_626A6A,
                           ),
                         ],
@@ -166,7 +180,11 @@ class USessionDetailsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           Text(
-                            '8:00AM-9:00AM',
+                            DateFormat("dd/MM/yyyy, hh:mm a")
+                                .format(DateTime.parse(
+                                    model.bookingDate.toString()))
+                                .split(",")
+                                .last,
                             style: kManRope_400_12_626A6A,
                           ),
                         ],
@@ -198,7 +216,7 @@ class USessionDetailsScreen extends StatelessWidget {
                             style: kManRope_400_16_626A6A,
                           ),
                           Text(
-                            'Stress',
+                            model.issueName.toString(),
                             style: kManRope_400_16_626A6A,
                           ),
                         ],
@@ -214,7 +232,7 @@ class USessionDetailsScreen extends StatelessWidget {
                             style: kManRope_400_16_626A6A,
                           ),
                           Text(
-                            'INR 350',
+                            'INR ${model.pricing}',
                             style: kManRope_400_16_626A6A,
                           ),
                         ],
@@ -247,14 +265,14 @@ class USessionDetailsScreen extends StatelessWidget {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         UScheduleAppointmentScreen(
-                                          psychologist: ,
-                                          issue: 'issue',
+                                          psychologist: UPsychologistModel.fromJson(json),
+                                          issue: model.issueName.toString(), bookingType: model.bookingType.toString(), issueId: model.issue.toString(),
                                         )));*/
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 20.h),
                             child: Text(
-                              'Reschedule',
+                              'Save',
                               style: kManRope_500_16_white,
                             ),
                           ),
