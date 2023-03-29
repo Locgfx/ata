@@ -117,7 +117,7 @@ class _UOrderHistoryState extends State<UOrderHistory> {
                                         style: kManRope_500_20_001314,
                                       ),
                                       Text(
-                                        'INR ${orderList[index].payment.toString()}',
+                                        'INR ${orderList[index].pricing.toString()}',
                                         style: kManRope_400_16_626A6A,
                                       ),
                                     ],
@@ -144,7 +144,7 @@ class _UOrderHistoryState extends State<UOrderHistory> {
                                         style: kManRope_400_16_626A6A,
                                       ),
                                       Text(
-                                        orderList[index].status.toString(),
+                                        "successful",
                                         style: kManRope_500_12_006D77,
                                       ),
                                     ],
