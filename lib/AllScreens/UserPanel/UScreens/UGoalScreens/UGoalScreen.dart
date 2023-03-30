@@ -61,6 +61,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                 setState(() {
                   _isLoading = true;
                   modelList.removeAt(removeIndex);
+                  dx[removeIndex] = 0.0;
                 });
                 _getData();
               },
@@ -144,7 +145,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
               TableCalendar(
                 focusedDay: selectedDay,
                 firstDay: DateTime(2022),
-                lastDay: DateTime(2030),
+                lastDay: DateTime.now(),
                 calendarFormat: CalendarFormat.week,
                 headerVisible: false,
                 calendarStyle: CalendarStyle(

@@ -62,7 +62,9 @@ class _UAllVideosState extends State<UAllVideos> {
                               onTap: () => Navigator.of(context).push(
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const USeeAllVideosScreen())),
+                                          const USeeAllVideosScreen(
+                                            categoryId: '',
+                                          ))),
                               child: Text(
                                 'See all',
                                 style: kManRope_500_16_006D77,

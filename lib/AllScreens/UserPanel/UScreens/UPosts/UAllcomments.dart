@@ -5,11 +5,13 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UPostViewContain
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UReplyScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/comment_widgets/user_comment_widget.dart';
 
 class UCommentPage extends StatefulWidget {
-  const UCommentPage({Key? key}) : super(key: key);
+  final UserPostModel model;
+  const UCommentPage({Key? key, required this.model}) : super(key: key);
 
   @override
   State<UCommentPage> createState() => _UCommentPageState();
@@ -133,12 +135,13 @@ class _UCommentPageState extends State<UCommentPage> {
         child: SingleChildScrollView(
           child: Container(
             constraints: BoxConstraints(maxHeight: 1.sh + 310),
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 40),
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UPostViewContainer(
                   isCommentsViewable: false,
+                  model: widget.model,
                 ),
                 SizedBox(height: 24),
                 Text(
@@ -271,8 +274,7 @@ class _UCommentPageState extends State<UCommentPage> {
                         Row(
                           children: [
                             GestureDetector(
-                              onTap: () {
-                              },
+                              onTap: () {},
                               child: Row(
                                 children: [
                                   GestureDetector(

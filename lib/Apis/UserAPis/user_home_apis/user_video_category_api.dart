@@ -7,21 +7,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constants/globals.dart';
 
 class UserVideoCategoryApi {
-  Future<dynamic> get() async {
+  Future<dynamic> get(
+      {required String categoryId, required String scroll}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
-    var headers = {
-      'Content-Type': 'application/json',
-      'Cookie': 'PHPSESSID=$v'
-    };
-    var request = http.Request('GET', Uri.parse('$baseUrl/video-category.php'));
+    var headers = {'Cookie': 'PHPSESSID=$v'};
+    var request = http.Request(
+        'GET',
+        Uri.parse(
+            '${baseUrl}videos.php?category_id=$categoryId&start=$scroll'));
+
     request.headers.addAll(headers);
+
     http.StreamedResponse response = await request.send();
-    var rsp = jsonDecode(await response.stream.bytesToString());
+
+    var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
-      return rsp;
+      return resp;
     } else {
-      return rsp;
+      print(response.reasonPhrase);
+      return resp;
     }
   }
 }

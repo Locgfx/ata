@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constants/globals.dart';
 
 class UserExploreApi {
-  Future<dynamic> get() async {
+  Future<dynamic> get({required String scroll}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
     var headers = {
@@ -16,7 +16,8 @@ class UserExploreApi {
     };
 
     //print(v);
-    var request = http.Request('GET', Uri.parse('$baseUrl/psychologists.php'));
+    var request = http.Request(
+        'GET', Uri.parse('$baseUrl/psychologists.php?start=$scroll'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var rsp = jsonDecode(await response.stream.bytesToString());

@@ -117,9 +117,14 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                                 if (value['status'] == true) {
                                   Fluttertoast.showToast(
                                       msg: 'Profile Successfully Deleted');
-                                  Navigator.of(context).push(MaterialPageRoute(
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              OnBoardingScreen()),
+                                      (route) => false);
+                                  /*Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
-                                          OnBoardingScreen()));
+                                          OnBoardingScreen()));*/
                                 } else {
                                   Fluttertoast.showToast(msg: value['error']);
                                   /* Navigator.push(
@@ -127,7 +132,6 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                                   MaterialPageRoute(
                                       builder: (context) => PDashboard()),
                                 );*/
-
                                 }
                               });
                             }

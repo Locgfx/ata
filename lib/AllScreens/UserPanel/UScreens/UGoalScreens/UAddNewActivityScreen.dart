@@ -77,6 +77,8 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
+                    width: 1.sw,
+                    height: 214.h,
                     margin: EdgeInsets.symmetric(horizontal: 10.w),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),

@@ -22,7 +22,7 @@ class _RecommendedActivitiesSliderState
 
   getActivityData() {
     isLoading = true;
-    final resp = UserActivityApi().get();
+    final resp = UserActivityApi().get(scroll: '0');
     resp.then((value) {
       //print(value);
       setState(() {

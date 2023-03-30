@@ -114,7 +114,9 @@ class _UPostInteractionsState extends State<UPostInteractions>
                   if (widget.isCommentsViewable) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const UCommentPage(),
+                        builder: (context) => UCommentPage(
+                          model: widget.modelList[widget.index],
+                        ),
                       ),
                     );
                   }
@@ -125,27 +127,16 @@ class _UPostInteractionsState extends State<UPostInteractions>
                   color: Colors.transparent,
                   child: Row(
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          if (widget.isCommentsViewable) {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) => const UCommentPage(),
-                              ),
-                            );
-                          }
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 12),
-                          child: SizedBox(
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12),
+                        child: SizedBox(
+                          height: 24.h,
+                          width: 24.w,
+                          // color: Colors.red,
+                          child: Image.asset(
+                            'assets/images/iconcomment24.png',
                             height: 24.h,
                             width: 24.w,
-                            // color: Colors.red,
-                            child: Image.asset(
-                              'assets/images/iconcomment24.png',
-                              height: 24.h,
-                              width: 24.w,
-                            ),
                           ),
                         ),
                       ),

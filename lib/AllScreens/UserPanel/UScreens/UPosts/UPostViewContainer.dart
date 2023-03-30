@@ -1,14 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/widgets/BottomSheets/PostBottomSheet.dart';
+import 'package:readmore/readmore.dart';
+import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
+import '../../../../model/UModels/user_posts_model/user_posts_model.dart';
+import '../../UWidgets/UPostWidget/UPostInteractions.dart';
 import 'UAllcomments.dart';
+import 'UPostPage.dart';
 
 class UPostViewContainer extends StatefulWidget {
   final bool isCommentsViewable;
+  final UserPostModel model;
   const UPostViewContainer({
     Key? key,
     required this.isCommentsViewable,
+    required this.model,
   }) : super(key: key);
 
   @override
@@ -16,21 +25,41 @@ class UPostViewContainer extends StatefulWidget {
 }
 
 class _UPostViewContainerState extends State<UPostViewContainer> {
-  void _postbottomsheet() {
+  void _postbottomsheet(int index) {
     showModalBottomSheet(
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(20), topLeft: Radius.circular(20)),
         ),
         context: context,
-        builder: (context) => const PostBottomSheet());
+        builder: (context) => MenuBottomSheet(
+              savedPost: "no",
+              onPop: (val) {
+                if (val == "Hide") {
+                  setState(() {
+                    //postModel.removeAt(index);
+                  });
+                } else {
+                  setState(() {
+                    // isLoading = true;
+                  });
+                  //getData();
+                }
+              },
+              postModel: [widget.model],
+              index: index,
+            ));
   }
+
+  int imgIndex = 0;
+  PageController page = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 1.sw,
       decoration: BoxDecoration(
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
@@ -43,26 +72,51 @@ class _UPostViewContainerState extends State<UPostViewContainer> {
               children: [
                 SizedBox(
                   height: 45.h,
-                  width: 135.w,
+                  // width: 135.w,
                   child: Row(
                     children: [
                       Container(
                         height: 45.h,
                         width: 45.w,
                         decoration: const BoxDecoration(
-                            color: Colors.grey, shape: BoxShape.circle),
+                            color: Colors.white, shape: BoxShape.circle),
                         clipBehavior: Clip.hardEdge,
-                        child: Image.asset('assets/images/userP.png'),
+                        child: CachedNetworkImage(
+                          imageUrl: widget.model.photo.toString(),
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Center(
+                            child: SpinKitThreeBounce(
+                              color: k006D77,
+                              size: 10,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        ),
                       ),
                       SizedBox(width: 8.w),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        // mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Priya singh', style: kManRope_500_16_Black),
-                          // SizedBox(height: 1.h),
-                          Text('2 hours ago', style: kManRope_400_12_626A6A),
+                          Text(widget.model.name.toString(),
+                              style: kManRope_500_16_Black),
+                          Text(
+                              DateTime.now()
+                                          .difference(DateTime.parse(
+                                              widget.model.dateTime.toString()))
+                                          .inMinutes <=
+                                      59
+                                  ? "${DateTime.now().difference(DateTime.parse(widget.model.dateTime.toString())).inMinutes} min ago"
+                                  : DateTime.now()
+                                              .difference(DateTime.parse(widget
+                                                  .model.dateTime
+                                                  .toString()))
+                                              .inHours <=
+                                          23
+                                      ? "${DateTime.now().difference(DateTime.parse(widget.model.dateTime.toString())).inHours} hour ago"
+                                      : "${DateTime.now().difference(DateTime.parse(widget.model.dateTime.toString())).inDays} day ago",
+                              style: kManRope_400_12_626A6A),
                           // SizedBox(height: 8.h),
                         ],
                       ),
@@ -70,9 +124,8 @@ class _UPostViewContainerState extends State<UPostViewContainer> {
                   ),
                 ),
                 GestureDetector(
-                  behavior: HitTestBehavior.translucent,
                   onTap: () {
-                    _postbottomsheet();
+                    _postbottomsheet(0);
                   },
                   child: Container(
                     color: Colors.transparent,
@@ -87,157 +140,76 @@ class _UPostViewContainerState extends State<UPostViewContainer> {
             ),
           ),
           SizedBox(height: 17.h),
-          Container(
-            height: 285.h,
-            width: 380.w,
-            clipBehavior: Clip.hardEdge,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.grey,
-            ),
-            child: Image.asset(
-              'assets/images/post.png',
-              fit: BoxFit.cover,
-            ),
+          Stack(
+            children: [
+              Container(
+                  height: 285.h,
+                  width: 380.w,
+                  clipBehavior: Clip.hardEdge,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                    color: Colors.white,
+                  ),
+                  child: PageView.builder(
+                      itemCount: widget.model.gallary!.length,
+                      controller: page,
+                      onPageChanged: (val) {
+                        setState(() {
+                          imgIndex = val;
+                        });
+                      },
+                      scrollDirection: Axis.horizontal,
+                      pageSnapping: true,
+                      itemBuilder: (BuildContext context, ind) {
+                        return CachedNetworkImage(
+                          imageUrl: widget.model.gallary![ind].toString(),
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => Center(
+                            child: SpinKitThreeBounce(
+                              color: k006D77,
+                              size: 30,
+                            ),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              Icon(Icons.error),
+                        );
+                      })),
+              Positioned(
+                  right: 10,
+                  top: 10,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                        color: Colors.black45,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Text(
+                      "${imgIndex + 1}/${widget.model.gallary!.length}",
+                      style: kManRope_400_14_white,
+                    ),
+                  ))
+            ],
           ),
           SizedBox(
             height: 8.h,
           ),
-          SizedBox(
-            height: 48.h,
-            width: 1.sw,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 48.h,
-                      width: 73.w,
-                      // color: Colors.red,
-
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 12),
-                        child: Row(
-                          children: [
-                            Image.asset(
-                              'assets/images/iconlike24.png',
-                              height: 24.h,
-                              width: 24.w,
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 12.w),
-                              child: Text('375', style: kManRope_400_14_626A6A),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 16.w,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        if (widget.isCommentsViewable) {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const UCommentPage(),
-                            ),
-                          );
-                        }
-                      },
-                      child: Container(
-                        height: 48.h,
-                        width: 75.w,
-                        color: Colors.transparent,
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                if (widget.isCommentsViewable) {
-                                  Navigator.of(context).push(
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                      const UCommentPage(),
-                                    ),
-                                  );
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 12),
-                                child: SizedBox(
-                                  height: 24.h,
-                                  width: 24.w,
-                                  child: Image.asset(
-                                    'assets/images/iconcomment24.png',
-                                    height: 24.h,
-                                    width: 24.w,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 12.w,
-                            ),
-                            Text('20', style: kManRope_400_14_626A6A),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                      height: 48,
-                      width: 48,
-                      // color: Colors.red,
-                      child: Image.asset(
-                        'assets/images/iconbookmark48.png',
-                        height: 48,
-                        width: 48,
-                      ),
-                    ),
-                    // SizedBox(
-                    //   width: 8.w,
-                    // ),
-                    SizedBox(
-                      height: 48,
-                      width: 48,
-                      // color: Colors.red,
-                      child: Image.asset(
-                        'assets/images/iconshare48.png',
-                        height: 44,
-                        width: 44,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+          UPostInteractions(
+            savedPost: "no",
+            isCommentsViewable: false,
+            modelList: [widget.model],
+            index: 0,
           ),
-          SizedBox(
-            height: 16.h,
-          ),
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  style: kManRope_400_14_626A6A,
-                  text:
-                  '“There is only one way to happiness and that is to cease worrying about things which are beyond the power of our will.” ...',
-                ),
-                WidgetSpan(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    color: Colors.transparent,
-                    child: Text(
-                      'Read more',
-                      style: kManRope_600_14_006D77,
-                    ),
-                  ),
-                ),
-              ],
+          Align(
+            alignment: Alignment.centerLeft,
+            child: ReadMoreText(
+              widget.model.caption.toString(),
+              style: kManRope_400_14_626A6A,
+              trimLines: 1,
+              colorClickableText: k006D77,
+              trimMode: TrimMode.Line,
+              trimCollapsedText: 'Show more',
+              trimExpandedText: 'Show less',
+              moreStyle: kManRope_600_14_006D77,
+              lessStyle: kManRope_600_14_006D77,
             ),
           ),
         ],

@@ -27,47 +27,50 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
 
   @override
   void initState() {
-    getData();
-    getVideosData();
+    _scrollController.addListener(() {
+      if (_scrollController.position.maxScrollExtent ==
+          _scrollController.offset) {
+        if (dataLength >= 10) {
+          _getReloadedData();
+        }
+      }
+    });
+    _getData();
     super.initState();
   }
 
-  UserVideoCategoryModel model = UserVideoCategoryModel();
-  List<UserVideoCategoryModel> topvideolistcategory = [];
   bool _isLoading = false;
 
-  getData() {
-    _isLoading = true;
-    final resp = UserVideoCategoryApi().get();
+  int _scroll = 0;
+  int dataLength = 0;
+
+  final ScrollController _scrollController = ScrollController();
+  List<UserAllVideoModel> modelList = [];
+  _getReloadedData() {
+    //_isLoading = true;
+    final resp = UserAllVideosApi().get(scroll: "$_scroll");
     resp.then((value) {
-      print(value);
-      if (mounted) {
-        setState(() {
-          for (var v in value) {
-            topvideolistcategory.add(UserVideoCategoryModel.fromJson(v));
-          }
-          _isLoading = false;
-        });
-      }
+      setState(() {
+        dataLength = value.length;
+        for (var v in value) {
+          modelList.add(UserAllVideoModel.fromJson(v));
+        }
+        //_isLoading = false;
+      });
     });
   }
 
-  UserAllVideosModel allvideos = UserAllVideosModel();
-  List<UserAllVideosModel> allvideolist = [];
-
-  getVideosData() {
+  _getData() {
     _isLoading = true;
-    final resp = UserAllVideosApi().get();
+    final resp = UserAllVideosApi().get(scroll: "0");
     resp.then((value) {
-      //print(value);
-      if (mounted) {
-        setState(() {
-          for (var v in value) {
-            allvideolist.add(UserAllVideosModel.fromJson(v));
-          }
-          _isLoading = false;
-        });
-      }
+      setState(() {
+        dataLength = value.length;
+        for (var v in value) {
+          modelList.add(UserAllVideoModel.fromJson(v));
+        }
+        _isLoading = false;
+      });
     });
   }
 
@@ -82,6 +85,7 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
               appBarText: "All Videos",
               imgPath: "assets/images/iconbackappbar2.png"),
           body: SingleChildScrollView(
+            controller: _scrollController,
             child: Padding(
               padding: EdgeInsets.only(top: 40.h),
               child: Column(
@@ -108,120 +112,155 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                     height: 40.h,
                   ),
                   SizedBox(
-                    height: 1.sh,
+                    // height: 1.sh - 140.h,
                     child: ListView.separated(
                       physics: NeverScrollableScrollPhysics(),
                       padding: EdgeInsets.zero,
                       scrollDirection: Axis.vertical,
                       shrinkWrap: true,
-                      itemCount: topvideolistcategory.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 24.w),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    topvideolistcategory[index].name.toString(),
-                                    style: kManRope_700_16_001314,
-                                  ),
-                                  GestureDetector(
-                                    onTap: () => Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const USeeAllVideosScreen())),
-                                    child: Text(
-                                      'See all',
-                                      style: kManRope_500_16_006D77,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(height: 24.h),
-                            SizedBox(
-                              height: 260.h,
-                              child: ListView.separated(
-                                physics: NeverScrollableScrollPhysics(),
-                                padding: EdgeInsets.zero,
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemCount: allvideolist.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                      itemCount: modelList.length + 1,
+                      itemBuilder: (BuildContext context, int indexx) {
+                        if (indexx < modelList.length) {
+                          return Column(
+                            children: [
+                              if (modelList[indexx].videos!.isNotEmpty)
+                                Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 24.w),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
+                                      Text(
+                                        modelList[indexx].name.toString(),
+                                        style: kManRope_700_16_001314,
+                                      ),
                                       GestureDetector(
-                                        onTap: () {
-                                          Navigator.push(
-                                            context,
+                                        onTap: () => Navigator.of(context).push(
                                             MaterialPageRoute(
-                                              builder: (_) => VideoPlayerWidget(
-                                                  videoLink: allvideolist[index]
-                                                      .video
-                                                      .toString()),
-                                            ),
-                                          );
-                                        },
-                                        child: Stack(
-                                          alignment:
-                                              AlignmentDirectional.center,
-                                          children: [
-                                            Container(
-                                              height: 182.w,
-                                              width: 182.w,
-                                              clipBehavior: Clip.hardEdge,
-                                              decoration: const BoxDecoration(
-                                                color: Colors.grey,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(20)),
-                                              ),
-                                              child: CachedNetworkImage(
-                                                imageUrl: allvideolist[index]
-                                                    .videoPoster
-                                                    .toString(),
-                                                fit: BoxFit.cover,
-                                                placeholder: (context, url) =>
-                                                    Center(
-                                                  child: SpinKitThreeBounce(
-                                                    color: k006D77,
-                                                    size: 10,
-                                                  ),
-                                                ),
-                                                errorWidget:
-                                                    (context, url, error) =>
-                                                        Icon(Icons.error),
-                                              ),
-                                            ),
-                                            Image.asset(
-                                              "assets/images/youtube.png",
-                                              height: 36,
-                                              width: 36,
-                                            )
-                                          ],
+                                                builder: (context) =>
+                                                    USeeAllVideosScreen(
+                                                      categoryId:
+                                                          modelList[indexx]
+                                                              .id
+                                                              .toString(),
+                                                    ))),
+                                        child: Text(
+                                          'See all',
+                                          style: kManRope_500_16_006D77,
                                         ),
                                       ),
-                                      SizedBox(height: 16),
-                                      Text(
-                                        allvideolist[index].name.toString(),
-                                        style: kManRope_500_16_001314,
-                                      ),
                                     ],
-                                  );
-                                },
-                                separatorBuilder:
-                                    (BuildContext context, int index) =>
-                                        SizedBox(
-                                  width: 16.w,
+                                  ),
                                 ),
-                              ),
-                            ),
-                          ],
-                        );
+                              if (modelList[indexx].videos!.isNotEmpty)
+                                SizedBox(height: 24.h),
+                              if (modelList[indexx].videos!.isNotEmpty)
+                                SizedBox(
+                                  height: 260.h,
+                                  child: ListView.separated(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    padding: EdgeInsets.zero,
+                                    scrollDirection: Axis.horizontal,
+                                    shrinkWrap: true,
+                                    itemCount:
+                                        modelList[indexx].videos?.length ?? 0,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      VideoPlayerWidget(
+                                                          videoLink: modelList[
+                                                                  indexx]
+                                                              .videos![index]
+                                                              .video
+                                                              .toString()),
+                                                ),
+                                              );
+                                            },
+                                            child: Stack(
+                                              alignment:
+                                                  AlignmentDirectional.center,
+                                              children: [
+                                                Container(
+                                                  height: 182.w,
+                                                  width: 182.w,
+                                                  clipBehavior: Clip.hardEdge,
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    color: Colors.grey,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                20)),
+                                                  ),
+                                                  child: CachedNetworkImage(
+                                                    imageUrl: modelList[indexx]
+                                                        .videos![index]
+                                                        .videoPoster
+                                                        .toString(),
+                                                    fit: BoxFit.cover,
+                                                    placeholder:
+                                                        (context, url) =>
+                                                            Center(
+                                                      child: SpinKitThreeBounce(
+                                                        color: k006D77,
+                                                        size: 10,
+                                                      ),
+                                                    ),
+                                                    errorWidget:
+                                                        (context, url, error) =>
+                                                            Icon(Icons.error),
+                                                  ),
+                                                ),
+                                                Image.asset(
+                                                  "assets/images/youtube.png",
+                                                  height: 36,
+                                                  width: 36,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(height: 16),
+                                          Text(
+                                            modelList[indexx]
+                                                .videos![index]
+                                                .name
+                                                .toString(),
+                                            style: kManRope_500_16_001314,
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                    separatorBuilder:
+                                        (BuildContext context, int index) =>
+                                            SizedBox(
+                                      width: 16.w,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          );
+                        } else if (dataLength < 10) {
+                          return SizedBox.shrink();
+                        } else if (_scrollController.position.maxScrollExtent ==
+                            _scrollController.offset) {
+                          return Center(
+                              child: SpinKitThreeBounce(
+                            color: k006D77,
+                            size: 10,
+                          ));
+                        } else {
+                          return SizedBox.shrink();
+                        }
                       },
                       separatorBuilder: (BuildContext context, int index) =>
                           SizedBox(
@@ -229,141 +268,6 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                       ),
                     ),
                   ),
-                  // GestureDetector(
-                  //   onTap: () {
-                  //     Navigator.of(context).push(MaterialPageRoute(
-                  //         builder: (context) => const SeeAllVideos()));
-                  //   },
-                  //   child: Container(
-                  //     margin: EdgeInsets.symmetric(horizontal: 24),
-                  //     child: Row(
-                  //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //       children: [
-                  //         Text(
-                  //           'Trending Videos',
-                  //           style: kManRope_700_16_001314,
-                  //         ),
-                  //         GestureDetector(
-                  //           onTap: () => Navigator.of(context).push(
-                  //               MaterialPageRoute(
-                  //                   builder: (context) => const SeeAllVideos())),
-                  //           child: Text(
-                  //             'See all',
-                  //             style: kManRope_500_16_006D77,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
-                  //
-                  // SizedBox(
-                  //   height: 24.h,
-                  // ),
-                  // Container(
-                  //   margin: EdgeInsets.only(left: 24),
-                  //   height: 260.h,
-                  //   child: ListView.separated(
-                  //     padding: EdgeInsets.zero,
-                  //     scrollDirection: Axis.horizontal,
-                  //     shrinkWrap: true,
-                  //     itemCount: 4,
-                  //     itemBuilder: (BuildContext context, int index) {
-                  //       return Column(
-                  //         crossAxisAlignment: CrossAxisAlignment.start,
-                  //         children: [
-                  //           Container(
-                  //             height: 182.w,
-                  //             width: 182.w,
-                  //             clipBehavior: Clip.hardEdge,
-                  //             decoration: const BoxDecoration(
-                  //               color: Colors.grey,
-                  //               borderRadius:
-                  //                   BorderRadius.all(Radius.circular(20)),
-                  //             ),
-                  //             child: Image.asset(
-                  //               'assets/images/yogavideodemo.png',
-                  //               fit: BoxFit.fill,
-                  //             ),
-                  //           ),
-                  //           SizedBox(height: 16),
-                  //           Text(
-                  //             'Name xyz',
-                  //             style: kManRope_500_16_001314,
-                  //           ),
-                  //         ],
-                  //       );
-                  //     },
-                  //     separatorBuilder: (BuildContext context, int index) =>
-                  //         SizedBox(
-                  //       width: 16.w,
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 20.h,
-                  // ),
-                  // Padding(
-                  //   padding: const EdgeInsets.symmetric(horizontal: 24),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //     children: [
-                  //       Text(
-                  //         'Fitness Videos',
-                  //         style: kManRope_700_16_001314,
-                  //       ),
-                  //       Text(
-                  //         'See all',
-                  //         style: kManRope_500_16_006D77,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 24.h,
-                  // ),
-                  // Container(
-                  //   margin: EdgeInsets.only(left: 24),
-                  //   height: 260.h,
-                  //   child: ListView.separated(
-                  //     scrollDirection: Axis.horizontal,
-                  //     shrinkWrap: true,
-                  //     itemCount: 4,
-                  //     itemBuilder: (BuildContext context, int index) {
-                  //       return Column(
-                  //         crossAxisAlignment: CrossAxisAlignment.start,
-                  //         children: [
-                  //           Container(
-                  //             height: 182.w,
-                  //             width: 182.w,
-                  //             clipBehavior: Clip.hardEdge,
-                  //             decoration: const BoxDecoration(
-                  //               color: Colors.grey,
-                  //               borderRadius:
-                  //                   BorderRadius.all(Radius.circular(20)),
-                  //             ),
-                  //             child: Image.asset(
-                  //               'assets/images/fitnessvideodemo.png',
-                  //               fit: BoxFit.fill,
-                  //             ),
-                  //           ),
-                  //           SizedBox(height: 16),
-                  //           Text(
-                  //             'Name xyz',
-                  //             style: kManRope_500_16_001314,
-                  //           ),
-                  //         ],
-                  //       );
-                  //     },
-                  //     separatorBuilder: (BuildContext context, int index) =>
-                  //         SizedBox(
-                  //       width: 16.w,
-                  //     ),
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 20.h,
-                  // ),
                 ],
               ),
             ),

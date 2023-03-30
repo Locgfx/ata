@@ -90,7 +90,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
 
   getActivityData() {
     isLoading = true;
-    final resp = UserActivityApi().get();
+    final resp = UserActivityApi().get(scroll: '0');
     resp.then((value) {
       //print(value);
       if (mounted) {
@@ -111,7 +111,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
 
   getPsychologistData() {
     isLoading = true;
-    final resp = UserExploreApi().get();
+    final resp = UserExploreApi().get(scroll: '0');
     resp.then((value) {
       //print(value);
       if (mounted) {

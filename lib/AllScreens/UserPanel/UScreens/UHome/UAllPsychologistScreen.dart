@@ -44,7 +44,7 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
 
   getData() {
     _isLoading = true;
-    final resp = UserExploreApi().get();
+    final resp = UserExploreApi().get(scroll: '0');
     resp.then((value) {
       //print(value);
       if (mounted) {

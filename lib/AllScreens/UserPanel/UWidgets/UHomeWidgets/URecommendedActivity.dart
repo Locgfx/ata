@@ -31,7 +31,7 @@ class _URecommendedActivitiesState extends State<URecommendedActivities> {
 
   getActivityData() {
     _isLoading = true;
-    final resp = UserActivityApi().get();
+    final resp = UserActivityApi().get(scroll: '0');
     resp.then((value) {
       //print(value);
       setState(() {
