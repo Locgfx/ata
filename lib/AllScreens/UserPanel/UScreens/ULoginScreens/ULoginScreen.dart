@@ -617,6 +617,8 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                 prefs.setString(
                                                     Keys().userImage,
                                                     value['image']);
+                                                prefs.setString(
+                                                    Keys().userType, "u");
                                                 Fluttertoast.showToast(
                                                     msg: 'Login Successful');
                                                 Navigator.of(context).push(

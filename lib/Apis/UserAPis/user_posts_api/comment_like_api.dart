@@ -1,24 +1,22 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../constants/globals.dart';
-
-class UserCommentApi {
+class CommentLikeApi {
   Future<dynamic> get(
-      {required String postId,
-      required String postType,
-      required String scroll}) async {
+      {required int commentId, required String postType}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
-    var headers = {'Cookie': 'PHPSESSID=$v'};
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            '${baseUrl}view-post-comments.php?post_id=$postId&post_type=$postType&start=$scroll'));
-
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie': 'PHPSESSID=$v'
+    };
+    var request = http.Request('POST', Uri.parse('${baseUrl}like-comment.php'));
+    request.body =
+        json.encode({"comment_id": commentId, "post_type": postType});
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

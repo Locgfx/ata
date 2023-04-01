@@ -8,20 +8,25 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../constants/globals.dart';
 
 class UAddPersonalDetailsScreen extends StatefulWidget {
   UAddPersonalDetailsScreen({Key? key}) : super(key: key);
   @override
-  State<UAddPersonalDetailsScreen> createState() => _UAddPersonalDetailsScreenState();
+  State<UAddPersonalDetailsScreen> createState() =>
+      _UAddPersonalDetailsScreenState();
 }
-class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
 
+class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   bool passwordVisible = true;
   bool passwordVisible2 = true;
@@ -35,9 +40,6 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
   bool hasEmailFocus = false;
   bool hasPasswordFocus = false;
   bool hasCPasswordFocus = false;
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -127,7 +129,7 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                           onChanged: (val) {
                             if (val.isNotEmpty) {
                               setState(() {
-                                passwordEmpty= false;
+                                passwordEmpty = false;
                                 hasPasswordFocus = true;
                               });
                             }
@@ -144,7 +146,7 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                             labelText: 'Password',
                             labelStyle: kManRope_400_16_626A6A,
                             suffixIconConstraints:
-                            BoxConstraints(minHeight: 24.w, minWidth: 24.h),
+                                BoxConstraints(minHeight: 24.w, minWidth: 24.h),
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 setState(() {
@@ -164,8 +166,8 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                           onChanged: (val) {
                             if (val.isNotEmpty) {
                               setState(() {
-                                cPasswordEmpty= false;
-                                hasCPasswordFocus= true;
+                                cPasswordEmpty = false;
+                                hasCPasswordFocus = true;
                               });
                             }
                             if (val.isEmpty) {
@@ -181,7 +183,7 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                             labelText: 'Confirm Password',
                             labelStyle: kManRope_400_16_626A6A,
                             suffixIconConstraints:
-                            BoxConstraints(minHeight: 20.w, minWidth: 20.h),
+                                BoxConstraints(minHeight: 20.w, minWidth: 20.h),
                             suffixIcon: GestureDetector(
                               behavior: HitTestBehavior.translucent,
                               onTap: () {
@@ -204,44 +206,58 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                     ),
                   ),
                   SizedBox(height: 200.h),
-                  nameEmpty ?
-                  CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-                      :emailEmpty ?
-                  CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-                      :passwordEmpty
-                      ?CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-                      :cPasswordEmpty ?
-                  CustomDeactiveTextButton(onPressed: () {}, text: 'Login')
-                      :
-                  CustomActiveTextButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          final resp = UserPersonalDetailsApi().get(
-                              name: nameController.text,
-                              email: emailController.text,
-                              password: passwordController.text,
-                              cPassword: confirmPasswordController.text);
-                          resp.then((value) {
-                            print(value);
-                            if (value['status'] == true) {
-                              Fluttertoast.showToast(
-                                  msg: 'Profile Setup Successful');
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => UTabsScreen()));
-                            } else {
-                              Fluttertoast.showToast(
-                                  msg: value['error']);
-                              /* Navigator.push(
+                  nameEmpty
+                      ? CustomDeactiveTextButton(
+                          onPressed: () {}, text: 'Login')
+                      : emailEmpty
+                          ? CustomDeactiveTextButton(
+                              onPressed: () {}, text: 'Login')
+                          : passwordEmpty
+                              ? CustomDeactiveTextButton(
+                                  onPressed: () {}, text: 'Login')
+                              : cPasswordEmpty
+                                  ? CustomDeactiveTextButton(
+                                      onPressed: () {}, text: 'Login')
+                                  : CustomActiveTextButton(
+                                      onPressed: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          final resp = UserPersonalDetailsApi()
+                                              .get(
+                                                  name: nameController.text,
+                                                  email: emailController.text,
+                                                  password:
+                                                      passwordController.text,
+                                                  cPassword:
+                                                      confirmPasswordController
+                                                          .text);
+                                          resp.then((value) async {
+                                            print(value);
+                                            if (value['status'] == true) {
+                                              var prefs =
+                                                  await SharedPreferences
+                                                      .getInstance();
+                                              Fluttertoast.showToast(
+                                                  msg:
+                                                      'Profile Setup Successful');
+                                              prefs.setString(
+                                                  Keys().userType, "u");
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UTabsScreen()));
+                                            } else {
+                                              Fluttertoast.showToast(
+                                                  msg: value['error']);
+                                              /* Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PDashboard()),
                                   );*/
-
-                            }
-                          });
-                        }
-                      },
-                      text: 'SIGNUP')
+                                            }
+                                          });
+                                        }
+                                      },
+                                      text: 'SIGNUP')
                 ],
               ),
             ),

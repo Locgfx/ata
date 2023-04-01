@@ -192,12 +192,12 @@ class _UPostViewContainerState extends State<UPostViewContainer> {
           SizedBox(
             height: 8.h,
           ),
-          UPostInteractions(
+          /*UPostInteractions(
             savedPost: "no",
             isCommentsViewable: false,
             modelList: [widget.model],
             index: 0,
-          ),
+          ),*/
           Align(
             alignment: Alignment.centerLeft,
             child: ReadMoreText(

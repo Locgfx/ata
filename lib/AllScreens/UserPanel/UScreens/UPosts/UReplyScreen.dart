@@ -124,7 +124,11 @@ class _UReplyScreenState extends State<UReplyScreen> {
                 style: kManRope_400_16_001314,
               ),
               SizedBox(height: 27),
-              usercommentWidget1(),
+              usercommentWidget1(
+                postedBy: '',
+                modelList: [],
+                index: 0,
+              ),
               SizedBox(height: 8),
               Expanded(
                 child: Container(
@@ -191,7 +195,11 @@ class _UReplyScreenState extends State<UReplyScreen> {
                               ],
                             ),
                             SizedBox(height: 16),
-                            usercommentWidget1(),
+                            usercommentWidget1(
+                              modelList: [],
+                              postedBy: '',
+                              index: 0,
+                            ),
                             SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
@@ -221,7 +229,11 @@ class _UReplyScreenState extends State<UReplyScreen> {
                 ),
               ),
               SizedBox(height: 24),
-              usercommentWidget1(),
+              usercommentWidget1(
+                postedBy: '',
+                modelList: [],
+                index: 0,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [

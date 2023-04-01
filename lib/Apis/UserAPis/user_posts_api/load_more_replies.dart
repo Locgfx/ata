@@ -1,14 +1,13 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../constants/globals.dart';
-
-class UserCommentApi {
+class LoadMoreReplies {
   Future<dynamic> get(
-      {required String postId,
+      {required String commentId,
       required String postType,
       required String scroll}) async {
     var prefs = await SharedPreferences.getInstance();
@@ -17,7 +16,7 @@ class UserCommentApi {
     var request = http.Request(
         'GET',
         Uri.parse(
-            '${baseUrl}view-post-comments.php?post_id=$postId&post_type=$postType&start=$scroll'));
+            '${baseUrl}view-comment-replies.php?comment_id=$commentId&post_type=$postType&start=$scroll'));
 
     request.headers.addAll(headers);
 

@@ -83,12 +83,14 @@ class _UGoalScreenState extends State<UGoalScreen> {
 
   _getData() {
     _isLoading = true;
+    log(selectedDay.toString());
     final resp =
         UserGoalsApi().get(date: DateFormat("yyyy-MM-dd").format(selectedDay));
     resp.then((value) {
-      debugPrint(value.toString());
+      log(value.toString());
       if (value['status'] == true) {
         modelList.clear();
+        //modelList.clear();
         setState(() {
           for (var v in value['goals']) {
             modelList.add(UserGoalsModel.fromJson(v));
@@ -103,6 +105,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
         });
       } else {
         setState(() {
+          modelList.clear();
           _isLoading = false;
         });
       }

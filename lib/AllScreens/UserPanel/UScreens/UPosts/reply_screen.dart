@@ -128,7 +128,11 @@ class _ReplyScreenState extends State<ReplyScreen> {
             SizedBox(
               height: 27,
             ),
-            usercommentWidget1(),
+            usercommentWidget1(
+              modelList: [],
+              postedBy: '',
+              index: 0,
+            ),
             Padding(
               padding: const EdgeInsets.only(right: 24),
               child: Column(
@@ -200,7 +204,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
             SizedBox(
               height: 20,
             ),
-            usercommWidget(),
+            //usercommWidget2(),
             SizedBox(
               height: 8,
             ),
@@ -235,7 +239,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
             SizedBox(
               height: 20,
             ),
-            usercommWidget(),
+            //usercommWidget2(),
             SizedBox(
               height: 8,
             ),
