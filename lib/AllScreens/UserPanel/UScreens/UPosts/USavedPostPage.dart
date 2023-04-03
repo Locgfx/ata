@@ -112,56 +112,56 @@ class _USavedPostPageState extends State<USavedPostPage> {
   Widget build(BuildContext context) {
     return Material(
       color: kEDF6F9,
-      child: RefreshIndicator(
-        onRefresh: () {
-          setState(() {
-            isLoading = true;
-          });
-          return getData();
-        },
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Scaffold(
-              backgroundColor: kEDF6F9,
-              body: isLoading
-                  ? Padding(
-                      padding: EdgeInsets.only(bottom: 159.0),
-                      child: LoadingWidget(),
-                    )
-                  : savedpostlist.isEmpty
-                      ? Container(
-                          width: 1.sw,
-                          child: Column(
-                            //mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 150,
-                              ),
-                              Image.asset(
-                                "assets/images/emptypost.png",
-                                height: 220,
-                                width: 265,
-                              ),
-                              SizedBox(
-                                height: 50,
-                              ),
-                              Text(
-                                "You haven't saved any post yet.",
-                                style: kManRope_500_16_404040,
-                              )
-                            ],
-                          ),
-                        )
-                      : Padding(
-                          padding: EdgeInsets.only(
-                              left: 24.w, right: 24.h, bottom: 159),
-                          child: LazyLoadScrollView(
-                            onEndOfPage: () {
-                              if (_postCount >= 10) {
-                                getReloadedData();
-                              }
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Scaffold(
+            backgroundColor: kEDF6F9,
+            body: isLoading
+                ? Padding(
+                    padding: EdgeInsets.only(bottom: 159.0),
+                    child: LoadingWidget(),
+                  )
+                : savedpostlist.isEmpty
+                    ? Container(
+                        width: 1.sw,
+                        child: Column(
+                          //mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 150,
+                            ),
+                            Image.asset(
+                              "assets/images/emptypost.png",
+                              height: 220,
+                              width: 265,
+                            ),
+                            SizedBox(
+                              height: 50,
+                            ),
+                            Text(
+                              "You haven't saved any post yet.",
+                              style: kManRope_500_16_404040,
+                            )
+                          ],
+                        ),
+                      )
+                    : Padding(
+                        padding: EdgeInsets.only(
+                            left: 24.w, right: 24.h, bottom: 159),
+                        child: LazyLoadScrollView(
+                          onEndOfPage: () {
+                            if (_postCount >= 10) {
+                              getReloadedData();
+                            }
+                          },
+                          child: RefreshIndicator(
+                            onRefresh: () {
+                              setState(() {
+                                isLoading = true;
+                              });
+                              return getData();
                             },
                             child: ListView.separated(
                               itemCount: savedpostlist.length + 1,
@@ -400,7 +400,10 @@ class _USavedPostPageState extends State<USavedPostPage> {
                                   );
                                 } else if (_postCount >= 10 && isLoading) {
                                   return Center(
-                                    child: CircularProgressIndicator(),
+                                    child: SpinKitThreeBounce(
+                                      color: k006D77,
+                                      size: 20,
+                                    ),
                                   );
                                 } else if (_postCount < 10) {
                                   return SizedBox.shrink();
@@ -416,23 +419,23 @@ class _USavedPostPageState extends State<USavedPostPage> {
                             ),
                           ),
                         ),
-            ),
-            /* Positioned(
-              bottom: 180,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => UCreatePost()));
-                },
-                child: SvgPicture.asset(
-                  'assets/icons/addPost_1.svg',
-                  height: 72.h,
-                  width: 72.w,
-                ),
+                      ),
+          ),
+          /* Positioned(
+            bottom: 180,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => UCreatePost()));
+              },
+              child: SvgPicture.asset(
+                'assets/icons/addPost_1.svg',
+                height: 72.h,
+                width: 72.w,
               ),
-            ),*/
-          ],
-        ),
+            ),
+          ),*/
+        ],
       ),
     );
   }

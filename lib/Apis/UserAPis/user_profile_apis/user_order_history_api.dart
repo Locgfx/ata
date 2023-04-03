@@ -43,7 +43,7 @@ class UserOrderHistoryApi {
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var resp = jsonDecode(await response.stream.bytesToString());
-    log(resp.toString());
+    //log(resp.toString());
     //print(resp);
     //print(response.statusCode);
     if (response.statusCode == 200) {

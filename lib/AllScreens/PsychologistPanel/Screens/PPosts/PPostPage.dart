@@ -339,7 +339,7 @@ class _PPostPageState extends State<PPostPage> {
                                     ),
                                     UPostInteractions(
                                       savedPost: "no",
-                                      isCommentsViewable: false,
+                                      isCommentsViewable: true,
                                       //widget.isCommentsViewable,
                                       modelList: postModel,
                                       index: index,
@@ -364,7 +364,10 @@ class _PPostPageState extends State<PPostPage> {
                             );
                           } else if (_postCount >= 10 && isLoading) {
                             return Center(
-                              child: CircularProgressIndicator(),
+                              child: SpinKitThreeBounce(
+                                color: k006D77,
+                                size: 20,
+                              ),
                             );
                           } else if (_postCount < 10) {
                             return SizedBox.shrink();

@@ -7,6 +7,7 @@ class CommentModel {
   String? photo;
   String? totalReplies;
   int? totalLikes;
+  int? isLiked;
   List<Replies>? replies;
 
   CommentModel(
@@ -16,6 +17,7 @@ class CommentModel {
       this.dateTime,
       this.totalReplies,
       this.name,
+      this.isLiked,
       this.totalLikes,
       this.photo,
       this.replies});
@@ -28,12 +30,15 @@ class CommentModel {
     postType = json['post_type'];
     dateTime = json['date_time'];
     name = json['name'];
+    isLiked = json['like_by_me'] ?? 0;
     photo = json['photo'];
     if (json['replies'] != null) {
       replies = <Replies>[];
       json['replies'].forEach((v) {
         replies!.add(new Replies.fromJson(v));
       });
+    } else {
+      replies = <Replies>[];
     }
   }
 
@@ -42,6 +47,7 @@ class CommentModel {
     data['id'] = this.id;
     data['comment'] = this.comment;
     data['post_type'] = this.postType;
+    data['like_by_me'] = this.isLiked;
     data['date_time'] = this.dateTime;
     data['name'] = this.name;
     data['photo'] = this.photo;

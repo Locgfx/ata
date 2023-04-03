@@ -59,10 +59,10 @@ class _SplashScreenState extends State<SplashScreen> {
         if (isUser) {
           log(isUser.toString());
           if (questionsDone) {
-            log(questionsDone.toString());
-            final resp = UserLoginApi().get(
-              username: 'user01@gmail.com' /*prefs.getString(Keys().email)!*/,
-              password: '1234' /*prefs.getString(Keys().password)!*/,
+            log(questionsDone.toString() + " question done");
+            /*final resp = UserLoginApi().get(
+              username: 'user01@gmail.com' */ /*prefs.getString(Keys().email)!*/ /*,
+              password: '1234' */ /*prefs.getString(Keys().password)!*/ /*,
             );
             resp.then((value) {
               if (value['status'] == false) {
@@ -77,7 +77,13 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 );
               }
-            });
+            });*/
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => UTabsScreen(),
+              ),
+            );
           } else {
             Navigator.push(
               context,

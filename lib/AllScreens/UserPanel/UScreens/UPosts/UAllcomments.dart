@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PPosts/post_comment_api.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UPostViewContainer.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UReplyScreen.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_comment_api.dart';
@@ -18,7 +20,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class UCommentPage extends StatefulWidget {
   final UserPostModel model;
-  const UCommentPage({Key? key, required this.model}) : super(key: key);
+  final String isSaved;
+  const UCommentPage({Key? key, required this.model, required this.isSaved})
+      : super(key: key);
 
   @override
   State<UCommentPage> createState() => _UCommentPageState();
@@ -47,10 +51,14 @@ class _UCommentPageState extends State<UCommentPage> {
   int _scroll = 0;
   bool _isLoading = false;
   List<CommentModel> modelList = [];
+
+  final ScrollController _scrollController = ScrollController();
+
   _getData() {
     _isLoading = true;
     final resp = UserCommentApi().get(
-        postId: widget.model.id.toString(),
+        postId:
+            widget.isSaved == "yes" ? widget.model.postId! : widget.model.id!,
         postType: widget.model.postedBy.toString(),
         scroll: '$_scroll');
     resp.then((value) {
@@ -59,6 +67,9 @@ class _UCommentPageState extends State<UCommentPage> {
         setState(() {
           for (var v in value['comments']) {
             modelList.add(CommentModel.fromJson(v));
+          }
+          if (value['comments'].length >= 10) {
+            _showBtn = true;
           }
           _isLoading = false;
         });
@@ -70,6 +81,63 @@ class _UCommentPageState extends State<UCommentPage> {
     });
   }
 
+  bool _postCommentLoading = false;
+  _postComment() {
+    final resp = PostCommentApi().get(
+        postId: widget.isSaved == "yes"
+            ? int.parse(widget.model.postId!)
+            : int.parse(widget.model.id!),
+        postType: widget.model.postedBy.toString(),
+        comment: cont.text.trim());
+    resp.then((value) {
+      if (value['status'] == true) {
+        setState(() {
+          cont.clear();
+          modelList.add(CommentModel.fromJson(value['comment']));
+          _postCommentLoading = false;
+        });
+      } else {
+        setState(() {
+          _postCommentLoading = false;
+          Fluttertoast.showToast(msg: value["error"]);
+        });
+      }
+    }).then((value) => _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent + 100,
+        duration: Duration(milliseconds: 500),
+        curve: Curves.fastOutSlowIn));
+  }
+
+  _getReloadedData() {
+    _scroll++;
+    final resp = UserCommentApi().get(
+        postId:
+            widget.isSaved == "yes" ? widget.model.postId! : widget.model.id!,
+        postType: widget.model.postedBy.toString(),
+        scroll: '$_scroll');
+    resp.then((value) {
+      log(value.toString());
+      if (value['status'] == true) {
+        setState(() {
+          for (var v in value['comments']) {
+            modelList.add(CommentModel.fromJson(v));
+          }
+          if (value['comments'].length < 10) {
+            _showBtn = false;
+          }
+          _commentLoading = false;
+        });
+      } else {
+        setState(() {
+          _showBtn = false;
+          _commentLoading = false;
+        });
+      }
+    });
+  }
+
+  bool _commentLoading = false;
+  bool _showBtn = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,83 +148,99 @@ class _UCommentPageState extends State<UCommentPage> {
       ),
       backgroundColor: kEDF6F9,
       bottomNavigationBar: userType.toLowerCase() == "p"
-          ? Padding(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      spreadRadius: -10,
-                      blurRadius: 20,
-                      color: Colors.black.withOpacity(0.5),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 6,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                        ),
-                        child: TextField(
-                          controller: cont,
-                          style: kManRope_400_14_626A6A,
-                          maxLines: 2,
-                          minLines: 1,
-                          onChanged: (v) {
-                            setState(() {});
-                          },
-                          textInputAction: TextInputAction.done,
-                          decoration: InputDecoration(
-                            contentPadding: EdgeInsets.only(left: 24),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 0, color: Colors.transparent),
+          ? SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        spreadRadius: -10,
+                        blurRadius: 20,
+                        color: Colors.black.withOpacity(0.5),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 6,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                          ),
+                          child: TextField(
+                            controller: cont,
+                            style: kManRope_400_14_626A6A,
+                            maxLines: 2,
+                            minLines: 1,
+                            onChanged: (v) {
+                              setState(() {});
+                            },
+                            textInputAction: TextInputAction.done,
+                            decoration: InputDecoration(
+                              contentPadding: EdgeInsets.only(left: 24),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 0, color: Colors.transparent),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 0, color: Colors.transparent),
+                              ),
+                              //fillColor: Colors.white,
+                              hintText: "Add a comment",
+                              // hintStyle: kManRope_400_14_626A6A,
                             ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  width: 0, color: Colors.transparent),
-                            ),
-                            //fillColor: Colors.white,
-                            hintText: "Add a comment",
-                            // hintStyle: kManRope_400_14_626A6A,
                           ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: Colors.transparent,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            Container(
-                              height: 48,
-                              width: 48,
-                              color: Colors.transparent,
-                              child: Image.asset(
-                                "assets/images/iconsendlarge (2).png",
-                                height: 48,
-                                width: 48,
+                      Expanded(
+                        child: _postCommentLoading
+                            ? SpinKitThreeBounce(
+                                color: k006D77,
+                                size: 15,
+                              )
+                            : InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    _postCommentLoading = true;
+                                  });
+                                  _postComment();
+                                },
+                                child: Container(
+                                  color: Colors.transparent,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: 48,
+                                        width: 48,
+                                        color: Colors.transparent,
+                                        child: Image.asset(
+                                          "assets/images/iconsendlarge (2).png",
+                                          height: 48,
+                                          width: 48,
+                                        ),
+                                      ),
+                                      //SizedBox(width: 20),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                            //SizedBox(width: 20),
-                          ],
-                        ),
                       ),
-                    ),
-                    SizedBox(width: 24),
-                  ],
+                      SizedBox(width: 15),
+                    ],
+                  ),
                 ),
               ),
             )
           : null,
       body: SafeArea(
         child: SingleChildScrollView(
+          controller: _scrollController,
           child: Container(
             // constraints: BoxConstraints(maxHeight: 1.sh + 310),
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
@@ -295,6 +379,34 @@ class _UCommentPageState extends State<UCommentPage> {
                         shrinkWrap: true,
                       ),
                 SizedBox(height: 24),
+                _commentLoading
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SpinKitThreeBounce(
+                            color: k006D77,
+                            size: 10,
+                          ),
+                        ],
+                      )
+                    : _showBtn == false
+                        ? SizedBox.shrink()
+                        : InkWell(
+                            onTap: () {
+                              setState(() {
+                                _commentLoading = true;
+                              });
+                              _getReloadedData();
+                            },
+                            child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                color: Colors.transparent,
+                                child: Text(
+                                  "Load Comments",
+                                  style: kManRope_400_12_006D77,
+                                )),
+                          ),
               ],
             ),
           ),

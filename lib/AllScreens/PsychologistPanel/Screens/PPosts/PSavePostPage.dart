@@ -388,7 +388,10 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
                                 );
                               } else if (_postCount >= 10 && isLoading) {
                                 return Center(
-                                  child: CircularProgressIndicator(),
+                                  child: SpinKitThreeBounce(
+                                    color: k006D77,
+                                    size: 20,
+                                  ),
                                 );
                               } else if (_postCount < 10) {
                                 return SizedBox.shrink();

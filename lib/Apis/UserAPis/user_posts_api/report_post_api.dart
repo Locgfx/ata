@@ -11,7 +11,8 @@ class ReportPostApi {
   Future<dynamic> get(
       {required String postType,
       required String reportText,
-      required int postId}) async {
+      required int postId,
+      required String type}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
     var headers = {
@@ -19,8 +20,20 @@ class ReportPostApi {
       'Cookie': 'PHPSESSID=$v'
     };
     var request = http.Request('POST', Uri.parse('${baseUrl}user_report.php'));
-    request.body = json.encode(
-        {"post_id": postId, "post_type": postType, "report": reportText});
+    request.body = type == "comment"
+        ? json.encode(
+            {"comment_id": postId, "post_type": postType, "report": reportText})
+        : type == "reply"
+            ? json.encode({
+                "creply_id": postId,
+                "post_type": postType,
+                "report": reportText
+              })
+            : json.encode({
+                "post_id": postId,
+                "post_type": postType,
+                "report": reportText
+              });
     request.headers.addAll(headers);
 
     log("report post ${request.body}");

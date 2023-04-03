@@ -148,33 +148,33 @@ class _UPostPageState extends State<UPostPage> {
   Widget build(BuildContext context) {
     return Material(
       color: kEDF6F9,
-      child: RefreshIndicator(
-        onRefresh: () {
-          setState(() {
-            isLoading = true;
-          });
-          return getData();
-        },
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Scaffold(
-              backgroundColor: kEDF6F9,
-              body: isLoading
-                  ? Padding(
-                      padding: EdgeInsets.only(bottom: 159.0),
-                      child: LoadingWidget(),
-                    )
-                  : Padding(
-                      padding: EdgeInsets.only(
-                          left: 24.w, right: 24.h, bottom: 200.h),
-                      child: LazyLoadScrollView(
-                        onEndOfPage: () {
-                          if (_postCount >= 10) {
-                            getReloadedData();
-                          }
+      child: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Scaffold(
+            backgroundColor: kEDF6F9,
+            body: isLoading
+                ? Padding(
+                    padding: EdgeInsets.only(bottom: 159.0),
+                    child: LoadingWidget(),
+                  )
+                : Padding(
+                    padding:
+                        EdgeInsets.only(left: 24.w, right: 24.h, bottom: 200.h),
+                    child: LazyLoadScrollView(
+                      onEndOfPage: () {
+                        if (_postCount >= 10) {
+                          getReloadedData();
+                        }
+                      },
+                      isLoading: isLoading,
+                      child: RefreshIndicator(
+                        onRefresh: () {
+                          setState(() {
+                            isLoading = true;
+                          });
+                          return getData();
                         },
-                        isLoading: isLoading,
                         child: ListView.separated(
                           itemCount: postModel.length + 1,
                           scrollDirection: Axis.vertical,
@@ -398,7 +398,10 @@ class _UPostPageState extends State<UPostPage> {
                               );
                             } else if (_postCount >= 10 && isLoading) {
                               return Center(
-                                child: CircularProgressIndicator(),
+                                child: SpinKitThreeBounce(
+                                  color: k006D77,
+                                  size: 20,
+                                ),
                               );
                             } else if (_postCount < 10) {
                               return SizedBox.shrink();
@@ -414,30 +417,30 @@ class _UPostPageState extends State<UPostPage> {
                         ),
                       ),
                     ),
-            ),
-            Positioned(
-              bottom: 180,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(
-                          builder: (context) => UCreatePost()))
-                      .then((value) {
-                    setState(() {
-                      isLoading = true;
-                    });
-                    getData();
+                  ),
+          ),
+          Positioned(
+            bottom: 180,
+            child: GestureDetector(
+              onTap: () {
+                Navigator.of(context)
+                    .push(
+                        MaterialPageRoute(builder: (context) => UCreatePost()))
+                    .then((value) {
+                  setState(() {
+                    isLoading = true;
                   });
-                },
-                child: SvgPicture.asset(
-                  'assets/icons/addPost_1.svg',
-                  height: 72.h,
-                  width: 72.w,
-                ),
+                  getData();
+                });
+              },
+              child: SvgPicture.asset(
+                'assets/icons/addPost_1.svg',
+                height: 72.h,
+                width: 72.w,
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

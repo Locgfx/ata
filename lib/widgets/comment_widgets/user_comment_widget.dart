@@ -43,7 +43,9 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
       }
     }
     totalVotes = widget.modelList[widget.index].totalLikes ?? 0;
-    yourVote = /*widget.modelList[widget.index].isLiked ??*/ 0;
+    yourVote = widget.modelList[widget.index].isLiked ?? 0;
+    totalReplies =
+        int.parse(widget.modelList[widget.index].totalReplies ?? "0");
     super.initState();
   }
 
@@ -101,6 +103,7 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
     });
   }
 
+  int totalReplies = 0;
   int totalVotes = 0;
   int yourVote = 0;
 
@@ -158,7 +161,7 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
                             width: 4,
                           ),
                           Text(
-                            "${widget.modelList[widget.index].totalReplies}",
+                            "$totalReplies",
                             style: kManRope_400_12_626A6A,
                           ),
                         ],
@@ -216,6 +219,8 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
                   ),
                   itemBuilder: (ctx, indexx) {
                     return usercommWidget2(
+                      postType:
+                          widget.modelList[widget.index].postType.toString(),
                       modelList: repliesList,
                       index: indexx,
                     );
@@ -261,7 +266,12 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
 class usercommWidget2 extends StatelessWidget {
   List<Replies> modelList;
   int index;
-  usercommWidget2({Key? key, required this.modelList, required this.index})
+  String postType;
+  usercommWidget2(
+      {Key? key,
+      required this.modelList,
+      required this.index,
+      required this.postType})
       : super(key: key);
 
   @override
@@ -272,6 +282,7 @@ class usercommWidget2 extends StatelessWidget {
         CommentUserTile2(
           modelList: modelList,
           index: index,
+          postType: postType,
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -361,7 +372,11 @@ class _CommentUserTileState extends State<CommentUserTile> {
               ),
             ],
           ),
-          MyPostOptionsDialog(),
+          MyPostOptionsDialog(
+            commentType: "comment",
+            postType: widget.modelList[widget.index].postType.toString(),
+            postId: widget.modelList[widget.index].id.toString(),
+          ),
         ],
       ),
     );
@@ -371,7 +386,12 @@ class _CommentUserTileState extends State<CommentUserTile> {
 class CommentUserTile2 extends StatefulWidget {
   List<Replies> modelList;
   int index;
-  CommentUserTile2({Key? key, required this.index, required this.modelList})
+  String postType;
+  CommentUserTile2(
+      {Key? key,
+      required this.index,
+      required this.modelList,
+      required this.postType})
       : super(key: key);
 
   @override
@@ -431,7 +451,11 @@ class _CommentUserTile2State extends State<CommentUserTile2> {
               ),
             ],
           ),
-          MyPostOptionsDialog(),
+          MyPostOptionsDialog(
+            commentType: "reply",
+            postType: widget.postType,
+            postId: widget.modelList[widget.index].id.toString(),
+          ),
         ],
       ),
     );

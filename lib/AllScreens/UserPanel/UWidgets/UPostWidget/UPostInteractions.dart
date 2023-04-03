@@ -14,11 +14,13 @@ import '../../UScreens/UPosts/UAllcomments.dart';
 class UPostInteractions extends StatefulWidget {
   bool isCommentsViewable;
   String savedPost;
+  // final Function() scrollBottom;
   List<UserPostModel> modelList;
   int index;
   UPostInteractions(
       {Key? key,
       required this.isCommentsViewable,
+      //required this.scrollBottom,
       required this.savedPost,
       required this.modelList,
       required this.index})
@@ -116,6 +118,7 @@ class _UPostInteractionsState extends State<UPostInteractions>
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) => UCommentPage(
+                          isSaved: widget.savedPost,
                           model: widget.modelList[widget.index],
                         ),
                       ),
