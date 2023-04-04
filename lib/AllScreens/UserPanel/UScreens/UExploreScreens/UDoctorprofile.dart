@@ -179,21 +179,22 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                                 availability:
                                     widget.psychologistData.availability!),
                           SizedBox(height: 40.h),
-                          SizedBox(
-                            height: 83.h,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: SizedBox(
-                                    // height:56.h,
-                                    child: Text(
-                                      '₹${widget.psychologistData.price}',
-                                      style: kManRope_500_20_006D77,
+                          if (widget.showBookSession)
+                            SizedBox(
+                              height: 83.h,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      // height:56.h,
+                                      child: Text(
+                                        '₹${widget.psychologistData.price}',
+                                        style: kManRope_500_20_006D77,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                if (widget.showBookSession)
                                   Expanded(
                                     child: SizedBox(
                                       height: 56.h,
@@ -225,9 +226,9 @@ class _UDoctorProfileScreenState extends State<UDoctorProfileScreen> {
                                       ),
                                     ),
                                   ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

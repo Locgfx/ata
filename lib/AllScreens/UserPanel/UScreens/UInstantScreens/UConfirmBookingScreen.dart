@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UBookingSuccessfulScreen.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
+import '../UExploreScreens/UDoctorprofile.dart';
+import 'UBookingSuccessfulScreen.dart';
 
 class UConfirmBookingScreen extends StatefulWidget {
-  const UConfirmBookingScreen({Key? key, required this.issue})
+  UPsychologistModel model;
+  UConfirmBookingScreen(
+      {Key? key,
+      required this.issue,
+      required this.model,
+      required this.issueId})
       : super(key: key);
   final String issue;
+  final String issueId;
 
   @override
   State<UConfirmBookingScreen> createState() => _UConfirmBookingScreenState();
@@ -55,59 +64,77 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                 SizedBox(
                   height: 24.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => UDoctorProfileScreen(
+                              bookingType: "i",
+                              showBookSession: false,
+                              issue: widget.issue,
+                              issueId: widget.issueId,
+                              psychologistData: widget.model,
+                            )));
+                  },
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 64.h,
-                          width: 64.w,
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: kFFFFFF, width: 1),
-                            borderRadius: BorderRadius.circular(16),
-                            // image: DecorationImage(
-                            //   image: AssetImage('assets/images/userP.png'),fit: BoxFit.cover
-                            // )
-                          ),
-                          child: Image.asset(
-                            "assets/images/userP.png",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 16.w,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        Row(
                           children: [
-                            Text(
-                              'Priya Singh',
-                              overflow: TextOverflow.ellipsis,
-                              style: kManRope_400_16_001314,
-                            ),
+                            Container(
+                                height: 64.h,
+                                width: 64.w,
+                                clipBehavior: Clip.hardEdge,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: kFFFFFF, width: 1),
+                                  borderRadius: BorderRadius.circular(16),
+                                  // image: DecorationImage(
+                                  //   image: AssetImage('assets/images/userP.png'),fit: BoxFit.cover
+                                  // )
+                                ),
+                                child: Image.network(
+                                  widget.model.profilePhoto.toString(),
+                                  errorBuilder: (q, w, e) => Image.asset(
+                                    "assets/images/userP.png",
+                                    fit: BoxFit.cover,
+                                  ),
+                                  fit: BoxFit.fill,
+                                )),
                             SizedBox(
-                              height: 8.h,
+                              width: 16.w,
                             ),
-                            Text(
-                              'MA in Counselling Psychology',
-                              style: kManRope_400_14_626A6A,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  widget.model.name.toString(),
+                                  overflow: TextOverflow.ellipsis,
+                                  style: kManRope_400_16_001314,
+                                ),
+                                SizedBox(
+                                  height: 8.h,
+                                ),
+                                Text(
+                                  widget.model.education.toString(),
+                                  style: kManRope_400_14_626A6A,
+                                ),
+                                SizedBox(
+                                  height: 11.h,
+                                ),
+                                //StarWidget()
+                              ],
                             ),
-                            SizedBox(
-                              height: 11.h,
-                            ),
-                            //StarWidget()
                           ],
                         ),
+                        Image.asset(
+                          "assets/images/rightarrowcircle.png",
+                          height: 48.h,
+                          width: 48.w,
+                        )
                       ],
                     ),
-                    Image.asset(
-                      "assets/images/rightarrowcircle.png",
-                      height: 48.h,
-                      width: 48.w,
-                    )
-                  ],
+                  ),
                 ),
                 SizedBox(
                   height: 43.h,
@@ -207,7 +234,7 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                         child: SizedBox(
                           // height:56.h,
                           child: Text(
-                            '₹230',
+                            '₹${widget.model.price}',
                             style: kManRope_500_20_006D77,
                           ),
                         ),
@@ -219,16 +246,15 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                           child: MainButton(
                             color: k006D77,
                             shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(10), // <-- Radius
+                              borderRadius: BorderRadius.circular(10),
                             ),
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const UBookingSuccessfulScreen(
-                                            isCancellationAvailable: true,
+                                          UInstantBookingSuccessfulScreen(
+                                            model: widget.model,
                                           )));
                             },
                             child: Text(

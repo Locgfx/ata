@@ -33,6 +33,7 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../UBookingScreens/USelectPsyChologistScreen.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
 
 class UHomeScreen extends StatefulWidget {
@@ -224,7 +225,6 @@ class _UHomeScreenState extends State<UHomeScreen> {
                         SizedBox(height: 24.h),
                         //-------------------------offerCard--------------------------------
                         OfferBanner(),
-
                         SizedBox(height: 10.h),
                         Padding(
                           padding: EdgeInsets.symmetric(horizontal: 24.w),

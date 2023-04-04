@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UScheduleAppointmentScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UDoctorprofile.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UInstantScreens/UConfirmBookingScreen.dart';
 import 'package:greymatter/Apis/UserAPis/user_explore_apis/user_explore_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -15,6 +18,7 @@ import 'package:greymatter/widgets/shared/buttons/card_buttons/secondary_card_bu
 import '../../../../constants/decorations.dart';
 import '../../../../widgets/buttons.dart';
 import '../../UWidgets/Uwidgets.dart';
+import '../UBookingScreens/UConfirmBookingScreen.dart';
 
 class UAllPsychologistScreen extends StatefulWidget {
   final String issue;
@@ -46,7 +50,7 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
     _isLoading = true;
     final resp = UserExploreApi().get(scroll: '0');
     resp.then((value) {
-      //print(value);
+      log(value.toString());
       if (mounted) {
         setState(() {
           for (var v in value) {
@@ -253,8 +257,23 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
                                             child: SizedBox(
                                               height: 56.h,
                                               child: MainButton(
-                                                  onPressed: () {
-                                                    /*Navigator.push(
+                                                  onPressed:
+                                                      widget.bookingType == 'i'
+                                                          ? () {
+                                                              Navigator.of(context).push(
+                                                                  MaterialPageRoute(
+                                                                      builder: (ctx) =>
+                                                                          UConfirmBookingScreen(
+                                                                            issue:
+                                                                                widget.issue,
+                                                                            issueId:
+                                                                                widget.issueId,
+                                                                            model:
+                                                                                psychologists[i],
+                                                                          )));
+                                                            }
+                                                          : () {
+                                                              /*Navigator.push(
                                                   context,
                                                   MaterialPageRoute(
                                                       builder: (context) =>
@@ -262,23 +281,21 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
                                                             issue: widget.issue,
                                                             date: date,
                                                           )));*/
-                                                    Navigator.push(
-                                                        context,
-                                                        MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                UScheduleAppointmentScreen(
-                                                                  bookingType:
-                                                                      widget
-                                                                          .bookingType,
-                                                                  psychologist:
-                                                                      psychologists[
-                                                                          i],
-                                                                  issue: widget
-                                                                      .issue,
-                                                                  issueId: widget
-                                                                      .issueId,
-                                                                )));
-                                                  },
+                                                              Navigator.push(
+                                                                  context,
+                                                                  MaterialPageRoute(
+                                                                      builder: (context) =>
+                                                                          UScheduleAppointmentScreen(
+                                                                            bookingType:
+                                                                                widget.bookingType,
+                                                                            psychologist:
+                                                                                psychologists[i],
+                                                                            issue:
+                                                                                widget.issue,
+                                                                            issueId:
+                                                                                widget.issueId,
+                                                                          )));
+                                                            },
                                                   child: Text(
                                                     "Book session",
                                                     style:

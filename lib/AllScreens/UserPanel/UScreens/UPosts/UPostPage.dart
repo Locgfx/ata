@@ -160,7 +160,7 @@ class _UPostPageState extends State<UPostPage> {
                   )
                 : Padding(
                     padding:
-                        EdgeInsets.only(left: 24.w, right: 24.h, bottom: 200.h),
+                        EdgeInsets.only(left: 24.w, right: 24.h, bottom: 80.h),
                     child: LazyLoadScrollView(
                       onEndOfPage: () {
                         if (_postCount >= 10) {

@@ -9,6 +9,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivity.dart';
 import 'package:greymatter/Apis/UserAPis/addgoal/complete_goal_api.dart';
+import 'package:greymatter/Apis/UserAPis/user_goals_api/add_today_goals.dart';
 import 'package:greymatter/Apis/UserAPis/user_goals_api/user_goals_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/UModels/user_goals_models/user_goals_model.dart';
@@ -77,12 +78,19 @@ class _UGoalScreenState extends State<UGoalScreen> {
 
   @override
   void initState() {
-    _getData();
+    _todayGoalsApi();
     super.initState();
   }
 
-  _getData() {
+  _todayGoalsApi() {
     _isLoading = true;
+    final resp = AddTodayGoals().get();
+    resp.then((value) {}).then((value) {
+      _getData();
+    });
+  }
+
+  _getData() {
     log(selectedDay.toString());
     final resp =
         UserGoalsApi().get(date: DateFormat("yyyy-MM-dd").format(selectedDay));
@@ -284,13 +292,21 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                   Transform.translate(
                                     offset: Offset(dx[index], 0),
                                     child: GestureDetector(
-                                      onHorizontalDragUpdate: (v) {
-                                        setState(() {
-                                          dx[index] = (dx[index] + v.delta.dx)
-                                              .clamp(0.0, 81.h);
-                                          //print(_dx);
-                                        });
-                                      },
+                                      onHorizontalDragUpdate: DateTime.parse(
+                                                  DateFormat("yyyy-MM-dd")
+                                                      .format(selectedDay))
+                                              .isBefore(DateTime.parse(
+                                                  DateFormat("yyyy-MM-dd")
+                                                      .format(DateTime.now())))
+                                          ? (v) {}
+                                          : (v) {
+                                              setState(() {
+                                                dx[index] =
+                                                    (dx[index] + v.delta.dx)
+                                                        .clamp(0.0, 81.h);
+                                                //print(_dx);
+                                              });
+                                            },
                                       child: Container(
                                         margin: EdgeInsets.only(top: 16.h),
                                         height: 81.h,

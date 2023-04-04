@@ -313,18 +313,25 @@ class _UConfirmAppointmentBookingState
                                     setState(() {
                                       _isLoading = false;
                                     });
-                                    CCAvenueInit().startPayment(
+                                    /*CCAvenueInit().startPayment(
                                         bookingId:
                                             value['booking_id'].toString(),
                                         amount: widget.psychologist.price
-                                            .toString());
-                                    /*Navigator.push(
+                                            .toString());*/
+                                    Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const UBookingSuccessfulScreen(
+                                                UBookingSuccessfulScreen(
+                                                  name: widget.psychologist.name
+                                                      .toString(),
+                                                  date: widget.date,
+                                                  time: widget.slot,
+                                                  price: widget
+                                                      .psychologist.price
+                                                      .toString(),
                                                   isCancellationAvailable: true,
-                                                )));*/
+                                                )));
                                   } else {
                                     setState(() {
                                       _isLoading = false;

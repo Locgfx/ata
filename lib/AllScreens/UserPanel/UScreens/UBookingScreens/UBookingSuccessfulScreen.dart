@@ -6,13 +6,45 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/buttons.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class UBookingSuccessfulScreen extends StatelessWidget {
+import '../../../../constants/globals.dart';
+
+class UBookingSuccessfulScreen extends StatefulWidget {
   final bool isCancellationAvailable;
-
+  final String name;
+  final String date;
+  final String time;
+  final String price;
   const UBookingSuccessfulScreen(
-      {Key? key, required this.isCancellationAvailable})
+      {Key? key,
+      required this.isCancellationAvailable,
+      required this.name,
+      required this.price,
+      required this.date,
+      required this.time})
       : super(key: key);
+
+  @override
+  State<UBookingSuccessfulScreen> createState() =>
+      _UBookingSuccessfulScreenState();
+}
+
+class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
+
+  String userName = '';
+  getData() async {
+    var prefs = await SharedPreferences.getInstance();
+    String a = prefs.getString(Keys().userName)!;
+    setState(() {
+      userName = a;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +90,13 @@ class UBookingSuccessfulScreen extends StatelessWidget {
                         children: <TextSpan>[
                           TextSpan(text: 'Hi ', style: kManRope_400_16_626A6A),
                           TextSpan(
-                              text: 'Pankaj ', style: kManRope_500_16_001314),
+                              text: '$userName ',
+                              style: kManRope_500_16_001314),
                           TextSpan(
                               text: ' your appointment with\n',
                               style: kManRope_400_16_001314),
                           TextSpan(
-                              text: 'Priya Singh ',
+                              text: '${widget.name} ',
                               style: kManRope_500_16_001314),
                           TextSpan(
                               text: 'has been created',
@@ -78,11 +111,11 @@ class UBookingSuccessfulScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Priya singh',
+                          widget.name,
                           style: kManRope_400_14_006D77,
                         ),
                         Text(
-                          'INR 599',
+                          'INR ${widget.price}',
                           style: kManRope_400_14_006D77,
                         ),
                       ],
@@ -94,11 +127,11 @@ class UBookingSuccessfulScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '12/07/2022',
+                          widget.date,
                           style: kManRope_400_14_006D77,
                         ),
                         Text(
-                          '1:00 PM',
+                          widget.time,
                           style: kManRope_400_14_006D77,
                         ),
                       ],
@@ -121,8 +154,9 @@ class UBookingSuccessfulScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => UBookingConfirmationScreen(
-                                isCancellationAvailable: true,
-                              )));*/
+                                    isCancellationAvailable: true,
+                                    model: null,
+                                  )));*/
                     },
                     child: Text(
                       'See Appointment',
@@ -159,10 +193,10 @@ class UBookingSuccessfulScreen extends StatelessWidget {
                 width: 1.sw,
                 child: MainButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
+                      Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
-                              builder: (context) => const UTabsScreen()));
+                              builder: (context) => const UTabsScreen()),
+                          (route) => false);
                     },
                     child: Text(
                       'Home',

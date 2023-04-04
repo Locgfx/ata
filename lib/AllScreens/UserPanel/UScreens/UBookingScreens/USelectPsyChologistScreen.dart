@@ -102,15 +102,7 @@ class USelectPsychologistsScreen extends StatelessWidget {
                             SizedBox(width: 8.w),
                             Expanded(
                               child: GestureDetector(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              UConfirmBookingScreen(
-                                                issue: issue,
-                                              )));
-                                },
+                                onTap: () {},
                                 child: const PrimaryCardButton(),
                               ),
                             ),

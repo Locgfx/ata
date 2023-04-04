@@ -6,18 +6,22 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/USessio
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
-class UBookingSuccessfulScreen extends StatefulWidget {
-  const UBookingSuccessfulScreen({Key? key}) : super(key: key);
+class UInstantBookingSuccessfulScreen extends StatefulWidget {
+  UPsychologistModel model;
+  UInstantBookingSuccessfulScreen({Key? key, required this.model})
+      : super(key: key);
 
   @override
-  State<UBookingSuccessfulScreen> createState() =>
-      _UBookingSuccessfulScreenState();
+  State<UInstantBookingSuccessfulScreen> createState() =>
+      _UInstantBookingSuccessfulScreenState();
 }
 
-class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
+class _UInstantBookingSuccessfulScreenState
+    extends State<UInstantBookingSuccessfulScreen> {
   String text1 = 'Connecting with Priya singh';
   String text3 = 'Connected to Priya singh';
   String text4 = 'please join the meeting';
@@ -50,29 +54,32 @@ class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Padding(
-        padding: EdgeInsets.only(left: 123.w, right: 123.w, bottom: 40.h),
-        child: SizedBox(
-          height: 56.h,
-          // width: 183.w,
-          child: MainButton(
-            onPressed: () {
-              // if (!_flag) {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const USessionSuccessfulScreen()));
-              // }
-            },
-            child: Text(
-              'Join Meeting',
-              style: kManRope_400_16_white,
+      bottomNavigationBar: _flag
+          ? null
+          : Padding(
+              padding: EdgeInsets.only(left: 123.w, right: 123.w, bottom: 40.h),
+              child: SizedBox(
+                height: 56.h,
+                // width: 183.w,
+                child: MaterialButton(
+                  onPressed: () {
+                    // if (!_flag) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const USessionSuccessfulScreen()));
+                    // }
+                  },
+                  child: Text(
+                    'Join Meeting',
+                    style: kManRope_400_16_white,
+                  ),
+                  color: k006D77,
+                  shape: CustomDecoration().button08Decoration(),
+                ),
+              ),
             ),
-            color: k006D77,
-            shape: CustomDecoration().button08Decoration(),
-          ),
-        ),
-      ),
       backgroundColor: kEDF6F9,
       appBar: CustomWhiteAppBar(
         hasThreeDots: false,
@@ -132,11 +139,17 @@ class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.circular(16),
-                        child: Image.asset(
-                          'assets/images/userP.png',
+                        child: Image.network(
+                          widget.model.profilePhoto.toString(),
                           height: 83.h,
                           width: 83.w,
                           fit: BoxFit.cover,
+                          errorBuilder: (q, w, e) => Image.asset(
+                            'assets/images/userP.png',
+                            height: 83.h,
+                            width: 83.w,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -147,7 +160,7 @@ class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
                         children: [
                           SizedBox(
                             child: Text(
-                              'Priya Singh',
+                              widget.model.name.toString(),
                               style: kManRope_400_16_001314,
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -156,7 +169,7 @@ class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
                             height: 8.h,
                           ),
                           Text(
-                            'MA in Counselling Psychology',
+                            widget.model.education.toString(),
                             style: kManRope_400_14_626A6A,
                           ),
                           SizedBox(

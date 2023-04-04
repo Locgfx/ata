@@ -32,7 +32,7 @@ class UpcomingOrders {
   late final String issueName;
   late final String date;
   late final String timeSlot;
-  late final String coupon;
+  late final String? coupon;
   late final String bookingDate;
   late final String bookingType;
   late final String status;
@@ -49,7 +49,7 @@ class UpcomingOrders {
     date = json['date'];
     image = json['image'];
     timeSlot = json['time_slot'];
-    coupon = json['coupon'];
+    coupon = json['coupon'] ?? "";
     bookingDate = json['booking_date'];
     bookingType = json['booking_type'];
     status = json['status'];

@@ -23,7 +23,7 @@ class UInfo extends StatelessWidget {
                 style: kManRope_400_20_White,
               ),
               Text(
-                'Axis',
+                'axis',
                 style: kManRope_700_20_white,
               )
             ],
