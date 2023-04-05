@@ -44,8 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
       questionsDone = prefs.getBool(Keys().questionsDone) ?? false;
       isUser = prefs.getBool(Keys().isUser) ?? true;
     });
+    //log("ques donr $questionsDone");
     if (firstRun) {
-      log(firstRun.toString());
+      log(firstRun.toString() + "first run");
       prefs.setBool(Keys().firstRun, false);
       Navigator.push(
         context,

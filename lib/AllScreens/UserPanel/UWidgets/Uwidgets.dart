@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/Apis/UserAPis/rating_api/rating_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
@@ -40,7 +42,8 @@ class StarWidget extends StatelessWidget {
 }
 
 class StarRatingWidget extends StatefulWidget {
-  const StarRatingWidget({Key? key}) : super(key: key);
+  String bookingId;
+  StarRatingWidget({Key? key, required this.bookingId}) : super(key: key);
 
   @override
   State<StarRatingWidget> createState() => _StarRatingWidgetState();
@@ -53,40 +56,56 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
   bool flag4 = false;
   bool flag0 = false;
 
+  int _rating = 1;
+  _submitRating() {
+    final resp = RatingApi()
+        .get(rating: _rating.toString(), bookingId: widget.bookingId);
+    resp.then((value) {
+      if (value['status'] == true) {
+      } else {
+        Fluttertoast.showToast(msg: value["error"]);
+      }
+    });
+  }
+
   void rating(int i) {
-    if (i == 4) {
+    if (i == 5) {
       setState(() {
         flag0 = true;
         flag1 = true;
         flag2 = true;
         flag3 = true;
         flag4 = true;
+        _submitRating();
       });
-    } else if (i == 3) {
+    } else if (i == 4) {
       setState(() {
         flag0 = true;
         flag1 = true;
         flag2 = true;
         flag3 = true;
         flag4 = false;
+        _submitRating();
       });
-    } else if (i == 2) {
+    } else if (i == 3) {
       setState(() {
         flag0 = true;
         flag1 = true;
         flag2 = true;
         flag3 = false;
         flag4 = false;
+        _submitRating();
       });
-    } else if (i == 1) {
+    } else if (i == 2) {
       setState(() {
         flag0 = true;
         flag1 = true;
         flag2 = false;
         flag3 = false;
         flag4 = false;
+        _submitRating();
       });
-    } else if (i == 0) {
+    } else if (i == 1) {
       setState(() {
         if (flag0 == false) {
           flag0 = true;
@@ -94,6 +113,7 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
           flag2 = false;
           flag3 = false;
           flag4 = false;
+          _submitRating();
         } else {
           flag0 = false;
           flag1 = false;
@@ -111,7 +131,10 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
       children: [
         GestureDetector(
             onTap: () {
-              rating(0);
+              setState(() {
+                _rating = 1;
+              });
+              rating(_rating);
             },
             child: Container(
               color: Colors.transparent,
@@ -125,7 +148,10 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
             )),
         GestureDetector(
             onTap: () {
-              rating(1);
+              setState(() {
+                _rating = 2;
+              });
+              rating(_rating);
             },
             child: Container(
               color: Colors.transparent,
@@ -139,7 +165,10 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
             )),
         GestureDetector(
             onTap: () {
-              rating(2);
+              setState(() {
+                _rating = 3;
+              });
+              rating(_rating);
             },
             child: Container(
               color: Colors.transparent,
@@ -153,7 +182,10 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
             )),
         GestureDetector(
           onTap: () {
-            rating(3);
+            setState(() {
+              _rating = 4;
+            });
+            rating(_rating);
           },
           child: Container(
             color: Colors.transparent,
@@ -168,7 +200,10 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
         ),
         GestureDetector(
           onTap: () {
-            rating(4);
+            setState(() {
+              _rating = 5;
+            });
+            rating(_rating);
           },
           child: Container(
             color: Colors.transparent,

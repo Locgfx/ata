@@ -251,7 +251,9 @@ class USessionDetailsScreen extends StatelessWidget {
               SizedBox(
                 height: 24.h,
               ),
-              const StarRatingWidget(),
+              StarRatingWidget(
+                bookingId: model.id.toString(),
+              ),
               Spacer(),
               Padding(
                 padding: EdgeInsets.only(bottom: 40.h),

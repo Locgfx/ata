@@ -7,6 +7,7 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../agora/meeting_screen.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/BottomSheets/CancelBookingBottomSheet.dart';
@@ -173,7 +174,10 @@ class _UBookingConfirmationScreenState
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(left: 123.w, right: 123.w, bottom: 35.h),
         child: MainButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context)
+                  .push(MaterialPageRoute(builder: (ctx) => MeetingScreen()));
+            },
             child: Padding(
               padding: EdgeInsets.only(
                 top: 19.h,

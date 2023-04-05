@@ -3,8 +3,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
-class UNewActivityAddedScreen extends StatelessWidget {
+class UNewActivityAddedScreen extends StatefulWidget {
   const UNewActivityAddedScreen({Key? key}) : super(key: key);
+
+  @override
+  State<UNewActivityAddedScreen> createState() =>
+      _UNewActivityAddedScreenState();
+}
+
+class _UNewActivityAddedScreenState extends State<UNewActivityAddedScreen> {
+  @override
+  void initState() {
+    Future.delayed(Duration(seconds: 3), () {
+      int count = 0;
+      Navigator.of(context).popUntil((_) => count++ >= 3);
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

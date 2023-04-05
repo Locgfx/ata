@@ -57,7 +57,7 @@ class _UTabsScreenState extends State<UTabsScreen> {
                     child: Container(
                       padding: EdgeInsets.all(_index == 0 ? 13 : 14),
                       margin:
-                      EdgeInsets.only(left: 18, bottom: 12.h, top: 12.h),
+                          EdgeInsets.only(left: 18, bottom: 12.h, top: 12.h),
                       height: 62.w,
                       decoration: BoxDecoration(
                         color: _index == 0
@@ -68,9 +68,9 @@ class _UTabsScreenState extends State<UTabsScreen> {
                       child: _index == 0
                           ? Image.asset('assets/images/logoT.png')
                           : Image.asset(
-                        'assets/images/logoF.png',
-                        color: k626A6A,
-                      ),
+                              'assets/images/logoF.png',
+                              color: k626A6A,
+                            ),
                     ),
                   ),
                 ),
@@ -157,7 +157,7 @@ class _UTabsScreenState extends State<UTabsScreen> {
                     child: Container(
                       padding: EdgeInsets.all(16),
                       margin:
-                      EdgeInsets.only(right: 18, bottom: 12.h, top: 12.h),
+                          EdgeInsets.only(right: 18, bottom: 12.h, top: 12.h),
                       height: 62.w,
                       decoration: BoxDecoration(
                           color: _index == 4

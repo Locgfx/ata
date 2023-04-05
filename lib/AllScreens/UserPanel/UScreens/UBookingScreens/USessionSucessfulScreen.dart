@@ -250,7 +250,9 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                     SizedBox(
                       height: 24.h,
                     ),
-                    StarRatingWidget()
+                    StarRatingWidget(
+                      bookingId: '',
+                    )
                   ],
                 ),
                 SizedBox(

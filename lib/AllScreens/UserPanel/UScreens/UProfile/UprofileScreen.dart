@@ -462,6 +462,8 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
                             if (value['status'] == true) {
                               var prefs = await SharedPreferences.getInstance();
                               prefs.setBool(Keys().loginDone, false);
+                              prefs.clear();
+                              prefs.setBool(Keys().firstRun, false);
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

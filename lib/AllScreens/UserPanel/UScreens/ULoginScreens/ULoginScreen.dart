@@ -610,6 +610,7 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                 print(value['session_id']);
                                                 print(prefs
                                                     .getString(Keys().cookie));
+                                                //prefs.setBool(Keys().firstRun, false);
                                                 prefs.setBool(
                                                     Keys().loginDone, true);
                                                 prefs.setString(Keys().userName,
@@ -619,15 +620,25 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                     value['image']);
                                                 prefs.setString(
                                                     Keys().userType, "u");
-                                                log(prefs
-                                                    .getString(Keys().userType)
-                                                    .toString());
-                                                Fluttertoast.showToast(
-                                                    msg: 'Login Successful');
-                                                Navigator.of(context).push(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            UQuestions()));
+                                                log(value['ques'].toString());
+                                                if (value["ques"] == 0) {
+                                                  prefs.setBool(
+                                                      Keys().questionsDone,
+                                                      true);
+                                                  Fluttertoast.showToast(
+                                                      msg: 'Login Successful');
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (ctx) =>
+                                                              UWelcomeScreen()));
+                                                } else {
+                                                  Fluttertoast.showToast(
+                                                      msg: 'Login Successful');
+                                                  Navigator.of(context).push(
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              UQuestions()));
+                                                }
                                               }
                                             });
                                           }
