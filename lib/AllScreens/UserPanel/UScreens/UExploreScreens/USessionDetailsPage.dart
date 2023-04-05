@@ -252,6 +252,7 @@ class USessionDetailsScreen extends StatelessWidget {
                 height: 24.h,
               ),
               StarRatingWidget(
+                rating: model.rating.toString(),
                 bookingId: model.id.toString(),
               ),
               Spacer(),

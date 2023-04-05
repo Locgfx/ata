@@ -251,6 +251,7 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                       height: 24.h,
                     ),
                     StarRatingWidget(
+                      rating: "",
                       bookingId: '',
                     )
                   ],

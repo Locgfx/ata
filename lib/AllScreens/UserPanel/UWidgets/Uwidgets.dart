@@ -43,7 +43,9 @@ class StarWidget extends StatelessWidget {
 
 class StarRatingWidget extends StatefulWidget {
   String bookingId;
-  StarRatingWidget({Key? key, required this.bookingId}) : super(key: key);
+  String rating;
+  StarRatingWidget({Key? key, required this.bookingId, required this.rating})
+      : super(key: key);
 
   @override
   State<StarRatingWidget> createState() => _StarRatingWidgetState();
@@ -66,6 +68,70 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
         Fluttertoast.showToast(msg: value["error"]);
       }
     });
+  }
+
+  @override
+  void initState() {
+    _rating = int.parse(widget.rating);
+    setRating(_rating);
+    super.initState();
+  }
+
+  void setRating(int i) {
+    if (i == 5) {
+      setState(() {
+        flag0 = true;
+        flag1 = true;
+        flag2 = true;
+        flag3 = true;
+        flag4 = true;
+        //_submitRating();
+      });
+    } else if (i == 4) {
+      setState(() {
+        flag0 = true;
+        flag1 = true;
+        flag2 = true;
+        flag3 = true;
+        flag4 = false;
+        //_submitRating();
+      });
+    } else if (i == 3) {
+      setState(() {
+        flag0 = true;
+        flag1 = true;
+        flag2 = true;
+        flag3 = false;
+        flag4 = false;
+        //_submitRating();
+      });
+    } else if (i == 2) {
+      setState(() {
+        flag0 = true;
+        flag1 = true;
+        flag2 = false;
+        flag3 = false;
+        flag4 = false;
+        // _submitRating();
+      });
+    } else if (i == 1) {
+      setState(() {
+        if (flag0 == false) {
+          flag0 = true;
+          flag1 = false;
+          flag2 = false;
+          flag3 = false;
+          flag4 = false;
+          // _submitRating();
+        } else {
+          flag0 = false;
+          flag1 = false;
+          flag2 = false;
+          flag3 = false;
+          flag4 = false;
+        }
+      });
+    }
   }
 
   void rating(int i) {

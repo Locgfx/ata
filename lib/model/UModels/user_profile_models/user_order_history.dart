@@ -11,6 +11,7 @@ class ProfileOrderHistoryModel {
   String? bookingType;
   String? status;
   String? payment;
+  String? rating;
   String? image;
   String? name;
   String? pricing;
@@ -23,6 +24,7 @@ class ProfileOrderHistoryModel {
       this.issue,
       this.issueName,
       this.date,
+      this.rating,
       this.timeSlot,
       this.coupon,
       this.bookingDate,
@@ -37,6 +39,7 @@ class ProfileOrderHistoryModel {
   ProfileOrderHistoryModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     user = json['user'];
+    rating = json['rating'];
     psychologist = json['psychologist'];
     issue = json['issue'];
     issueName = json['issue_name'];
@@ -61,6 +64,7 @@ class ProfileOrderHistoryModel {
     data['issue'] = this.issue;
     data['issue_name'] = this.issueName;
     data['date'] = this.date;
+    data['rating'] = this.rating;
     data['time_slot'] = this.timeSlot;
     data['pricing'] = this.pricing;
     data['coupon'] = this.coupon;
