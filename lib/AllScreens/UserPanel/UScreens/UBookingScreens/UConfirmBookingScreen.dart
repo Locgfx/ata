@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cc_avenue/cc_avenue.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -14,7 +14,7 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
-import 'package:greymatter/payment_gateway/cc_avenue_init.dart';
+
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
@@ -22,6 +22,7 @@ import 'package:intl/intl.dart';
 
 import '../../../../agora/meeting_screen.dart';
 import '../../../../payment_gateway/payment_keys.dart';
+import '../../../../payment_gateway/stripe_payment_gateway.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
 
 class UConfirmAppointmentBooking extends StatefulWidget {
@@ -307,7 +308,7 @@ class _UConfirmAppointmentBookingState
                                     bookingType: widget.bookingType,
                                     date:
                                         "${widget.date.split("/").last}-${widget.date.split("/")[1]}-${widget.date.split("/").first}");
-                                resp.then((value) {
+                                resp.then((value)async {
                                   log(value.toString());
                                   if (value['status'] == true) {
                                     setState(() {
@@ -318,7 +319,9 @@ class _UConfirmAppointmentBookingState
                                             value['booking_id'].toString(),
                                         amount: widget.psychologist.price
                                             .toString());*/
-                                    Navigator.push(
+                                    await StripeClass().makePayment(
+                                        amount: widget.psychologist.price.toString());
+                                   /* Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
@@ -331,7 +334,7 @@ class _UConfirmAppointmentBookingState
                                                       .psychologist.price
                                                       .toString(),
                                                   isCancellationAvailable: true,
-                                                )));
+                                                )));*/
                                   } else {
                                     setState(() {
                                       _isLoading = false;

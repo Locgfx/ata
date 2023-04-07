@@ -1,3 +1,4 @@
-const String merchantId = "2246081";
-const String accessCode = "AVUN42KC98CE48NUEC";
-const String workingKey = "10F8CCC042419611184C89063F86AF2C";
+const String publishKey =
+    "pk_test_51MqWcrSBDMs59BdPBZhN6V1MIfRbsjxIzfPKSTmPvbSIjqxsndr7jhgHmCAbg5XyFNEdrjQQNrwvCBh1GnhIT44p00x0s98O4q";
+const String secretKey =
+    "sk_test_51MqWcrSBDMs59BdPEUlLJVGSu0R98Na1qk5FKoYcDeRrs8UsRxQZC8pT0kn52T8XaSOv2IXPJK3tU0zX7jpg23jc00OvsuuKcD";

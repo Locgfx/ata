@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UBookingSuccessfulScreen.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
+import 'package:greymatter/payment_gateway/stripe_payment_gateway.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
@@ -248,14 +249,16 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            onPressed: () {
-                              Navigator.push(
+                            onPressed: () async {
+                              await StripeClass().makePayment(
+                                  amount: widget.model.price.toString());
+                              /*Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           UInstantBookingSuccessfulScreen(
                                             model: widget.model,
-                                          )));
+                                          )));*/
                             },
                             child: Text(
                               'Proceed to payment',
