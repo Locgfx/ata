@@ -1,15 +1,18 @@
 import 'dart:developer';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:confetti/confetti.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UBookingSuccessfulScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/confirm_booking_apis/confirm_booking_api.dart';
+import 'package:greymatter/Apis/UserAPis/user_home_apis/confirm_booking_apis/confirm_payment_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
@@ -20,6 +23,7 @@ import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../Apis/payment_api/apply_coupon.dart';
 import '../../../../agora/meeting_screen.dart';
 import '../../../../payment_gateway/payment_keys.dart';
 import '../../../../payment_gateway/stripe_payment_gateway.dart';
@@ -56,6 +60,24 @@ class _UConfirmAppointmentBookingState
   bool couponEmpty = true;
   bool applied = false;
   bool _isLoading = false;
+  bool _isPlaying = false;
+
+  bool _coupnLoading = false;
+  String couponButtonText = "Apply";
+  String price = "";
+
+  final ConfettiController _confettiController = ConfettiController();
+  @override
+  void initState() {
+    price = widget.psychologist.price.toString();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _confettiController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -210,57 +232,93 @@ class _UConfirmAppointmentBookingState
                       height: 24.h,
                     ),
                     Container(
-                      width: 380.w,
+                      width: 1.sw,
                       // padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           border: Border.all(color: const Color(0xFFB5BABA))),
-                      child: Row(
+                      child: Stack(
+                        alignment: Alignment.centerRight,
                         children: [
-                          Expanded(
-                            child: TextFormField(
-                              onChanged: (val) {
-                                if (val.isNotEmpty) {
-                                  setState(() {
-                                    couponEmpty = false;
-                                  });
-                                }
-                              },
-                              validator: (val) {
-                                if (_couponController.text.trim().isEmpty) {
-                                  return 'This coupon code is invalid or has expired.';
-                                } else {
-                                  return null;
-                                }
-                              },
-                              keyboardType: TextInputType.emailAddress,
-                              controller: _couponController,
-                              decoration: InputDecoration(
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
-                                border: InputBorder.none,
-                                hintText: 'Coupon',
-                                hintStyle: kManRope_500_16_626A6A,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 1.w,
-                            height: 58.h,
-                            color: const Color(0xFFB5BABA),
-                          ),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              color: Colors.transparent,
-                              width: 55.w,
-                              child: Center(
-                                child: Text(
-                                  'Apply',
-                                  style: kManRope_500_16_006D77,
+                          Row(
+                            children: [
+                              Expanded(
+                                child: TextFormField(
+                                  onChanged: (val) {
+                                    if (val.isNotEmpty) {
+                                      setState(() {
+                                        couponEmpty = false;
+                                      });
+                                    }
+                                  },
+                                  validator: (val) {
+                                    if (_couponController.text.trim().isEmpty) {
+                                      return 'This coupon code is invalid or has expired.';
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  keyboardType: TextInputType.emailAddress,
+                                  controller: _couponController,
+                                  decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 10),
+                                    border: InputBorder.none,
+                                    hintText: 'Coupon',
+                                    hintStyle: kManRope_500_16_626A6A,
+                                  ),
                                 ),
                               ),
-                            ),
+                              Container(
+                                width: 1.w,
+                                height: 58.h,
+                                color: const Color(0xFFB5BABA),
+                              ),
+                              GestureDetector(
+                                onTap: couponButtonText == "Applied"? (){} :() {
+                                  setState(() {
+                                    _coupnLoading = true;
+                                  });
+                                  final resp = CouponAppliedApi().get(coupon: _couponController.text);
+                                  resp.then((value){
+                                    if(value["status"] == true){
+                                      setState(() {
+                                        price = "${int.parse(widget.psychologist.price.toString()) - int.parse(value["total_discount"])}";
+                                        applied = true;
+                                        _confettiController.play();
+                                        couponButtonText = "Applied";
+                                        Future.delayed(Duration(seconds: 1),(){
+                                          _confettiController.stop();
+                                        });
+                                        _coupnLoading = false;
+                                      });
+                                    }else{
+                                      setState(() {
+                                        Fluttertoast.showToast(msg: value["msg"]);
+                                        _coupnLoading = false;
+                                      });
+                                    }
+                                  });
+
+                                },
+                                child: Container(
+                                  color: Colors.transparent,
+                                  width: 55.w,
+                                  child: Center(
+                                    child: _coupnLoading? SpinKitThreeBounce(
+                                      color: k006D77,
+                                      size: 10,
+                                    ) :Text(
+                                      couponButtonText,
+                                      style: kManRope_500_16_006D77,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          ConfettiWidget(confettiController: _confettiController, shouldLoop: false,
+                          blastDirectionality: BlastDirectionality.explosive,
                           )
                         ],
                       ),
@@ -279,7 +337,7 @@ class _UConfirmAppointmentBookingState
                           child: SizedBox(
                             // height:56.h,
                             child: Text(
-                              '₹${widget.psychologist.price}',
+                              '₹$price',
                               style: kManRope_500_20_006D77,
                             ),
                           ),
@@ -303,7 +361,7 @@ class _UConfirmAppointmentBookingState
                                         .psychologist.psychologistId
                                         .toString(),
                                     issueId: widget.issueId,
-                                    coupon: '1',
+                                    coupon: applied? _couponController.text :"",
                                     time: widget.slot,
                                     bookingType: widget.bookingType,
                                     date:
@@ -311,30 +369,81 @@ class _UConfirmAppointmentBookingState
                                 resp.then((value)async {
                                   log(value.toString());
                                   if (value['status'] == true) {
-                                    setState(() {
-                                      _isLoading = false;
-                                    });
-                                    /*CCAvenueInit().startPayment(
-                                        bookingId:
-                                            value['booking_id'].toString(),
-                                        amount: widget.psychologist.price
-                                            .toString());*/
-                                    await StripeClass().makePayment(
+                                   /*var _isSuccess =  await StripeClass().makePayment(
                                         amount: widget.psychologist.price.toString());
-                                   /* Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                UBookingSuccessfulScreen(
-                                                  name: widget.psychologist.name
-                                                      .toString(),
-                                                  date: widget.date,
-                                                  time: widget.slot,
-                                                  price: widget
-                                                      .psychologist.price
-                                                      .toString(),
-                                                  isCancellationAvailable: true,
-                                                )));*/
+                                   if(_isSuccess == false){
+                                     setState(() {
+                                       _isLoading = false;
+                                     });
+                                     Fluttertoast.showToast(msg: "Payment Failed! Please try again");
+                                   }else{
+                                    final resp = ConfirmPaymentApi().get(bookingId: bookingId, orderId: orderId, transactionId: _isSuccess!['id'], totalPayment: _isSuccess!['amount']);
+                                     resp.then((value){
+                                       if(value['status'] == true){
+                                         setState(() {
+                                           _isLoading = false;
+                                         });
+                                         Navigator.push(
+                                             context,
+                                             MaterialPageRoute(
+                                                 builder: (context) =>
+                                                     UBookingSuccessfulScreen(
+                                                       name: widget.psychologist.name
+                                                           .toString(),
+                                                       date: widget.date,
+                                                       time: widget.slot,
+                                                       price: widget
+                                                           .psychologist.price
+                                                           .toString(),
+                                                       isCancellationAvailable: true,
+                                                     )));
+                                       }else{
+                                         setState(() {
+                                           _isLoading = false;
+                                         });
+                                         Fluttertoast.showToast(msg: value['error']);
+                                       }
+                                     });
+                                   }*/
+                                    try{
+                                      await StripeClass().initPaymentSheet(value['payment']).then((value)async{
+                                       await Stripe.instance.presentPaymentSheet().then((value){
+                                         setState(() {
+                                           _isLoading = false;
+                                         });
+                                         Navigator.push(
+                                             context,
+                                             MaterialPageRoute(
+                                                 builder: (context) =>
+                                                     UBookingSuccessfulScreen(
+                                                       name: widget.psychologist.name
+                                                           .toString(),
+                                                       date: widget.date,
+                                                       time: widget.slot,
+                                                       price: widget
+                                                           .psychologist.price
+                                                           .toString(),
+                                                       isCancellationAvailable: true,
+                                                     )));
+                                        }).onError((StripeException error, stackTrace){
+                                          setState(() {
+                                            _isLoading = false;
+                                          });
+                                          Fluttertoast.showToast(msg: error.error.message.toString());
+                                          log("present error ${error.toString()}");
+                                        });
+                                      });
+                                    }on StripeException catch (e) {
+                                      log('Exception/DISPLAYPAYMENTSHEET==> $e');
+                                      setState(() {
+                                        _isLoading = false;
+                                      });
+                                    }catch (e) {
+                                      print('$e');
+                                      setState(() {
+                                        _isLoading = false;
+                                      });
+                                    }
                                   } else {
                                     setState(() {
                                       _isLoading = false;
@@ -344,7 +453,6 @@ class _UConfirmAppointmentBookingState
                                 });
                                 /*Navigator.of(context).push(MaterialPageRoute(
                                     builder: (ctx) => MeetingScreen()));*/
-                                /* */
                               },
                               child: Text(
                                 'Book session',

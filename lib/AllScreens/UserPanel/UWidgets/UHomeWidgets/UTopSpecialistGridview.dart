@@ -57,7 +57,7 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.only(top: 5),
             shrinkWrap: true,
-            itemCount: specialistModel.length,
+            itemCount: specialistModel.length >= 7? 8 : specialistModel.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 childAspectRatio: 1 / 1.5,

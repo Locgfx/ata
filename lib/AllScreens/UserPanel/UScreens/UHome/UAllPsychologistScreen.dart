@@ -264,6 +264,7 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
                                                                   MaterialPageRoute(
                                                                       builder: (ctx) =>
                                                                           UConfirmBookingScreen(
+                                                                            bookingType: widget.bookingType,
                                                                             issue:
                                                                                 widget.issue,
                                                                             issueId:
