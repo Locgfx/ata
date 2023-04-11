@@ -224,7 +224,8 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                 color: const Color(0xFFB5BABA),
                               ),
                               GestureDetector(
-                                onTap: couponButtonText == "Applied"? (){} :() {
+                                onTap: couponButtonText == "Applied"? (){}
+                                    : _couponController.text.isEmpty?(){} :() {
                                   setState(() {
                                     _coupnLoading = true;
                                   });
@@ -248,7 +249,6 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                       });
                                     }
                                   });
-
                                 },
                                 child: SizedBox(
                                   width: 55.w,
@@ -329,7 +329,7 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                           .toString(),
                                       issueId: widget.issueId,
                                       coupon: applied? _couponController.text :"",
-                                      time: "${TimeOfDay.now().hour}:${TimeOfDay.now().minute}",
+                                      time: TimeOfDay.now().toString().substring(10,15),
                                       bookingType: widget.bookingType,
                                       date: DateFormat("yyyy-MM-dd").format(DateTime.now()));
                                   resp.then((value)async {

@@ -36,7 +36,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
   }
 
   bool _isLoading = false;
-  Future<void> initAgora() async {
+ /* Future<void> initAgora() async {
     _isLoading = true;
     // retrieve permissions
     await [Permission.microphone, Permission.camera].request();
@@ -94,7 +94,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
     setState(() {
       _isLoading = false;
     });
-  }
+  }*/
 
   @override
   void dispose() {
@@ -103,20 +103,29 @@ class _MeetingScreenState extends State<MeetingScreen> {
     super.dispose();
   }
 
+  static int _uId = 0;
   void initAgr() async {
     _isLoading = true;
-    await _client.initialize().then((value) {
+
+       await _client.initialize().then((value) {
       setState(() {
         _isLoading = false;
       });
     });
   }
 
+
   final AgoraClient _client = AgoraClient(
+      enabledPermission: [
+        Permission.camera,
+        Permission.microphone,
+      ],
       agoraConnectionData: AgoraConnectionData(
           appId: AgoraChatConfig.appKey,
           channelName: AgoraChatConfig.userId,
-          tempToken: AgoraChatConfig.agoraToken));
+          tempToken: AgoraChatConfig.agoraToken,
+      ),
+  );
 
   // Create UI with local view and remote view
   @override
@@ -134,8 +143,8 @@ class _MeetingScreenState extends State<MeetingScreen> {
             )
           : Stack(
               children: [
-                AgoraVideoViewer(client: _client),
-                AgoraVideoButtons(client: _client),
+                AgoraVideoViewer(client: _client!, showAVState: true),
+                AgoraVideoButtons(client: _client!, autoHideButtons: true,),
               ]
               /*[
           _isLoading

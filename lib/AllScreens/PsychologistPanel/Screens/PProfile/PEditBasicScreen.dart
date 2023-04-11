@@ -91,7 +91,7 @@ class _PEditBasicDetailsScreenState extends State<PEditBasicDetailsScreen> {
         ),
         context: context,
         builder: (context) => DatePickerBottomSheet(onPop: (date) {
-              WidgetsBinding.instance?.addPostFrameCallback((_) => setState(() {
+              WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {
                     _dobController.text =
                         DateFormat("dd/MM/yyyy").format(DateTime.parse(date));
                   }));

@@ -275,7 +275,8 @@ class _UConfirmAppointmentBookingState
                                 color: const Color(0xFFB5BABA),
                               ),
                               GestureDetector(
-                                onTap: couponButtonText == "Applied"? (){} :() {
+                                onTap: couponButtonText == "Applied"? (){}
+                                    :_couponController.text.isEmpty?(){} :() {
                                   setState(() {
                                     _coupnLoading = true;
                                   });

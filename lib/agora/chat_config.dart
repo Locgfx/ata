@@ -5,5 +5,5 @@ class AgoraChatConfig {
   static const String appKey = "199ff71498ee4d02a7f5296f28b46728";
   static const String userId = "ataraxis";
   static const String agoraToken =
-      "007eJxTYGgND9ISl/q1ZR73YrHTOtZNr6daVD6SfGssl/7wYF+sbqcCg6GlZVqauaGJpUVqqkmKgVGieZqpkaVZmpFFkomZuZGFnrpuSkMgI4P083pWRgYIBPE5GBJLEosSKzKLGRgAItoebA==";
+      "007eJxTYPjMsL9B5ZF9j/68m21FpzM3HnPtUtZKMfIyTp/a72tTKK7AYGhpmZZmbmhiaZGaapJiYJRonmZqZGmWZmSRZGJmbmTx28o0pSGQkaHO5D0rIwMEgvgcDIkliUWJFZnFDAwAUWkfKg==";
 }
