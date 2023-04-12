@@ -8,14 +8,14 @@ import '../../../../constants/globals.dart';
 import '../../../../constants/urlconstants.dart';
 
 class AppointmentDetailsApi {
-  Future<dynamic> get({required String userId, required String status}) async {
+  Future<dynamic> get({required String bookingId, required String status}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
     var headers = {'Cookie': 'PHPSESSID=$v'};
     var request = http.Request(
         'GET',
         Uri.parse(
-            '${counselorUrl}user_details.php?user_id=$userId&status=$status'));
+            '${counselorUrl}user_details.php?booking_id=$bookingId&status=$status'));
 
     request.headers.addAll(headers);
 

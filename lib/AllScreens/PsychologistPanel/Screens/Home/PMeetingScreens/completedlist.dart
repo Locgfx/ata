@@ -62,16 +62,17 @@ class _CompletedListState extends State<CompletedList> {
                           children: [
                             InkWell(
                               onTap: () {
-                                Navigator.push(
+                                /*Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => PJoiningScreen(
+                                        bookingId: modelList[index].id.toString(),
                                             userId: modelList[index]
                                                 .userId
                                                 .toString(),
                                             status: "s",
                                           )),
-                                );
+                                );*/
                               },
                               child: Container(
                                 height: 80,

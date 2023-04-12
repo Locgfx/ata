@@ -11,7 +11,7 @@ class ConfirmBookingApi {
       {required String counsellorId,
       required String issueId,
       required String time,
-      String? coupon,
+     required String coupon,
       required String bookingType,
       required String date}) async {
     var prefs = await SharedPreferences.getInstance();

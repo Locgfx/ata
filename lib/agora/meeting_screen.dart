@@ -4,9 +4,13 @@ import 'dart:developer';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PSuccessfulSessionScreen.dart';
 import 'package:greymatter/agora/chat_config.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/app_bar/app_bar.dart';
 
@@ -22,73 +26,89 @@ class MeetingScreen extends StatefulWidget {
 }
 
 class _MeetingScreenState extends State<MeetingScreen> {
-  int? _remoteUid = 0;
+  int? _remoteUid;
   bool _localUserJoined = false;
   late RtcEngine _engine;
   int uid = 0;
 
+  bool _isMuted = false;
+  bool _isVideoEnabled = true;
   bool _isJoined = false;
+
   @override
   void initState() {
     //initAgora();
-    initAgr();
+    setUpAgora();
+    _getPrefs();
     super.initState();
   }
 
+  _getPrefs()async{
+    var prefs = await SharedPreferences.getInstance();
+    _isUser =  prefs.getBool(Keys().isUser) ?? false;
+  }
   bool _isLoading = false;
- /* Future<void> initAgora() async {
+  bool _isUser = false;
+
+/*  Future<void> initAgora() async {
     _isLoading = true;
     // retrieve permissions
     await [Permission.microphone, Permission.camera].request();
 
+    var prefs = await SharedPreferences.getInstance();
+   _isUser =  prefs.getBool(Keys().isUser) ?? false;
     //create the engine
     _engine = createAgoraRtcEngine();
-    await _engine.initialize(const RtcEngineContext(
+    await _engine.initialize(RtcEngineContext(
       appId: AgoraChatConfig.appKey,
-      channelProfile: ChannelProfileType.channelProfileLiveBroadcasting,
+      channelProfile: ChannelProfileType.channelProfileCommunication,
     ));
 
     _engine.registerEventHandler(
       RtcEngineEventHandler(
           onJoinChannelSuccess: (RtcConnection connection, int elapsed) {
-            debugPrint("local user ${connection.localUid} joined");
+            log("local user ${connection.localUid} joined");
             setState(() {
               _localUserJoined = true;
+              uid = connection.localUid!;
             });
           },
           onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
-            debugPrint("remote user $remoteUid joined");
+            log("remote user $remoteUid joined");
             setState(() {
               _remoteUid = remoteUid;
             });
           },
           onUserOffline: (RtcConnection connection, int remoteUid,
               UserOfflineReasonType reason) {
-            debugPrint("remote user $remoteUid left channel");
+            log("remote user $remoteUid left channel");
             setState(() {
               _remoteUid = null;
             });
           },
           onTokenPrivilegeWillExpire: (RtcConnection connection, String token) {
-            debugPrint(
+            log(
                 '[onTokenPrivilegeWillExpire] connection: ${connection.toJson()}, token: $token');
           },
-          onLeaveChannel: (RtcConnection connection, RtcStats stats) {}),
+          onLeaveChannel: (RtcConnection connection, RtcStats stats) {
+            log("user ${connection.localUid} left");
+          }),
     );
 
-    await _engine.setClientRole(role: ClientRoleType.clientRoleBroadcaster);
+    await _engine.setClientRole(role: _isUser? ClientRoleType.clientRoleAudience : ClientRoleType.clientRoleBroadcaster);
     await _engine.enableVideo();
     await _engine.startPreview();
 
-    ChannelMediaOptions options = const ChannelMediaOptions(
-      clientRoleType: ClientRoleType.clientRoleBroadcaster,
+    ChannelMediaOptions options = ChannelMediaOptions(
+      clientRoleType:_isUser? ClientRoleType.clientRoleAudience : ClientRoleType.clientRoleBroadcaster,
       channelProfile: ChannelProfileType.channelProfileCommunication,
     );
+
 
     await _engine.joinChannel(
       token: AgoraChatConfig.agoraToken,
       channelId: AgoraChatConfig.userId,
-      uid: uid,
+      uid: _isUser? _remoteUid! :uid,
       options: options,
     );
     setState(() {
@@ -97,180 +117,197 @@ class _MeetingScreenState extends State<MeetingScreen> {
   }*/
 
   @override
-  void dispose() {
-    _engine.leaveChannel();
-    _engine.release();
+  void dispose() async {
+    //_engine.leaveChannel();
+    //_engine.release();
+   // await _client.engine.disableAudio();
+   // await _client.engine.disableVideo();
+    await _client.release();
     super.dispose();
   }
 
   static int _uId = 0;
-  void initAgr() async {
-    _isLoading = true;
 
-       await _client.initialize().then((value) {
+  setUpAgora() async {
+    _isLoading = true;
+    _client = AgoraClient(
+      enabledPermission: [
+        Permission.camera,
+        Permission.microphone,
+      ],
+      agoraConnectionData: AgoraConnectionData(
+        appId: AgoraChatConfig.appKey,
+        channelName: AgoraChatConfig.userId,
+        tempToken: AgoraChatConfig.agoraToken,
+      ),
+      agoraEventHandlers: AgoraRtcEventHandlers(
+        onConnectionLost: (connection) {
+          Fluttertoast.showToast(msg: "${connection.localUid} lost connection");
+        },
+        onJoinChannelSuccess: (connection, id) {
+          Fluttertoast.showToast(msg: "${connection.localUid} local joined");
+        },
+        onUserJoined: (connection, id, elapsed) {
+          Fluttertoast.showToast(msg: "${connection.localUid} user joined");
+        },
+        onLeaveChannel: (connection, status) async{
+          //Fluttertoast.showToast(msg: "${connection.localUid} user left");
+        },
+        onError: (code, err) {
+          Fluttertoast.showToast(msg: "${code.name + err} local joined");
+        },
+
+      ),
+    );
+    initAgr();
+  }
+
+  void initAgr() async {
+    await _client.initialize().then((value) {
       setState(() {
         _isLoading = false;
       });
     });
   }
 
-
-  final AgoraClient _client = AgoraClient(
-      enabledPermission: [
-        Permission.camera,
-        Permission.microphone,
-      ],
-      agoraConnectionData: AgoraConnectionData(
-          appId: AgoraChatConfig.appKey,
-          channelName: AgoraChatConfig.userId,
-          tempToken: AgoraChatConfig.agoraToken,
-      ),
-  );
+  late final AgoraClient _client;
 
   // Create UI with local view and remote view
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomWhiteAppBar(
-        hasThreeDots: false,
-        onThreeDotTap: () {},
-        appBarText: 'Session',
-        imgPath: "assets/images/iconbackappbarlarge.png",
-      ),
-      body: _isLoading
-          ? Center(
+    return WillPopScope(
+      onWillPop: ()async{
+        return false;
+      },
+      child: Scaffold(
+        appBar: CustomWhiteAppBar(
+          hasThreeDots: false,
+          onThreeDotTap: () {},
+          appBarText: 'Session',
+          imgPath: "assets/images/iconbackappbarlarge.png",
+        ),
+        body: _isLoading
+            ? Center(
+                child: LoadingWidget(),
+              )
+            : Stack(children: [
+                AgoraVideoViewer(
+                  client: _client,
+                  layoutType: Layout.oneToOne,
+                ),
+                AgoraVideoButtons(
+                  client: _client,
+                  autoHideButtons: true,
+                  onDisconnect: ()async{
+                    log("message");
+                    //await _client.release();
+                    if(_isUser){}else {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (ctx) => PSuccessfulSessionScreen()));
+                    }
+                  },
+                ),
+              ]),
+
+        /*Stack(
+          children: [
+            _isLoading
+                ? Center(
               child: LoadingWidget(),
             )
-          : Stack(
-              children: [
-                AgoraVideoViewer(client: _client!, showAVState: true),
-                AgoraVideoButtons(client: _client!, autoHideButtons: true,),
-              ]
-              /*[
-          _isLoading
-              ? Center(
-                  child: LoadingWidget(),
-                )
-              : Center(
-                  child: _remoteVideo(),
+                : Center(
+              child: _remoteVideo(),
+            ),
+            Positioned(
+              top: 20,
+              left: 10,
+              child: SizedBox(
+                width: 100,
+                height: 150,
+                child: Center(
+                  child: _localUserJoined
+                      ? AgoraVideoView(
+                    controller: VideoViewController(
+                      rtcEngine: _engine,
+                      canvas: VideoCanvas(uid: uid,),
+                    ),
+                  )
+                      : const CircularProgressIndicator(),
                 ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 100,
-              height: 150,
-              child: Center(
-                child: _localUserJoined
-                    ? AgoraVideoView(
-                        controller: VideoViewController(
-                          rtcEngine: _engine,
-                          canvas: VideoCanvas(uid: uid),
-                        ),
-                      )
-                    : const CircularProgressIndicator(),
               ),
             ),
-          ),
-        ]*/
-              ,
-            ),
-    );
-    /*MaterialApp(
-      //scaffoldMessengerKey: scaffoldMessengerKey,
-      home:
-
-      Scaffold(
-          appBar: AppBar(
-            title: const Text('Get started with Video Calling'),
-          ),
-          body: _isLoading
-              ? Center(
-                  child: LoadingWidget(),
-                )
-              : ListView(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            //AgoraVideoButtons(client: _client, autoHideButtons: true,),
+            Positioned(
+              bottom: 20,
+                left: 0,
+                right: 0,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    // Container for the local video
-                    Container(
-                      height: 240,
-                      decoration: BoxDecoration(border: Border.all()),
-                      child: Center(child: _localPreview()),
+                    RawMaterialButton(
+                      onPressed: () {
+                        setState(() {
+                          _isMuted = !_isMuted;
+                        });
+                        if(_isUser) {
+                          _engine.muteRemoteAudioStream(uid: _remoteUid!, mute: _isMuted);
+                        }else{
+                          _engine.muteLocalAudioStream(_isMuted);
+                        }
+                      },
+                      elevation: 2.0,
+                      fillColor: Colors.white,
+                      child: Icon(
+                       _isMuted? Icons.mic_off : Icons.mic,
+                        size: 20.0,
+                        color: Colors.blueAccent,
+                      ),
+                      padding: EdgeInsets.all(15.0),
+                      shape: CircleBorder(),
                     ),
-                    const SizedBox(height: 10),
-                    //Container for the Remote video
-                    Container(
-                      height: 240,
-                      decoration: BoxDecoration(border: Border.all()),
-                      child: Center(child: _remoteVideo()),
+                    RawMaterialButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      elevation: 2.0,
+                      fillColor: Colors.redAccent,
+                      child: Icon(
+                        Icons.call_end,
+                        size: 35.0,
+                        color: Colors.white,
+                      ),
+                      padding: EdgeInsets.all(15.0),
+                      shape: CircleBorder(),
                     ),
-                    // Button Row
-                    Row(
-                      children: <Widget>[
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: _isJoined ? null : () => {join()},
-                            child: const Text("Join"),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: _isJoined ? () => {leave()} : null,
-                            child: const Text("Leave"),
-                          ),
-                        ),
-                      ],
+                    RawMaterialButton(
+                      onPressed: () {
+                        _engine.switchCamera();
+                      },
+                      elevation: 2.0,
+                      fillColor: Colors.white,
+                      child: Icon(
+                        Icons.switch_camera,
+                        color: Colors.blueAccent,
+                        size: 20.0,
+                      ),
+                      padding: EdgeInsets.all(15.0),
+                      shape: CircleBorder(),
                     ),
-                    // Button Row ends
                   ],
-                )),
-    );*/
-
-    /*Scaffold(
-      appBar: CustomWhiteAppBar(
-        hasThreeDots: false,
-        onThreeDotTap: () {},
-        appBarText: 'Connecting',
-        imgPath: "assets/images/iconbackappbarlarge.png",
-      ),
-      body: Stack(
-        children: [
-          _isLoading
-              ? Center(
-                  child: LoadingWidget(),
-                )
-              : Center(
-                  child: _remoteVideo(),
                 ),
-          Align(
-            alignment: Alignment.topLeft,
-            child: SizedBox(
-              width: 100,
-              height: 150,
-              child: Center(
-                child: _localUserJoined
-                    ? AgoraVideoView(
-                        controller: VideoViewController(
-                          rtcEngine: _engine,
-                          canvas: VideoCanvas(uid: uid),
-                        ),
-                      )
-                    : const CircularProgressIndicator(),
-              ),
             ),
-          ),
-        ],
+          ],
+        ),*/
       ),
-    );*/
+    );
   }
-
+/*
   Widget _localPreview() {
     if (_isJoined) {
       return AgoraVideoView(
         controller: VideoViewController(
           rtcEngine: _engine,
-          canvas: VideoCanvas(uid: 0),
+          canvas: VideoCanvas(uid: uid),
         ),
       );
     } else {
@@ -292,16 +329,16 @@ class _MeetingScreenState extends State<MeetingScreen> {
         ),
       );
     } else {
-      String msg = '';
-      if (_isJoined) msg = 'Waiting for a remote user to join';
+      String msg = 'Waiting for a remote user to join';
+      //if (_isJoined) msg = 'Waiting for a remote user to join';
       return Text(
         msg,
         textAlign: TextAlign.center,
       );
     }
-  }
+  }*/
 
-  void join() async {
+/*void join() async {
     await _engine.startPreview();
     // Set channel options including the client role and channel profile
 
@@ -320,17 +357,17 @@ class _MeetingScreenState extends State<MeetingScreen> {
         .then((value) {
       log("message");
     });
-  }
+  }*/
 
-  void leave() {
+/*void leave() {
     setState(() {
       _isJoined = false;
       _remoteUid = null;
     });
     _engine.leaveChannel();
-  }
-  // Display remote user's video
-  /* Widget _remoteVideo() {
+  }*/
+// Display remote user's video
+/* Widget _remoteVideo() {
     if (_remoteUid != null) {
       return AgoraVideoView(
         controller: VideoViewController.remote(

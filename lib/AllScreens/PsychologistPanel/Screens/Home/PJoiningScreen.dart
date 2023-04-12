@@ -19,8 +19,9 @@ import '../../../../widgets/loadingWidget.dart';
 
 class PJoiningScreen extends StatefulWidget {
   final String userId;
+  final String bookingId;
   final String status;
-  const PJoiningScreen({Key? key, required this.userId, required this.status})
+  const PJoiningScreen({Key? key, required this.userId, required this.status, required this.bookingId})
       : super(key: key);
 
   @override
@@ -57,10 +58,10 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
   bool _isLoading = false;
   _getData() {
     _isLoading = true;
-    log(widget.userId);
+    log(widget.bookingId);
     log(widget.status);
     final resp = AppointmentDetailsApi()
-        .get(userId: widget.userId, status: widget.status);
+        .get(bookingId: widget.bookingId, status: widget.status);
     resp.then((value) {
       log(value.toString());
       if (value['status'] == true) {
@@ -113,6 +114,7 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                         ),
                         child: Image.network(
                           model.photo.toString(),
+                            fit: BoxFit.fill,
                           errorBuilder: (q, w, e) => Image.asset(
                               "assets/images/Rectangle 26.png",
                               fit: BoxFit.cover),

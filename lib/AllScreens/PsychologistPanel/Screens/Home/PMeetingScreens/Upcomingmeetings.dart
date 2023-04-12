@@ -143,6 +143,7 @@ class _UpcomingMeetingsState extends State<UpcomingMeetings> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => PJoiningScreen(
+                                          bookingId: model.message![index].id.toString(),
                                               userId: model
                                                   .message![index].userId
                                                   .toString(),
