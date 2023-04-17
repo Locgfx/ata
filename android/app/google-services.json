@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "97431679076",
-    "project_id": "atar-axis",
-    "storage_bucket": "atar-axis.appspot.com"
+    "project_number": "597583886413",
+    "project_id": "ataraxis-50a01",
+    "storage_bucket": "ataraxis-50a01.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:97431679076:android:965ed200df8fd7642b6f71",
+        "mobilesdk_app_id": "1:597583886413:android:dd6817e6bab38342384404",
         "android_client_info": {
           "package_name": "com.locgfx.ataraxis"
         }
       },
       "oauth_client": [
         {
-          "client_id": "97431679076-8kcm66jq64sonj61v33riqkqtl42tdd2.apps.googleusercontent.com",
+          "client_id": "597583886413-iv94u5hglb2kbr9ccjcq6fch4o21nu3d.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA0_k_G7hvjiEHlCpTBUweh0CAnbUUpG88"
+          "current_key": "AIzaSyBjeIcGNjVbFCB_v2Qo0q8mhHkjExTv9As"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "97431679076-8kcm66jq64sonj61v33riqkqtl42tdd2.apps.googleusercontent.com",
+              "client_id": "597583886413-iv94u5hglb2kbr9ccjcq6fch4o21nu3d.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

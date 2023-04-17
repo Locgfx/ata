@@ -42,4 +42,5 @@ class Keys {
   final String requestSent = 'request_sent';
   final String DocSignUpEmail = 'doc_sign_up_email';
   final String userType = 'userType';
+  final String fcmToken = 'fcmToken';
 }

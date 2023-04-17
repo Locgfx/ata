@@ -1,18 +1,17 @@
 import 'dart:developer';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PTabsScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/ULoginScreens/ULoginScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/UQuestionScreen.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Apis/UserAPis/loginapi/loginapi.dart';
+import '../../Apis/Notifications_apis/notification_token_api.dart';
 import '../../constants/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -29,7 +28,32 @@ class _SplashScreenState extends State<SplashScreen> {
     Future.delayed(Duration(seconds: 3), () {
       setPage();
     });
+
+    initializeFirebaseService();
     //setPage();
+  }
+
+  String _fcmToken = '';
+  Future<void> initializeFirebaseService() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    String firebaseAppToken = await messaging.getToken(
+          vapidKey:
+              "BN1Wny0OZHDjGNR2Ktk1YqG3N0Vb7rtwNT9AyOCXjadLRzuAa0TmaufjSh9NJx95KZZI0xEsHObTLe2E5OhGCjQ",
+        ) ??
+        '';
+    if (!mounted) {
+      _fcmToken = firebaseAppToken;
+    } else {
+      setState(() {
+        _fcmToken = firebaseAppToken;
+      });
+    }
+
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setString(Keys().fcmToken, _fcmToken);
+    print('Firebase token: $firebaseAppToken');
+    NotificationTokenApi().get();
   }
 
   setPage() async {
