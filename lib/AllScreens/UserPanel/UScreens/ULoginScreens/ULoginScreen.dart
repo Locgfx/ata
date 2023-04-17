@@ -305,6 +305,11 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                   value['name']);
                                               prefs.setString(Keys().userImage,
                                                   value['image']);
+                                              if(value['ques'] == 0){
+                                                prefs.setBool(Keys().questionsDone, true);
+                                              }else{
+                                                prefs.setBool(Keys().questionsDone, false);
+                                              }
                                               Fluttertoast.showToast(
                                                   msg: 'Login Successful');
                                               if (prefs.getBool(
