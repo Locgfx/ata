@@ -378,6 +378,7 @@ class _UCommentScreenState extends State<UCommentScreen> {
             ),
           ),
           usercommentWidget1(
+            onPop: () {},
             postedBy: '',
             modelList: [],
             index: 0,
@@ -492,6 +493,7 @@ class _UCommentScreenState extends State<UCommentScreen> {
             height: 24,
           ),
           usercommentWidget1(
+            onPop: () {},
             modelList: [],
             postedBy: '',
             index: 0,

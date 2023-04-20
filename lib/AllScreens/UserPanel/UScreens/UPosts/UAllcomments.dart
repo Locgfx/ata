@@ -1,13 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PPosts/post_comment_api.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UPostViewContainer.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UReplyScreen.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_comment_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -60,10 +57,11 @@ class _UCommentPageState extends State<UCommentPage> {
         postId:
             widget.isSaved == "yes" ? widget.model.postId! : widget.model.id!,
         postType: widget.model.postedBy.toString(),
-        scroll: '$_scroll');
+        scroll: '0');
     resp.then((value) {
       log(value.toString());
       if (value['status'] == true) {
+        modelList.clear();
         setState(() {
           for (var v in value['comments']) {
             modelList.add(CommentModel.fromJson(v));
@@ -369,6 +367,13 @@ class _UCommentPageState extends State<UCommentPage> {
                         ),
                         itemBuilder: (ctx, index) {
                           return usercommentWidget1(
+                            onPop: () {
+                              setState(() {
+                                _isLoading = true;
+                                _showBtn = false;
+                              });
+                              _getData();
+                            },
                             modelList: modelList,
                             index: index,
                             postedBy: widget.model.postedBy.toString(),

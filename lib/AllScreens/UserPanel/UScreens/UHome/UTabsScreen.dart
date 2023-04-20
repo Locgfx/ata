@@ -1,3 +1,4 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +8,10 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UHomeScreen.dart'
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UPosts/UPostScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UprofileScreen.dart';
 import 'package:greymatter/constants/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../Apis/Notifications_apis/notification_token_api.dart';
+import '../../../../constants/globals.dart';
 
 class UTabsScreen extends StatefulWidget {
   const UTabsScreen({Key? key}) : super(key: key);
@@ -17,6 +22,35 @@ class UTabsScreen extends StatefulWidget {
 
 class _UTabsScreenState extends State<UTabsScreen> {
   int _index = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    initializeFirebaseService();
+  }
+
+  String _fcmToken = '';
+  Future<void> initializeFirebaseService() async {
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+    String firebaseAppToken = await messaging.getToken(
+          vapidKey:
+              "BN1Wny0OZHDjGNR2Ktk1YqG3N0Vb7rtwNT9AyOCXjadLRzuAa0TmaufjSh9NJx95KZZI0xEsHObTLe2E5OhGCjQ",
+        ) ??
+        '';
+    if (!mounted) {
+      _fcmToken = firebaseAppToken;
+    } else {
+      setState(() {
+        _fcmToken = firebaseAppToken;
+      });
+    }
+
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setString(Keys().fcmToken, _fcmToken);
+    print('Firebase token: $firebaseAppToken');
+    NotificationTokenApi().get();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -4,10 +4,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/load_more_replies.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/UModels/user_posts_model/comment_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../AllScreens/UserPanel/UScreens/UPosts/UReplyScreen.dart';
 import '../../Apis/UserAPis/user_posts_api/comment_like_api.dart';
 import '../../constants/colors.dart';
 import '../../constants/fonts.dart';
@@ -16,11 +18,13 @@ import '../popmenu_widgets/popmenu_widget.dart';
 class usercommentWidget1 extends StatefulWidget {
   List<CommentModel> modelList;
   int index;
+  Function onPop;
   String postedBy;
   usercommentWidget1({
     Key? key,
     required this.modelList,
     required this.postedBy,
+    required this.onPop,
     required this.index,
   }) : super(key: key);
 
@@ -33,8 +37,15 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
   int loadedData = 0;
   List<Replies> repliesList = [];
 
+  bool _isUser = false;
+  _getPrefs() async {
+    var _prefs = await SharedPreferences.getInstance();
+    _isUser = _prefs.getBool(Keys().isUser) ?? false;
+  }
+
   @override
   void initState() {
+    _getPrefs();
     if (widget.modelList[widget.index].replies!.isNotEmpty) {
       loadedData = widget.modelList[widget.index].replies!.length;
       _showBtn = true;
@@ -145,13 +156,20 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
                       child: Row(
                         children: [
                           GestureDetector(
-                            onTap: () {
-                              /*Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          UReplyScreen()));*/
-                            },
+                            onTap: _isUser
+                                ? () {}
+                                : () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => UReplyScreen(
+                                                  modelList: widget.modelList,
+                                                  index: widget.index,
+                                                  postedBy: widget.postedBy,
+                                                ))).then((value) {
+                                      widget.onPop();
+                                    });
+                                  },
                             child: Text(
                               "Reply",
                               style: kManRope_400_12_626A6A,

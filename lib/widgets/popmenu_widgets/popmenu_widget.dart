@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/constants/globals.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../BottomSheets/ReportBottomSheet.dart';
 
@@ -40,6 +42,18 @@ class _MyPostOptionsDialogState extends State<MyPostOptionsDialog> {
   }
 
   @override
+  void initState() {
+    _getPrefs();
+    super.initState();
+  }
+
+  late bool _isUser;
+  _getPrefs() async {
+    var prefs = await SharedPreferences.getInstance();
+    _isUser = prefs.getBool(Keys().isUser) ?? false;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -56,23 +70,29 @@ class _MyPostOptionsDialogState extends State<MyPostOptionsDialog> {
         ),
         itemBuilder: (context) {
           return [
-            PopupMenuItem(
-              onTap: () {},
-              enabled: true,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0, top: 16, bottom: 8),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Delete",
-                      style: kManRope_500_16_626A6A,
-                    ),
-                  ],
+            if (!_isUser)
+              PopupMenuItem(
+                onTap: () {
+                  // final resp = DeleteCommentApi()
+                  //     .get(commentId: commentId, postType: postType);
+                  // resp.then((value) {});
+                },
+                enabled: true,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.only(left: 16.0, top: 16, bottom: 8),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Delete",
+                        style: kManRope_500_16_626A6A,
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
             PopupMenuItem(
               enabled: false,
               child: InkWell(

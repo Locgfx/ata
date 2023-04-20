@@ -1,8 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:timezone/timezone.dart' as tz;
-import 'package:timezone/data/latest.dart' as latest;
 
 class NotificationServices {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
@@ -51,8 +49,8 @@ class NotificationServices {
       var payload}) async {
     NotificationDetails notificationDetails = NotificationDetails(
         android: androidNotificationDetails, iOS: iosNotificationDetails);
-    await _flutterLocalNotificationsPlugin
-        .show(id, title, body, notificationDetails, payload: payload);
+    await _flutterLocalNotificationsPlugin.show(
+        id, title, body, notificationDetails);
   }
 
   /*void scheduleNotification({
