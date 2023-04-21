@@ -367,7 +367,7 @@ class _UCommentPageState extends State<UCommentPage> {
                         ),
                         itemBuilder: (ctx, index) {
                           return usercommentWidget1(
-                            onPop: () {
+                            onPop: (val) {
                               setState(() {
                                 _isLoading = true;
                                 _showBtn = false;

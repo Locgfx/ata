@@ -18,7 +18,7 @@ import '../popmenu_widgets/popmenu_widget.dart';
 class usercommentWidget1 extends StatefulWidget {
   List<CommentModel> modelList;
   int index;
-  Function onPop;
+  Function(String) onPop;
   String postedBy;
   usercommentWidget1({
     Key? key,
@@ -123,6 +123,9 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
     return Column(
       children: [
         CommentUserTile(
+          onPop: (val) {
+            widget.onPop(val);
+          },
           modelList: widget.modelList,
           index: widget.index,
         ),
@@ -167,7 +170,7 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
                                                   index: widget.index,
                                                   postedBy: widget.postedBy,
                                                 ))).then((value) {
-                                      widget.onPop();
+                                      widget.onPop("");
                                     });
                                   },
                             child: Text(
@@ -237,6 +240,9 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
                   ),
                   itemBuilder: (ctx, indexx) {
                     return usercommWidget2(
+                      onPop: (val) {
+                        widget.onPop(val);
+                      },
                       postType:
                           widget.modelList[widget.index].postType.toString(),
                       modelList: repliesList,
@@ -285,9 +291,11 @@ class usercommWidget2 extends StatelessWidget {
   List<Replies> modelList;
   int index;
   String postType;
+  Function(String) onPop;
   usercommWidget2(
       {Key? key,
       required this.modelList,
+      required this.onPop,
       required this.index,
       required this.postType})
       : super(key: key);
@@ -301,6 +309,9 @@ class usercommWidget2 extends StatelessWidget {
           modelList: modelList,
           index: index,
           postType: postType,
+          onPop: (val) {
+            onPop(val);
+          },
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -330,7 +341,12 @@ class usercommWidget2 extends StatelessWidget {
 class CommentUserTile extends StatefulWidget {
   List<CommentModel> modelList;
   int index;
-  CommentUserTile({Key? key, required this.index, required this.modelList})
+  Function(String) onPop;
+  CommentUserTile(
+      {Key? key,
+      required this.index,
+      required this.modelList,
+      required this.onPop})
       : super(key: key);
 
   @override
@@ -391,7 +407,12 @@ class _CommentUserTileState extends State<CommentUserTile> {
             ],
           ),
           MyPostOptionsDialog(
+            onPop: (val) {
+              widget.onPop(val);
+            },
+            commentId: widget.modelList[widget.index].id.toString(),
             commentType: "comment",
+            commentByMe: widget.modelList[widget.index].commentByMe!,
             postType: widget.modelList[widget.index].postType.toString(),
             postId: widget.modelList[widget.index].id.toString(),
           ),
@@ -404,10 +425,12 @@ class _CommentUserTileState extends State<CommentUserTile> {
 class CommentUserTile2 extends StatefulWidget {
   List<Replies> modelList;
   int index;
+  Function(String) onPop;
   String postType;
   CommentUserTile2(
       {Key? key,
       required this.index,
+      required this.onPop,
       required this.modelList,
       required this.postType})
       : super(key: key);
@@ -470,6 +493,11 @@ class _CommentUserTile2State extends State<CommentUserTile2> {
             ],
           ),
           MyPostOptionsDialog(
+            onPop: (val) {
+              widget.onPop(val);
+            },
+            commentId: widget.modelList[widget.index].id.toString(),
+            commentByMe: widget.modelList[widget.index].replyByMe!,
             commentType: "reply",
             postType: widget.postType,
             postId: widget.modelList[widget.index].id.toString(),

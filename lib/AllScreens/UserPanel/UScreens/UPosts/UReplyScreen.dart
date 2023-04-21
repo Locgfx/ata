@@ -241,6 +241,9 @@ class _UReplyScreenState extends State<UReplyScreen> {
               ),
               SizedBox(height: 27),
               CommentUserTile(
+                onPop: (val) {
+                  Navigator.pop(context);
+                },
                 modelList: widget.modelList,
                 index: widget.index,
               ),
@@ -342,6 +345,11 @@ class _UReplyScreenState extends State<UReplyScreen> {
                         ),
                         itemBuilder: (ctx, indexx) {
                           return usercommWidget2(
+                            onPop: (val) {
+                              setState(() {
+                                repliesList.removeAt(indexx);
+                              });
+                            },
                             postType: widget.modelList[widget.index].postType
                                 .toString(),
                             modelList: repliesList,

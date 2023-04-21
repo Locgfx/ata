@@ -8,6 +8,7 @@ class CommentModel {
   String? totalReplies;
   int? totalLikes;
   int? isLiked;
+  int? commentByMe;
   List<Replies>? replies;
 
   CommentModel(
@@ -15,6 +16,7 @@ class CommentModel {
       this.comment,
       this.postType,
       this.dateTime,
+      this.commentByMe,
       this.totalReplies,
       this.name,
       this.isLiked,
@@ -31,6 +33,7 @@ class CommentModel {
     dateTime = json['date_time'];
     name = json['name'];
     isLiked = json['like_by_me'] ?? 0;
+    commentByMe = json['comment_by_me'] ?? 0;
     photo = json['photo'];
     if (json['replies'] != null) {
       replies = <Replies>[];
@@ -64,11 +67,18 @@ class Replies {
   String? dateTime;
   String? name;
   String? photo;
-
-  Replies({this.id, this.reply, this.dateTime, this.name, this.photo});
+  int? replyByMe;
+  Replies(
+      {this.id,
+      this.reply,
+      this.dateTime,
+      this.name,
+      this.photo,
+      this.replyByMe});
 
   Replies.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    replyByMe = json['reply_by_me'] ?? 0;
     reply = json['reply'];
     dateTime = json['date_time'];
     name = json['name'];

@@ -3,19 +3,27 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../Apis/DoctorApis/comment_api/delete_comment_api.dart';
 import '../BottomSheets/ReportBottomSheet.dart';
 
 class MyPostOptionsDialog extends StatefulWidget {
   final String postId;
   final String postType;
   final String commentType;
+  final String commentId;
+  final Function(String) onPop;
+  final int commentByMe;
   const MyPostOptionsDialog(
       {Key? key,
       required this.postType,
+      required this.onPop,
+      required this.commentByMe,
+      required this.commentId,
       required this.postId,
       required this.commentType})
       : super(key: key);
@@ -70,12 +78,22 @@ class _MyPostOptionsDialogState extends State<MyPostOptionsDialog> {
         ),
         itemBuilder: (context) {
           return [
-            if (!_isUser)
+            if (!_isUser && widget.commentByMe == 1)
               PopupMenuItem(
                 onTap: () {
-                  // final resp = DeleteCommentApi()
-                  //     .get(commentId: commentId, postType: postType);
-                  // resp.then((value) {});
+                  final resp = DeleteCommentApi().get(
+                      commentId: int.parse(widget.commentId),
+                      postType: widget.postType,
+                      commentType: widget.commentType);
+                  resp.then((value) {
+                    log(value.toString());
+                    if (value['status'] == true) {
+                      Fluttertoast.showToast(msg: value['msg']);
+                      widget.onPop("delete");
+                    } else {
+                      Fluttertoast.showToast(msg: value['error']);
+                    }
+                  });
                 },
                 enabled: true,
                 child: Padding(
