@@ -257,10 +257,6 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     FirebaseMessaging.onMessage.listen(
       (event) async {
-        /*  AwesomeNotifications().createNotificationFromJsonData(event.data);
-        AwesomeNotifications().actionStream.listen((event1) {
-          fn(event);
-        });*/
         RemoteNotification? notification = event.notification;
         AndroidNotification? android = event.notification?.android;
         if (notification != null && android != null) {

@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
@@ -6,12 +5,14 @@ import 'package:agora_uikit/agora_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PSuccessfulSessionScreen.dart';
+import 'package:greymatter/Apis/DoctorApis/availability_api.dart';
 import 'package:greymatter/agora/chat_config.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../AllScreens/UserPanel/UScreens/UBookingScreens/USessionSucessfulScreen.dart';
 import '../widgets/app_bar/app_bar.dart';
 
 /*const appId = "<-- Insert App Id -->";
@@ -43,10 +44,11 @@ class _MeetingScreenState extends State<MeetingScreen> {
     super.initState();
   }
 
-  _getPrefs()async{
+  _getPrefs() async {
     var prefs = await SharedPreferences.getInstance();
-    _isUser =  prefs.getBool(Keys().isUser) ?? false;
+    _isUser = prefs.getBool(Keys().isUser) ?? false;
   }
+
   bool _isLoading = false;
   bool _isUser = false;
 
@@ -120,8 +122,9 @@ class _MeetingScreenState extends State<MeetingScreen> {
   void dispose() async {
     //_engine.leaveChannel();
     //_engine.release();
-   // await _client.engine.disableAudio();
-   // await _client.engine.disableVideo();
+    // await _client.engine.disableAudio();
+    // await _client.engine.disableVideo();
+    final resp = await AvailabilityApi().get(status: 1);
     await _client.release();
     super.dispose();
   }
@@ -150,13 +153,12 @@ class _MeetingScreenState extends State<MeetingScreen> {
         onUserJoined: (connection, id, elapsed) {
           Fluttertoast.showToast(msg: "${connection.localUid} user joined");
         },
-        onLeaveChannel: (connection, status) async{
+        onLeaveChannel: (connection, status) async {
           //Fluttertoast.showToast(msg: "${connection.localUid} user left");
         },
         onError: (code, err) {
           Fluttertoast.showToast(msg: "${code.name + err} local joined");
         },
-
       ),
     );
     initAgr();
@@ -176,7 +178,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: ()async{
+      onWillPop: () async {
         return false;
       },
       child: Scaffold(
@@ -198,10 +200,16 @@ class _MeetingScreenState extends State<MeetingScreen> {
                 AgoraVideoButtons(
                   client: _client,
                   autoHideButtons: true,
-                  onDisconnect: ()async{
+                  onDisconnect: () async {
                     log("message");
                     //await _client.release();
-                    if(_isUser){}else {
+                    if (_isUser) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const USessionSuccessfulScreen()));
+                    } else {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (ctx) => PSuccessfulSessionScreen()));
                     }

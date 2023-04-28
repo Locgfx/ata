@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +8,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/UAddPers
 import 'package:greymatter/Apis/UserAPis/usignupapi/otpverifyapi.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -166,7 +168,9 @@ class _USignEnterOTPScreenState extends State<USignEnterOTPScreen> {
                           print(value);
                           if (value['status'] == true) {
                             var prefs = await SharedPreferences.getInstance();
-                            prefs.setString('cookies', value['session_id']);
+                            prefs.setString(Keys().cookie, value['session_id']);
+                            // log(value['session_id'].toString());
+                            prefs.setBool(Keys().loginDone, true);
                             Fluttertoast.showToast(msg: value['message']);
                             Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) =>

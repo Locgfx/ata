@@ -6,16 +6,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UBookingSuccessfulScreen.dart';
 import 'package:greymatter/Apis/payment_api/apply_coupon.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/payment_gateway/stripe_payment_gateway.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
-import 'package:intl/intl.dart';
 
-import '../../../../Apis/UserAPis/user_home_apis/confirm_booking_apis/confirm_booking_api.dart';
+import '../../../../Apis/UserAPis/user_home_apis/confirm_booking_apis/confirm_instant_booking_api.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
@@ -56,6 +54,7 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
     price = widget.model.price.toString();
     super.initState();
   }
+
   @override
   void dispose() {
     _confettiController.dispose();
@@ -119,7 +118,8 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                     width: 64.w,
                                     clipBehavior: Clip.hardEdge,
                                     decoration: BoxDecoration(
-                                      border: Border.all(color: kFFFFFF, width: 1),
+                                      border:
+                                          Border.all(color: kFFFFFF, width: 1),
                                       borderRadius: BorderRadius.circular(16),
                                       // image: DecorationImage(
                                       //   image: AssetImage('assets/images/userP.png'),fit: BoxFit.cover
@@ -224,48 +224,59 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                 color: const Color(0xFFB5BABA),
                               ),
                               GestureDetector(
-                                onTap: couponButtonText == "Applied"? (){}
-                                    : _couponController.text.isEmpty?(){} :() {
-                                  setState(() {
-                                    _coupnLoading = true;
-                                  });
-                                  final resp = CouponAppliedApi().get(coupon: _couponController.text);
-                                  resp.then((value){
-                                    if(value["status"] == true){
-                                      setState(() {
-                                        price = "${int.parse(widget.model.price.toString()) - int.parse(value["total_discount"])}";
-                                        applied = true;
-                                        _confettiController.play();
-                                        couponButtonText = "Applied";
-                                        Future.delayed(Duration(seconds: 1),(){
-                                          _confettiController.stop();
-                                        });
-                                        _coupnLoading = false;
-                                      });
-                                    }else{
-                                      setState(() {
-                                        Fluttertoast.showToast(msg: value["msg"]);
-                                        _coupnLoading = false;
-                                      });
-                                    }
-                                  });
-                                },
+                                onTap: couponButtonText == "Applied"
+                                    ? () {}
+                                    : _couponController.text.isEmpty
+                                        ? () {}
+                                        : () {
+                                            setState(() {
+                                              _coupnLoading = true;
+                                            });
+                                            final resp = CouponAppliedApi().get(
+                                                coupon: _couponController.text);
+                                            resp.then((value) {
+                                              if (value["status"] == true) {
+                                                setState(() {
+                                                  price =
+                                                      "${int.parse(widget.model.price.toString()) - int.parse(value["total_discount"])}";
+                                                  applied = true;
+                                                  _confettiController.play();
+                                                  couponButtonText = "Applied";
+                                                  Future.delayed(
+                                                      Duration(seconds: 1), () {
+                                                    _confettiController.stop();
+                                                  });
+                                                  _coupnLoading = false;
+                                                });
+                                              } else {
+                                                setState(() {
+                                                  Fluttertoast.showToast(
+                                                      msg: value["msg"]);
+                                                  _coupnLoading = false;
+                                                });
+                                              }
+                                            });
+                                          },
                                 child: SizedBox(
                                   width: 55.w,
                                   child: Center(
-                                    child: _coupnLoading? SpinKitThreeBounce(
-                                      color: k006D77,
-                                      size: 10,
-                                    ) :Text(
-                                      couponButtonText,
-                                      style: kManRope_500_16_006D77,
-                                    ),
+                                    child: _coupnLoading
+                                        ? SpinKitThreeBounce(
+                                            color: k006D77,
+                                            size: 10,
+                                          )
+                                        : Text(
+                                            couponButtonText,
+                                            style: kManRope_500_16_006D77,
+                                          ),
                                   ),
                                 ),
                               )
                             ],
                           ),
-                          ConfettiWidget(confettiController: _confettiController, shouldLoop: false,
+                          ConfettiWidget(
+                            confettiController: _confettiController,
+                            shouldLoop: false,
                             blastDirectionality: BlastDirectionality.explosive,
                           )
                         ],
@@ -274,10 +285,11 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                     SizedBox(
                       height: 8.h,
                     ),
-                    if (applied) Text(
-                      "“Coupon code applied successfully”",
-                      style: kManRope_400_10_006D77,
-                    ),
+                    if (applied)
+                      Text(
+                        "“Coupon code applied successfully”",
+                        style: kManRope_400_10_006D77,
+                      ),
                     SizedBox(
                       height: 239.h,
                     ),
@@ -323,16 +335,14 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                   setState(() {
                                     _isLoading = true;
                                   });
-                                  final resp = ConfirmBookingApi().get(
-                                      counsellorId: widget
-                                          .model.psychologistId
-                                          .toString(),
-                                      issueId: widget.issueId,
-                                      coupon: applied? _couponController.text :"",
-                                      time: TimeOfDay.now().toString().substring(10,15),
-                                      bookingType: widget.bookingType,
-                                      date: DateFormat("yyyy-MM-dd").format(DateTime.now()));
-                                  resp.then((value)async {
+                                  final resp = ConfirmInstantBookingApi().get(
+                                    psychologistId:
+                                        widget.model.psychologistId.toString(),
+                                    issueId: widget.issueId,
+                                    coupon:
+                                        applied ? _couponController.text : "",
+                                  );
+                                  resp.then((value) async {
                                     log(value.toString());
                                     if (value['status'] == true) {
                                       /*var _isSuccess =  await StripeClass().makePayment(
@@ -371,9 +381,13 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                            }
                                          });
                                        }*/
-                                      try{
-                                        await StripeClass().initPaymentSheet(value['payment']).then((value)async{
-                                          await Stripe.instance.presentPaymentSheet().then((value){
+                                      try {
+                                        await StripeClass()
+                                            .initPaymentSheet(value['payment'])
+                                            .then((value) async {
+                                          await Stripe.instance
+                                              .presentPaymentSheet()
+                                              .then((value) {
                                             setState(() {
                                               _isLoading = false;
                                             });
@@ -384,20 +398,23 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                                         UInstantBookingSuccessfulScreen(
                                                           model: widget.model,
                                                         )));
-                                          }).onError((StripeException error, stackTrace){
+                                          }).onError((StripeException error,
+                                                  stackTrace) {
                                             setState(() {
                                               _isLoading = false;
                                             });
-                                            Fluttertoast.showToast(msg: error.error.message.toString());
+                                            Fluttertoast.showToast(
+                                                msg: error.error.message
+                                                    .toString());
                                             log("present error ${error.toString()}");
                                           });
                                         });
-                                      }on StripeException catch (e) {
+                                      } on StripeException catch (e) {
                                         log('Exception/DISPLAYPAYMENTSHEET==> $e');
                                         setState(() {
                                           _isLoading = false;
                                         });
-                                      }catch (e) {
+                                      } catch (e) {
                                         print('$e');
                                         setState(() {
                                           _isLoading = false;
@@ -407,7 +424,8 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                       setState(() {
                                         _isLoading = false;
                                       });
-                                      Fluttertoast.showToast(msg: value['error']);
+                                      Fluttertoast.showToast(
+                                          msg: value['error']);
                                     }
                                   });
                                 },

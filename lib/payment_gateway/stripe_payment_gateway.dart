@@ -3,14 +3,9 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/Apis/payment_api/stripe_payment_api.dart';
-import 'package:greymatter/payment_gateway/payment_keys.dart';
-
-import '../Apis/payment_api/create_intent_api.dart';
-import '../constants/colors.dart';
 
 class StripeClass {
-/*  Map<String, dynamic>? paymentIntentData;
+  /*Map<String, dynamic>? paymentIntentData;
 
   Future<dynamic> makePayment({required String amount}) async {
     bool _isSuccess = false;
@@ -78,7 +73,8 @@ class StripeClass {
       //final data = await CreatePaymentIntent().get();
 
       // 2. initialize the payment sheet
-      var gPay = PaymentSheetGooglePay(merchantCountryCode: "IN",currencyCode: "INR", testEnv: true);
+      var gPay = PaymentSheetGooglePay(
+          merchantCountryCode: "IN", currencyCode: "INR", testEnv: true);
       await Stripe.instance.initPaymentSheet(
         paymentSheetParameters: SetupPaymentSheetParameters(
           /*appearance: PaymentSheetAppearance(
@@ -129,6 +125,4 @@ class StripeClass {
       rethrow;
     }
   }
-
-
 }

@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/USessionSucessfulScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-import 'package:greymatter/widgets/buttons.dart';
+
+import '../../../../agora/meeting_screen.dart';
 
 class UInstantBookingSuccessfulScreen extends StatefulWidget {
   UPsychologistModel model;
@@ -64,11 +64,13 @@ class _UInstantBookingSuccessfulScreenState
                 child: MaterialButton(
                   onPressed: () {
                     // if (!_flag) {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const USessionSuccessfulScreen()));
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (ctx) => MeetingScreen()));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) =>
+                    //             const USessionSuccessfulScreen()));
                     // }
                   },
                   child: Text(
@@ -121,7 +123,9 @@ class _UInstantBookingSuccessfulScreenState
                 height: 99.h,
               ),
               Text(
-                _flag ? text1 : text3,
+                _flag
+                    ? "Connecting to ${widget.model.name.toString()}"
+                    : "Connected to ${widget.model.name.toString()}",
                 style: kManRope_500_20_001314,
               ),
               SizedBox(height: 12.h),

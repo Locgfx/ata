@@ -29,11 +29,9 @@ import 'package:greymatter/model/UModels/user_home_models/user_activity_model.da
 import 'package:greymatter/model/UModels/user_order_model/upcoming_orders.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
-import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
-import '../UBookingScreens/USelectPsyChologistScreen.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
 
 class UHomeScreen extends StatefulWidget {
@@ -116,7 +114,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
     isLoading = true;
     final resp = UserExploreApi().get(scroll: '0');
     resp.then((value) {
-      //print(value);
+      log("hhhh" + value.toString());
       if (mounted) {
         setState(() {
           for (var v in value) {

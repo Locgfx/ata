@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PSuccessfulSessionScreen.dart';
+import 'package:greymatter/Apis/DoctorApis/availability_api.dart';
 import 'package:greymatter/Apis/DoctorApis/home_apis/appointment_details_api/appointment_details_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -21,7 +21,11 @@ class PJoiningScreen extends StatefulWidget {
   final String userId;
   final String bookingId;
   final String status;
-  const PJoiningScreen({Key? key, required this.userId, required this.status, required this.bookingId})
+  const PJoiningScreen(
+      {Key? key,
+      required this.userId,
+      required this.status,
+      required this.bookingId})
       : super(key: key);
 
   @override
@@ -114,7 +118,7 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                         ),
                         child: Image.network(
                           model.photo.toString(),
-                            fit: BoxFit.fill,
+                          fit: BoxFit.fill,
                           errorBuilder: (q, w, e) => Image.asset(
                               "assets/images/Rectangle 26.png",
                               fit: BoxFit.cover),
@@ -271,7 +275,8 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                       child: MainButton(
                         shape: CustomDecoration().smallButton10Decoration(),
                         color: k66898D,
-                        onPressed: () {
+                        onPressed: () async {
+                          final resp = await AvailabilityApi().get(status: 0);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (ctx) => MeetingScreen()));
                         },

@@ -109,7 +109,7 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                                     print(value);
                                     if (value['status'] == false) {
                                       Fluttertoast.showToast(
-                                          msg: 'login failed');
+                                          msg: value['error']);
                                     } else {
                                       var prefs =
                                           await SharedPreferences.getInstance();

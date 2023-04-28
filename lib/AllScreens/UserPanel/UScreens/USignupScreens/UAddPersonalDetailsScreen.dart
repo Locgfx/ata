@@ -236,6 +236,8 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                                               var prefs =
                                                   await SharedPreferences
                                                       .getInstance();
+                                              prefs.setString(Keys().userName,
+                                                  nameController.text);
                                               Fluttertoast.showToast(
                                                   msg:
                                                       'Profile Setup Successful');
