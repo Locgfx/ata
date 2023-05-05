@@ -9,6 +9,7 @@ import 'package:greymatter/Apis/DoctorApis/home_apis/upcoming_booking_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/PModels/home_models/upcoming_booking_model.dart';
 import 'package:intl/intl.dart';
+
 import '../../../../../constants/decorations.dart';
 import '../../../../../constants/fonts.dart';
 import '../../../../../widgets/buttons.dart';
@@ -37,7 +38,7 @@ class _UpcomingListState extends State<UpcomingList> {
     _isLoading = true;
     final resp = UpcomingBookingApi().get(scroll: "0");
     resp.then((value) {
-      log(value.toString());
+      log(value.toString() + "hhh");
       if (mounted) {
         setState(() {
           for (var v in value) {
@@ -54,7 +55,7 @@ class _UpcomingListState extends State<UpcomingList> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kEDF6F9,
-      body: _isLoading || upcomingBooking.isEmpty
+      body: _isLoading
           ? Center(
               child: SpinKitThreeBounce(
                 color: k006D77,
@@ -81,7 +82,9 @@ class _UpcomingListState extends State<UpcomingList> {
                                           userId: upcomingBooking[index]
                                               .userId
                                               .toString(),
-                                          bookingId: upcomingBooking[index].id.toString(),
+                                          bookingId: upcomingBooking[index]
+                                              .id
+                                              .toString(),
                                           status: "u",
                                         )),
                               );

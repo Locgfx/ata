@@ -14,6 +14,7 @@ import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 
 import '../../../../Apis/UserAPis/user_home_apis/confirm_booking_apis/confirm_instant_booking_api.dart';
+import '../../../../Apis/payment_api/confirm_payment_api.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
@@ -384,20 +385,34 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                       try {
                                         await StripeClass()
                                             .initPaymentSheet(value['payment'])
-                                            .then((value) async {
+                                            .then((value2) async {
                                           await Stripe.instance
                                               .presentPaymentSheet()
-                                              .then((value) {
-                                            setState(() {
-                                              _isLoading = false;
+                                              .then((value3) {
+                                            final resp = ConfirmPaymentApi()
+                                                .get(value['payment']
+                                                    ['paymentIntent']);
+                                            resp.then((value4) {
+                                              if (value4['status'] == true) {
+                                                setState(() {
+                                                  _isLoading = false;
+                                                });
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            UInstantBookingSuccessfulScreen(
+                                                              model:
+                                                                  widget.model,
+                                                            )));
+                                              } else {
+                                                setState(() {
+                                                  _isLoading = false;
+                                                });
+                                                Fluttertoast.showToast(
+                                                    msg: value4['error']);
+                                              }
                                             });
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        UInstantBookingSuccessfulScreen(
-                                                          model: widget.model,
-                                                        )));
                                           }).onError((StripeException error,
                                                   stackTrace) {
                                             setState(() {

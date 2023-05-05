@@ -20,6 +20,7 @@ import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../Apis/payment_api/apply_coupon.dart';
+import '../../../../Apis/payment_api/confirm_payment_api.dart';
 import '../../../../payment_gateway/stripe_payment_gateway.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
 
@@ -414,29 +415,45 @@ class _UConfirmAppointmentBookingState
                                     try {
                                       await StripeClass()
                                           .initPaymentSheet(value['payment'])
-                                          .then((value) async {
+                                          .then((value2) async {
                                         await Stripe.instance
                                             .presentPaymentSheet()
-                                            .then((value) {
-                                          setState(() {
-                                            _isLoading = false;
+                                            .then((value3) {
+                                          final resp = ConfirmPaymentApi().get(
+                                              value['payment']
+                                                  ['paymentIntent']);
+                                          resp.then((value4) {
+                                            log(value4.toString());
+                                            if (value4['status'] == true) {
+                                              setState(() {
+                                                _isLoading = false;
+                                              });
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UBookingSuccessfulScreen(
+                                                            name: widget
+                                                                .psychologist
+                                                                .name
+                                                                .toString(),
+                                                            date: widget.date,
+                                                            time: widget.slot,
+                                                            price: widget
+                                                                .psychologist
+                                                                .price
+                                                                .toString(),
+                                                            isCancellationAvailable:
+                                                                true,
+                                                          )));
+                                            } else {
+                                              setState(() {
+                                                _isLoading = false;
+                                              });
+                                              Fluttertoast.showToast(
+                                                  msg: value4['error']);
+                                            }
                                           });
-                                          Navigator.push(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      UBookingSuccessfulScreen(
-                                                        name: widget
-                                                            .psychologist.name
-                                                            .toString(),
-                                                        date: widget.date,
-                                                        time: widget.slot,
-                                                        price: widget
-                                                            .psychologist.price
-                                                            .toString(),
-                                                        isCancellationAvailable:
-                                                            true,
-                                                      )));
                                         }).onError((StripeException error,
                                                 stackTrace) {
                                           setState(() {
