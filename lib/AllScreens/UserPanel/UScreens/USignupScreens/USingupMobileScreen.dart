@@ -26,6 +26,7 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
   final TextEditingController _mobileController = TextEditingController();
 
   bool mobileEmpty = true;
+  bool _isChecked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -94,6 +95,25 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                           ],
                         ),
                       ),
+                      SizedBox(height: 30.h),
+                      CheckboxListTile(
+                          activeColor: k006D77,
+                          checkColor: Colors.white,
+                          checkboxShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          contentPadding: EdgeInsets.zero,
+                          controlAffinity: ListTileControlAffinity.leading,
+                          value: _isChecked,
+                          title: Text(
+                            "Get OTP on whatsapp",
+                            style: kManRope_400_20_626A6A,
+                          ),
+                          onChanged: (val) {
+                            setState(() {
+                              _isChecked = !_isChecked;
+                            });
+                          }),
                       SizedBox(height: 40.h),
                       mobileEmpty
                           ? CustomDeactiveTextButton(
@@ -102,6 +122,7 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                               onPressed: () {
                                 if (_formKey.currentState!.validate()) {
                                   final resp = Generateotpapi().get(
+                                    sendTo: _isChecked,
                                     mobileNo: _mobileController.text,
                                   );
                                   print(_mobileController.text);

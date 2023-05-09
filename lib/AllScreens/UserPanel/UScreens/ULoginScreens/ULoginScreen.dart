@@ -305,10 +305,13 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                   value['name']);
                                               prefs.setString(Keys().userImage,
                                                   value['image']);
-                                              if(value['ques'] == 0){
-                                                prefs.setBool(Keys().questionsDone, true);
-                                              }else{
-                                                prefs.setBool(Keys().questionsDone, false);
+                                              if (value['ques'] == 0) {
+                                                prefs.setBool(
+                                                    Keys().questionsDone, true);
+                                              } else {
+                                                prefs.setBool(
+                                                    Keys().questionsDone,
+                                                    false);
                                               }
                                               Fluttertoast.showToast(
                                                   msg: 'Login Successful');
@@ -616,6 +619,8 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                 print(prefs
                                                     .getString(Keys().cookie));
                                                 //prefs.setBool(Keys().firstRun, false);
+                                                prefs.setBool(
+                                                    Keys().isUser, true);
                                                 prefs.setBool(
                                                     Keys().loginDone, true);
                                                 prefs.setString(Keys().userName,

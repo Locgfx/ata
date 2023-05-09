@@ -278,7 +278,12 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                         onPressed: () async {
                           final resp = await AvailabilityApi().get(status: 0);
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => MeetingScreen()));
+                              builder: (ctx) => MeetingScreen(
+                                    date: "",
+                                    issue: "",
+                                    bookingId: widget.bookingId,
+                                    model: null,
+                                  )));
                         },
                         child: Padding(
                           padding: EdgeInsets.only(

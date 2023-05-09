@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/model/UModels/user_order_model/upcoming_orders.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:intl/intl.dart';
@@ -11,7 +11,6 @@ import '../../../../agora/meeting_screen.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/BottomSheets/CancelBookingBottomSheet.dart';
-import 'UDoctorprofile.dart';
 
 class UBookingConfirmationScreen extends StatefulWidget {
   final bool isCancellationAvailable;
@@ -40,6 +39,20 @@ class _UBookingConfirmationScreenState
         builder: (BuildContext context) => const CancelBottomSheet());
   }
 
+  UPsychologistModel psyModel = UPsychologistModel();
+
+  @override
+  void initState() {
+    psyModel = UPsychologistModel(
+      name: widget.model.name,
+      profilePhoto: widget.model.image,
+      designation: widget.model.designation,
+      price: widget.model.price,
+      rating: widget.model.rating,
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +71,7 @@ class _UBookingConfirmationScreenState
         child: SizedBox(
           child: ListView(
             children: [
-              Text('Selected Counsellors', style: kManRope_700_16_001314),
+              Text('Selected Counsellor', style: kManRope_700_16_001314),
               SizedBox(
                 height: 24.h,
               ),
@@ -175,8 +188,14 @@ class _UBookingConfirmationScreenState
         padding: EdgeInsets.only(left: 123.w, right: 123.w, bottom: 35.h),
         child: MainButton(
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (ctx) => MeetingScreen()));
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => MeetingScreen(
+                        date: DateFormat.yMMMEd().format(DateTime.parse(
+                            "${widget.model.date} ${widget.model.timeSlot}")),
+                        issue: widget.model.issueName.toString(),
+                        bookingId: widget.model.id,
+                        model: psyModel,
+                      )));
             },
             child: Padding(
               padding: EdgeInsets.only(

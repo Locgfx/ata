@@ -70,7 +70,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                         height: 8.h,
                       ),
                       Text(
-                        'Hey pankaj you have fill this form once you will done our partner will approach you.',
+                        'Hey, you have to fill this form. Once you are done, our partner will approach you at the date and time you will select below.',
                         style: kManRope_400_14_626A6A,
                       ),
                       SizedBox(
@@ -257,9 +257,10 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                               }
                             },
                             style: kManRope_500_16_626A6A,
-                            decoration:
-                                TextfieldDecoration(label: 'Add Timing here')
-                                    .textFieldEDF6F9Decoration(),
+                            decoration: TextfieldDecoration(
+                                    label:
+                                        'Pick a time when you are available for verification')
+                                .textFieldEDF6F9Decoration(),
                           ),
                         ),
                       ),
@@ -297,9 +298,10 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                               }
                             },
                             style: kManRope_500_16_626A6A,
-                            decoration:
-                                TextfieldDecoration(label: 'Add Date here')
-                                    .textFieldEDF6F9Decoration(),
+                            decoration: TextfieldDecoration(
+                                    label:
+                                        'Pick a date when you are available for verification')
+                                .textFieldEDF6F9Decoration(),
                           ),
                         ),
                       ),

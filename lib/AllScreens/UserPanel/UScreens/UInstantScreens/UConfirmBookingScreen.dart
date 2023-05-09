@@ -56,6 +56,7 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
     super.initState();
   }
 
+  String _bookingId = '';
   @override
   void dispose() {
     _confettiController.dispose();
@@ -346,42 +347,8 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                   resp.then((value) async {
                                     log(value.toString());
                                     if (value['status'] == true) {
-                                      /*var _isSuccess =  await StripeClass().makePayment(
-                                            amount: widget.psychologist.price.toString());
-                                       if(_isSuccess == false){
-                                         setState(() {
-                                           _isLoading = false;
-                                         });
-                                         Fluttertoast.showToast(msg: "Payment Failed! Please try again");
-                                       }else{
-                                        final resp = ConfirmPaymentApi().get(bookingId: bookingId, orderId: orderId, transactionId: _isSuccess!['id'], totalPayment: _isSuccess!['amount']);
-                                         resp.then((value){
-                                           if(value['status'] == true){
-                                             setState(() {
-                                               _isLoading = false;
-                                             });
-                                             Navigator.push(
-                                                 context,
-                                                 MaterialPageRoute(
-                                                     builder: (context) =>
-                                                         UBookingSuccessfulScreen(
-                                                           name: widget.psychologist.name
-                                                               .toString(),
-                                                           date: widget.date,
-                                                           time: widget.slot,
-                                                           price: widget
-                                                               .psychologist.price
-                                                               .toString(),
-                                                           isCancellationAvailable: true,
-                                                         )));
-                                           }else{
-                                             setState(() {
-                                               _isLoading = false;
-                                             });
-                                             Fluttertoast.showToast(msg: value['error']);
-                                           }
-                                         });
-                                       }*/
+                                      _bookingId =
+                                          value['booking_id'].toString();
                                       try {
                                         await StripeClass()
                                             .initPaymentSheet(value['payment'])
@@ -397,11 +364,14 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                                 setState(() {
                                                   _isLoading = false;
                                                 });
+                                                log(_bookingId);
                                                 Navigator.push(
                                                     context,
                                                     MaterialPageRoute(
                                                         builder: (context) =>
                                                             UInstantBookingSuccessfulScreen(
+                                                              bookingId:
+                                                                  _bookingId,
                                                               model:
                                                                   widget.model,
                                                             )));

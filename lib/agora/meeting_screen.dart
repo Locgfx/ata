@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PSuccessfulSessionScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/availability_api.dart';
+import 'package:greymatter/Apis/meeting_api/get_token_api.dart';
 import 'package:greymatter/agora/chat_config.dart';
 import 'package:greymatter/constants/globals.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -20,7 +22,17 @@ const token = "<-- Insert Token -->";
 const channel = "<-- Insert Channel Name -->";*/
 
 class MeetingScreen extends StatefulWidget {
-  const MeetingScreen({Key? key}) : super(key: key);
+  final String bookingId;
+  final UPsychologistModel? model;
+  final String date;
+  final String issue;
+  const MeetingScreen(
+      {Key? key,
+      required this.bookingId,
+      required this.model,
+      required this.date,
+      required this.issue})
+      : super(key: key);
 
   @override
   State<MeetingScreen> createState() => _MeetingScreenState();
@@ -39,7 +51,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
   @override
   void initState() {
     //initAgora();
-    setUpAgora();
+    _getMeetingToken();
     _getPrefs();
     super.initState();
   }
@@ -47,6 +59,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
   _getPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     _isUser = prefs.getBool(Keys().isUser) ?? false;
+    log("is user $_isUser");
   }
 
   bool _isLoading = false;
@@ -124,15 +137,37 @@ class _MeetingScreenState extends State<MeetingScreen> {
     //_engine.release();
     // await _client.engine.disableAudio();
     // await _client.engine.disableVideo();
-    final resp = await AvailabilityApi().get(status: 1);
     await _client.release();
     super.dispose();
   }
 
   static int _uId = 0;
 
-  setUpAgora() async {
+  //agora_token
+  //channel_name
+
+  String channelName = '';
+  String rtcToken = '';
+  _getMeetingToken() {
+    log(widget.bookingId.toString());
     _isLoading = true;
+    final resp = GetMeetingTokenApi().get(bookingId: widget.bookingId);
+    resp.then((value) {
+      if (value['status'] == true) {
+        rtcToken = value['agora_token'];
+        channelName = value['channel_name'];
+        setUpAgora();
+      } else {
+        Fluttertoast.showToast(msg: value['error']);
+        setState(() {
+          //_isLoading = false;
+        });
+      }
+    });
+  }
+
+  setUpAgora() async {
+    //_isLoading = true;
     _client = AgoraClient(
       enabledPermission: [
         Permission.camera,
@@ -140,8 +175,8 @@ class _MeetingScreenState extends State<MeetingScreen> {
       ],
       agoraConnectionData: AgoraConnectionData(
         appId: AgoraChatConfig.appKey,
-        channelName: AgoraChatConfig.userId,
-        tempToken: AgoraChatConfig.agoraToken,
+        channelName: channelName,
+        tempToken: rtcToken,
       ),
       agoraEventHandlers: AgoraRtcEventHandlers(
         onConnectionLost: (connection) {
@@ -207,9 +242,14 @@ class _MeetingScreenState extends State<MeetingScreen> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>
-                                  const USessionSuccessfulScreen()));
+                              builder: (context) => USessionSuccessfulScreen(
+                                    model: widget.model,
+                                    bookingId: widget.bookingId,
+                                    date: widget.date,
+                                    issue: widget.issue,
+                                  )));
                     } else {
+                      final resp = await AvailabilityApi().get(status: 1);
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (ctx) => PSuccessfulSessionScreen()));
                     }

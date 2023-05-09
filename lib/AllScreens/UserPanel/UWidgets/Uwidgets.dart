@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -72,6 +74,7 @@ class _StarRatingWidgetState extends State<StarRatingWidget> {
 
   @override
   void initState() {
+    log(widget.rating.toString());
     _rating = int.parse(widget.rating);
     setRating(_rating);
     super.initState();

@@ -38,13 +38,17 @@ class UpcomingOrders {
   late final String status;
   late final String payment;
   late final String name;
+  late final String price;
+  late final String rating;
   late final String designation;
 
   UpcomingOrders.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     user = json['user'];
     psychologist = json['psychologist'];
+    rating = json['rating'];
     issue = json['issue'];
+    price = json['pricing'];
     issueName = json['issue_name'];
     date = json['date'];
     image = json['image'];

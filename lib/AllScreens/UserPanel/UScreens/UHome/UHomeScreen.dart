@@ -62,11 +62,13 @@ class _UHomeScreenState extends State<UHomeScreen> {
     UserOrderHistoryApi()
         .getUpcoming(page: 0)
         .then((value) => setState(() {
-              //log(value.data.toString() + "g uguyvf ");
+              log(value.data.toString() + "g uguyvf ");
               upcomingOrderData = value;
               upcomingOrderData.data.removeWhere((element) =>
                   DateTime.parse("${element.date} ${element.timeSlot}")
                       .isBefore(DateTime.now()));
+              upcomingOrderData.data
+                  .removeWhere((element) => element.payment != "p");
               log(upcomingOrderData.data.length.toString());
               log(value.data.length.toString());
             }))

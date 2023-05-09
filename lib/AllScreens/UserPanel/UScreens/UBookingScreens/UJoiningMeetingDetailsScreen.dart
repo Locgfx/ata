@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/USessionSucessfulScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -155,12 +154,7 @@ class _UJoiningMeetingDetailsScreenState
           child: MainButton(
             shape: CustomDecoration().button08Decoration(),
             color: k66898D,
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => USessionSuccessfulScreen()));
-            },
+            onPressed: () {},
             child: Text(
               "Join meeting",
               style: kManRope_400_16_white,

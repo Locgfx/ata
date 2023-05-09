@@ -7,12 +7,15 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../agora/meeting_screen.dart';
 
 class UInstantBookingSuccessfulScreen extends StatefulWidget {
   UPsychologistModel model;
-  UInstantBookingSuccessfulScreen({Key? key, required this.model})
+  String bookingId;
+  UInstantBookingSuccessfulScreen(
+      {Key? key, required this.model, required this.bookingId})
       : super(key: key);
 
   @override
@@ -64,8 +67,12 @@ class _UInstantBookingSuccessfulScreenState
                 child: MaterialButton(
                   onPressed: () {
                     // if (!_flag) {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) => MeetingScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => MeetingScreen(
+                            date: DateFormat.yMMMEd().format(DateTime.now()),
+                            issue: "",
+                            bookingId: widget.bookingId,
+                            model: widget.model)));
                     // Navigator.push(
                     //     context,
                     //     MaterialPageRoute(
