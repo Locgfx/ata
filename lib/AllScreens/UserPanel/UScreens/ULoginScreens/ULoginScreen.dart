@@ -621,6 +621,7 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                 //prefs.setBool(Keys().firstRun, false);
                                                 prefs.setBool(
                                                     Keys().isUser, true);
+
                                                 prefs.setBool(
                                                     Keys().loginDone, true);
                                                 prefs.setString(Keys().userName,
@@ -630,6 +631,10 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                     value['image']);
                                                 prefs.setString(
                                                     Keys().userType, "u");
+                                                prefs.setString(Keys().email,
+                                                    _emailController.text);
+                                                prefs.setString(Keys().password,
+                                                    _passwordController.text);
                                                 log(value['ques'].toString());
                                                 if (value["ques"] == 0) {
                                                   prefs.setBool(

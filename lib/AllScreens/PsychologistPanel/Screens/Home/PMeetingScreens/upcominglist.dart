@@ -62,151 +62,160 @@ class _UpcomingListState extends State<UpcomingList> {
                 size: 30,
               ),
             )
-          : Column(
-              children: [
-                Expanded(
-                  child: ListView.separated(
-                    itemCount:
-                        upcomingBooking.length > 4 ? 5 : upcomingBooking.length,
-                    scrollDirection: Axis.vertical,
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (ctx, index) {
-                      return Column(
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => PJoiningScreen(
-                                          userId: upcomingBooking[index]
-                                              .userId
+          : upcomingBooking.isEmpty
+              ? Center(
+                  child: Text("No Bookings yet."),
+                )
+              : Column(
+                  children: [
+                    Expanded(
+                      child: ListView.separated(
+                        itemCount: upcomingBooking.length > 4
+                            ? 5
+                            : upcomingBooking.length,
+                        scrollDirection: Axis.vertical,
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (ctx, index) {
+                          return Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => PJoiningScreen(
+                                              userId: upcomingBooking[index]
+                                                  .userId
+                                                  .toString(),
+                                              bookingId: upcomingBooking[index]
+                                                  .id
+                                                  .toString(),
+                                              status: "u",
+                                            )),
+                                  );
+                                },
+                                child: Container(
+                                  height: 80,
+                                  width: 1.sw,
+                                  margin: EdgeInsets.symmetric(horizontal: 24),
+                                  padding: EdgeInsets.all(16.w),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: kEDF6F9,
+                                      border: Border.all(color: Colors.white)),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 48.h,
+                                        width: 48.w,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Colors.grey,
+                                        ),
+                                        clipBehavior: Clip.hardEdge,
+                                        child: CachedNetworkImage(
+                                          imageUrl: upcomingBooking[index]
+                                              .photo
                                               .toString(),
-                                          bookingId: upcomingBooking[index]
-                                              .id
-                                              .toString(),
-                                          status: "u",
-                                        )),
-                              );
-                            },
-                            child: Container(
-                              height: 80,
-                              width: 1.sw,
-                              margin: EdgeInsets.symmetric(horizontal: 24),
-                              padding: EdgeInsets.all(16.w),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color: kEDF6F9,
-                                  border: Border.all(color: Colors.white)),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    height: 48.h,
-                                    width: 48.w,
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: Colors.grey,
-                                    ),
-                                    clipBehavior: Clip.hardEdge,
-                                    child: CachedNetworkImage(
-                                      imageUrl: upcomingBooking[index]
-                                          .photo
-                                          .toString(),
-                                      fit: BoxFit.cover,
-                                      placeholder: (context, url) => Center(
-                                        child: SpinKitThreeBounce(
-                                          color: k006D77,
-                                          size: 10,
+                                          fit: BoxFit.cover,
+                                          placeholder: (context, url) => Center(
+                                            child: SpinKitThreeBounce(
+                                              color: k006D77,
+                                              size: 10,
+                                            ),
+                                          ),
+                                          errorWidget: (context, url, error) =>
+                                              Icon(Icons.error),
                                         ),
                                       ),
-                                      errorWidget: (context, url, error) =>
-                                          Icon(Icons.error),
-                                    ),
-                                  ),
-                                  SizedBox(width: 16.w),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                            upcomingBooking[index]
-                                                .name
-                                                .toString(),
-                                            style: kManRope_500_16_001314),
-                                        Row(
+                                      SizedBox(width: 16.w),
+                                      Expanded(
+                                        child: Column(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                                 upcomingBooking[index]
-                                                    .issueName
+                                                    .name
                                                     .toString(),
-                                                style: kManRope_400_14_626A6A),
-                                            // SizedBox(width: 24.w),
+                                                style: kManRope_500_16_001314),
                                             Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
                                                 Text(
-                                                  DateFormat.yMMMd()
-                                                      .add_jm()
-                                                      .format(DateTime.parse(
-                                                          "${upcomingBooking[index].date.toString()} ${upcomingBooking[index].timeSlot.toString()}")),
-                                                  style: kManRope_400_14_626A6A,
-                                                  textAlign: TextAlign.end,
+                                                    upcomingBooking[index]
+                                                        .issueName
+                                                        .toString(),
+                                                    style:
+                                                        kManRope_400_14_626A6A),
+                                                // SizedBox(width: 24.w),
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      DateFormat.yMMMd()
+                                                          .add_jm()
+                                                          .format(DateTime.parse(
+                                                              "${upcomingBooking[index].date.toString()} ${upcomingBooking[index].timeSlot.toString()}")),
+                                                      style:
+                                                          kManRope_400_14_626A6A,
+                                                      textAlign: TextAlign.end,
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
                                           ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ),
-                          if (index == 4) SizedBox(height: 16),
-                          if (index == 4)
-                            Container(
-                              margin: EdgeInsets.symmetric(horizontal: 24),
-                              width: 1.sw,
-                              height: 56.h,
-                              child: MainButton(
-                                  onPressed: () {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                UpcomingMeetings(
-                                                  screenName: "Upcoming",
-                                                )));
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 18.h, bottom: 18.h),
-                                    child: Text(
-                                      "See all",
-                                      style: kManRope_500_16_white,
-                                    ),
-                                  ),
-                                  color: k006D77,
-                                  shape:
-                                      CustomDecoration().button16Decoration()),
-                            )
-                        ],
-                      );
-                    },
-                    separatorBuilder: (ctx, index) {
-                      return SizedBox(height: 12.h);
-                    },
-                  ),
+                              if (index == 4) SizedBox(height: 16),
+                              if (index == 4)
+                                Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 24),
+                                  width: 1.sw,
+                                  height: 56.h,
+                                  child: MainButton(
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    UpcomingMeetings(
+                                                      screenName: "Upcoming",
+                                                    )));
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 18.h, bottom: 18.h),
+                                        child: Text(
+                                          "See all",
+                                          style: kManRope_500_16_white,
+                                        ),
+                                      ),
+                                      color: k006D77,
+                                      shape: CustomDecoration()
+                                          .button16Decoration()),
+                                )
+                            ],
+                          );
+                        },
+                        separatorBuilder: (ctx, index) {
+                          return SizedBox(height: 12.h);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40.h,
+                    )
+                  ],
                 ),
-                SizedBox(
-                  height: 40.h,
-                )
-              ],
-            ),
     );
   }
 }

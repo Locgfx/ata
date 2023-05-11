@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "597583886413",
-    "project_id": "ataraxis-50a01",
-    "storage_bucket": "ataraxis-50a01.appspot.com"
+    "project_number": "503388248988",
+    "project_id": "ataraxis-b8eb5",
+    "storage_bucket": "ataraxis-b8eb5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:597583886413:android:dd6817e6bab38342384404",
+        "mobilesdk_app_id": "1:503388248988:android:f46ee85ae44be94b360659",
         "android_client_info": {
           "package_name": "com.locgfx.ataraxis"
         }
       },
       "oauth_client": [
         {
-          "client_id": "597583886413-iv94u5hglb2kbr9ccjcq6fch4o21nu3d.apps.googleusercontent.com",
+          "client_id": "503388248988-4e055ekk0t0horua2ka6t26r0di06pm1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBjeIcGNjVbFCB_v2Qo0q8mhHkjExTv9As"
+          "current_key": "AIzaSyDkz7j3KarOCK18Gf48ekr780-RjFaqgII"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "597583886413-iv94u5hglb2kbr9ccjcq6fch4o21nu3d.apps.googleusercontent.com",
+              "client_id": "503388248988-4e055ekk0t0horua2ka6t26r0di06pm1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

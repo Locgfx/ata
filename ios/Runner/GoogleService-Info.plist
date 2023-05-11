@@ -3,21 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>38434211867-n2ljvmp010h9h7uc41h3vlhqa03gr800.apps.googleusercontent.com</string>
+	<string>503388248988-j0jdeaj4650v4rr3bsm81l4plccflj1s.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.38434211867-n2ljvmp010h9h7uc41h3vlhqa03gr800</string>
+	<string>com.googleusercontent.apps.503388248988-j0jdeaj4650v4rr3bsm81l4plccflj1s</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>503388248988-3m9t3livjabuhdtjodbe7ed67ifb304u.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDYEnsozUkrBJPnc8TiBYR0INmnTPhJGMw</string>
+	<string>AIzaSyB6E0kjmeswlPVxaQd2_xObrOR0PW66YZE</string>
 	<key>GCM_SENDER_ID</key>
-	<string>38434211867</string>
+	<string>503388248988</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.kanram.kidseau.kidseau</string>
+	<string>com.locgfx.greymatter</string>
 	<key>PROJECT_ID</key>
-	<string>kidseau-71295</string>
+	<string>ataraxis-b8eb5</string>
 	<key>STORAGE_BUCKET</key>
-	<string>kidseau-71295.appspot.com</string>
+	<string>ataraxis-b8eb5.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:38434211867:ios:7be9fe9623e8986ec850be</string>
+	<string>1:503388248988:ios:a446969c071ba788360659</string>
 </dict>
 </plist>

@@ -1,4 +1,6 @@
+import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -13,7 +15,7 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/PModels/home_models/total_revenue_model/total_revenue_model.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shimmerLoader.dart';
-import 'package:shimmer/shimmer.dart';
+
 import '../../../../constants/fonts.dart';
 
 class PHomeScreen extends StatefulWidget {
@@ -47,6 +49,7 @@ class _PHomeScreenState extends State<PHomeScreen>
     _isLoading = true;
     final resp = TotalRevenueApi().get();
     resp.then((value) {
+      log(value.toString());
       if (value['status'] == true) {
         setState(() {
           model = TotalRevenueModel.fromJson(value);

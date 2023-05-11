@@ -3,15 +3,18 @@ import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PTabsScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/UQuestionScreen.dart';
+import 'package:greymatter/Apis/DoctorApis/doctor_login_apis/Dloginapi.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../Apis/Notifications_apis/notification_token_api.dart';
+import '../../Apis/UserAPis/loginapi/loginapi.dart';
 import '../../constants/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -85,14 +88,20 @@ class _SplashScreenState extends State<SplashScreen> {
           log(isUser.toString());
           if (questionsDone) {
             log(questionsDone.toString() + " question done");
-            /*final resp = UserLoginApi().get(
-              username: 'user01@gmail.com' */ /*prefs.getString(Keys().email)!*/ /*,
-              password: '1234' */ /*prefs.getString(Keys().password)!*/ /*,
+            final resp = UserLoginApi().get(
+              username: prefs.getString(Keys().email)!,
+              password: prefs.getString(Keys().password)!,
             );
             resp.then((value) {
               if (value['status'] == false) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => OnBoardingScreen(),
+                  ),
+                );
                 Fluttertoast.showToast(
-                    msg: value['Error! Please Login Again.']);
+                    msg: value['Session expired! Please Login Again.']);
               } else {
                 prefs.setString(Keys().cookie, value['session_id']);
                 Navigator.push(
@@ -102,13 +111,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   ),
                 );
               }
-            });*/
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => UTabsScreen(),
-              ),
-            );
+            });
           } else {
             Navigator.push(
               context,
@@ -118,12 +121,30 @@ class _SplashScreenState extends State<SplashScreen> {
             );
           }
         } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => PTabsScreen(),
-            ),
+          final resp = DoctorLoginApi().get(
+            username: prefs.getString(Keys().email)!,
+            password: prefs.getString(Keys().password)!,
           );
+          resp.then((value) {
+            if (value['status'] == false) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => OnBoardingScreen(),
+                ),
+              );
+              Fluttertoast.showToast(
+                  msg: value['Session expired! Please Login Again.']);
+            } else {
+              prefs.setString(Keys().cookie, value['session_id']);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => PTabsScreen(),
+                ),
+              );
+            }
+          });
         }
       } else {
         log("message");
