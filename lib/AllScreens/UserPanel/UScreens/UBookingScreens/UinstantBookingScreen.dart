@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UTopSpecialistGridview.dart';
 import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/instant_booking_widgets/top_verified_specialists.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
+
+import '../UProfile/UHelpandsupport.dart';
 
 class UInstantBookingScreen extends StatefulWidget {
   final String bookingType;
@@ -29,9 +30,15 @@ class _UInstantBookingScreenState extends State<UInstantBookingScreen> {
               hasThreeDots: false,
               appBarText: 'Instant Booking',
               imgPath: 'assets/images/iconbackappbar2.png',
-              text: Text(
-                "Help",
-                style: kManRope_500_16_006D77,
+              text: InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const UHelpandSupport()));
+                },
+                child: Text(
+                  "Help",
+                  style: kManRope_500_16_006D77,
+                ),
               )),
           body: SingleChildScrollView(
             child: Column(
@@ -44,17 +51,29 @@ class _UInstantBookingScreenState extends State<UInstantBookingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: 56.h,
-                        decoration:
-                            CustomDecoration().outline5A72EDDecoration(),
-                        child: TextField(
-                          decoration: TextfieldDecoration(
-                                  label: 'Search for health problems',
-                                  hintstyle: kManRope_400_14_626A6A)
-                              .whiteColorSearchField(),
-                        ),
-                      ),
+                      // InkWell(
+                      //   onTap: () {
+                      //     Navigator.of(context).push(MaterialPageRoute(
+                      //         builder: (ctx) => SearchPsychologistScreen(
+                      //               bookingType: 'i',
+                      //               issueId: '',
+                      //               issue: '',
+                      //             )));
+                      //   },
+                      //   child: Container(
+                      //     height: 56.h,
+                      //     decoration:
+                      //         CustomDecoration().outline5A72EDDecoration(),
+                      //     child: IgnorePointer(
+                      //       child: TextField(
+                      //         decoration: TextfieldDecoration(
+                      //                 label: 'Search for health problems',
+                      //                 hintstyle: kManRope_400_14_626A6A)
+                      //             .whiteColorSearchField(() {}),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(height: 40.h),
                       Text('Choose from Top Counsellors',
                           style: kManRope_700_16_001314),

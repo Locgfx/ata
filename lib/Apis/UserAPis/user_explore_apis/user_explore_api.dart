@@ -8,7 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constants/globals.dart';
 
 class UserExploreApi {
-  Future<dynamic> get({required String scroll}) async {
+  Future<dynamic> get({required String scroll, required String search}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
     var headers = {
@@ -16,18 +16,22 @@ class UserExploreApi {
       'Cookie': 'PHPSESSID=$v'
     };
 
+    String searchUrl = '';
+    if (search == "") {
+      searchUrl = "";
+    } else {
+      searchUrl = "&search=$search";
+    }
     var request = http.Request(
-        'GET', Uri.parse('$baseUrl/psychologists.php?start=$scroll'));
+        'GET', Uri.parse('$baseUrl/psychologists.php?start=$scroll$searchUrl'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var rsp = jsonDecode(await response.stream.bytesToString());
     //print(rsp);
-    log(request.headers.toString());
     if (response.statusCode == 200) {
       return rsp;
     } else {
-      print(response.statusCode);
-      Globals().showToast(rsp['error']);
+      log(rsp.toString());
       return rsp;
     }
   }

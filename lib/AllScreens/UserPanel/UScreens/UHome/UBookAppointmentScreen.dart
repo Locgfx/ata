@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/search_psycologist_screen.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_specialist_model.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/userspecialistapi.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -7,6 +8,7 @@ import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
+import '../UProfile/UHelpandsupport.dart';
 import 'UAllPsychologistScreen.dart';
 
 class UBookAppointmentScreen extends StatefulWidget {
@@ -51,9 +53,15 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
           hasThreeDots: false,
           appBarText: 'Book Appointment',
           imgPath: 'assets/images/iconbackappbar2.png',
-          text: Text(
-            "Help",
-            style: kManRope_500_16_006D77,
+          text: InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const UHelpandSupport()));
+            },
+            child: Text(
+              "Help",
+              style: kManRope_500_16_006D77,
+            ),
           )),
       body: Column(
         children: [
@@ -63,14 +71,26 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  height: 56.h,
-                  decoration: CustomDecoration().outline5A72EDDecoration(),
-                  child: TextField(
-                    decoration: TextfieldDecoration(
-                            label: 'Search for Counsellors',
-                            hintstyle: kManRope_400_14_626A6A)
-                        .whiteColorSearchField(),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => SearchPsychologistScreen(
+                              bookingType: 'a',
+                              issueId: "",
+                              issue: "",
+                            )));
+                  },
+                  child: Container(
+                    height: 56.h,
+                    decoration: CustomDecoration().outline5A72EDDecoration(),
+                    child: IgnorePointer(
+                      child: TextField(
+                        decoration: TextfieldDecoration(
+                                label: 'Search for Counsellors',
+                                hintstyle: kManRope_400_14_626A6A)
+                            .whiteColorSearchField(() {}),
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 40.h),

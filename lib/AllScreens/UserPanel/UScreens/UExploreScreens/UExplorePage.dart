@@ -49,7 +49,7 @@ class _UExplorePageState extends State<UExplorePage> {
   int dataVal = 0;
   getReloadedData() {
     _scroll++;
-    final resp = UserExploreApi().get(scroll: '$_scroll');
+    final resp = UserExploreApi().get(scroll: '$_scroll', search: "");
     resp.then((value) {
       //print(value);
       if (mounted) {
@@ -66,7 +66,7 @@ class _UExplorePageState extends State<UExplorePage> {
 
   Future<String> getData() async {
     _isLoading = true;
-    final resp = UserExploreApi().get(scroll: '0');
+    final resp = UserExploreApi().get(scroll: '0', search: "");
     resp.then((value) {
       //print(value);
       if (mounted) {

@@ -264,7 +264,7 @@ class TextfieldDecoration {
             child: child ?? SizedBox.shrink()));
   }
 
-  InputDecoration whiteColorSearchField() {
+  InputDecoration whiteColorSearchField(Function onTap) {
     return InputDecoration(
       hintText: label,
       hintStyle: kManRope_400_14_626A6A,
@@ -275,16 +275,21 @@ class TextfieldDecoration {
       fillColor: Colors.white,
       filled: true,
       suffixIconConstraints: BoxConstraints(maxHeight: 55.h, maxWidth: 55.w),
-      suffixIcon: Container(
-        color: Colors.transparent,
-        padding: EdgeInsets.only(right: 8.w),
+      suffixIcon: InkWell(
+        onTap: () {
+          onTap();
+        },
         child: Container(
           color: Colors.transparent,
-          child: Image.asset(
-            'assets/images/iconsearchblue.png',
-            height: 48,
-            width: 48,
-            fit: BoxFit.fitWidth,
+          padding: EdgeInsets.only(right: 8.w),
+          child: Container(
+            color: Colors.transparent,
+            child: Image.asset(
+              'assets/images/iconsearchblue.png',
+              height: 48,
+              width: 48,
+              fit: BoxFit.fitWidth,
+            ),
           ),
         ),
       ),

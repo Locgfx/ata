@@ -11,6 +11,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivi
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllPsychologistScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllVideosScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UNotificationScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/search_psycologist_screen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UBookings.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UClipClass.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UInfo.dart';
@@ -114,7 +115,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
 
   getPsychologistData() {
     isLoading = true;
-    final resp = UserExploreApi().get(scroll: '0');
+    final resp = UserExploreApi().get(scroll: '0', search: "");
     resp.then((value) {
       log("hhhh" + value.toString());
       if (mounted) {
@@ -205,13 +206,32 @@ class _UHomeScreenState extends State<UHomeScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                height: 56.h,
-                                width: 1.sw,
-                                child: TextField(
-                                    decoration: TextfieldDecoration(
-                                            label: 'Search for Counsellors')
-                                        .whiteColorSearchField()),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (ctx) =>
+                                          SearchPsychologistScreen(
+                                            bookingType: 'a',
+                                            issueId: psychologists[0]
+                                                .specialities![0]
+                                                .specialitiesId
+                                                .toString(),
+                                            issue: psychologists[0]
+                                                .specialities![0]
+                                                .name
+                                                .toString(),
+                                          )));
+                                },
+                                child: SizedBox(
+                                  height: 56.h,
+                                  width: 1.sw,
+                                  child: IgnorePointer(
+                                    child: TextField(
+                                        decoration: TextfieldDecoration(
+                                                label: 'Search for Counsellors')
+                                            .whiteColorSearchField(() {})),
+                                  ),
+                                ),
                               ),
                               SizedBox(height: 36.h),
                               Text('In the Spotlight',

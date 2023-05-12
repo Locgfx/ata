@@ -3,8 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UConfirmBookingScreen.dart';
-
-import 'package:greymatter/constants/Lists.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
@@ -15,7 +13,6 @@ import 'package:table_calendar/table_calendar.dart';
 import '../../../../Apis/UserAPis/user_home_apis/confirm_booking_apis/get_slots_api.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-import '../../../../model/PModels/counselor_profile_model/slots_model.dart';
 import '../../../../model/UModels/user_home_models/slots_model.dart';
 
 class UScheduleAppointmentScreen extends StatefulWidget {
@@ -135,6 +132,9 @@ class _UScheduleAppointmentScreenState
               value = i;
               issue = widget.issue;
               issueId = widget.issueId;
+            } else {
+              issue = _slotsModel.issue![0].name.toString();
+              issueId = _slotsModel.issue![0].specialitiesId.toString();
             }
           }
           _isLoading = false;
