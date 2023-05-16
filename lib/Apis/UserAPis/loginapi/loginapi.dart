@@ -16,7 +16,7 @@ class UserLoginApi {
     //   'Cookie': 'PHPSESSID=$v'
     // };
     var request =
-        http.Request('POST', Uri.parse('$kAPIConst/api-user//login-user.php'));
+        http.Request('POST', Uri.parse('$kAPIConst/api-user/login-user.php'));
     request.body = json.encode({
       "username": username,
       "password": password,

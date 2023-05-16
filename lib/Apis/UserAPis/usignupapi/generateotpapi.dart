@@ -12,7 +12,7 @@ class Generateotpapi {
     // };
     var request = http.Request('POST', Uri.parse('${baseUrl}send-otp.php'));
     request.body =
-        json.encode({"mobile": mobileNo, if (sendTo) "send_to": "wa"});
+        json.encode({"mobile": mobileNo, if (sendTo) "send_on": "wa"});
     // request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var resp = jsonDecode(await response.stream.bytesToString());

@@ -23,6 +23,7 @@ class NotificationTokenApi {
 
     request.headers.addAll(headers);
     log(request.fields.toString());
+    log(request.fields.toString());
     http.StreamedResponse response = await request.send();
 
     var resp = jsonDecode(await response.stream.bytesToString());
