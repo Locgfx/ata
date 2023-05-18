@@ -48,6 +48,9 @@ class _UCreatePostState extends State<UCreatePost> {
     super.initState();
   }
 
+  bool _showDelete = false;
+  File _draggedFile = File("");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,20 +104,25 @@ class _UCreatePostState extends State<UCreatePost> {
                             XFile? v = await _imgPicker.pickImage(
                                 source: ImageSource.camera);
                             if (v != null) {
-                              setState(() {
-                                _pickedImage = File(v.path);
-                                _pickedImages.add(_pickedImage);
-                              });
+                              if (_pickedImages.length > 4) {
+                                Fluttertoast.showToast(
+                                    msg: "Maximum 4 images are allowed.");
+                              } else {
+                                setState(() {
+                                  _pickedImage = File(v.path);
+                                  _pickedImages.add(_pickedImage);
+                                });
+                              }
                             }
                           },
                           child: SizedBox(
-                            height: 18,
-                            width: 20,
+                            height: 24,
+                            width: 24,
                             // color: Colors.red,
                             child: Image.asset(
                               'assets/images/iconcamera.png',
-                              height: 18,
-                              width: 20,
+                              height: 24,
+                              width: 24,
                             ),
                           ),
                         ),
@@ -126,8 +134,18 @@ class _UCreatePostState extends State<UCreatePost> {
                             List<XFile> images =
                                 await _imgPicker.pickMultiImage();
                             setState(() {
-                              for (var v in images) {
-                                _pickedImages.add(File(v.path));
+                              if (images.length > 4) {
+                                Fluttertoast.showToast(
+                                    msg: "Maximum 4 images are allowed.");
+                              } else {
+                                if (_pickedImages.length > 4) {
+                                  Fluttertoast.showToast(
+                                      msg: "Maximum 4 images are allowed.");
+                                } else {
+                                  for (var v in images) {
+                                    _pickedImages.add(File(v.path));
+                                  }
+                                }
                               }
                             });
                             if (_pickedImages.isNotEmpty) {
@@ -135,8 +153,8 @@ class _UCreatePostState extends State<UCreatePost> {
                             }
                           },
                           child: SizedBox(
-                            height: 18,
-                            width: 20,
+                            height: 24,
+                            width: 24,
                             // color: Colors.red,
                             child: Image.asset(
                               'assets/images/iconpost.png',
@@ -155,6 +173,7 @@ class _UCreatePostState extends State<UCreatePost> {
               ),
               TextField(
                 controller: controller,
+                minLines: 1,
                 maxLines: 10,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
@@ -167,18 +186,65 @@ class _UCreatePostState extends State<UCreatePost> {
                 height: 24.h,
               ),
               Container(
-                height: 150,
+                height: 250,
                 //padding: EdgeInsets.only(left: 16),
                 child: ListView.separated(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (ctx, index) {
-                      return InkWell(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.file(
-                            _pickedImages[index],
-                            fit: BoxFit.fitWidth,
+                      return LongPressDraggable<File>(
+                        onDragStarted: () {
+                          log("Started");
+                          setState(() {
+                            _showDelete = true;
+                          });
+                        },
+                        onDragCompleted: () {
+                          log("Completed");
+                          setState(() {
+                            _showDelete = false;
+                          });
+                        },
+                        onDragEnd: (details) {
+                          log("Ended");
+                          setState(() {
+                            _showDelete = false;
+                          });
+                        },
+                        onDragUpdate: (updateDetails) {
+                          _draggedFile = _pickedImages[index];
+                          //log(_draggedFile.path);
+                        },
+                        //axis: Axis.vertical,
+                        data: _pickedImages[index],
+                        feedback: Container(
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                              color: Colors.black38,
+                              borderRadius: BorderRadius.circular(10)),
+                          width: 250,
+                          height: 200,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.file(
+                              _pickedImages[index],
+                              //fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        child: Container(
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                              color: Colors.black38,
+                              borderRadius: BorderRadius.circular(10)),
+                          width: 1.sw - 50,
+                          height: 300,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.file(
+                              _pickedImages[index],
+                              //fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       );
@@ -188,13 +254,36 @@ class _UCreatePostState extends State<UCreatePost> {
                         ),
                     itemCount: _pickedImages.length),
               ),
+              SizedBox(
+                height: 50,
+              ),
+              _showDelete
+                  ? Center(
+                      child: DragTarget<File>(onWillAccept: (file) {
+                        return file!.path == _draggedFile.path;
+                      }, onAccept: (file) {
+                        setState(() {
+                          _pickedImages.remove(file);
+                        });
+                      }, builder: (ctx, q, w) {
+                        return IconButton(
+                          icon: Image.asset(
+                            "assets/icons/delete.png",
+                            width: 24,
+                            height: 24,
+                          ),
+                          onPressed: () {},
+                        );
+                      }),
+                    )
+                  : SizedBox.shrink(),
             ],
           ),
         ),
       ),
       bottomNavigationBar: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(bottom: 96.h),
+          padding: EdgeInsets.only(bottom: 30.h),
           child: Center(
             child: SizedBox(
               height: 56.h,

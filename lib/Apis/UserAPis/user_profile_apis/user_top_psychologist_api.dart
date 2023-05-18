@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,10 +15,7 @@ class UserTopSpecialistApi {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=5b852e68734d203fde6e9952995031d4'
     };
-    var request = http.Request(
-        'GET',
-        Uri.parse(
-            'https://beta.alfrik.com/ataraxis/api-user//speciallities.php'));
+    var request = http.Request('GET', Uri.parse('${baseUrl}speciallities.php'));
     request.headers.addAll(headers);
     print(request.body);
     http.StreamedResponse response = await request.send();

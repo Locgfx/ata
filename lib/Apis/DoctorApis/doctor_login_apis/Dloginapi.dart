@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 
 class DoctorLoginApi {
@@ -14,9 +15,7 @@ class DoctorLoginApi {
     //   'Cookie': 'PHPSESSID=$v'
     // };
     var request = http.Request(
-        'POST',
-        Uri.parse(
-            'https://beta.alfrik.com/ataraxis/api-psychologist/login-psychologist.php'));
+        'POST', Uri.parse('${counselorUrl}login-psychologist.php'));
     request.body = json.encode({
       "username": username,
       "password": password,

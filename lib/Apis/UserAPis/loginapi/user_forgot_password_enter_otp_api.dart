@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constants/globals.dart';
+import '../../../constants/urlconstants.dart';
 
 class UserForgotPasswordEnterOtpApi {
   Future<dynamic> get({
@@ -16,9 +17,7 @@ class UserForgotPasswordEnterOtpApi {
       'Cookie': 'PHPSESSID=$v'
     };
     var request = http.Request(
-        'POST',
-        Uri.parse(
-            'https://beta.alfrik.com/ataraxis/api-user/verify-otp-forget-password.php'));
+        'POST', Uri.parse('${baseUrl}verify-otp-forget-password.php'));
     request.body = json.encode({"otp": otp});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

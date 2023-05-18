@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,9 +17,7 @@ class PForgotPasswordEnterOtpApi {
       'Cookie': 'PHPSESSID=$v'
     };
     var request = http.Request(
-        'POST',
-        Uri.parse(
-            'https://beta.alfrik.com/ataraxis/api-user/verify-otp-forget-password.php'));
+        'POST', Uri.parse('${baseUrl}verify-otp-forget-password.php'));
     request.body = json.encode({"otp": otp});
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,8 +14,7 @@ class UserRecommendedVideosApi {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
-    var request = http.Request('GET',
-        Uri.parse('https://beta.alfrik.com/ataraxis/api-user/home-videos.php'));
+    var request = http.Request('GET', Uri.parse('${baseUrl}home-videos.php'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     var resp = jsonDecode(await response.stream.bytesToString());

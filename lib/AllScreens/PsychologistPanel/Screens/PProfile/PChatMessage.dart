@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:intl/intl.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class PChatMessages extends StatefulWidget {
   const PChatMessages({Key? key}) : super(key: key);
@@ -14,28 +19,11 @@ class PChatMessages extends StatefulWidget {
 }
 
 class _PChatMessagesState extends State<PChatMessages> {
-  List<Messages> messages = [
-    // Messages(
-    //     style: kManRope_400_14_Black,
-    //     text: 'Hi.',
-    //     date: DateTime.now().subtract(Duration(minutes: 1)),
-    //     isSentByme: true),
-    // Messages(
-    //     style: kManRope_400_14_Black,
-    //     text: 'Hi Priyanka my name is harish how can I help you?',
-    //     date: DateTime.now().subtract(Duration(minutes: 1)),
-    //     isSentByme: false),
-    // Messages(
-    //     style: kManRope_400_14_Black,
-    //     text: 'Hi Harish, I have issues with my friend. can you help me?',
-    //     date: DateTime.now().subtract(Duration(minutes: 1)),
-    //     isSentByme: true),
-    // Messages(
-    //     style: kManRope_400_14_Black,
-    //     text: 'Can you tell me more about your problem?',
-    //     date: DateTime.now().subtract(Duration(minutes: 1)),
-    //     isSentByme: false),
-  ];
+  final TextEditingController _controller = TextEditingController();
+  List<Messages> messages = [];
+  final channel = WebSocketChannel.connect(
+    Uri.parse('ws://192.168.1.145:3030'),
+  );
 
   bool _isVisible = false;
   void showToast() {
@@ -44,7 +32,21 @@ class _PChatMessagesState extends State<PChatMessages> {
     });
   }
 
-  // final bottom = MediaQuery.of(context).viewInsets.bottom;
+  @override
+  void initState() {
+    super.initState();
+    channel.stream.listen((event) {
+      var dataJson = jsonDecode(event);
+      messages.add(Messages.fromJson(dataJson));
+    });
+  }
+
+  @override
+  void dispose() {
+    channel.sink.close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,28 +61,35 @@ class _PChatMessagesState extends State<PChatMessages> {
         padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 25.h),
         child: Padding(
           padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
           child: Container(
             color: kEDF6F9,
             child: Row(
               children: [
                 Expanded(
-                  child: TextField(
+                  child: TextFormField(
+                      textInputAction: TextInputAction.done,
+                      controller: _controller,
                       minLines: 1,
                       maxLines: 5,
                       style: kManRope_400_14_001314,
-                      onSubmitted: (text) {
-                        /*final message = Messages(
-                            text: text,
-                            date: DateTime.now(),
-                            isSentByme: true,
-                            style: kManRope_400_14_Black);
-                        setState(() => messages.add(message));*/
-                      },
                       decoration: TextfieldDecoration(
                         label: 'Abc....',
-                        child: Image.asset(
-                          "assets/images/send.png",
+                        child: InkWell(
+                          onTap: () {
+                            final message = Messages(
+                                text: _controller.text,
+                                date: DateTime.now(),
+                                isSentByme: true,
+                                style: kManRope_400_14_Black,
+                                isSeen: true);
+                            setState(() => messages.add(message));
+                            //channel.sink.add(jsonEncode({"msg": "Hello", "name": "MK", "to": "82"}));
+                            _controller.clear();
+                          },
+                          child: Image.asset(
+                            "assets/images/send.png",
+                          ),
                         ),
                       ).searchFieldDecoration()),
                 ),
@@ -89,213 +98,88 @@ class _PChatMessagesState extends State<PChatMessages> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        // physics: NeverScrollableScrollPhysics(),
-        child: Padding(
-          padding: EdgeInsets.only(
-            left: 24.w,
-            right: 24.w,
-            top: 40.h,
-          ),
+      body: Padding(
+        padding: EdgeInsets.only(
+          left: 24.w,
+          right: 24.w,
+          top: 40.h,
+        ),
+        child: Container(
+          constraints: BoxConstraints(maxHeight: 1.sh),
+          padding: EdgeInsets.all(16),
           child: Column(
             children: [
-              Text(
-                "Today 17/June/2022",
-                style: kManRope_400_12_001314,
-              ),
-              SizedBox(
-                height: 60.h,
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text("11:45 Pm", style: kManRope_400_12_001314),
-                    SizedBox(height: 8.h),
-                    Container(
-                      width: 61.w,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Hi",
-                          style: kManRope_400_14_001314,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      "Seen",
-                      style: kManRope_400_12_006D77,
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 24),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Harish 11:47 Pm",
-                      //
-                      style: kManRope_400_12_001314),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      children: [
-                        SizedBox(height: 8.h),
-                        Container(
-                          width: 281.w,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: EdgeInsets.all(12),
-                            child: Text(
-                              "Hi Priyanka my name is harish how can I help you?",
-                              style: kManRope_400_14_001314,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 24.h),
-                  // Text(
-                  //   "Seen",
-                  //   style: kManRope_400_12_006D77,
-                  // )
-                ],
-              ),
-              SizedBox(height: 24),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text("11:47 Pm", style: kManRope_400_12_001314),
-                    SizedBox(height: 8.h),
-                    Container(
-                      width: 281.w,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Text(
-                          "Hi Harish, I have issues with my friend. can you help me?",
-                          style: kManRope_400_14_001314,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 8.h),
-                    Text(
-                      "Seen",
-                      style: kManRope_400_12_006D77,
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(height: 24),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Harish 11:47 Pm",
-                      //
-                      style: kManRope_400_12_001314),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Column(
-                      children: [
-                        SizedBox(height: 8.h),
-                        Container(
-                          width: 281.w,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Padding(
-                            padding: EdgeInsets.all(12),
-                            child: Text(
-                              "Can you tell me more about your problem?",
-                              style: kManRope_400_14_001314,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 24.h,
-              ),
-              Align(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    "11:48 Pm",
-                    style: kManRope_400_14_001314,
-                  )),
-              SizedBox(
-                height: 100.h,
-                child: GroupedListView<Messages, DateTime>(
-                  physics: NeverScrollableScrollPhysics(),
-                  // padding: EdgeInsets.zero,
-                  reverse: true,
-                  order: GroupedListOrder.DESC,
-                  // padding: EdgeInsets.all(20),
-                  elements: messages,
-                  groupBy: (messages) => DateTime(messages.date.year,
-                      messages.date.month, messages.date.day),
-                  groupHeaderBuilder: (Messages messages) => SizedBox(),
-                  itemBuilder: (context, Messages messages) => Align(
-                    alignment: messages.isSentByme
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
-                    child: Align(
-                      alignment: messages.isSentByme
-                          ? Alignment.centerRight
-                          : Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.only(bottom: 32.0),
-                        child: Column(
-                          children: [
-                            // Align(
-                            //     alignment: messages.isSentByme
-                            //         ? Alignment.centerRight
-                            //         : Alignment.centerLeft,
-                            //
-                            //     child: Text("hiii")),
-
-                            Container(
-                              // width: 281.w,
-                              decoration: BoxDecoration(
-                                  color:
-                                  messages.isSentByme ? kFFFFFF : kFFFFFF,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Padding(
-                                padding: EdgeInsets.all(12),
-                                child: Text(
-                                  messages.text,
-                                  // style: FontConstant.k16w4008471Text
-                                  //     .copyWith(color: Color(0xff5E5C70),
+              Expanded(
+                  //height: 100.h,
+                  child: StreamBuilder(
+                stream: channel.stream,
+                builder: (context, snapShot) {
+                  if (snapShot.connectionState == ConnectionState.waiting) {
+                    return LoadingWidget();
+                  } else if (snapShot.hasData) {
+                    // messages.add(Messages(
+                    //     text: snapShot.data!.text,
+                    //     date: snapShot.data!.date,
+                    //     isSentByme: snapShot.data!.isSentByme,
+                    //     style: TextStyle(),
+                    //     isSeen: snapShot.data!.isSeen));
+                    return GroupedListView<Messages, DateTime>(
+                      physics: NeverScrollableScrollPhysics(),
+                      // padding: EdgeInsets.zero,
+                      reverse: true,
+                      order: GroupedListOrder.DESC,
+                      // padding: EdgeInsets.all(20),
+                      elements: messages,
+                      groupBy: (messages) => messages.date,
+                      groupHeaderBuilder: (Messages messages) => SizedBox(),
+                      itemBuilder: (context, Messages messages) => Align(
+                        alignment: messages.isSentByme
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 32.0),
+                          child: Column(
+                            children: [
+                              Text(DateFormat("hh:mm a").format(messages.date),
+                                  style: kManRope_400_12_001314),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                    color:
+                                        messages.isSentByme ? kFFFFFF : kFFFFFF,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Padding(
+                                  padding: EdgeInsets.all(12),
+                                  child: Text(
+                                    messages.text,
+                                    // style: FontConstant.k16w4008471Text
+                                    //     .copyWith(color: Color(0xff5E5C70),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 4,
+                              ),
+                              messages.isSeen
+                                  ? Text(
+                                      "Seen",
+                                      style: kManRope_400_12_006D77,
+                                    )
+                                  : SizedBox.shrink(),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              SizedBox(
-                height: !_isVisible ? 32.h : 20.h,
-              ),
+                    );
+                  } else if (snapShot.hasError) {
+                    return Text("Error");
+                  } else {
+                    return Text("Default");
+                  }
+                },
+              )),
             ],
           ),
         ),
@@ -305,14 +189,23 @@ class _PChatMessagesState extends State<PChatMessages> {
 }
 
 class Messages {
-  final String text;
-  final TextStyle style;
-  final DateTime date;
-  final bool isSentByme;
-  const Messages({
-    required this.text,
-    required this.date,
-    required this.isSentByme,
-    required this.style,
-  });
+  late String text;
+  late TextStyle style;
+  late DateTime date;
+  late bool isSentByme;
+  late bool isSeen;
+  Messages(
+      {required this.text,
+      required this.date,
+      required this.isSentByme,
+      required this.style,
+      required this.isSeen});
+
+  Messages.fromJson(Map<String, dynamic> json) {
+    date = json['date'];
+    text = json['msg'];
+    isSentByme = json['isMe'];
+    isSeen = json['isSeen'];
+    style = TextStyle();
+  }
 }

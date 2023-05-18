@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constants/globals.dart';
+import '../../../constants/urlconstants.dart';
 
 class UserPersonalDetailsApi {
   get({
@@ -20,10 +21,7 @@ class UserPersonalDetailsApi {
       'Cookie': 'PHPSESSID=$v'
     };
     print(headers);
-    var request = http.Request(
-        'POST',
-        Uri.parse(
-            'https://beta.alfrik.com/ataraxis/api-user//signup-user.php'));
+    var request = http.Request('POST', Uri.parse('${baseUrl}signup-user.php'));
     request.body = json.encode({
       "name": name,
       "email": email,

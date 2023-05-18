@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,8 +17,7 @@ class UserSavePostApi {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
-    var request = http.Request('POST',
-        Uri.parse('https://beta.alfrik.com/ataraxis/api-user/save-post.php'));
+    var request = http.Request('POST', Uri.parse('${baseUrl}save-post.php'));
     request.body = json.encode({
       "post_id": postId,
       "post_type": postType,

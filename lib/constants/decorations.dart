@@ -211,7 +211,7 @@ class TextfieldDecoration {
             borderRadius: BorderRadius.circular(radius)),
         fillColor: fillColor,
         filled: true,
-        suffixIconConstraints: BoxConstraints(maxHeight: 35.h, maxWidth: 35.w),
+        suffixIconConstraints: BoxConstraints(maxHeight: 40.h, maxWidth: 40.w),
         // suffixIcon: SvgPicture.asset('assets/icons/search.svg'),
         // border: InputBorder.none,
         hintText: label,

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:greymatter/global/Sharedprefs.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,14 +12,14 @@ class BankDetailsApi {
     required accountHolderName,
     required accountType,
     required branchName,
-  })async{
+  }) async {
     String? cookie = UserPrefs().getCookies();
     var headers = {
       // 'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=b28e091994576ef0a9a75f328e848f05'
     };
-    var request = http.MultipartRequest('POST',
-        Uri.parse('https://beta.alfrik.com/ataraxis/api-psychologist/add-bank-details.php'));
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${counselorUrl}add-bank-details.php'));
     request.fields.addAll({
       'bank_id': bankID,
       'ifsc_code': ifscCode,

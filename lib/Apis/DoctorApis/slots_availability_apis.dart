@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:greymatter/constants/urlconstants.dart';
 import 'package:greymatter/global/Sharedprefs.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,15 +20,14 @@ class SlotAvailabilityApi {
     required String saturdayClose,
     required String sundayOpen,
     required String sundayClose,
-
   }) async {
     String? cookie = UserPrefs().getCookies();
     var headers = {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=0ab9a87045c72fe80378fffd782f219d'
     };
-    var request = http.MultipartRequest('POST', Uri.parse(
-        'https://beta.alfrik.com/ataraxis/api-psychologist/availability.php'));
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('${counselorUrl}availability.php'));
     request.fields.addAll({
       'monday_open': mondayOpen,
       'monday_close': mondayClose,
@@ -54,5 +54,4 @@ class SlotAvailabilityApi {
       return rsp;
     }
   }
-
 }
