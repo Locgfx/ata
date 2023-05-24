@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UBookingConfirmationScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -145,26 +144,26 @@ class _UBookingSuccessfulScreenState extends State<UBookingSuccessfulScreen> {
               SizedBox(
                 height: 77.h,
               ),
-              SizedBox(
-                height: 56.h,
-                width: 1.sw,
-                child: MainButton(
-                    onPressed: () {
-                      /*Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UBookingConfirmationScreen(
-                                    isCancellationAvailable: true,
-                                    model: null,
-                                  )));*/
-                    },
-                    child: Text(
-                      'See Appointment',
-                      style: kManRope_400_16_white,
-                    ),
-                    color: k006D77,
-                    shape: CustomDecoration().border16Decoration()),
-              ),
+              // SizedBox(
+              //   height: 56.h,
+              //   width: 1.sw,
+              //   child: MainButton(
+              //       onPressed: () {
+              //         /*Navigator.push(
+              //             context,
+              //             MaterialPageRoute(
+              //                 builder: (context) => UBookingConfirmationScreen(
+              //                       isCancellationAvailable: true,
+              //                       model: null,
+              //                     )));*/
+              //       },
+              //       child: Text(
+              //         'See Appointment',
+              //         style: kManRope_400_16_white,
+              //       ),
+              //       color: k006D77,
+              //       shape: CustomDecoration().border16Decoration()),
+              // ),
               // SizedBox(
               //   height: 56.h,
               //   width: 400.h,

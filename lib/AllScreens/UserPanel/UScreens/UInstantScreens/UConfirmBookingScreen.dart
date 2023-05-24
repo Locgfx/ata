@@ -253,7 +253,7 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                               } else {
                                                 setState(() {
                                                   Fluttertoast.showToast(
-                                                      msg: value["msg"]);
+                                                      msg: value["error"]);
                                                   _coupnLoading = false;
                                                 });
                                               }

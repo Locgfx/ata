@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UMainCardWidget.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/buttons.dart';
@@ -263,10 +262,10 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                       SizedBox(
                         height: 24.h,
                       ),
-                      StarRatingWidget(
-                        rating: widget.model?.rating ?? "0",
-                        bookingId: widget.bookingId,
-                      )
+                      // StarRatingWidget(
+                      //   rating: widget.model?.rating ?? "0",
+                      //   bookingId: widget.bookingId,
+                      // )
                     ],
                   ),
                   SizedBox(

@@ -11,6 +11,7 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -50,7 +51,33 @@ class _UCreatePostState extends State<UCreatePost> {
 
   bool _showDelete = false;
   File _draggedFile = File("");
+  int imgIndex = 0;
 
+  CroppedFile? croppedFile;
+  _imageCropper(File file, int index) async {
+    croppedFile = await ImageCropper().cropImage(
+        sourcePath: file.path,
+        aspectRatio: CropAspectRatio(ratioX: 3, ratioY: 2),
+        aspectRatioPresets: [
+          CropAspectRatioPreset.ratio3x2
+        ],
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarColor: k006D77,
+            toolbarWidgetColor: k006D77,
+          ),
+        ]);
+    if (croppedFile == null) {
+      return;
+    } else {
+      setState(() {
+        _pickedImages.removeAt(index);
+        _pickedImages.insert(index, File(croppedFile!.path));
+      });
+    }
+  }
+
+  PageController page = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -144,6 +171,7 @@ class _UCreatePostState extends State<UCreatePost> {
                                 } else {
                                   for (var v in images) {
                                     _pickedImages.add(File(v.path));
+                                    // _imageCropper(File(v.path));
                                   }
                                 }
                               }
@@ -185,75 +213,103 @@ class _UCreatePostState extends State<UCreatePost> {
               SizedBox(
                 height: 24.h,
               ),
-              Container(
-                height: 250,
-                //padding: EdgeInsets.only(left: 16),
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (ctx, index) {
-                      return LongPressDraggable<File>(
-                        onDragStarted: () {
-                          log("Started");
-                          setState(() {
-                            _showDelete = true;
-                          });
-                        },
-                        onDragCompleted: () {
-                          log("Completed");
-                          setState(() {
-                            _showDelete = false;
-                          });
-                        },
-                        onDragEnd: (details) {
-                          log("Ended");
-                          setState(() {
-                            _showDelete = false;
-                          });
-                        },
-                        onDragUpdate: (updateDetails) {
-                          _draggedFile = _pickedImages[index];
-                          //log(_draggedFile.path);
-                        },
-                        //axis: Axis.vertical,
-                        data: _pickedImages[index],
-                        feedback: Container(
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(
-                              color: Colors.black38,
-                              borderRadius: BorderRadius.circular(10)),
-                          width: 250,
-                          height: 200,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.file(
-                              _pickedImages[index],
-                              //fit: BoxFit.cover,
-                            ),
-                          ),
+              if (_pickedImages.isNotEmpty)
+                Stack(
+                  children: [
+                    Container(
+                        height: 285.h,
+                        width: 380.w,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          //color: Colors.white,
                         ),
+                        child: PageView.builder(
+                            itemCount: _pickedImages.length,
+                            controller: page,
+                            onPageChanged: (val) {
+                              setState(() {
+                                imgIndex = val;
+                              });
+                            },
+                            scrollDirection: Axis.horizontal,
+                            pageSnapping: true,
+                            itemBuilder: (BuildContext context, ind) {
+                              return LongPressDraggable<File>(
+                                onDragStarted: () {
+                                  log("Started");
+                                  setState(() {
+                                    _showDelete = true;
+                                  });
+                                },
+                                onDragCompleted: () {
+                                  log("Completed");
+                                  setState(() {
+                                    _showDelete = false;
+                                  });
+                                },
+                                onDragEnd: (details) {
+                                  log("Ended");
+                                  setState(() {
+                                    _showDelete = false;
+                                  });
+                                },
+                                onDragUpdate: (updateDetails) {
+                                  _draggedFile = _pickedImages[ind];
+                                  //log(_draggedFile.path);
+                                },
+                                //axis: Axis.vertical,
+                                data: _pickedImages[ind],
+                                feedback: Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black38,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  width: 250,
+                                  height: 200,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.file(
+                                      _pickedImages[ind],
+                                      //fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    _imageCropper(_pickedImages[ind], ind);
+                                  },
+                                  child: Image.file(
+                                    _pickedImages[ind],
+                                    // fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            })),
+                    Positioned(
+                        right: 10,
+                        top: 10,
                         child: Container(
-                          clipBehavior: Clip.hardEdge,
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                           decoration: BoxDecoration(
-                              color: Colors.black38,
-                              borderRadius: BorderRadius.circular(10)),
-                          width: 1.sw - 50,
-                          height: 300,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.file(
-                              _pickedImages[index],
-                              //fit: BoxFit.cover,
-                            ),
+                              color: Colors.black45,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Text(
+                            "${imgIndex + 1}/${_pickedImages.length}",
+                            style: kManRope_400_14_white,
                           ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (ctx, ind) => SizedBox(
-                          width: 10,
-                        ),
-                    itemCount: _pickedImages.length),
+                        ))
+                  ],
+                ),
+              SizedBox(
+                height: 10,
               ),
+              Center(
+                  child: Text(
+                "(Tap an image to crop)",
+                style: kManRope_400_14_006D77,
+              )),
               SizedBox(
                 height: 50,
               ),
@@ -277,6 +333,98 @@ class _UCreatePostState extends State<UCreatePost> {
                       }),
                     )
                   : SizedBox.shrink(),
+              // Container(
+              //   height: 250,
+              //   //padding: EdgeInsets.only(left: 16),
+              //   child: ListView.separated(
+              //       shrinkWrap: true,
+              //       scrollDirection: Axis.horizontal,
+              //       itemBuilder: (ctx, index) {
+              //         return LongPressDraggable<File>(
+              //           onDragStarted: () {
+              //             log("Started");
+              //             setState(() {
+              //               _showDelete = true;
+              //             });
+              //           },
+              //           onDragCompleted: () {
+              //             log("Completed");
+              //             setState(() {
+              //               _showDelete = false;
+              //             });
+              //           },
+              //           onDragEnd: (details) {
+              //             log("Ended");
+              //             setState(() {
+              //               _showDelete = false;
+              //             });
+              //           },
+              //           onDragUpdate: (updateDetails) {
+              //             _draggedFile = _pickedImages[index];
+              //             //log(_draggedFile.path);
+              //           },
+              //           //axis: Axis.vertical,
+              //           data: _pickedImages[index],
+              //           feedback: Container(
+              //             clipBehavior: Clip.hardEdge,
+              //             decoration: BoxDecoration(
+              //                 color: Colors.black38,
+              //                 borderRadius: BorderRadius.circular(10)),
+              //             width: 250,
+              //             height: 200,
+              //             child: ClipRRect(
+              //               borderRadius: BorderRadius.circular(10),
+              //               child: Image.file(
+              //                 _pickedImages[index],
+              //                 //fit: BoxFit.cover,
+              //               ),
+              //             ),
+              //           ),
+              //           child: Container(
+              //             clipBehavior: Clip.hardEdge,
+              //             decoration: BoxDecoration(
+              //                 color: Colors.black38,
+              //                 borderRadius: BorderRadius.circular(10)),
+              //             width: 1.sw - 50,
+              //             height: 300,
+              //             child: ClipRRect(
+              //               borderRadius: BorderRadius.circular(10),
+              //               child: Image.file(
+              //                 _pickedImages[index],
+              //                 //fit: BoxFit.cover,
+              //               ),
+              //             ),
+              //           ),
+              //         );
+              //       },
+              //       separatorBuilder: (ctx, ind) => SizedBox(
+              //             width: 10,
+              //           ),
+              //       itemCount: _pickedImages.length),
+              // ),
+              // SizedBox(
+              //   height: 50,
+              // ),
+              // _showDelete
+              //     ? Center(
+              //         child: DragTarget<File>(onWillAccept: (file) {
+              //           return file!.path == _draggedFile.path;
+              //         }, onAccept: (file) {
+              //           setState(() {
+              //             _pickedImages.remove(file);
+              //           });
+              //         }, builder: (ctx, q, w) {
+              //           return IconButton(
+              //             icon: Image.asset(
+              //               "assets/icons/delete.png",
+              //               width: 24,
+              //               height: 24,
+              //             ),
+              //             onPressed: () {},
+              //           );
+              //         }),
+              //       )
+              //     : SizedBox.shrink(),
             ],
           ),
         ),

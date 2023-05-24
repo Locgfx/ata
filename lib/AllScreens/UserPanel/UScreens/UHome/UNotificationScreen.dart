@@ -119,6 +119,7 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
                         itemBuilder: (ctx, index) {
                           if (modelList.length > index) {
                             return ListTile(
+                              onTap: () {},
                               contentPadding: EdgeInsets.zero,
                               leading: Badge(
                                   showBadge: modelList[index].seen == "0"

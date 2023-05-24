@@ -281,6 +281,7 @@ class _UConfirmAppointmentBookingState
                                             final resp = CouponAppliedApi().get(
                                                 coupon: _couponController.text);
                                             resp.then((value) {
+                                              log("Coupon $value");
                                               if (value["status"] == true) {
                                                 setState(() {
                                                   price =
@@ -297,7 +298,7 @@ class _UConfirmAppointmentBookingState
                                               } else {
                                                 setState(() {
                                                   Fluttertoast.showToast(
-                                                      msg: value["msg"]);
+                                                      msg: value["error"]);
                                                   _coupnLoading = false;
                                                 });
                                               }
