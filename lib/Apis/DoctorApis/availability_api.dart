@@ -14,8 +14,8 @@ class AvailabilityApi {
       'Content-Type': 'application/json',
       'Cookie': 'PHPSESSID=$v'
     };
-    var request =
-        http.Request('PUT', Uri.parse('${baseUrl}change-available-status.php'));
+    var request = http.Request(
+        'PUT', Uri.parse('${counselorUrl}change-available-status.php'));
     request.body = json.encode({"status": status});
     request.headers.addAll(headers);
 

@@ -7,7 +7,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PSuccessfulSessionScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/availability_api.dart';
 import 'package:greymatter/Apis/meeting_api/get_token_api.dart';
-import 'package:greymatter/Apis/meeting_api/renew_token.dart';
 import 'package:greymatter/agora/chat_config.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
@@ -177,7 +176,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
       agoraConnectionData: AgoraConnectionData(
         appId: AgoraChatConfig.appKey,
         channelName: channelName,
-        tempToken: rtcToken,
+        //tokenUrl:
       ),
       agoraEventHandlers: AgoraRtcEventHandlers(
         onConnectionLost: (connection) {
@@ -196,20 +195,20 @@ class _MeetingScreenState extends State<MeetingScreen> {
           Fluttertoast.showToast(msg: "${code.name + err} local joined");
         },
         onRequestToken: (connection) {
-          _client.engine.renewToken(rtcToken);
+          //_client.engine.renewToken(rtcToken);
         },
         onTokenPrivilegeWillExpire: (connection, str) {
           log(str);
           log(connection.localUid.toString());
           log(connection.channelId.toString());
-          final resp =
-              RenewTokenApi().get(bookingId: int.parse(widget.bookingId));
-          resp.then((value) {
-            if (value['status'] == true) {
-              rtcToken = value['agora_token'];
-              channelName = value['channel_name'];
-            }
-          });
+          // final resp =
+          //     RenewTokenApi().get(bookingId: int.parse(widget.bookingId));
+          // resp.then((value) {
+          //   if (value['status'] == true) {
+          //     rtcToken = value['agora_token'];
+          //     channelName = value['channel_name'];
+          //   }
+          // });
         },
       ),
     );
