@@ -122,8 +122,10 @@ class _UProfileScreenState extends State<UProfileScreen> {
                               child: Image.network(
                                 model.photo.toString(),
                                 fit: BoxFit.cover,
-                                errorBuilder: (q, w, e) =>
-                                    Image.asset('assets/images/userP.png'),
+                                errorBuilder: (q, w, e) => Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             SizedBox(

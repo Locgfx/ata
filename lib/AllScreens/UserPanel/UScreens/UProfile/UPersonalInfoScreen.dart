@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
@@ -14,7 +13,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_profile_models/user_profile_model.dart';
-import 'package:greymatter/widgets/BottomSheets/DatePickerBottomSheet.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
@@ -398,12 +396,13 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
               : "${model.dob!.split("-").first}-${model.dob!.split("-")[1]}-${model.dob!.split("-").last}";
           updateNameController.text = model.name.toString();
           updateDobController.text = model.dob.toString() == "null"
-              ? ""
+              ? "Enter DOB"
               : "${model.dob!.split("-").last}/${model.dob!.split("-")[1]}/${model.dob!.split("-").first}";
           updateGenderController.text = model.gender.toString();
           updaterRelationshipController.text =
               model.relationshipStatus.toString();
-          updateOccupationController.text = model.occupation.toString();
+          updateOccupationController.text =
+              model.occupation ?? "Enter occupation";
           profilePic = model.photo.toString();
           _setValues();
           _isLoading = false;
@@ -1285,9 +1284,20 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                 final resp = UserProfileUpdateApi().get(
                                   name: updateNameController.text,
                                   dob: formattedDate,
-                                  gender: updateGenderController.text,
+                                  gender: updateGenderController.text == "Male"
+                                      ? "M"
+                                      : updateGenderController.text == "Female"
+                                          ? "F"
+                                          : "O",
                                   relationshipStatus:
-                                      updaterRelationshipController.text,
+                                      updaterRelationshipController.text ==
+                                              "Single"
+                                          ? "S"
+                                          : updaterRelationshipController
+                                                      .text ==
+                                                  "Married"
+                                              ? "M"
+                                              : "O",
                                   occupation: updateOccupationController.text,
                                 );
                                 resp.then((value) {

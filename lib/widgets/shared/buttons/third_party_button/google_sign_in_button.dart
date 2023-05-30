@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 
+import '../../../../third_party_login/google_sign_in.dart';
+
 class CustomGoogleSignInButton extends StatelessWidget {
   const CustomGoogleSignInButton({Key? key}) : super(key: key);
 
@@ -10,7 +12,14 @@ class CustomGoogleSignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () async {
-        //final resp = await GoogleSignInClass().googleLogin();
+        final resp = await GoogleSignInClass().googleLogin();
+        // print(resp.user!.email);
+        // print(resp.user!.phoneNumber);
+        // print(resp.user!.photoURL);
+        // print(resp.user!.displayName);
+        print(resp.credential!.token);
+        print(resp.user!.uid);
+        print(resp.user!.emailVerified);
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 20.h),

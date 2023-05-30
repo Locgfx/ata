@@ -2,7 +2,7 @@ PODS:
   - agora_chat_sdk (0.0.1):
     - Flutter
     - HyphenateChat (= 4.0.0)
-  - agora_rtc_engine (6.1.1):
+  - "agora_rtc_engine (6.1.1+1)":
     - AgoraIrisRTC_iOS (= 4.1.0-rc.2)
     - AgoraRtcEngine_iOS (= 4.1.0)
     - Flutter
@@ -297,7 +297,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   agora_chat_sdk: ce66fe2e4f70ee969f006d5c200fde9ac9613d45
-  agora_rtc_engine: 719d838f850311218296e388047017fca1d55575
+  agora_rtc_engine: 4f6308c7c88daf65914bad0ba978ec01512ac948
   agora_rtm: fe254f84e056f8dbcf878a2a20b9f46aa9e7d0dd
   agora_uikit: ca47b21e2af19474ddd8ec153670c2dc8cf3a9e8
   AgoraIrisRTC_iOS: 820fbab2d78d870a1bad4b1a02f950a390c73b48
@@ -316,7 +316,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: a4d7910e4af663c9cbfc1071c5bef34651690949
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
   flutter_local_notifications: 0c0b1ae97e741e1521e4c1629a459d04b9aec743
-  fluttertoast: eb263d302cc92e04176c053d2385237e9f43fad0
+  fluttertoast: fafc4fa4d01a6a9e4f772ecd190ffa525e9e2d9c
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   google_sign_in_ios: 1256ff9d941db546373826966720b0c24804bcdd
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f

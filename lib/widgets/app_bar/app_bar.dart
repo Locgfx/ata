@@ -1,11 +1,12 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UNotificationScreen.dart';
 import 'package:greymatter/constants/colors.dart';
-import '../../constants/fonts.dart';
 
+import '../../constants/fonts.dart';
 
 class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   HomeAppBar(
@@ -118,7 +119,6 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
         ),
       ),
     );
-
   }
 }
 
@@ -187,7 +187,7 @@ class CustomWhiteAppBar extends StatelessWidget with PreferredSizeWidget {
               padding: EdgeInsets.only(right: 16.0),
               child: SizedBox(
                 height: 48.h,
-                width: 100.w,
+                width: 80.w,
                 // color: Colors.red,
                 // padding: EdgeInsets.only(left: 16),
                 child: Row(
@@ -216,7 +216,3 @@ class CustomWhiteAppBar extends StatelessWidget with PreferredSizeWidget {
     );
   }
 }
-
-
-
-

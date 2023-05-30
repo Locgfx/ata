@@ -64,7 +64,7 @@ class _UCreatePostState extends State<UCreatePost> {
         uiSettings: [
           AndroidUiSettings(
             toolbarColor: k006D77,
-            toolbarWidgetColor: k006D77,
+            toolbarWidgetColor: Colors.white,
           ),
         ]);
     if (croppedFile == null) {
@@ -305,11 +305,12 @@ class _UCreatePostState extends State<UCreatePost> {
               SizedBox(
                 height: 10,
               ),
-              Center(
-                  child: Text(
-                "(Tap an image to crop)",
-                style: kManRope_400_14_006D77,
-              )),
+              if (_pickedImages.isNotEmpty)
+                Center(
+                    child: Text(
+                  "(Tap an image to crop)",
+                  style: kManRope_400_14_006D77,
+                )),
               SizedBox(
                 height: 50,
               ),
