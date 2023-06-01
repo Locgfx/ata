@@ -278,95 +278,127 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
                                           SizedBox(height: 17.h),
                                           isLoading
                                               ? SizedBox()
-                                              : Stack(
-                                                  children: [
-                                                    Container(
-                                                        height: 285.h,
-                                                        width: 380.w,
-                                                        clipBehavior:
-                                                            Clip.hardEdge,
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
+                                              : savedpostlist[index]
+                                                      .gallary!
+                                                      .isNotEmpty
+                                                  ? Stack(
+                                                      children: [
+                                                        Container(
+                                                            height: 285.h,
+                                                            width: 380.w,
+                                                            clipBehavior:
+                                                                Clip.hardEdge,
+                                                            decoration:
+                                                                const BoxDecoration(
+                                                              borderRadius: BorderRadius
+                                                                  .all(Radius
                                                                       .circular(
                                                                           10)),
-                                                          color: Colors.white,
-                                                        ),
-                                                        child: PageView.builder(
-                                                            itemCount:
-                                                                savedpostlist[
-                                                                        index]
-                                                                    .gallary!
-                                                                    .length,
-                                                            controller: page,
-                                                            onPageChanged:
-                                                                (val) {
-                                                              setState(() {
-                                                                imgIndex = val;
-                                                              });
-                                                            },
-                                                            scrollDirection:
-                                                                Axis.horizontal,
-                                                            pageSnapping: true,
-                                                            itemBuilder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    ind) {
-                                                              return CachedNetworkImage(
-                                                                imageUrl: savedpostlist[
-                                                                        index]
-                                                                    .gallary![
-                                                                        ind]
-                                                                    .toString(),
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                                placeholder:
-                                                                    (context,
-                                                                            url) =>
-                                                                        Center(
-                                                                  child:
-                                                                      SpinKitThreeBounce(
-                                                                    color:
-                                                                        k006D77,
-                                                                    size: 30,
-                                                                  ),
-                                                                ),
-                                                                errorWidget: (context,
-                                                                        url,
-                                                                        error) =>
-                                                                    Icon(Icons
-                                                                        .error),
-                                                              );
-                                                            })),
-                                                    Positioned(
-                                                        right: 10,
-                                                        top: 10,
-                                                        child: Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      10,
-                                                                  vertical: 5),
-                                                          decoration: BoxDecoration(
-                                                              color: Colors
-                                                                  .black45,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          50)),
-                                                          child: Text(
-                                                            "${imgIndex + 1}/${savedpostlist[index].gallary!.length}",
-                                                            style:
-                                                                kManRope_400_14_white,
-                                                          ),
-                                                        ))
-                                                  ],
-                                                ),
-                                          SizedBox(
-                                            height: 8.h,
-                                          ),
+                                                              color:
+                                                                  Colors.white,
+                                                            ),
+                                                            child: PageView
+                                                                .builder(
+                                                                    itemCount: savedpostlist[
+                                                                            index]
+                                                                        .gallary!
+                                                                        .length,
+                                                                    controller:
+                                                                        page,
+                                                                    onPageChanged:
+                                                                        (val) {
+                                                                      setState(
+                                                                          () {
+                                                                        imgIndex =
+                                                                            val;
+                                                                      });
+                                                                    },
+                                                                    scrollDirection:
+                                                                        Axis
+                                                                            .horizontal,
+                                                                    pageSnapping:
+                                                                        true,
+                                                                    itemBuilder:
+                                                                        (BuildContext
+                                                                                context,
+                                                                            ind) {
+                                                                      return CachedNetworkImage(
+                                                                        imageUrl: savedpostlist[index]
+                                                                            .gallary![ind]
+                                                                            .toString(),
+                                                                        fit: BoxFit
+                                                                            .cover,
+                                                                        placeholder:
+                                                                            (context, url) =>
+                                                                                Center(
+                                                                          child:
+                                                                              SpinKitThreeBounce(
+                                                                            color:
+                                                                                k006D77,
+                                                                            size:
+                                                                                30,
+                                                                          ),
+                                                                        ),
+                                                                        errorWidget: (context,
+                                                                                url,
+                                                                                error) =>
+                                                                            Icon(Icons.error),
+                                                                      );
+                                                                    })),
+                                                        Positioned(
+                                                            right: 10,
+                                                            top: 10,
+                                                            child: Container(
+                                                              padding: EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          10,
+                                                                      vertical:
+                                                                          5),
+                                                              decoration: BoxDecoration(
+                                                                  color: Colors
+                                                                      .black45,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50)),
+                                                              child: Text(
+                                                                "${imgIndex + 1}/${savedpostlist[index].gallary!.length}",
+                                                                style:
+                                                                    kManRope_400_14_white,
+                                                              ),
+                                                            ))
+                                                      ],
+                                                    )
+                                                  : Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: ReadMoreText(
+                                                        savedpostlist[index]
+                                                            .caption
+                                                            .toString(),
+                                                        style:
+                                                            kManRope_400_14_626A6A,
+                                                        trimLines: 1,
+                                                        colorClickableText:
+                                                            k006D77,
+                                                        trimMode: TrimMode.Line,
+                                                        trimCollapsedText:
+                                                            'Show more',
+                                                        trimExpandedText:
+                                                            'Show less',
+                                                        moreStyle:
+                                                            kManRope_600_14_006D77,
+                                                        lessStyle:
+                                                            kManRope_600_14_006D77,
+                                                      ),
+                                                    ),
+                                          if (savedpostlist[index]
+                                              .gallary!
+                                              .isNotEmpty)
+                                            SizedBox(
+                                              height: 8.h,
+                                            ),
                                           UPostInteractions(
                                             savedPost: "yes",
                                             isCommentsViewable:
@@ -374,22 +406,27 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
                                             modelList: savedpostlist,
                                             index: index,
                                           ),
-                                          Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: ReadMoreText(
-                                              savedpostlist[index]
-                                                  .caption
-                                                  .toString(),
-                                              style: kManRope_400_14_626A6A,
-                                              trimLines: 1,
-                                              colorClickableText: k006D77,
-                                              trimMode: TrimMode.Line,
-                                              trimCollapsedText: 'Show more',
-                                              trimExpandedText: 'Show less',
-                                              moreStyle: kManRope_600_14_006D77,
-                                              lessStyle: kManRope_600_14_006D77,
+                                          if (savedpostlist[index]
+                                              .gallary!
+                                              .isNotEmpty)
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: ReadMoreText(
+                                                savedpostlist[index]
+                                                    .caption
+                                                    .toString(),
+                                                style: kManRope_400_14_626A6A,
+                                                trimLines: 1,
+                                                colorClickableText: k006D77,
+                                                trimMode: TrimMode.Line,
+                                                trimCollapsedText: 'Show more',
+                                                trimExpandedText: 'Show less',
+                                                moreStyle:
+                                                    kManRope_600_14_006D77,
+                                                lessStyle:
+                                                    kManRope_600_14_006D77,
+                                              ),
                                             ),
-                                          ),
                                         ],
                                       ),
                                     ),

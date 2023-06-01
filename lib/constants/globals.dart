@@ -43,4 +43,5 @@ class Keys {
   final String DocSignUpEmail = 'doc_sign_up_email';
   final String userType = 'userType';
   final String fcmToken = 'fcmToken';
+  final String loginWith = 'loginWith';
 }

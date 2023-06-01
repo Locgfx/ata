@@ -10,6 +10,7 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../Apis/UserAPis/user_posts_api/add_post_api.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../constants/globals.dart';
@@ -202,35 +203,34 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                     )
                   : MainButton(
                       onPressed: () {
-                        if (_pickedImages.isNotEmpty) {
-                          setState(() {
-                            _btnLoading = true;
-                          });
-                          final resp = AddPost().get(
-                              captions: controller.text,
-                              pickedImg: _pickedImages);
-                          resp.then((value) {
-                            if (value['status'] == true) {
-                              setState(() {
-                                Fluttertoast.showToast(
-                                    msg: "Posted successfully.");
-                                setState(() {
-                                  _btnLoading = false;
-                                });
-                                Navigator.of(context).pop();
-                              });
-                            } else {
+                        //if (_pickedImages.isNotEmpty) {
+                        setState(() {
+                          _btnLoading = true;
+                        });
+                        final resp = AddPost().get(
+                            captions: controller.text,
+                            pickedImg: _pickedImages);
+                        resp.then((value) {
+                          if (value['status'] == true) {
+                            setState(() {
                               Fluttertoast.showToast(
-                                  msg: "Something went wrong");
+                                  msg: "Posted successfully.");
                               setState(() {
                                 _btnLoading = false;
                               });
-                            }
-                          });
-                        } else {
-                          Fluttertoast.showToast(
-                              msg: "Please select an image first.");
-                        }
+                              Navigator.of(context).pop();
+                            });
+                          } else {
+                            Fluttertoast.showToast(msg: "Something went wrong");
+                            setState(() {
+                              _btnLoading = false;
+                            });
+                          }
+                        });
+                        // } else {
+                        //   Fluttertoast.showToast(
+                        //       msg: "Please select an image first.");
+                        // }
                       },
                       child: Padding(
                         padding: EdgeInsets.only(left: 74.w, right: 74.w),

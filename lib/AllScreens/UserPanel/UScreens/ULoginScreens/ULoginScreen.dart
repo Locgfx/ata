@@ -635,6 +635,7 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                     _emailController.text);
                                                 prefs.setString(Keys().password,
                                                     _passwordController.text);
+                                                // prefs.setString(Keys().loginWith, value[]);
                                                 log(value['ques'].toString());
                                                 if (value["ques"] == 0) {
                                                   prefs.setBool(
@@ -669,6 +670,15 @@ class _ULoginScreenState extends State<ULoginScreen> {
                             SizedBox(height: 24.h),
                             const CustomGoogleSignInButton(),
                             SizedBox(height: 22.h),
+                            // ElevatedButton(
+                            //     onPressed: () async {
+                            //       await GoogleSignInClass().logOut();
+                            //     },
+                            //     child: Text(
+                            //       "Log out",
+                            //       style: TextStyle(color: Colors.black),
+                            //     )),
+                            // SizedBox(height: 22.h),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(

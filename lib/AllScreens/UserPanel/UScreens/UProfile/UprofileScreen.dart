@@ -466,6 +466,7 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
                               prefs.setBool(Keys().loginDone, false);
                               prefs.clear();
                               prefs.setBool(Keys().firstRun, false);
+                              // await GoogleSignInClass().logOut();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(

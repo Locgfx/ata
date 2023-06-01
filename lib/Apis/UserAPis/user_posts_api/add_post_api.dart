@@ -18,8 +18,10 @@ class AddPost {
     var request =
         http.MultipartRequest('POST', Uri.parse('${baseUrl}add-post.php'));
     request.fields.addAll({'caption': captions});
-    for (var v in pickedImg) {
-      request.files.add(await http.MultipartFile.fromPath('files[]', v.path));
+    if (pickedImg.isNotEmpty) {
+      for (var v in pickedImg) {
+        request.files.add(await http.MultipartFile.fromPath('files[]', v.path));
+      }
     }
     request.headers.addAll(headers);
 

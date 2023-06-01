@@ -11,7 +11,6 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
-import 'package:greymatter/widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../constants/globals.dart';
@@ -298,14 +297,14 @@ class _PLoginScreenState extends State<PLoginScreen> {
                                 },
                                 text: 'Login'),
                     SizedBox(height: 24.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text('Or', style: kManRope_400_16_Black),
-                      ],
-                    ),
-                    SizedBox(height: 24.h),
-                    const CustomGoogleSignInButton(),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: [
+                    //     Text('Or', style: kManRope_400_16_Black),
+                    //   ],
+                    // ),
+                    // SizedBox(height: 24.h),
+                    // const CustomGoogleSignInButton(),
                     SizedBox(height: 22.h),
                     InkWell(
                       onTap: () {

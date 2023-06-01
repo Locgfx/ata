@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -34,12 +36,14 @@ class _URecommendedVideosSliderState extends State<URecommendedVideosSlider> {
     _isLoading = true;
     final resp = UserRecommendedVideosApi().get();
     resp.then((value) {
-      //print(value);
+      log(value.toString() + "vodeos");
       if (mounted) {
         setState(() {
-          for (var v in value) {
-            recommendedVideos.add(UserRecommendedVideoModel.fromJson(v));
-          }
+          if (value.runtimeType == List<dynamic>) {
+            for (var v in value) {
+              recommendedVideos.add(UserRecommendedVideoModel.fromJson(v));
+            }
+          } else {}
           _isLoading = false;
         });
       }

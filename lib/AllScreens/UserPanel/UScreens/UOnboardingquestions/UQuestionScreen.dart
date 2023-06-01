@@ -144,7 +144,7 @@ class _UQuestionsState extends State<UQuestions> {
                             ),
                           ),
                           SizedBox(
-                            width: 80.w,
+                            width: 70.w,
                           ),
                           InkWell(
                             onTap: () async {

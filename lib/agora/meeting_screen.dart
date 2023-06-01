@@ -52,6 +52,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
   void initState() {
     //initAgora();
     _getMeetingToken();
+    //setUpAgora();
     _getPrefs();
     super.initState();
   }
@@ -174,11 +175,11 @@ class _MeetingScreenState extends State<MeetingScreen> {
         Permission.microphone,
       ],
       agoraConnectionData: AgoraConnectionData(
-          appId: AgoraChatConfig.appKey,
-          channelName: channelName,
-          // tempToken: "006199ff71498ee4d02a7f5296f28b46728IAAtFdKUQYdfjNvMT\/XuoKhdt5409r1S\/dVZAWmz0Xc3HM3rumgAAAAAIgCLEwEAMd92ZAQAAQAQDgAAAwAQDgAAAgAQDgAABAAQDgAA"
-          tokenUrl:
-              "https://theataraxis.com/ataraxis/api-user/agora/generate-token.php"),
+        appId: AgoraChatConfig.appKey,
+        channelName: "TEst12344",
+        // tempToken: "006199ff71498ee4d02a7f5296f28b46728IAAtFdKUQYdfjNvMT\/XuoKhdt5409r1S\/dVZAWmz0Xc3HM3rumgAAAAAIgCLEwEAMd92ZAQAAQAQDgAAAwAQDgAAAgAQDgAABAAQDgAA"
+        // tokenUrl: "https://theataraxis.com/ataraxis/api-user/agora/generate-token.php"
+      ),
       agoraEventHandlers: AgoraRtcEventHandlers(
         onConnectionLost: (connection) {
           Fluttertoast.showToast(msg: "${connection.localUid} lost connection");

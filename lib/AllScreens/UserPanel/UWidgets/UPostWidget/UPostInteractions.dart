@@ -1,12 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/Apis/UserAPis/user_posts_api/comment_like_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_like_post_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_posts_api/user_save_post_api.dart';
 import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../../../constants/fonts.dart';
 import '../../UScreens/UPosts/UAllcomments.dart';
@@ -206,22 +202,22 @@ class _UPostInteractionsState extends State<UPostInteractions>
               // SizedBox(
               //   width: 8.w,
               // ),
-              InkWell(
-                onTap: () {
-                  Share.share("text");
-                },
-                child: Container(
-                  color: Colors.transparent,
-                  height: 48,
-                  width: 48,
-                  // color: Colors.red,
-                  child: Image.asset(
-                    'assets/images/iconshare48.png',
-                    height: 44,
-                    width: 44,
-                  ),
-                ),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     Share.share("text");
+              //   },
+              //   child: Container(
+              //     color: Colors.transparent,
+              //     height: 48,
+              //     width: 48,
+              //     // color: Colors.red,
+              //     child: Image.asset(
+              //       'assets/images/iconshare48.png',
+              //       height: 44,
+              //       width: 44,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ],

@@ -86,40 +86,41 @@ class _SplashScreenState extends State<SplashScreen> {
         log(loginDone.toString());
         if (isUser) {
           log(isUser.toString());
-          if (questionsDone) {
-            log(questionsDone.toString() + " question done");
-            final resp = UserLoginApi().get(
-              username: prefs.getString(Keys().email)!,
-              password: prefs.getString(Keys().password)!,
-            );
-            resp.then((value) {
-              if (value['status'] == false) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => OnBoardingScreen(),
-                  ),
-                );
-                Fluttertoast.showToast(
-                    msg: value['Session expired! Please Login Again.']);
-              } else {
-                prefs.setString(Keys().cookie, value['session_id']);
+
+          log(questionsDone.toString() + " question done");
+          final resp = UserLoginApi().get(
+            username: prefs.getString(Keys().email)!,
+            password: prefs.getString(Keys().password)!,
+          );
+          resp.then((value) {
+            // log(value.toString() + "jjjjj");
+            if (value['status'] == false) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => OnBoardingScreen(),
+                ),
+              );
+              Fluttertoast.showToast(
+                  msg: value['Session expired! Please Login Again.']);
+            } else {
+              prefs.setString(Keys().cookie, value['session_id']);
+              if (value["ques"] == 0) {
+                // prefs.setBool(Keys().questionsDone, true);
+                // Fluttertoast.showToast(msg: 'Login Successful');
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (_) => UTabsScreen(),
                   ),
                 );
+              } else {
+                //  Fluttertoast.showToast(msg: 'Login Successful');
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => UQuestions()));
               }
-            });
-          } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => UQuestions(),
-              ),
-            );
-          }
+            }
+          });
         } else {
           final resp = DoctorLoginApi().get(
             username: prefs.getString(Keys().email)!,
