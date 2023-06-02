@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
@@ -11,6 +12,7 @@ import 'package:greymatter/agora/chat_config.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
+import 'package:http/http.dart' as http;
 import 'package:permission_handler/permission_handler.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -51,15 +53,21 @@ class _MeetingScreenState extends State<MeetingScreen> {
   @override
   void initState() {
     //initAgora();
+    _getPrefs();
     _getMeetingToken();
     //setUpAgora();
-    _getPrefs();
+
     super.initState();
   }
 
   _getPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     _isUser = prefs.getBool(Keys().isUser) ?? false;
+    if (_isUser) {
+      role = 1;
+    } else {
+      role = 2;
+    }
     log("is user $_isUser");
   }
 
@@ -136,19 +144,22 @@ class _MeetingScreenState extends State<MeetingScreen> {
   void dispose() async {
     //_engine.leaveChannel();
     //_engine.release();
-    // await _client.engine.disableAudio();
-    // await _client.engine.disableVideo();
+    await _client.engine.disableAudio();
+    await _client.engine.disableVideo();
+    await _client.engine.leaveChannel();
     await _client.release();
     super.dispose();
   }
 
-  static int _uId = 0;
+  //static int _uId = 0;
 
   //agora_token
   //channel_name
 
+  int role = 1;
   String channelName = '';
   String rtcToken = '';
+  //int uid = 0;
   _getMeetingToken() {
     log(widget.bookingId.toString());
     _isLoading = true;
@@ -157,7 +168,8 @@ class _MeetingScreenState extends State<MeetingScreen> {
       if (value['status'] == true) {
         rtcToken = value['agora_token'];
         channelName = value['channel_name'];
-        setUpAgora();
+        uid = int.parse(value['uid']);
+        fetchToken(uid, channelName, role);
       } else {
         Fluttertoast.showToast(msg: value['error']);
         setState(() {
@@ -167,7 +179,39 @@ class _MeetingScreenState extends State<MeetingScreen> {
     });
   }
 
+  Future<void> fetchToken(int uid, String channelName, int tokenRole) async {
+    // Prepare the Url
+    String url =
+        '$tokenUrl/rtc/$channelName/${tokenRole.toString()}/uid/${uid.toString()}';
+
+    // Send the request
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      // If the server returns an OK response, then parse the JSON.
+      Map<String, dynamic> json = jsonDecode(response.body);
+      String newToken = json['rtcToken'];
+      debugPrint('Token Received: $newToken');
+      // Use the token to join a channel or renew an expiring token
+      setState(() {
+        rtcToken = newToken;
+      });
+      setUpAgora();
+    } else {
+      // If the server did not return an OK response,
+      // then throw an exception.
+      throw Exception(
+          'Failed to fetch a token. Make sure that your server URL is valid');
+    }
+  }
+
+  String tokenUrl =
+      "https://agora-token-service-production-e641.up.railway.app";
+
   setUpAgora() async {
+    log(role.toString());
+    log(channelName.toString());
+    log(uid.toString());
     //_isLoading = true;
     _client = AgoraClient(
       enabledPermission: [
@@ -175,11 +219,11 @@ class _MeetingScreenState extends State<MeetingScreen> {
         Permission.microphone,
       ],
       agoraConnectionData: AgoraConnectionData(
-        appId: AgoraChatConfig.appKey,
-        channelName: "TEst12344",
-        // tempToken: "006199ff71498ee4d02a7f5296f28b46728IAAtFdKUQYdfjNvMT\/XuoKhdt5409r1S\/dVZAWmz0Xc3HM3rumgAAAAAIgCLEwEAMd92ZAQAAQAQDgAAAwAQDgAAAgAQDgAABAAQDgAA"
-        // tokenUrl: "https://theataraxis.com/ataraxis/api-user/agora/generate-token.php"
-      ),
+          appId: AgoraChatConfig.appKey,
+          //uid: uid,
+          channelName: channelName,
+          // tempToken: rtcToken,
+          tokenUrl: tokenUrl),
       agoraEventHandlers: AgoraRtcEventHandlers(
         onConnectionLost: (connection) {
           Fluttertoast.showToast(msg: "${connection.localUid} lost connection");

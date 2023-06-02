@@ -92,7 +92,8 @@ class _UInvoiceDetailsState extends State<UInvoiceDetails> {
                           style: kManRope_400_14_001314,
                         ),
                         Text(
-                          "DateFormat.yMMMMd().format(DateTime.parse(model.dateTime.toString()))",
+                          DateFormat.yMMMMd().format(
+                              DateTime.parse(model.dateTime.toString())),
                           style: kManRope_400_14_001314,
                         )
                       ],
