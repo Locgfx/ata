@@ -26,18 +26,20 @@ class StarWidget extends StatelessWidget {
           child: Text('$rating.0', style: kManRope_400_12_626A6A),
         ),
         SizedBox(width: 4),
-        Padding(
-          padding: const EdgeInsets.only(top: 2),
-          child: Text(
-            '.',
-            style: kManRope_400_12_001314,
+        if (experience != "")
+          Padding(
+            padding: const EdgeInsets.only(top: 2),
+            child: Text(
+              '.',
+              style: kManRope_400_12_001314,
+            ),
           ),
-        ),
         SizedBox(width: 4.w),
-        Padding(
-          padding: const EdgeInsets.only(top: 2),
-          child: Text('$experience Yrs. Exp', style: kManRope_400_12_626A6A),
-        )
+        if (experience != "")
+          Padding(
+            padding: const EdgeInsets.only(top: 2),
+            child: Text('$experience Yrs. Exp', style: kManRope_400_12_626A6A),
+          )
       ],
     );
   }

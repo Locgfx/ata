@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UInvoicedetails.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UMainCardWidget.dart';
+import 'package:greymatter/Apis/UserAPis/rating_api/rating_api.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
+import '../../UWidgets/Uwidgets.dart';
 
 class USessionSuccessfulScreen extends StatefulWidget {
   final UPsychologistModel? model;
@@ -102,7 +107,10 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                               SizedBox(
                                 height: 8.h,
                               ),
-                              //StarWidget()
+                              StarWidget(
+                                rating: widget.model?.rating.toString() ?? "0",
+                                experience: widget.model?.totalExprience ?? "",
+                              )
                             ],
                           ),
                         ],
@@ -123,7 +131,14 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                         child: SizedBox(
                           height: 56.h,
                           child: MainButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (ctx) => UInvoiceDetails(
+                                            bookingId: widget.bookingId,
+                                          )),
+                                );
+                              },
                               child: Text(
                                 "Order details",
                                 style: kManRope_500_16_006D77,
@@ -262,10 +277,32 @@ class _USessionSuccessfulScreenState extends State<USessionSuccessfulScreen> {
                       SizedBox(
                         height: 24.h,
                       ),
+                      RatingBar.builder(
+                        initialRating: 0,
+                        itemCount: 5,
+                        itemBuilder: (context, index) {
+                          return Icon(
+                            Icons.star,
+                            color: Colors.amber,
+                          );
+                        },
+                        onRatingUpdate: (rating) {
+                          final resp = RatingApi().get(
+                              rating: rating.toString(),
+                              bookingId: widget.bookingId);
+                          resp.then((value) {
+                            if (value['status'] == true) {
+                            } else {
+                              Fluttertoast.showToast(msg: value["error"]);
+                            }
+                          });
+                          // print(rating);
+                        },
+                      ),
                       // StarRatingWidget(
                       //   rating: widget.model?.rating ?? "0",
                       //   bookingId: widget.bookingId,
-                      // )
+                      // ),
                     ],
                   ),
                   SizedBox(

@@ -91,11 +91,12 @@ class _UInvoiceDetailsState extends State<UInvoiceDetails> {
                           'Successful',
                           style: kManRope_400_14_001314,
                         ),
-                        Text(
-                          DateFormat.yMMMMd().format(
-                              DateTime.parse(model.dateTime.toString())),
-                          style: kManRope_400_14_001314,
-                        )
+                        if (model.dateTime != null)
+                          Text(
+                            DateFormat.yMMMMd().format(
+                                DateTime.parse(model.dateTime.toString())),
+                            style: kManRope_400_14_001314,
+                          )
                       ],
                     ),
                     SizedBox(

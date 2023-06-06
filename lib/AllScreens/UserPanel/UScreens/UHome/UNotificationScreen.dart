@@ -4,13 +4,16 @@ import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/Apis/Notifications_apis/get_notifications.dart';
-import 'package:greymatter/model/notification_model/notification_model.dart';
+import 'package:greymatter/Apis/Notifications_apis/notification_seen_api.dart';
+import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
+import '../../../../model/notification_model/notification_post_model.dart';
+import '../UPosts/UAllcomments.dart';
 
 class UNotificationsScreen extends StatefulWidget {
   const UNotificationsScreen({Key? key}) : super(key: key);
@@ -28,11 +31,13 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
     super.initState();
   }
 
-  List<NotificationModel> modelList = [];
+  List<PostNotificationModel> modelList = [];
+  UserPostModel postModel = UserPostModel();
   bool _isLoading = false;
   int val = 0;
 
   int _scroll = 0;
+
   _getReloadedData() {
     _scroll++;
     //_isLoading = true;
@@ -48,7 +53,9 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
         setState(() {
           val = value.length;
           for (var v in value) {
-            modelList.add(NotificationModel.fromJson(v));
+            if (v['notification_type'] == "Post") {
+              modelList.add(PostNotificationModel.fromJson(v));
+            }
           }
           _isLoading = false;
         });
@@ -71,7 +78,10 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
         setState(() {
           val = value.length;
           for (var v in value) {
-            modelList.add(NotificationModel.fromJson(v));
+            if (v['notification_type'] == "Post") {
+              modelList.add(PostNotificationModel.fromJson(v));
+            }
+            // modelList.add(NotificationModel.fromJson(v));
           }
           _isLoading = false;
         });
@@ -119,7 +129,47 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
                         itemBuilder: (ctx, index) {
                           if (modelList.length > index) {
                             return ListTile(
-                              onTap: () {},
+                              onTap: () async {
+                                final resp = await NotificationSeenApi().get(
+                                    notificationId:
+                                        modelList[index].id.toString());
+                                log(resp.toString());
+                                if (resp != false) {
+                                  setState(() {
+                                    modelList[index].seen = "1";
+                                  });
+                                }
+                                if (modelList[index]
+                                        .notificationType
+                                        .toString() ==
+                                    "Post") {
+                                  postModel = UserPostModel(
+                                      id: modelList[index].link!.id,
+                                      caption: modelList[index].link!.caption,
+                                      userId: modelList[index].link!.userId,
+                                      postByMe: modelList[index].link!.postByMe,
+                                      postedBy: modelList[index].link!.postedBy,
+                                      dateTime: modelList[index].link!.dateTime,
+                                      status: modelList[index].link!.status,
+                                      photo: modelList[index].link!.photo,
+                                      gallary: modelList[index].link!.gallary,
+                                      totalComments:
+                                          modelList[index].link!.totalComments,
+                                      isLiked: modelList[index].link!.likeByMe,
+                                      totalLikes:
+                                          modelList[index].link!.totalLikes,
+                                      isSaved: modelList[index].link!.savedByMe,
+                                      name: modelList[index].link!.name);
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => UCommentPage(
+                                        isSaved: "no",
+                                        model: postModel,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
                               contentPadding: EdgeInsets.zero,
                               leading: Badge(
                                   showBadge: modelList[index].seen == "0"

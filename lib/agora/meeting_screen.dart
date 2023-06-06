@@ -165,11 +165,13 @@ class _MeetingScreenState extends State<MeetingScreen> {
     _isLoading = true;
     final resp = GetMeetingTokenApi().get(bookingId: widget.bookingId);
     resp.then((value) {
+      log(value.toString());
       if (value['status'] == true) {
         rtcToken = value['agora_token'];
         channelName = value['channel_name'];
         uid = int.parse(value['uid']);
         fetchToken(uid, channelName, role);
+        //setUpAgora();
       } else {
         Fluttertoast.showToast(msg: value['error']);
         setState(() {
@@ -180,17 +182,27 @@ class _MeetingScreenState extends State<MeetingScreen> {
   }
 
   Future<void> fetchToken(int uid, String channelName, int tokenRole) async {
-    // Prepare the Url
+    var prefs = await SharedPreferences.getInstance();
+    var v = prefs.getString(Keys().cookie);
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie': 'PHPSESSID=$v'
+    };
+    log(channelName.toString());
     String url =
-        '$tokenUrl/rtc/$channelName/${tokenRole.toString()}/uid/${uid.toString()}';
+        '$tokenUrl?channelName=$channelName&uid=${uid.toString()}&role=${tokenRole.toString()}&tokenExpire=3600';
+    var request = http.Request('PUT', Uri.parse(url));
+    request.body = json.encode({"booking_id": widget.bookingId});
+    request.headers.addAll(headers);
 
-    // Send the request
-    final response = await http.get(Uri.parse(url));
+    http.StreamedResponse response = await request.send();
 
+    var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
       // If the server returns an OK response, then parse the JSON.
-      Map<String, dynamic> json = jsonDecode(response.body);
-      String newToken = json['rtcToken'];
+      Map<String, dynamic> json = resp;
+      log("message $json");
+      String newToken = json['token'];
       debugPrint('Token Received: $newToken');
       // Use the token to join a channel or renew an expiring token
       setState(() {
@@ -203,10 +215,15 @@ class _MeetingScreenState extends State<MeetingScreen> {
       throw Exception(
           'Failed to fetch a token. Make sure that your server URL is valid');
     }
+
+    // Prepare the Url
+
+    // Send the request
+    //  final response = await http.get(Uri.parse(url));
   }
 
   String tokenUrl =
-      "https://agora-token-service-production-e641.up.railway.app";
+      "https://theataraxis.com/ataraxis/api-user/generate-agora-token.php";
 
   setUpAgora() async {
     log(role.toString());
@@ -301,7 +318,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
                     log("message");
                     //await _client.release();
                     if (_isUser) {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                               builder: (context) => USessionSuccessfulScreen(
