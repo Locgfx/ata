@@ -278,7 +278,9 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                         onPressed: () async {
                           final resp = await AvailabilityApi().get(status: 0);
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) => MeetingScreen(
+                              builder: (ctx) =>
+                                  //CallPage()
+                                  MeetingScreen(
                                     date: "",
                                     issue: "",
                                     bookingId: widget.bookingId,

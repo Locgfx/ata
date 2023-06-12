@@ -189,7 +189,9 @@ class _UBookingConfirmationScreenState
         child: MainButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) => MeetingScreen(
+                  builder: (ctx) =>
+                      //CallPage()
+                      MeetingScreen(
                         date: DateFormat.yMMMEd().format(DateTime.parse(
                             "${widget.model.date} ${widget.model.timeSlot}")),
                         issue: widget.model.issueName.toString(),
