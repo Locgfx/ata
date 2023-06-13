@@ -175,8 +175,7 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
                                     builder: (context) => UEmailOtpScreen(
                                           email: widget.model.email.toString(),
                                         )));
-                                Fluttertoast.showToast(
-                                    msg: 'Your OTP is ${value['otp']}');
+                                // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                               } else {
                                 //print(value.toString());
                                 Fluttertoast.showToast(msg: value['error']);

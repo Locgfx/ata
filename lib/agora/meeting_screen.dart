@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:agora_rtc_engine/agora_rtc_engine.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/Apis/meeting_api/change_booking_status_api.dart';
 import 'package:greymatter/Apis/meeting_api/get_token_api.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
@@ -76,7 +77,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
     //log(widget.bookingId.toString());
     _isLoading = true;
     final resp = GetMeetingTokenApi()
-        .get(bookingId: 146.toString(), role: role.toString());
+        .get(bookingId: widget.bookingId, role: role.toString());
     resp.then((value) {
       // log(value.toString());
       if (value['status'] == true) {
@@ -130,11 +131,13 @@ class _MeetingScreenState extends State<MeetingScreen> {
             _isJoined = true;
           });
         },
-        onUserJoined: (RtcConnection connection, int remoteUid, int elapsed) {
+        onUserJoined:
+            (RtcConnection connection, int remoteUid, int elapsed) async {
           showMessage("Remote user uid:$remoteUid joined the channel");
           setState(() {
             _remoteUid = remoteUid;
           });
+          await ChangeBookingStatus().get(bookingId: widget.bookingId);
         },
         onError: (code, str) {
           showMessage("Error occurred ${code.name}");
@@ -323,6 +326,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
           return false;
         },
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           scaffoldMessengerKey: scaffoldMessengerKey,
           home: Scaffold(
               appBar: CustomWhiteAppBar(

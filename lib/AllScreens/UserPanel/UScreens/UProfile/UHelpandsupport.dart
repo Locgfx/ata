@@ -6,7 +6,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UFaq.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
-
+import 'package:url_launcher/url_launcher.dart';
 
 class UHelpandSupport extends StatefulWidget {
   const UHelpandSupport({Key? key}) : super(key: key);
@@ -142,48 +142,63 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                         SizedBox(
                           height: 16.h,
                         ),
-                        Container(
-                          height: 84.h,
-                          width: 1.sw,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Email',
-                                      style: kManRope_700_20_001314,
-                                    ),
-                                    SizedBox(
-                                      height: 4.h,
-                                    ),
-                                    Text(
-                                      'Get solutions beamed to your inbox',
-                                      style: kManRope_400_16_626A6A,
-                                    ),
-                                  ],
-                                ),
-                                Center(
-                                  child: SizedBox(
-                                    height: 48,
-                                    width: 48,
-                                    // color: Colors.red,
-                                    child: Image.asset(
-                                      'assets/images/iconrightarrowlarge.png',
-                                      height: 48.h,
-                                      width: 48.w,
+                        InkWell(
+                          onTap: () async {
+                            const uri =
+                                'mailto:info@theataraxis.com?subject=Support';
+                            launchUrl(Uri.parse(uri));
+                            // if (await canLaunch(uri)) {
+                            //   await launch(uri);
+                            // } else {
+                            //   throw 'Could not launch $uri';
+                            // }
+                          },
+                          child: Container(
+                            height: 84.h,
+                            width: 1.sw,
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Email',
+                                        style: kManRope_700_20_001314,
+                                      ),
+                                      SizedBox(
+                                        height: 4.h,
+                                      ),
+                                      Text(
+                                        'Get solutions beamed to your inbox',
+                                        style: kManRope_400_16_626A6A,
+                                      ),
+                                    ],
+                                  ),
+                                  Center(
+                                    child: SizedBox(
+                                      height: 48,
+                                      width: 48,
+                                      // color: Colors.red,
+                                      child: Image.asset(
+                                        'assets/images/iconrightarrowlarge.png',
+                                        height: 48.h,
+                                        width: 48.w,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),

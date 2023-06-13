@@ -187,7 +187,18 @@ class _UBookingConfirmationScreenState
       bottomNavigationBar: Padding(
         padding: EdgeInsets.only(left: 123.w, right: 123.w, bottom: 35.h),
         child: MainButton(
-            onPressed: () {
+            onPressed:
+                // DateTime.now()
+                //             .difference(DateTime.parse(
+                //                 "${widget.model.date} ${widget.model.timeSlot}"))
+                //             .inMinutes >
+                //         10
+                //     ? () {
+                //         Fluttertoast.showToast(
+                //             msg: "You cannot join before time slot");
+                //       }
+                //     :
+                () {
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (ctx) =>
                       //CallPage()

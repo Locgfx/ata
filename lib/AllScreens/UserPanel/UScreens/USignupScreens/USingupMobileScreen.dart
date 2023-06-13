@@ -145,8 +145,7 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                                                     signUpField:
                                                         _mobileController.text,
                                                   )));
-                                      Fluttertoast.showToast(
-                                          msg: 'Your OTP is ${value['otp']}');
+                                      //Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                                     }
                                   });
                                 }

@@ -156,8 +156,7 @@ class _PChangeEmailScreenState extends State<PChangeEmailScreen> {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
                                       PEmailEnterOtpScreen()));
-                              Fluttertoast.showToast(
-                                  msg: 'Your OTP is ${value['otp']}');
+                              // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                             } else {
                               print(value.toString());
                               Fluttertoast.showToast(msg: value['error']);

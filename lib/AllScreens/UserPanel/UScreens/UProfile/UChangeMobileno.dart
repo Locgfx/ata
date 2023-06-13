@@ -186,8 +186,7 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
                                             number:
                                                 widget.model.phone.toString(),
                                           )));
-                                  Fluttertoast.showToast(
-                                      msg: 'Your OTP is ${value['otp']}');
+                                  // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                                 } else {
                                   Fluttertoast.showToast(msg: value['error']);
                                   /* Navigator.push(

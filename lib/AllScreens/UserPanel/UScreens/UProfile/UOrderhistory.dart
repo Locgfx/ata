@@ -139,7 +139,7 @@ class _UOrderHistoryState extends State<UOrderHistory> {
                                       Text(
                                         DateFormat.yMMMEd().format(
                                             DateTime.parse(orderList[index]
-                                                .bookingDate
+                                                .date
                                                 .toString())),
                                         style: kManRope_400_16_626A6A,
                                       ),

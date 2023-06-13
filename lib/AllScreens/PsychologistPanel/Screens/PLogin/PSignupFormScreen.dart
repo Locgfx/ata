@@ -172,7 +172,7 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(10)
                           ],
-                          controller: phoneNoController,
+                          controller: alternateNoController,
                           validator: (email) {
                             if (email == null || email.isEmpty) {
                               return 'Enter your alternate phone no';

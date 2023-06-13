@@ -227,8 +227,7 @@ class _PLoginScreenState extends State<PLoginScreen> {
                                           ),
                                       settings: RouteSettings(
                                           arguments: _emailController.text)));
-                                  Fluttertoast.showToast(
-                                      msg: 'Your OTP is ${value['otp']}');
+                                  //Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                                 }
                               });
                             }

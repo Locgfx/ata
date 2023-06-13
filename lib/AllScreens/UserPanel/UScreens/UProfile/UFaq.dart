@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UChatSupport.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_faq_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_profile_models/user_faq_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class UFaqScreen extends StatefulWidget {
   const UFaqScreen({Key? key}) : super(key: key);
@@ -120,6 +120,7 @@ class _UFaqScreenState extends State<UFaqScreen> {
                     child: ListView.builder(
                         itemCount: faqList.length,
                         shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         itemBuilder: (BuildContext context, int index) {
                           return Column(
                             children: [
@@ -158,7 +159,7 @@ class _UFaqScreenState extends State<UFaqScreen> {
                               AnimatedContainer(
                                 duration: Duration(milliseconds: 300),
                                 curve: Curves.fastOutSlowIn,
-                                height: boolList[index] ? 100.h : 0,
+                                height: boolList[index] ? 150.h : 0,
                                 width: 1.sw,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10),
@@ -229,14 +230,13 @@ class _UFaqScreenState extends State<UFaqScreen> {
                         side: const BorderSide(color: k006D77),
                       ),
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => UChatSupport()));
+                        const uri =
+                            'mailto:info@theataraxis.com?subject=Support';
+                        launchUrl(Uri.parse(uri));
                         // );
                       },
                       child: Text(
-                        'Send a message',
+                        'Send a mail',
                         style: kManRope_400_16_white,
                       ),
                     ),

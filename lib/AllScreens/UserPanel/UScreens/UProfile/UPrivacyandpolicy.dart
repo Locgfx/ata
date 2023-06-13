@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_privacy_policy_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -52,20 +53,22 @@ class _UPrivacyandPolicyState extends State<UPrivacyandPolicy> {
         imgPath: 'assets/images/iconbackappbar2.png',
         appBarText: 'Privacy and Policy',
       ),
-      body: Padding(
-        padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
-        child: Column(
-          children: [
-            _isLoading
-                ? SpinKitThreeBounce(
-                    color: k006D77,
-                    size: 20,
-                  )
-                : Text(
-                    model.text.toString(),
-                    style: kManRope_400_14_626A6A,
-                  )
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 40.h),
+          child: Column(
+            children: [
+              _isLoading
+                  ? SpinKitThreeBounce(
+                      color: k006D77,
+                      size: 20,
+                    )
+                  : HtmlWidget(
+                      model.text.toString(),
+                      textStyle: kManRope_400_14_626A6A,
+                    )
+            ],
+          ),
         ),
       ),
     );
