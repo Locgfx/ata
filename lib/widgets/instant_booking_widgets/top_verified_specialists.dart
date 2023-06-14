@@ -337,14 +337,14 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                       });
                     },
                     aspectRatio: 16 / 9,
-                    viewportFraction: 0.7,
+                    viewportFraction: 0.85,
                     reverse: false,
                     enableInfiniteScroll: false),
                 itemBuilder: (BuildContext context, int index, int realIndex) {
                   return Container(
                     margin: EdgeInsets.only(right: 16),
                     // padding: const EdgeInsets.all(24),
-                    width: 329.w,
+                    //width: 329.w,
                     height: 124.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24),
@@ -356,7 +356,7 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                     child: Padding(
                       padding: EdgeInsets.only(left: 24.h, top: 24.h),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Column(
@@ -376,63 +376,66 @@ class _TopVerifiedSpecialistState extends State<TopVerifiedSpecialist> {
                               )
                             ],
                           ),
-                          Expanded(
-                              child: Stack(
-                            clipBehavior: Clip.none,
-                            children: [
-                              Positioned(
-                                left: 0,
-                                top: 20,
-                                child: Container(
-                                  width: 48.w,
-                                  height: 48.h,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/images/person1instant.png"),
-                                        fit: BoxFit.cover),
-                                    color: Colors.grey,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: Colors.white),
+                          SizedBox(
+                            width: 104,
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              //fit: StackFit.loose,
+                              children: [
+                                Positioned(
+                                  left: 0,
+                                  top: 20,
+                                  child: Container(
+                                    width: 48.w,
+                                    height: 48.h,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/person1instant.png"),
+                                          fit: BoxFit.cover),
+                                      color: Colors.grey,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.white),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                left: 20,
-                                top: 20,
-                                child: Container(
-                                  width: 48.w,
-                                  height: 48.h,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/images/person2instant.png"),
-                                        fit: BoxFit.cover),
-                                    color: Colors.grey,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: Colors.white),
+                                Positioned(
+                                  left: 20,
+                                  top: 20,
+                                  child: Container(
+                                    width: 48.w,
+                                    height: 48.h,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/person2instant.png"),
+                                          fit: BoxFit.cover),
+                                      color: Colors.grey,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.white),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                left: 40,
-                                top: 20,
-                                child: Container(
-                                  width: 48.w,
-                                  height: 48.h,
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            "assets/images/person3instant.png"),
-                                        fit: BoxFit.cover),
-                                    color: Colors.grey,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(color: Colors.white),
+                                Positioned(
+                                  left: 40,
+                                  top: 20,
+                                  child: Container(
+                                    width: 48.w,
+                                    height: 48.h,
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              "assets/images/person3instant.png"),
+                                          fit: BoxFit.cover),
+                                      color: Colors.grey,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(color: Colors.white),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          )),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),

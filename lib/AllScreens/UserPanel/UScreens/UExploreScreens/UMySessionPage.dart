@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -13,7 +15,6 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-import 'UBookingConfirmationScreen.dart';
 
 class UMySessionPage extends StatefulWidget {
   const UMySessionPage({Key? key}) : super(key: key);
@@ -43,6 +44,7 @@ class _UMySessionPageState extends State<UMySessionPage> {
     loading = true;
     final resp = UserOrderHistoryApi().get(page: 0, filter: "u");
     resp.then((value) {
+      log(value.toString());
       setState(() {
         for (var v in value) {
           upcomingSessions.add(ProfileOrderHistoryModel.fromJson(v));
@@ -76,6 +78,7 @@ class _UMySessionPageState extends State<UMySessionPage> {
   _getAllSessions() {
     final resp = UserOrderHistoryApi().get(page: 0, filter: "cs");
     resp.then((val) {
+      log(val.toString());
       setState(() {
         previousSessions.clear();
         dataVal = val.length;

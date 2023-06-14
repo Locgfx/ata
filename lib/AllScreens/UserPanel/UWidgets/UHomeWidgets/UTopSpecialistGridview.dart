@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/USelectPsyChologistScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UBookAppointmentScreen.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_specialist_model.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/userspecialistapi.dart';
@@ -57,7 +56,7 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
             physics: const NeverScrollableScrollPhysics(),
             padding: const EdgeInsets.only(top: 5),
             shrinkWrap: true,
-            itemCount: specialistModel.length >= 7? 8 : specialistModel.length,
+            itemCount: specialistModel.length >= 7 ? 8 : specialistModel.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
                 childAspectRatio: 1 / 1.5,
@@ -133,20 +132,17 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
                               borderRadius: BorderRadius.circular(24),
                               border:
                                   Border.all(color: Colors.white, width: 1)),
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CachedNetworkImage(
-                              imageUrl: specialistModel[index].icon.toString(),
-                              fit: BoxFit.fill,
-                              placeholder: (context, url) => Center(
-                                child: SpinKitThreeBounce(
-                                  color: k006D77,
-                                  size: 10,
-                                ),
+                          child: CachedNetworkImage(
+                            imageUrl: specialistModel[index].icon.toString(),
+                            fit: BoxFit.cover,
+                            placeholder: (context, url) => Center(
+                              child: SpinKitThreeBounce(
+                                color: k006D77,
+                                size: 10,
                               ),
-                              errorWidget: (context, url, error) =>
-                                  Icon(Icons.error),
                             ),
+                            errorWidget: (context, url, error) =>
+                                Icon(Icons.error),
                           ),
                         ),
                         SizedBox(height: 8.h),

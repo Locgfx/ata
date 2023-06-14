@@ -207,8 +207,13 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                             visible = !visible;
                                           });
                                         },
-                                        child: SvgPicture.asset(
-                                            'assets/icons/eyeopen.svg')),
+                                        child: visible
+                                            ? SvgPicture.asset(
+                                                'assets/icons/eyeclose.svg',
+                                              )
+                                            : SvgPicture.asset(
+                                                'assets/icons/eyeopen.svg',
+                                              )),
                                   ),
                                 ),
                               ),
@@ -515,10 +520,16 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                           onTap: () {
                                             setState(() {
                                               visible = !visible;
+                                              log(visible.toString());
                                             });
                                           },
-                                          child: SvgPicture.asset(
-                                              'assets/icons/eyeopen.svg')),
+                                          child: visible
+                                              ? SvgPicture.asset(
+                                                  'assets/icons/eyeclose.svg',
+                                                )
+                                              : SvgPicture.asset(
+                                                  'assets/icons/eyeopen.svg',
+                                                )),
                                     ),
                                   ),
                                 ),

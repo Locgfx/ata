@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UBookingConfirmationScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivity.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllPsychologistScreen.dart';
@@ -166,14 +167,23 @@ class _UHomeScreenState extends State<UHomeScreen> {
                       builder: (context) => const UNotificationsScreen()));
                 },
                 child: Container(
-                  color: Colors.transparent,
-                  margin: EdgeInsets.only(right: 12),
-                  child: Image.asset(
-                    "assets/images/iconwhitenotification.png",
-                    height: 48.w,
-                    width: 48.w,
-                  ),
-                ),
+                    color: Colors.transparent,
+                    margin: EdgeInsets.only(right: 12),
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: SvgPicture.asset(
+                        "assets/icons/bell_on.svg",
+                        width: 20,
+                        height: 20,
+                      ),
+                    )
+                    // Image.asset(
+                    //   "assets/images/iconwhitenotification.png",
+                    //   height: 48.w,
+                    //   width: 48.w,
+                    // ),
+                    ),
               ),
             ],
           ),
@@ -312,7 +322,6 @@ class _UHomeScreenState extends State<UHomeScreen> {
                           ),
                         ),
                         SizedBox(height: 24.h),
-
                         //--------------------------------psychologistslider-------------------
                         isLoading || psychologists.isEmpty
                             ? Opacity(

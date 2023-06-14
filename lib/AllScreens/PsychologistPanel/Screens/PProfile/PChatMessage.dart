@@ -3,10 +3,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:greymatter/Apis/message_api/chat_token_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:grouped_list/grouped_list.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
@@ -20,9 +22,34 @@ class PChatMessages extends StatefulWidget {
 class _PChatMessagesState extends State<PChatMessages> {
   final TextEditingController _controller = TextEditingController();
   List<Messages> messages = [];
-  final channel = WebSocketChannel.connect(
-    Uri.parse('ws://192.168.1.145:3030'),
-  );
+
+  String chatToken = '';
+  String fromId = '';
+  bool _isLoading = false;
+  _getData() {
+    _isLoading = true;
+    final resp = GetChatToken().get();
+    resp.then((value) {
+      if (value == false) {
+      } else {
+        if (value['status'] == true) {
+          setState(() {
+            chatToken = value['chat_token'];
+            fromId = value['from_id'];
+          });
+        }
+      }
+    }).then((value) {
+      channel = WebSocketChannel.connect(
+        Uri.parse('ws://192.168.1.145:3030'),
+      );
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
+
+  WebSocketChannel? channel;
   final _streamController = StreamController<Messages>();
 
   bool _isVisible = false;
@@ -36,7 +63,8 @@ class _PChatMessagesState extends State<PChatMessages> {
   @override
   void initState() {
     super.initState();
-    channel.stream.listen((event) {
+    _getData();
+    channel?.stream.listen((event) {
       if (event == "CONNECTION ESTASHBLISH!") {
         setState(() {
           _isConnected = true;
@@ -63,7 +91,7 @@ class _PChatMessagesState extends State<PChatMessages> {
 
   @override
   void dispose() {
-    channel.sink.close();
+    channel!.sink.close();
     _streamController.close();
     _controller.dispose();
     super.dispose();
@@ -108,7 +136,7 @@ class _PChatMessagesState extends State<PChatMessages> {
                               // isSeen: true
                             );
                             //setState(() => messages.add(message));
-                            channel.sink.add(jsonEncode({
+                            channel!.sink.add(jsonEncode({
                               "text": _controller.text,
                               "name": "MK",
                               "to": "85"
@@ -129,143 +157,147 @@ class _PChatMessagesState extends State<PChatMessages> {
           ),
         ),
       ),
-      body: Padding(
-        padding: EdgeInsets.only(
-          left: 24.w,
-          right: 24.w,
-          //top: 40.h,
-        ),
-        child: Container(
-          constraints: BoxConstraints(maxHeight: 1.sh),
-          padding: EdgeInsets.all(8),
-          child: Column(
-            children: [
-              Expanded(
-                  //height: 100.h,
-                  child: StreamBuilder<Messages>(
-                stream: _streamController.stream,
-                builder: (context, snapShot) {
-                  // if (snapShot.connectionState == ConnectionState.waiting) {
-                  //   return SpinKitThreeBounce(
-                  //     color: k006D77,
-                  //     size: 30,
-                  //   );
-                  // } else
-                  if (snapShot.hasData) {
-                    // log(snapShot.data.runtimeType.toString());
-                    // log(snapShot.data.toString());
-                    // var v = jsonDecode(snapShot.data);
-                    // messages.add(Messages(
-                    //     text: v['text'],
-                    //     date: DateTime.now(),
-                    //     isSentByme: false,
-                    //     // style: TextStyle(),
-                    //     isSeen: true));
-                    // return Align(
-                    //   alignment: Alignment.centerLeft,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(bottom: 32.0),
-                    //     child: Column(
-                    //       children: [
-                    //         // Text(DateFormat("hh:mm a").format(snapShot.data!.date), style: kManRope_400_12_001314),
-                    //         SizedBox(
-                    //           height: 8,
-                    //         ),
-                    //         Container(
-                    //           decoration: BoxDecoration(
-                    //               color: false ? kFFFFFF : kFFFFFF,
-                    //               borderRadius: BorderRadius.circular(10)),
-                    //           child: Padding(
-                    //             padding: EdgeInsets.all(12),
-                    //             child: Text(snapShot.data!.text
-                    //                 //messages.text,
-                    //                 // style: FontConstant.k16w4008471Text
-                    //                 //     .copyWith(color: Color(0xff5E5C70),
-                    //                 ),
-                    //           ),
-                    //         ),
-                    //         SizedBox(
-                    //           height: 4,
-                    //         ),
-                    //         // messages.isSeen
-                    //         //     ? Text(
-                    //         //   "Seen",
-                    //         //   style: kManRope_400_12_006D77,
-                    //         // )
-                    //         //     : SizedBox.shrink(),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // );
-                    return GroupedListView<Messages, DateTime>(
-                      // physics: NeverScrollableScrollPhysics(),
-                      // padding: EdgeInsets.zero,
-                      reverse: true,
-                      order: GroupedListOrder.DESC,
-                      // padding: EdgeInsets.all(20),
-                      elements: messages,
-                      groupBy: (messages) => DateTime.now(),
-                      groupHeaderBuilder: (Messages messages) => SizedBox(),
-                      itemBuilder: (context, Messages messages) => Align(
-                        alignment: messages.isSentByme
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 32.0),
-                          child: Column(
-                            children: [
-                              // Text(DateFormat("hh:mm a").format(messages.date), style: kManRope_400_12_001314),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: kFFFFFF,
-                                    borderRadius: BorderRadius.circular(10)),
-                                child: Padding(
-                                  padding: EdgeInsets.all(12),
-                                  child: Text(
-                                    messages.text,
-                                    style: kManRope_400_14_001314,
-                                    // style: FontConstant.k16w4008471Text
-                                    // .copyWith(color: Color(0xff5E5C70),
-                                  ),
+      body: _isLoading
+          ? LoadingWidget()
+          : Padding(
+              padding: EdgeInsets.only(
+                left: 24.w,
+                right: 24.w,
+                //top: 40.h,
+              ),
+              child: Container(
+                constraints: BoxConstraints(maxHeight: 1.sh),
+                padding: EdgeInsets.all(8),
+                child: Column(
+                  children: [
+                    Expanded(
+                        //height: 100.h,
+                        child: StreamBuilder<Messages>(
+                      stream: _streamController.stream,
+                      builder: (context, snapShot) {
+                        // if (snapShot.connectionState == ConnectionState.waiting) {
+                        //   return SpinKitThreeBounce(
+                        //     color: k006D77,
+                        //     size: 30,
+                        //   );
+                        // } else
+                        if (snapShot.hasData) {
+                          // log(snapShot.data.runtimeType.toString());
+                          // log(snapShot.data.toString());
+                          // var v = jsonDecode(snapShot.data);
+                          // messages.add(Messages(
+                          //     text: v['text'],
+                          //     date: DateTime.now(),
+                          //     isSentByme: false,
+                          //     // style: TextStyle(),
+                          //     isSeen: true));
+                          // return Align(
+                          //   alignment: Alignment.centerLeft,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(bottom: 32.0),
+                          //     child: Column(
+                          //       children: [
+                          //         // Text(DateFormat("hh:mm a").format(snapShot.data!.date), style: kManRope_400_12_001314),
+                          //         SizedBox(
+                          //           height: 8,
+                          //         ),
+                          //         Container(
+                          //           decoration: BoxDecoration(
+                          //               color: false ? kFFFFFF : kFFFFFF,
+                          //               borderRadius: BorderRadius.circular(10)),
+                          //           child: Padding(
+                          //             padding: EdgeInsets.all(12),
+                          //             child: Text(snapShot.data!.text
+                          //                 //messages.text,
+                          //                 // style: FontConstant.k16w4008471Text
+                          //                 //     .copyWith(color: Color(0xff5E5C70),
+                          //                 ),
+                          //           ),
+                          //         ),
+                          //         SizedBox(
+                          //           height: 4,
+                          //         ),
+                          //         // messages.isSeen
+                          //         //     ? Text(
+                          //         //   "Seen",
+                          //         //   style: kManRope_400_12_006D77,
+                          //         // )
+                          //         //     : SizedBox.shrink(),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // );
+                          return GroupedListView<Messages, DateTime>(
+                            // physics: NeverScrollableScrollPhysics(),
+                            // padding: EdgeInsets.zero,
+                            reverse: true,
+                            order: GroupedListOrder.DESC,
+                            // padding: EdgeInsets.all(20),
+                            elements: messages,
+                            groupBy: (messages) => DateTime.now(),
+                            groupHeaderBuilder: (Messages messages) =>
+                                SizedBox(),
+                            itemBuilder: (context, Messages messages) => Align(
+                              alignment: messages.isSentByme
+                                  ? Alignment.centerRight
+                                  : Alignment.centerLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 32.0),
+                                child: Column(
+                                  children: [
+                                    // Text(DateFormat("hh:mm a").format(messages.date), style: kManRope_400_12_001314),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: kFFFFFF,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Padding(
+                                        padding: EdgeInsets.all(12),
+                                        child: Text(
+                                          messages.text,
+                                          style: kManRope_400_14_001314,
+                                          // style: FontConstant.k16w4008471Text
+                                          // .copyWith(color: Color(0xff5E5C70),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 4,
+                                    ),
+                                    // messages.isSeen
+                                    //     ? Text(
+                                    //         "Seen",
+                                    //         style: kManRope_400_12_006D77,
+                                    //       )
+                                    //     : SizedBox.shrink(),
+                                  ],
                                 ),
                               ),
-                              SizedBox(
-                                height: 4,
-                              ),
-                              // messages.isSeen
-                              //     ? Text(
-                              //         "Seen",
-                              //         style: kManRope_400_12_006D77,
-                              //       )
-                              //     : SizedBox.shrink(),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  } else if (snapShot.hasError) {
-                    return Text("Error");
-                  } else {
-                    return Align(
-                      child: Text(_isConnected
-                          ? "Chat Connected!"
-                          : "Chat Disconnected!"),
-                      alignment: Alignment.bottomCenter,
-                    );
-                    // return SpinKitThreeBounce(
-                    //   color: k006D77,
-                    //   size: 30,
-                    // );0
-                  }
-                },
-              )),
-            ],
-          ),
-        ),
-      ),
+                            ),
+                          );
+                        } else if (snapShot.hasError) {
+                          return Text("Error");
+                        } else {
+                          return Align(
+                            child: Text(_isConnected
+                                ? "Chat Connected!"
+                                : "Chat Disconnected!"),
+                            alignment: Alignment.bottomCenter,
+                          );
+                          // return SpinKitThreeBounce(
+                          //   color: k006D77,
+                          //   size: 30,
+                          // );0
+                        }
+                      },
+                    )),
+                  ],
+                ),
+              ),
+            ),
     );
   }
 }
