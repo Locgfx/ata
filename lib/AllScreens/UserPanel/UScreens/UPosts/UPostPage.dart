@@ -15,7 +15,6 @@ import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart'
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 import 'package:readmore/readmore.dart';
-import 'package:share_plus/share_plus.dart';
 
 import '../../../../Apis/UserAPis/user_posts_api/user_save_post_api.dart';
 import '../../../../constants/colors.dart';
@@ -546,26 +545,6 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
               SizedBox(
                 height: 20.h,
               ),
-              GestureDetector(
-                onTap: () => setState(() {
-                  Share.share("text");
-                  //Navigator.of(context).pop();
-                }),
-                child: Container(
-                  height: 44.h,
-                  width: 80.w,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                    color: Colors.transparent,
-                  ),
-                  child: Center(
-                      child: Text(
-                    'Share',
-                    style: kManRope_500_16_626A6A,
-                  )),
-                ),
-              ),
-              SizedBox(height: 8.h),
               GestureDetector(
                 onTap: () {
                   final resp = UserSavePostApi().get(

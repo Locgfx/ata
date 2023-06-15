@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -41,7 +42,8 @@ class _PChatMessagesState extends State<PChatMessages> {
       }
     }).then((value) {
       channel = WebSocketChannel.connect(
-        Uri.parse('ws://192.168.1.145:3030'),
+        Uri.parse(
+            "ws://192.168.1.145:3030?token=$chatToken&receiver_user_type=admin"),
       );
       setState(() {
         _isLoading = false;
@@ -65,6 +67,7 @@ class _PChatMessagesState extends State<PChatMessages> {
     super.initState();
     _getData();
     channel?.stream.listen((event) {
+      log(event.toString());
       if (event == "CONNECTION ESTASHBLISH!") {
         setState(() {
           _isConnected = true;

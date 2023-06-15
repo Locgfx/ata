@@ -1,5 +1,4 @@
-import 'dart:developer';
-import 'dart:io';
+import 'dart:developer' as l;
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,7 +15,9 @@ import 'package:greymatter/widgets/buttons.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 
+import '../../../../Notification_handler/notification_service.dart';
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/popupdialogs.dart';
@@ -38,7 +39,7 @@ class UAddNewActivityScreen extends StatefulWidget {
 }
 
 class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
-  bool _switchValue = true;
+  bool _switchValue = false;
   bool goalFlag = true;
   TimeOfDay? _pickedTime;
   TimeOfDay holder = TimeOfDay.now();
@@ -57,7 +58,15 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
     });
   }
 
+  var uuid = Uuid();
+  @override
+  void initState() {
+    notificationServices.initializeNotification();
+    super.initState();
+  }
+
   bool loading = false;
+  NotificationServices notificationServices = NotificationServices();
 
   @override
   Widget build(BuildContext context) {
@@ -374,66 +383,67 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
                   SizedBox(
                     height: 40.h,
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Reminder time',
-                          style: kManRope_500_16_001314,
-                        ),
-                        GestureDetector(
-                          onTap: () async {
-                            // if (Platform.isAndroid) {
-                            _pickedTime = await showTimePicker(
-                              initialTime: selectTime == 'select time'
-                                  ? TimeOfDay.now()
-                                  : holder,
-                              context: context,
-                              builder: (BuildContext context, child) {
-                                return TimeWidget(child: child);
-                              },
-                            );
-                            if (_pickedTime != null) {
-                              log(_pickedTime.toString());
-                              final now = DateTime.now();
-                              holder = _pickedTime!;
-                              setState(() {
-                                selectTime = DateFormat.jm().format(DateTime(
-                                    now.year,
-                                    now.month,
-                                    now.day,
-                                    _pickedTime!.hour,
-                                    _pickedTime!.minute));
-                                log(holder.toString().substring(10, 15));
-                              });
-                            }
-                            /*} else {
+                  if (_switchValue)
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Reminder time',
+                            style: kManRope_500_16_001314,
+                          ),
+                          GestureDetector(
+                            onTap: () async {
+                              // if (Platform.isAndroid) {
+                              _pickedTime = await showTimePicker(
+                                initialTime: selectTime == 'select time'
+                                    ? TimeOfDay.now()
+                                    : holder,
+                                context: context,
+                                builder: (BuildContext context, child) {
+                                  return TimeWidget(child: child);
+                                },
+                              );
+                              if (_pickedTime != null) {
+                                l.log(_pickedTime.toString());
+                                final now = DateTime.now();
+                                holder = _pickedTime!;
+                                setState(() {
+                                  selectTime = DateFormat.jm().format(DateTime(
+                                      now.year,
+                                      now.month,
+                                      now.day,
+                                      _pickedTime!.hour,
+                                      _pickedTime!.minute));
+                                  l.log(holder.toString().substring(10, 15));
+                                });
+                              }
+                              /*} else {
                               showDialog(
                                 context: context,
                                 builder: (_) =>
                                     TimePickerApp(dateTime: DateTime.parse(a)),
                               ).then((value) => getReminderTime());
                             }*/
-                          },
-                          child: Container(
-                            width: 100,
-                            height: 30,
-                            decoration: BoxDecoration(
-                                color: kE2F2F4,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                              child: Text(
-                                selectTime,
-                                style: kManRope_400_14_001314,
+                            },
+                            child: Container(
+                              width: 100,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                  color: kE2F2F4,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Center(
+                                child: Text(
+                                  selectTime,
+                                  style: kManRope_400_14_001314,
+                                ),
                               ),
                             ),
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
                   SizedBox(height: 46.h),
                   Center(
                     child: MainButton(
@@ -486,6 +496,8 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
                 MaterialPageRoute(
                     builder: (context) => UNewActivityAddedScreen()));
           }
+          //var _dt = DateTime(DateTime.now().year, DateTime.now())
+          // notificationServices.scheduleNotification(id: Random().nextInt(100000000), title: "Reminder", body: widget.text, datetime: );
           setState(() {
             loading = false;
           });

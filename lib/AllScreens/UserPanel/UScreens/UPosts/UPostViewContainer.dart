@@ -2,13 +2,12 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:greymatter/widgets/BottomSheets/PostBottomSheet.dart';
 import 'package:readmore/readmore.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../model/UModels/user_posts_model/user_posts_model.dart';
 import '../../UWidgets/UPostWidget/UPostInteractions.dart';
-import 'UAllcomments.dart';
 import 'UPostPage.dart';
 
 class UPostViewContainer extends StatefulWidget {
@@ -140,78 +139,95 @@ class _UPostViewContainerState extends State<UPostViewContainer> {
             ),
           ),
           SizedBox(height: 17.h),
-          Stack(
-            children: [
-              Container(
-                  height: 285.h,
-                  width: 380.w,
-                  clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                    color: Colors.white,
-                  ),
-                  child: PageView.builder(
-                      itemCount: widget.model.gallary!.length,
-                      controller: page,
-                      onPageChanged: (val) {
-                        setState(() {
-                          imgIndex = val;
-                        });
-                      },
-                      scrollDirection: Axis.horizontal,
-                      pageSnapping: true,
-                      itemBuilder: (BuildContext context, ind) {
-                        return CachedNetworkImage(
-                          imageUrl: widget.model.gallary![ind].toString(),
-                          fit: BoxFit.cover,
-                          placeholder: (context, url) => Center(
-                            child: SpinKitThreeBounce(
-                              color: k006D77,
-                              size: 30,
-                            ),
+          widget.model.gallary!.isNotEmpty
+              ? Stack(
+                  children: [
+                    Container(
+                        height: 285.h,
+                        width: 380.w,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          color: Colors.white,
+                        ),
+                        child: PageView.builder(
+                            itemCount: widget.model.gallary!.length,
+                            controller: page,
+                            onPageChanged: (val) {
+                              setState(() {
+                                imgIndex = val;
+                              });
+                            },
+                            scrollDirection: Axis.horizontal,
+                            pageSnapping: true,
+                            itemBuilder: (BuildContext context, ind) {
+                              return CachedNetworkImage(
+                                imageUrl: widget.model.gallary![ind].toString(),
+                                fit: BoxFit.cover,
+                                placeholder: (context, url) => Center(
+                                  child: SpinKitThreeBounce(
+                                    color: k006D77,
+                                    size: 30,
+                                  ),
+                                ),
+                                errorWidget: (context, url, error) =>
+                                    Icon(Icons.error),
+                              );
+                            })),
+                    Positioned(
+                        right: 10,
+                        top: 10,
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Text(
+                            "${imgIndex + 1}/${widget.model.gallary!.length}",
+                            style: kManRope_400_14_white,
                           ),
-                          errorWidget: (context, url, error) =>
-                              Icon(Icons.error),
-                        );
-                      })),
-              Positioned(
-                  right: 10,
-                  top: 10,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    decoration: BoxDecoration(
-                        color: Colors.black45,
-                        borderRadius: BorderRadius.circular(50)),
-                    child: Text(
-                      "${imgIndex + 1}/${widget.model.gallary!.length}",
-                      style: kManRope_400_14_white,
-                    ),
-                  ))
-            ],
-          ),
+                        ))
+                  ],
+                )
+              : Align(
+                  alignment: Alignment.centerLeft,
+                  child: ReadMoreText(
+                    widget.model.caption.toString(),
+                    style: kManRope_400_14_626A6A,
+                    trimLines: 1,
+                    colorClickableText: k006D77,
+                    trimMode: TrimMode.Line,
+                    trimCollapsedText: 'Show more',
+                    trimExpandedText: 'Show less',
+                    moreStyle: kManRope_600_14_006D77,
+                    lessStyle: kManRope_600_14_006D77,
+                  ),
+                ),
           SizedBox(
             height: 8.h,
           ),
-          /*UPostInteractions(
+          UPostInteractions(
             savedPost: "no",
             isCommentsViewable: false,
             modelList: [widget.model],
             index: 0,
-          ),*/
-          Align(
-            alignment: Alignment.centerLeft,
-            child: ReadMoreText(
-              widget.model.caption.toString(),
-              style: kManRope_400_14_626A6A,
-              trimLines: 1,
-              colorClickableText: k006D77,
-              trimMode: TrimMode.Line,
-              trimCollapsedText: 'Show more',
-              trimExpandedText: 'Show less',
-              moreStyle: kManRope_600_14_006D77,
-              lessStyle: kManRope_600_14_006D77,
-            ),
           ),
+          if (widget.model.gallary!.isNotEmpty)
+            Align(
+              alignment: Alignment.centerLeft,
+              child: ReadMoreText(
+                widget.model.caption.toString(),
+                style: kManRope_400_14_626A6A,
+                trimLines: 1,
+                colorClickableText: k006D77,
+                trimMode: TrimMode.Line,
+                trimCollapsedText: 'Show more',
+                trimExpandedText: 'Show less',
+                moreStyle: kManRope_600_14_006D77,
+                lessStyle: kManRope_600_14_006D77,
+              ),
+            ),
         ],
       ),
     );

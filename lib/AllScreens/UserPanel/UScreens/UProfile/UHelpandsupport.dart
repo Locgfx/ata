@@ -35,7 +35,7 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                 children: [
                   Container(
                     width: 1.sw,
-                    color: Colors.white,
+                    //color: Colors.white,
                     child: Image.asset(
                       'assets/images/helpAndSupport.png',
                       height: 330.h,

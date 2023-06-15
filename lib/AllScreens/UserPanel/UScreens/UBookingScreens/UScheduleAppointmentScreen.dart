@@ -123,8 +123,8 @@ class _UScheduleAppointmentScreenState
       if (val['status'] == true) {
         setState(() {
           _slotsModel = AvailableSlotsModel.fromJson(val);
-          log(widget.issueId);
-          log(widget.issue);
+          // log(widget.issueId);
+          // log(widget.issue);
           for (int i = 0; i < _slotsModel.issue!.length; i++) {
             if (_slotsModel.issue![i].name.toString() == widget.issue &&
                 _slotsModel.issue![i].specialitiesId.toString() ==
@@ -137,6 +137,14 @@ class _UScheduleAppointmentScreenState
               issueId = _slotsModel.issue![0].specialitiesId.toString();
             }
           }
+          List<String> _test = [];
+          for (var v in _slotsModel.bookedSlots!) {
+            _test.add(v.split(":").first + ":" + v.split(":")[1]);
+          }
+          _slotsModel.bookedSlots = _test;
+          // log(_test.toString());
+          // log(_slotsModel.bookedSlots.toString());
+          // log(_slotsModel.slots.toString());
           _isLoading = false;
           _dataLoading = false;
         });
@@ -219,8 +227,11 @@ class _UScheduleAppointmentScreenState
                           focusedDay = focusDay;
                           flag = true;
                           monthSet(selectDay.month);
-                          date =
-                              '${selectDay.day}/${selectDay.month}/${selectDay.year}';
+                          //log(selectDay.toString());
+                          //log(selectDay.month.toString());
+
+                          date = DateFormat("dd/MM/yyyy").format(selectDay);
+                          //  '${selectDay.day}/${selectDay.month}/${selectDay.year}';
                           apiDate = DateFormat("yyyy-MM-dd").format(selectDay);
                           _dataLoading = true;
                         });
@@ -266,8 +277,26 @@ class _UScheduleAppointmentScreenState
                                             i++)
                                           InkWell(
                                             onTap: _slotsModel.bookedSlots!
-                                                    .contains(
-                                                        _slotsModel.slots![i])
+                                                        .contains(_slotsModel
+                                                            .slots![i]) ||
+                                                    DateTime.now().isAfter(
+                                                        DateTime(
+                                                            DateTime.now().year,
+                                                            DateTime.now()
+                                                                .month,
+                                                            DateTime.now().day,
+                                                            int.parse(
+                                                                _slotsModel
+                                                                    .slots![i]
+                                                                    .toString()
+                                                                    .split(":")
+                                                                    .first),
+                                                            int.parse(
+                                                                _slotsModel
+                                                                    .slots![i]
+                                                                    .toString()
+                                                                    .split(":")
+                                                                    .last)))
                                                 ? () {}
                                                 : () {
                                                     setState(() {
@@ -300,9 +329,28 @@ class _UScheduleAppointmentScreenState
                                                       : kManRope_400_16_1314,
                                                 ),
                                                 backgroundColor: _slotsModel
-                                                        .bookedSlots!
-                                                        .contains(_slotsModel
-                                                            .slots![i])
+                                                            .bookedSlots!
+                                                            .contains(
+                                                                _slotsModel
+                                                                        .slots![
+                                                                    i]) ||
+                                                        DateTime.now().isAfter(DateTime(
+                                                            DateTime.now().year,
+                                                            DateTime.now()
+                                                                .month,
+                                                            DateTime.now().day,
+                                                            int.parse(
+                                                                _slotsModel
+                                                                    .slots![i]
+                                                                    .toString()
+                                                                    .split(":")
+                                                                    .first),
+                                                            int.parse(
+                                                                _slotsModel
+                                                                    .slots![i]
+                                                                    .toString()
+                                                                    .split(":")
+                                                                    .last)))
                                                     ? Colors.grey
                                                     : selectedIndex == i
                                                         ? k006D77
@@ -312,8 +360,25 @@ class _UScheduleAppointmentScreenState
                                                         BorderRadius.circular(
                                                             5)),
                                                 side: _slotsModel.bookedSlots!
-                                                        .contains(_slotsModel
-                                                            .slots![i])
+                                                            .contains(_slotsModel
+                                                                .slots![i]) ||
+                                                        DateTime.now().isAfter(DateTime(
+                                                            DateTime.now().year,
+                                                            DateTime.now()
+                                                                .month,
+                                                            DateTime.now().day,
+                                                            int.parse(
+                                                                _slotsModel
+                                                                    .slots![i]
+                                                                    .toString()
+                                                                    .split(":")
+                                                                    .first),
+                                                            int.parse(
+                                                                _slotsModel
+                                                                    .slots![i]
+                                                                    .toString()
+                                                                    .split(":")
+                                                                    .last)))
                                                     ? BorderSide.none
                                                     : BorderSide(
                                                         color: k006D77),
@@ -323,48 +388,6 @@ class _UScheduleAppointmentScreenState
                                           ),
                                       ],
                                     ),
-                              /*GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        mainAxisSpacing: 16,
-                        childAspectRatio: 2,
-                        crossAxisSpacing: 8,
-                      ),
-                      itemCount: getSlotCount(),
-                      itemBuilder: (BuildContext ctx, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              selectedIndex = index;
-                            });
-                          },
-                          child: Container(
-                            height: 34.h,
-                            width: 60.w,
-                            decoration: BoxDecoration(
-                              color: selectedIndex == index
-                                  ? k006D77
-                                  : Colors.transparent,
-                              border: Border.all(
-                                color: k006D77,
-                              ),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(8)),
-                            ),
-                            child: Center(
-                              child: Text(
-                                timeList[index],
-                                style: selectedIndex == index
-                                    ? kManRope_400_14_white
-                                    : kManRope_400_14_001314,
-                              ),
-                            ),
-                          ),
-                        );
-                      }),*/
                               SizedBox(height: 50),
                               Text(
                                 "Select Issue",

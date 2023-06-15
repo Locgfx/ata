@@ -183,8 +183,7 @@ class _UChangeMobileNoScreenState extends State<UChangeMobileNoScreen> {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
                                           UChangeMobileEnterOtpScreen(
-                                            number:
-                                                widget.model.phone.toString(),
+                                            number: mobileNOController.text,
                                           )));
                                   // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                                 } else {

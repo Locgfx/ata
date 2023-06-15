@@ -64,6 +64,7 @@ class _UConfirmAppointmentBookingState
   final ConfettiController _confettiController = ConfettiController();
   @override
   void initState() {
+    log(widget.date);
     price = widget.psychologist.price.toString();
     super.initState();
   }
@@ -375,7 +376,7 @@ class _UConfirmAppointmentBookingState
                                     date:
                                         "${widget.date.split("/").last}-${widget.date.split("/")[1]}-${widget.date.split("/").first}");
                                 resp.then((value) async {
-                                  log(value.toString());
+                                  log(value.toString() + "new");
                                   if (value['status'] == true) {
                                     /*var _isSuccess =  await StripeClass().makePayment(
                                         amount: widget.psychologist.price.toString());

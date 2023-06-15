@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 class NotificationServices {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
@@ -53,7 +54,7 @@ class NotificationServices {
         id, title, body, notificationDetails);
   }
 
-  /*void scheduleNotification({
+  void scheduleNotification({
     required int id,
     required String title,
     required String body,
@@ -67,7 +68,7 @@ class NotificationServices {
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
         androidAllowWhileIdle: true);
-  }*/
+  }
 
   void stopNotification() async {
     _flutterLocalNotificationsPlugin.cancelAll();

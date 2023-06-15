@@ -315,7 +315,9 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                 child: CupertinoDatePicker(
                     mode: CupertinoDatePickerMode.date,
                     minimumYear: 1950,
-                    maximumYear: DateTime.now().year,
+                    initialDateTime:
+                        DateTime.now().subtract(Duration(days: 3650)),
+                    maximumYear: DateTime.now().year - 10,
                     onDateTimeChanged: (val) {
                       setState(() {
                         updateDobController.text =
@@ -632,7 +634,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                         : Text(
                                             model.occupation.toString() ==
                                                     "null"
-                                                ? "Edit date of birth"
+                                                ? "Edit occupation"
                                                 : updateOccupationController
                                                     .text,
                                             style:

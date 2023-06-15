@@ -77,6 +77,7 @@ class _UCreatePostState extends State<UCreatePost> {
     }
   }
 
+  List<XFile> images = [];
   PageController page = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
@@ -133,7 +134,7 @@ class _UCreatePostState extends State<UCreatePost> {
                             XFile? v = await _imgPicker.pickImage(
                                 source: ImageSource.camera);
                             if (v != null) {
-                              if (_pickedImages.length > 4) {
+                              if (_pickedImages.length >= 4) {
                                 Fluttertoast.showToast(
                                     msg: "Maximum 4 images are allowed.");
                               } else {
@@ -160,14 +161,15 @@ class _UCreatePostState extends State<UCreatePost> {
                         ),
                         InkWell(
                           onTap: () async {
-                            List<XFile> images =
-                                await _imgPicker.pickMultiImage();
+                            images.clear();
+                            images = await _imgPicker.pickMultiImage();
                             setState(() {
                               if (images.length > 4) {
                                 Fluttertoast.showToast(
                                     msg: "Maximum 4 images are allowed.");
                               } else {
-                                if (_pickedImages.length > 4) {
+                                //log(_pickedImages.length.toString());
+                                if (_pickedImages.length + images.length > 4) {
                                   Fluttertoast.showToast(
                                       msg: "Maximum 4 images are allowed.");
                                 } else {
@@ -323,9 +325,14 @@ class _UCreatePostState extends State<UCreatePost> {
                       }, onAccept: (file) {
                         setState(() {
                           _pickedImages.remove(file);
+                          if (imgIndex + 1 > _pickedImages.length) {
+                            imgIndex--;
+                          }
                         });
                       }, builder: (ctx, q, w) {
                         return IconButton(
+                          color: Colors.black38,
+                          padding: EdgeInsets.all(30),
                           icon: Image.asset(
                             "assets/icons/delete.png",
                             width: 24,

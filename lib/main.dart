@@ -94,6 +94,7 @@ void main() async {
 
   // await Stripe.instance.applySettings();
   await Firebase.initializeApp();
+
   HttpOverrides.global = MyHttpOverrides();
   // notificationServices.initializeNotification();
   // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
@@ -234,6 +235,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  //NotificationServices notificationServices = NotificationServices();
   Future<void> setupInteractedMessage() async {
     // Get any messages which caused the application to open from
     // a terminated state.

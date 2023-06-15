@@ -3,13 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/USeelAllVideosScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/search_videos_screen.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_all_videos_api.dart';
-import 'package:greymatter/Apis/UserAPis/user_home_apis/user_video_category_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/model/UModels/user_home_models/user_all_videos_model.dart';
-import 'package:greymatter/model/UModels/user_home_models/user_video_category_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 
@@ -97,21 +96,30 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                         color: kFFFFFF,
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: k5A72ED.withOpacity(0.24))),
-                    child: TextField(
-                      decoration: TextfieldDecoration(
-                        label: 'Nature',
-                        child: Image.asset(
-                          "assets/images/iconsearchblue.png",
-                          height: 48.h,
-                          width: 48.w,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => SearchVideosScreen()));
+                      },
+                      child: IgnorePointer(
+                        child: TextField(
+                          decoration: TextfieldDecoration(
+                            label: 'Search videos here',
+                            child: Image.asset(
+                              "assets/images/iconsearchblue.png",
+                              height: 48.h,
+                              width: 48.w,
+                            ),
+                          ).searchFieldBigIconDecoration(),
                         ),
-                      ).searchFieldBigIconDecoration(),
+                      ),
                     ),
                   ),
                   SizedBox(
                     height: 40.h,
                   ),
-                  SizedBox(
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
                     // height: 1.sh - 140.h,
                     child: ListView.separated(
                       physics: NeverScrollableScrollPhysics(),
@@ -122,36 +130,33 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                       itemBuilder: (BuildContext context, int indexx) {
                         if (indexx < modelList.length) {
                           return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               if (modelList[indexx].videos!.isNotEmpty)
-                                Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 24.w),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        modelList[indexx].name.toString(),
-                                        style: kManRope_700_16_001314,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      modelList[indexx].name.toString(),
+                                      style: kManRope_700_16_001314,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () => Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  USeeAllVideosScreen(
+                                                    categoryId:
+                                                        modelList[indexx]
+                                                            .id
+                                                            .toString(),
+                                                  ))),
+                                      child: Text(
+                                        'See all',
+                                        style: kManRope_500_16_006D77,
                                       ),
-                                      GestureDetector(
-                                        onTap: () => Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    USeeAllVideosScreen(
-                                                      categoryId:
-                                                          modelList[indexx]
-                                                              .id
-                                                              .toString(),
-                                                    ))),
-                                        child: Text(
-                                          'See all',
-                                          style: kManRope_500_16_006D77,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               if (modelList[indexx].videos!.isNotEmpty)
                                 SizedBox(height: 24.h),
@@ -170,6 +175,8 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                                       return Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
                                           GestureDetector(
                                             onTap: () {

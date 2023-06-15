@@ -173,7 +173,7 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
                               if (value['status'] == true) {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => UEmailOtpScreen(
-                                          email: widget.model.email.toString(),
+                                          email: newEmailController.text,
                                         )));
                                 // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                               } else {
