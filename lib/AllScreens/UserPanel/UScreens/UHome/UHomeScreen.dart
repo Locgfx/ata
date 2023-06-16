@@ -548,8 +548,6 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                   ],
                                 )),
                         SizedBox(height: 20.h),
-                        // RecommendedVideos(),
-                        //---------------------------------------------------------------------------
                         SizedBox(
                           width: 1.sw,
                           child: Column(

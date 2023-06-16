@@ -144,7 +144,7 @@ class _UScheduleAppointmentScreenState
           _slotsModel.bookedSlots = _test;
           // log(_test.toString());
           // log(_slotsModel.bookedSlots.toString());
-          // log(_slotsModel.slots.toString());
+          //log(_slotsModel.slots![0].split(":").toString());
           _isLoading = false;
           _dataLoading = false;
         });
@@ -221,6 +221,8 @@ class _UScheduleAppointmentScreenState
                       rowHeight: 56.h,
                       onDaySelected: (DateTime selectDay, DateTime focusDay) {
                         setState(() {
+                          time = '';
+                          selectedIndex = -1;
                           print(selectDay.weekday);
                           selectedDay = selectDay;
                           weekDay = selectDay.weekday;
@@ -281,10 +283,9 @@ class _UScheduleAppointmentScreenState
                                                             .slots![i]) ||
                                                     DateTime.now().isAfter(
                                                         DateTime(
-                                                            DateTime.now().year,
-                                                            DateTime.now()
-                                                                .month,
-                                                            DateTime.now().day,
+                                                            selectedDay.year,
+                                                            selectedDay.month,
+                                                            selectedDay.day,
                                                             int.parse(
                                                                 _slotsModel
                                                                     .slots![i]
@@ -329,44 +330,46 @@ class _UScheduleAppointmentScreenState
                                                       : kManRope_400_16_1314,
                                                 ),
                                                 backgroundColor: _slotsModel
-                                                            .bookedSlots!
-                                                            .contains(
-                                                                _slotsModel
-                                                                        .slots![
-                                                                    i]) ||
-                                                        DateTime.now().isAfter(DateTime(
-                                                            DateTime.now().year,
-                                                            DateTime.now()
-                                                                .month,
-                                                            DateTime.now().day,
-                                                            int.parse(
-                                                                _slotsModel
+                                                        .bookedSlots!
+                                                        .contains(_slotsModel
+                                                            .slots![i])
+                                                    ? Colors.grey
+                                                    : selectedIndex == i
+                                                        ? k006D77
+                                                        : DateTime.now().isAfter(DateTime(
+                                                                selectedDay
+                                                                    .year,
+                                                                selectedDay
+                                                                    .month,
+                                                                selectedDay.day,
+                                                                int.parse(_slotsModel
                                                                     .slots![i]
                                                                     .toString()
                                                                     .split(":")
                                                                     .first),
-                                                            int.parse(
-                                                                _slotsModel
-                                                                    .slots![i]
-                                                                    .toString()
-                                                                    .split(":")
-                                                                    .last)))
-                                                    ? Colors.grey
-                                                    : selectedIndex == i
-                                                        ? k006D77
-                                                        : Colors.transparent,
+                                                                int.parse(
+                                                                    _slotsModel
+                                                                        .slots![
+                                                                            i]
+                                                                        .toString()
+                                                                        .split(
+                                                                            ":")
+                                                                        .last)))
+                                                            ? Colors.grey
+                                                            : Colors.transparent,
                                                 shape: RoundedRectangleBorder(
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             5)),
                                                 side: _slotsModel.bookedSlots!
-                                                            .contains(_slotsModel
-                                                                .slots![i]) ||
+                                                            .contains(
+                                                                _slotsModel
+                                                                        .slots![
+                                                                    i]) ||
                                                         DateTime.now().isAfter(DateTime(
-                                                            DateTime.now().year,
-                                                            DateTime.now()
-                                                                .month,
-                                                            DateTime.now().day,
+                                                            selectedDay.year,
+                                                            selectedDay.month,
+                                                            selectedDay.day,
                                                             int.parse(
                                                                 _slotsModel
                                                                     .slots![i]

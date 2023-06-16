@@ -6,7 +6,12 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UFaq.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
+import '../../../../Apis/message_api/chat_token_api.dart';
+import '../../../../constants/globals.dart';
 
 class UHelpandSupport extends StatefulWidget {
   const UHelpandSupport({Key? key}) : super(key: key);
@@ -63,9 +68,33 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                     child: Column(
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => PChatMessages()));
+                          onTap: () async {
+                            var prefs = await SharedPreferences.getInstance();
+                            bool isUser = prefs.getBool(Keys().isUser) ?? true;
+                            String type = isUser ? "user" : "psychologist";
+                            String chatToken = '';
+                            String fromId = '';
+                            final resp = GetChatToken().get();
+                            resp.then((value) {
+                              if (value == false) {
+                              } else {
+                                if (value['status'] == true) {
+                                  chatToken = value['chat_token'];
+                                  fromId = value['from_id'];
+                                  WebSocketChannel channel =
+                                      WebSocketChannel.connect(
+                                    Uri.parse(
+                                        "ws://192.168.1.145:3030?token=$chatToken&receiver_user_type=$type"),
+                                  );
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => PChatMessages(
+                                            channel: channel,
+                                            chatToken: chatToken,
+                                            fromId: fromId,
+                                          )));
+                                }
+                              }
+                            });
                           },
                           child: Align(
                             alignment: Alignment.centerRight,

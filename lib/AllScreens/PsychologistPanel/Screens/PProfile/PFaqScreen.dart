@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChatMessage.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 
@@ -47,12 +47,7 @@ class PFAQsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                     side: const BorderSide(color: k006D77),
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => PChatMessages()),
-                    );
-                  },
+                  onPressed: () {},
                   child: Text(
                     'Send a message',
                     style: kManRope_400_16_white,

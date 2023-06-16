@@ -11,10 +11,22 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:grouped_list/grouped_list.dart';
+import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
+import '../../../../constants/globals.dart';
+
 class PChatMessages extends StatefulWidget {
-  const PChatMessages({Key? key}) : super(key: key);
+  final String chatToken;
+  final String fromId;
+  final WebSocketChannel channel;
+  const PChatMessages(
+      {Key? key,
+      required this.chatToken,
+      required this.fromId,
+      required this.channel})
+      : super(key: key);
 
   @override
   State<PChatMessages> createState() => _PChatMessagesState();
@@ -24,8 +36,8 @@ class _PChatMessagesState extends State<PChatMessages> {
   final TextEditingController _controller = TextEditingController();
   List<Messages> messages = [];
 
-  String chatToken = '';
-  String fromId = '';
+  // String chatToken = '';
+  //String fromId = '';
   bool _isLoading = false;
   _getData() {
     _isLoading = true;
@@ -35,23 +47,19 @@ class _PChatMessagesState extends State<PChatMessages> {
       } else {
         if (value['status'] == true) {
           setState(() {
-            chatToken = value['chat_token'];
-            fromId = value['from_id'];
+            //  chatToken = value['chat_token'];
+            //   fromId = value['from_id'];
           });
         }
       }
     }).then((value) {
-      channel = WebSocketChannel.connect(
-        Uri.parse(
-            "ws://192.168.1.145:3030?token=$chatToken&receiver_user_type=admin"),
-      );
+      // log(chatToken);
       setState(() {
         _isLoading = false;
       });
     });
   }
 
-  WebSocketChannel? channel;
   final _streamController = StreamController<Messages>();
 
   bool _isVisible = false;
@@ -65,10 +73,13 @@ class _PChatMessagesState extends State<PChatMessages> {
   @override
   void initState() {
     super.initState();
-    _getData();
-    channel?.stream.listen((event) {
+    // _getData();
+    _getPrefs();
+
+    widget.channel.stream.listen((event) {
+      log("message");
       log(event.toString());
-      if (event == "CONNECTION ESTASHBLISH!") {
+      if (event == "Chat Connected...") {
         setState(() {
           _isConnected = true;
         });
@@ -85,16 +96,24 @@ class _PChatMessagesState extends State<PChatMessages> {
         });
       }
     });
+
     // _streamController.sink.add(channel.stream);
-    // channel.stream.asBroadcastStream().listen((event) {
-    //
-    //   messages.add(Messages.fromJson(dataJson));
+    // channel!.stream.asBroadcastStream().listen((event) {
+    //   log(event.toString());
+    //   // messages.add(Messages.fromJson(dataJson));
     // });
+  }
+
+  bool _isUser = true;
+  _getPrefs() async {
+    var prefs = await SharedPreferences.getInstance();
+    _isUser = prefs.getBool(Keys().isUser) ?? true;
+    // String type = isUser? "user" :"psychologist";
   }
 
   @override
   void dispose() {
-    channel!.sink.close();
+    widget.channel.sink.close();
     _streamController.close();
     _controller.dispose();
     super.dispose();
@@ -130,27 +149,47 @@ class _PChatMessagesState extends State<PChatMessages> {
                         label: 'Type here....',
                         child: InkWell(
                           onTap: () {
-                            final message = Messages(
-                              text: _controller.text,
-                              isSentByme: true,
-                              // date: DateTime.now(),
-                              // isSentByme: true,
-                              // style: kManRope_400_14_Black,
-                              // isSeen: true
-                            );
-                            //setState(() => messages.add(message));
-                            channel!.sink.add(jsonEncode({
-                              "text": _controller.text,
-                              "name": "MK",
-                              "to": "85"
-                            }));
-                            setState(() {
-                              messages.add(message);
-                            });
-                            _controller.clear();
+                            if (_controller.text.isNotEmpty) {
+                              final message = Messages(
+                                  text: _controller.text,
+                                  isSentByme: true,
+                                  date: DateTime.now().toString()
+                                  // date: DateTime.now(),
+                                  // isSentByme: true,
+                                  // style: kManRope_400_14_Black,
+                                  // isSeen: true
+                                  );
+                              //setState(() => messages.add(message));
+                              if (_isUser) {
+                                widget.channel.sink.add(jsonEncode({
+                                  "message": _controller.text,
+                                  "name": "MK",
+                                  "from": "U-${widget.fromId}",
+                                  "date": DateTime.now().toString(),
+                                  "to": "A-1"
+                                }));
+                              } else {
+                                widget.channel.sink.add(jsonEncode({
+                                  "message": _controller.text,
+                                  "name": "MK",
+                                  "from": "P-${widget.fromId}",
+                                  "date": DateTime.now().toString(),
+                                  "to": "A-1"
+                                }));
+                              }
+                              setState(() {
+                                messages.add(message);
+                              });
+                              _controller.clear();
+                            }
                           },
-                          child: Image.asset(
-                            "assets/images/send.png",
+                          child: Container(
+                            color: Colors.transparent,
+                            width: 30,
+                            height: 30,
+                            child: Image.asset(
+                              "assets/images/send.png",
+                            ),
                           ),
                         ),
                       ).searchFieldDecoration()),
@@ -245,14 +284,22 @@ class _PChatMessagesState extends State<PChatMessages> {
                                   ? Alignment.centerRight
                                   : Alignment.centerLeft,
                               child: Padding(
-                                padding: const EdgeInsets.only(bottom: 32.0),
+                                padding: const EdgeInsets.only(bottom: 20.0),
                                 child: Column(
+                                  crossAxisAlignment: messages.isSentByme
+                                      ? CrossAxisAlignment.end
+                                      : CrossAxisAlignment.start,
                                   children: [
-                                    // Text(DateFormat("hh:mm a").format(messages.date), style: kManRope_400_12_001314),
+                                    Text(
+                                        DateFormat("hh:mm a").format(
+                                            DateTime.parse(messages.date)),
+                                        style: kManRope_400_12_001314),
                                     SizedBox(
                                       height: 8,
                                     ),
                                     Container(
+                                      constraints:
+                                          BoxConstraints(maxWidth: 1.sw / 2),
                                       decoration: BoxDecoration(
                                           color: kFFFFFF,
                                           borderRadius:
@@ -308,20 +355,20 @@ class _PChatMessagesState extends State<PChatMessages> {
 class Messages {
   late String text;
   // late TextStyle style;
-  late DateTime date;
+  late String date;
   late bool isSentByme;
   // late bool isSeen;
   Messages({
     required this.text,
-    //required this.date,
+    required this.date,
     required this.isSentByme,
     // required this.style,
     //required this.isSeen
   });
 
   Messages.fromJson(Map<String, dynamic> json) {
-    //date = json['date'];
-    text = json['text'];
+    date = json['date'];
+    text = json['message'];
     isSentByme = json['isMe'];
     //isSeen = json['isSeen'];
     // style = TextStyle();

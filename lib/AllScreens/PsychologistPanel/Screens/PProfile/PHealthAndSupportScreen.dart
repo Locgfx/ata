@@ -5,6 +5,11 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PChatMe
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UFaq.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
+import '../../../../Apis/message_api/chat_token_api.dart';
+import '../../../../constants/globals.dart';
 
 class PHelpAndSupportScreen extends StatelessWidget {
   const PHelpAndSupportScreen({Key? key}) : super(key: key);
@@ -82,9 +87,33 @@ class PHelpAndSupportScreen extends StatelessWidget {
                     child: Column(
                       children: [
                         GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => PChatMessages()));
+                          onTap: () async {
+                            var prefs = await SharedPreferences.getInstance();
+                            bool isUser = prefs.getBool(Keys().isUser) ?? true;
+                            String type = isUser ? "user" : "psychologist";
+                            String chatToken = '';
+                            String fromId = '';
+                            final resp = GetChatToken().get();
+                            resp.then((value) {
+                              if (value == false) {
+                              } else {
+                                if (value['status'] == true) {
+                                  chatToken = value['chat_token'];
+                                  fromId = value['from_id'];
+                                  WebSocketChannel channel =
+                                      WebSocketChannel.connect(
+                                    Uri.parse(
+                                        "ws://192.168.1.145:3030?token=$chatToken&receiver_user_type=$type"),
+                                  );
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => PChatMessages(
+                                            channel: channel,
+                                            chatToken: chatToken,
+                                            fromId: fromId,
+                                          )));
+                                }
+                              }
+                            });
                           },
                           child: Align(
                             alignment: Alignment.centerRight,
@@ -114,19 +143,19 @@ class PHelpAndSupportScreen extends StatelessWidget {
                             width: 1.sw,
                             decoration: const BoxDecoration(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(8)),
+                                  BorderRadius.all(Radius.circular(8)),
                               color: Colors.white,
                             ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16.w),
                               child: Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'FAQs',

@@ -2,11 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/search_videos_screen.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_video_category_api.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../model/UModels/user_home_models/user_all_videos_model.dart';
@@ -84,15 +86,23 @@ class _USeeAllVideosScreenState extends State<USeeAllVideosScreen> {
                         color: kFFFFFF,
                         borderRadius: BorderRadius.circular(16),
                         border: Border.all(color: k5A72ED.withOpacity(0.24))),
-                    child: TextField(
-                      decoration: TextfieldDecoration(
-                        label: 'Nature',
-                        child: Image.asset(
-                          "assets/images/iconsearchblue.png",
-                          height: 48.h,
-                          width: 48.w,
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => SearchVideosScreen()));
+                      },
+                      child: IgnorePointer(
+                        child: TextField(
+                          decoration: TextfieldDecoration(
+                            label: 'Search videos',
+                            child: Image.asset(
+                              "assets/images/iconsearchblue.png",
+                              height: 48.h,
+                              width: 48.w,
+                            ),
+                          ).searchFieldBigIconDecoration(),
                         ),
-                      ).searchFieldBigIconDecoration(),
+                      ),
                     ),
                   ),
                   SizedBox(
