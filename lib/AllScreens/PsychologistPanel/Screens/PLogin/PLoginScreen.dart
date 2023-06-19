@@ -111,8 +111,7 @@ class _PLoginScreenState extends State<PLoginScreen> {
                               }
                             },
                             validator: (val) {
-                              if (_emailController.text.trim().isEmpty &&
-                                  _emailController.text.contains("@")) {
+                              if (_emailController.text.trim().isEmpty) {
                                 return 'Please enter an email/mobile';
                               } else {
                                 return null;
@@ -191,8 +190,13 @@ class _PLoginScreenState extends State<PLoginScreen> {
                                       visible = !visible;
                                     });
                                   },
-                                  child: SvgPicture.asset(
-                                      'assets/icons/eyeopen.svg')),
+                                  child: visible
+                                      ? SvgPicture.asset(
+                                          'assets/icons/eyeclose.svg',
+                                        )
+                                      : SvgPicture.asset(
+                                          'assets/icons/eyeopen.svg',
+                                        )),
                             ),
                           ),
                         ),

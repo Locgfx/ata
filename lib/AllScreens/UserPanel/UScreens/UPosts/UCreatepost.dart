@@ -275,7 +275,7 @@ class _UCreatePostState extends State<UCreatePost> {
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.file(
                                       _pickedImages[ind],
-                                      //fit: BoxFit.cover,
+                                      //fit: BoxFit.fill,
                                     ),
                                   ),
                                 ),
@@ -285,7 +285,7 @@ class _UCreatePostState extends State<UCreatePost> {
                                   },
                                   child: Image.file(
                                     _pickedImages[ind],
-                                    // fit: BoxFit.cover,
+                                    fit: BoxFit.fill,
                                   ),
                                 ),
                               );

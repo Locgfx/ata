@@ -14,7 +14,31 @@
       },
       "oauth_client": [
         {
-          "client_id": "503388248988-4e055ekk0t0horua2ka6t26r0di06pm1.apps.googleusercontent.com",
+          "client_id": "503388248988-3m9t3livjabuhdtjodbe7ed67ifb304u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.locgfx.ataraxis",
+            "certificate_hash": "23b5ccb9a86e1d536a8676e260caced125b7be72"
+          }
+        },
+        {
+          "client_id": "503388248988-hk4mb7lbak6he63gho557i2k2c0td401.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.locgfx.ataraxis",
+            "certificate_hash": "039008e316a295b60e9f5840f7fbe2217592c9f4"
+          }
+        },
+        {
+          "client_id": "503388248988-oahqqmson995op1d91fna98tsio9ukcr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.locgfx.ataraxis",
+            "certificate_hash": "2065ed3559e45c92f9e960ee83216d609a6c048c"
+          }
+        },
+        {
+          "client_id": "503388248988-ivtvou0635fcifqjpb6iucrnla7o4s0o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -29,6 +53,13 @@
             {
               "client_id": "503388248988-4e055ekk0t0horua2ka6t26r0di06pm1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "503388248988-j0jdeaj4650v4rr3bsm81l4plccflj1s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.locgfx.greymatter"
+              }
             }
           ]
         }

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
@@ -11,11 +12,13 @@ import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScr
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UNotificationScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UClipClass.dart';
 import 'package:greymatter/Apis/DoctorApis/home_apis/total_revenue_api/total_revenue_api.dart';
+import 'package:greymatter/Apis/Notifications_apis/notification_repo.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/PModels/home_models/total_revenue_model/total_revenue_model.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shimmerLoader.dart';
 
+import '../../../../Apis/Notifications_apis/seen_notification_repo.dart';
 import '../../../../constants/fonts.dart';
 
 class PHomeScreen extends StatefulWidget {
@@ -30,16 +33,27 @@ class _PHomeScreenState extends State<PHomeScreen>
   late TabController _pageController;
   int pageIndex = 0;
 
+  final NotificationRepo _repo = NotificationRepo();
+
+  Timer? _timer;
+  bool _newNotification = false;
   @override
   void initState() {
     _pageController = TabController(length: 3, vsync: this);
     _getData();
+
+    _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
+      _newNotification = await _repo.newNotification();
+      setState(() {});
+      log(_newNotification.toString());
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -62,6 +76,8 @@ class _PHomeScreenState extends State<PHomeScreen>
       }
     });
   }
+
+  final NotificationSeenRepo _notificationSeenRepo = NotificationSeenRepo();
 
   int selectedIndex = 0;
   int index = 0;
@@ -95,17 +111,28 @@ class _PHomeScreenState extends State<PHomeScreen>
               ),
               actions: [
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    // await _notificationSeenRepo.seenAll();
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const UNotificationsScreen()));
                   },
                   child: Container(
                     color: Colors.transparent,
                     margin: EdgeInsets.only(right: 12),
-                    child: Image.asset(
-                      "assets/images/iconwhitenotification.png",
-                      height: 48.w,
-                      width: 48.w,
+                    child: SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: _newNotification
+                          ? SvgPicture.asset(
+                              "assets/icons/bell_off.svg",
+                              width: 20,
+                              height: 20,
+                            )
+                          : SvgPicture.asset(
+                              "assets/icons/bell_on.svg",
+                              width: 20,
+                              height: 20,
+                            ),
                     ),
                   ),
                 ),

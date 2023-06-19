@@ -2,7 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UConfirmBookingScreen.dart';
+import 'package:greymatter/Apis/UserAPis/user_home_apis/reschedule_booking_api.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
@@ -14,19 +17,22 @@ import '../../../../Apis/UserAPis/user_home_apis/confirm_booking_apis/get_slots_
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../model/UModels/user_home_models/slots_model.dart';
+import 'UBookingSuccessfulScreen.dart';
 
 class UScheduleAppointmentScreen extends StatefulWidget {
   final UPsychologistModel psychologist;
-  const UScheduleAppointmentScreen({
-    Key? key,
-    required this.issue,
-    required this.psychologist,
-    required this.issueId,
-    required this.bookingType,
-  }) : super(key: key);
+  UScheduleAppointmentScreen(
+      {Key? key,
+      required this.issue,
+      required this.psychologist,
+      required this.issueId,
+      required this.bookingType,
+      this.reschedule})
+      : super(key: key);
   final String issue;
   final String bookingType;
   final String issueId;
+  String? reschedule;
 
   @override
   State<UScheduleAppointmentScreen> createState() =>
@@ -89,6 +95,8 @@ class _UScheduleAppointmentScreenState
         break;
     }
   }
+
+  bool _btnLoading = false;
 
   getSlotCount() {
     int a = 0;
@@ -165,10 +173,9 @@ class _UScheduleAppointmentScreenState
       backgroundColor: kEDF6F9,
       appBar: CustomWhiteAppBar(
         hasThreeDots: false,
-        appBarText: 'Appointment',
+        appBarText: widget.reschedule != null ? "Reschedule" : 'Appointment',
         imgPath: 'assets/images/iconbackappbar2.png',
       ),
-
       body: _isLoading
           ? Center(
               child: LoadingWidget(),
@@ -392,10 +399,11 @@ class _UScheduleAppointmentScreenState
                                       ],
                                     ),
                               SizedBox(height: 50),
-                              Text(
-                                "Select Issue",
-                                style: kManRope_400_16_001314,
-                              ),
+                              if (_slotsModel.issue!.isNotEmpty)
+                                Text(
+                                  "Select Issue",
+                                  style: kManRope_400_16_001314,
+                                ),
                               SizedBox(height: 24),
                               ListView.builder(
                                 itemCount: _slotsModel.issue!.length,
@@ -445,91 +453,125 @@ class _UScheduleAppointmentScreenState
                     Expanded(
                       child: SizedBox(
                         // height:56.h,
-                        child: Text(
-                          '₹${widget.psychologist.price}',
-                          style: kManRope_500_20_006D77,
-                        ),
+                        child: widget.reschedule != null
+                            ? SizedBox()
+                            : Text(
+                                '₹${widget.psychologist.price}',
+                                style: kManRope_500_20_006D77,
+                              ),
                       ),
                     ),
                     Expanded(
                       child: SizedBox(
                         height: 56.h,
                         // width: 200,
-                        child: MainButton(
-                          color:
-                              time == '' ? k006D77.withOpacity(0.16) : k006D77,
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(10), // <-- Radius
-                          ),
-                          onPressed: time == ''
-                              ? () {}
-                              : () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              UConfirmAppointmentBooking(
-                                                slot: time,
-                                                bookingType: widget.bookingType,
-                                                psychologist:
-                                                    widget.psychologist,
-                                                issue: issue,
-                                                issueId: issueId,
-                                                date: date,
-                                              )));
-                                },
-                          child: Text(
-                            'Book session',
-                            style: time == ''
-                                ? kManRope_400_16_Black
-                                : kManRope_400_16_white,
-                          ),
-                        ),
+                        child: _btnLoading
+                            ? SpinKitThreeBounce(
+                                color: k006D77,
+                                size: 30,
+                              )
+                            : MainButton(
+                                color: time == ''
+                                    ? k006D77.withOpacity(0.16)
+                                    : k006D77,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(10), // <-- Radius
+                                ),
+                                onPressed: time == ''
+                                    ? () {}
+                                    : widget.reschedule == null
+                                        ? () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        UConfirmAppointmentBooking(
+                                                          slot: time,
+                                                          bookingType: widget
+                                                              .bookingType,
+                                                          psychologist: widget
+                                                              .psychologist,
+                                                          issue: issue,
+                                                          issueId: issueId,
+                                                          date: date,
+                                                        )));
+                                          }
+                                        : () {
+                                            setState(() {
+                                              _btnLoading = true;
+                                            });
+                                            final resp = RescheduleBookingApi().get(
+                                                bookingId: int.parse(
+                                                    widget.reschedule!),
+                                                date:
+                                                    "${date.split("/").last}-${date.split("/")[1]}-${date.split("/").first}",
+                                                time: time);
+                                            resp.then((value) {
+                                              if (value == false) {
+                                                setState(() {
+                                                  _btnLoading = false;
+                                                });
+                                                Fluttertoast.showToast(
+                                                    msg:
+                                                        "Reschedule failed. Please try again");
+                                              } else {
+                                                setState(() {
+                                                  _btnLoading = false;
+                                                });
+                                                if (value['status'] == true) {
+                                                  Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              UBookingSuccessfulScreen(
+                                                                name: widget
+                                                                    .psychologist
+                                                                    .name
+                                                                    .toString(),
+                                                                date: date,
+                                                                time: DateFormat.jm().format(DateTime(
+                                                                    DateTime.now()
+                                                                        .year,
+                                                                    DateTime.now()
+                                                                        .month,
+                                                                    DateTime.now()
+                                                                        .day,
+                                                                    int.parse(time
+                                                                        .split(
+                                                                            ":")
+                                                                        .first),
+                                                                    int.parse(time
+                                                                        .split(
+                                                                            ":")
+                                                                        .last))),
+                                                                price: widget
+                                                                        .psychologist
+                                                                        .price ??
+                                                                    "0",
+                                                                isCancellationAvailable:
+                                                                    true,
+                                                              )));
+                                                } else {
+                                                  Fluttertoast.showToast(
+                                                      msg: value['error']);
+                                                }
+                                              }
+                                            });
+                                          },
+                                child: Text(
+                                  'Book session',
+                                  style: time == ''
+                                      ? kManRope_400_16_Black
+                                      : kManRope_400_16_white,
+                                ),
+                              ),
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-      // bottomNavigationBar: SizedBox(
-      //   height: 83.h,
-      //   child: Padding(
-      //     padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 24.w),
-      //     child: Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //       children: [
-      //         Text(
-      //           '₹230',
-      //           style: kManRope_500_20_006D77,
-      //         ),
-      //         SizedBox(
-      //           height: 56.h,
-      //           width: 180.w,
-      //           child: MaterialButton(
-      //             color: k006D77,
-      //             shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(10), // <-- Radius
-      //             ),
-      //             onPressed: () {
-      //               Navigator.push(
-      //                   context,
-      //                   MaterialPageRoute(
-      //                       builder: (context) => ConfirmAppointmentBooking(
-      //                             issue: widget.issue,
-      //                             date: date,
-      //                           )));
-      //             },
-      //             child: Text(
-      //               'Book session',
-      //               style: kManRope_400_16_white,
-      //             ),
-      //           ),
-      //         )
-      //       ],
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

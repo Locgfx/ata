@@ -37,14 +37,21 @@ class _CustomGoogleSignInButtonState extends State<CustomGoogleSignInButton> {
               setState(() {
                 _isLoading = true;
               });
+              log(auth.idToken!.length.toString());
               final resp = GoogleSignInApi().get(idToken: auth.idToken!);
               resp.then((value) async {
+                log(value.toString());
                 if (value == false) {
                   Fluttertoast.showToast(
                       msg: "Sign in failed! Please try again.");
                   setState(() {
                     _isLoading = false;
                   });
+                } else if (value['status'] == false) {
+                  setState(() {
+                    _isLoading = false;
+                  });
+                  Fluttertoast.showToast(msg: value['error']);
                 } else {
                   var prefs = await SharedPreferences.getInstance();
                   prefs.setString('cookies', value['session_id']);

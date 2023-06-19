@@ -84,7 +84,7 @@ class _UHelpandSupportState extends State<UHelpandSupport> {
                                   WebSocketChannel channel =
                                       WebSocketChannel.connect(
                                     Uri.parse(
-                                        "ws://192.168.1.145:3030?token=$chatToken&receiver_user_type=$type"),
+                                        "ws://139.84.164.39:3030?token=$chatToken&receiver_user_type=$type"),
                                   );
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => PChatMessages(

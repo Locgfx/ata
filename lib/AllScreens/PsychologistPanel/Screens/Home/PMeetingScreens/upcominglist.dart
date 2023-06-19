@@ -64,7 +64,18 @@ class _UpcomingListState extends State<UpcomingList> {
             )
           : upcomingBooking.isEmpty
               ? Center(
-                  child: Text("No Bookings yet."),
+                  child: Column(
+                    children: [
+                      Image.asset("assets/images/nobooking.png"),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "No completed appointment yet.",
+                        style: kManRope_500_24_001314,
+                      ),
+                    ],
+                  ),
                 )
               : Column(
                   children: [

@@ -26,6 +26,7 @@ class GetSlotsApi {
     http.StreamedResponse response = await request.send();
     var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
+      log(resp.toString());
       return resp;
     } else {
       print(response.reasonPhrase);

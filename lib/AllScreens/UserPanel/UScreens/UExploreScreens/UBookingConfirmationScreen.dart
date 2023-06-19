@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/model/UModels/user_order_model/upcoming_orders.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
@@ -36,7 +39,11 @@ class _UBookingConfirmationScreenState
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
         context: context,
-        builder: (BuildContext context) => const CancelBottomSheet());
+        builder: (BuildContext context) => CancelBottomSheet(
+              name: widget.model.name,
+              psyId: int.parse(widget.model.psyId),
+              bookingId: int.parse(widget.model.id),
+            ));
   }
 
   UPsychologistModel psyModel = UPsychologistModel();
@@ -44,6 +51,7 @@ class _UBookingConfirmationScreenState
   @override
   void initState() {
     psyModel = UPsychologistModel(
+      psychologistId: widget.model.psyId,
       name: widget.model.name,
       profilePhoto: widget.model.image,
       designation: widget.model.designation,
@@ -84,11 +92,10 @@ class _UBookingConfirmationScreenState
                       height: 135.w,
                       width: 135.w,
                       fit: BoxFit.cover,
-                      errorBuilder: (q, w, e) => Image.asset(
-                        'assets/images/userP.png',
-                        fit: BoxFit.cover,
-                        height: 135.w,
-                        width: 135.w,
+                      errorBuilder: (q, w, e) => Icon(
+                        Icons.person,
+                        color: Colors.white,
+                        size: 50,
                       ),
                     ),
                   ),
@@ -188,28 +195,29 @@ class _UBookingConfirmationScreenState
         padding: EdgeInsets.only(left: 123.w, right: 123.w, bottom: 35.h),
         child: MainButton(
             onPressed:
-                // DateTime.now()
-                //             .difference(DateTime.parse(
-                //                 "${widget.model.date} ${widget.model.timeSlot}"))
-                //             .inMinutes >
-                //         10
-                //     ? () {
-                //         Fluttertoast.showToast(
-                //             msg: "You cannot join before time slot");
-                //       }
-                //     :
-                () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (ctx) =>
-                      //CallPage()
-                      MeetingScreen(
-                        date: DateFormat.yMMMEd().format(DateTime.parse(
-                            "${widget.model.date} ${widget.model.timeSlot}")),
-                        issue: widget.model.issueName.toString(),
-                        bookingId: widget.model.id,
-                        model: psyModel,
-                      )));
-            },
+                DateTime.parse("${widget.model.date} ${widget.model.timeSlot}")
+                            .difference(DateTime.now())
+                            .inMinutes >
+                        1
+                    ? () {
+                        log(DateTime.parse(
+                                "${widget.model.date} ${widget.model.timeSlot}")
+                            .difference(DateTime.now())
+                            .inMinutes
+                            .toString());
+                        Fluttertoast.showToast(
+                            msg: "You cannot join before time slot");
+                      }
+                    : () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (ctx) => MeetingScreen(
+                                  date: DateFormat.yMMMEd().format(DateTime.parse(
+                                      "${widget.model.date} ${widget.model.timeSlot}")),
+                                  issue: widget.model.issueName.toString(),
+                                  bookingId: widget.model.id,
+                                  model: psyModel,
+                                )));
+                      },
             child: Padding(
               padding: EdgeInsets.only(
                 top: 19.h,
@@ -220,7 +228,13 @@ class _UBookingConfirmationScreenState
                 style: kManRope_400_16_white,
               ),
             ),
-            color: k66898D,
+            color:
+                DateTime.parse("${widget.model.date} ${widget.model.timeSlot}")
+                            .difference(DateTime.now())
+                            .inMinutes >
+                        1
+                    ? k66898D
+                    : k006D77,
             shape: CustomDecoration().button08Decoration()),
       ),
     );

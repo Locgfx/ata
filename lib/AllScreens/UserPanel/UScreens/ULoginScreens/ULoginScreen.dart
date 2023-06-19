@@ -125,8 +125,7 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                     }
                                   },
                                   validator: (val) {
-                                    if (_emailController.text.trim().isEmpty &&
-                                        _emailController.text.contains("@")) {
+                                    if (_emailController.text.trim().isEmpty) {
                                       return 'Please enter an email/mobile';
                                     } else {
                                       return null;
@@ -538,43 +537,50 @@ class _ULoginScreenState extends State<ULoginScreen> {
                             SizedBox(height: 20.h),
                             InkWell(
                                 onTap: () {
-                                  if (_formKey.currentState!.validate()) {
-                                    final resp = UserForgotPasswordOtpApi().get(
-                                      emailMobile: _emailController.text,
-                                    );
-                                    print(_emailController.text);
-                                    resp.then((value) async {
-                                      print(value);
-                                      if (value['status'] == false) {
-                                        Fluttertoast.showToast(
-                                            msg: 'login failed');
-                                      } else {
-                                        var prefs = await SharedPreferences
-                                            .getInstance();
-                                        prefs.setString(
-                                            'cookies', value['session_id']);
-                                        //print(value['session_id']);
-                                        print(prefs.getString(Keys().cookie));
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (ctx) =>
-                                                    UForgotPasswordOTPScreen(
-                                                      signUpField:
-                                                          _emailController.text,
-                                                    ),
-                                                settings: RouteSettings(
-                                                    arguments: _emailController
-                                                        .text)));
-                                        // Navigator.of(context).push(
-                                        //     MaterialPageRoute(
-                                        //         builder: (context) =>
-                                        //             UForgotPasswordOTPScreen(
-                                        //               signUpField:
-                                        //               _emailController.text,
-                                        //             )));
-                                        // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
-                                      }
-                                    });
+                                  if (_emailController.text.trim().isEmpty) {
+                                    _formKey.currentState!.validate();
+                                  } else {
+                                    if (_formKey.currentState!.validate()) {
+                                      final resp =
+                                          UserForgotPasswordOtpApi().get(
+                                        emailMobile: _emailController.text,
+                                      );
+                                      print(_emailController.text);
+                                      resp.then((value) async {
+                                        print(value);
+                                        if (value['status'] == false) {
+                                          Fluttertoast.showToast(
+                                              msg: 'login failed');
+                                        } else {
+                                          var prefs = await SharedPreferences
+                                              .getInstance();
+                                          prefs.setString(
+                                              'cookies', value['session_id']);
+                                          //print(value['session_id']);
+                                          print(prefs.getString(Keys().cookie));
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (ctx) =>
+                                                      UForgotPasswordOTPScreen(
+                                                        signUpField:
+                                                            _emailController
+                                                                .text,
+                                                      ),
+                                                  settings: RouteSettings(
+                                                      arguments:
+                                                          _emailController
+                                                              .text)));
+                                          // Navigator.of(context).push(
+                                          //     MaterialPageRoute(
+                                          //         builder: (context) =>
+                                          //             UForgotPasswordOTPScreen(
+                                          //               signUpField:
+                                          //               _emailController.text,
+                                          //             )));
+                                          // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
+                                        }
+                                      });
+                                    }
                                   }
                                 },
                                 child: Container(

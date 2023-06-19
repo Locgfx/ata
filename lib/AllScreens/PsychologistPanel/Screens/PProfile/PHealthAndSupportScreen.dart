@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -6,6 +8,7 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UFaq.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../../../../Apis/message_api/chat_token_api.dart';
@@ -59,7 +62,7 @@ class PHelpAndSupportScreen extends StatelessWidget {
                 children: [
                   Container(
                     width: 1.sw,
-                    color: Colors.white,
+                    // color: Colors.white,
                     child: Image.asset(
                       'assets/images/helpAndSupport.png',
                       height: 330.h,
@@ -91,6 +94,7 @@ class PHelpAndSupportScreen extends StatelessWidget {
                             var prefs = await SharedPreferences.getInstance();
                             bool isUser = prefs.getBool(Keys().isUser) ?? true;
                             String type = isUser ? "user" : "psychologist";
+                            log(type);
                             String chatToken = '';
                             String fromId = '';
                             final resp = GetChatToken().get();
@@ -103,7 +107,7 @@ class PHelpAndSupportScreen extends StatelessWidget {
                                   WebSocketChannel channel =
                                       WebSocketChannel.connect(
                                     Uri.parse(
-                                        "ws://192.168.1.145:3030?token=$chatToken&receiver_user_type=$type"),
+                                        "ws://139.84.164.39:3030?token=$chatToken&receiver_user_type=$type"),
                                   );
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) => PChatMessages(
@@ -190,48 +194,58 @@ class PHelpAndSupportScreen extends StatelessWidget {
                         SizedBox(
                           height: 16.h,
                         ),
-                        Container(
-                          height: 84.h,
-                          width: 1.sw,
-                          decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                            color: Colors.white,
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 16.w),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Email',
-                                      style: kManRope_700_20_001314,
-                                    ),
-                                    SizedBox(
-                                      height: 4.h,
-                                    ),
-                                    Text(
-                                      'Get solutions beamed to your inbox',
-                                      style: kManRope_400_16_626A6A,
-                                    ),
-                                  ],
-                                ),
-                                Center(
-                                  child: SizedBox(
-                                    height: 48,
-                                    width: 48,
-                                    // color: Colors.red,
-                                    child: Image.asset(
-                                      'assets/images/iconrightarrowlarge.png',
-                                      height: 48.h,
-                                      width: 48.w,
+                        InkWell(
+                          onTap: () {
+                            const uri =
+                                'mailto:info@theataraxis.com?subject=Support';
+                            launchUrl(Uri.parse(uri));
+                          },
+                          child: Container(
+                            height: 84.h,
+                            width: 1.sw,
+                            decoration: const BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                              color: Colors.white,
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'Email',
+                                        style: kManRope_700_20_001314,
+                                      ),
+                                      SizedBox(
+                                        height: 4.h,
+                                      ),
+                                      Text(
+                                        'Get solutions beamed to your inbox',
+                                        style: kManRope_400_16_626A6A,
+                                      ),
+                                    ],
+                                  ),
+                                  Center(
+                                    child: SizedBox(
+                                      height: 48,
+                                      width: 48,
+                                      // color: Colors.red,
+                                      child: Image.asset(
+                                        'assets/images/iconrightarrowlarge.png',
+                                        height: 48.h,
+                                        width: 48.w,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),

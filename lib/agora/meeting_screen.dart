@@ -54,7 +54,7 @@ class _MeetingScreenState extends State<MeetingScreen> {
       GlobalKey<ScaffoldMessengerState>(); // Global key to access the scaffold
 
   showMessage(String message) {
-    scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),
     ));
   }
@@ -321,55 +321,47 @@ class _MeetingScreenState extends State<MeetingScreen> {
   // Create UI with local view and remote view
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-        onWillPop: () async {
-          return false;
-        },
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          scaffoldMessengerKey: scaffoldMessengerKey,
-          home: Scaffold(
-              appBar: CustomWhiteAppBar(
-                hasThreeDots: false,
-                onThreeDotTap: () {},
-                appBarText: 'Session',
-                imgPath: "assets/images/iconbackappbarlarge.png",
-              ),
-              body: _isLoading
-                  ? LoadingWidget()
-                  : SafeArea(
-                      child: Stack(
-                        //padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                        children: [
-                          // Container for the remote video
-                          Center(
-                            //height: 240,
-                            //decoration: BoxDecoration(border: Border.all()),
-                            child: Center(child: _remoteVideo()),
-                          ),
-                          //Container for the local video
-                          Positioned(
-                            top: 10,
-                            right: 10,
-                            child: Container(
-                                height: 150,
-                                width: 150,
-                                clipBehavior: Clip.hardEdge,
-                                decoration: BoxDecoration(
-                                    border: Border.all(),
-                                    borderRadius: BorderRadius.circular(16)),
-                                child: _localPreview()),
-                          ),
-                          // Button Row
-                          Positioned(
-                              bottom: 30,
-                              left: 20,
-                              right: 20,
-                              child: _toolbar()),
-                        ],
-                      ),
-                    )),
-        ));
+    return
+        // debugShowCheckedModeBanner: false,
+        // scaffoldMessengerKey: scaffoldMessengerKey,
+        Scaffold(
+            appBar: CustomWhiteAppBar(
+              hasThreeDots: false,
+              onThreeDotTap: () {},
+              appBarText: 'Session',
+              imgPath: "assets/images/iconbackappbarlarge.png",
+            ),
+            body: _isLoading
+                ? LoadingWidget()
+                : SafeArea(
+                    child: Stack(
+                      //padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                      children: [
+                        // Container for the remote video
+                        Center(
+                          //height: 240,
+                          //decoration: BoxDecoration(border: Border.all()),
+                          child: Center(child: _remoteVideo()),
+                        ),
+                        //Container for the local video
+                        Positioned(
+                          top: 10,
+                          right: 10,
+                          child: Container(
+                              height: 150,
+                              width: 150,
+                              clipBehavior: Clip.hardEdge,
+                              decoration: BoxDecoration(
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(16)),
+                              child: _localPreview()),
+                        ),
+                        // Button Row
+                        Positioned(
+                            bottom: 30, left: 20, right: 20, child: _toolbar()),
+                      ],
+                    ),
+                  ));
   }
 
   // Display local video preview

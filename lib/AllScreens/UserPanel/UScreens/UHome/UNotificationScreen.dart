@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:greymatter/Apis/Notifications_apis/get_notifications.dart';
 import 'package:greymatter/Apis/Notifications_apis/notification_seen_api.dart';
 import 'package:greymatter/model/UModels/user_posts_model/user_posts_model.dart';
@@ -41,7 +42,7 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
   _getReloadedData() {
     _scroll++;
     //_isLoading = true;
-    final resp = GetNotification().get();
+    final resp = GetNotification().get(scroll: _scroll.toString());
     resp.then((value) {
       log(value.toString());
       if (value == false) {
@@ -51,12 +52,13 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
         });
       } else {
         setState(() {
-          val = value.length;
           for (var v in value) {
             if (v['notification_type'] == "Post") {
               modelList.add(PostNotificationModel.fromJson(v));
             }
           }
+          val = value.length;
+          log(val.toString());
           _isLoading = false;
         });
       }
@@ -65,7 +67,7 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
 
   Future<String> _getData() async {
     _isLoading = true;
-    final resp = GetNotification().get();
+    final resp = GetNotification().get(scroll: "0");
     resp.then((value) {
       log(value.toString());
       if (value == false) {
@@ -76,13 +78,14 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
       } else {
         modelList.clear();
         setState(() {
-          val = value.length;
           for (var v in value) {
             if (v['notification_type'] == "Post") {
               modelList.add(PostNotificationModel.fromJson(v));
             }
             // modelList.add(NotificationModel.fromJson(v));
           }
+          val = modelList.length;
+          log(val.toString());
           _isLoading = false;
         });
       }
@@ -116,6 +119,7 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
                       _getReloadedData();
                     }
                   },
+                  isLoading: _isLoading,
                   child: RefreshIndicator(
                     onRefresh: () async {
                       setState(() {
@@ -201,12 +205,19 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
                               ),
                             );
                           } else {
-                            if (val >= 10) {
+                            if (val >= 10 && _isLoading) {
+                              return Center(
+                                child: SpinKitThreeBounce(
+                                  color: k006D77,
+                                  size: 20,
+                                ),
+                              );
+                            } else if (val < 10) {
+                              return SizedBox.shrink();
+                            } else {
                               return Center(
                                 child: CircularProgressIndicator(),
                               );
-                            } else {
-                              return SizedBox.shrink();
                             }
                           }
                         },

@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UBookingScreens/UScheduleAppointmentScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UCancelBookingScreen.dart';
+import 'package:greymatter/Apis/UserAPis/user_home_apis/cancel_booking_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
 class CancelBottomSheet extends StatefulWidget {
-  const CancelBottomSheet({Key? key}) : super(key: key);
+  final int bookingId;
+  final int psyId;
+  final String name;
+  const CancelBottomSheet(
+      {Key? key,
+      required this.bookingId,
+      required this.psyId,
+      required this.name})
+      : super(key: key);
 
   @override
   State<CancelBottomSheet> createState() => _CancelBottomSheetState();
@@ -20,7 +32,8 @@ class _CancelBottomSheetState extends State<CancelBottomSheet> {
         backgroundColor: kFFFFFF,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-        builder: (BuildContext context) => const CancelBooking());
+        builder: (BuildContext context) =>
+            CancelBooking(bookingId: widget.bookingId));
   }
 
   int _gIndex = 0;
@@ -46,7 +59,7 @@ class _CancelBottomSheetState extends State<CancelBottomSheet> {
           SizedBox(height: 20.h),
           GestureDetector(
             onTap: () => setState(() {
-              _gIndex = 0;
+              // _gIndex = 0;
               Navigator.of(context).pop();
               _cancelBooking();
             }),
@@ -56,15 +69,13 @@ class _CancelBottomSheetState extends State<CancelBottomSheet> {
               margin: EdgeInsets.symmetric(horizontal: 135.w),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: _gIndex == 0 ? k006D77 : Colors.transparent,
+                color: Colors.transparent,
               ),
               child: Center(
                   child: Text(
-                    'Cancel booking',
-                    style: _gIndex == 0
-                        ? kManRope_500_16_white
-                        : kManRope_500_16_626A6A,
-                  )),
+                'Cancel booking',
+                style: kManRope_500_16_626A6A,
+              )),
             ),
           ),
           SizedBox(
@@ -72,24 +83,31 @@ class _CancelBottomSheetState extends State<CancelBottomSheet> {
           ),
           GestureDetector(
             onTap: () => setState(() {
-              _gIndex = 1;
+              //_gIndex = 1;
               Navigator.of(context).pop();
-              // _cancelBooking();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (ctx) => UScheduleAppointmentScreen(
+                        issue: '',
+                        psychologist: UPsychologistModel(
+                            name: widget.name,
+                            psychologistId: widget.psyId.toString()),
+                        issueId: '',
+                        bookingType: 'a',
+                        reschedule: widget.bookingId.toString(),
+                      )));
             }),
             child: Container(
               height: 44.h,
               margin: EdgeInsets.symmetric(horizontal: 135.w),
               decoration: BoxDecoration(
                 borderRadius: const BorderRadius.all(Radius.circular(5)),
-                color: _gIndex == 1 ? k006D77 : Colors.transparent,
+                color: Colors.transparent,
               ),
               child: Center(
                   child: Text(
-                    'Reschedule',
-                    style: _gIndex == 1
-                        ? kManRope_500_16_white
-                        : kManRope_500_16_626A6A,
-                  )),
+                'Reschedule',
+                style: kManRope_500_16_626A6A,
+              )),
             ),
           ),
           SizedBox(
@@ -101,9 +119,9 @@ class _CancelBottomSheetState extends State<CancelBottomSheet> {
   }
 }
 
-
 class CancelBooking extends StatefulWidget {
-  const CancelBooking({Key? key}) : super(key: key);
+  final int bookingId;
+  const CancelBooking({Key? key, required this.bookingId}) : super(key: key);
 
   @override
   State<CancelBooking> createState() => _CancelBookingState();
@@ -133,8 +151,25 @@ class _CancelBookingState extends State<CancelBooking> {
                       Expanded(
                         child: MainButton(
                             onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => UCancelBookingScreen()));
+                              final resp = CancelBookingApi()
+                                  .get(bookingId: widget.bookingId);
+                              resp.then((value) {
+                                if (value == false) {
+                                  Fluttertoast.showToast(
+                                      msg: "Cancel booking failed.");
+                                } else {
+                                  if (value['status'] == true) {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                UCancelBookingScreen(
+                                                  name: value['psychoogist'],
+                                                )));
+                                  } else {
+                                    Fluttertoast.showToast(msg: value['error']);
+                                  }
+                                }
+                              });
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.h),
@@ -152,10 +187,13 @@ class _CancelBookingState extends State<CancelBooking> {
                 SizedBox(
                   height: 12.h,
                 ),
-                Text(
-                  "By clicking the Cancel button your appointment will cancel",
-                  style: kManRope_500_16_626A6A,
-                  maxLines: 2,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    "By clicking the Cancel button your appointment will cancel",
+                    style: kManRope_500_16_626A6A,
+                    maxLines: 2,
+                  ),
                 )
               ],
             ),

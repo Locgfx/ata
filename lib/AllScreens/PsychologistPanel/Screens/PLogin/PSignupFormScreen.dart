@@ -116,6 +116,8 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                           validator: (val) {
                             if (emailController.text.trim().isEmpty) {
                               return 'Please enter your email';
+                            } else if (!emailController.text.contains("@")) {
+                              return "Please enter a valid email";
                             } else {
                               return null;
                             }
@@ -126,7 +128,6 @@ class _PSignupFormScreenState extends State<PSignupFormScreen> {
                                   .textFieldEDF6F9Decoration(),
                         ),
                       ),
-
                       SizedBox(
                         height: 24.h,
                       ),

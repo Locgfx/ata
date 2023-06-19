@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/Apis/DoctorApis/availability_api.dart';
 import 'package:greymatter/Apis/DoctorApis/home_apis/appointment_details_api/appointment_details_api.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -144,20 +145,21 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 40.h),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          title[1],
-                          style: kManRope_400_16_626A6A,
-                        ),
-                        Text(
-                          "${model.dob.toString().split("-").last}/${model.dob.toString().split("-")[1]}/${model.dob.toString().split("-").first}",
-                          style: kManRope_400_16_001314,
-                        ),
-                      ],
-                    ),
+                    if (model.dob != null) SizedBox(height: 40.h),
+                    if (model.dob != null)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            title[1],
+                            style: kManRope_400_16_626A6A,
+                          ),
+                          Text(
+                            "${model.dob.toString().split("-").last}/${model.dob.toString().split("-")[1]}/${model.dob.toString().split("-").first}",
+                            style: kManRope_400_16_001314,
+                          ),
+                        ],
+                      ),
                     SizedBox(height: 40.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -206,10 +208,15 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                           title[4],
                           style: kManRope_400_16_626A6A,
                         ),
-                        Text(
-                          model.occupation.toString(),
-                          style: kManRope_400_16_001314,
-                        ),
+                        model.occupation != null
+                            ? Text(
+                                model.occupation.toString(),
+                                style: kManRope_400_16_001314,
+                              )
+                            : Text(
+                                "Not Provided",
+                                style: kManRope_400_16_001314,
+                              ),
                       ],
                     ),
                     SizedBox(height: 40.h),
@@ -274,19 +281,39 @@ class _PJoiningScreenState extends State<PJoiningScreen> {
                       padding: EdgeInsets.only(bottom: 20.h),
                       child: MainButton(
                         shape: CustomDecoration().smallButton10Decoration(),
-                        color: k66898D,
-                        onPressed: () async {
-                          final resp = await AvailabilityApi().get(status: 0);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (ctx) =>
-                                  //CallPage()
-                                  MeetingScreen(
-                                    date: "",
-                                    issue: "",
-                                    bookingId: widget.bookingId,
-                                    model: null,
-                                  )));
-                        },
+                        color: DateTime.parse("${model.date} ${model.timeSlot}")
+                                    .difference(DateTime.now())
+                                    .inMinutes >
+                                1
+                            ? k66898D
+                            : k006D77,
+                        onPressed: DateTime.parse(
+                                        "${model.date} ${model.timeSlot}")
+                                    .difference(DateTime.now())
+                                    .inMinutes >
+                                1
+                            ? () {
+                                log(DateTime.parse(
+                                        "${model.date} ${model.timeSlot}")
+                                    .difference(DateTime.now())
+                                    .inMinutes
+                                    .toString());
+                                Fluttertoast.showToast(
+                                    msg: "You cannot join before time slot");
+                              }
+                            : () async {
+                                final resp =
+                                    await AvailabilityApi().get(status: 0);
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (ctx) =>
+                                        //CallPage()
+                                        MeetingScreen(
+                                          date: "",
+                                          issue: "",
+                                          bookingId: widget.bookingId,
+                                          model: null,
+                                        )));
+                              },
                         child: Padding(
                           padding: EdgeInsets.only(
                               left: 42.w, right: 46.w, top: 19.h, bottom: 19.h),

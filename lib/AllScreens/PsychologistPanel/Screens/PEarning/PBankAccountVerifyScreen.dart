@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/PWithdrawEarning2Screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+
 import '../../../../constants/fonts.dart';
 
 class PAccountBankVerifyScreen extends StatefulWidget {
@@ -27,7 +28,7 @@ class _PAccountBankVerifyScreenState extends State<PAccountBankVerifyScreen> {
   setPage() {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => PWithDrawEarningsScreen2(
-              currentBalance: "",
+              currentBalance: widget.currentBalance,
             )));
   }
 

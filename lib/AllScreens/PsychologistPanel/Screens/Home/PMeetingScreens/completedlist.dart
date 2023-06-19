@@ -32,8 +32,8 @@ class _CompletedListState extends State<CompletedList> {
       setState(() {
         for (var v in value) {
           modelList.add(CompletedBookingModel.fromJson(v));
-          _isLoading = false;
         }
+        _isLoading = false;
       });
     });
   }
@@ -51,7 +51,18 @@ class _CompletedListState extends State<CompletedList> {
             )
           : modelList.isEmpty
               ? Center(
-                  child: Text("No Bookings yet."),
+                  child: Column(
+                    children: [
+                      Image.asset("assets/images/nobooking.png"),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        "No completed appointment yet.",
+                        style: kManRope_500_24_001314,
+                      ),
+                    ],
+                  ),
                 )
               : Column(
                   children: [

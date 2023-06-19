@@ -288,90 +288,9 @@ class _UPostPageState extends State<UPostPage> {
                                       isLoading
                                           ? SizedBox()
                                           : postModel[index].gallary!.isNotEmpty
-                                              ? Stack(
-                                                  children: [
-                                                    Container(
-                                                        height: 285.h,
-                                                        width: 380.w,
-                                                        clipBehavior:
-                                                            Clip.hardEdge,
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          10)),
-                                                          color: Colors.white,
-                                                        ),
-                                                        child: PageView.builder(
-                                                            itemCount:
-                                                                postModel[index]
-                                                                    .gallary!
-                                                                    .length,
-                                                            controller: page,
-                                                            onPageChanged:
-                                                                (val) {
-                                                              setState(() {
-                                                                imgIndex = val;
-                                                              });
-                                                            },
-                                                            scrollDirection:
-                                                                Axis.horizontal,
-                                                            pageSnapping: true,
-                                                            itemBuilder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    ind) {
-                                                              return CachedNetworkImage(
-                                                                imageUrl: postModel[
-                                                                        index]
-                                                                    .gallary![
-                                                                        ind]
-                                                                    .toString(),
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                                placeholder:
-                                                                    (context,
-                                                                            url) =>
-                                                                        Center(
-                                                                  child:
-                                                                      SpinKitThreeBounce(
-                                                                    color:
-                                                                        k006D77,
-                                                                    size: 30,
-                                                                  ),
-                                                                ),
-                                                                errorWidget: (context,
-                                                                        url,
-                                                                        error) =>
-                                                                    Icon(Icons
-                                                                        .error),
-                                                              );
-                                                            })),
-                                                    Positioned(
-                                                        right: 10,
-                                                        top: 10,
-                                                        child: Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      10,
-                                                                  vertical: 5),
-                                                          decoration: BoxDecoration(
-                                                              color: Colors
-                                                                  .black45,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          50)),
-                                                          child: Text(
-                                                            "${imgIndex + 1}/${postModel[index].gallary!.length}",
-                                                            style:
-                                                                kManRope_400_14_white,
-                                                          ),
-                                                        ))
-                                                  ],
+                                              ? PostImgBuilder(
+                                                  postModel: postModel,
+                                                  index: index,
                                                 )
                                               : Align(
                                                   alignment:
@@ -692,6 +611,73 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
           )
         ],
       ),
+    );
+  }
+}
+
+class PostImgBuilder extends StatefulWidget {
+  final List<UserPostModel> postModel;
+  final int index;
+  const PostImgBuilder({Key? key, required this.postModel, required this.index})
+      : super(key: key);
+
+  @override
+  State<PostImgBuilder> createState() => _PostImgBuilderState();
+}
+
+class _PostImgBuilderState extends State<PostImgBuilder> {
+  int imgIndex = 0;
+  final PageController page = PageController();
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+            height: 285.h,
+            width: 380.w,
+            clipBehavior: Clip.hardEdge,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+              color: Colors.white,
+            ),
+            child: PageView.builder(
+                itemCount: widget.postModel[widget.index].gallary!.length,
+                controller: page,
+                onPageChanged: (val) {
+                  setState(() {
+                    imgIndex = val;
+                  });
+                },
+                scrollDirection: Axis.horizontal,
+                pageSnapping: true,
+                itemBuilder: (BuildContext context, ind) {
+                  return CachedNetworkImage(
+                    imageUrl:
+                        widget.postModel[widget.index].gallary![ind].toString(),
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(
+                      child: SpinKitThreeBounce(
+                        color: k006D77,
+                        size: 30,
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  );
+                })),
+        Positioned(
+            right: 10,
+            top: 10,
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              decoration: BoxDecoration(
+                  color: Colors.black45,
+                  borderRadius: BorderRadius.circular(50)),
+              child: Text(
+                "${imgIndex + 1}/${widget.postModel[widget.index].gallary!.length}",
+                style: kManRope_400_14_white,
+              ),
+            ))
+      ],
     );
   }
 }

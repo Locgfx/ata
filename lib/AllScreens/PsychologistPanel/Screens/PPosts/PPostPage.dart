@@ -273,91 +273,9 @@ class _PPostPageState extends State<PPostPage> {
                                       isLoading
                                           ? SizedBox()
                                           : postModel[index].gallary!.isNotEmpty
-                                              ? Stack(
-                                                  children: [
-                                                    Container(
-                                                        height: 285.h,
-                                                        width: 380.w,
-                                                        clipBehavior:
-                                                            Clip.hardEdge,
-                                                        decoration:
-                                                            const BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius.all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          10)),
-                                                          color: Colors.white,
-                                                        ),
-                                                        child: PageView.builder(
-                                                            itemCount:
-                                                                postModel[index]
-                                                                    .gallary!
-                                                                    .length,
-                                                            controller: page,
-                                                            scrollDirection:
-                                                                Axis.horizontal,
-                                                            onPageChanged:
-                                                                (val) {
-                                                              setState(() {
-                                                                imgIndex = val;
-                                                              });
-                                                            },
-                                                            pageSnapping: true,
-                                                            itemBuilder:
-                                                                (BuildContext
-                                                                        context,
-                                                                    ind) {
-                                                              return CachedNetworkImage(
-                                                                imageUrl: postModel[
-                                                                        index]
-                                                                    .gallary![
-                                                                        ind]
-                                                                    .toString(),
-                                                                fit: BoxFit
-                                                                    .cover,
-                                                                placeholder:
-                                                                    (context,
-                                                                            url) =>
-                                                                        Center(
-                                                                  child:
-                                                                      SpinKitThreeBounce(
-                                                                    color:
-                                                                        k006D77,
-                                                                    size: 30,
-                                                                  ),
-                                                                ),
-                                                                errorWidget: (context,
-                                                                        url,
-                                                                        error) =>
-                                                                    Icon(Icons
-                                                                        .error),
-                                                              );
-                                                            })),
-                                                    Positioned(
-                                                        right: 10,
-                                                        top: 10,
-                                                        child: Container(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      10,
-                                                                  vertical: 5),
-                                                          decoration: BoxDecoration(
-                                                              color: Colors
-                                                                  .black45,
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          50)),
-                                                          child: Text(
-                                                            "${imgIndex + 1}/${postModel[index].gallary!.length}",
-                                                            style:
-                                                                kManRope_400_14_white,
-                                                          ),
-                                                        ))
-                                                  ],
-                                                )
+                                              ? PostImgBuilder(
+                                                  postModel: postModel,
+                                                  index: index)
                                               : Align(
                                                   alignment:
                                                       Alignment.centerLeft,
@@ -367,7 +285,7 @@ class _PPostPageState extends State<PPostPage> {
                                                         .toString(),
                                                     style:
                                                         kManRope_400_14_626A6A,
-                                                    trimLines: 1,
+                                                    trimLines: 3,
                                                     colorClickableText: k006D77,
                                                     trimMode: TrimMode.Line,
                                                     trimCollapsedText:

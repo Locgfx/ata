@@ -4,19 +4,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:greymatter/Apis/UserAPis/user_posts_api/add_post_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
+import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../../Apis/UserAPis/user_posts_api/add_post_api.dart';
-import '../../../../constants/fonts.dart';
-import '../../../../constants/globals.dart';
-
 class PCreatePostScreen extends StatefulWidget {
-  const PCreatePostScreen({Key? key}) : super(key: key);
+  const PCreatePostScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<PCreatePostScreen> createState() => _PCreatePostScreenState();
@@ -47,6 +49,36 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
     super.initState();
   }
 
+  bool _showDelete = false;
+  File _draggedFile = File("");
+  int imgIndex = 0;
+
+  CroppedFile? croppedFile;
+  _imageCropper(File file, int index) async {
+    croppedFile = await ImageCropper().cropImage(
+        sourcePath: file.path,
+        aspectRatio: CropAspectRatio(ratioX: 3, ratioY: 2),
+        aspectRatioPresets: [
+          CropAspectRatioPreset.ratio3x2
+        ],
+        uiSettings: [
+          AndroidUiSettings(
+            toolbarColor: k006D77,
+            toolbarWidgetColor: Colors.white,
+          ),
+        ]);
+    if (croppedFile == null) {
+      return;
+    } else {
+      setState(() {
+        _pickedImages.removeAt(index);
+        _pickedImages.insert(index, File(croppedFile!.path));
+      });
+    }
+  }
+
+  List<XFile> images = [];
+  PageController page = PageController(initialPage: 0);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,9 +110,11 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                           clipBehavior: Clip.hardEdge,
                           child: Image.network(
                             image,
+                            errorBuilder: (q, w, e) => Icon(
+                              Icons.person,
+                              color: Colors.white,
+                            ),
                             fit: BoxFit.fill,
-                            errorBuilder: (q, w, e) =>
-                                Image.asset('assets/images/userP.png'),
                           ),
                         ),
                         SizedBox(
@@ -100,20 +134,25 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                             XFile? v = await _imgPicker.pickImage(
                                 source: ImageSource.camera);
                             if (v != null) {
-                              setState(() {
-                                _pickedImage = File(v.path);
-                                _pickedImages.add(_pickedImage);
-                              });
+                              if (_pickedImages.length >= 4) {
+                                Fluttertoast.showToast(
+                                    msg: "Maximum 4 images are allowed.");
+                              } else {
+                                setState(() {
+                                  _pickedImage = File(v.path);
+                                  _pickedImages.add(_pickedImage);
+                                });
+                              }
                             }
                           },
                           child: SizedBox(
-                            height: 18,
-                            width: 20,
+                            height: 24,
+                            width: 24,
                             // color: Colors.red,
                             child: Image.asset(
                               'assets/images/iconcamera.png',
-                              height: 18,
-                              width: 20,
+                              height: 24,
+                              width: 24,
                             ),
                           ),
                         ),
@@ -122,11 +161,23 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                         ),
                         InkWell(
                           onTap: () async {
-                            List<XFile> images =
-                                await _imgPicker.pickMultiImage();
+                            images.clear();
+                            images = await _imgPicker.pickMultiImage();
                             setState(() {
-                              for (var v in images) {
-                                _pickedImages.add(File(v.path));
+                              if (images.length > 4) {
+                                Fluttertoast.showToast(
+                                    msg: "Maximum 4 images are allowed.");
+                              } else {
+                                //log(_pickedImages.length.toString());
+                                if (_pickedImages.length + images.length > 4) {
+                                  Fluttertoast.showToast(
+                                      msg: "Maximum 4 images are allowed.");
+                                } else {
+                                  for (var v in images) {
+                                    _pickedImages.add(File(v.path));
+                                    // _imageCropper(File(v.path));
+                                  }
+                                }
                               }
                             });
                             if (_pickedImages.isNotEmpty) {
@@ -134,8 +185,8 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                             }
                           },
                           child: SizedBox(
-                            height: 18,
-                            width: 20,
+                            height: 24,
+                            width: 24,
                             // color: Colors.red,
                             child: Image.asset(
                               'assets/images/iconpost.png',
@@ -154,6 +205,7 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
               ),
               TextField(
                 controller: controller,
+                minLines: 1,
                 maxLines: 10,
                 textInputAction: TextInputAction.done,
                 decoration: InputDecoration(
@@ -165,35 +217,231 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
               SizedBox(
                 height: 24.h,
               ),
-              Container(
-                height: 150,
-                //padding: EdgeInsets.only(left: 16),
-                child: ListView.separated(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (ctx, index) {
-                      return InkWell(
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.file(
-                            _pickedImages[index],
-                            fit: BoxFit.fitWidth,
+              if (_pickedImages.isNotEmpty)
+                Stack(
+                  children: [
+                    Container(
+                        height: 285.h,
+                        width: 380.w,
+                        clipBehavior: Clip.hardEdge,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10)),
+                          //color: Colors.white,
+                        ),
+                        child: PageView.builder(
+                            itemCount: _pickedImages.length,
+                            controller: page,
+                            onPageChanged: (val) {
+                              setState(() {
+                                imgIndex = val;
+                              });
+                            },
+                            scrollDirection: Axis.horizontal,
+                            pageSnapping: true,
+                            itemBuilder: (BuildContext context, ind) {
+                              return LongPressDraggable<File>(
+                                onDragStarted: () {
+                                  log("Started");
+                                  setState(() {
+                                    _showDelete = true;
+                                  });
+                                },
+                                onDragCompleted: () {
+                                  log("Completed");
+                                  setState(() {
+                                    _showDelete = false;
+                                  });
+                                },
+                                onDragEnd: (details) {
+                                  log("Ended");
+                                  setState(() {
+                                    _showDelete = false;
+                                  });
+                                },
+                                onDragUpdate: (updateDetails) {
+                                  _draggedFile = _pickedImages[ind];
+                                  //log(_draggedFile.path);
+                                },
+                                //axis: Axis.vertical,
+                                data: _pickedImages[ind],
+                                feedback: Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black38,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  width: 250,
+                                  height: 200,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.file(
+                                      _pickedImages[ind],
+                                      // fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                ),
+                                child: InkWell(
+                                  onTap: () {
+                                    _imageCropper(_pickedImages[ind], ind);
+                                  },
+                                  child: Image.file(
+                                    _pickedImages[ind],
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              );
+                            })),
+                    Positioned(
+                        right: 10,
+                        top: 10,
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                          decoration: BoxDecoration(
+                              color: Colors.black45,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: Text(
+                            "${imgIndex + 1}/${_pickedImages.length}",
+                            style: kManRope_400_14_white,
                           ),
-                        ),
-                      );
-                    },
-                    separatorBuilder: (ctx, ind) => SizedBox(
-                          width: 10,
-                        ),
-                    itemCount: _pickedImages.length),
+                        ))
+                  ],
+                ),
+              SizedBox(
+                height: 10,
               ),
+              if (_pickedImages.isNotEmpty)
+                Center(
+                    child: Text(
+                  "(Tap an image to crop)",
+                  style: kManRope_400_14_006D77,
+                )),
+              SizedBox(
+                height: 50,
+              ),
+              _showDelete
+                  ? Center(
+                      child: DragTarget<File>(onWillAccept: (file) {
+                        return file!.path == _draggedFile.path;
+                      }, onAccept: (file) {
+                        setState(() {
+                          _pickedImages.remove(file);
+                          if (imgIndex + 1 > _pickedImages.length) {
+                            imgIndex--;
+                          }
+                        });
+                      }, builder: (ctx, q, w) {
+                        return IconButton(
+                          color: Colors.black38,
+                          padding: EdgeInsets.all(30),
+                          icon: Image.asset(
+                            "assets/icons/delete.png",
+                            width: 24,
+                            height: 24,
+                          ),
+                          onPressed: () {},
+                        );
+                      }),
+                    )
+                  : SizedBox.shrink(),
+              // Container(
+              //   height: 250,
+              //   //padding: EdgeInsets.only(left: 16),
+              //   child: ListView.separated(
+              //       shrinkWrap: true,
+              //       scrollDirection: Axis.horizontal,
+              //       itemBuilder: (ctx, index) {
+              //         return LongPressDraggable<File>(
+              //           onDragStarted: () {
+              //             log("Started");
+              //             setState(() {
+              //               _showDelete = true;
+              //             });
+              //           },
+              //           onDragCompleted: () {
+              //             log("Completed");
+              //             setState(() {
+              //               _showDelete = false;
+              //             });
+              //           },
+              //           onDragEnd: (details) {
+              //             log("Ended");
+              //             setState(() {
+              //               _showDelete = false;
+              //             });
+              //           },
+              //           onDragUpdate: (updateDetails) {
+              //             _draggedFile = _pickedImages[index];
+              //             //log(_draggedFile.path);
+              //           },
+              //           //axis: Axis.vertical,
+              //           data: _pickedImages[index],
+              //           feedback: Container(
+              //             clipBehavior: Clip.hardEdge,
+              //             decoration: BoxDecoration(
+              //                 color: Colors.black38,
+              //                 borderRadius: BorderRadius.circular(10)),
+              //             width: 250,
+              //             height: 200,
+              //             child: ClipRRect(
+              //               borderRadius: BorderRadius.circular(10),
+              //               child: Image.file(
+              //                 _pickedImages[index],
+              //                 //fit: BoxFit.cover,
+              //               ),
+              //             ),
+              //           ),
+              //           child: Container(
+              //             clipBehavior: Clip.hardEdge,
+              //             decoration: BoxDecoration(
+              //                 color: Colors.black38,
+              //                 borderRadius: BorderRadius.circular(10)),
+              //             width: 1.sw - 50,
+              //             height: 300,
+              //             child: ClipRRect(
+              //               borderRadius: BorderRadius.circular(10),
+              //               child: Image.file(
+              //                 _pickedImages[index],
+              //                 //fit: BoxFit.cover,
+              //               ),
+              //             ),
+              //           ),
+              //         );
+              //       },
+              //       separatorBuilder: (ctx, ind) => SizedBox(
+              //             width: 10,
+              //           ),
+              //       itemCount: _pickedImages.length),
+              // ),
+              // SizedBox(
+              //   height: 50,
+              // ),
+              // _showDelete
+              //     ? Center(
+              //         child: DragTarget<File>(onWillAccept: (file) {
+              //           return file!.path == _draggedFile.path;
+              //         }, onAccept: (file) {
+              //           setState(() {
+              //             _pickedImages.remove(file);
+              //           });
+              //         }, builder: (ctx, q, w) {
+              //           return IconButton(
+              //             icon: Image.asset(
+              //               "assets/icons/delete.png",
+              //               width: 24,
+              //               height: 24,
+              //             ),
+              //             onPressed: () {},
+              //           );
+              //         }),
+              //       )
+              //     : SizedBox.shrink(),
             ],
           ),
         ),
       ),
       bottomNavigationBar: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(bottom: 96.h),
+          padding: EdgeInsets.only(bottom: 30.h),
           child: Center(
             child: SizedBox(
               height: 56.h,
@@ -203,7 +451,7 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                     )
                   : MainButton(
                       onPressed: () {
-                        //if (_pickedImages.isNotEmpty) {
+                        // if (_pickedImages.isNotEmpty) {
                         setState(() {
                           _btnLoading = true;
                         });
@@ -221,10 +469,10 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                               Navigator.of(context).pop();
                             });
                           } else {
-                            Fluttertoast.showToast(msg: "Something went wrong");
                             setState(() {
                               _btnLoading = false;
                             });
+                            Fluttertoast.showToast(msg: "Something went wrong");
                           }
                         });
                         // } else {

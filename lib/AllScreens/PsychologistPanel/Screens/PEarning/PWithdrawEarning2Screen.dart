@@ -11,6 +11,7 @@ import 'package:greymatter/widgets/BottomSheets/AccountNoBottomSheet.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
+
 import '../../../../constants/fonts.dart';
 import '../../../../model/PModels/home_models/earning_models/counselor_bank_details_model.dart';
 
@@ -118,6 +119,7 @@ class _PWithDrawEarningsScreen2State extends State<PWithDrawEarningsScreen2> {
                           // height: 56.h,
                           width: 182.w,
                           child: TextFormField(
+                              keyboardType: TextInputType.number,
                               controller: _amountController,
                               style: kManRope_500_16_626A6A,
                               validator: (val) {

@@ -72,9 +72,9 @@ class _UUpcomingAppointmentCardState extends State<UUpcomingAppointmentCard> {
                     ),
                     SizedBox(height: 8.h),
                     Text(
-                      DateFormat('dd MMMM yyyy, hh:MM a').format(DateTime.parse(
-                          "${widget.data.date} ${widget.data.timeSlot}")),
-                      //widget.data.date.toString(),
+                      DateFormat("EEE, d MMM, yyyy  h:mm a").format(
+                          DateTime.parse(
+                              "${widget.data.date} ${widget.data.timeSlot}")),
                       style: kManRope_400_14_001314,
                     )
                   ],

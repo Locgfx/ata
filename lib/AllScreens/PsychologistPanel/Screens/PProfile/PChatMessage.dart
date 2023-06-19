@@ -72,6 +72,7 @@ class _PChatMessagesState extends State<PChatMessages> {
   bool _isConnected = false;
   @override
   void initState() {
+    log(widget.chatToken);
     super.initState();
     // _getData();
     _getPrefs();

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 
@@ -34,6 +35,7 @@ import 'package:greymatter/widgets/shared/buttons/costom_secondary_text_w_icon_b
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../Apis/Notifications_apis/notification_repo.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
 
 class UHomeScreen extends StatefulWidget {
@@ -52,6 +54,11 @@ class _UHomeScreenState extends State<UHomeScreen> {
     getPsychologistData();
     getActivityData();
     getUpcomingAppointments();
+    _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
+      _newNotification = await _repo.newNotification();
+      setState(() {});
+      log(_newNotification.toString());
+    });
     super.initState();
   }
 
@@ -130,8 +137,13 @@ class _UHomeScreenState extends State<UHomeScreen> {
     });
   }
 
+  final NotificationRepo _repo = NotificationRepo();
+
+  Timer? _timer;
+  bool _newNotification = false;
   @override
   void dispose() {
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -172,11 +184,17 @@ class _UHomeScreenState extends State<UHomeScreen> {
                     child: SizedBox(
                       width: 20,
                       height: 20,
-                      child: SvgPicture.asset(
-                        "assets/icons/bell_on.svg",
-                        width: 20,
-                        height: 20,
-                      ),
+                      child: _newNotification
+                          ? SvgPicture.asset(
+                              "assets/icons/bell_off.svg",
+                              width: 20,
+                              height: 20,
+                            )
+                          : SvgPicture.asset(
+                              "assets/icons/bell_on.svg",
+                              width: 20,
+                              height: 20,
+                            ),
                     )
                     // Image.asset(
                     //   "assets/images/iconwhitenotification.png",

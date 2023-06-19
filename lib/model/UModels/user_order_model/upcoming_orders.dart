@@ -39,6 +39,7 @@ class UpcomingOrders {
   late final String payment;
   late final String name;
   late final String price;
+  late final String psyId;
   late final String rating;
   late final String designation;
 
@@ -46,6 +47,7 @@ class UpcomingOrders {
     id = json['id'];
     user = json['user'];
     psychologist = json['psychologist'];
+    psyId = json['psychologist'];
     rating = json['rating'];
     issue = json['issue'];
     price = json['pricing'];

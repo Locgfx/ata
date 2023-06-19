@@ -281,95 +281,9 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
                                               : savedpostlist[index]
                                                       .gallary!
                                                       .isNotEmpty
-                                                  ? Stack(
-                                                      children: [
-                                                        Container(
-                                                            height: 285.h,
-                                                            width: 380.w,
-                                                            clipBehavior:
-                                                                Clip.hardEdge,
-                                                            decoration:
-                                                                const BoxDecoration(
-                                                              borderRadius: BorderRadius
-                                                                  .all(Radius
-                                                                      .circular(
-                                                                          10)),
-                                                              color:
-                                                                  Colors.white,
-                                                            ),
-                                                            child: PageView
-                                                                .builder(
-                                                                    itemCount: savedpostlist[
-                                                                            index]
-                                                                        .gallary!
-                                                                        .length,
-                                                                    controller:
-                                                                        page,
-                                                                    onPageChanged:
-                                                                        (val) {
-                                                                      setState(
-                                                                          () {
-                                                                        imgIndex =
-                                                                            val;
-                                                                      });
-                                                                    },
-                                                                    scrollDirection:
-                                                                        Axis
-                                                                            .horizontal,
-                                                                    pageSnapping:
-                                                                        true,
-                                                                    itemBuilder:
-                                                                        (BuildContext
-                                                                                context,
-                                                                            ind) {
-                                                                      return CachedNetworkImage(
-                                                                        imageUrl: savedpostlist[index]
-                                                                            .gallary![ind]
-                                                                            .toString(),
-                                                                        fit: BoxFit
-                                                                            .cover,
-                                                                        placeholder:
-                                                                            (context, url) =>
-                                                                                Center(
-                                                                          child:
-                                                                              SpinKitThreeBounce(
-                                                                            color:
-                                                                                k006D77,
-                                                                            size:
-                                                                                30,
-                                                                          ),
-                                                                        ),
-                                                                        errorWidget: (context,
-                                                                                url,
-                                                                                error) =>
-                                                                            Icon(Icons.error),
-                                                                      );
-                                                                    })),
-                                                        Positioned(
-                                                            right: 10,
-                                                            top: 10,
-                                                            child: Container(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          10,
-                                                                      vertical:
-                                                                          5),
-                                                              decoration: BoxDecoration(
-                                                                  color: Colors
-                                                                      .black45,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              50)),
-                                                              child: Text(
-                                                                "${imgIndex + 1}/${savedpostlist[index].gallary!.length}",
-                                                                style:
-                                                                    kManRope_400_14_white,
-                                                              ),
-                                                            ))
-                                                      ],
-                                                    )
+                                                  ? PostImgBuilder(
+                                                      postModel: savedpostlist,
+                                                      index: index)
                                                   : Align(
                                                       alignment:
                                                           Alignment.centerLeft,

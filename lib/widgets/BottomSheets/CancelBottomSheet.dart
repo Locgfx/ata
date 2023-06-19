@@ -38,7 +38,9 @@ class _CancelBookingState extends State<CancelBooking> {
                         child: MainButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => UCancelBookingScreen()));
+                                  builder: (context) => UCancelBookingScreen(
+                                        name: '',
+                                      )));
                             },
                             child: Padding(
                               padding: EdgeInsets.symmetric(vertical: 20.h),

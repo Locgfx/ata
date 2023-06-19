@@ -100,42 +100,42 @@ class _PRequestSentSuccessfulScreenState
                   SizedBox(
                     height: 25.h,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: 88.h,
-                        width: 88.w,
-                        clipBehavior: Clip.hardEdge,
-                        decoration: CustomDecoration().containerDecoration(),
-                        child: Image.asset('assets/images/userP.png',
-                            fit: BoxFit.cover),
-                      ),
-                      SizedBox(
-                        width: 16.w,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Priyanka singh',
-                            style: kManRope_500_16_001314,
-                          ),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          Text(
-                            '9810745330',
-                            style: kManRope_400_14_626A6A,
-                          ),
-                          SizedBox(
-                            height: 8.h,
-                          ),
-                          Text('10 June 2022', style: kManRope_400_14_626A6A),
-                        ],
-                      ),
-                    ],
-                  )
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.center,
+                  //   children: [
+                  //     Container(
+                  //       height: 88.h,
+                  //       width: 88.w,
+                  //       clipBehavior: Clip.hardEdge,
+                  //       decoration: CustomDecoration().containerDecoration(),
+                  //       child: Image.asset('assets/images/userP.png',
+                  //           fit: BoxFit.cover),
+                  //     ),
+                  //     SizedBox(
+                  //       width: 16.w,
+                  //     ),
+                  //     Column(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       children: [
+                  //         Text(
+                  //           'Priyanka singh',
+                  //           style: kManRope_500_16_001314,
+                  //         ),
+                  //         SizedBox(
+                  //           height: 8.h,
+                  //         ),
+                  //         Text(
+                  //           '9810745330',
+                  //           style: kManRope_400_14_626A6A,
+                  //         ),
+                  //         SizedBox(
+                  //           height: 8.h,
+                  //         ),
+                  //         Text('10 June 2022', style: kManRope_400_14_626A6A),
+                  //       ],
+                  //     ),
+                  //   ],
+                  // )
                 ],
               ),
             ),

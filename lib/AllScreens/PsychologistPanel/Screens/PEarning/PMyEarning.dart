@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/PEarningHistoryScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/PWithdrawEarningScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/earning_apis/last_transactions_api.dart';
@@ -16,6 +15,7 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shimmerLoader.dart';
 import 'package:intl/intl.dart';
+
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/BottomSheets/FilterBottomSheet.dart';
 import 'PWithdrawEarning2Screen.dart';
@@ -168,10 +168,6 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
                                   ),
                                 ],
                               ),
-                              /*SizedBox(
-                          height: 28.h,
-                        ),*/
-
                               Container(
                                 height: 1.5,
                                 width: 1.sw,
@@ -412,78 +408,84 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
                     ? Center(
                         child: SizedBox(
                             height: 100, width: 100, child: LoadingWidget()))
-                    : ListView.separated(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        padding: EdgeInsets.zero,
-                        itemBuilder: (ctx, index) {
-                          return Column(
-                            children: [
-                              Row(
-                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    : model.allTransaction!.isEmpty
+                        ? Center(
+                            child: Text("No transaction available"),
+                          )
+                        : ListView.separated(
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            padding: EdgeInsets.zero,
+                            itemBuilder: (ctx, index) {
+                              return Column(
                                 children: [
-                                  SizedBox(
-                                    width: 75.w,
-                                    // height: 16.h,
-                                    child: Text(
-                                      DateFormat("dd.MM.yyyy").format(
-                                          DateTime.parse(model
-                                              .allTransaction![index]
-                                              .dateTime!)),
-                                      style: kManRope_400_14_626A6A,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 72.w,
-                                  ),
-                                  InkWell(
-                                    onLongPress: () {
-                                      Clipboard.setData(ClipboardData(
-                                              text: model.allTransaction![index]
-                                                  .transactionId
-                                                  .toString()))
-                                          .then((value) {
-                                        /*Fluttertoast.showToast(
+                                  Row(
+                                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SizedBox(
+                                        width: 75.w,
+                                        // height: 16.h,
+                                        child: Text(
+                                          DateFormat("dd.MM.yyyy").format(
+                                              DateTime.parse(model
+                                                  .allTransaction![index]
+                                                  .dateTime!)),
+                                          style: kManRope_400_14_626A6A,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 72.w,
+                                      ),
+                                      InkWell(
+                                        onLongPress: () {
+                                          Clipboard.setData(ClipboardData(
+                                                  text: model
+                                                      .allTransaction![index]
+                                                      .transactionId
+                                                      .toString()))
+                                              .then((value) {
+                                            /*Fluttertoast.showToast(
                                             msg: "ID copied to clipboard");*/
-                                      });
-                                    },
-                                    child: SizedBox(
-                                      width: 100.w,
-                                      // height: 16.h,
-                                      child: SingleChildScrollView(
-                                        scrollDirection: Axis.horizontal,
+                                          });
+                                        },
+                                        child: SizedBox(
+                                          width: 100.w,
+                                          // height: 16.h,
+                                          child: SingleChildScrollView(
+                                            scrollDirection: Axis.horizontal,
+                                            child: Text(
+                                              model.allTransaction![index]
+                                                  .transactionId
+                                                  .toString(),
+                                              style: kManRope_400_16_626A6A,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 78.w,
+                                      ),
+                                      SizedBox(
+                                        width: 40.w,
+                                        // height: 16.h,
                                         child: Text(
                                           model.allTransaction![index]
-                                              .transactionId
+                                              .totalPayment
                                               .toString(),
                                           style: kManRope_400_16_626A6A,
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 78.w,
-                                  ),
-                                  SizedBox(
-                                    width: 40.w,
-                                    // height: 16.h,
-                                    child: Text(
-                                      model.allTransaction![index].totalPayment
-                                          .toString(),
-                                      style: kManRope_400_16_626A6A,
-                                    ),
+                                    ],
                                   ),
                                 ],
-                              ),
-                            ],
-                          );
-                        },
-                        separatorBuilder: (ctx, index) {
-                          return SizedBox(height: 29.h);
-                        },
-                        itemCount: model.allTransaction!.length > 5
-                            ? 5
-                            : model.allTransaction!.length),
+                              );
+                            },
+                            separatorBuilder: (ctx, index) {
+                              return SizedBox(height: 29.h);
+                            },
+                            itemCount: model.allTransaction!.length > 5
+                                ? 5
+                                : model.allTransaction!.length),
               ),
               SizedBox(
                 height: 20.h,
