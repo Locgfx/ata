@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PBasicDetailsWIdget.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UChangeEmailOtpScreen.dart';
 import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
@@ -72,36 +70,53 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
               //   height: 8.h,
               // ),
               SizedBox(
-                height: 48.h,
+                //height: 48.h,
                 child: TextFormField(
-                  controller: newEmailController,
-                  onChanged: (val) {
-                    if (val.isNotEmpty) {
-                      setState(() {
-                        nEmailEmpty = false;
-                        hasNEmailFocus = true;
-                      });
-                    }
-                    if (val.isEmpty) {
-                      setState(() {
-                        nEmailEmpty = true;
-                        hasNEmailFocus = false;
-                      });
-                    }
-                  },
-                  onTap: () {
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) => PsychologistChangeEmailScreen()));
-                  },
-                  // readOnly: true,
-                  decoration: TextfieldDecoration(
-                    hintstyle: kManRope_400_16_626A6A,
-                    label: '',
-                  ).underlinefieldDecoration(),
-                ),
+                    controller: newEmailController,
+                    onChanged: (val) {
+                      if (val.isNotEmpty) {
+                        setState(() {
+                          nEmailEmpty = false;
+                          hasNEmailFocus = true;
+                        });
+                      }
+                      if (val.isEmpty) {
+                        setState(() {
+                          nEmailEmpty = true;
+                          hasNEmailFocus = false;
+                        });
+                      }
+                    },
+                    validator: (val) {
+                      if (newEmailController.text.isEmpty) {
+                        return "Please enter an email";
+                      }
+                      if (!newEmailController.text.contains("@")) {
+                        return "Please enter a valid email";
+                      }
+                      return null;
+                    },
+                    onTap: () {
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => PsychologistChangeEmailScreen()));
+                    },
+                    // readOnly: true,
+                    decoration: InputDecoration(
+                      contentPadding: EdgeInsets.only(
+                        bottom: 15,
+                      ),
+                      //border: InputBorder.none,
+                      // contentPadding: EdgeInsets.zero,
+                      hintText: "",
+                      hintStyle: kManRope_400_16_626A6A,
+                    )
+                    // TextfieldDecoration(
+                    //   hintstyle: kManRope_400_16_626A6A,
+                    //   label: '',
+                    // ).underlinefieldDecoration(),
+                    ),
               ),
-
-              BlackUnderline(),
+              // BlackUnderline(),
               SizedBox(
                 height: 50.h,
               ),
@@ -113,7 +128,7 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
               //   height: 8.h,
               // ),
               SizedBox(
-                height: 48.h,
+                // height: 48.h,
                 // color: Colors.red,
                 child: TextFormField(
                   controller: confirmEmailController,
@@ -131,19 +146,35 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
                       });
                     }
                   },
+                  validator: (val) {
+                    if (newEmailController.text.isEmpty) {
+                      return "Please enter an email";
+                    }
+                    if (!newEmailController.text.contains("@")) {
+                      return "Please enter a valid email";
+                    }
+                    if (confirmEmailController.text !=
+                        newEmailController.text) {
+                      return "Email did not match!";
+                    }
+                    return null;
+                  },
                   onTap: () {
                     // Navigator.of(context).push(MaterialPageRoute(
                     //     builder: (context) => PsychologistChangeEmailScreen()));
                   },
                   // readOnly: true,
-                  decoration: TextfieldDecoration(
-                    hintstyle: kManRope_400_16_626A6A,
-                    label: '',
-                  ).underlinefieldDecoration(),
+                  decoration: InputDecoration(
+                    contentPadding: EdgeInsets.only(
+                      bottom: 15,
+                    ),
+                    //border: InputBorder.none,
+                    // contentPadding: EdgeInsets.zero,
+                    hintText: "",
+                    hintStyle: kManRope_400_16_626A6A,
+                  ),
                 ),
               ),
-
-              BlackUnderline(),
               Spacer(),
               Align(
                 alignment: Alignment.center,
@@ -163,24 +194,26 @@ class _UChangeEmailScreenState extends State<UChangeEmailScreen> {
                           onPressed: () {}, text: 'Next')
                       : CustomSmallActiveTextButton(
                           onPressed: () {
-                            final resp = UserChangeEmailApi().get(
-                                newEmail: newEmailController.text,
-                                confirmEmail: confirmEmailController.text);
-                            resp.then((value) async {
-                              //print(resp);
-                              // var prefs = await SharedPreferences.getInstance();
-                              // print(prefs.getString(Keys().cookie));
-                              if (value['status'] == true) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => UEmailOtpScreen(
-                                          email: newEmailController.text,
-                                        )));
-                                // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
-                              } else {
-                                //print(value.toString());
-                                Fluttertoast.showToast(msg: value['error']);
-                              }
-                            });
+                            if (_formKey.currentState!.validate()) {
+                              final resp = UserChangeEmailApi().get(
+                                  newEmail: newEmailController.text,
+                                  confirmEmail: confirmEmailController.text);
+                              resp.then((value) async {
+                                //print(resp);
+                                // var prefs = await SharedPreferences.getInstance();
+                                // print(prefs.getString(Keys().cookie));
+                                if (value['status'] == true) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) => UEmailOtpScreen(
+                                            email: newEmailController.text,
+                                          )));
+                                  // Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
+                                } else {
+                                  //print(value.toString());
+                                  Fluttertoast.showToast(msg: value['error']);
+                                }
+                              });
+                            }
                           },
                           text: 'Next',
                         ),

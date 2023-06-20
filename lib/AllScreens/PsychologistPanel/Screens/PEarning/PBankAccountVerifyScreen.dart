@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PEarning/PWithdrawEarning2Screen.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 
 import '../../../../constants/fonts.dart';
@@ -19,17 +18,15 @@ class _PAccountBankVerifyScreenState extends State<PAccountBankVerifyScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 6), () {
       setPage();
     });
     //setPage();
   }
 
   setPage() {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => PWithDrawEarningsScreen2(
-              currentBalance: widget.currentBalance,
-            )));
+    int count = 0;
+    Navigator.of(context).popUntil((_) => count++ >= 2);
   }
 
   @override

@@ -456,7 +456,7 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                           _btnLoading = true;
                         });
                         final resp = AddPost().get(
-                            captions: controller.text,
+                            captions: controller.text.trim(),
                             pickedImg: _pickedImages);
                         resp.then((value) {
                           if (value['status'] == true) {
@@ -472,7 +472,7 @@ class _PCreatePostScreenState extends State<PCreatePostScreen> {
                             setState(() {
                               _btnLoading = false;
                             });
-                            Fluttertoast.showToast(msg: "Something went wrong");
+                            Fluttertoast.showToast(msg: value['error']);
                           }
                         });
                         // } else {

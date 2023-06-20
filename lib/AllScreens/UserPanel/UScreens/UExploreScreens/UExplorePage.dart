@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,7 +70,7 @@ class _UExplorePageState extends State<UExplorePage> {
     _isLoading = true;
     final resp = UserExploreApi().get(scroll: '0', search: "");
     resp.then((value) {
-      //print(value);
+      log(value.toString());
       if (mounted) {
         setState(() {
           psychologists.clear();

@@ -32,6 +32,7 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
         ),
         context: context,
         builder: (context) => MenuBottomSheet(
+              postedBy: postModel[index].postedBy.toString(),
               savedPost: "no",
               onPop: (val) {
                 if (val == "Hide") {

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen.dart';
+import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_change_email_otp_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
-
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../constants/globals.dart';
-import '../ULoginScreens/ULoginScreen.dart';
 
 class UEmailOtpScreen extends StatefulWidget {
   final String email;
@@ -105,14 +103,17 @@ class _UEmailOtpScreenState extends State<UEmailOtpScreen> {
                                 return count++ == 3;
                               });*/
                               var prefs = await SharedPreferences.getInstance();
+                              // prefs.setBool(Keys().loginDone, false);
                               prefs.setBool(Keys().loginDone, false);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  //builder: (_) => OnBoardingScreen(),
-                                  builder: (_) => ULoginScreen(showBack: false),
-                                ),
-                              );
+                              prefs.clear();
+                              prefs.setBool(Keys().firstRun, true);
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    //builder: (_) => OnBoardingScreen(),
+                                    builder: (_) => OnBoardingScreen(),
+                                  ),
+                                  (route) => false);
                             } else {
                               Fluttertoast.showToast(msg: value['error']);
                             }

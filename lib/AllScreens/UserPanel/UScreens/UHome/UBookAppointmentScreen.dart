@@ -132,14 +132,11 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                                   borderRadius: BorderRadius.circular(24),
                                   border: Border.all(
                                       color: Colors.white, width: 1)),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Image.network(
-                                  specialistModel[index].icon.toString(),
-                                  height: 62.h,
-                                  width: 58.w,
-                                  fit: BoxFit.cover,
-                                ),
+                              child: Image.network(
+                                specialistModel[index].icon.toString(),
+                                height: 62.h,
+                                width: 58.w,
+                                fit: BoxFit.cover,
                               ),
                             ),
                             SizedBox(height: 8.h),

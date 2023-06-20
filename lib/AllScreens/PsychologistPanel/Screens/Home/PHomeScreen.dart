@@ -17,9 +17,11 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/PModels/home_models/total_revenue_model/total_revenue_model.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shimmerLoader.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../Apis/Notifications_apis/seen_notification_repo.dart';
 import '../../../../constants/fonts.dart';
+import '../../../../constants/globals.dart';
 
 class PHomeScreen extends StatefulWidget {
   const PHomeScreen({Key? key}) : super(key: key);
@@ -40,6 +42,7 @@ class _PHomeScreenState extends State<PHomeScreen>
   @override
   void initState() {
     _pageController = TabController(length: 3, vsync: this);
+    getPrefs();
     _getData();
 
     _timer = Timer.periodic(Duration(seconds: 10), (timer) async {
@@ -79,6 +82,15 @@ class _PHomeScreenState extends State<PHomeScreen>
 
   final NotificationSeenRepo _notificationSeenRepo = NotificationSeenRepo();
 
+  String userName = '';
+  getPrefs() async {
+    var prefs = await SharedPreferences.getInstance();
+    String a = prefs.getString(Keys().userName)!;
+    setState(() {
+      userName = a;
+    });
+  }
+
   int selectedIndex = 0;
   int index = 0;
   bool flag = true;
@@ -105,7 +117,7 @@ class _PHomeScreenState extends State<PHomeScreen>
               title: Padding(
                 padding: EdgeInsets.only(left: 6.w),
                 child: Text(
-                  "Good Morning, Pankaj",
+                  "Good ${DateTime.now().hour < 12 ? 'Morning' : DateTime.now().hour > 12 && DateTime.now().hour < 15 ? 'Afternoon' : 'Evening'}, ${userName != '' ? userName : 'User'}",
                   style: kManRope_700_20_white,
                 ),
               ),

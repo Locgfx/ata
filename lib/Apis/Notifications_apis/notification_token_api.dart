@@ -25,6 +25,7 @@ class NotificationTokenApi {
     log(request.fields.toString());
     log(request.fields.toString());
     http.StreamedResponse response = await request.send();
+    //log(await response.stream.bytesToString());
 
     var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {

@@ -14,7 +14,6 @@ import 'package:greymatter/Apis/UserAPis/user_goals_api/user_goals_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/UModels/user_goals_models/user_goals_model.dart';
 import 'package:greymatter/widgets/BottomSheets/DeleteBottomSheet.dart';
-import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:intl/intl.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -350,6 +349,10 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                                             .toString(),
                                                         height: 36.w,
                                                         width: 36.w,
+                                                        // semanticsLabel:
+                                                        //     modelList[index]
+                                                        //         .hashCode
+                                                        //         .toString(),
                                                         fit: BoxFit.fill,
                                                       ),
                                                       /*SvgPicture.asset(

@@ -32,6 +32,7 @@ class _UPostViewContainerState extends State<UPostViewContainer> {
         ),
         context: context,
         builder: (context) => MenuBottomSheet(
+              postedBy: widget.model.postedBy.toString(),
               savedPost: "no",
               onPop: (val) {
                 if (val == "Hide") {

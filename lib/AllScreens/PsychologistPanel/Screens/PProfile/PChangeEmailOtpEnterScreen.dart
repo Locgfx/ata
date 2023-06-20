@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PMyAccountScreen.dart';
 import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_change_email_enter_otp_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../constants/globals.dart';
+import '../../../OnboardingScreen/onboarding_screen.dart';
 
 class PEmailEnterOtpScreen extends StatefulWidget {
   const PEmailEnterOtpScreen({
@@ -82,16 +85,23 @@ class _PEmailEnterOtpScreenState extends State<PEmailEnterOtpScreen> {
               otpEmpty
                   ? CustomDeactiveTextButton(onPressed: () {}, text: 'Save')
                   : CustomActiveTextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         final resp = DoctorChangeEmailOtpVerifyApi()
                             .get(otp: otpController.text);
-                        resp.then((value) {
+                        resp.then((value) async {
                           print(value);
                           if (value['status'] == true) {
                             Fluttertoast.showToast(msg: value['message']);
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    PAccountScreen()));
+                            var prefs = await SharedPreferences.getInstance();
+                            // prefs.setBool(Keys().loginDone, false);
+                            prefs.setBool(Keys().loginDone, false);
+                            prefs.clear();
+                            prefs.setBool(Keys().firstRun, false);
+
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => OnBoardingScreen()),
+                                (route) => false);
                           } else {
                             Fluttertoast.showToast(msg: value['error']);
                           }

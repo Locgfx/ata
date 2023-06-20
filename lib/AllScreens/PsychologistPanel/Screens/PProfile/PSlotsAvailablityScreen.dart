@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PEditHolidayScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PEditSlotAvailablityScreen.dart';
@@ -15,6 +16,8 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/popupdialogs.dart';
 import 'package:intl/intl.dart';
+
+import '../../../../Apis/DoctorApis/availability_api.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../widgets/buttons.dart';
 
@@ -80,6 +83,9 @@ class _PSlotsAvailabilityScreenState extends State<PSlotsAvailabilityScreen> {
 
   SlotsModel model = SlotsModel();
 
+  bool _instantAvailability = false;
+  bool _instantLoading = false;
+
   bool _isLoading = false;
   bool _holidayLoading = false;
 
@@ -97,6 +103,11 @@ class _PSlotsAvailabilityScreenState extends State<PSlotsAvailabilityScreen> {
       if (value["status"] == true) {
         setState(() {
           model = SlotsModel.fromJson(value);
+          if (model.availableStatus == "0") {
+            _instantAvailability = false;
+          } else {
+            _instantAvailability = true;
+          }
           _isLoading = false;
         });
       } else {
@@ -675,7 +686,7 @@ class _PSlotsAvailabilityScreenState extends State<PSlotsAvailabilityScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8.h),
+                    SizedBox(height: 40.h),
                     /* SizedBox(
                       // height: 360.h,
                       child: ListView.separated(
@@ -694,6 +705,48 @@ class _PSlotsAvailabilityScreenState extends State<PSlotsAvailabilityScreen> {
                         },
                       ),
                     ),*/
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Instant booking availability",
+                          style: kManRope_500_16_001314,
+                        ),
+                        _instantLoading
+                            ? SizedBox(
+                                height: 48.h,
+                                width: 48.w,
+                                child: SpinKitThreeBounce(
+                                  color: k006D77,
+                                  size: 25,
+                                ),
+                              )
+                            : SizedBox(
+                                height: 48.h,
+                                width: 48.w,
+                                child: FlutterSwitch(
+                                  width: 40,
+                                  height: 18,
+                                  toggleSize: 14,
+                                  padding: 3,
+                                  activeColor: k006D77,
+                                  value: _instantAvailability,
+                                  onToggle: (val) async {
+                                    setState(() {
+                                      _instantLoading = true;
+                                      _instantAvailability =
+                                          !_instantAvailability;
+                                    });
+                                    final resp = await AvailabilityApi().get(
+                                        status: _instantAvailability ? 1 : 0);
+                                    setState(() {
+                                      _instantLoading = false;
+                                    });
+                                  },
+                                ),
+                              )
+                      ],
+                    ),
                     SizedBox(height: 40.h),
                     SizedBox(
                       height: 48.h,

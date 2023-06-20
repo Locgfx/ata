@@ -15,8 +15,10 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shimmerLoader.dart';
 import 'package:intl/intl.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../constants/fonts.dart';
+import '../../../../constants/globals.dart';
 import '../../../../widgets/BottomSheets/FilterBottomSheet.dart';
 import 'PWithdrawEarning2Screen.dart';
 
@@ -30,6 +32,7 @@ class PMyEarningsScreen extends StatefulWidget {
 class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
   @override
   void initState() {
+    getPrefs();
     _getTotalEarnings();
     _getData();
     super.initState();
@@ -95,6 +98,15 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
             }));
   }
 
+  String userName = '';
+  getPrefs() async {
+    var prefs = await SharedPreferences.getInstance();
+    String a = prefs.getString(Keys().userName)!;
+    setState(() {
+      userName = a;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +114,7 @@ class _PMyEarningsScreenState extends State<PMyEarningsScreen> {
       appBar: HomeAppBar(
         color: kEDF6F9,
         text: Text(
-          "Good Morning, Pankaj",
+          "Good ${DateTime.now().hour < 12 ? 'Morning' : DateTime.now().hour > 12 && DateTime.now().hour < 15 ? 'Afternoon' : 'Evening'}, ${userName != '' ? userName : 'User'}",
           style: kManRope_700_20_686868,
         ),
         child: Image.asset(

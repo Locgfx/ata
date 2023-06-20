@@ -104,7 +104,6 @@ class _MeetingScreenState extends State<MeetingScreen> {
   void initState() {
     super.initState();
     // Set up an instance of Agora engine
-
     _getPrefs();
     _getMeetingToken();
   }

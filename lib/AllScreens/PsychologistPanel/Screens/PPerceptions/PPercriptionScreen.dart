@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -165,119 +166,124 @@ class _PPrescriptionScreenState extends State<PPrescriptionScreen> {
                   ? Center(
                       child: LoadingWidget(),
                     )
-                  : ListView.separated(
-                      padding: EdgeInsets.zero,
-                      //physics: NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder: (ctx, index) {
-                        return Column(
-                          children: [
-                            Container(
-                              color: Colors.transparent,
-                              padding: EdgeInsets.symmetric(horizontal: 24),
-                              child: SizedBox(
-                                // height:44.h,
-                                // width:358.w,
-                                child: Row(
-                                  // mainAxisAlignment:
-                                  //     MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Expanded(
-                                      flex: 2,
-                                      //width: 76.w,
-                                      // height:14.h,
-                                      child: Text(
-                                        DateFormat("dd.MM.yyyy").format(
-                                            DateTime.parse(modelList[index]
-                                                .dateTime
-                                                .toString())),
-                                        textAlign: TextAlign.center,
-                                        style: kManRope_500_14_626A6A,
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    //SizedBox(width: 26.w),
-                                    Expanded(
-                                      flex: 3,
-                                      //width: 97.w,
-                                      // height: 14.h,
-                                      child: Text(
-                                        modelList[index].name.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: kManRope_500_14_626A6A,
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    //SizedBox(width: 26.w),
-                                    Expanded(
-                                      flex: 2,
-                                      child: InkWell(
-                                        onLongPress: () {
-                                          Clipboard.setData(ClipboardData(
-                                                  text: modelList[index]
-                                                      .transactionId
-                                                      .toString()))
-                                              .then((value) {
-                                            /*Fluttertoast.showToast(
-                                              msg: "ID copied to clipboard");*/
-                                          });
-                                        },
-                                        child: Text(
-                                          modelList[index]
-                                              .transactionId
-                                              .toString(),
-                                          textAlign: TextAlign.center,
-                                          style: kManRope_500_14_626A6A,
-                                        ),
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    //SizedBox(width: 40.w),
-                                    Expanded(
-                                      flex: 2,
-                                      child: GestureDetector(
-                                        behavior: HitTestBehavior.translucent,
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      PEditPrescriptionViewScreen(
-                                                        prescriptionId:
-                                                            modelList[index]
-                                                                .id
-                                                                .toString(),
-                                                      )));
-                                        },
-                                        child: Container(
-                                          color: Colors.transparent,
-                                          height: 44.h,
-                                          width: 44.w,
-                                          child: Image.asset(
-                                            'assets/images/iconeyelarge.png',
-                                            height: 44.h,
-                                            width: 44.w,
+                  : modelList.isEmpty
+                      ? Center(
+                          child: Text("No prescription available"),
+                        )
+                      : ListView.separated(
+                          padding: EdgeInsets.zero,
+                          //physics: NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (ctx, index) {
+                            return Column(
+                              children: [
+                                Container(
+                                  color: Colors.transparent,
+                                  padding: EdgeInsets.symmetric(horizontal: 24),
+                                  child: SizedBox(
+                                    // height:44.h,
+                                    // width:358.w,
+                                    child: Row(
+                                      // mainAxisAlignment:
+                                      //     MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Expanded(
+                                          flex: 2,
+                                          //width: 76.w,
+                                          // height:14.h,
+                                          child: Text(
+                                            DateFormat("dd.MM.yyyy").format(
+                                                DateTime.parse(modelList[index]
+                                                    .dateTime
+                                                    .toString())),
+                                            textAlign: TextAlign.center,
+                                            style: kManRope_500_14_626A6A,
                                           ),
                                         ),
-                                      ),
+                                        Spacer(),
+                                        //SizedBox(width: 26.w),
+                                        Expanded(
+                                          flex: 3,
+                                          //width: 97.w,
+                                          // height: 14.h,
+                                          child: Text(
+                                            modelList[index].name.toString(),
+                                            textAlign: TextAlign.center,
+                                            style: kManRope_500_14_626A6A,
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        //SizedBox(width: 26.w),
+                                        Expanded(
+                                          flex: 2,
+                                          child: InkWell(
+                                            onLongPress: () {
+                                              Clipboard.setData(ClipboardData(
+                                                      text: modelList[index]
+                                                          .transactionId
+                                                          .toString()))
+                                                  .then((value) {
+                                                /*Fluttertoast.showToast(
+                                              msg: "ID copied to clipboard");*/
+                                              });
+                                            },
+                                            child: Text(
+                                              modelList[index]
+                                                  .transactionId
+                                                  .toString(),
+                                              textAlign: TextAlign.center,
+                                              style: kManRope_500_14_626A6A,
+                                            ),
+                                          ),
+                                        ),
+                                        Spacer(),
+                                        //SizedBox(width: 40.w),
+                                        Expanded(
+                                          flex: 2,
+                                          child: GestureDetector(
+                                            behavior:
+                                                HitTestBehavior.translucent,
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          PEditPrescriptionViewScreen(
+                                                            prescriptionId:
+                                                                modelList[index]
+                                                                    .id
+                                                                    .toString(),
+                                                          )));
+                                            },
+                                            child: Container(
+                                              color: Colors.transparent,
+                                              height: 44.h,
+                                              width: 44.w,
+                                              child: Image.asset(
+                                                'assets/images/iconeyelarge.png',
+                                                height: 44.h,
+                                                width: 44.w,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                            SizedBox(height: 4.h),
-                            Container(
-                              height: 1,
-                              width: 1.sw,
-                              color: k626A6A.withOpacity(0.2),
-                            ),
-                            SizedBox(height: 5.h),
-                          ],
-                        );
-                      },
-                      separatorBuilder: (ctx, index) {
-                        return SizedBox(height: 0.h);
-                      },
-                      itemCount: modelList.length),
+                                SizedBox(height: 4.h),
+                                Container(
+                                  height: 1,
+                                  width: 1.sw,
+                                  color: k626A6A.withOpacity(0.2),
+                                ),
+                                SizedBox(height: 5.h),
+                              ],
+                            );
+                          },
+                          separatorBuilder: (ctx, index) {
+                            return SizedBox(height: 0.h);
+                          },
+                          itemCount: modelList.length),
             ),
           ],
         ),

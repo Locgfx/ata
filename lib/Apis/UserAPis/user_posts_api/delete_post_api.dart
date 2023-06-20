@@ -7,7 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DeletePostApi {
-  Future<dynamic> get({required String postId}) async {
+  Future<dynamic> get(
+      {required String postId, required String postedBy}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
     var headers = {
@@ -16,7 +17,7 @@ class DeletePostApi {
     };
     var request =
         http.Request('DELETE', Uri.parse('${baseUrl}delete-post.php'));
-    request.body = json.encode({"id": postId});
+    request.body = json.encode({"id": postId, "post_type": postedBy});
     log("delete post id $postId");
     request.headers.addAll(headers);
 

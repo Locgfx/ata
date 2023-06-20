@@ -53,8 +53,16 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
       if (mounted) {
         psychologists.clear();
         setState(() {
-          for (var v in value) {
-            psychologists.add(UPsychologistModel.fromJson(v));
+          if (widget.bookingType == "a") {
+            for (var v in value) {
+              psychologists.add(UPsychologistModel.fromJson(v));
+            }
+          } else {
+            for (var v in value) {
+              if (v['available_status'] == "1") {
+                psychologists.add(UPsychologistModel.fromJson(v));
+              }
+            }
           }
           _isLoading = false;
           _searchLoading = false;

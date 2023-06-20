@@ -121,6 +121,7 @@ class _UPostPageState extends State<UPostPage> {
         ),
         context: context,
         builder: (context) => MenuBottomSheet(
+              postedBy: postModel[index].postedBy.toString(),
               savedPost: "no",
               onPop: (val) {
                 if (val == "Hide") {
@@ -399,10 +400,12 @@ class MenuBottomSheet extends StatefulWidget {
   final int index;
   final Function(String) onPop;
   final String savedPost;
+  final String postedBy;
   const MenuBottomSheet(
       {Key? key,
       required this.postModel,
       required this.index,
+      required this.postedBy,
       required this.savedPost,
       required this.onPop})
       : super(key: key);
@@ -572,6 +575,7 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
                   : GestureDetector(
                       onTap: () {
                         final resp = DeletePostApi().get(
+                            postedBy: widget.postedBy,
                             postId: widget.savedPost == "yes"
                                 ? widget.postModel[widget.index].postId
                                     .toString()
@@ -584,8 +588,7 @@ class _MenuBottomSheet extends State<MenuBottomSheet> {
                                 msg: "Post deleted successfully.");
                           } else {
                             Navigator.of(context).pop();
-                            Fluttertoast.showToast(
-                                msg: "Something went wrong. Please try again.");
+                            Fluttertoast.showToast(msg: value['error']);
                           }
                         });
                       },

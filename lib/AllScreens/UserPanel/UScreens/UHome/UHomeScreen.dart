@@ -75,7 +75,14 @@ class _UHomeScreenState extends State<UHomeScreen> {
               upcomingOrderData = value;
               upcomingOrderData.data.removeWhere((element) =>
                   DateTime.parse("${element.date} ${element.timeSlot}")
-                      .isBefore(DateTime.now()));
+                      .isBefore(DateTime.now().add(Duration(minutes: 60))
+                          // DateTime(
+                          //     DateTime.now().year,
+                          //     DateTime.now().month,
+                          //     DateTime.now().day,
+                          //     DateTime.now().hour,
+                          //     60)
+                          ));
               upcomingOrderData.data
                   .removeWhere((element) => element.payment != "p");
               log(upcomingOrderData.data.length.toString());

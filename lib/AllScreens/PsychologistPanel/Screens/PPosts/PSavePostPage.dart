@@ -85,6 +85,7 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
         ),
         context: context,
         builder: (context) => MenuBottomSheet(
+              postedBy: savedpostlist[index].postedBy.toString(),
               savedPost: "yes",
               onPop: (val) {
                 if (val == "Hide") {

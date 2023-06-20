@@ -4,7 +4,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/Apis/message_api/chat_token_api.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -38,27 +37,7 @@ class _PChatMessagesState extends State<PChatMessages> {
 
   // String chatToken = '';
   //String fromId = '';
-  bool _isLoading = false;
-  _getData() {
-    _isLoading = true;
-    final resp = GetChatToken().get();
-    resp.then((value) {
-      if (value == false) {
-      } else {
-        if (value['status'] == true) {
-          setState(() {
-            //  chatToken = value['chat_token'];
-            //   fromId = value['from_id'];
-          });
-        }
-      }
-    }).then((value) {
-      // log(chatToken);
-      setState(() {
-        _isLoading = false;
-      });
-    });
-  }
+  final bool _isLoading = false;
 
   final _streamController = StreamController<Messages>();
 

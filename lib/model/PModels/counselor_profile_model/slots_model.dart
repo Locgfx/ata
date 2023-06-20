@@ -2,8 +2,13 @@ class SlotsModel {
   bool? status;
   AvailabilityData? availabilityData;
   List<String>? holidays;
+  String? availableStatus;
 
-  SlotsModel({this.status, this.availabilityData, this.holidays});
+  SlotsModel(
+      {this.status,
+      this.availabilityData,
+      this.holidays,
+      this.availableStatus});
 
   SlotsModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -11,6 +16,7 @@ class SlotsModel {
         ? new AvailabilityData.fromJson(json['availability_data'])
         : null;
     holidays = json['holidays'].cast<String>();
+    availableStatus = json['available_status'];
   }
 
   Map<String, dynamic> toJson() {

@@ -13,7 +13,6 @@ import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../Apis/Notifications_apis/notification_token_api.dart';
 import '../../Apis/UserAPis/loginapi/loginapi.dart';
 import '../../constants/colors.dart';
 
@@ -56,7 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
     var prefs = await SharedPreferences.getInstance();
     prefs.setString(Keys().fcmToken, _fcmToken);
     print('Firebase token: $firebaseAppToken');
-    NotificationTokenApi().get();
+    //NotificationTokenApi().get();
   }
 
   setPage() async {

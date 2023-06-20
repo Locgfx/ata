@@ -63,6 +63,16 @@ class UPsychologistModel {
     }
     if (json['availability'] != null) {
       availability = Availability.fromJson(json['availability']);
+    } else {
+      availability = Availability.fromJson({
+        "monday": "",
+        "tuesday": "",
+        "wednesday": "",
+        "thursday": "",
+        "friday": "",
+        "saturday": "",
+        "sunday": ""
+      });
     }
   }
 

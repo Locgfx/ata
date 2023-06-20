@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/constants/urlconstants.dart';
@@ -26,10 +27,11 @@ class SaveBankDetails {
       'ifsc_code': ifsc,
       'account_number': accNumber,
       'account_holder_name': holderName,
-      'account_type': accType,
+      'account_type': accType[0].toLowerCase(),
       'branch_name': branchName
     });
 
+    log(request.fields.toString());
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();
