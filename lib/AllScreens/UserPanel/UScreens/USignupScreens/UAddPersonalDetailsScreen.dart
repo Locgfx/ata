@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UTabsScreen.dart';
+import 'package:greymatter/AllScreens/UserPanel/UScreens/UOnboardingquestions/UQuestionScreen.dart';
 import 'package:greymatter/Apis/UserAPis/usignupapi/upersonaldetailsapi.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -153,11 +153,13 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                                   passwordVisible = !passwordVisible;
                                 });
                               },
-                              child: SvgPicture.asset(
-                                'assets/icons/eyeopen.svg',
-                                width: 24.w,
-                                height: 24.h,
-                              ),
+                              child: passwordVisible
+                                  ? SvgPicture.asset(
+                                      'assets/icons/eyeclose.svg',
+                                    )
+                                  : SvgPicture.asset(
+                                      'assets/icons/eyeopen.svg',
+                                    ),
                             ),
                           ),
                         ),
@@ -193,11 +195,13 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                               },
                               child: SizedBox(
                                 height: 48,
-                                child: SvgPicture.asset(
-                                  'assets/icons/eyeopen.svg',
-                                  width: 24.w,
-                                  height: 24.h,
-                                ),
+                                child: passwordVisible2
+                                    ? SvgPicture.asset(
+                                        'assets/icons/eyeclose.svg',
+                                      )
+                                    : SvgPicture.asset(
+                                        'assets/icons/eyeopen.svg',
+                                      ),
                               ),
                             ),
                           ),
@@ -246,7 +250,7 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                                               Navigator.of(context).push(
                                                   MaterialPageRoute(
                                                       builder: (context) =>
-                                                          UTabsScreen()));
+                                                          UQuestions()));
                                             } else {
                                               Fluttertoast.showToast(
                                                   msg: value['error']);

@@ -131,6 +131,7 @@ class _ReplyScreenState extends State<ReplyScreen> {
             ),
             usercommentWidget1(
               onPop: (val) {},
+              postedByMe: '0',
               modelList: [],
               postedBy: '',
               index: 0,

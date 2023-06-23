@@ -20,10 +20,12 @@ class usercommentWidget1 extends StatefulWidget {
   int index;
   Function(String) onPop;
   String postedBy;
+  String postedByMe;
   usercommentWidget1({
     Key? key,
     required this.modelList,
     required this.postedBy,
+    required this.postedByMe,
     required this.onPop,
     required this.index,
   }) : super(key: key);
@@ -166,6 +168,7 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) => UReplyScreen(
+                                                  postedbyMe: widget.postedByMe,
                                                   modelList: widget.modelList,
                                                   index: widget.index,
                                                   postedBy: widget.postedBy,

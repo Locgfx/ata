@@ -31,6 +31,7 @@ class UserPersonalDetailsApi {
     print(request.body);
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    //log(await response.stream.bytesToString());
     var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
       return resp;

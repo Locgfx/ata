@@ -180,107 +180,109 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Goal',
-                          style: kManRope_500_16_001314,
-                        ),
-                        Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  flag = 0;
-                                });
-                              },
-                              child: Container(
-                                height: 39.h,
-                                width: 90.w,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                  border: Border.all(color: k006D77),
-                                  color: flag == 0 ? k006D77 : Colors.white,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Daily',
-                                    style: flag == 0
-                                        ? kManRope_400_14_white
-                                        : kManRope_400_14_001314,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  flag = 1;
-                                });
-                              },
-                              child: Container(
-                                height: 39.h,
-                                width: 90.w,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                  border: Border.all(color: k006D77),
-                                  color: flag == 1 ? k006D77 : Colors.white,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Mon-sat',
-                                    style: flag == 1
-                                        ? kManRope_400_14_white
-                                        : kManRope_400_14_001314,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 6,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  flag = 2;
-                                });
-                                getDays();
-                              },
-                              child: Container(
-                                height: 39.h,
-                                width: 90.w,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
-                                  border: Border.all(color: k006D77),
-                                  color: flag == 2 ? k006D77 : Colors.white,
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Custom',
-                                    style: flag == 2
-                                        ? kManRope_400_14_white
-                                        : kManRope_400_14_001314,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      ],
+                  if (!goalFlag)
+                    SizedBox(
+                      height: 40,
                     ),
-                  ),
+                  if (!goalFlag)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Goal',
+                            style: kManRope_500_16_001314,
+                          ),
+                          Row(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    flag = 0;
+                                  });
+                                },
+                                child: Container(
+                                  height: 39.h,
+                                  width: 90.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)),
+                                    border: Border.all(color: k006D77),
+                                    color: flag == 0 ? k006D77 : Colors.white,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Daily',
+                                      style: flag == 0
+                                          ? kManRope_400_14_white
+                                          : kManRope_400_14_001314,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 6,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    flag = 1;
+                                  });
+                                },
+                                child: Container(
+                                  height: 39.h,
+                                  width: 90.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)),
+                                    border: Border.all(color: k006D77),
+                                    color: flag == 1 ? k006D77 : Colors.white,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Mon-sat',
+                                      style: flag == 1
+                                          ? kManRope_400_14_white
+                                          : kManRope_400_14_001314,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 6,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    flag = 2;
+                                  });
+                                  getDays();
+                                },
+                                child: Container(
+                                  height: 39.h,
+                                  width: 90.w,
+                                  decoration: BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(5)),
+                                    border: Border.all(color: k006D77),
+                                    color: flag == 2 ? k006D77 : Colors.white,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      'Custom',
+                                      style: flag == 2
+                                          ? kManRope_400_14_white
+                                          : kManRope_400_14_001314,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
                   SizedBox(
                     height: 40,
                   ),
@@ -489,15 +491,44 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
       reminderTime: holder.toString().substring(10, 15),
     ).then(
       (value) {
+        l.log(value.toString());
         if (value) {
           if (mounted) {
+            try {
+              if (_pickedTime != null) {
+                var _dt = DateTime(DateTime.now().year, DateTime.now().month,
+                    DateTime.now().day, _pickedTime!.hour, _pickedTime!.minute);
+                if (goalFlag) {
+                  notificationServices.scheduleNotification(
+                      id: value['activity_id'],
+                      title: "Reminder",
+                      body: widget.text,
+                      datetime: _dt);
+                } else {
+                  if (flag == 0) {
+                    notificationServices.periodicNotification(
+                        id: value['activity_id'],
+                        title: "Reminder",
+                        body: widget.text);
+                  } else if (flag == 1) {
+                    notificationServices.scheduleMTSNotification(
+                        id: value['activity_id'],
+                        title: "Reminder",
+                        body: widget.text,
+                        datetime: _dt);
+                  } else {}
+                }
+              }
+            } catch (e) {
+              l.log(e.toString());
+            }
+
             Navigator.push(
                 context,
                 MaterialPageRoute(
                     builder: (context) => UNewActivityAddedScreen()));
           }
-          //var _dt = DateTime(DateTime.now().year, DateTime.now())
-          // notificationServices.scheduleNotification(id: Random().nextInt(100000000), title: "Reminder", body: widget.text, datetime: );
+
           setState(() {
             loading = false;
           });

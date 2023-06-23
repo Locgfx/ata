@@ -145,7 +145,8 @@ class _UCommentPageState extends State<UCommentPage> {
         hasThreeDots: false,
       ),
       backgroundColor: kEDF6F9,
-      bottomNavigationBar: userType.toLowerCase() == "p"
+      bottomNavigationBar: userType.toLowerCase() == "p" ||
+              widget.model.postByMe.toString() == "1"
           ? SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.only(
@@ -374,6 +375,7 @@ class _UCommentPageState extends State<UCommentPage> {
                               });
                               _getData();
                             },
+                            postedByMe: widget.model.postByMe.toString(),
                             modelList: modelList,
                             index: index,
                             postedBy: widget.model.postedBy.toString(),
