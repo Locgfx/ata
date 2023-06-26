@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:timezone/data/latest.dart' as latest;
 import 'package:timezone/timezone.dart' as tz;
 
 class NotificationServices {
@@ -23,6 +25,7 @@ class NotificationServices {
   void initializeNotification() async {
     InitializationSettings initializationSettings = InitializationSettings(
         android: _androidInitializationSettings, iOS: _initializationSettings);
+    latest.initializeTimeZones();
     //latest.initializeTimeZones();
     await _flutterLocalNotificationsPlugin.initialize(initializationSettings);
   }
@@ -63,12 +66,13 @@ class NotificationServices {
     NotificationDetails notificationDetails = NotificationDetails(
         android: androidNotificationDetails, iOS: iosNotificationDetails);
 
+    //log(datetime.toString() + "khjhguyg");
     //await _flutterLocalNotificationsPlugin.zonedSchedule(id, title, body, scheduledDate, notificationDetails, uiLocalNotificationDateInterpretation: uiLocalNotificationDateInterpretation, androidAllowWhileIdle: androidAllowWhileIdle)
     await _flutterLocalNotificationsPlugin.zonedSchedule(id, title, body,
         tz.TZDateTime.from(datetime, tz.local), notificationDetails,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time,
+        // matchDateTimeComponents: DateTimeComponents.time,
         androidAllowWhileIdle: true);
   }
 
@@ -81,23 +85,25 @@ class NotificationServices {
     NotificationDetails notificationDetails = NotificationDetails(
         android: androidNotificationDetails, iOS: iosNotificationDetails);
 
-    //await _flutterLocalNotificationsPlugin.zonedSchedule(id, title, body, scheduledDate, notificationDetails, uiLocalNotificationDateInterpretation: uiLocalNotificationDateInterpretation, androidAllowWhileIdle: androidAllowWhileIdle)
-    List<int> days = [0, 1, 2, 3, 4, 5];
-    for (var v in days) {
-      await _flutterLocalNotificationsPlugin.showWeeklyAtDayAndTime(
-          id,
-          title,
-          body,
-          Day.values[v],
-          Time(datetime.hour, datetime.minute, datetime.second),
-          notificationDetails);
+    DateTime date = datetime;
+    List<int> _intList = [1, 2, 3, 4, 5, 6];
+    if (date.weekday > 6) {
+    } else {
+      for (var v in _intList) {
+        if (date.weekday > 6) {
+          date.add(Duration(days: 1));
+        }
+
+        await _flutterLocalNotificationsPlugin.zonedSchedule(99999 + v, title,
+            body, tz.TZDateTime.from(date, tz.local), notificationDetails,
+            uiLocalNotificationDateInterpretation:
+                UILocalNotificationDateInterpretation.absoluteTime,
+            androidAllowWhileIdle: true);
+        date.add(Duration(days: 1));
+        log(date.weekday.toString());
+        log(date.toString());
+      }
     }
-    // .zonedSchedule(id, title, body, tz.TZDateTime.from(datetime, tz.local),
-    //     notificationDetails,
-    //     uiLocalNotificationDateInterpretation:
-    //         UILocalNotificationDateInterpretation.absoluteTime,
-    //     matchDateTimeComponents: DateTimeComponents.dayOfWeekAndTime,
-    //     androidAllowWhileIdle: true);
   }
 
   void periodicNotification({

@@ -26,6 +26,7 @@ class UserExploreApi {
         'GET', Uri.parse('$baseUrl/psychologists.php?start=$scroll$searchUrl'));
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
+    // log(await response.stream.bytesToString());
     var rsp = jsonDecode(await response.stream.bytesToString());
     //print(rsp);
     if (response.statusCode == 200) {

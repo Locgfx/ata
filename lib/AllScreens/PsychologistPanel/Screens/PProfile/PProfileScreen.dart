@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -8,14 +9,12 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/OnboardingScreen/onboarding_screen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PAgreementScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PHealthAndSupportScreen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PKycScreen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PMyAccountScreen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/POrderHistoryScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PPersonalInfoScreen.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PSlotsAvailablityScreen.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/global/Sharedprefs.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../../../Apis/UserAPis/user_profile_apis/user_logout_api.dart';
 import '../../../../Apis/UserAPis/user_profile_apis/user_profile_api.dart';
 import '../../../../constants/colors.dart';
@@ -119,8 +118,10 @@ class _PProfileScreenState extends State<PProfileScreen> {
                               child: Image.network(
                                 model.photo.toString(),
                                 fit: BoxFit.cover,
-                                errorBuilder: (q, w, e) =>
-                                    Image.asset('assets/images/userP.png'),
+                                errorBuilder: (q, w, e) => Icon(
+                                  Icons.person,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             SizedBox(

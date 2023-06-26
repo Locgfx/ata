@@ -343,7 +343,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                                 children: [
                                                   Row(
                                                     children: [
-                                                      SvgPicture.network(
+                                                      Image.network(
                                                         modelList[index]
                                                             .icon
                                                             .toString(),
@@ -353,7 +353,7 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                                         //     modelList[index]
                                                         //         .hashCode
                                                         //         .toString(),
-                                                        fit: BoxFit.fill,
+                                                        fit: BoxFit.cover,
                                                       ),
                                                       /*SvgPicture.asset(
                                                         'assets/icons/run.svg',
