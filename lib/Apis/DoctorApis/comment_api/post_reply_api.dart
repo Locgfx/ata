@@ -9,7 +9,8 @@ class PostReplyApi {
   Future<dynamic> get(
       {required int commentId,
       required String postType,
-      required String reply}) async {
+      required String reply,
+      required String commentedBy}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
     var headers = {
@@ -18,8 +19,12 @@ class PostReplyApi {
     };
     var request =
         http.Request('POST', Uri.parse('${counselorUrl}reply-comment.php'));
-    request.body = json.encode(
-        {"comment_id": commentId, "post_type": postType, "reply": reply});
+    request.body = json.encode({
+      "comment_id": commentId,
+      "post_type": postType,
+      "reply": reply,
+      "commented_by": commentedBy
+    });
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

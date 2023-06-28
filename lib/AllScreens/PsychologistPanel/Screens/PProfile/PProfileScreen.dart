@@ -543,6 +543,7 @@ class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
                             if (value['status'] == true) {
                               UserPrefs().setLoginFalse();
                               var prefs = await SharedPreferences.getInstance();
+                              prefs.clear();
                               prefs.setBool(Keys().loginDone, false);
                               Navigator.push(
                                 context,

@@ -376,8 +376,10 @@ class _CommentUserTileState extends State<CommentUserTile> {
                   child: Image.network(
                     widget.modelList[widget.index].photo.toString(),
                     fit: BoxFit.fill,
-                    errorBuilder: (q, w, e) =>
-                        Image.asset('assets/images/userP.png'),
+                    errorBuilder: (q, w, e) => Icon(
+                      Icons.person,
+                      color: Colors.white,
+                    ),
                   )),
               SizedBox(width: 8.w),
               Column(

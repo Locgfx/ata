@@ -6,6 +6,7 @@ class CommentModel {
   String? name;
   String? photo;
   String? totalReplies;
+  String? commentedBy;
   int? totalLikes;
   int? isLiked;
   int? commentByMe;
@@ -21,13 +22,15 @@ class CommentModel {
       this.name,
       this.isLiked,
       this.totalLikes,
+      this.commentedBy,
       this.photo,
       this.replies});
 
   CommentModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     comment = json['comment'];
-    totalReplies = json['total_replies'];
+    commentedBy = json['commented_by'];
+    totalReplies = json['total_replies'].toString();
     totalLikes = json['total_likes'];
     postType = json['post_type'];
     dateTime = json['date_time'];

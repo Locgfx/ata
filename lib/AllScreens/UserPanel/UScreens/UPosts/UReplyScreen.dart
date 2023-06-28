@@ -58,10 +58,12 @@ class _UReplyScreenState extends State<UReplyScreen> {
 
   _postReply() {
     final resp = PostReplyApi().get(
+        commentedBy: widget.modelList[widget.index].commentedBy.toString(),
         commentId: int.parse(widget.modelList[widget.index].id.toString()),
         postType: widget.modelList[widget.index].postType.toString(),
         reply: cont.text.trim());
     resp.then((value) {
+      log(value.toString());
       if (value['status'] == true) {
         setState(() {
           cont.clear();
@@ -135,7 +137,7 @@ class _UReplyScreenState extends State<UReplyScreen> {
   setPrefs() async {
     var prefs = await SharedPreferences.getInstance();
     setState(() {
-      userType = prefs.getString(Keys().userType) ?? "";
+      userType = prefs.getString(Keys().userType) ?? "u";
     });
     log(userType);
   }
@@ -145,6 +147,194 @@ class _UReplyScreenState extends State<UReplyScreen> {
   int totalReplies = 0;
   int totalVotes = 0;
   int yourVote = 0;
+
+  Widget? _commentField() {
+    if (userType.toLowerCase() == "p") {
+      return SingleChildScrollView(
+        child: Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  spreadRadius: -10,
+                  blurRadius: 20,
+                  color: Colors.black.withOpacity(0.5),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                    ),
+                    child: TextField(
+                      controller: cont,
+                      style: kManRope_400_14_626A6A,
+                      maxLines: 2,
+                      minLines: 1,
+                      onChanged: (v) {
+                        setState(() {});
+                      },
+                      textInputAction: TextInputAction.done,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 24),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 0, color: Colors.transparent),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 0, color: Colors.transparent),
+                        ),
+                        //fillColor: Colors.white,
+                        hintText: "Add a comment",
+                        // hintStyle: kManRope_400_14_626A6A,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: _postCommentLoading
+                      ? SpinKitThreeBounce(
+                          color: k006D77,
+                          size: 15,
+                        )
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              _postCommentLoading = true;
+                            });
+                            _postReply();
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                  height: 48,
+                                  width: 48,
+                                  color: Colors.transparent,
+                                  child: Image.asset(
+                                    "assets/images/iconsendlarge (2).png",
+                                    height: 48,
+                                    width: 48,
+                                  ),
+                                ),
+                                //SizedBox(width: 20),
+                              ],
+                            ),
+                          ),
+                        ),
+                ),
+                SizedBox(width: 15),
+              ],
+            ),
+          ),
+        ),
+      );
+    } else if (userType.toLowerCase() == "u" &&
+        widget.postedbyMe.toString() == "1") {
+      return SingleChildScrollView(
+        child: Padding(
+          padding:
+              EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  spreadRadius: -10,
+                  blurRadius: 20,
+                  color: Colors.black.withOpacity(0.5),
+                ),
+              ],
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 6,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                    ),
+                    child: TextField(
+                      controller: cont,
+                      style: kManRope_400_14_626A6A,
+                      maxLines: 2,
+                      minLines: 1,
+                      onChanged: (v) {
+                        setState(() {});
+                      },
+                      textInputAction: TextInputAction.done,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.only(left: 24),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 0, color: Colors.transparent),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 0, color: Colors.transparent),
+                        ),
+                        //fillColor: Colors.white,
+                        hintText: "Add a comment",
+                        // hintStyle: kManRope_400_14_626A6A,
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: _postCommentLoading
+                      ? SpinKitThreeBounce(
+                          color: k006D77,
+                          size: 15,
+                        )
+                      : InkWell(
+                          onTap: () {
+                            setState(() {
+                              _postCommentLoading = true;
+                            });
+                            _postReply();
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Container(
+                                  height: 48,
+                                  width: 48,
+                                  color: Colors.transparent,
+                                  child: Image.asset(
+                                    "assets/images/iconsendlarge (2).png",
+                                    height: 48,
+                                    width: 48,
+                                  ),
+                                ),
+                                //SizedBox(width: 20),
+                              ],
+                            ),
+                          ),
+                        ),
+                ),
+                SizedBox(width: 15),
+              ],
+            ),
+          ),
+        ),
+      );
+    } else {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,98 +344,7 @@ class _UReplyScreenState extends State<UReplyScreen> {
         appBarText: '',
       ),
       backgroundColor: kEDF6F9,
-      bottomNavigationBar: userType.toLowerCase() == "p" ||
-              widget.postedbyMe.toString() == "1"
-          ? SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.only(
-                    bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        spreadRadius: -10,
-                        blurRadius: 20,
-                        color: Colors.black.withOpacity(0.5),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        flex: 6,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.transparent,
-                          ),
-                          child: TextField(
-                            controller: cont,
-                            style: kManRope_400_14_626A6A,
-                            maxLines: 2,
-                            minLines: 1,
-                            onChanged: (v) {
-                              setState(() {});
-                            },
-                            textInputAction: TextInputAction.done,
-                            decoration: InputDecoration(
-                              contentPadding: EdgeInsets.only(left: 24),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 0, color: Colors.transparent),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    width: 0, color: Colors.transparent),
-                              ),
-                              //fillColor: Colors.white,
-                              hintText: "Add a comment",
-                              // hintStyle: kManRope_400_14_626A6A,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: _postCommentLoading
-                            ? SpinKitThreeBounce(
-                                color: k006D77,
-                                size: 15,
-                              )
-                            : InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    _postCommentLoading = true;
-                                  });
-                                  _postReply();
-                                },
-                                child: Container(
-                                  color: Colors.transparent,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Container(
-                                        height: 48,
-                                        width: 48,
-                                        color: Colors.transparent,
-                                        child: Image.asset(
-                                          "assets/images/iconsendlarge (2).png",
-                                          height: 48,
-                                          width: 48,
-                                        ),
-                                      ),
-                                      //SizedBox(width: 20),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                      ),
-                      SizedBox(width: 15),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          : null,
+      bottomNavigationBar: _commentField(),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(24),

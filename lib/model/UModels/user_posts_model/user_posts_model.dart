@@ -39,7 +39,7 @@ class UserPostModel {
     totalLikes = json['total_likes'];
     userId = json['user_id'];
     isSaved = json['saved_by_me'];
-    totalComments = json['total_comments'];
+    totalComments = json['total_comments'].toString();
     isLiked = json['like_by_me'];
     dateTime = json['date_time'];
     postedBy = json['posted_by'];

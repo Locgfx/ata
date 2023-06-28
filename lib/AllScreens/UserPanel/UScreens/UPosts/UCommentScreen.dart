@@ -132,13 +132,16 @@ class _UCommentScreenState extends State<UCommentScreen> {
                           child: Row(
                             children: [
                               Container(
-                                height: 45.h,
-                                width: 45.w,
-                                decoration: const BoxDecoration(
-                                    color: Colors.grey, shape: BoxShape.circle),
-                                clipBehavior: Clip.hardEdge,
-                                child: Image.asset('assets/images/userP.png'),
-                              ),
+                                  height: 45.h,
+                                  width: 45.w,
+                                  decoration: const BoxDecoration(
+                                      color: Colors.grey,
+                                      shape: BoxShape.circle),
+                                  clipBehavior: Clip.hardEdge,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: Colors.white,
+                                  )),
                               SizedBox(width: 8.w),
                               Column(
                                 mainAxisAlignment: MainAxisAlignment.center,

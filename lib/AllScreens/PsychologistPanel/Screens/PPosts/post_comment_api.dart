@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,10 +24,12 @@ class PostCommentApi {
         .encode({"post_id": postId, "post_type": postType, "comment": comment});
     request.headers.addAll(headers);
 
+    log(request.body);
     http.StreamedResponse response = await request.send();
 
     var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
+      log(resp.toString());
       return resp;
     } else {
       print(response.reasonPhrase);
