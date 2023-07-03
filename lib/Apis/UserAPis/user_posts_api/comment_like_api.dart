@@ -7,7 +7,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CommentLikeApi {
   Future<dynamic> get(
-      {required int commentId, required String postType}) async {
+      {required int commentId,
+      required String postType,
+      required String commentedBy}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
     var headers = {
@@ -15,8 +17,11 @@ class CommentLikeApi {
       'Cookie': 'PHPSESSID=$v'
     };
     var request = http.Request('POST', Uri.parse('${baseUrl}like-comment.php'));
-    request.body =
-        json.encode({"comment_id": commentId, "post_type": postType});
+    request.body = json.encode({
+      "comment_id": commentId,
+      "post_type": postType,
+      "commented_by": commentedBy
+    });
     request.headers.addAll(headers);
 
     http.StreamedResponse response = await request.send();

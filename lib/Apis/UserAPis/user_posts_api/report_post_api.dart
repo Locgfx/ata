@@ -12,6 +12,8 @@ class ReportPostApi {
       {required String postType,
       required String reportText,
       required int postId,
+      required String commentedBy,
+      required String replyBy,
       required String type}) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
@@ -21,13 +23,19 @@ class ReportPostApi {
     };
     var request = http.Request('POST', Uri.parse('${baseUrl}user_report.php'));
     request.body = type == "comment"
-        ? json.encode(
-            {"comment_id": postId, "post_type": postType, "report": reportText})
+        ? json.encode({
+            "comment_id": postId,
+            "post_type": postType,
+            "report": reportText,
+            "commented_by": commentedBy
+          })
         : type == "reply"
             ? json.encode({
                 "creply_id": postId,
                 "post_type": postType,
-                "report": reportText
+                "report": reportText,
+                "commented_by": commentedBy,
+                "reply_by": replyBy
               })
             : json.encode({
                 "post_id": postId,

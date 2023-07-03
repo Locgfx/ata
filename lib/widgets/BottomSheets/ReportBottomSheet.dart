@@ -244,7 +244,9 @@ class _ReportBottomSheetState extends State<ReportBottomSheet> {
                                           .toString())
                                       : int.parse(widget
                                           .postModel[widget.index].id
-                                          .toString()));
+                                          .toString()),
+                                  commentedBy: "",
+                                  replyBy: "");
                               resp.then((value) {
                                 if (value['status'] == true) {
                                   Navigator.of(context).pop();
@@ -289,11 +291,16 @@ class ReportCommentBottomSheet extends StatefulWidget {
   final String postId;
   final String postType;
   final String commentType;
+  final String commentedBy;
+  final String replyBy;
+
   const ReportCommentBottomSheet(
       {Key? key,
       required this.type,
       required this.postId,
+      required this.replyBy,
       required this.commentType,
+      required this.commentedBy,
       required this.postType})
       : super(key: key);
 
@@ -509,6 +516,8 @@ class _ReportCommentBottomSheetState extends State<ReportCommentBottomSheet> {
                         child: MainButton(
                             onPressed: () {
                               final resp = ReportPostApi().get(
+                                  replyBy: widget.replyBy,
+                                  commentedBy: widget.commentedBy,
                                   type: widget.commentType,
                                   postType: widget.postType,
                                   reportText: reportText[_gIndex],

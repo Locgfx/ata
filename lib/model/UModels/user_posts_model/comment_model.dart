@@ -70,6 +70,8 @@ class Replies {
   String? dateTime;
   String? name;
   String? photo;
+  String? commentedBy;
+  String? replyBy;
   int? replyByMe;
   Replies(
       {this.id,
@@ -83,6 +85,8 @@ class Replies {
     id = json['id'];
     replyByMe = json['reply_by_me'] ?? 0;
     reply = json['reply'];
+    commentedBy = json['comment_by'];
+    replyBy = json['reply_by'];
     dateTime = json['date_time'];
     name = json['name'];
     photo = json['photo'];

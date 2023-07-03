@@ -47,6 +47,7 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
 
   @override
   void initState() {
+    //log(widget.modelList[widget.index].isLiked.toString());
     _getPrefs();
     if (widget.modelList[widget.index].replies!.isNotEmpty) {
       loadedData = widget.modelList[widget.index].replies!.length;
@@ -94,6 +95,7 @@ class _usercommentWidget1State extends State<usercommentWidget1> {
 
   _likeUnlikeComment() {
     final resp = CommentLikeApi().get(
+        commentedBy: widget.modelList[widget.index].commentedBy.toString(),
         commentId: int.parse(widget.modelList[widget.index].id.toString()),
         postType: widget.postedBy);
     resp.then((value) {
@@ -420,6 +422,8 @@ class _CommentUserTileState extends State<CommentUserTile> {
             commentByMe: widget.modelList[widget.index].commentByMe!,
             postType: widget.modelList[widget.index].postType.toString(),
             postId: widget.modelList[widget.index].id.toString(),
+            commentedBy: widget.modelList[widget.index].commentedBy.toString(),
+            replyBy: "",
           ),
         ],
       ),
@@ -506,6 +510,8 @@ class _CommentUserTile2State extends State<CommentUserTile2> {
             commentType: "reply",
             postType: widget.postType,
             postId: widget.modelList[widget.index].id.toString(),
+            commentedBy: widget.modelList[widget.index].commentedBy.toString(),
+            replyBy: widget.modelList[widget.index].replyBy.toString(),
           ),
         ],
       ),

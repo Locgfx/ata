@@ -81,6 +81,7 @@ class _UReplyScreenState extends State<UReplyScreen> {
 
   _likeUnlikeComment() {
     final resp = CommentLikeApi().get(
+        commentedBy: widget.modelList[widget.index].commentedBy.toString(),
         commentId: int.parse(widget.modelList[widget.index].id.toString()),
         postType: widget.postedBy);
     resp.then((value) {

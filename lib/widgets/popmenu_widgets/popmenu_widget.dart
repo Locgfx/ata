@@ -16,12 +16,16 @@ class MyPostOptionsDialog extends StatefulWidget {
   final String postType;
   final String commentType;
   final String commentId;
+  final String commentedBy;
+  final String replyBy;
   final Function(String) onPop;
   final int commentByMe;
   const MyPostOptionsDialog(
       {Key? key,
       required this.postType,
       required this.onPop,
+      required this.commentedBy,
+      required this.replyBy,
       required this.commentByMe,
       required this.commentId,
       required this.postId,
@@ -46,6 +50,8 @@ class _MyPostOptionsDialogState extends State<MyPostOptionsDialog> {
               postId: widget.postId,
               postType: widget.postType,
               type: widget.commentType,
+              replyBy: widget.replyBy,
+              commentedBy: widget.commentedBy,
             ));
   }
 
