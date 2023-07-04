@@ -66,13 +66,19 @@ class _USavedPostPageState extends State<USavedPostPage> {
     final resp = UserSavedPostsApi().get(scroll: 0.toString());
     resp.then((value) {
       log(value.toString());
-      savedpostlist.clear();
-      setState(() {
-        for (var v in value) {
-          savedpostlist.add(UserPostModel.fromJson(v));
-        }
-        isLoading = false;
-      });
+      if (value.runtimeType == List<dynamic>) {
+        savedpostlist.clear();
+        setState(() {
+          for (var v in value) {
+            savedpostlist.add(UserPostModel.fromJson(v));
+          }
+          isLoading = false;
+        });
+      } else {
+        setState(() {
+          isLoading = false;
+        });
+      }
     });
     return "Success";
   }

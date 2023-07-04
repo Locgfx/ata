@@ -506,21 +506,27 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
                       body: widget.text,
                       datetime: _dt);
                 } else {
-                  if (flag == 0) {
-                    l.log("periodic");
-                    notificationServices.periodicNotification(
-                        id: 0, title: "Reminder", body: widget.text);
-                  } else if (flag == 1) {
-                    l.log("M TO S");
-                    notificationServices.scheduleMTSNotification(
-                        id: 0,
-                        title: "Reminder",
-                        body: widget.text,
-                        datetime: _dt);
-                    // l.log(_dt.subtract(Duration(days: 1)).weekday.toString());
-                  } else {
-                    l.log("Custom");
-                  }
+                  notificationServices.scheduleNotification(
+                      id: 0,
+                      title: "Reminder",
+                      body: widget.text,
+                      datetime: _dt);
+                  // if (flag == 0) {
+                  //   l.log("periodic");
+                  //   notificationServices.periodicNotification(
+                  //       id: 0, title: "Reminder", body: widget.text);
+                  // }
+                  // else if (flag == 1) {
+                  //   l.log("M TO S");
+                  //   notificationServices.scheduleMTSNotification(
+                  //       id: 0,
+                  //       title: "Reminder",
+                  //       body: widget.text,
+                  //       datetime: _dt);
+                  //   // l.log(_dt.subtract(Duration(days: 1)).weekday.toString());
+                  // } else {
+                  //   l.log("Custom");
+                  // }
                 }
               }
             } catch (e) {

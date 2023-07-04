@@ -49,9 +49,15 @@ class _UProfileScreenState extends State<UProfileScreen> {
     );
   }
 
+  _getPrefs() async {
+    var prefs = await SharedPreferences.getInstance();
+    _switchValue = prefs.getBool(Keys().notificationValue) ?? true;
+  }
+
   @override
   void initState() {
     _getData();
+    _getPrefs();
     super.initState();
   }
 
@@ -355,7 +361,10 @@ class _UProfileScreenState extends State<UProfileScreen> {
                             toggleSize: 14,
                             activeColor: k006D77,
                             value: _switchValue,
-                            onToggle: (val) {
+                            onToggle: (val) async {
+                              var prefs = await SharedPreferences.getInstance();
+                              prefs.setBool(
+                                  Keys().notificationValue, _switchValue);
                               setState(() {
                                 _switchValue = val;
                               });

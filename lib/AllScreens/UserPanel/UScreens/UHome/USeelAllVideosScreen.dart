@@ -176,12 +176,14 @@ class _USeeAllVideosScreenState extends State<USeeAllVideosScreen> {
                               ),
                             ),
                             SizedBox(height: 16),
-                            Text(
-                              modelList[index].name.toString(),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                              textAlign: TextAlign.start,
-                              style: kManRope_500_16_001314,
+                            Flexible(
+                              child: Text(
+                                modelList[index].name.toString(),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
+                                textAlign: TextAlign.start,
+                                style: kManRope_500_16_001314,
+                              ),
                             ),
                           ],
                         );

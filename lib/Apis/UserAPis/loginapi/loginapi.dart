@@ -33,6 +33,7 @@ class UserLoginApi {
     // request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     print(response.statusCode);
+    //log(await response.stream.bytesToString());
     var resp = jsonDecode(await response.stream.bytesToString());
     print(resp);
     if (response.statusCode == 200) {

@@ -44,4 +44,5 @@ class Keys {
   final String userType = 'userType';
   final String fcmToken = 'fcmToken';
   final String loginWith = 'loginWith';
+  final String notificationValue = 'NotificationValue';
 }

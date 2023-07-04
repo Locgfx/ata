@@ -46,6 +46,7 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
   final ScrollController _scrollController = ScrollController();
   List<UserAllVideoModel> modelList = [];
   _getReloadedData() {
+    _scroll++;
     //_isLoading = true;
     final resp = UserAllVideosApi().get(scroll: "$_scroll");
     resp.then((value) {
@@ -237,12 +238,17 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                                             ),
                                           ),
                                           SizedBox(height: 16),
-                                          Text(
-                                            modelList[indexx]
-                                                .videos![index]
-                                                .name
-                                                .toString(),
-                                            style: kManRope_500_16_001314,
+                                          SizedBox(
+                                            width: 182.w,
+                                            child: Text(
+                                              modelList[indexx]
+                                                  .videos![index]
+                                                  .name
+                                                  .toString(),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: kManRope_500_16_001314,
+                                            ),
                                           ),
                                         ],
                                       );

@@ -10,7 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:greymatter/AllScreens/splash/splash.dart';
 import 'package:greymatter/Notification_handler/notification_service.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/payment_gateway/payment_keys.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 NotificationServices notificationServices = NotificationServices();
 
@@ -88,6 +90,7 @@ fn(RemoteMessage message) async {
   });*/
 }
 
+bool _sendNotif = true;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey = publishKey;
@@ -96,6 +99,8 @@ void main() async {
   await Firebase.initializeApp();
 
   HttpOverrides.global = MyHttpOverrides();
+  var _prefs = await SharedPreferences.getInstance();
+  _sendNotif = _prefs.getBool(Keys().notificationValue) ?? true;
   // notificationServices.initializeNotification();
   // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
   //     alert: true, badge: true, sound: true);
@@ -145,7 +150,10 @@ void selectNotification(var payload) async {}
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
-  fn(message);
+
+  if (_sendNotif) {
+    fn(message);
+  }
 }
 
 // @pragma('vm:entry-point')
@@ -245,7 +253,9 @@ class _MyAppState extends State<MyApp> {
     // If the message also contains a data property with a "type" of "chat",
     // navigate to a chat screen
     if (initialMessage != null) {
-      fn(initialMessage);
+      if (_sendNotif) {
+        fn(initialMessage);
+      }
     }
 
     // Also handle any interaction when the app is in the background via a
@@ -261,7 +271,7 @@ class _MyAppState extends State<MyApp> {
       (event) async {
         RemoteNotification? notification = event.notification;
         AndroidNotification? android = event.notification?.android;
-        if (notification != null && android != null) {
+        if (notification != null && android != null && _sendNotif) {
           flutterPlugin.show(
               notification.hashCode,
               notification.title,
@@ -277,7 +287,9 @@ class _MyAppState extends State<MyApp> {
                 ),
               ));
         }
-        fn(event);
+        if (_sendNotif) {
+          fn(event);
+        }
         //log(event.data['content']['payload']['type'].toString());
         /*if (event.data['content']['payload']['type'] == 'story') {
           _navigatorKey.currentState?.push(MaterialPageRoute(
@@ -308,7 +320,7 @@ class _MyAppState extends State<MyApp> {
 
         RemoteNotification? notification = event.notification;
         AndroidNotification? android = event.notification?.android;
-        if (notification != null && android != null) {
+        if (notification != null && android != null && _sendNotif) {
           flutterPlugin.show(
               notification.hashCode,
               notification.title,
@@ -324,7 +336,9 @@ class _MyAppState extends State<MyApp> {
                 ),
               ));
         }
-        fn(event);
+        if (_sendNotif) {
+          fn(event);
+        }
         /*if (event.data['content']['payload']['type'] == 'story') {
         _navigatorKey.currentState?.push(MaterialPageRoute(
             builder: (ctx) => DetailsScreen(

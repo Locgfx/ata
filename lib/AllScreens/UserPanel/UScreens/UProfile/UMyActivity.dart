@@ -86,15 +86,21 @@ class _UMyActivityScreenState extends State<UMyActivityScreen> {
     resp.then((value) {
       log(value.toString());
       if (mounted) {
-        postModel.clear();
-        _postCount = value.length;
-        setState(() {
-          for (var v in value) {
-            postModel.add(UserPostModel.fromJson(v));
-          }
-          //log(postModel.toString());
-          isLoading = false;
-        });
+        if (value.runtimeType == List<dynamic>) {
+          postModel.clear();
+          _postCount = value.length;
+          setState(() {
+            for (var v in value) {
+              postModel.add(UserPostModel.fromJson(v));
+            }
+            //log(postModel.toString());
+            isLoading = false;
+          });
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+        }
       } else {
         setState(() {
           isLoading = false;
