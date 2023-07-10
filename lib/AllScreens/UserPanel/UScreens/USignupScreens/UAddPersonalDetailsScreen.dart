@@ -212,16 +212,16 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                   SizedBox(height: 200.h),
                   nameEmpty
                       ? CustomDeactiveTextButton(
-                          onPressed: () {}, text: 'Login')
+                          onPressed: () {}, text: 'SIGNUP')
                       : emailEmpty
                           ? CustomDeactiveTextButton(
-                              onPressed: () {}, text: 'Login')
+                              onPressed: () {}, text: 'SIGNUP')
                           : passwordEmpty
                               ? CustomDeactiveTextButton(
-                                  onPressed: () {}, text: 'Login')
+                                  onPressed: () {}, text: 'SIGNUP')
                               : cPasswordEmpty
                                   ? CustomDeactiveTextButton(
-                                      onPressed: () {}, text: 'Login')
+                                      onPressed: () {}, text: 'SIGNUP')
                                   : CustomActiveTextButton(
                                       onPressed: () {
                                         if (_formKey.currentState!.validate()) {

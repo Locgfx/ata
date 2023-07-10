@@ -476,13 +476,13 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
                               prefs.clear();
                               prefs.setBool(Keys().firstRun, false);
                               // await GoogleSignInClass().logOut();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  //builder: (_) => OnBoardingScreen(),
-                                  builder: (_) => ULoginScreen(showBack: false),
-                                ),
-                              );
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                    //builder: (_) => OnBoardingScreen(),
+                                    builder: (_) =>
+                                        ULoginScreen(showBack: false),
+                                  ),
+                                  (route) => false);
                             } else {
                               Navigator.of(context).pop();
                               Fluttertoast.showToast(

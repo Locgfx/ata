@@ -11,6 +11,7 @@ import 'package:greymatter/third_party_login/google_sign_in.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../AllScreens/UserPanel/UScreens/UOnboardingquestions/UQuestionScreen.dart';
+import '../../../../AllScreens/UserPanel/UScreens/USignupScreens/UGoogleSignUpAddDetails.dart';
 import '../../../../AllScreens/UserPanel/UScreens/UWelcome/UWelcomeScreen.dart';
 import '../../../../constants/globals.dart';
 
@@ -53,32 +54,37 @@ class _CustomGoogleSignInButtonState extends State<CustomGoogleSignInButton> {
                   });
                   Fluttertoast.showToast(msg: value['error']);
                 } else {
-                  var prefs = await SharedPreferences.getInstance();
-                  prefs.setString('cookies', value['session_id']);
-
-                  prefs.setBool(Keys().isUser, true);
-                  prefs.setBool(Keys().loginDone, true);
-                  prefs.setString(Keys().userName, value['name']);
-                  prefs.setString(Keys().userImage, value['image']);
-                  prefs.setString(Keys().userType, "u");
-                  prefs.setString(Keys().email, value['email']);
-                  prefs.setString(Keys().password, auth.idToken!);
-                  prefs.setString(Keys().loginWith, "google");
-                  setState(() {
-                    _isLoading = false;
-                  });
-                  if (value["ques"] == 0) {
-                    prefs.setBool(Keys().questionsDone, true);
-                    Fluttertoast.showToast(msg: 'Login Successful');
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (ctx) => UWelcomeScreen()));
+                  if (value["login_status"] == "signup") {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (ctx) => UGoogleSignUpAddDetails()));
                   } else {
-                    Fluttertoast.showToast(msg: 'Login Successful');
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => UQuestions()));
-                  }
+                    var prefs = await SharedPreferences.getInstance();
+                    prefs.setString('cookies', value['session_id']);
 
-                  log(value.toString());
+                    prefs.setBool(Keys().isUser, true);
+                    prefs.setBool(Keys().loginDone, true);
+                    prefs.setString(Keys().userName, value['name']);
+                    prefs.setString(Keys().userImage, value['image']);
+                    prefs.setString(Keys().userType, "u");
+                    prefs.setString(Keys().email, value['email']);
+                    prefs.setString(Keys().password, auth.idToken!);
+                    prefs.setString(Keys().loginWith, "google");
+                    setState(() {
+                      _isLoading = false;
+                    });
+                    if (value["ques"] == 0) {
+                      prefs.setBool(Keys().questionsDone, true);
+                      Fluttertoast.showToast(msg: 'Login Successful');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => UWelcomeScreen()));
+                    } else {
+                      Fluttertoast.showToast(msg: 'Login Successful');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => UQuestions()));
+                    }
+
+                    log(value.toString());
+                  }
                 }
               });
             },

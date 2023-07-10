@@ -85,7 +85,6 @@ class _SplashScreenState extends State<SplashScreen> {
         log(loginDone.toString());
         if (isUser) {
           log(isUser.toString());
-
           log(questionsDone.toString() + " question done");
           final resp = UserLoginApi().get(
             username: prefs.getString(Keys().email)!,

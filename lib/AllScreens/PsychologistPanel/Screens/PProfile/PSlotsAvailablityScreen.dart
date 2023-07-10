@@ -81,7 +81,7 @@ class _PSlotsAvailabilityScreenState extends State<PSlotsAvailabilityScreen> {
     ''
   ];
 
-  SlotsModel model = SlotsModel();
+  SlotsModel model = SlotsModel(holidays: []);
 
   bool _instantAvailability = false;
   bool _instantLoading = false;
@@ -112,7 +112,8 @@ class _PSlotsAvailabilityScreenState extends State<PSlotsAvailabilityScreen> {
         });
       } else {
         setState(() {
-          model = SlotsModel(availabilityData: AvailabilityData());
+          model =
+              SlotsModel(availabilityData: AvailabilityData(), holidays: []);
           _isLoading = false;
         });
       }

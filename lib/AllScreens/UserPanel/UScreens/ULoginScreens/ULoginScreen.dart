@@ -346,6 +346,17 @@ class _ULoginScreenState extends State<ULoginScreen> {
                           SizedBox(height: 24.h),
                           const CustomGoogleSignInButton(),
                           SizedBox(height: 22.h),
+                          // ElevatedButton(
+                          //     onPressed: () async {
+                          //       Navigator.of(context).push(MaterialPageRoute(
+                          //           builder: (ctx) =>
+                          //               UGoogleSignUpAddDetails()));
+                          //     },
+                          //     child: Text(
+                          //       "Log out",
+                          //       style: TextStyle(color: Colors.black),
+                          //     )),
+                          // SizedBox(height: 22.h),
                           InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
@@ -627,7 +638,6 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                                 //prefs.setBool(Keys().firstRun, false);
                                                 prefs.setBool(
                                                     Keys().isUser, true);
-
                                                 prefs.setBool(
                                                     Keys().loginDone, true);
                                                 prefs.setString(Keys().userName,
@@ -676,15 +686,6 @@ class _ULoginScreenState extends State<ULoginScreen> {
                             SizedBox(height: 24.h),
                             const CustomGoogleSignInButton(),
                             SizedBox(height: 22.h),
-                            // ElevatedButton(
-                            //     onPressed: () async {
-                            //       await GoogleSignInClass().logOut();
-                            //     },
-                            //     child: Text(
-                            //       "Log out",
-                            //       style: TextStyle(color: Colors.black),
-                            //     )),
-                            // SizedBox(height: 22.h),
                             InkWell(
                               onTap: () {
                                 Navigator.of(context).push(MaterialPageRoute(

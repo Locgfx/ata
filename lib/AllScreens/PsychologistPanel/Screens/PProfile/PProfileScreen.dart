@@ -554,12 +554,12 @@ class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
                               var prefs = await SharedPreferences.getInstance();
                               prefs.clear();
                               prefs.setBool(Keys().loginDone, false);
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => OnBoardingScreen(),
-                                ),
-                              );
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => OnBoardingScreen(),
+                                  ),
+                                  (route) => false);
                             } else {
                               Fluttertoast.showToast(
                                   msg: "Logout failed! Please try again.");
