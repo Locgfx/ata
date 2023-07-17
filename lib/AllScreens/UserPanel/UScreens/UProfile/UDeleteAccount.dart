@@ -58,24 +58,24 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                       hintStyle: kManRope_400_16_001314),
                 ),
                 SizedBox(height: 40.h),
-                Text(
-                  "Password  ",
-                  style: kManRope_400_16_626A6A,
-                ),
-                TextFormField(
-                  controller: passwordController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your password';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                      isDense: true,
-                      border: InputBorder.none,
-                      hintText: "Enter your password",
-                      hintStyle: kManRope_400_16_001314),
-                ),
+                // Text(
+                //   "Password  ",
+                //   style: kManRope_400_16_626A6A,
+                // ),
+                // TextFormField(
+                //   controller: passwordController,
+                //   validator: (value) {
+                //     if (value == null || value.isEmpty) {
+                //       return 'Please enter your password';
+                //     }
+                //     return null;
+                //   },
+                //   decoration: InputDecoration(
+                //       isDense: true,
+                //       border: InputBorder.none,
+                //       hintText: "Enter your password",
+                //       hintStyle: kManRope_400_16_001314),
+                // ),
                 SizedBox(
                   height: 140.h,
                 ),
@@ -108,33 +108,34 @@ class _UDeleteAccountScreenState extends State<UDeleteAccountScreen> {
                     Expanded(
                       child: MainButton(
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              final resp = UserDeleteAccountAPi().get(
-                                  email: emailController.text,
-                                  password: passwordController.text);
-                              resp.then((value) {
-                                //print(value);
-                                if (value['status'] == true) {
-                                  Fluttertoast.showToast(
-                                      msg: 'Profile Successfully Deleted');
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              OnBoardingScreen()),
-                                      (route) => false);
-                                  /*Navigator.of(context).push(MaterialPageRoute(
+                            // if (_formKey.currentState!.validate()) {
+                            final resp = UserDeleteAccountAPi().get(
+                              email: emailController.text,
+                              // password: passwordController.text
+                            );
+                            resp.then((value) {
+                              //print(value);
+                              if (value['status'] == true) {
+                                Fluttertoast.showToast(
+                                    msg: 'Profile Successfully Deleted');
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            OnBoardingScreen()),
+                                    (route) => false);
+                                /*Navigator.of(context).push(MaterialPageRoute(
                                       builder: (context) =>
                                           OnBoardingScreen()));*/
-                                } else {
-                                  Fluttertoast.showToast(msg: value['error']);
-                                  /* Navigator.push(
+                              } else {
+                                Fluttertoast.showToast(msg: value['error']);
+                                /* Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => PDashboard()),
                                 );*/
-                                }
-                              });
-                            }
+                              }
+                            });
+                            // }
                           },
                           child: Padding(
                             padding: EdgeInsets.symmetric(vertical: 16.h),

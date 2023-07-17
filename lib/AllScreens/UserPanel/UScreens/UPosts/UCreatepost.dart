@@ -132,6 +132,8 @@ class _UCreatePostState extends State<UCreatePost> {
                         InkWell(
                           onTap: () async {
                             XFile? v = await _imgPicker.pickImage(
+                                maxHeight: 500,
+                                maxWidth: 1.sw,
                                 source: ImageSource.camera);
                             if (v != null) {
                               if (_pickedImages.length >= 4) {
@@ -159,7 +161,8 @@ class _UCreatePostState extends State<UCreatePost> {
                         SizedBox(
                           width: 14.w,
                         ),
-                        InkWell(
+                        GestureDetector(
+                          behavior: HitTestBehavior.translucent,
                           onTap: () async {
                             images.clear();
                             images = await _imgPicker.pickMultiImage();
@@ -221,8 +224,8 @@ class _UCreatePostState extends State<UCreatePost> {
                 Stack(
                   children: [
                     Container(
-                        height: 285.h,
-                        width: 380.w,
+                        height: 600.h,
+                        width: 600.w,
                         clipBehavior: Clip.hardEdge,
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -269,8 +272,8 @@ class _UCreatePostState extends State<UCreatePost> {
                                   decoration: BoxDecoration(
                                       color: Colors.black38,
                                       borderRadius: BorderRadius.circular(10)),
-                                  width: 250,
-                                  height: 200,
+                                  width: 600,
+                                  height: 600,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
                                     child: Image.file(

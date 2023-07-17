@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/colors.dart';
+
 import '../../../constants/fonts.dart';
 
 class CustomActiveTextButton extends StatelessWidget {
   final Function() onPressed;
   final String text;
+  final Color? bColor;
+  final TextStyle? tColor;
   const CustomActiveTextButton(
-      {Key? key, required this.onPressed, required this.text})
+      {Key? key,
+      required this.onPressed,
+      required this.text,
+      this.bColor,
+      this.tColor})
       : super(key: key);
 
   @override
@@ -24,11 +31,11 @@ class CustomActiveTextButton extends StatelessWidget {
               children: [
                 Text(
                   text,
-                  style: kManRope_500_16_white,
+                  style: tColor ?? kManRope_500_16_white,
                 ),
               ],
             ),
-            color: k006D77,
+            color: bColor ?? k006D77,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10), // <-- Radius
             ),
@@ -51,7 +58,7 @@ class CustomSmallActiveTextButton extends StatelessWidget {
     return Center(
       child: MaterialButton(
         height: 56.h,
-        minWidth:168.w ,
+        minWidth: 168.w,
         onPressed: onPressed,
         child: Row(
           mainAxisSize: MainAxisSize.min,

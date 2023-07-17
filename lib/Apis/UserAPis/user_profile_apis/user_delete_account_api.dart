@@ -9,7 +9,7 @@ import '../../../constants/globals.dart';
 class UserDeleteAccountAPi {
   Future<dynamic> get({
     required String email,
-    required String password,
+    // required String password,
   }) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
@@ -21,7 +21,7 @@ class UserDeleteAccountAPi {
         http.Request('DELETE', Uri.parse('$baseUrl/delete-account.php'));
     request.body = json.encode({
       "email": email,
-      "password": password,
+      // "password": password,
     });
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

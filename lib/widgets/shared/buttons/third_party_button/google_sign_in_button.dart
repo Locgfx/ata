@@ -54,13 +54,14 @@ class _CustomGoogleSignInButtonState extends State<CustomGoogleSignInButton> {
                   });
                   Fluttertoast.showToast(msg: value['error']);
                 } else {
+                  var prefs = await SharedPreferences.getInstance();
+                  prefs.setString('cookies', value['session_id']);
                   if (value["login_status"] == "signup") {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => UGoogleSignUpAddDetails()));
                   } else {
                     var prefs = await SharedPreferences.getInstance();
                     prefs.setString('cookies', value['session_id']);
-
                     prefs.setBool(Keys().isUser, true);
                     prefs.setBool(Keys().loginDone, true);
                     prefs.setString(Keys().userName, value['name']);

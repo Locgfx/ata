@@ -12,6 +12,10 @@ class UserPersonalDetailsApi {
     required email,
     required password,
     required cPassword,
+    required dob,
+    required gender,
+    required relationStatus,
+    required occupation,
   }) async {
     var prefs = await SharedPreferences.getInstance();
     var v = prefs.getString(Keys().cookie);
@@ -25,8 +29,16 @@ class UserPersonalDetailsApi {
     request.body = json.encode({
       "name": name,
       "email": email,
+      "dob": dob,
+      "gender": gender,
+      "relationship_status": relationStatus,
+      "occupation": occupation,
       "password": password,
       "cpassword": cPassword,
+      // "name": name,
+      // "email": email,
+      // "password": password,
+      // "cpassword": cPassword,
     });
     print(request.body);
     request.headers.addAll(headers);
@@ -34,9 +46,11 @@ class UserPersonalDetailsApi {
     //log(await response.stream.bytesToString());
     var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
+      print(resp);
       return resp;
     } else {
       print(response.reasonPhrase);
+      print(resp);
       return resp;
     }
   }

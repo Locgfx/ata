@@ -636,8 +636,8 @@ class _PostImgBuilderState extends State<PostImgBuilder> {
     return Stack(
       children: [
         Container(
-            height: 285.h,
-            width: 380.w,
+            height: 500.h,
+            width: 1.sw,
             clipBehavior: Clip.hardEdge,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
