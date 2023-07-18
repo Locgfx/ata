@@ -478,9 +478,10 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
                               // await GoogleSignInClass().logOut();
                               Navigator.of(context).pushAndRemoveUntil(
                                   MaterialPageRoute(
-                                    //builder: (_) => OnBoardingScreen(),
                                     builder: (_) =>
-                                        ULoginScreen(showBack: false),
+                                        ULoginScreen(showBack: true),
+                                    // builder: (_) => OnBoardingScreen()
+                                    // ULoginScreen(showBack: false),
                                   ),
                                   (route) => false);
                             } else {

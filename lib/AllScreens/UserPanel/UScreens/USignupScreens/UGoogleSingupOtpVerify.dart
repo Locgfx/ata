@@ -11,11 +11,27 @@ import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.da
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../../../../Apis/UserAPis/user_google_signin/user_google_verify_otp_api.dart';
+import '../../../../Apis/UserAPis/user_google_signin/user_gooogle_signin_details_api.dart';
+import '../../../OnboardingScreen/onboarding_screen.dart';
 import '../UOnboardingquestions/UQuestionScreen.dart';
 
 class UGoogleSignupOTPScreen extends StatefulWidget {
   final String signUpField;
-  const UGoogleSignupOTPScreen({Key? key, required this.signUpField})
+  final String name;
+  final String dob;
+  final String gender;
+  final String relationStatus;
+  final String occupation;
+  final String phone;
+  const UGoogleSignupOTPScreen(
+      {Key? key,
+      required this.signUpField,
+      required this.name,
+      required this.dob,
+      required this.gender,
+      required this.relationStatus,
+      required this.occupation,
+      required this.phone})
       : super(key: key);
 
   @override
@@ -75,7 +91,8 @@ class _UGoogleSignupOTPScreenState extends State<UGoogleSignupOTPScreen> {
             children: [
               InkWell(
                 onTap: () {
-                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (ctx) => OnBoardingScreen()));
                 },
                 child: Container(
                   padding: const EdgeInsets.only(top: 24, right: 24),
@@ -85,7 +102,7 @@ class _UGoogleSignupOTPScreenState extends State<UGoogleSignupOTPScreen> {
               SizedBox(height: 40.h),
               Text('Enter OTP', style: kManRope_700_20_001314),
               SizedBox(height: 16.h),
-              Text('Please enter the OTP sent to',
+              Text('Please enter the OTP sent to ${widget.signUpField}',
                   // ' \n$number',
                   style: kManRope_400_14_626A6A),
               SizedBox(height: 40.h),
@@ -136,16 +153,59 @@ class _UGoogleSignupOTPScreenState extends State<UGoogleSignupOTPScreen> {
                         style: kManRope_400_14_626A6A,
                       ),
                       SizedBox(height: 5.h),
-                      InkWell(
+                      GestureDetector(
+                          // onTap: () {
+                          //   googleSigningDetails(
+                          //           name: widget.name,
+                          //           dob: widget.dob,
+                          //           gender: widget.gender,
+                          //           relationStatus: widget.relationStatus,
+                          //           occupation: widget.occupation,
+                          //           phone: widget.phone)
+                          //       .then((value) {
+                          //     if (value['status'] == true) {
+                          //     } else {
+                          //       Fluttertoast.showToast(msg: value['error']);
+                          //     }
+                          //   });
+                          // },
+
                           onTap: _start == 0
                               ? () {
                                   setState(() {
                                     _start = 30;
                                   });
                                   _startTimer();
+                                  googleSigningDetails(
+                                          name: widget.name,
+                                          dob: widget.dob,
+                                          gender: widget.gender,
+                                          relationStatus: widget.relationStatus,
+                                          occupation: widget.occupation,
+                                          phone: widget.phone)
+                                      .then((value) {
+                                    if (value['status'] == true) {
+                                    } else {
+                                      Fluttertoast.showToast(
+                                          msg: value['error']);
+                                    }
+                                  });
                                 }
                               : () {
-                                  print(otp.length);
+                                  // googleSigningDetails(
+                                  //         name: widget.name,
+                                  //         dob: widget.dob,
+                                  //         gender: widget.gender,
+                                  //         relationStatus: widget.relationStatus,
+                                  //         occupation: widget.occupation,
+                                  //         phone: widget.phone)
+                                  //     .then((value) {
+                                  //   if (value['status'] == true) {
+                                  //   } else {
+                                  //     Fluttertoast.showToast(
+                                  //         msg: value['error']);
+                                  //   }
+                                  // });
                                 },
                           child: Text('Resend',
                               style: _start == 0

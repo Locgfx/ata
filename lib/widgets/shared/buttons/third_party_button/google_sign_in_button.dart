@@ -57,6 +57,8 @@ class _CustomGoogleSignInButtonState extends State<CustomGoogleSignInButton> {
                   var prefs = await SharedPreferences.getInstance();
                   prefs.setString('cookies', value['session_id']);
                   if (value["login_status"] == "signup") {
+                    // var prefs = await SharedPreferences.getInstance();
+                    // prefs.setString('cookies', value['session_id']);
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => UGoogleSignUpAddDetails()));
                   } else {

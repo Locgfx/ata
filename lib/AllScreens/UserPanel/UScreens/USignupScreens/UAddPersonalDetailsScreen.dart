@@ -448,7 +448,10 @@ class _UAddPersonalDetailsScreenState extends State<UAddPersonalDetailsScreen> {
                                           });
                                         }
                                       },
-                                      text: 'SIGNUP')
+                                      text: 'SIGNUP'),
+                  SizedBox(
+                    height: 100,
+                  )
                 ],
               ),
             ),
@@ -513,7 +516,7 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
                   child: Row(
                     children: [
                       Text(
-                        'male',
+                        'Male',
                         // style: AppTextStyle()
                         //     .textColor29292914w500
                       ),
@@ -565,7 +568,7 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
                   child: Row(
                     children: [
                       Text(
-                        'female',
+                        'Female',
                         // style: AppTextStyle()
                         //     .textColor29292914w500
                       ),
@@ -617,7 +620,7 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
                   child: Row(
                     children: [
                       Text(
-                        'other',
+                        'Other',
                         // style:AppTextStyle()
                         //     .textColor29292914w500
                       ),

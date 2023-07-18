@@ -79,13 +79,22 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                                 }
                               },
                               keyboardType: TextInputType.number,
-                              validator: (val) {
-                                if (_mobileController.text.trim().isEmpty) {
-                                  return 'Please enter a valid mobile number';
-                                } else {
-                                  return null;
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return "Please Enter a Phone Number";
+                                } else if (!RegExp(
+                                        r'^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$')
+                                    .hasMatch(value)) {
+                                  return "Please Enter a Valid Phone Number";
                                 }
                               },
+                              // validator: (val) {
+                              //   if (_mobileController.text.trim().isEmpty) {
+                              //     return 'Please enter a valid mobile number';
+                              //   } else {
+                              //     return null;
+                              //   }
+                              // },
                               controller: _mobileController,
                               decoration: InputDecoration(
                                 labelText: 'Mobile Number',
@@ -145,6 +154,7 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                                                     signUpField:
                                                         _mobileController.text,
                                                   )));
+
                                       //Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                                     }
                                   });

@@ -14,6 +14,8 @@ import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.da
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../Apis/UserAPis/usignupapi/generateotpapi.dart';
+
 class USignEnterOTPScreen extends StatefulWidget {
   final String signUpField;
   const USignEnterOTPScreen({Key? key, required this.signUpField})
@@ -87,7 +89,7 @@ class _USignEnterOTPScreenState extends State<USignEnterOTPScreen> {
               SizedBox(height: 40.h),
               Text('Enter OTP', style: kManRope_700_20_001314),
               SizedBox(height: 16.h),
-              Text('Please enter the OTP sent to',
+              Text('Please enter the OTP sent to ${widget.signUpField}',
                   // ' \n$number',
                   style: kManRope_400_14_626A6A),
               SizedBox(height: 40.h),
@@ -139,12 +141,81 @@ class _USignEnterOTPScreenState extends State<USignEnterOTPScreen> {
                       ),
                       SizedBox(height: 5.h),
                       InkWell(
+                          // onTap: () {
+                          //   _start == 0
+                          //       ? () {
+                          //           setState(() {
+                          //             _start = 30;
+                          //           });
+                          //           _startTimer();
+                          //           final resp = Generateotpapi().get(
+                          //             sendTo: false,
+                          //             mobileNo: widget.signUpField,
+                          //           );
+                          //           resp.then((value) async {
+                          //             print(value);
+                          //             if (value['status'] == false) {
+                          //               Fluttertoast.showToast(msg: value['error']);
+                          //             } else {
+                          //               var prefs =
+                          //               await SharedPreferences.getInstance();
+                          //               prefs.setString('cookies', value['session_id']);
+                          //               //print(value['session_id']);
+                          //               //print(prefs.getString(Keys().cookie));
+                          //
+                          //               //Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
+                          //             }
+                          //           });
+                          //         }
+                          //       : () {
+                          //           print(otp.length);
+                          //         };
+                          //
+                          // final resp = Generateotpapi().get(
+                          //   sendTo: false,
+                          //   mobileNo: widget.signUpField,
+                          // );
+                          // resp.then((value) async {
+                          //   print(value);
+                          //   if (value['status'] == false) {
+                          //     Fluttertoast.showToast(msg: value['error']);
+                          //   } else {
+                          //     var prefs =
+                          //         await SharedPreferences.getInstance();
+                          //     prefs.setString('cookies', value['session_id']);
+                          //     //print(value['session_id']);
+                          //     //print(prefs.getString(Keys().cookie));
+                          //
+                          //     //Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
+                          //   }
+                          // });
+                          // },
                           onTap: _start == 0
                               ? () {
                                   setState(() {
                                     _start = 30;
                                   });
                                   _startTimer();
+                                  final resp = Generateotpapi().get(
+                                    sendTo: false,
+                                    mobileNo: widget.signUpField,
+                                  );
+                                  resp.then((value) async {
+                                    print(value);
+                                    if (value['status'] == false) {
+                                      Fluttertoast.showToast(
+                                          msg: value['error']);
+                                    } else {
+                                      var prefs =
+                                          await SharedPreferences.getInstance();
+                                      prefs.setString(
+                                          'cookies', value['session_id']);
+                                      //print(value['session_id']);
+                                      //print(prefs.getString(Keys().cookie));
+
+                                      //Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
+                                    }
+                                  });
                                 }
                               : () {
                                   print(otp.length);

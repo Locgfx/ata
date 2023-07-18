@@ -23,8 +23,6 @@ class UGoogleSignUpAddDetails extends StatefulWidget {
 }
 
 class _UGoogleSignUpAddDetailsState extends State<UGoogleSignUpAddDetails> {
-  final _formKey = GlobalKey<FormState>();
-
   final TextEditingController dobController = TextEditingController();
   final TextEditingController numberController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -35,6 +33,7 @@ class _UGoogleSignUpAddDetailsState extends State<UGoogleSignUpAddDetails> {
   final genderController = TextEditingController();
   final marriedController = TextEditingController();
   final occupationController = TextEditingController();
+
   String dateFormat = '';
   bool passwordVisible = true;
   bool passwordVisible2 = true;
@@ -52,7 +51,7 @@ class _UGoogleSignUpAddDetailsState extends State<UGoogleSignUpAddDetails> {
   bool hasMStatusFocus = false;
   bool hasOccupationFocus = false;
   bool hasPhoneFocus = false;
-
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String verifyText = "Verify";
 
   Widget _showAlertDialog(number) {
@@ -219,251 +218,257 @@ class _UGoogleSignUpAddDetailsState extends State<UGoogleSignUpAddDetails> {
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 24.w),
           child: SingleChildScrollView(
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.only(top: 24, right: 24),
-                      child: SvgPicture.asset('assets/icons/iosbackarrow.svg'),
-                    ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.only(top: 24, right: 24),
+                    child: SvgPicture.asset('assets/icons/iosbackarrow.svg'),
                   ),
-                  SizedBox(height: 40.h),
-                  Text('Almost there', style: kManRope_700_20_001314),
-                  SizedBox(height: 16.h),
-                  Text('Please enter below details to complete your profile.',
-                      style: kManRope_400_14_626A6A),
-                  SizedBox(height: 50.h),
-                  Form(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextFormField(
-                          onChanged: (val) {
-                            if (val.isNotEmpty) {
-                              setState(() {
-                                nameEmpty = false;
-                                hasNameFocus = true;
-                              });
-                            }
-                            if (val.isEmpty) {
-                              setState(() {
-                                nameEmpty = true;
-                                hasNameFocus = false;
-                              });
-                            }
-                          },
-                          // validator: (val) {
-                          //   if (nameController.text.trim().isEmpty) {
-                          //     return 'Please enter a valid email/mobile';
-                          //   } else {
-                          //     return null;
-                          //   }
-                          // },
-                          controller: nameController,
-                          decoration: InputDecoration(
-                            labelText: 'name',
-                            labelStyle: kManRope_400_16_626A6A,
-                          ),
+                ),
+                SizedBox(height: 40.h),
+                Text('Almost there', style: kManRope_700_20_001314),
+                SizedBox(height: 16.h),
+                Text('Please enter below details to complete your profile.',
+                    style: kManRope_400_14_626A6A),
+                SizedBox(height: 50.h),
+                Form(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextFormField(
+                        onChanged: (val) {
+                          if (val.isNotEmpty) {
+                            setState(() {
+                              nameEmpty = false;
+                              hasNameFocus = true;
+                            });
+                          }
+                          if (val.isEmpty) {
+                            setState(() {
+                              nameEmpty = true;
+                              hasNameFocus = false;
+                            });
+                          }
+                        },
+                        // validator: (val) {
+                        //   if (nameController.text.trim().isEmpty) {
+                        //     return 'Please enter a valid email/mobile';
+                        //   } else {
+                        //     return null;
+                        //   }
+                        // },
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          labelText: 'Name',
+                          labelStyle: kManRope_400_16_626A6A,
                         ),
-                        SizedBox(height: 30.h),
-                        TextFormField(
-                          onTap: () {
-                            setState(() async {
-                              DateTime? pickedDate = await showDialog(
-                                context: context,
-                                builder: (_) => DatePickerWidget(
-                                  onPop: (date) {
-                                    dobController.text =
-                                        DateFormat.yMMMd().format(date);
-                                    dateFormat =
-                                        DateFormat('yyyy-MM-dd').format(date);
+                      ),
+                      SizedBox(height: 30.h),
+                      TextFormField(
+                        onTap: () {
+                          setState(() async {
+                            DateTime? pickedDate = await showDialog(
+                              context: context,
+                              builder: (_) => DatePickerWidget(
+                                onPop: (date) {
+                                  dobController.text =
+                                      DateFormat.yMMMd().format(date);
+                                  dateFormat =
+                                      DateFormat('yyyy-MM-dd').format(date);
+                                },
+                                maximumDate: 2023,
+                              ),
+                            );
+                          });
+                        },
+                        onChanged: (val) {
+                          if (val.isNotEmpty) {
+                            setState(() {
+                              dobEmpty = false;
+                              hasDobFocus = true;
+                            });
+                          }
+                          if (val.isEmpty) {
+                            setState(() {
+                              dobEmpty = true;
+                              hasDobFocus = false;
+                            });
+                          }
+                          setState(() {
+                            dobController.text = val;
+                          });
+                        },
+                        readOnly: true,
+                        controller: dobController,
+                        decoration: InputDecoration(
+                          labelText: 'Date of birth',
+                          labelStyle: kManRope_400_16_626A6A,
+                          suffixIconConstraints:
+                              BoxConstraints(minHeight: 24.w, minWidth: 24.h),
+                          suffixIcon: GestureDetector(
+                              onTap: () {},
+                              child: Image.asset(
+                                'assets/images/icondown.png',
+                                height: 30,
+                                width: 30,
+                              )),
+                        ),
+                      ),
+                      SizedBox(height: 30.h),
+                      TextFormField(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return CheckBoxWidget(
+                                  gender: genderController.text,
+                                  onPop: (val) {
+                                    setState(() {});
+                                    setState(() {
+                                      genderController.text = val;
+                                    });
                                   },
-                                  maximumDate: 2023,
-                                ),
-                              );
-                            });
-                          },
-                          onChanged: (val) {
-                            if (val.isNotEmpty) {
-                              setState(() {
-                                dobEmpty = false;
-                                hasDobFocus = true;
+                                );
                               });
-                            }
-                            if (val.isEmpty) {
-                              setState(() {
-                                dobEmpty = true;
-                                hasDobFocus = false;
-                              });
-                            }
+                        },
+                        onChanged: (val) {
+                          if (val.isNotEmpty) {
                             setState(() {
-                              dobController.text = val;
+                              genderEmpty = false;
+                              hasGenderFocus = true;
                             });
-                          },
-                          readOnly: true,
-                          controller: dobController,
-                          decoration: InputDecoration(
-                            labelText: 'Date of birth',
-                            labelStyle: kManRope_400_16_626A6A,
-                            suffixIconConstraints:
-                                BoxConstraints(minHeight: 24.w, minWidth: 24.h),
-                            suffixIcon: GestureDetector(
-                                onTap: () {},
-                                child: Image.asset(
-                                  'assets/images/icondown.png',
-                                  height: 30,
-                                  width: 30,
-                                )),
-                          ),
-                        ),
-                        SizedBox(height: 30.h),
-                        TextFormField(
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return CheckBoxWidget(
-                                    gender: genderController.text,
-                                    onPop: (val) {
-                                      setState(() {});
-                                      setState(() {
-                                        genderController.text = val;
-                                      });
-                                    },
-                                  );
-                                });
-                          },
-                          onChanged: (val) {
-                            if (val.isNotEmpty) {
-                              setState(() {
-                                genderEmpty = false;
-                                hasGenderFocus = true;
-                              });
-                            }
-                            if (val.isEmpty) {
-                              setState(() {
-                                genderEmpty = true;
-                                hasGenderFocus = false;
-                              });
-                            }
+                          }
+                          if (val.isEmpty) {
                             setState(() {
-                              genderController.text = val;
+                              genderEmpty = true;
+                              hasGenderFocus = false;
                             });
-                          },
-                          readOnly: true,
-                          controller: genderController,
-                          decoration: InputDecoration(
-                            labelText: 'Gender',
-                            labelStyle: kManRope_400_16_626A6A,
-                            suffixIconConstraints:
-                                BoxConstraints(minHeight: 24.w, minWidth: 24.h),
-                            suffixIcon: GestureDetector(
-                                onTap: () {},
-                                child: Image.asset(
-                                  'assets/images/icondown.png',
-                                  height: 30,
-                                  width: 30,
-                                )),
-                          ),
+                          }
+                          setState(() {
+                            genderController.text = val;
+                          });
+                        },
+                        readOnly: true,
+                        controller: genderController,
+                        decoration: InputDecoration(
+                          labelText: 'Gender',
+                          labelStyle: kManRope_400_16_626A6A,
+                          suffixIconConstraints:
+                              BoxConstraints(minHeight: 24.w, minWidth: 24.h),
+                          suffixIcon: GestureDetector(
+                              onTap: () {},
+                              child: Image.asset(
+                                'assets/images/icondown.png',
+                                height: 30,
+                                width: 30,
+                              )),
                         ),
-                        SizedBox(height: 30.h),
-                        TextFormField(
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return MarriedCheckBoxWidget(
-                                    married: marriedController.text,
-                                    onPop: (val) {
-                                      setState(() {
-                                        marriedController.text = val;
-                                      });
-                                    },
-                                  );
-                                });
-                          },
-                          onChanged: (val) {
-                            if (val.isNotEmpty) {
-                              setState(() {
-                                marriedEmpty = false;
-                                hasMStatusFocus = true;
+                      ),
+                      SizedBox(height: 30.h),
+                      TextFormField(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return MarriedCheckBoxWidget(
+                                  married: marriedController.text,
+                                  onPop: (val) {
+                                    setState(() {
+                                      marriedController.text = val;
+                                    });
+                                  },
+                                );
                               });
-                            }
-                            if (val.isEmpty) {
-                              setState(() {
-                                marriedEmpty = true;
-                                hasMStatusFocus = false;
-                              });
-                            }
+                        },
+                        onChanged: (val) {
+                          if (val.isNotEmpty) {
                             setState(() {
-                              marriedController.text = val;
+                              marriedEmpty = false;
+                              hasMStatusFocus = true;
                             });
-                          },
-                          readOnly: true,
-                          controller: marriedController,
-                          decoration: InputDecoration(
-                            labelText: 'Married Status',
-                            labelStyle: kManRope_400_16_626A6A,
-                            suffixIconConstraints:
-                                BoxConstraints(minHeight: 24.w, minWidth: 24.h),
-                            suffixIcon: GestureDetector(
-                                onTap: () {},
-                                child: Image.asset(
-                                  'assets/images/icondown.png',
-                                  height: 30,
-                                  width: 30,
-                                )),
-                          ),
+                          }
+                          if (val.isEmpty) {
+                            setState(() {
+                              marriedEmpty = true;
+                              hasMStatusFocus = false;
+                            });
+                          }
+                          setState(() {
+                            marriedController.text = val;
+                          });
+                        },
+                        readOnly: true,
+                        controller: marriedController,
+                        decoration: InputDecoration(
+                          labelText: 'Married Status',
+                          labelStyle: kManRope_400_16_626A6A,
+                          suffixIconConstraints:
+                              BoxConstraints(minHeight: 24.w, minWidth: 24.h),
+                          suffixIcon: GestureDetector(
+                              onTap: () {},
+                              child: Image.asset(
+                                'assets/images/icondown.png',
+                                height: 30,
+                                width: 30,
+                              )),
                         ),
-                        SizedBox(height: 30.h),
-                        TextFormField(
-                          onChanged: (val) {
-                            if (val.isNotEmpty) {
-                              setState(() {
-                                occupationEmpty = false;
-                                hasOccupationFocus = true;
-                              });
-                            }
-                            if (val.isEmpty) {
-                              setState(() {
-                                occupationEmpty = true;
-                                hasOccupationFocus = false;
-                              });
+                      ),
+                      SizedBox(height: 30.h),
+                      TextFormField(
+                        onChanged: (val) {
+                          if (val.isNotEmpty) {
+                            setState(() {
+                              occupationEmpty = false;
+                              hasOccupationFocus = true;
+                            });
+                          }
+                          if (val.isEmpty) {
+                            setState(() {
+                              occupationEmpty = true;
+                              hasOccupationFocus = false;
+                            });
+                          }
+                        },
+                        // validator: (val) {
+                        //   if (nameController.text.trim().isEmpty) {
+                        //     return 'Please enter a valid email/mobile';
+                        //   } else {
+                        //     return null;
+                        //   }
+                        // },
+                        controller: occupationController,
+                        decoration: InputDecoration(
+                          labelText: 'Occupation',
+                          labelStyle: kManRope_400_16_626A6A,
+                        ),
+                      ),
+                      SizedBox(height: 30.h),
+                      Form(
+                        key: _formKey,
+                        child: TextFormField(
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Please Enter a Phone Number";
+                            } else if (!RegExp(
+                                    r'^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$')
+                                .hasMatch(value)) {
+                              return "Please Enter a Valid Phone Number";
                             }
                           },
-                          // validator: (val) {
-                          //   if (nameController.text.trim().isEmpty) {
-                          //     return 'Please enter a valid email/mobile';
-                          //   } else {
-                          //     return null;
-                          //   }
-                          // },
-                          controller: occupationController,
-                          decoration: InputDecoration(
-                            labelText: 'Occupation',
-                            labelStyle: kManRope_400_16_626A6A,
-                          ),
-                        ),
-                        SizedBox(height: 30.h),
-                        TextFormField(
                           onChanged: (val) {
+                            if (numberController.text.trim().length == 10) {
+                              FocusScope.of(context).unfocus();
+                            }
                             if (val.isNotEmpty) {
                               setState(() {
                                 phoneEmpty = false;
                                 hasPhoneFocus = true;
-                              });
-                            }
-                            if (val.isEmpty) {
-                              setState(() {
-                                phoneEmpty = true;
-                                hasPhoneFocus = false;
                               });
                             }
                           },
@@ -523,205 +528,219 @@ class _UGoogleSignUpAddDetailsState extends State<UGoogleSignUpAddDetails> {
                               // ),
                               ),
                         ),
-                        SizedBox(height: 30.h),
-                        // TextFormField(
-                        //   onChanged: (val) {
-                        //     if (val.isNotEmpty) {
-                        //       setState(() {
-                        //         passwordEmpty = false;
-                        //         hasPasswordFocus = true;
-                        //       });
-                        //     }
-                        //     if (val.isEmpty) {
-                        //       setState(() {
-                        //         passwordEmpty = true;
-                        //         hasPasswordFocus = false;
-                        //       });
-                        //     }
-                        //   },
-                        //   controller: passwordController,
-                        //   obscureText: passwordVisible,
-                        //   decoration: InputDecoration(
-                        //     labelText: 'Password',
-                        //     labelStyle: kManRope_400_16_626A6A,
-                        //     suffixIconConstraints:
-                        //         BoxConstraints(minHeight: 24.w, minWidth: 24.h),
-                        //     suffixIcon: GestureDetector(
-                        //       onTap: () {
-                        //         setState(() {
-                        //           passwordVisible = !passwordVisible;
-                        //         });
-                        //       },
-                        //       child: passwordVisible
-                        //           ? SvgPicture.asset(
-                        //               'assets/icons/eyeclose.svg',
-                        //             )
-                        //           : SvgPicture.asset(
-                        //               'assets/icons/eyeopen.svg',
-                        //             ),
-                        //     ),
-                        //   ),
-                        // ),
-                        // SizedBox(height: 30.h),
-                        // TextFormField(
-                        //   onChanged: (val) {
-                        //     if (val.isNotEmpty) {
-                        //       setState(() {
-                        //         cPasswordEmpty = false;
-                        //         hasCPasswordFocus = true;
-                        //       });
-                        //     }
-                        //     if (val.isEmpty) {
-                        //       setState(() {
-                        //         cPasswordEmpty = true;
-                        //         hasCPasswordFocus = false;
-                        //       });
-                        //     }
-                        //   },
-                        //   controller: confirmPasswordController,
-                        //   obscureText: passwordVisible2,
-                        //   decoration: InputDecoration(
-                        //     labelText: 'Confirm Password',
-                        //     labelStyle: kManRope_400_16_626A6A,
-                        //     suffixIconConstraints:
-                        //         BoxConstraints(minHeight: 20.w, minWidth: 20.h),
-                        //     suffixIcon: GestureDetector(
-                        //       behavior: HitTestBehavior.translucent,
-                        //       onTap: () {
-                        //         setState(() {
-                        //           passwordVisible2 = !passwordVisible2;
-                        //         });
-                        //       },
-                        //       child: SizedBox(
-                        //         height: 48,
-                        //         child: passwordVisible2
-                        //             ? SvgPicture.asset(
-                        //                 'assets/icons/eyeclose.svg',
-                        //               )
-                        //             : SvgPicture.asset(
-                        //                 'assets/icons/eyeopen.svg',
-                        //               ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-                      ],
-                    ),
+                      ),
+                      SizedBox(height: 30.h),
+                      // TextFormField(
+                      //   onChanged: (val) {
+                      //     if (val.isNotEmpty) {
+                      //       setState(() {
+                      //         passwordEmpty = false;
+                      //         hasPasswordFocus = true;
+                      //       });
+                      //     }
+                      //     if (val.isEmpty) {
+                      //       setState(() {
+                      //         passwordEmpty = true;
+                      //         hasPasswordFocus = false;
+                      //       });
+                      //     }
+                      //   },
+                      //   controller: passwordController,
+                      //   obscureText: passwordVisible,
+                      //   decoration: InputDecoration(
+                      //     labelText: 'Password',
+                      //     labelStyle: kManRope_400_16_626A6A,
+                      //     suffixIconConstraints:
+                      //         BoxConstraints(minHeight: 24.w, minWidth: 24.h),
+                      //     suffixIcon: GestureDetector(
+                      //       onTap: () {
+                      //         setState(() {
+                      //           passwordVisible = !passwordVisible;
+                      //         });
+                      //       },
+                      //       child: passwordVisible
+                      //           ? SvgPicture.asset(
+                      //               'assets/icons/eyeclose.svg',
+                      //             )
+                      //           : SvgPicture.asset(
+                      //               'assets/icons/eyeopen.svg',
+                      //             ),
+                      //     ),
+                      //   ),
+                      // ),
+                      // SizedBox(height: 30.h),
+                      // TextFormField(
+                      //   onChanged: (val) {
+                      //     if (val.isNotEmpty) {
+                      //       setState(() {
+                      //         cPasswordEmpty = false;
+                      //         hasCPasswordFocus = true;
+                      //       });
+                      //     }
+                      //     if (val.isEmpty) {
+                      //       setState(() {
+                      //         cPasswordEmpty = true;
+                      //         hasCPasswordFocus = false;
+                      //       });
+                      //     }
+                      //   },
+                      //   controller: confirmPasswordController,
+                      //   obscureText: passwordVisible2,
+                      //   decoration: InputDecoration(
+                      //     labelText: 'Confirm Password',
+                      //     labelStyle: kManRope_400_16_626A6A,
+                      //     suffixIconConstraints:
+                      //         BoxConstraints(minHeight: 20.w, minWidth: 20.h),
+                      //     suffixIcon: GestureDetector(
+                      //       behavior: HitTestBehavior.translucent,
+                      //       onTap: () {
+                      //         setState(() {
+                      //           passwordVisible2 = !passwordVisible2;
+                      //         });
+                      //       },
+                      //       child: SizedBox(
+                      //         height: 48,
+                      //         child: passwordVisible2
+                      //             ? SvgPicture.asset(
+                      //                 'assets/icons/eyeclose.svg',
+                      //               )
+                      //             : SvgPicture.asset(
+                      //                 'assets/icons/eyeopen.svg',
+                      //               ),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                    ],
                   ),
-                  SizedBox(height: 100.h),
-                  // nameEmpty
-                  //     ? CustomDeactiveTextButton(
-                  //         onPressed: () {}, text: 'Continue')
-                  //     : dobEmpty
-                  //         ? CustomDeactiveTextButton(
-                  //             onPressed: () {}, text: 'Continue')
-                  //         : genderEmpty
-                  //             ? CustomDeactiveTextButton(
-                  //                 onPressed: () {}, text: 'Continue')
-                  //             : marriedEmpty
-                  //                 ? CustomDeactiveTextButton(
-                  //                     onPressed: () {}, text: 'Continue')
-                  //                 : occupationEmpty
-                  //                     ? CustomDeactiveTextButton(
-                  //                         onPressed: () {}, text: 'Continue')
-                  //                     : phoneEmpty
-                  //                         ? CustomDeactiveTextButton(
-                  //                             onPressed: () {},
-                  //                             text: 'Continue')
-                  //                         :
-                  CustomActiveTextButton(
-                      bColor: nameController.text.isNotEmpty &&
-                              dateFormat.isNotEmpty &&
-                              genderController.text.isNotEmpty &&
-                              marriedController.text.isNotEmpty &&
-                              occupationController.text.isNotEmpty &&
-                              numberController.text.isNotEmpty
-                          ? k006D77
-                          : Colors.grey,
-                      tColor: nameController.text.isNotEmpty &&
-                              dateFormat.isNotEmpty &&
-                              genderController.text.isNotEmpty &&
-                              marriedController.text.isNotEmpty &&
-                              occupationController.text.isNotEmpty &&
-                              numberController.text.isNotEmpty
-                          ? kManRope_500_16_white
-                          : kManRope_500_16_626A6A,
-                      onPressed: () {
-                        if (nameController.text.isNotEmpty &&
+                ),
+                SizedBox(height: 100.h),
+                // nameEmpty
+                //     ? CustomDeactiveTextButton(
+                //         onPressed: () {}, text: 'Continue')
+                //     : dobEmpty
+                //         ? CustomDeactiveTextButton(
+                //             onPressed: () {}, text: 'Continue')
+                //         : genderEmpty
+                //             ? CustomDeactiveTextButton(
+                //                 onPressed: () {}, text: 'Continue')
+                //             : marriedEmpty
+                //                 ? CustomDeactiveTextButton(
+                //                     onPressed: () {}, text: 'Continue')
+                //                 : occupationEmpty
+                //                     ? CustomDeactiveTextButton(
+                //                         onPressed: () {}, text: 'Continue')
+                //                     : phoneEmpty
+                //                         ? CustomDeactiveTextButton(
+                //                             onPressed: () {},
+                //                             text: 'Continue')
+                //                         :
+                CustomActiveTextButton(
+                    bColor: nameController.text.isNotEmpty &&
                             dateFormat.isNotEmpty &&
                             genderController.text.isNotEmpty &&
                             marriedController.text.isNotEmpty &&
                             occupationController.text.isNotEmpty &&
-                            numberController.text.isNotEmpty) {
-                          if (_formKey.currentState!.validate()) {
-                            googleSigningDetails(
-                                    name: nameController.text,
-                                    dob: dateFormat,
-                                    gender: genderController.text == "Male"
-                                        ? "M"
-                                        : genderController.text == "Female"
-                                            ? "F"
-                                            : "O",
-                                    relationStatus:
-                                        marriedController.text == "Married"
+                            numberController.text.isNotEmpty
+                        ? k006D77
+                        : Colors.grey,
+                    tColor: nameController.text.isNotEmpty &&
+                            dateFormat.isNotEmpty &&
+                            genderController.text.isNotEmpty &&
+                            marriedController.text.isNotEmpty &&
+                            occupationController.text.isNotEmpty &&
+                            numberController.text.isNotEmpty
+                        ? kManRope_500_16_white
+                        : kManRope_500_16_626A6A,
+                    onPressed: () {
+                      if (nameController.text.isNotEmpty &&
+                          dateFormat.isNotEmpty &&
+                          genderController.text.isNotEmpty &&
+                          marriedController.text.isNotEmpty &&
+                          occupationController.text.isNotEmpty &&
+                          numberController.text.isNotEmpty) {
+                        if (_formKey.currentState!.validate()) {
+                          googleSigningDetails(
+                                  name: nameController.text,
+                                  dob: dateFormat,
+                                  gender: genderController.text == "Male"
+                                      ? "M"
+                                      : genderController.text == "Female"
+                                          ? "F"
+                                          : "O",
+                                  relationStatus:
+                                      marriedController.text == "Married"
+                                          ? "M"
+                                          : "S",
+                                  occupation: occupationController.text,
+                                  phone: numberController.text)
+                              .then((value) {
+                            if (value['status'] == true) {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => UGoogleSignupOTPScreen(
+                                        signUpField: numberController.text,
+                                        name: nameController.text,
+                                        dob: dateFormat,
+                                        gender: genderController.text == "Male"
                                             ? "M"
-                                            : "S",
-                                    occupation: occupationController.text,
-                                    phone: numberController.text)
-                                .then((value) {
-                              if (value['status'] == true) {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) =>
-                                        UGoogleSignupOTPScreen(
-                                          signUpField: numberController.text,
-                                        )));
-                              } else {
-                                Fluttertoast.showToast(msg: value['error']);
-                              }
-                            });
-                            //         final resp = UserPersonalDetailsApi()
-                            //             .get(
-                            //                 name: dobController.text,
-                            //                 email: numberController.text,
-                            //                 password:
-                            //                     passwordController.text,
-                            //                 cPassword:
-                            //                     confirmPasswordController
-                            //                         .text);
-                            //         resp.then((value) async {
-                            //           print(value);
-                            //           if (value['status'] == true) {
-                            //             var prefs =
-                            //                 await SharedPreferences
-                            //                     .getInstance();
-                            //             Fluttertoast.showToast(
-                            //                 msg:
-                            //                     'Profile Setup Successful');
-                            //             prefs.setString(
-                            //                 Keys().userType, "u");
-                            //             Navigator.of(context).push(
-                            //                 MaterialPageRoute(
-                            //                     builder: (context) =>
-                            //                         UQuestions()));
-                            //           } else {
-                            //             Fluttertoast.showToast(
-                            //                 msg: value['error']);
-                            //             /* Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => PDashboard()),
-                            // );*/
-                            //           }
-                            //         });
-                          }
+                                            : genderController.text == "Female"
+                                                ? "F"
+                                                : "O",
+                                        relationStatus:
+                                            marriedController.text == "Married"
+                                                ? "M"
+                                                : "S",
+                                        occupation: occupationController.text,
+                                        phone: numberController.text,
+                                      )));
+                            } else {
+                              Fluttertoast.showToast(msg: value['error']);
+                            }
+                          });
                         }
-                      },
-                      text: 'Continue'),
-                  SizedBox(
-                    height: 100,
-                  )
-                ],
-              ),
+
+                        //         final resp = UserPersonalDetailsApi()
+                        //             .get(
+                        //                 name: dobController.text,
+                        //                 email: numberController.text,
+                        //                 password:
+                        //                     passwordController.text,
+                        //                 cPassword:
+                        //                     confirmPasswordController
+                        //                         .text);
+                        //         resp.then((value) async {
+                        //           print(value);
+                        //           if (value['status'] == true) {
+                        //             var prefs =
+                        //                 await SharedPreferences
+                        //                     .getInstance();
+                        //             Fluttertoast.showToast(
+                        //                 msg:
+                        //                     'Profile Setup Successful');
+                        //             prefs.setString(
+                        //                 Keys().userType, "u");
+                        //             Navigator.of(context).push(
+                        //                 MaterialPageRoute(
+                        //                     builder: (context) =>
+                        //                         UQuestions()));
+                        //           } else {
+                        //             Fluttertoast.showToast(
+                        //                 msg: value['error']);
+                        //             /* Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => PDashboard()),
+                        // );*/
+                        //           }
+                        //         });
+
+                      }
+                    },
+                    text: 'Continue'),
+                SizedBox(
+                  height: 100,
+                )
+              ],
             ),
           ),
         ),

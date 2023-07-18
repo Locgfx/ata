@@ -519,11 +519,27 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                     controller: _passwordController,
                                     obscureText: visible,
                                     decoration: InputDecoration(
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: k5A72ED,
+                                          width: 1,
+                                        ),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: kB5BABA,
+                                          width: 0.5,
+                                        ),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: kB5BABA,
+                                          width: 1,
+                                        ),
+                                      ),
                                       contentPadding: EdgeInsets.only(top: 8),
-                                      labelText: 'Password',
+                                      labelText: 'Enter your password',
                                       labelStyle: kManRope_400_16_626A6A,
-                                      floatingLabelStyle:
-                                          kManRope_400_20_626A6A,
                                       suffixIconConstraints: BoxConstraints(
                                           minHeight: 24.w, minWidth: 24.h),
                                       suffixIcon: InkWell(
@@ -540,7 +556,19 @@ class _ULoginScreenState extends State<ULoginScreen> {
                                               : SvgPicture.asset(
                                                   'assets/icons/eyeopen.svg',
                                                 )),
+
+                                      //floatingLabelStyle: kManRope_400_20_626A6A,
                                     ),
+                                    // decoration: InputDecoration(
+                                    //   contentPadding: EdgeInsets.only(top: 8),
+                                    //   labelText: 'Password',
+                                    //   labelStyle: kManRope_400_16_626A6A,
+                                    //   floatingLabelStyle:
+                                    //       kManRope_400_20_626A6A,
+                                    //   suffixIconConstraints: BoxConstraints(
+                                    //       minHeight: 24.w, minWidth: 24.h),
+
+                                    // ),
                                   ),
                                 ),
                               ],

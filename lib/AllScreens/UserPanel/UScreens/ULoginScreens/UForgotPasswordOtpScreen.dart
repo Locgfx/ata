@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -13,7 +14,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 class UForgotPasswordOTPScreen extends StatefulWidget {
   final String signUpField;
-  const UForgotPasswordOTPScreen({Key? key, required this.signUpField}) : super(key: key);
+  const UForgotPasswordOTPScreen({Key? key, required this.signUpField})
+      : super(key: key);
 
   @override
   State<UForgotPasswordOTPScreen> createState() => _UForgotPasswordOTPScreen();
@@ -38,7 +40,7 @@ class _UForgotPasswordOTPScreen extends State<UForgotPasswordOTPScreen> {
     const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSec,
-          (Timer timer) {
+      (Timer timer) {
         if (_start == 0) {
           setState(() {
             timer.cancel();
@@ -83,7 +85,7 @@ class _UForgotPasswordOTPScreen extends State<UForgotPasswordOTPScreen> {
               SizedBox(height: 40.h),
               Text('Enter OTP', style: kManRope_700_20_001314),
               SizedBox(height: 16.h),
-              Text('Please enter the OTP sent to \n$number',
+              Text('Please enter the OTP sent to your mobile number',
                   style: kManRope_400_14_626A6A),
               SizedBox(height: 40.h),
               PinCodeTextField(
@@ -131,14 +133,14 @@ class _UForgotPasswordOTPScreen extends State<UForgotPasswordOTPScreen> {
                       InkWell(
                           onTap: _start == 0
                               ? () {
-                            setState(() {
-                              _start = 30;
-                            });
-                            _startTimer();
-                          }
+                                  setState(() {
+                                    _start = 30;
+                                  });
+                                  _startTimer();
+                                }
                               : () {
-                            print(otp.length);
-                          },
+                                  print(otp.length);
+                                },
                           child: Text('Resend',
                               style: _start == 0
                                   ? kManRope_400_16_006D77
@@ -148,26 +150,25 @@ class _UForgotPasswordOTPScreen extends State<UForgotPasswordOTPScreen> {
                 ],
               ),
               const Spacer(),
-              otpEmpty ? CustomDeactiveTextButton(onPressed: () {
-
-              }, text: 'Continue')
+              otpEmpty
+                  ? CustomDeactiveTextButton(onPressed: () {}, text: 'Continue')
                   : CustomActiveTextButton(
-                  onPressed: () {
-                    final resp =UserForgotPasswordEnterOtpApi().get(otp: otpController.text);
-                    resp.then((value) {
-                      print(value);
-                      if (value['status'] == true) {
-                        Fluttertoast.showToast(msg: value['message']);
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => UEnterNewPasswordScreen()));
-                      } else {
-                        Fluttertoast.showToast(msg: value['error']);
-                      }
-                    });
-
-                  },
-                  text: 'Continue')
-
+                      onPressed: () {
+                        final resp = UserForgotPasswordEnterOtpApi()
+                            .get(otp: otpController.text);
+                        resp.then((value) {
+                          print(value);
+                          if (value['status'] == true) {
+                            Fluttertoast.showToast(msg: value['message']);
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    UEnterNewPasswordScreen()));
+                          } else {
+                            Fluttertoast.showToast(msg: value['error']);
+                          }
+                        });
+                      },
+                      text: 'Continue')
             ],
           ),
         ),

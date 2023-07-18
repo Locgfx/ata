@@ -288,7 +288,7 @@ class _UCreatePostState extends State<UCreatePost> {
                                   },
                                   child: Image.file(
                                     _pickedImages[ind],
-                                    fit: BoxFit.fill,
+                                    fit: BoxFit.cover,
                                   ),
                                 ),
                               );

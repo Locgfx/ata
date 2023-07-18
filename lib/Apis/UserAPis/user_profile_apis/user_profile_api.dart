@@ -17,6 +17,7 @@ class UserProfileApi {
     print(v);
     var request = http.Request('GET', Uri.parse('$baseUrl/user-profile.php'));
     request.headers.addAll(headers);
+    print(headers);
     http.StreamedResponse response = await request.send();
     var rsp = jsonDecode(await response.stream.bytesToString());
 
