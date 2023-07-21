@@ -210,10 +210,6 @@ class _USignEnterOTPScreenState extends State<USignEnterOTPScreen> {
                                           await SharedPreferences.getInstance();
                                       prefs.setString(
                                           'cookies', value['session_id']);
-                                      //print(value['session_id']);
-                                      //print(prefs.getString(Keys().cookie));
-
-                                      //Fluttertoast.showToast(msg: 'Your OTP is ${value['otp']}');
                                     }
                                   });
                                 }
