@@ -159,6 +159,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
     return Stack(
       children: [
         Scaffold(
+          resizeToAvoidBottomInset: false,
           backgroundColor: kEDF6F9,
           appBar: AppBar(
             elevation: 0,
@@ -436,99 +437,109 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                                 color: Colors.transparent,
                                                 child: Row(
                                                   children: [
-                                                    Container(
-                                                      height: 80.h,
-                                                      width: 81.w,
-                                                      clipBehavior:
-                                                          Clip.hardEdge,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(16),
-                                                      ),
-                                                      child: CachedNetworkImage(
-                                                        imageUrl:
-                                                            psychologists[i]
-                                                                .profilePhoto
-                                                                .toString(),
-                                                        fit: BoxFit.cover,
-                                                        placeholder:
-                                                            (context, url) =>
-                                                                Center(
-                                                          child:
-                                                              SpinKitThreeBounce(
-                                                            color: k006D77,
-                                                            size: 20,
-                                                          ),
+                                                    Expanded(
+                                                      child: Container(
+                                                        height: 80.h,
+                                                        width: 81.w,
+                                                        clipBehavior:
+                                                            Clip.hardEdge,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(16),
                                                         ),
-                                                        errorWidget: (context,
-                                                                url, error) =>
-                                                            Icon(Icons.error),
+                                                        child:
+                                                            CachedNetworkImage(
+                                                          imageUrl:
+                                                              psychologists[i]
+                                                                  .profilePhoto
+                                                                  .toString(),
+                                                          fit: BoxFit.cover,
+                                                          placeholder:
+                                                              (context, url) =>
+                                                                  Center(
+                                                            child:
+                                                                SpinKitThreeBounce(
+                                                              color: k006D77,
+                                                              size: 20,
+                                                            ),
+                                                          ),
+                                                          errorWidget: (context,
+                                                                  url, error) =>
+                                                              Icon(Icons.error),
+                                                        ),
                                                       ),
                                                     ),
                                                     SizedBox(width: 9.w),
-                                                    Column(
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          psychologists[i]
-                                                              .name
-                                                              .toString(),
-                                                          style:
-                                                              kManRope_400_16_001314,
-                                                        ),
-                                                        SizedBox(height: 8.h),
-                                                        Text(
-                                                          psychologists[i]
-                                                              .specialities!
-                                                              .first
-                                                              .name
-                                                              .toString(),
-                                                          style:
-                                                              kManRope_400_14_626A6A,
-                                                        ),
-                                                        SizedBox(height: 8.h),
-                                                        Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          children: [
-                                                            Image.asset(
-                                                              'assets/images/Star 1.png',
-                                                              width: 15.w,
-                                                              height: 15.w,
-                                                            ),
-                                                            SizedBox(
-                                                                width: 4.w),
-                                                            Text(
-                                                                psychologists[i]
-                                                                    .rating
-                                                                    .toString(),
-                                                                style:
-                                                                    kManRope_400_12_001314),
-                                                            SizedBox(
-                                                                width: 4.w),
-                                                            Text('.',
-                                                                style:
-                                                                    kManRope_700_16_001314),
-                                                            SizedBox(
-                                                                width: 4.w),
-                                                            Text(
-                                                                psychologists[i]
-                                                                    .totalExprience
-                                                                    .toString(),
-                                                                style:
-                                                                    kManRope_400_12_001314),
-                                                            Text(' Yrs. Exp',
-                                                                style:
-                                                                    kManRope_400_12_001314),
-                                                          ],
-                                                        ),
-                                                      ],
+                                                    Expanded(
+                                                      flex: 3,
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Text(
+                                                            psychologists[i]
+                                                                .name
+                                                                .toString(),
+                                                            style:
+                                                                kManRope_400_16_001314,
+                                                          ),
+                                                          SizedBox(height: 8.h),
+                                                          Text(
+                                                            psychologists[i]
+                                                                .specialities!
+                                                                .first
+                                                                .name
+                                                                .toString(),
+                                                            style:
+                                                                kManRope_400_14_626A6A,
+                                                          ),
+                                                          SizedBox(height: 8.h),
+                                                          Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              Image.asset(
+                                                                'assets/images/Star 1.png',
+                                                                width: 15.w,
+                                                                height: 15.w,
+                                                              ),
+                                                              SizedBox(
+                                                                  width: 4.w),
+                                                              Text(
+                                                                  psychologists[
+                                                                          i]
+                                                                      .rating
+                                                                      .toString(),
+                                                                  style:
+                                                                      kManRope_400_12_001314),
+                                                              SizedBox(
+                                                                  width: 4.w),
+                                                              Text('.',
+                                                                  style:
+                                                                      kManRope_700_16_001314),
+                                                              SizedBox(
+                                                                  width: 4.w),
+                                                              Text(
+                                                                  psychologists[
+                                                                          i]
+                                                                      .totalExprience
+                                                                      .toString(),
+                                                                  style:
+                                                                      kManRope_400_12_001314),
+                                                              Text(' Yrs. Exp',
+                                                                  style:
+                                                                      kManRope_400_12_001314),
+                                                            ],
+                                                          ),
+                                                        ],
+                                                      ),
                                                     )
                                                   ],
                                                 ),

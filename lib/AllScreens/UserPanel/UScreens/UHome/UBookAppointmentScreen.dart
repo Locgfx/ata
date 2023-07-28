@@ -48,6 +48,7 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: kEDF6F9,
       appBar: CustomWhiteAppBar(
           hasThreeDots: false,

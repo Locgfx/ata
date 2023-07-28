@@ -25,6 +25,7 @@ class CustomGoogleSignInButton extends StatefulWidget {
 
 class _CustomGoogleSignInButtonState extends State<CustomGoogleSignInButton> {
   bool _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return _isLoading
@@ -39,7 +40,9 @@ class _CustomGoogleSignInButtonState extends State<CustomGoogleSignInButton> {
                 _isLoading = true;
               });
               log(auth.idToken!.length.toString());
-              final resp = GoogleSignInApi().get(idToken: auth.idToken!);
+              final resp = GoogleSignInApi().get(
+                idToken: auth.idToken!,
+              );
               resp.then((value) async {
                 log(value.toString());
                 if (value == false) {

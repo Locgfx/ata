@@ -173,6 +173,7 @@ class _UPostPageState extends State<UPostPage> {
                           return getData();
                         },
                         child: ListView.separated(
+                          padding: EdgeInsets.only(bottom: 80),
                           itemCount: postModel.length + 1,
                           scrollDirection: Axis.vertical,
                           shrinkWrap: true,
@@ -636,7 +637,7 @@ class _PostImgBuilderState extends State<PostImgBuilder> {
     return Stack(
       children: [
         Container(
-            height: 500.h,
+            height: 600.h,
             width: 1.sw,
             clipBehavior: Clip.hardEdge,
             decoration: const BoxDecoration(
@@ -655,9 +656,11 @@ class _PostImgBuilderState extends State<PostImgBuilder> {
                 pageSnapping: true,
                 itemBuilder: (BuildContext context, ind) {
                   return CachedNetworkImage(
+                    height: 600.sh,
+                    width: 1.sw,
                     imageUrl:
                         widget.postModel[widget.index].gallary![ind].toString(),
-                    fit: BoxFit.cover,
+                    fit: BoxFit.fill,
                     placeholder: (context, url) => Center(
                       child: SpinKitThreeBounce(
                         color: k006D77,
