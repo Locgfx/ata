@@ -18,6 +18,7 @@ import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.da
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
+import '../../../OnboardingScreen/onboarding_screen.dart';
 import '../UWelcome/UWelcomeScreen.dart';
 
 class ULoginScreen extends StatefulWidget {
@@ -406,7 +407,10 @@ class _ULoginScreenState extends State<ULoginScreen> {
                             if (widget.showBack)
                               InkWell(
                                 onTap: () {
-                                  Navigator.of(context).pop();
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (_) => OnBoardingScreen()));
                                 },
                                 child: Container(
                                   color: Colors.transparent,

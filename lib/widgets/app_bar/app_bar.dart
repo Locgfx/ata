@@ -8,7 +8,7 @@ import 'package:greymatter/constants/colors.dart';
 
 import '../../constants/fonts.dart';
 
-class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
+class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   HomeAppBar(
       {required this.text,
       required this.child,
@@ -74,7 +74,7 @@ class HomeAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 }
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar({
     this.appBarText,
     required this.imgPath,
@@ -122,7 +122,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   }
 }
 
-class CustomWhiteAppBar extends StatelessWidget with PreferredSizeWidget {
+class CustomWhiteAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomWhiteAppBar({
     required this.appBarText,
     required this.imgPath,

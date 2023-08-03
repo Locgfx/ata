@@ -29,7 +29,7 @@ Future addGoalApi({
     'reminder': reminder,
     'reminder_time': reminderTime
   });
-  //log(request.fields.toString());
+  log(request.fields.toString());
   request.headers.addAll(headers);
 
   http.StreamedResponse response = await request.send();

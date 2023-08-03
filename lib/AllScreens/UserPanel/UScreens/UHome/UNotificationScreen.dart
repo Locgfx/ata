@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:badges/badges.dart';
+// import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -175,24 +175,25 @@ class _UNotificationsScreenState extends State<UNotificationsScreen> {
                                 }
                               },
                               contentPadding: EdgeInsets.zero,
-                              leading: Badge(
-                                  showBadge: modelList[index].seen == "0"
-                                      ? true
-                                      : false,
-                                  child: Container(
-                                    width: 40,
-                                    height: 40,
-                                    clipBehavior: Clip.hardEdge,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.grey),
-                                    child: Image.network(
-                                      modelList[index].userPhoto.toString(),
-                                      errorBuilder: (q, w, e) =>
-                                          Icon(Icons.error),
-                                      fit: BoxFit.fill,
-                                    ),
-                                  )),
+                              // leading:
+                              // Badge(
+                              //     showBadge: modelList[index].seen == "0"
+                              //         ? true
+                              //         : false,
+                              //     child: Container(
+                              //       width: 40,
+                              //       height: 40,
+                              //       clipBehavior: Clip.hardEdge,
+                              //       decoration: BoxDecoration(
+                              //           shape: BoxShape.circle,
+                              //           color: Colors.grey),
+                              //       child: Image.network(
+                              //         modelList[index].userPhoto.toString(),
+                              //         errorBuilder: (q, w, e) =>
+                              //             Icon(Icons.error),
+                              //         fit: BoxFit.fill,
+                              //       ),
+                              //     )),
                               title: Text(
                                 modelList[index].notification.toString(),
                                 maxLines: 1,

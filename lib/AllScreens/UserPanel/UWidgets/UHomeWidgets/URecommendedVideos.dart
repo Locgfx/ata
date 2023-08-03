@@ -106,22 +106,20 @@ class _URecommendedVideosSliderState extends State<URecommendedVideosSlider> {
                     );
                   },
                   child: Container(
-                    width: 248.w,
+                    margin: EdgeInsets.only(right: 16, left: 8),
+                    height: 200,
+                    width: 280,
                     clipBehavior: Clip.hardEdge,
-                    margin:
-                        EdgeInsets.only(right: 24.w, left: i == 0 ? 24.w : 0),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+                        color: Colors.redAccent,
+                        borderRadius: BorderRadius.circular(20)),
                     child: Stack(
-                      alignment: Alignment.center,
                       children: [
-                        SizedBox(
-                          width: 1.sw,
+                        Positioned.fill(
                           child: CachedNetworkImage(
                             imageUrl:
                                 recommendedVideos[i].videoPoster.toString(),
-                            fit: BoxFit.fitWidth,
+                            fit: BoxFit.cover,
                             placeholder: (context, url) => Opacity(
                               opacity: 0.9,
                               child: Shimmer.fromColors(
@@ -142,12 +140,56 @@ class _URecommendedVideosSliderState extends State<URecommendedVideosSlider> {
                                 Icon(Icons.error),
                           ),
                         ),
-                        SizedBox(
-                            width: 50,
-                            child: Image.asset('assets/images/youtube.png')),
+                        Center(
+                          child: SizedBox(
+                              width: 50,
+                              child: Image.asset('assets/images/youtube.png')),
+                        ),
                       ],
                     ),
                   ),
+                  // child: Container(
+                  //   width: 248.w,
+                  //   clipBehavior: Clip.hardEdge,
+                  //   margin:
+                  //       EdgeInsets.only(right: 24.w, left: i == 0 ? 24.w : 0),
+                  //   decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(20),
+                  //   ),
+                  //   child: Stack(
+                  //     children: [
+                  //       SizedBox(
+                  //         width: 248.w,
+                  //         child: CachedNetworkImage(
+                  //           imageUrl:
+                  //               recommendedVideos[i].videoPoster.toString(),
+                  //           fit: BoxFit.fitWidth,
+                  //           placeholder: (context, url) => Opacity(
+                  //             opacity: 0.9,
+                  //             child: Shimmer.fromColors(
+                  //               child: Container(
+                  //                 width: 1.sw,
+                  //                 height: 160,
+                  //                 margin: EdgeInsets.symmetric(horizontal: 16),
+                  //                 decoration: BoxDecoration(
+                  //                   color: Colors.white,
+                  //                   borderRadius: BorderRadius.circular(24),
+                  //                 ),
+                  //               ),
+                  //               baseColor: Colors.black12,
+                  //               highlightColor: Colors.white,
+                  //             ),
+                  //           ),
+                  //           errorWidget: (context, url, error) =>
+                  //               Icon(Icons.error),
+                  //         ),
+                  //       ),
+                  //       SizedBox(
+                  //           width: 50,
+                  //           child: Image.asset('assets/images/youtube.png')),
+                  //     ],
+                  //   ),
+                  // ),
                 );
               },
             ),

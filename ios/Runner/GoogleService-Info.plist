@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>503388248988-j0jdeaj4650v4rr3bsm81l4plccflj1s.apps.googleusercontent.com</string>
+	<string>503388248988-re1r3bpu76q1a8ukgkh5pe9jutkvc8of.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.503388248988-j0jdeaj4650v4rr3bsm81l4plccflj1s</string>
+	<string>com.googleusercontent.apps.503388248988-re1r3bpu76q1a8ukgkh5pe9jutkvc8of</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>503388248988-3m9t3livjabuhdtjodbe7ed67ifb304u.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.locgfx.greymatter</string>
+	<string>com.locgfx.ataraxis.ataraxis</string>
 	<key>PROJECT_ID</key>
 	<string>ataraxis-b8eb5</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:503388248988:ios:a446969c071ba788360659</string>
+	<string>1:503388248988:ios:2908a79ed3c2b000360659</string>
 </dict>
 </plist>

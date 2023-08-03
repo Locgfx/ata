@@ -37,8 +37,8 @@ fn(RemoteMessage message) async {
   //AwesomeNotifications().dismissedStream.listen((event) {});
   //AwesomeNotifications().setGlobalBadgeCounter(0);
   log(message.data.toString());
-  String t = message.data['content'];
-  Map a = jsonDecode(t);
+  String t = message.data['content'].toString();
+  Map a = jsonDecode(t.toString());
   // http.Response response = await http.get(Uri.parse(a['bigPicture']));
   // final bytes = response.bodyBytes;
   AndroidNotificationDetails androidPlatformChannelSpecifics =
@@ -47,17 +47,17 @@ fn(RemoteMessage message) async {
           importance: Importance.max,
           priority: Priority.high,
           // styleInformation: BigPictureStyleInformation(
-          //     ByteArrayAndroidBitmap.fromBase64String(base64Encode(bytes))
+          //           //     ByteArrayAndroidBitmap.fromBase64String(base64Encode(bytes))
           // ),
           ticker: 'ticker');
   NotificationDetails platformChannelSpecifics =
       NotificationDetails(android: androidPlatformChannelSpecifics);
   //log(event.data['content']['id'].toString());
-  log(a['id'].toString());
+  log(a['id']);
   flutterPlugin.show(
     a['id'],
-    a['title'],
-    a['body'],
+    a['title'].toString(),
+    a['body'].toString(),
     platformChannelSpecifics,
     payload: a['payload'].toString(),
   );
@@ -250,7 +250,6 @@ class _MyAppState extends State<MyApp> {
     // a terminated state.
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
-
     // If the message also contains a data property with a "type" of "chat",
     // navigate to a chat screen
     if (initialMessage != null) {
@@ -318,7 +317,6 @@ class _MyAppState extends State<MyApp> {
         AwesomeNotifications().actionStream.listen((event1) {
           fn(event);
         });*/
-
         RemoteNotification? notification = event.notification;
         AndroidNotification? android = event.notification?.android;
         if (notification != null && android != null && _sendNotif) {
@@ -374,7 +372,8 @@ class _MyAppState extends State<MyApp> {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Ataraxis',
-            home: //MySessionPage(),
+            home:
+                //MySessionPage(),
                 //   BookingSuccessfulScreen()
                 //SessionSuccessful()
                 SplashScreen(),
@@ -382,7 +381,6 @@ class _MyAppState extends State<MyApp> {
             // UAddPersonalDetailsScreen()
             // UDeleteAccountScreen()
             // UGoogleSignUpAddDetails(),
-            //
           );
           //PostScreen());
         });
