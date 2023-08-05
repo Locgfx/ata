@@ -57,7 +57,7 @@ class _UCreatePostState extends State<UCreatePost> {
   _imageCropper(File file, int index) async {
     croppedFile = await ImageCropper().cropImage(
         sourcePath: file.path,
-        aspectRatio: CropAspectRatio(ratioX: 3, ratioY: 2),
+        aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
         aspectRatioPresets: [
           CropAspectRatioPreset.ratio3x2
         ],
@@ -224,8 +224,8 @@ class _UCreatePostState extends State<UCreatePost> {
                 Stack(
                   children: [
                     Container(
-                        height: 600.h,
-                        width: 600.w,
+                        height: 550.h,
+                        width: 1.sw,
                         clipBehavior: Clip.hardEdge,
                         decoration: const BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -268,27 +268,37 @@ class _UCreatePostState extends State<UCreatePost> {
                                 //axis: Axis.vertical,
                                 data: _pickedImages[ind],
                                 feedback: Container(
-                                  clipBehavior: Clip.hardEdge,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black38,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  width: 600,
-                                  height: 600,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.file(
-                                      _pickedImages[ind],
-                                      //fit: BoxFit.fill,
+                                    // clipBehavior: Clip.hardEdge,
+                                    // decoration: BoxDecoration(
+                                    //     color: Colors.transparent,
+                                    //     borderRadius: BorderRadius.circular(10)),
+                                    // width: 1.sw,
+                                    // height: 550.h,
+                                    // child: ClipRRect(
+                                    //   borderRadius: BorderRadius.circular(10),
+                                    //   child: Image.file(
+                                    //     _pickedImages[ind],
+                                    //     fit: BoxFit.fitWidth,
+                                    //   ),
+                                    // ),
                                     ),
-                                  ),
-                                ),
                                 child: InkWell(
                                   onTap: () {
                                     _imageCropper(_pickedImages[ind], ind);
                                   },
-                                  child: Image.file(
-                                    _pickedImages[ind],
-                                    fit: BoxFit.cover,
+                                  child: Container(
+                                    height: 550.h,
+                                    width: 1.sw,
+                                    clipBehavior: Clip.hardEdge,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.black,
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                    ),
+                                    child: Image.file(
+                                      _pickedImages[ind],
+                                      fit: BoxFit.fitWidth,
+                                    ),
                                   ),
                                 ),
                               );

@@ -370,7 +370,7 @@ class _UPostPageState extends State<UPostPage> {
                   ),
           ),
           Positioned(
-            bottom: 180,
+            bottom: 200,
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context)
@@ -637,12 +637,12 @@ class _PostImgBuilderState extends State<PostImgBuilder> {
     return Stack(
       children: [
         Container(
-            height: 600.h,
+            height: 550.h,
             width: 1.sw,
             clipBehavior: Clip.hardEdge,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.white,
+              color: Colors.black,
             ),
             child: PageView.builder(
                 itemCount: widget.postModel[widget.index].gallary!.length,
@@ -656,11 +656,11 @@ class _PostImgBuilderState extends State<PostImgBuilder> {
                 pageSnapping: true,
                 itemBuilder: (BuildContext context, ind) {
                   return CachedNetworkImage(
-                    height: 600.sh,
+                    // height: 600.sh,
                     width: 1.sw,
                     imageUrl:
                         widget.postModel[widget.index].gallary![ind].toString(),
-                    fit: BoxFit.fill,
+                    fit: BoxFit.fitWidth,
                     placeholder: (context, url) => Center(
                       child: SpinKitThreeBounce(
                         color: k006D77,
