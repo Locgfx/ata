@@ -27,11 +27,13 @@ class UConfirmBookingScreen extends StatefulWidget {
       required this.issue,
       required this.model,
       required this.bookingType,
-      required this.issueId})
+      required this.issueId,
+      required this.price})
       : super(key: key);
   final String issue;
   final String bookingType;
   final String issueId;
+  final String price;
 
   @override
   State<UConfirmBookingScreen> createState() => _UConfirmBookingScreenState();
@@ -235,7 +237,8 @@ class _UConfirmBookingScreenState extends State<UConfirmBookingScreen> {
                                               _coupnLoading = true;
                                             });
                                             final resp = CouponAppliedApi().get(
-                                                coupon: _couponController.text);
+                                                coupon: _couponController.text,
+                                                price: widget.price);
                                             resp.then((value) {
                                               if (value["status"] == true) {
                                                 setState(() {

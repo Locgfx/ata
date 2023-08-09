@@ -33,6 +33,7 @@ class UConfirmAppointmentBooking extends StatefulWidget {
     required this.bookingType,
     required this.psychologist,
     required this.slot,
+    required this.doctorPrice,
   }) : super(key: key);
   final UPsychologistModel psychologist;
   final String slot;
@@ -40,6 +41,7 @@ class UConfirmAppointmentBooking extends StatefulWidget {
   final String issue;
   final String issueId;
   final String date;
+  final String doctorPrice;
 
   @override
   State<UConfirmAppointmentBooking> createState() =>
@@ -78,6 +80,7 @@ class _UConfirmAppointmentBookingState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: kEDF6F9,
       appBar: CustomWhiteAppBar(
         hasThreeDots: false,
@@ -279,8 +282,10 @@ class _UConfirmAppointmentBookingState
                                             setState(() {
                                               _coupnLoading = true;
                                             });
+                                            print(widget.doctorPrice);
                                             final resp = CouponAppliedApi().get(
-                                                coupon: _couponController.text);
+                                                coupon: _couponController.text,
+                                                price: widget.doctorPrice);
                                             resp.then((value) {
                                               log("Coupon $value");
                                               if (value["status"] == true) {

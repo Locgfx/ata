@@ -7,6 +7,8 @@ import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/instant_booking_widgets/top_verified_specialists.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 
+import '../../../../constants/decorations.dart';
+import '../UHome/search_psycologist_screen.dart';
 import '../UProfile/UHelpandsupport.dart';
 
 class UInstantBookingScreen extends StatefulWidget {
@@ -51,29 +53,30 @@ class _UInstantBookingScreenState extends State<UInstantBookingScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // InkWell(
-                      //   onTap: () {
-                      //     Navigator.of(context).push(MaterialPageRoute(
-                      //         builder: (ctx) => SearchPsychologistScreen(
-                      //               bookingType: 'i',
-                      //               issueId: '',
-                      //               issue: '',
-                      //             )));
-                      //   },
-                      //   child: Container(
-                      //     height: 56.h,
-                      //     decoration:
-                      //         CustomDecoration().outline5A72EDDecoration(),
-                      //     child: IgnorePointer(
-                      //       child: TextField(
-                      //         decoration: TextfieldDecoration(
-                      //                 label: 'Search for health problems',
-                      //                 hintstyle: kManRope_400_14_626A6A)
-                      //             .whiteColorSearchField(() {}),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (ctx) => SearchPsychologistScreen(
+                                    bookingType: 'i',
+                                    issueId: '',
+                                    issue: '',
+                                    price: '',
+                                  )));
+                        },
+                        child: Container(
+                          height: 56.h,
+                          decoration:
+                              CustomDecoration().outline5A72EDDecoration(),
+                          child: IgnorePointer(
+                            child: TextField(
+                              decoration: TextfieldDecoration(
+                                      label: 'Search for health problems',
+                                      hintstyle: kManRope_400_14_626A6A)
+                                  .whiteColorSearchField(() {}),
+                            ),
+                          ),
+                        ),
+                      ),
                       SizedBox(height: 40.h),
                       Text('Choose from Top Counsellors',
                           style: kManRope_700_16_001314),

@@ -642,7 +642,7 @@ class _PostImgBuilderState extends State<PostImgBuilder> {
             clipBehavior: Clip.hardEdge,
             decoration: const BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(10)),
-              color: Colors.black,
+              color: Colors.black87,
             ),
             child: PageView.builder(
                 itemCount: widget.postModel[widget.index].gallary!.length,

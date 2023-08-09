@@ -21,11 +21,13 @@ class UAllPsychologistScreen extends StatefulWidget {
   final String issue;
   final String issueId;
   final String bookingType;
+  final String price;
   const UAllPsychologistScreen(
       {Key? key,
       required this.issue,
       required this.issueId,
-      required this.bookingType})
+      required this.bookingType,
+      required this.price})
       : super(key: key);
 
   @override
@@ -297,6 +299,7 @@ class _UAllPsychologistScreenState extends State<UAllPsychologistScreen> {
                                                                                 issue: widget.issue,
                                                                                 issueId: widget.issueId,
                                                                                 model: psychologists[i],
+                                                                                price: '',
                                                                               )));
                                                                 }
                                                               : () {

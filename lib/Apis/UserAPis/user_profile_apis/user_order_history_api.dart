@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/constants/urlconstants.dart';
 import 'package:greymatter/model/UModels/user_order_model/upcoming_orders.dart';
 import 'package:http/http.dart' as http;
@@ -23,6 +22,7 @@ class UserOrderHistoryApi {
     http.StreamedResponse response = await request.send();
     var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
+      print(resp);
       //Fluttertoast.showToast(msg: resp.toString());
       return resp;
     } else {
@@ -52,6 +52,30 @@ class UserOrderHistoryApi {
     } else {
       //print(response.statusCode);
       return UpcomingOrderData(data: []);
+    }
+  }
+}
+
+class AllSessionApi {
+  Future<dynamic> get({required int page}) async {
+    var prefs = await SharedPreferences.getInstance();
+    var v = prefs.getString(Keys().cookie);
+    var headers = {
+      'Content-Type': 'application/json',
+      'Cookie': 'PHPSESSID=$v'
+    };
+    var request = http.Request(
+        'GET', Uri.parse('$baseUrl/order-history.php?&start=$page'));
+    request.headers.addAll(headers);
+    http.StreamedResponse response = await request.send();
+    var resp = jsonDecode(await response.stream.bytesToString());
+    if (response.statusCode == 200) {
+      // print(resp);
+      //Fluttertoast.showToast(msg: resp.toString());
+      return resp;
+    } else {
+      print(response.reasonPhrase);
+      return [];
     }
   }
 }

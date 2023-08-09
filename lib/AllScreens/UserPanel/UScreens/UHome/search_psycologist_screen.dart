@@ -20,11 +20,13 @@ class SearchPsychologistScreen extends StatefulWidget {
   final String issue;
   final String issueId;
   final String bookingType;
+  final String price;
   const SearchPsychologistScreen(
       {Key? key,
       required this.issue,
       required this.bookingType,
-      required this.issueId})
+      required this.issueId,
+      required this.price})
       : super(key: key);
 
   @override
@@ -278,6 +280,8 @@ class _SearchPsychologistScreenState extends State<SearchPsychologistScreen> {
                                                                             widget.issueId,
                                                                         model:
                                                                             psychologists[i],
+                                                                        price:
+                                                                            '',
                                                                       )));
                                                         }
                                                       : () {

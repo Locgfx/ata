@@ -57,6 +57,7 @@ class UBookings extends StatelessWidget {
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (ctx) => UBookAppointmentScreen(
                       bookingType: 'a',
+                      docPrice: '',
                     )));
           },
           child: Container(

@@ -495,6 +495,10 @@ class _UScheduleAppointmentScreenState
                                                           issue: issue,
                                                           issueId: issueId,
                                                           date: date,
+                                                          doctorPrice: widget
+                                                              .psychologist
+                                                              .price
+                                                              .toString(),
                                                         )));
                                           }
                                         : () {

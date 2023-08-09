@@ -13,7 +13,9 @@ import 'UAllPsychologistScreen.dart';
 
 class UBookAppointmentScreen extends StatefulWidget {
   final String bookingType;
-  const UBookAppointmentScreen({Key? key, required this.bookingType})
+  final String docPrice;
+  const UBookAppointmentScreen(
+      {Key? key, required this.bookingType, required this.docPrice})
       : super(key: key);
 
   @override
@@ -79,6 +81,7 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                               bookingType: 'a',
                               issueId: "",
                               issue: "",
+                              price: '',
                             )));
                   },
                   child: Container(
@@ -121,6 +124,7 @@ class _UBookAppointmentScreenState extends State<UBookAppointmentScreen> {
                                         specialistModel[index].name.toString(),
                                     issueId:
                                         specialistModel[index].id.toString(),
+                                    price: '',
                                   )));
                         },
                         child: Column(

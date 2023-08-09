@@ -256,6 +256,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                                 .specialities![0]
                                                 .name
                                                 .toString(),
+                                            price: '',
                                           )));
                                 },
                                 child: SizedBox(
@@ -574,6 +575,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                                               .specialities![0]
                                                               .name
                                                               .toString(),
+                                                          price: '',
                                                         )));
                                           },
                                           text: 'View All Psychologist'),

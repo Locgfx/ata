@@ -1,22 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UMainCardWidget.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/Uwidgets.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/model/UModels/user_profile_models/user_order_history.dart';
-import 'package:greymatter/model/UModels/user_psychologist_model.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
 import 'package:greymatter/widgets/buttons.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
-import '../UBookingScreens/UScheduleAppointmentScreen.dart';
+import '../../UWidgets/Uwidgets.dart';
 
-class USessionDetailsScreen extends StatelessWidget {
+class USessionDetailsScreen extends StatefulWidget {
   final ProfileOrderHistoryModel model;
   const USessionDetailsScreen({Key? key, required this.model})
       : super(key: key);
+
+  @override
+  State<USessionDetailsScreen> createState() => _USessionDetailsScreenState();
+}
+
+class _USessionDetailsScreenState extends State<USessionDetailsScreen> {
+  @override
+  void initState() {
+    print(widget.model.rating.toString());
+    print(widget.model.id.toString());
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +54,7 @@ class USessionDetailsScreen extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: Image.network(
-                      model.image.toString(),
+                      widget.model.image.toString(),
                       fit: BoxFit.cover,
                       errorBuilder: (q, w, e) => Image.asset(
                         'assets/images/personss.png',
@@ -60,14 +70,14 @@ class USessionDetailsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        model.name.toString(),
+                        widget.model.name.toString(),
                         style: kManRope_500_16_001314,
                       ),
                       SizedBox(
                         height: 4.h,
                       ),
                       Text(
-                        model.designation.toString(),
+                        widget.model.designation.toString(),
                         style: kManRope_400_12_626A6A,
                       ),
                       SizedBox(
@@ -169,7 +179,7 @@ class USessionDetailsScreen extends StatelessWidget {
                           Text(
                             DateFormat("dd/MM/yyyy, hh:mm a")
                                 .format(DateTime.parse(
-                                    model.bookingDate.toString()))
+                                    widget.model.bookingDate.toString()))
                                 .split(",")
                                 .first,
                             style: kManRope_400_16_626A6A,
@@ -182,7 +192,7 @@ class USessionDetailsScreen extends StatelessWidget {
                           Text(
                             DateFormat("dd/MM/yyyy, hh:mm a")
                                 .format(DateTime.parse(
-                                    model.bookingDate.toString()))
+                                    widget.model.bookingDate.toString()))
                                 .split(",")
                                 .last,
                             style: kManRope_400_12_626A6A,
@@ -216,7 +226,7 @@ class USessionDetailsScreen extends StatelessWidget {
                             style: kManRope_400_16_626A6A,
                           ),
                           Text(
-                            model.issueName.toString(),
+                            widget.model.issueName.toString(),
                             style: kManRope_400_16_626A6A,
                           ),
                         ],
@@ -232,7 +242,7 @@ class USessionDetailsScreen extends StatelessWidget {
                             style: kManRope_400_16_626A6A,
                           ),
                           Text(
-                            'INR ${model.pricing}',
+                            'INR ${widget.model.pricing}',
                             style: kManRope_400_16_626A6A,
                           ),
                         ],
@@ -252,8 +262,8 @@ class USessionDetailsScreen extends StatelessWidget {
                 height: 24.h,
               ),
               StarRatingWidget(
-                rating: model.rating.toString(),
-                bookingId: model.id.toString(),
+                rating: "3",
+                bookingId: "2",
               ),
               Spacer(),
               Padding(

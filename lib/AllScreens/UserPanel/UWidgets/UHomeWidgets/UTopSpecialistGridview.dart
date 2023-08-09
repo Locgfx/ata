@@ -69,6 +69,7 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (ctx) => UBookAppointmentScreen(
                               bookingType: widget.bookingType,
+                              docPrice: '',
                             )));
                   },
                   child: Container(
@@ -111,6 +112,7 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
                               issue: specialistModel[index].name.toString(),
                               issueId: specialistModel[index].id.toString(),
                               bookingType: widget.bookingType,
+                              price: '',
                             )));
                   },
                   child: Container(
