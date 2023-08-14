@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,7 @@ import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../widgets/shared/buttons/third_party_button/apple_sign_in_button.dart';
 import '../../../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
 import '../../../OnboardingScreen/onboarding_screen.dart';
 import '../UWelcome/UWelcomeScreen.dart';
@@ -80,7 +82,10 @@ class _ULoginScreenState extends State<ULoginScreen> {
                           if (widget.showBack)
                             InkWell(
                               onTap: () {
-                                Navigator.of(context).pop();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (_) => OnBoardingScreen()));
                               },
                               child: Container(
                                 color: Colors.transparent,
@@ -346,6 +351,8 @@ class _ULoginScreenState extends State<ULoginScreen> {
                           ),
                           SizedBox(height: 24.h),
                           const CustomGoogleSignInButton(),
+                          SizedBox(height: 24.h),
+                          Platform.isIOS ? AppleSigninButton() : SizedBox(),
                           SizedBox(height: 22.h),
                           // ElevatedButton(
                           //     onPressed: () async {

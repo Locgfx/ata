@@ -10,7 +10,6 @@ import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAccountscreen
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UAgreementscreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UHelpandsupport.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UMyActivity.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UOrderhistory.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UPersonalInfoScreen.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_logout_api.dart';
 import 'package:greymatter/constants/colors.dart';
@@ -20,6 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../Apis/UserAPis/user_profile_apis/user_profile_api.dart';
 import '../../../../model/UModels/user_profile_models/user_profile_model.dart';
+import 'UOrderhistory.dart';
 import 'UReferandEarn.dart';
 
 class UProfileScreen extends StatefulWidget {
