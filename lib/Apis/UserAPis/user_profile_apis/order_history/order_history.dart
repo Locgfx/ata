@@ -12,13 +12,11 @@ class ProfileOrderHistory {
     var headers = {'Cookie': 'PHPSESSID=$v'};
     var request = http.Request(
         'GET', Uri.parse('${baseUrl}order-history.php?start=$scroll'));
-
     request.headers.addAll(headers);
-
     http.StreamedResponse response = await request.send();
-
     var resp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
+      // print(resp);
       return resp;
     } else if (response.statusCode == 201) {
       // print(response.reasonPhrase);

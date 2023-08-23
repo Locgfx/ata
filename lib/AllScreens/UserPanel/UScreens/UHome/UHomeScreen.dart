@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/UBookingConfirmationScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivity.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllPsychologistScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllVideosScreen.dart';
@@ -36,6 +35,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../Apis/Notifications_apis/notification_repo.dart';
+import '../UExploreScreens/UBookingConfirmationScreen.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
 
 class UHomeScreen extends StatefulWidget {

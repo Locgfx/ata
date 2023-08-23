@@ -20,7 +20,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../../Apis/UserAPis/user_profile_apis/user_profile_api.dart';
 import '../../../../model/UModels/user_profile_models/user_profile_model.dart';
 import 'UOrderhistory.dart';
-import 'UReferandEarn.dart';
 
 class UProfileScreen extends StatefulWidget {
   const UProfileScreen({Key? key}) : super(key: key);
@@ -284,27 +283,27 @@ class _UProfileScreenState extends State<UProfileScreen> {
                         ),
                       ),
                       SizedBox(height: 8.h),
-                      GestureDetector(
-                        behavior: HitTestBehavior.translucent,
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const ReferAndEarn()));
-                        },
-                        child: SizedBox(
-                          height: 48.h,
-                          width: 380.w,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Refer and Earn',
-                                style: kManRope_500_16_001314,
-                              ),
-                              arrow(),
-                            ],
-                          ),
-                        ),
-                      ),
+                      // GestureDetector(
+                      //   behavior: HitTestBehavior.translucent,
+                      //   onTap: () {
+                      //     Navigator.of(context).push(MaterialPageRoute(
+                      //         builder: (context) => const ReferAndEarn()));
+                      //   },
+                      //   child: SizedBox(
+                      //     height: 48.h,
+                      //     width: 380.w,
+                      //     child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //       children: [
+                      //         Text(
+                      //           'Refer and Earn',
+                      //           style: kManRope_500_16_001314,
+                      //         ),
+                      //         arrow(),
+                      //       ],
+                      //     ),
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 40.h,
                       ),
@@ -445,7 +444,7 @@ class _UProfileLogoutBottomSheet extends State<UProfileLogoutBottomSheet> {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
-            padding: EdgeInsets.only(top: 20.h),
+            padding: EdgeInsets.only(top: 20.h, bottom: 24.h),
             // color: CupertinoColors.systemBackground.resolveFrom(context),
             child: Column(
               children: [

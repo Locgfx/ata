@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UProfile/UInvoicedetails.dart';
@@ -31,13 +29,13 @@ class _UOrderHistoryState extends State<UOrderHistory> {
     _isLoading = true;
     final resp = ProfileOrderHistory().get(scroll: "0");
     resp.then((value) {
-      log(value.toString());
+      // log(value.toString());
       setState(() {
         for (var v in value) {
           orderList.add(ProfileOrderHistoryModel.fromJson(v));
         }
         orderList.removeWhere(
-            (element) => element.status.toString().toLowerCase() != "s");
+            (element) => element.status.toString().toLowerCase() == 'u');
         _isLoading = false;
       });
     });
@@ -46,6 +44,7 @@ class _UOrderHistoryState extends State<UOrderHistory> {
   @override
   void initState() {
     _getData();
+
     super.initState();
   }
 
@@ -143,10 +142,15 @@ class _UOrderHistoryState extends State<UOrderHistory> {
                                                 .toString())),
                                         style: kManRope_400_16_626A6A,
                                       ),
-                                      Text(
-                                        "successful",
-                                        style: kManRope_500_12_006D77,
-                                      ),
+                                      orderList[index].status.toString() == "c"
+                                          ? Text(
+                                              'cancelled',
+                                              style: kManRope_500_12_F8474E,
+                                            )
+                                          : Text(
+                                              "successful",
+                                              style: kManRope_500_12_006D77,
+                                            ),
                                     ],
                                   ),
                                 ],

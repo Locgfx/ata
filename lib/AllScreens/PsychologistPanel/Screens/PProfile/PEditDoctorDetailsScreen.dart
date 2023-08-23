@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,13 +7,16 @@ import 'package:greymatter/Apis/DoctorApis/doctor_profile_apis/doctor_profile_ap
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
+import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/PModels/counselor_profile_model/counselor_profile_model.dart';
 import 'package:greymatter/widgets/BottomSheets/LanguageBottomSheet.dart';
 import 'package:greymatter/widgets/BottomSheets/SpecializationBottomSheet.dart';
 import 'package:greymatter/widgets/buttons.dart';
 
+import '../../../../Apis/DoctorApis/psychologist_profile_api.dart';
 import '../../../../Apis/UserAPis/user_home_apis/user_specialist_model.dart';
 import '../../../../Apis/UserAPis/user_home_apis/userspecialistapi.dart';
+import '../../../../model/UModels/user_psychologist_model.dart';
 
 class PEditDoctorProfileScreen extends StatefulWidget {
   final CounselorProfileModel model;
@@ -75,13 +76,16 @@ class _PEditDoctorProfileScreenState extends State<PEditDoctorProfileScreen> {
     _aboutController.text = widget.model.about.toString();
     _experienceController.text = widget.model.totalExprience.toString();
     _priceController.text = widget.model.pricing.toString();
-    selectedSpecialistModel = widget.model.specialities!;
+    // selectedSpecialistModel = widget.model.specialities!;
     selectedLanguageList = widget.model.language!;
-    speciality =
-        widget.model.specialities!.map((c) => c.name).toList().join(',');
+    speciality = widget.model.specialities.toString();
+    // speciality =
+    // widget.model.specialities!.map((c) => c.name).toList().join(',');
     lang = widget.model.language!.map((c) => c.name).toList().join(',');
     getTopSpecialistData();
     _getLanguages();
+
+    print(speciality);
     super.initState();
   }
 
@@ -118,155 +122,192 @@ class _PEditDoctorProfileScreenState extends State<PEditDoctorProfileScreen> {
     });
   }
 
+  List<UPsychologistModel> upsyModel = [];
+  getPyschologistProfile() {
+    specialitiesLoading = true;
+    final resp = PyschologistProfileApi().get();
+    resp.then((value) {
+      print(value);
+      setState(() {
+        for (var v in value) {
+          upsyModel.add(UPsychologistModel.fromJson(v));
+        }
+        specialitiesLoading = false;
+      });
+    });
+  }
+
+  var list = [];
+
   @override
   Widget build(BuildContext context) {
     return isreadable
-        ? Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 36.h,
-              ),
-              Text(
-                'About',
-                style: kManRope_400_16_626A6A,
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.model.about.toString(),
-                    style: kManRope_400_16_001314,
-                  ),
-                  SizedBox(height: 20),
-                  BlackUnderline(),
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                'Total experience',
-                style: kManRope_400_16_626A6A,
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "${widget.model.totalExprience.toString()} yrs",
-                    style: kManRope_400_16_001314,
-                  ),
-                  SizedBox(height: 20),
-                  BlackUnderline(),
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                'Specialization',
-                style: kManRope_400_16_626A6A,
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    speciality,
-                    style: kManRope_400_16_001314,
-                  ),
-                  SizedBox(height: 20),
-                  BlackUnderline(),
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                'Language',
-                style: kManRope_400_16_626A6A,
-              ),
-              SizedBox(
-                height: 8.h,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    lang,
-                    style: kManRope_400_16_001314,
-                  ),
-                  SizedBox(height: 20),
-                  BlackUnderline(),
-                ],
-              ),
-              SizedBox(
-                height: 20.h,
-              ),
-              Text(
-                'Pricing',
-                style: kManRope_400_16_626A6A,
-              ),
-              SizedBox(
-                height: 8,
-              ),
-              Container(
-                height: 39.h,
-                decoration: BoxDecoration(
-                  color: kE2F2F4,
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+        ? TextFieldUnFocusOnTap(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 36.h,
                 ),
-                child: Center(
-                  child: TextField(
-                    readOnly: true,
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                        isDense: true,
-                        contentPadding: EdgeInsets.only(
-                          left: 10,
-                        ),
-                        border: InputBorder.none,
-                        hintStyle: kManRope_400_16_001314,
-                        hintText: 'Rs ${widget.model.pricing.toString()}'),
-                  ),
+                Text(
+                  'About',
+                  style: kManRope_400_16_626A6A,
                 ),
-              ),
-              SizedBox(
-                height: 24.h,
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: 20.h),
-                child: Center(
-                  child: SizedBox(
-                    height: 56.h,
-                    child: MainButton(
-                        onPressed: () {
-                          setState(() {
-                            isreadable = false;
-                          });
-                        },
-                        child: Padding(
-                            padding: EdgeInsets.only(left: 63.w, right: 63.w),
-                            child: Text(
-                              "Edit",
-                              style: kManRope_500_18_FFFFF,
-                            )),
-                        color: k006D77,
-                        shape: CustomDecoration().smallButtonDecoration()),
+                SizedBox(
+                  height: 8.h,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.model.about.toString(),
+                      style: kManRope_400_16_001314,
+                    ),
+                    SizedBox(height: 20),
+                    BlackUnderline(),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  'Total experience',
+                  style: kManRope_400_16_626A6A,
+                ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${widget.model.totalExprience.toString()} yrs",
+                      style: kManRope_400_16_001314,
+                    ),
+                    SizedBox(height: 20),
+                    BlackUnderline(),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  'Specialization',
+                  style: kManRope_400_16_626A6A,
+                ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // ListView.builder(
+                    //     shrinkWrap: true,
+                    //     itemCount: upsyModel.length,
+                    //     scrollDirection: Axis.horizontal,
+                    //     itemBuilder: (_, i) {
+                    //       return
+                    //       Text(
+                    //         // speciality,
+                    //         // "bh",
+                    //         upsyModel[i].specialities![i].name.toString(),
+                    //
+                    //         // widget.model.specialities.toString(),
+                    //         style: kManRope_400_16_001314,
+                    //       );
+                    //     }),
+                    Text(
+                      "speciality",
+
+                      // widget.model.specialities.toString(),
+                      style: kManRope_400_16_001314,
+                    ),
+                    SizedBox(height: 20),
+                    BlackUnderline(),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  'Language',
+                  style: kManRope_400_16_626A6A,
+                ),
+                SizedBox(
+                  height: 8.h,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      lang,
+                      style: kManRope_400_16_001314,
+                    ),
+                    SizedBox(height: 20),
+                    BlackUnderline(),
+                  ],
+                ),
+                SizedBox(
+                  height: 20.h,
+                ),
+                Text(
+                  'Pricing',
+                  style: kManRope_400_16_626A6A,
+                ),
+                SizedBox(
+                  height: 8,
+                ),
+                Container(
+                  height: 39.h,
+                  decoration: BoxDecoration(
+                    color: kE2F2F4,
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                  ),
+                  child: Center(
+                    child: TextField(
+                      readOnly: true,
+                      cursorColor: Colors.white,
+                      decoration: InputDecoration(
+                          isDense: true,
+                          contentPadding: EdgeInsets.only(
+                            left: 10,
+                          ),
+                          border: InputBorder.none,
+                          hintStyle: kManRope_400_16_001314,
+                          hintText: 'Rs ${widget.model.pricing.toString()}'),
+                    ),
                   ),
                 ),
-              )
-            ],
+                SizedBox(
+                  height: 24.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: Center(
+                    child: SizedBox(
+                      height: 56.h,
+                      child: MainButton(
+                          onPressed: () {
+                            setState(() {
+                              isreadable = false;
+                            });
+                          },
+                          child: Padding(
+                              padding: EdgeInsets.only(left: 63.w, right: 63.w),
+                              child: Text(
+                                "Edit",
+                                style: kManRope_500_18_FFFFF,
+                              )),
+                          color: k006D77,
+                          shape: CustomDecoration().smallButtonDecoration()),
+                    ),
+                  ),
+                )
+              ],
+            ),
           )
-        : Column(
+        : TextFieldUnFocusOnTap(
+            child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
@@ -605,7 +646,7 @@ class _PEditDoctorProfileScreenState extends State<PEditDoctorProfileScreen> {
                 ),
               )
             ],
-          );
+          ));
   }
 
   bool _btnLoading = false;

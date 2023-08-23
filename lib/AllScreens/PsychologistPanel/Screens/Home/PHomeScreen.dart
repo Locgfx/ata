@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/cancelledlist.dart';
@@ -57,6 +58,7 @@ class _PHomeScreenState extends State<PHomeScreen>
   void dispose() {
     _pageController.dispose();
     _timer?.cancel();
+    controller.dispose();
     super.dispose();
   }
 
@@ -96,6 +98,10 @@ class _PHomeScreenState extends State<PHomeScreen>
   bool flag = true;
 
   bool isLoading = false;
+
+  final CardSwiperController controller = CardSwiperController();
+  final cards = candidates.map(ExampleCard.new).toList();
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -405,9 +411,258 @@ class _PHomeScreenState extends State<PHomeScreen>
               ],
             ),
           ),
+          // Center(
+          //   child: CardSwiper(
+          //     controller: controller,
+          //     cardsCount: cards.length,
+          //     onSwipe: _onSwipe,
+          //     onUndo: _onUndo,
+          //     numberOfCardsDisplayed: 3,
+          //     backCardOffset: const Offset(40, 40),
+          //     padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          //     cardBuilder: (
+          //       context,
+          //       index,
+          //       horizontalThresholdPercentage,
+          //       verticalThresholdPercentage,
+          //     ) =>
+          //         cards[index],
+          //   ),
+          // ),
+          // Swiper(
+          //   loop: false,
+          //   itemBuilder: (BuildContext context, int index) {
+          //     return BackdropFilter(
+          //       filter: ImageFilter.blur(
+          //           sigmaX: 1.0, sigmaY: 1.0, tileMode: TileMode.clamp),
+          //       child: Material(
+          //         elevation: 3,
+          //         color: Colors.white,
+          //         borderRadius: BorderRadius.circular(12),
+          //         child: Container(
+          //           padding: EdgeInsets.all(16),
+          //           decoration: BoxDecoration(
+          //               color: Colors.white,
+          //               borderRadius: BorderRadius.circular(12)),
+          //           child: Column(
+          //             children: [
+          //               Row(
+          //                 children: [
+          //                   Expanded(
+          //                     flex: 4,
+          //                     child: Text(
+          //                       "New appointment request received",
+          //                       style: kManRope_600_24_07000A,
+          //                     ),
+          //                   ),
+          //                   Expanded(
+          //                     child: Container(
+          //                         height: 36,
+          //                         width: 36,
+          //                         decoration: BoxDecoration(
+          //                             color: kE1EEF2, shape: BoxShape.circle),
+          //                         child: Center(
+          //                           child: Text(
+          //                             "5",
+          //                             style: kManRope_700_16_006D77,
+          //                           ),
+          //                         )),
+          //                   ),
+          //                 ],
+          //               ),
+          //               SizedBox(height: 16),
+          //               Row(
+          //                 children: [
+          //                   Container(
+          //                     height: 80,
+          //                     width: 80,
+          //                     decoration: BoxDecoration(
+          //                         borderRadius: BorderRadius.circular(16)),
+          //                     child: Image.asset(
+          //                         "assets/images/WF Image Placeholder.png"),
+          //                   ),
+          //                   SizedBox(width: 16),
+          //                   Column(
+          //                     crossAxisAlignment: CrossAxisAlignment.start,
+          //                     children: [
+          //                       Text(
+          //                         "Cody Fisher",
+          //                         style: kManRope_500_16_Black,
+          //                       ),
+          //                       Text("Anxiety", style: kManRope_400_16_7D7878),
+          //                       Text("18-7-2023, 12:00 Pm",
+          //                           style: kManRope_400_16_7D7878),
+          //                     ],
+          //                   )
+          //                 ],
+          //               ),
+          //               SizedBox(height: 16),
+          //               Container(
+          //                 height: 2,
+          //                 width: 1.sw,
+          //                 decoration: BoxDecoration(
+          //                     color: k626A6A.withOpacity(0.08),
+          //                     borderRadius: BorderRadius.circular(1)),
+          //               ),
+          //               SizedBox(
+          //                 height: 16,
+          //               ),
+          //               Row(
+          //                 children: [
+          //                   Expanded(
+          //                     child: SizedBox(
+          //                       height: 56,
+          //                       child: MainButton(
+          //                           onPressed: () {},
+          //                           child: Text(
+          //                             "Decline",
+          //                             style: kManRope_500_16_B64C4C,
+          //                           ),
+          //                           color: Colors.white,
+          //                           shape: RoundedRectangleBorder(
+          //                               side: BorderSide(
+          //                                   width: 1, color: kB64C4C),
+          //                               borderRadius:
+          //                                   BorderRadius.circular(10))),
+          //                     ),
+          //                   ),
+          //                   SizedBox(width: 16),
+          //                   Expanded(
+          //                     child: SizedBox(
+          //                       height: 56,
+          //                       child: MainButton(
+          //                           onPressed: () {},
+          //                           child: Text(
+          //                             "Accept",
+          //                             style: kManRope_500_16_white,
+          //                           ),
+          //                           color: k006D77,
+          //                           shape: RoundedRectangleBorder(
+          //                               borderRadius:
+          //                                   BorderRadius.circular(10))),
+          //                     ),
+          //                   )
+          //                 ],
+          //               )
+          //             ],
+          //           ),
+          //         ),
+          //       ),
+          //     );
+          //   },
+          //   itemCount: 5,
+          //   itemWidth: 1.sw,
+          //   itemHeight: 300.0,
+          //   layout: SwiperLayout.TINDER,
+          // ),
+
           if (isLoading) LoadingWidget()
         ],
       ),
     );
   }
+
+  bool _onSwipe(
+    int previousIndex,
+    int? currentIndex,
+    CardSwiperDirection direction,
+  ) {
+    debugPrint(
+      'The card $previousIndex was swiped to the ${direction.name}. Now the card $currentIndex is on top',
+    );
+    return true;
+  }
+
+  bool _onUndo(
+    int? previousIndex,
+    int currentIndex,
+    CardSwiperDirection direction,
+  ) {
+    debugPrint(
+      'The card $currentIndex was undod from the ${direction.name}',
+    );
+    return true;
+  }
 }
+
+class ExampleCard extends StatelessWidget {
+  final ExampleCandidateModel candidate;
+
+  const ExampleCard(
+    this.candidate, {
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 400,
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.all(Radius.circular(10)),
+        color: Colors.redAccent,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 3,
+            blurRadius: 7,
+            offset: const Offset(0, 3),
+          )
+        ],
+      ),
+      alignment: Alignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Flexible(
+            child: Container(
+              height: 400,
+              decoration: BoxDecoration(),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ExampleCandidateModel {
+  String name;
+  String job;
+  String city;
+  List<Color> color;
+
+  ExampleCandidateModel({
+    required this.name,
+    required this.job,
+    required this.city,
+    required this.color,
+  });
+}
+
+final List<ExampleCandidateModel> candidates = [
+  ExampleCandidateModel(
+    name: 'One, 1',
+    job: 'Developer',
+    city: 'Areado',
+    color: const [Color(0xFFFF3868), Color(0xFFFFB49A)],
+  ),
+  ExampleCandidateModel(
+    name: 'Two, 2',
+    job: 'Manager',
+    city: 'New York',
+    color: const [Color(0xFF736EFE), Color(0xFF62E4EC)],
+  ),
+  ExampleCandidateModel(
+    name: 'Three, 3',
+    job: 'Engineer',
+    city: 'London',
+    color: const [Color(0xFF2F80ED), Color(0xFF56CCF2)],
+  ),
+  ExampleCandidateModel(
+    name: 'Four, 4',
+    job: 'Designer',
+    city: 'Tokyo',
+    color: const [Color(0xFF0BA4E0), Color(0xFFA9E4BD)],
+  ),
+];

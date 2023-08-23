@@ -491,13 +491,13 @@ class _PProfileLogoutBottomSheet extends State<PProfileLogoutBottomSheet> {
       child: Column(
         children: [
           Container(
-            height: 180.h,
+            // height: 180.h,
             decoration: const BoxDecoration(
               color: kEDF6F9,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
             ),
-            padding: EdgeInsets.only(top: 20.h),
+            padding: EdgeInsets.only(top: 20.h, bottom: 24.h),
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),

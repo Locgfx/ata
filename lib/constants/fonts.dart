@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -66,6 +65,11 @@ final kManRope_500_16_white = GoogleFonts.manrope(
   fontWeight: FontWeight.w500,
   fontSize: 16.sp,
   color: Colors.white,
+);
+final kManRope_500_16_B64C4C = GoogleFonts.manrope(
+  fontWeight: FontWeight.w500,
+  fontSize: 16.sp,
+  color: Color(0xffB64C4C),
 );
 final kManRope_500_14_white = GoogleFonts.manrope(
   fontWeight: FontWeight.w500,
@@ -149,6 +153,11 @@ final kManRope_700_16_001314 = GoogleFonts.manrope(
   fontSize: 16.sp,
   color: k001314,
 );
+final kManRope_700_16_006D77 = GoogleFonts.manrope(
+  fontWeight: FontWeight.w700,
+  fontSize: 16.sp,
+  color: k006D77,
+);
 final kManRope_600_18_white = GoogleFonts.manrope(
   fontWeight: FontWeight.w600,
   fontSize: 18.sp,
@@ -209,6 +218,11 @@ final kManRope_400_10_F8474E = GoogleFonts.manrope(
   fontSize: 10.sp,
   color: kF8474E,
 );
+final kManRope_500_12_F8474E = GoogleFonts.manrope(
+  fontWeight: FontWeight.w500,
+  fontSize: 12.sp,
+  color: kF8474E,
+);
 final kManRope_400_16_1314 = GoogleFonts.manrope(
   fontWeight: FontWeight.w400,
   fontSize: 16.sp,
@@ -255,6 +269,11 @@ final kManRope_400_16_626A6A = GoogleFonts.manrope(
   fontSize: 16.sp,
   color: k626A6A,
 );
+final kManRope_400_16_7D7878 = GoogleFonts.manrope(
+  fontWeight: FontWeight.w400,
+  fontSize: 16.sp,
+  color: k7D7878,
+);
 final kManRope_400_20_626A6A = GoogleFonts.manrope(
   fontWeight: FontWeight.w400,
   fontSize: 20.sp,
@@ -270,10 +289,16 @@ final kManRope_400_12_626A6A = GoogleFonts.manrope(
   fontSize: 12.sp,
   color: k626A6A,
 );
+
 final kManRope_500_16_Black = GoogleFonts.manrope(
   fontWeight: FontWeight.w500,
   fontSize: 16.sp,
   color: Colors.black,
+);
+final kManRope_600_24_07000A = GoogleFonts.manrope(
+  fontWeight: FontWeight.w600,
+  fontSize: 24.sp,
+  color: k07000A,
 );
 final kManRope_400_16_Black = GoogleFonts.manrope(
   fontWeight: FontWeight.w400,

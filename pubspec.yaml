@@ -77,13 +77,10 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   timezone: 0.8.0
   uuid: ^3.0.7
-
-
-
+  flutter_card_swiper: ^6.0.0
   google_sign_in:
   sign_in_with_apple: ^5.0.0
-
-
+  card_swiper: ^3.0.1
 
 
 

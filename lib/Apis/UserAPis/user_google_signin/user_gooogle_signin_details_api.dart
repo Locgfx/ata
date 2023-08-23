@@ -16,6 +16,7 @@ Future<dynamic> googleSigningDetails({
   var prefs = await SharedPreferences.getInstance();
   var v = prefs.getString(Keys().cookie);
   var headers = {'Content-Type': 'application/json', 'Cookie': 'PHPSESSID=$v'};
+  print("token check${v}");
   var request = http.Request(
       'POST',
       Uri.parse(

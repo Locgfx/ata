@@ -24,8 +24,13 @@ class UUpcomingAppointmentCard extends StatefulWidget {
 
 class _UUpcomingAppointmentCardState extends State<UUpcomingAppointmentCard> {
   @override
+  void initState() {
+    widget.data.image.toString();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    //print(widget.data.toJson());
     if (widget.loading) {
       return Opacity(
         opacity: 0.9,
@@ -86,31 +91,35 @@ class _UUpcomingAppointmentCardState extends State<UUpcomingAppointmentCard> {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          clipBehavior: Clip.hardEdge,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          width: 48.w,
-                          height: 48.w,
-                          child: CachedNetworkImage(
-                            imageUrl: widget.data.image,
-                            fit: BoxFit.fill,
-                            placeholder: (context, url) => SpinKitThreeBounce(
-                              color: k006D77,
-                              size: 10,
+                        InkWell(
+                          onTap: () {
+                            print(widget.data.image.toString());
+                          },
+                          child: Container(
+                            clipBehavior: Clip.hardEdge,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
                             ),
-                            errorWidget: (a, b, c) {
-                              return Container(
-                                width: 48.w,
-                                height: 48.w,
-                                clipBehavior: Clip.hardEdge,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Image.asset('assets/images/userP.png'),
-                              );
-                            },
+                            width: 48.w,
+                            height: 48.w,
+                            child: CachedNetworkImage(
+                              imageUrl: widget.data.image,
+                              fit: BoxFit.fill,
+                              placeholder: (context, url) => SpinKitThreeBounce(
+                                color: k006D77,
+                                size: 10,
+                              ),
+                              errorWidget: (a, b, c) {
+                                return Container(
+                                    width: 48.w,
+                                    height: 48.w,
+                                    clipBehavior: Clip.hardEdge,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                    child: Icon(Icons.error));
+                              },
+                            ),
                           ),
                         ),
                         SizedBox(width: 8.w),

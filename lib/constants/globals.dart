@@ -20,6 +20,8 @@ class Globals {
 }
 
 class Keys {
+  final String appleEmail = 'apple_email';
+  final String appleName = 'apple_name';
   final String goalReminderTime = 'goal_reminder_time';
   final String cookie = 'cookies';
   final String email = 'email';
@@ -45,4 +47,20 @@ class Keys {
   final String fcmToken = 'fcmToken';
   final String loginWith = 'loginWith';
   final String notificationValue = 'NotificationValue';
+}
+
+class TextFieldUnFocusOnTap extends StatelessWidget {
+  final Widget child;
+  const TextFieldUnFocusOnTap({Key? key, required this.child})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: child,
+    );
+  }
 }

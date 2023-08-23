@@ -39,11 +39,13 @@ class EditCounselorInfo {
       "specialities": specialityId
     });
     request.headers.addAll(headers);
-
+    print(request.body);
     http.StreamedResponse response = await request.send();
-
     var rsp = jsonDecode(await response.stream.bytesToString());
     if (response.statusCode == 200) {
+      print(rsp);
+      print(response.reasonPhrase);
+
       return rsp;
     } else {
       print(response.reasonPhrase);

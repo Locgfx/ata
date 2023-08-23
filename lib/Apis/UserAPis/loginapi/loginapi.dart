@@ -20,15 +20,24 @@ class UserLoginApi {
     var request =
         http.Request('POST', Uri.parse('$kAPIConst/api-user/login-user.php'));
     if (loginWith == "google") {
-      request.body = json.encode(
-          {"username": username, "password": password, "login_with": "google"});
+      request.body = json.encode({
+        "username": username,
+        "password": password,
+        "login_with": "google",
+      });
+    } else if (loginWith == "apple") {
+      request.body = json.encode({
+        "username": username,
+        "password": password,
+        "login_with": "apple",
+      });
     } else {
       request.body = json.encode({
         "username": username,
         "password": password,
       });
     }
-
+    print(request.body);
     //print(request.headers);
     // request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();

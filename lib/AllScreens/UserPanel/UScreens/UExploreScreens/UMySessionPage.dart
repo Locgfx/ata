@@ -52,9 +52,9 @@ class _UMySessionPageState extends State<UMySessionPage> {
           print(upcomingSessions.toString());
         }
         // loading = false;
-        // upcomingSessions.removeWhere((element) =>
-        //     DateTime.parse("${element.date} ${element.timeSlot}")
-        //         .isBefore(DateTime.now()));
+        upcomingSessions.removeWhere((element) =>
+            DateTime.parse("${element.date} ${element.timeSlot}")
+                .isBefore(DateTime.now()));
       });
     });
     //     .then((value) {
@@ -104,6 +104,8 @@ class _UMySessionPageState extends State<UMySessionPage> {
           allSessions.add(ProfileOrderHistoryModel.fromJson(v));
           print(allSessions.length);
         }
+        allSessions.removeWhere(
+            (element) => element.status.toString().toLowerCase() == 'u');
         loading = false;
       });
     });
@@ -120,6 +122,8 @@ class _UMySessionPageState extends State<UMySessionPage> {
           allSessions.add(ProfileOrderHistoryModel.fromJson(v));
           print(allSessions.length);
         }
+        allSessions.removeWhere(
+            (element) => element.status.toString().toLowerCase() == 'u');
         loading = false;
       });
     });
@@ -195,10 +199,7 @@ class _UMySessionPageState extends State<UMySessionPage> {
                                                 .toString(),
                                             fit: BoxFit.cover,
                                             errorBuilder: (q, w, e) =>
-                                                Image.asset(
-                                              'assets/images/userP.png',
-                                              fit: BoxFit.cover,
-                                            ),
+                                                Icon(Icons.error),
                                           )),
                                       SizedBox(
                                         width: 12.w,
