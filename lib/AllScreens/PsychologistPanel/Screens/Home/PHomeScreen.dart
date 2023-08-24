@@ -1,12 +1,17 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/cancelledlist.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/completedlist.dart';
 import 'package:greymatter/AllScreens/PsychologistPanel/Screens/Home/PMeetingScreens/upcominglist.dart';
@@ -18,11 +23,15 @@ import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/model/PModels/home_models/total_revenue_model/total_revenue_model.dart';
 import 'package:greymatter/widgets/loadingWidget.dart';
 import 'package:greymatter/widgets/shimmerLoader.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../Apis/DoctorApis/home_dialogg_apis/psychologist_upcoming_booking.dart';
 import '../../../../Apis/Notifications_apis/seen_notification_repo.dart';
 import '../../../../constants/fonts.dart';
 import '../../../../constants/globals.dart';
+import '../../../../model/PModels/home_models/psychologist_upcoming_model.dart';
+import '../../../../widgets/buttons.dart';
 
 class PHomeScreen extends StatefulWidget {
   const PHomeScreen({Key? key}) : super(key: key);
@@ -51,6 +60,7 @@ class _PHomeScreenState extends State<PHomeScreen>
       setState(() {});
       log(_newNotification.toString());
     });
+    getPsychologistUpcomingBooking();
     super.initState();
   }
 
@@ -101,6 +111,27 @@ class _PHomeScreenState extends State<PHomeScreen>
 
   final CardSwiperController controller = CardSwiperController();
   final cards = candidates.map(ExampleCard.new).toList();
+
+  List<PsychologistUpcomingBookingModel> upcomingBooking = [];
+  bool loading = false;
+
+  getPsychologistUpcomingBooking() {
+    loading = true;
+    final resp = PsychologistUpcomingApi();
+    upcomingBooking.clear();
+    resp.then((value) {
+      log(value.toString() + "hhh");
+      if (mounted) {
+        setState(() {
+          for (var v in value) {
+            upcomingBooking.add(PsychologistUpcomingBookingModel.fromJson(v));
+          }
+          log(upcomingBooking.length.toString());
+          loading = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -411,151 +442,244 @@ class _PHomeScreenState extends State<PHomeScreen>
               ],
             ),
           ),
-          // Center(
-          //   child: CardSwiper(
-          //     controller: controller,
-          //     cardsCount: cards.length,
-          //     onSwipe: _onSwipe,
-          //     onUndo: _onUndo,
-          //     numberOfCardsDisplayed: 3,
-          //     backCardOffset: const Offset(40, 40),
-          //     padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          //     cardBuilder: (
-          //       context,
-          //       index,
-          //       horizontalThresholdPercentage,
-          //       verticalThresholdPercentage,
-          //     ) =>
-          //         cards[index],
-          //   ),
-          // ),
-          // Swiper(
-          //   loop: false,
-          //   itemBuilder: (BuildContext context, int index) {
-          //     return BackdropFilter(
-          //       filter: ImageFilter.blur(
-          //           sigmaX: 1.0, sigmaY: 1.0, tileMode: TileMode.clamp),
-          //       child: Material(
-          //         elevation: 3,
-          //         color: Colors.white,
-          //         borderRadius: BorderRadius.circular(12),
-          //         child: Container(
-          //           padding: EdgeInsets.all(16),
-          //           decoration: BoxDecoration(
-          //               color: Colors.white,
-          //               borderRadius: BorderRadius.circular(12)),
-          //           child: Column(
-          //             children: [
-          //               Row(
-          //                 children: [
-          //                   Expanded(
-          //                     flex: 4,
-          //                     child: Text(
-          //                       "New appointment request received",
-          //                       style: kManRope_600_24_07000A,
-          //                     ),
-          //                   ),
-          //                   Expanded(
-          //                     child: Container(
-          //                         height: 36,
-          //                         width: 36,
-          //                         decoration: BoxDecoration(
-          //                             color: kE1EEF2, shape: BoxShape.circle),
-          //                         child: Center(
-          //                           child: Text(
-          //                             "5",
-          //                             style: kManRope_700_16_006D77,
-          //                           ),
-          //                         )),
-          //                   ),
-          //                 ],
-          //               ),
-          //               SizedBox(height: 16),
-          //               Row(
-          //                 children: [
-          //                   Container(
-          //                     height: 80,
-          //                     width: 80,
-          //                     decoration: BoxDecoration(
-          //                         borderRadius: BorderRadius.circular(16)),
-          //                     child: Image.asset(
-          //                         "assets/images/WF Image Placeholder.png"),
-          //                   ),
-          //                   SizedBox(width: 16),
-          //                   Column(
-          //                     crossAxisAlignment: CrossAxisAlignment.start,
-          //                     children: [
-          //                       Text(
-          //                         "Cody Fisher",
-          //                         style: kManRope_500_16_Black,
-          //                       ),
-          //                       Text("Anxiety", style: kManRope_400_16_7D7878),
-          //                       Text("18-7-2023, 12:00 Pm",
-          //                           style: kManRope_400_16_7D7878),
-          //                     ],
-          //                   )
-          //                 ],
-          //               ),
-          //               SizedBox(height: 16),
-          //               Container(
-          //                 height: 2,
-          //                 width: 1.sw,
-          //                 decoration: BoxDecoration(
-          //                     color: k626A6A.withOpacity(0.08),
-          //                     borderRadius: BorderRadius.circular(1)),
-          //               ),
-          //               SizedBox(
-          //                 height: 16,
-          //               ),
-          //               Row(
-          //                 children: [
-          //                   Expanded(
-          //                     child: SizedBox(
-          //                       height: 56,
-          //                       child: MainButton(
-          //                           onPressed: () {},
-          //                           child: Text(
-          //                             "Decline",
-          //                             style: kManRope_500_16_B64C4C,
-          //                           ),
-          //                           color: Colors.white,
-          //                           shape: RoundedRectangleBorder(
-          //                               side: BorderSide(
-          //                                   width: 1, color: kB64C4C),
-          //                               borderRadius:
-          //                                   BorderRadius.circular(10))),
-          //                     ),
-          //                   ),
-          //                   SizedBox(width: 16),
-          //                   Expanded(
-          //                     child: SizedBox(
-          //                       height: 56,
-          //                       child: MainButton(
-          //                           onPressed: () {},
-          //                           child: Text(
-          //                             "Accept",
-          //                             style: kManRope_500_16_white,
-          //                           ),
-          //                           color: k006D77,
-          //                           shape: RoundedRectangleBorder(
-          //                               borderRadius:
-          //                                   BorderRadius.circular(10))),
-          //                     ),
-          //                   )
-          //                 ],
-          //               )
-          //             ],
-          //           ),
-          //         ),
-          //       ),
-          //     );
-          //   },
-          //   itemCount: 5,
-          //   itemWidth: 1.sw,
-          //   itemHeight: 300.0,
-          //   layout: SwiperLayout.TINDER,
-          // ),
-
+          upcomingBooking.isEmpty
+              ? SizedBox()
+              : loading
+                  ? SpinKitThreeBounce(
+                      color: k006D77,
+                      size: 10,
+                    )
+                  : Swiper(
+                      loop: false,
+                      itemCount: upcomingBooking.length,
+                      itemWidth: 1.sw,
+                      itemHeight: 300.0,
+                      layout: SwiperLayout.TINDER,
+                      itemBuilder: (BuildContext context, int index) {
+                        return BackdropFilter(
+                          filter: ImageFilter.blur(
+                              sigmaX: 1.0,
+                              sigmaY: 1.0,
+                              tileMode: TileMode.clamp),
+                          child: Material(
+                            elevation: 3,
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                            child: Container(
+                              padding: EdgeInsets.all(16),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 4,
+                                        child: Text(
+                                          "New appointment request received",
+                                          style: kManRope_600_24_07000A,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Container(
+                                            height: 36,
+                                            width: 36,
+                                            decoration: BoxDecoration(
+                                                color: kE1EEF2,
+                                                shape: BoxShape.circle),
+                                            child: Center(
+                                              child: Text(
+                                                upcomingBooking[index]
+                                                    .id
+                                                    .toString(),
+                                                style: kManRope_700_16_006D77,
+                                              ),
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(height: 16),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        height: 80,
+                                        width: 80,
+                                        clipBehavior: Clip.hardEdge,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16)),
+                                        child: CachedNetworkImage(
+                                          imageUrl: upcomingBooking[index]
+                                              .photo
+                                              .toString(),
+                                          fit: BoxFit.cover,
+                                          placeholder: (context, url) => Center(
+                                            child: SpinKitThreeBounce(
+                                              color: k006D77,
+                                              size: 10,
+                                            ),
+                                          ),
+                                          errorWidget: (context, url, error) =>
+                                              Icon(Icons.error),
+                                        ),
+                                      ),
+                                      SizedBox(width: 16),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            upcomingBooking[index]
+                                                .name
+                                                .toString(),
+                                            style: kManRope_500_16_Black,
+                                          ),
+                                          Text(
+                                              upcomingBooking[index]
+                                                  .issueName
+                                                  .toString(),
+                                              style: kManRope_400_16_7D7878),
+                                          Text(
+                                              DateFormat.yMMMd()
+                                                  .add_jm()
+                                                  .format(DateTime.parse(
+                                                      "${upcomingBooking[index].date.toString()}"
+                                                      " ${upcomingBooking[index].timeSlot.toString()}")),
+                                              style: kManRope_400_16_7D7878),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(height: 16),
+                                  Container(
+                                    height: 2,
+                                    width: 1.sw,
+                                    decoration: BoxDecoration(
+                                        color: k626A6A.withOpacity(0.08),
+                                        borderRadius: BorderRadius.circular(1)),
+                                  ),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 56,
+                                          child: MainButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  loading = true;
+                                                });
+                                                final resp =
+                                                    psychologistAcceptAndDeclineBookApi(
+                                                        bookingId:
+                                                            upcomingBooking[
+                                                                    index]
+                                                                .id
+                                                                .toString(),
+                                                        confirmStatus: '2');
+                                                resp.then((value) async {
+                                                  log(value.toString());
+                                                  setState(() {
+                                                    loading = false;
+                                                  });
+                                                  if (value['status'] ==
+                                                      false) {
+                                                    Fluttertoast.showToast(
+                                                        msg: value['error']);
+                                                  } else {
+                                                    setState(() {
+                                                      loading
+                                                          ? SpinKitThreeBounce(
+                                                              color: k006D77,
+                                                              size: 10,
+                                                            )
+                                                          : getPsychologistUpcomingBooking();
+                                                    });
+                                                  }
+                                                });
+                                              },
+                                              child: Text(
+                                                "Decline",
+                                                style: kManRope_500_16_B64C4C,
+                                              ),
+                                              color: Colors.white,
+                                              shape: RoundedRectangleBorder(
+                                                  side: BorderSide(
+                                                      width: 1, color: kB64C4C),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10))),
+                                        ),
+                                      ),
+                                      SizedBox(width: 16),
+                                      Expanded(
+                                        child: SizedBox(
+                                          height: 56,
+                                          child: MainButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  loading
+                                                      ? SpinKitThreeBounce(
+                                                          color: k006D77,
+                                                          size: 10,
+                                                        )
+                                                      : getPsychologistUpcomingBooking();
+                                                });
+                                                setState(() {
+                                                  loading = true;
+                                                });
+                                                final resp =
+                                                    psychologistAcceptAndDeclineBookApi(
+                                                        bookingId:
+                                                            upcomingBooking[
+                                                                    index]
+                                                                .id
+                                                                .toString(),
+                                                        confirmStatus: '1');
+                                                resp.then((value) async {
+                                                  log(value.toString());
+                                                  setState(() {
+                                                    loading = false;
+                                                  });
+                                                  if (value['status'] ==
+                                                      false) {
+                                                    Fluttertoast.showToast(
+                                                        msg: value['error']);
+                                                  } else {
+                                                    setState(() {
+                                                      loading
+                                                          ? SpinKitThreeBounce(
+                                                              color: k006D77,
+                                                              size: 10,
+                                                            )
+                                                          : getPsychologistUpcomingBooking();
+                                                    });
+                                                  }
+                                                });
+                                              },
+                                              child: Text(
+                                                "Accept",
+                                                style: kManRope_500_16_white,
+                                              ),
+                                              color: k006D77,
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10))),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
           if (isLoading) LoadingWidget()
         ],
       ),

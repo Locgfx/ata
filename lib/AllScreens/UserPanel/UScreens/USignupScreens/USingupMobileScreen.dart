@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/USignupScreens/USingupEnterOtpScreen.dart';
-import 'package:greymatter/Apis/UserAPis/usignupapi/generateotpapi.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart';
 import 'package:greymatter/widgets/shared/buttons/custom_deactive_text_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../../Apis/UserAPis/usignupapi/generateotpapi.dart';
 import '../../../../widgets/shared/buttons/third_party_button/apple_sign_in_button.dart';
 import '../../../../widgets/shared/buttons/third_party_button/google_sign_in_button.dart';
+import 'USingupEnterOtpScreen.dart';
 
 class USignupMobileScreen extends StatefulWidget {
   USignupMobileScreen({Key? key}) : super(key: key);
@@ -69,39 +69,86 @@ class _USignupMobileScreenState extends State<USignupMobileScreen> {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              TextFormField(
-                                onChanged: (val) {
-                                  if (val.isNotEmpty) {
-                                    setState(() {
-                                      mobileEmpty = false;
-                                    });
-                                  }
-                                  if (_mobileController.text.trim().length ==
-                                      10) {
-                                    FocusScope.of(context).unfocus();
-                                  }
-                                },
-                                keyboardType: TextInputType.number,
-                                validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "Please Enter a Phone Number";
-                                  } else if (!RegExp(
-                                          r'^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$')
-                                      .hasMatch(value)) {
-                                    return "Please Enter a Valid Phone Number";
-                                  }
-                                },
-                                // validator: (val) {
-                                //   if (_mobileController.text.trim().isEmpty) {
-                                //     return 'Please enter a valid mobile number';
-                                //   } else {
-                                //     return null;
-                                //   }
-                                // },
-                                controller: _mobileController,
-                                decoration: InputDecoration(
-                                  labelText: 'Mobile Number',
-                                  labelStyle: kManRope_400_16_626A6A,
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/icons/indiaflg.jpg",
+                                      height: 42,
+                                      width: 42,
+                                      fit: BoxFit.scaleDown,
+                                    ),
+                                    SizedBox(width: 16),
+                                    Expanded(
+                                      child: TextFormField(
+                                        onChanged: (val) {
+                                          if (val.isNotEmpty) {
+                                            setState(() {
+                                              mobileEmpty = false;
+                                            });
+                                          }
+                                          if (_mobileController.text
+                                                  .trim()
+                                                  .length ==
+                                              10) {
+                                            FocusScope.of(context).unfocus();
+                                          }
+                                        },
+                                        keyboardType: TextInputType.number,
+                                        validator: (value) {
+                                          if (value!.isEmpty) {
+                                            return "Please Enter a Phone Number";
+                                          } else if (_mobileController.text
+                                              .startsWith(
+                                            RegExp('[1-6]'),
+                                          )) {
+                                            return "please Enter a Valid Indian Phone Number";
+                                          } else {
+                                            return null;
+                                          }
+                                          // if (value!.isEmpty) {
+                                          //   return "Please Enter a Phone Number";
+                                          // } else if (
+                                          // !RegExp(
+                                          //         r'^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$')
+                                          //     .hasMatch(value)) {
+                                          //   return "Please Enter a Valid Phone Number";
+                                          // }
+                                        },
+                                        // validator: (val) {
+                                        //   if (_mobileController.text.trim().isEmpty) {
+                                        //     return 'Please enter a valid mobile number';
+                                        //   } else {
+                                        //     return null;
+                                        //   }
+                                        // },
+                                        controller: _mobileController,
+                                        decoration: InputDecoration(
+                                          prefix: Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 2.0),
+                                            child: Text(
+                                              "+91",
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                          // prefixIcon: Row(
+                                          //   children: [
+                                          //     Image.asset(
+                                          //       "assets/icons/indiaflg.jpg",
+                                          //       height: 24,
+                                          //       width: 24,
+                                          //     ),
+                                          //   ],
+                                          // ),
+                                          labelText: 'Mobile Number',
+                                          labelStyle: kManRope_400_16_626A6A,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

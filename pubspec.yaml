@@ -81,6 +81,7 @@ dependencies:
   google_sign_in:
   sign_in_with_apple: ^5.0.0
   card_swiper: ^3.0.1
+  country_code_picker: ^3.0.0
 
 
 
