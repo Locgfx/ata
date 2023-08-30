@@ -243,29 +243,33 @@ class _UAddActivityScreenState extends State<UAddActivityScreen> {
                                                           index);
                                                     },
                                               child: Container(
-                                                height: 48.h,
-                                                width: 70.w,
+                                                height: 48,
+                                                width: 70,
                                                 decoration: const BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.all(
                                                           Radius.circular(10)),
                                                   color: Colors.white,
                                                 ),
-                                                child: Center(
-                                                  child:
-                                                      modeluseractivity[index]
-                                                                  .isAdded ==
-                                                              0
-                                                          ? SvgPicture.asset(
-                                                              'assets/icons/plus-square.svg',
-                                                              height: 24.w,
-                                                              width: 24.w,
-                                                            )
-                                                          : SvgPicture.asset(
-                                                              'assets/icons/minus-square.svg',
-                                                              height: 24.w,
-                                                              width: 24.w,
-                                                            ),
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Center(
+                                                    child:
+                                                        modeluseractivity[index]
+                                                                    .isAdded ==
+                                                                0
+                                                            ? SvgPicture.asset(
+                                                                'assets/icons/plus-square.svg',
+                                                                height: 24.w,
+                                                                width: 24.w,
+                                                              )
+                                                            : SvgPicture.asset(
+                                                                'assets/icons/minus-square.svg',
+                                                                height: 24.w,
+                                                                width: 24.w,
+                                                              ),
+                                                  ),
                                                 ),
                                               ),
                                             )

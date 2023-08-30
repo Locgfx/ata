@@ -148,13 +148,13 @@ class _UCreatePostState extends State<UCreatePost> {
                             }
                           },
                           child: SizedBox(
-                            height: 24,
-                            width: 24,
+                            height: 28,
+                            width: 28,
                             // color: Colors.red,
                             child: Image.asset(
                               'assets/images/iconcamera.png',
-                              height: 24,
-                              width: 24,
+                              height: 28,
+                              width: 28,
                             ),
                           ),
                         ),
@@ -188,13 +188,13 @@ class _UCreatePostState extends State<UCreatePost> {
                             }
                           },
                           child: SizedBox(
-                            height: 24,
-                            width: 24,
+                            height: 28,
+                            width: 28,
                             // color: Colors.red,
                             child: Image.asset(
                               'assets/images/iconpost.png',
-                              height: 24.h,
-                              width: 24.w,
+                              height: 28,
+                              width: 28,
                             ),
                           ),
                         ),

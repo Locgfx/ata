@@ -482,8 +482,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                   2,
                                 ],
                                 child: Container(
-                                  height: 102.h,
-                                  width: 102.w,
+                                  height: 102,
+                                  width: 102,
                                   // clipBehavior: Clip.hardEdge,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(100),
@@ -493,8 +493,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                     profilePic,
                                     fit: BoxFit.cover,
                                     errorBuilder: (q, w, e) => Container(
-                                      height: 102.h,
-                                      width: 102.w,
+                                      height: 102,
+                                      width: 102,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                               image: AssetImage(

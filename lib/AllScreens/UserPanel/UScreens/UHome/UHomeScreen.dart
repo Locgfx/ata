@@ -8,35 +8,35 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UGoalScreens/UAddactivity.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllPsychologistScreen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UAllVideosScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/UNotificationScreen.dart';
 import 'package:greymatter/AllScreens/UserPanel/UScreens/UHome/search_psycologist_screen.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UBookings.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UClipClass.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UInfo.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UOfferBanner.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/URecommendedVideos.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UTopSpecialistGridview.dart';
-import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UUpcomingAppointmentCard.dart';
 import 'package:greymatter/Apis/UserAPis/user_explore_apis/user_explore_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_home_apis/user_activity_api.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_order_history_api.dart';
 import 'package:greymatter/constants/colors.dart';
-import 'package:greymatter/constants/decorations.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/model/UModels/user_home_models/user_activity_model.dart';
 import 'package:greymatter/model/UModels/user_order_model/upcoming_orders.dart';
 import 'package:greymatter/model/UModels/user_psychologist_model.dart';
-import 'package:greymatter/widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../Apis/Notifications_apis/notification_repo.dart';
+import '../../../../constants/decorations.dart';
+import '../../../../widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
+import '../../UWidgets/UHomeWidgets/UBookings.dart';
+import '../../UWidgets/UHomeWidgets/UInfo.dart';
+import '../../UWidgets/UHomeWidgets/UOfferBanner.dart';
+import '../../UWidgets/UHomeWidgets/URecommendedVideos.dart';
+import '../../UWidgets/UHomeWidgets/UTopSpecialistGridview.dart';
+import '../../UWidgets/UHomeWidgets/UUpcomingAppointmentCard.dart';
 import '../UExploreScreens/UBookingConfirmationScreen.dart';
 import '../UExploreScreens/UDoctorprofile.dart';
+import '../UGoalScreens/UAddactivity.dart';
+import 'UAllPsychologistScreen.dart';
+import 'UAllVideosScreen.dart';
 
 class UHomeScreen extends StatefulWidget {
   const UHomeScreen({Key? key}) : super(key: key);
@@ -176,7 +176,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
               padding: EdgeInsets.only(left: 6.w),
               color: Colors.transparent,
               child: Text(
-                "Good ${DateTime.now().hour < 12 ? 'Morning' : DateTime.now().hour > 12 && DateTime.now().hour < 15 ? 'Afternoon' : 'Evening'}, ${userName != '' ? userName : 'User'}",
+                "Good ${DateTime.now().hour < 12 ? 'Morning' : DateTime.now().hour > 12 && DateTime.now().hour < 15 ? 'Afternoon' : 'Evening'}, ${userName == '' ? userName : 'User'}",
                 style: kManRope_700_20_white,
               ),
             ),
@@ -190,18 +190,18 @@ class _UHomeScreenState extends State<UHomeScreen> {
                     color: Colors.transparent,
                     margin: EdgeInsets.only(right: 12),
                     child: SizedBox(
-                      width: 20,
-                      height: 20,
+                      width: 30,
+                      height: 30,
                       child: _newNotification
                           ? SvgPicture.asset(
                               "assets/icons/bell_off.svg",
-                              width: 20,
-                              height: 20,
+                              width: 30,
+                              height: 30,
                             )
                           : SvgPicture.asset(
                               "assets/icons/bell_on.svg",
-                              width: 20,
-                              height: 20,
+                              width: 30,
+                              height: 30,
                             ),
                     )
                     // Image.asset(
@@ -259,8 +259,9 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                             price: '',
                                           )));
                                 },
-                                child: SizedBox(
-                                  height: 56.h,
+                                child: Container(
+                                  color: Colors.transparent,
+                                  height: 60.h,
                                   width: 1.sw,
                                   child: IgnorePointer(
                                     child: TextField(
@@ -349,7 +350,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                           ),
                         ),
                         SizedBox(height: 24.h),
-                        //--------------------------------psychologistslider-------------------
+                        // --------------------------------psychologistslider-------------------
                         isLoading || psychologists.isEmpty
                             ? Opacity(
                                 opacity: 0.9,
@@ -635,7 +636,6 @@ class _UHomeScreenState extends State<UHomeScreen> {
                         SizedBox(
                           height: 20.h,
                         ),
-
                         //----------------------------Recommended actiivities------------------------------------------------
                         Container(
                           padding: EdgeInsets.only(top: 20.h, bottom: 20.h),
@@ -676,27 +676,38 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                         shrinkWrap: true,
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (_, i) {
-                                          return Container(
-                                            height: 87.h,
-                                            width: 248.w,
-                                            margin: EdgeInsets.only(
-                                                right: 24.w,
-                                                left: i == 0 ? 24.w : 0),
-                                            decoration: BoxDecoration(
-                                              color: k5A72ED,
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                    'assets/images/backimg.png',
-                                                  ),
-                                                  fit: BoxFit.cover),
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                userActivity[i].name.toString(),
-                                                overflow: TextOverflow.ellipsis,
-                                                style: kManRope_600_18_white,
+                                          return GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          UAddActivityScreen()));
+                                            },
+                                            child: Container(
+                                              height: 87.h,
+                                              width: 248.w,
+                                              margin: EdgeInsets.only(
+                                                  right: 24.w,
+                                                  left: i == 0 ? 24.w : 0),
+                                              decoration: BoxDecoration(
+                                                color: k5A72ED,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                      'assets/images/backimg.png',
+                                                    ),
+                                                    fit: BoxFit.cover),
+                                              ),
+                                              child: Center(
+                                                child: Text(
+                                                  userActivity[i]
+                                                      .name
+                                                      .toString(),
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: kManRope_600_18_white,
+                                                ),
                                               ),
                                             ),
                                           );

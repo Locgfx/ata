@@ -141,7 +141,9 @@ class _UProfileScreenState extends State<UProfileScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  model.name.toString(),
+                                  model.name.toString() == "null"
+                                      ? model.name.toString()
+                                      : model.name.toString(),
                                   style: kManRope_500_16_001314,
                                 ),
                                 SizedBox(

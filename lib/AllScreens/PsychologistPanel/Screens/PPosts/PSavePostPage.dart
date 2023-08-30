@@ -119,7 +119,7 @@ class _PSavedPostPageState extends State<PSavedPostPage> {
                     padding: EdgeInsets.only(bottom: 159.0),
                     child: LoadingWidget(),
                   )
-                : savedpostlist.isEmpty
+                : savedpostlist[0].name!.isEmpty
                     ? Container(
                         width: 1.sw,
                         child: Column(

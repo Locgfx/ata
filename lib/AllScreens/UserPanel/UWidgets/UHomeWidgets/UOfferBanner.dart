@@ -61,7 +61,7 @@ class _OfferBannerState extends State<OfferBanner> {
                 opacity: 0.9,
                 child: Shimmer.fromColors(
                   child: Container(
-                    width: 1.sw,
+                    width: double.infinity,
                     height: 250.h,
                     margin: EdgeInsets.symmetric(horizontal: 24),
                     decoration: BoxDecoration(
@@ -74,7 +74,8 @@ class _OfferBannerState extends State<OfferBanner> {
                 ),
               )
             : SizedBox(
-                height: 250.h,
+                height: 280.h,
+                width: double.infinity,
                 child: CarouselSlider.builder(
                   carouselController: controller,
                   itemCount: modelofferBanner.length,
@@ -85,8 +86,10 @@ class _OfferBannerState extends State<OfferBanner> {
                       });
                       //print(_index);
                     },
-                    aspectRatio: 2,
-                    viewportFraction: 0.8,
+                    // aspectRatio: 0.6,
+                    // viewportFraction: 0.7,
+                    aspectRatio: 0.8,
+                    viewportFraction: 0.9,
                     autoPlay: true,
                     reverse: false,
                     enableInfiniteScroll: true,

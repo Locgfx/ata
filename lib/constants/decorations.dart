@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:greymatter/constants/fonts.dart';
@@ -193,10 +192,8 @@ class TextfieldDecoration {
   });
   InputDecoration searchFieldDecoration() {
     return InputDecoration(
-        contentPadding: EdgeInsets.only(
-          left: 16,
-          right: 16,
-        ),
+        isDense: false,
+        contentPadding: EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
         // hintText: 'Search for help',
         hintStyle: kManRope_400_14_626A6A,
         enabledBorder: OutlineInputBorder(
@@ -268,7 +265,7 @@ class TextfieldDecoration {
     return InputDecoration(
       hintText: label,
       hintStyle: kManRope_400_14_626A6A,
-      contentPadding: EdgeInsets.only(left: 16),
+      contentPadding: EdgeInsets.only(left: 16, top: 26, bottom: 16),
       border: OutlineInputBorder(
           borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(16.0)),

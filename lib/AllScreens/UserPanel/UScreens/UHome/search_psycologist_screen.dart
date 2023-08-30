@@ -97,10 +97,11 @@ class _SearchPsychologistScreenState extends State<SearchPsychologistScreen> {
           child: Column(
             children: [
               Container(
-                height: 56.h,
+                // height: 54.h,
                 // margin: EdgeInsets.symmetric(horizontal: 24),
                 decoration: CustomDecoration().outline5A72EDDecoration(),
                 child: TextField(
+                  // textAlign: TextAlign.values,
                   controller: _controller,
                   autofocus: true,
                   decoration: TextfieldDecoration(

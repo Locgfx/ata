@@ -104,7 +104,7 @@ class _UUpcomingAppointmentCardState extends State<UUpcomingAppointmentCard> {
                             height: 48.w,
                             child: CachedNetworkImage(
                               imageUrl: widget.data.image,
-                              fit: BoxFit.fill,
+                              fit: BoxFit.cover,
                               placeholder: (context, url) => SpinKitThreeBounce(
                                 color: k006D77,
                                 size: 10,
@@ -148,8 +148,8 @@ class _UUpcomingAppointmentCardState extends State<UUpcomingAppointmentCard> {
             bottom: 0,
             top: 0,
             child: SizedBox(
-              width: 156.w,
-              height: 156.w,
+              width: 156,
+              height: 156,
               child: Image.asset(
                 'assets/images/ua.png',
               ),

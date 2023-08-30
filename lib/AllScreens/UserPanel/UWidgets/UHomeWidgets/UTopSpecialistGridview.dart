@@ -59,7 +59,8 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
             itemCount: specialistModel.length >= 7 ? 8 : specialistModel.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
-                childAspectRatio: 1 / 1.5,
+                childAspectRatio: 0.9 / 1.5,
+                // childAspectRatio: 0.6,
                 mainAxisSpacing: 1.0,
                 crossAxisSpacing: 5.0),
             itemBuilder: (ctx, index) {
@@ -78,20 +79,21 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          width: 84.w,
-                          height: 84.w,
+                          width: 84,
+                          height: 84,
                           clipBehavior: Clip.hardEdge,
                           decoration: BoxDecoration(
                               border: Border.all(color: kFFFFFF, width: 1),
                               borderRadius: BorderRadius.circular(24),
-                              color: k006D77),
+                              color: kFFFFFF),
                           child: Padding(
                             padding: EdgeInsets.all(18.0),
                             child: Image.asset(
                               'assets/images/iconrightarrow24white.png',
-                              height: 24.w,
-                              width: 24.w,
+                              height: 24,
+                              width: 24,
                               fit: BoxFit.cover,
+                              color: k006D77,
                             ),
                           ),
                         ),
@@ -116,15 +118,15 @@ class _TopSpecialistGridviewState extends State<TopSpecialistGridview> {
                             )));
                   },
                   child: Container(
-                    width: 84.w,
-                    height: 84.w,
+                    width: 84,
+                    height: 84,
                     color: Colors.transparent,
                     child: Column(
                       // mainAxisSize: MainAxisSize.min,
                       children: [
                         Container(
-                          height: 84.w,
-                          width: 84.w,
+                          height: 84,
+                          width: 84,
                           // padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               // image: DecorationImage(

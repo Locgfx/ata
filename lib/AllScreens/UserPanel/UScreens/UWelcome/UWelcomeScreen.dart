@@ -51,20 +51,21 @@ class _UWelcomeScreenState extends State<UWelcomeScreen> {
               SizedBox(
                 height: 60.h,
               ),
-              TweenAnimationBuilder(
-                  duration: Duration(milliseconds: 700),
-                  tween: Tween<double>(begin: 0, end: 1),
-                  builder: (BuildContext context, double value, Widget? child) {
-                    return Opacity(
-                      opacity: value,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: value * 30),
-                        child: child,
-                      ),
-                    );
-                  },
-                  child: Text('Hi $name,', style: kManRope_700_24_8A9393)),
+              // TweenAnimationBuilder(
+              //     duration: Duration(milliseconds: 700),
+              //     tween: Tween<double>(begin: 0, end: 1),
+              //     builder: (BuildContext context, double value, Widget? child) {
+              //       return Opacity(
+              //         opacity: value,
+              //         child: Padding(
+              //           padding: EdgeInsets.only(top: value * 30),
+              //           child: child,
+              //         ),
+              //       );
+              //     },
+              //     child: Text('Hi', style: kManRope_700_24_8A9393)),
               // SizedBox(height: 16.h),
+              // $name
               TweenAnimationBuilder(
                 duration: Duration(seconds: 2),
                 tween: Tween<double>(begin: 0, end: 1),

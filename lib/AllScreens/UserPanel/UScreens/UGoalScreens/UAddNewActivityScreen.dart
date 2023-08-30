@@ -96,7 +96,7 @@ class _UAddNewActivityScreenState extends State<UAddNewActivityScreen> {
                     clipBehavior: Clip.hardEdge,
                     child: CachedNetworkImage(
                       imageUrl: widget.activityImage,
-                      fit: BoxFit.fill,
+                      fit: BoxFit.fitWidth,
                       placeholder: (context, url) => Center(
                         child: SpinKitThreeBounce(
                           color: k006D77,

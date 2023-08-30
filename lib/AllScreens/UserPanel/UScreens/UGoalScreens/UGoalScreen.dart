@@ -235,8 +235,8 @@ class _UGoalScreenState extends State<UGoalScreen> {
                       },
                       child: SvgPicture.asset(
                         'assets/icons/circlepluswithbackground.svg',
-                        height: 48.w,
-                        width: 48.w,
+                        height: 48,
+                        width: 48,
                       ),
                     ),
                   ],
@@ -460,16 +460,14 @@ class _UGoalScreenState extends State<UGoalScreen> {
                                                                 ? SvgPicture
                                                                     .asset(
                                                                     'assets/icons/greencircletick.svg',
-                                                                    height:
-                                                                        36.w,
-                                                                    width: 36.w,
+                                                                    height: 36,
+                                                                    width: 36,
                                                                   )
                                                                 : SvgPicture
                                                                     .asset(
                                                                     'assets/icons/greyTick.svg',
-                                                                    height:
-                                                                        36.w,
-                                                                    width: 36.w,
+                                                                    height: 36,
+                                                                    width: 36,
                                                                   ),
                                                           ),
                                                   ),

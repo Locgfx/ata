@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PPrivacyAndPolicyScreen.dart';
-import 'package:greymatter/AllScreens/PsychologistPanel/Screens/PProfile/PTermsAndConditionsScreen.dart';
 import 'package:greymatter/constants/colors.dart';
 import 'package:greymatter/constants/fonts.dart';
 import 'package:greymatter/widgets/app_bar/app_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PAgreementScreen extends StatelessWidget {
   const PAgreementScreen({Key? key}) : super(key: key);
@@ -56,9 +55,15 @@ class PAgreementScreen extends StatelessWidget {
             //   height: 8.h,
             // ),
             GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const PPrivacyAndPolicyScreen()));
+              onTap: () async {
+                const url = 'https://theataraxis.com/privacy-policy.php';
+                if (await canLaunch(url)) {
+                  await launch(url, forceWebView: true, enableJavaScript: true);
+                } else {
+                  throw 'Could not launch $url';
+                }
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => const PPrivacyAndPolicyScreen()));
               },
               child: Container(
                 width: 380.w,
@@ -89,9 +94,15 @@ class PAgreementScreen extends StatelessWidget {
               height: 8,
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const PTermsAndConditionsScreen()));
+              onTap: () async {
+                const url = 'https://theataraxis.com/terms-and-conditions.php';
+                if (await canLaunch(url)) {
+                  await launch(url, forceWebView: true, enableJavaScript: true);
+                } else {
+                  throw 'Could not launch $url';
+                }
+                // Navigator.of(context).push(MaterialPageRoute(
+                //     builder: (context) => const PTermsAndConditionsScreen()));
               },
               child: Container(
                 width: 380.w,

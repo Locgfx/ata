@@ -621,14 +621,6 @@ class _PHomeScreenState extends State<PHomeScreen>
                                           child: MainButton(
                                               onPressed: () {
                                                 setState(() {
-                                                  loading
-                                                      ? SpinKitThreeBounce(
-                                                          color: k006D77,
-                                                          size: 10,
-                                                        )
-                                                      : getPsychologistUpcomingBooking();
-                                                });
-                                                setState(() {
                                                   loading = true;
                                                 });
                                                 final resp =

@@ -90,9 +90,8 @@ class _UTabsScreenState extends State<UTabsScreen> {
                     },
                     child: Container(
                       padding: EdgeInsets.all(_index == 0 ? 13 : 14),
-                      margin:
-                          EdgeInsets.only(left: 18, bottom: 12.h, top: 12.h),
-                      height: 62.w,
+                      margin: EdgeInsets.only(left: 18, bottom: 12, top: 12),
+                      height: 62,
                       decoration: BoxDecoration(
                         color: _index == 0
                             ? k006D77.withOpacity(0.08)
@@ -118,7 +117,7 @@ class _UTabsScreenState extends State<UTabsScreen> {
                     child: Container(
                       padding: EdgeInsets.all(16),
                       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 9),
-                      height: 62.w,
+                      height: 62,
                       decoration: BoxDecoration(
                           color: _index == 1
                               ? k006D77.withOpacity(0.08)
@@ -143,7 +142,7 @@ class _UTabsScreenState extends State<UTabsScreen> {
                     child: Container(
                       padding: EdgeInsets.all(16),
                       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 9),
-                      height: 62.w,
+                      height: 62,
                       decoration: BoxDecoration(
                           color: _index == 2
                               ? k006D77.withOpacity(0.08)
@@ -168,7 +167,7 @@ class _UTabsScreenState extends State<UTabsScreen> {
                     child: Container(
                       padding: EdgeInsets.all(16),
                       margin: EdgeInsets.symmetric(vertical: 12, horizontal: 9),
-                      height: 62.w,
+                      height: 62,
                       decoration: BoxDecoration(
                           color: _index == 3
                               ? k006D77.withOpacity(0.08)
@@ -192,7 +191,7 @@ class _UTabsScreenState extends State<UTabsScreen> {
                       padding: EdgeInsets.all(16),
                       margin:
                           EdgeInsets.only(right: 18, bottom: 12.h, top: 12.h),
-                      height: 62.w,
+                      height: 62,
                       decoration: BoxDecoration(
                           color: _index == 4
                               ? k006D77.withOpacity(0.08)

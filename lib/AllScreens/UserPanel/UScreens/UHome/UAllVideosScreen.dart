@@ -239,16 +239,19 @@ class _UAllVideosScreenState extends State<UAllVideosScreen> {
                                             ),
                                           ),
                                           SizedBox(height: 16),
-                                          SizedBox(
-                                            width: 182.w,
-                                            child: Text(
-                                              modelList[indexx]
-                                                  .videos![index]
-                                                  .name
-                                                  .toString(),
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: kManRope_500_16_001314,
+                                          Flexible(
+                                            child: SizedBox(
+                                              width: 182.w,
+                                              child: Text(
+                                                modelList[indexx]
+                                                    .videos![index]
+                                                    .name
+                                                    .toString(),
+                                                maxLines: 4,
+                                                textAlign: TextAlign.start,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: kManRope_500_16_001314,
+                                              ),
                                             ),
                                           ),
                                         ],
