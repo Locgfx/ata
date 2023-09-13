@@ -24,7 +24,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../Apis/Notifications_apis/notification_repo.dart';
+import '../../../../Apis/UserAPis/user_profile_apis/user_profile_api.dart';
 import '../../../../constants/decorations.dart';
+import '../../../../model/UModels/user_profile_models/user_profile_model.dart';
 import '../../../../widgets/shared/buttons/costom_secondary_text_w_icon_button.dart';
 import '../../UWidgets/UHomeWidgets/UBookings.dart';
 import '../../UWidgets/UHomeWidgets/UInfo.dart';
@@ -59,6 +61,8 @@ class _UHomeScreenState extends State<UHomeScreen> {
       setState(() {});
       log(_newNotification.toString());
     });
+
+    getName();
     super.initState();
   }
 
@@ -144,6 +148,8 @@ class _UHomeScreenState extends State<UHomeScreen> {
     });
   }
 
+  bool _isLoading = false;
+
   final NotificationRepo _repo = NotificationRepo();
 
   Timer? _timer;
@@ -152,6 +158,28 @@ class _UHomeScreenState extends State<UHomeScreen> {
   void dispose() {
     _timer?.cancel();
     super.dispose();
+  }
+
+  UserProfileModel modell = UserProfileModel();
+  // bool _isLoading = false;
+  getName() {
+    print("object");
+    _isLoading = true;
+    final resp = UserProfileApi().get();
+    print(resp);
+    resp.then((value) {
+      print(value);
+      setState(() {
+        try {
+          modell = UserProfileModel.fromJson(value);
+          _isLoading = false;
+        } catch (e) {
+          setState(() {
+            _isLoading = false;
+          });
+        }
+      });
+    });
   }
 
   @override
@@ -176,7 +204,11 @@ class _UHomeScreenState extends State<UHomeScreen> {
               padding: EdgeInsets.only(left: 6.w),
               color: Colors.transparent,
               child: Text(
-                "Good ${DateTime.now().hour < 12 ? 'Morning' : DateTime.now().hour > 12 && DateTime.now().hour < 15 ? 'Afternoon' : 'Evening'}, ${userName == '' ? userName : 'User'}",
+                "Good ${DateTime.now().hour < 12 ? 'Morning' : DateTime.now().hour > 12 && DateTime.now().hour < 15 ? 'Afternoon' : 'Evening'} ${modell.name.toString() == "null" ? "Ataraxis User" : modell.name.toString()}",
+                // "Good ${DateTime.now().hour < 12 ? 'Morning' :
+                // DateTime.now().hour > 12 && DateTime.now().hour < 15 ?
+                // 'Afternoon' : 'Evening'},"
+                // " ${userName == '' ? userName : 'User'}",
                 style: kManRope_700_20_white,
               ),
             ),
@@ -744,6 +776,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
             ),
           ),
         ),
+        // UAppleSignUpAddDetails()
         /*if (isLoading) LoadingWidget(),*/
       ],
     );

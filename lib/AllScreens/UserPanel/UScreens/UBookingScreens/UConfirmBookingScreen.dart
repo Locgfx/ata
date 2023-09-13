@@ -427,8 +427,12 @@ class _UConfirmAppointmentBookingState
                                             .presentPaymentSheet()
                                             .then((value3) {
                                           final resp = ConfirmPaymentApi().get(
+                                              // value['payment']
+                                              //     ['paymentIntent']);
                                               value['payment']
                                                   ['paymentIntent']);
+                                          print(value['payment']
+                                              ['paymentIntent']);
                                           resp.then((value4) {
                                             log(value4.toString());
                                             if (value4['status'] == true) {

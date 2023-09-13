@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:greymatter/constants/globals.dart';
 import 'package:greymatter/constants/urlconstants.dart';
@@ -18,14 +17,17 @@ class ConfirmPaymentApi {
         http.Request('POST', Uri.parse('${baseUrl}booking-payment.php'));
     request.body = json.encode({"payment_intent": data});
     request.headers.addAll(headers);
-
-    log(request.body.toString());
+    print(headers);
     http.StreamedResponse response = await request.send();
-
     var resp = jsonDecode(await response.stream.bytesToString());
+    // log((await response.stream.bytesToString()).toString());
     if (response.statusCode == 200) {
+      // var resp = jsonDecode(await response.stream.bytesToString());
+      print(resp);
       return resp;
     } else {
+      // var resp = jsonDecode(await response.stream.bytesToString().toString());
+      // print(resp);
       print(response.reasonPhrase);
       return resp;
     }

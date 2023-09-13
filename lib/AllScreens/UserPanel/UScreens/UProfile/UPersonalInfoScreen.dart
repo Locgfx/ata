@@ -20,6 +20,8 @@ import 'package:greymatter/widgets/shared/buttons/custom_active_text_button.dart
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../global/Sharedprefs.dart';
+
 class UserPersonalInfoScreen extends StatefulWidget {
   const UserPersonalInfoScreen({Key? key}) : super(key: key);
 
@@ -528,7 +530,7 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                         ? SizedBox()
                                         : Text(
                                             model.name.toString() == "null"
-                                                ? ''
+                                                ? 'Ataraxis user'
                                                 : model.name.toString(),
                                             style: kManRope_400_16_001314,
                                           ),
@@ -1305,6 +1307,8 @@ class _UserPersonalInfoScreenState extends State<UserPersonalInfoScreen> {
                                 resp.then((value) {
                                   print(value);
                                   if (value['status'] == true) {
+                                    UserPrefs()
+                                        .setUsername(updateNameController.text);
                                     Fluttertoast.showToast(
                                         msg: 'Profile Setup Successful');
                                     // Navigator.of(context).push(MaterialPageRoute(

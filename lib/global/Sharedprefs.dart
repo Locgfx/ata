@@ -4,6 +4,8 @@ class UserPrefs {
   String login = 'login';
   static SharedPreferences? _prefs;
   static const String cookies = "cookies";
+  String username = 'username';
+  String givenName = 'username';
 
   SharedPreferences? prefs;
 
@@ -23,5 +25,15 @@ class UserPrefs {
     return await prefs?.setString(cookies, value);
   }
 
+  Future setUsername(String loginUsername) async {
+    return await _prefs?.setString(username, loginUsername);
+  }
 
+  Future setGivenName(String loginGivenName) async {
+    return await _prefs?.setString(username, loginGivenName);
+  }
+
+  String? getUsername() {
+    return _prefs?.getString(username);
+  }
 }

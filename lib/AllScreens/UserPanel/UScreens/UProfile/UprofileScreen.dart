@@ -142,7 +142,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                               children: [
                                 Text(
                                   model.name.toString() == "null"
-                                      ? model.name.toString()
+                                      ? 'user'
                                       : model.name.toString(),
                                   style: kManRope_500_16_001314,
                                 ),
@@ -151,7 +151,7 @@ class _UProfileScreenState extends State<UProfileScreen> {
                                 ),
                                 Text(
                                   model.email.toString() == "null"
-                                      ? model.phone.toString()
+                                      ? 'User@email.com'
                                       : model.email.toString(),
                                   style: kManRope_400_14_626A6A,
                                 )

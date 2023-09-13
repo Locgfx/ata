@@ -47,8 +47,8 @@ class _UExplorePageState extends State<UExplorePage> {
   bool _isLoading = false;
 
   int _scroll = 0;
-
   int dataVal = 0;
+
   getReloadedData() {
     _scroll++;
     final resp = UserExploreApi().get(scroll: '$_scroll', search: "");
