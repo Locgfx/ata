@@ -22,7 +22,9 @@ class UserExploreApi {
       searchUrl = "&search=$search";
     }
     var request = http.Request(
-        'GET', Uri.parse('$baseUrl/psychologists.php?start=$scroll$searchUrl'));
+      'GET',
+      Uri.parse('$baseUrl/psychologists.php?start=$scroll$searchUrl'),
+    );
     request.headers.addAll(headers);
     http.StreamedResponse response = await request.send();
     // log(await response.stream.bytesToString());

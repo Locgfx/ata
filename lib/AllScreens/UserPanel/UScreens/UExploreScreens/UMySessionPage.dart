@@ -3,8 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:greymatter/AllScreens/UserPanel/UScreens/UExploreScreens/USessionDetailsPage.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:greymatter/AllScreens/UserPanel/UWidgets/UHomeWidgets/UMainCardWidget.dart';
 import 'package:greymatter/Apis/UserAPis/user_profile_apis/user_order_history_api.dart';
 import 'package:greymatter/constants/decorations.dart';
@@ -14,6 +13,9 @@ import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
 
 import '../../../../constants/colors.dart';
 import '../../../../constants/fonts.dart';
+import '../../../../model/UModels/user_order_model/upcoming_orders.dart';
+import 'UBookingConfirmationScreen.dart';
+import 'USessionDetailsPage.dart';
 
 class UMySessionPage extends StatefulWidget {
   const UMySessionPage({Key? key}) : super(key: key);
@@ -35,33 +37,63 @@ class _UMySessionPageState extends State<UMySessionPage> {
 
   @override
   void initState() {
-    _getData();
-    getAllSessions();
+    // _getData();
+    // getAllSessions();
+    getUpcomingAppointments();
     super.initState();
   }
 
-  _getData() {
-    loading = true;
-    final resp = UserOrderHistoryApi().get(page: 0, filter: "u");
-    resp.then((value) {
-      log(value.toString());
-      setState(() {
-        upcomingSessions.clear();
-        for (var v in value) {
-          upcomingSessions.add(ProfileOrderHistoryModel.fromJson(v));
-          print(upcomingSessions.toString());
-        }
-        // loading = false;
-        upcomingSessions.removeWhere((element) =>
-            DateTime.parse("${element.date} ${element.timeSlot}")
-                .isBefore(DateTime.now()));
-      });
+  UpcomingOrderData upcomingOrderData = UpcomingOrderData(data: []);
+
+  getUpcomingAppointments() {
+    setState(() {
+      isLoading = true;
     });
-    //     .then((value) {
-    //   getAllSessions();
-    //   // _getAllSessions();
-    // });
+    UserOrderHistoryApi()
+        .getUpcoming(page: 0)
+        .then((value) => setState(() {
+              log(value.data.toString() + "g uguyvf ");
+              upcomingOrderData = value;
+              upcomingOrderData.data.removeWhere((element) =>
+                  DateTime.parse("${element.date} ${element.timeSlot}")
+                      .isBefore(DateTime.now().add(Duration(minutes: 60))
+                          //             // DateTime(
+                          //             //     DateTime.now().year,
+                          //             //     DateTime.now().month,
+                          //             //     DateTime.now().day,
+                          //             //     DateTime.now().hour,
+                          //             //     60)
+                          ));
+              upcomingOrderData.data
+                  .removeWhere((element) => element.payment != "p");
+              log(upcomingOrderData.data.length.toString());
+              log(value.data.length.toString());
+            }))
+        .then((value) => setState(() {
+              isLoading = false;
+            }));
   }
+
+  // _getData() {
+  //   loading = true;
+  //   final resp = UserOrderHistoryApi().get(page: 0, filter: "u");
+  //   resp.then((value) {
+  //     setState(() {
+  //       // upcomingSessions.clear();
+  //       for (var v in value) {
+  //         upcomingSessions.add(ProfileOrderHistoryModel.fromJson(v));
+  //       }
+  //       // loading = false;
+  //       upcomingSessions.removeWhere((element) =>
+  //           DateTime.parse("${element.date} ${element.timeSlot}")
+  //               .isBefore(DateTime.now()));
+  //     });
+  //   });
+  //   //     .then((value) {
+  //   //   getAllSessions();
+  //   //   // _getAllSessions();
+  //   // });
+  // }
 
   int _scroll = 0;
   int dataVal = 0;
@@ -120,7 +152,7 @@ class _UMySessionPageState extends State<UMySessionPage> {
         dataVal = val.length;
         for (var v in val) {
           allSessions.add(ProfileOrderHistoryModel.fromJson(v));
-          print(allSessions.length);
+          print('aallsdjsan  ${allSessions.length}');
         }
         allSessions.removeWhere(
             (element) => element.status.toString().toLowerCase() == 'u');
@@ -128,6 +160,8 @@ class _UMySessionPageState extends State<UMySessionPage> {
       });
     });
   }
+
+  //-------------
 
   @override
   Widget build(BuildContext context) {
@@ -142,7 +176,7 @@ class _UMySessionPageState extends State<UMySessionPage> {
           setState(() {
             loading = true;
           });
-          return _getData();
+          return getUpcomingAppointments();
         },
         child: SingleChildScrollView(
           child: Padding(
@@ -156,7 +190,7 @@ class _UMySessionPageState extends State<UMySessionPage> {
                   style: kManRope_700_16_001314,
                 ),
                 SizedBox(height: 24.h),
-                upcomingSessions.isEmpty
+                upcomingOrderData.data.isEmpty
                     ? Center(
                         child: Text(
                           'No Upcoming sessions.',
@@ -180,12 +214,30 @@ class _UMySessionPageState extends State<UMySessionPage> {
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20.w, vertical: 24.h),
                               child: ListView.separated(
-                                itemCount: upcomingSessions.length,
+                                itemCount: upcomingOrderData.data.length,
                                 shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
                                 itemBuilder: (_, i) {
-                                  return Row(
-                                    children: [
-                                      Container(
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              UBookingConfirmationScreen(
+                                            model: upcomingOrderData.data[i],
+                                            //   (
+                                            // (element) => DateTime.parse(
+                                            //         "${element.date} ${element.timeSlot}")
+                                            //     .isAfter(DateTime.now())),
+                                            isCancellationAvailable: true,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Row(
+                                      children: [
+                                        Container(
                                           height: 64.h,
                                           width: 64.w,
                                           clipBehavior: Clip.hardEdge,
@@ -194,66 +246,84 @@ class _UMySessionPageState extends State<UMySessionPage> {
                                                 BorderRadius.circular(8),
                                           ),
                                           child: Image.network(
-                                            upcomingSessions[i]
-                                                .image
+                                            upcomingOrderData.data[i].image
+                                                .toString()
                                                 .toString(),
                                             fit: BoxFit.cover,
                                             errorBuilder: (q, w, e) =>
                                                 Icon(Icons.error),
-                                          )),
-                                      SizedBox(
-                                        width: 12.w,
-                                      ),
-                                      SizedBox(
-                                        width: 250.w,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  upcomingSessions[i]
-                                                      .name
-                                                      .toString(),
-                                                  style: kManRope_400_14_001314,
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                ),
-                                                SizedBox(
-                                                  height: 4.h,
-                                                ),
-                                                Text(
-                                                  upcomingSessions[i]
-                                                      .designation
-                                                      .toString(),
-                                                  style: kManRope_400_12_626A6A,
-                                                ),
-                                              ],
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.end,
-                                              children: [
-                                                Text(
-                                                  DateFormat(
-                                                          'dd MMMM yyyy, hh:MM a')
-                                                      .format(DateTime.parse(
-                                                          "${upcomingSessions[0].date} ${upcomingSessions[i].timeSlot}")),
-                                                  style: kManRope_400_12_626A6A,
-                                                ),
-                                              ],
-                                            ),
-                                          ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        SizedBox(
+                                          width: 12.w,
+                                        ),
+                                        SizedBox(
+                                          width: 250.w,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    upcomingOrderData
+                                                        .data[i].name
+                                                        .toString()
+                                                        .toString(),
+                                                    style:
+                                                        kManRope_400_14_001314,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 4.h,
+                                                  ),
+                                                  Text(
+                                                    upcomingOrderData
+                                                        .data[i].designation
+                                                        .toString(),
+                                                    // upcomingSessions[i]
+                                                    //     .designation
+                                                    //     .toString(),
+                                                    style:
+                                                        kManRope_400_12_626A6A,
+                                                  ),
+                                                ],
+                                              ),
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    DateFormat(
+                                                            "EEE, d MMM, yyyy  h:mm a")
+                                                        .format(
+                                                      DateTime.parse(
+                                                          "${upcomingOrderData.data[0].date} ${upcomingOrderData.data[i].timeSlot}"),
+
+                                                      // DateFormat(
+                                                      //         'dd MMMM yyyy, hh:MM a')
+                                                      //     .format(DateTime.parse(
+                                                      //         "${upcomingOrderData.data[0].date} ${upcomingOrderData.data[i].timeSlot}"
+                                                      //         // "${upcomingSessions[0].date} ${upcomingSessions[i].timeSlot}"
+                                                      //         )
+                                                    ),
+                                                    style:
+                                                        kManRope_400_12_626A6A,
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 },
                                 separatorBuilder:
@@ -292,6 +362,7 @@ class _UMySessionPageState extends State<UMySessionPage> {
                           scrollDirection: Axis.vertical,
                           physics: NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
+                          itemCount: allSessions.length,
                           itemBuilder: (ctx, index) {
                             if (index < allSessions.length) {
                               return GestureDetector(
@@ -394,13 +465,19 @@ class _UMySessionPageState extends State<UMySessionPage> {
                                                                   kManRope_400_12_626A6A),
                                                           Text(
                                                               DateFormat(
-                                                                      "dd MMMM yyyy, hh:MM a")
-                                                                  .format(DateTime.parse(allSessions[
-                                                                          index]
-                                                                      .bookingDate
-                                                                      .toString()))
-                                                                  .split(",")
-                                                                  .last,
+                                                                      "EEE, d MMM, yyyy  h:mm a")
+                                                                  .format(
+                                                                DateTime.parse(
+                                                                    "${allSessions[index].date}"),
+                                                              ),
+                                                              // DateFormat(
+                                                              //         "dd MMMM yyyy, hh:MM a")
+                                                              //     .format(DateTime.parse(allSessions[
+                                                              //             index]
+                                                              //         .bookingDate
+                                                              //         .toString()))
+                                                              //     .split(",")
+                                                              //     .last,
                                                               style:
                                                                   kManRope_400_14_626A6A),
                                                         ],
@@ -514,7 +591,6 @@ class _UMySessionPageState extends State<UMySessionPage> {
                           separatorBuilder: (ctx, index) {
                             return SizedBox(height: 24.h);
                           },
-                          itemCount: allSessions.length,
                         ),
                       ),
                 SizedBox(height: 180),

@@ -63,6 +63,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
     });
 
     getName();
+
     super.initState();
   }
 
@@ -326,30 +327,29 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                 SizedBox(height: 40.h),
                               if (upcomingOrderData.data.isNotEmpty)
                                 GestureDetector(
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              UBookingConfirmationScreen(
-                                            model: upcomingOrderData.data
-                                                .firstWhere((element) =>
-                                                    DateTime.parse(
-                                                            "${element.date} ${element.timeSlot}")
-                                                        .isAfter(
-                                                            DateTime.now())),
-                                            isCancellationAvailable: true,
-                                          ),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            UBookingConfirmationScreen(
+                                          model: upcomingOrderData.data.lastWhere(
+                                              (element) => DateTime.parse(
+                                                      "${element.date} ${element.timeSlot}")
+                                                  .isAfter(DateTime.now())),
+                                          isCancellationAvailable: true,
                                         ),
-                                      );
-                                    },
-                                    child: UUpcomingAppointmentCard(
-                                      data: upcomingOrderData.data.firstWhere(
-                                          (element) => DateTime.parse(
-                                                  "${element.date} ${element.timeSlot}")
-                                              .isAfter(DateTime.now())),
-                                      loading: isLoading,
-                                    )),
+                                      ),
+                                    );
+                                  },
+                                  child: UUpcomingAppointmentCard(
+                                    data: upcomingOrderData.data.firstWhere(
+                                        (element) => DateTime.parse(
+                                                "${element.date} ${element.timeSlot}")
+                                            .isAfter(DateTime.now())),
+                                    loading: isLoading,
+                                  ),
+                                ),
                               SizedBox(height: 40.h),
                               Text(
                                 'Choose from Top Specialities',
