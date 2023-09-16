@@ -8,22 +8,22 @@ class UpcomingOrderData {
 }
 
 class UpcomingOrders {
-  UpcomingOrders({
-    required this.id,
-    required this.user,
-    required this.psychologist,
-    required this.issue,
-    required this.issueName,
-    required this.date,
-    required this.timeSlot,
-    required this.coupon,
-    required this.bookingDate,
-    required this.bookingType,
-    required this.status,
-    required this.payment,
-    required this.name,
-    required this.designation,
-  });
+  UpcomingOrders(
+      {required this.id,
+      required this.user,
+      required this.psychologist,
+      required this.issue,
+      required this.issueName,
+      required this.date,
+      required this.timeSlot,
+      required this.coupon,
+      required this.bookingDate,
+      required this.bookingType,
+      required this.status,
+      required this.payment,
+      required this.name,
+      required this.designation,
+      required this.slotTimePeriod});
   late final String id;
   late final String user;
   late final String image;
@@ -42,6 +42,7 @@ class UpcomingOrders {
   late final String psyId;
   late final String rating;
   late final String designation;
+  late final String? slotTimePeriod;
 
   UpcomingOrders.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -62,6 +63,7 @@ class UpcomingOrders {
     payment = json['payment'];
     name = json['name'];
     designation = json['designation'];
+    slotTimePeriod = json['slotTimePeriod'];
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +81,7 @@ class UpcomingOrders {
     _data['booking_type'] = bookingType;
     _data['status'] = status;
     _data['payment'] = payment;
+    _data['slotTimePeriod'] = slotTimePeriod;
     return _data;
   }
 }

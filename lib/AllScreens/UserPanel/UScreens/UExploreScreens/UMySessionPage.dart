@@ -56,7 +56,7 @@ class _UMySessionPageState extends State<UMySessionPage> {
               upcomingOrderData = value;
               upcomingOrderData.data.removeWhere((element) =>
                   DateTime.parse("${element.date} ${element.timeSlot}")
-                      .isBefore(DateTime.now().add(Duration(minutes: 60))
+                      .isBefore(DateTime.now()
                           //             // DateTime(
                           //             //     DateTime.now().year,
                           //             //     DateTime.now().month,
@@ -64,8 +64,10 @@ class _UMySessionPageState extends State<UMySessionPage> {
                           //             //     DateTime.now().hour,
                           //             //     60)
                           ));
-              upcomingOrderData.data
-                  .removeWhere((element) => element.payment != "p");
+              // upcomingOrderData.data
+              //     .removeWhere((element) => element.payment != "p");
+              //isBEfore pr meeting is not working.
+
               log(upcomingOrderData.data.length.toString());
               log(value.data.length.toString());
             }))
@@ -224,12 +226,23 @@ class _UMySessionPageState extends State<UMySessionPage> {
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) =>
+                                              //     UBookingConfirmationScreen(
+                                              //   model: upcomingOrderData.data
+                                              //       .firstWhere(
+                                              //     (element) => DateTime.parse(
+                                              //             "${element.date} ${element.timeSlot}")
+                                              //         .isBefore(
+                                              //       DateTime.now(),
+                                              //     ),
+                                              //   ),
+                                              //   isCancellationAvailable: true,
+                                              // ),
                                               UBookingConfirmationScreen(
                                             model: upcomingOrderData.data[i],
                                             //   (
                                             // (element) => DateTime.parse(
                                             //         "${element.date} ${element.timeSlot}")
-                                            //     .isAfter(DateTime.now())),
+                                            //     .isBefore(DateTime.now())),
                                             isCancellationAvailable: true,
                                           ),
                                         ),

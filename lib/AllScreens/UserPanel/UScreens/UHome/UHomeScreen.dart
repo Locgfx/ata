@@ -78,18 +78,29 @@ class _UHomeScreenState extends State<UHomeScreen> {
         .then((value) => setState(() {
               log(value.data.toString() + "g uguyvf ");
               upcomingOrderData = value;
+              // upcomingOrderData.data.firstWhere((element) =>
+              //     DateTime.parse("${element.date} ${element.timeSlot}")
+              //         .isAfter(DateTime.now()));
+              // (element) => DateTime.parse(
+              //         "${element.date} ${element.timeSlot}")
+              //     .isAfter(DateTime.now())),
               upcomingOrderData.data.removeWhere((element) =>
                   DateTime.parse("${element.date} ${element.timeSlot}")
-                      .isBefore(DateTime.now().add(Duration(minutes: 60))
-                          // DateTime(
-                          //     DateTime.now().year,
-                          //     DateTime.now().month,
-                          //     DateTime.now().day,
-                          //     DateTime.now().hour,
-                          //     60)
-                          ));
-              upcomingOrderData.data
-                  .removeWhere((element) => element.payment != "p");
+                      .isBefore(DateTime.now()));
+              // upcomingOrderData.data.removeWhere((element) =>
+              //     DateTime.parse("${element.date} ${element.timeSlot}")
+              //         .isAfter(DateTime.now()
+              //             // DateTime(
+              //             //     DateTime.now().year,
+              //             //     DateTime.now().month,
+              //             //     DateTime.now().day,
+              //             //     DateTime.now().hour,
+              //             //     60)
+              //             ));
+              // upcomingOrderData.data
+              //     .removeWhere((element) => element.payment != "p");
+
+              //isBefore working in both screens
               log(upcomingOrderData.data.length.toString());
               log(value.data.length.toString());
             }))
@@ -333,7 +344,7 @@ class _UHomeScreenState extends State<UHomeScreen> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             UBookingConfirmationScreen(
-                                          model: upcomingOrderData.data.lastWhere(
+                                          model: upcomingOrderData.data.firstWhere(
                                               (element) => DateTime.parse(
                                                       "${element.date} ${element.timeSlot}")
                                                   .isAfter(DateTime.now())),
